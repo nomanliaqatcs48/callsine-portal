@@ -18,7 +18,7 @@ const pages = {
       id: "contacts",
       title: "Contacts",
       type: "item",
-      url: "/contacts",
+      url: "/persons",
       icon: icons.IconKey,
       breadcrumbs: false,
     },
