@@ -183,9 +183,9 @@ const ProfileSection = () => {
                           Johne Doe
                         </Typography>
                       </Stack>
-                      <Typography variant="subtitle2">Project Admin</Typography>
+                      {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
                     </Stack>
-                    <OutlinedInput
+                    {/*<OutlinedInput
                       sx={{ width: "100%", pr: 1, pl: 2, my: 2 }}
                       id="input-search-profile"
                       value={value}
@@ -204,20 +204,20 @@ const ProfileSection = () => {
                       inputProps={{
                         "aria-label": "weight",
                       }}
-                    />
-                    <Divider />
+                    />*/}
+                    {/*<Divider />*/}
                   </Box>
                   <PerfectScrollbar
                     style={{
-                      height: "100%",
-                      maxHeight: "calc(100vh - 250px)",
+                      // height: "100%",
+                      // maxHeight: "calc(100vh - 250px)",
                       overflowX: "hidden",
                     }}
                   >
                     <Box sx={{ p: 2 }}>
-                      <UpgradePlanCard />
-                      <Divider />
-                      <Card
+                      {/*<UpgradePlanCard />*/}
+                      {/*<Divider />*/}
+                      {/*<Card
                         sx={{
                           bgcolor: theme.palette.primary.light,
                           my: 2,
@@ -274,8 +274,8 @@ const ProfileSection = () => {
                             </Grid>
                           </Grid>
                         </CardContent>
-                      </Card>
-                      <Divider />
+                      </Card>*/}
+                      {/*<Divider />*/}
                       <List
                         component="nav"
                         sx={{
@@ -292,7 +292,7 @@ const ProfileSection = () => {
                           },
                         }}
                       >
-                        <ListItemButton
+                        {/*<ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -315,8 +315,8 @@ const ProfileSection = () => {
                               </Typography>
                             }
                           />
-                        </ListItemButton>
-                        <ListItemButton
+                        </ListItemButton>*/}
+                        {/*<ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -357,7 +357,7 @@ const ProfileSection = () => {
                               </Grid>
                             }
                           />
-                        </ListItemButton>
+                        </ListItemButton>*/}
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
