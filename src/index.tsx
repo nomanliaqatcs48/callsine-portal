@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM, { createRoot } from "react-dom/client";
+import { createRoot } from "react-dom/client";
 import "./assets/main.scss";
 import "./index.css";
 import App from "./App";
@@ -9,14 +9,6 @@ import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
 import config from "./config";
 
-/*const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
-);
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);*/
 const container: any = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
