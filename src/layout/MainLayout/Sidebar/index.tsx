@@ -45,7 +45,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
           }}
         >
           <MenuList />
-          <MenuCard />
+          {/*<MenuCard />*/}
         </PerfectScrollbar>
       </BrowserView>
       <MobileView>
