@@ -1,9 +1,10 @@
 // assets
-import { IconKey } from "@tabler/icons-react";
+import { IconKey, IconUsers } from "@tabler/icons-react";
 
 // constant
 const icons = {
   IconKey,
+  IconUsers,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -19,7 +20,7 @@ const pages = {
       title: "Contacts",
       type: "item",
       url: "/persons",
-      icon: icons.IconKey,
+      icon: icons.IconUsers,
       breadcrumbs: false,
     },
     {
