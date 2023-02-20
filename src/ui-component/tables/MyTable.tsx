@@ -29,9 +29,9 @@ import Select from "react-select";
 import { useCustomMediaQuery } from "../../hooks/useCustomMediaQuery";
 
 // images + icons
-import { ReactComponent as DescArrowIcon } from "../../assets/svg/desc-arrow.svg";
-import { ReactComponent as AscArrowIcon } from "../../assets/svg/asc-arrow.svg";
-import { ReactComponent as AscAndDescArrowIcon } from "../../assets/svg/asc-and-desc-arrows.svg";
+import { ReactComponent as DescArrowIcon } from "../../assets/images/svg/desc-arrow.svg";
+import { ReactComponent as AscArrowIcon } from "../../assets/images/svg/asc-arrow.svg";
+import { ReactComponent as AscAndDescArrowIcon } from "../../assets/images/svg/asc-and-desc-arrows.svg";
 
 interface MyTableProps {
   columns: any;
