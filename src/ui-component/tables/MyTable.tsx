@@ -496,7 +496,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     // Render the header
                                     column.render("Header")
                                   }
-                                  <span>
+                                  {/*<span>
                                     {column.isSorted ? (
                                       column.isSortedDesc === true ? (
                                         <DescArrowIcon />
@@ -516,7 +516,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     ) : (
                                       ""
                                     )}
-                                  </span>
+                                  </span>*/}
                                 </div>
                               </TableCell>
                             );
