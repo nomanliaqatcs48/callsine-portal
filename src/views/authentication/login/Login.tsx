@@ -5,7 +5,7 @@ import { useTheme } from "@mui/material/styles";
 import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
 
 // project imports
-import AuthWrapper1 from "../AuthWrapper";
+import AuthWrapper from "../AuthWrapper";
 import AuthCardWrapper from "../AuthCardWrapper";
 import AuthLogin from "../auth-forms/AuthLogin";
 import Logo from "../../../ui-component/Logo";
@@ -18,7 +18,7 @@ const Login = () => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
-    <AuthWrapper1>
+    <AuthWrapper>
       <Grid
         container
         direction="column"
@@ -109,7 +109,7 @@ const Login = () => {
           <AuthFooter />
         </Grid>
       </Grid>
-    </AuthWrapper1>
+    </AuthWrapper>
   );
 };
 
