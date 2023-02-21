@@ -610,7 +610,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
 
           {(filters?.limit || 10) < totalItems && renderPagination()}
 
-          {!removePageSizeDropdown && renderPageSizeDropdown()}
+          {/*{!removePageSizeDropdown && renderPageSizeDropdown()}*/}
 
           {/*<p>Selected Rows: {Object.keys(selectedRowIds).length}</p>
           <pre>
