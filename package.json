@@ -62,6 +62,7 @@
   },
   "devDependencies": {
     "@types/react-table": "^7.7.14",
+    "dotenv-cli": "^7.0.0",
     "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.4",
