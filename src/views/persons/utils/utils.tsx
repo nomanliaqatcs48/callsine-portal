@@ -1,10 +1,9 @@
+import moment from "moment";
+
 export const _columns: any = [
   {
     Header: "First",
     accessor: "first_name",
-    id: "first_name",
-    key: "first_name",
-    label: "First",
     Cell: (cell: any) => {
       return (
         <a className="" href="">
@@ -16,16 +15,10 @@ export const _columns: any = [
   {
     Header: "Last",
     accessor: "last_name",
-    id: "last_name",
-    key: "last_name",
-    label: "Last",
   },
   {
     Header: "Email",
     accessor: "email",
-    id: "email",
-    key: "email",
-    label: "Email",
     width: 250,
     minWidth: 250,
     Cell: (cell: any) => {
@@ -38,6 +31,26 @@ export const _columns: any = [
           {cell?.value}
         </a>
       );
+    },
+  },
+  {
+    Header: "Date Added",
+    accessor: "created_date",
+    width: 250,
+    minWidth: 250,
+    Cell: (cell: any) => {
+      if (!cell?.value) return "";
+      return moment.utc(cell?.value).format("MMMM D, YYYY");
+    },
+  },
+  {
+    Header: "Date Modified",
+    accessor: "modified_date",
+    width: 250,
+    minWidth: 250,
+    Cell: (cell: any) => {
+      if (!cell?.value) return "";
+      return moment.utc(cell?.value).format("MMMM D, YYYY");
     },
   },
 ];
