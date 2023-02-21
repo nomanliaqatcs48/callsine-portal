@@ -65,13 +65,13 @@ const Register = () => {
                           >
                             Sign up
                           </Typography>
-                          <Typography
+                          {/*<Typography
                             variant="caption"
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : "inherit"}
                           >
                             Enter your credentials to continue
-                          </Typography>
+                          </Typography>*/}
                         </Stack>
                       </Grid>
                     </Grid>

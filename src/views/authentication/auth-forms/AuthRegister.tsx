@@ -76,7 +76,7 @@ const AuthRegister = ({ ...others }) => {
 
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
+      {/*<Grid container direction="column" justifyContent="center" spacing={2}>
         <Grid item xs={12}>
           <AnimateButton>
             <Button
@@ -139,7 +139,7 @@ const AuthRegister = ({ ...others }) => {
             </Typography>
           </Box>
         </Grid>
-      </Grid>
+      </Grid>*/}
 
       <Formik
         initialValues={{

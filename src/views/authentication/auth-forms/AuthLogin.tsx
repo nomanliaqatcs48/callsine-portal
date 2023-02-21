@@ -59,7 +59,7 @@ const AuthLogin = ({ ...others }) => {
 
   return (
     <>
-      <Grid container direction="column" justifyContent="center" spacing={2}>
+      {/*<Grid container direction="column" justifyContent="center" spacing={2}>
         <Grid item xs={12}>
           <AnimateButton>
             <Button
@@ -130,7 +130,7 @@ const AuthLogin = ({ ...others }) => {
             </Typography>
           </Box>
         </Grid>
-      </Grid>
+      </Grid>*/}
 
       <Formik
         initialValues={{
