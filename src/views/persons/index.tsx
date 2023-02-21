@@ -6,8 +6,16 @@ import { _columns } from "./utils/utils";
 import { usePersons } from "./hooks/usePersons";
 
 const PersonsPage = () => {
-  const { total, setTotal, filters, setFilters, isLoading, setIsLoading } =
-    usePersons();
+  const {
+    personsData,
+    setPersonsData,
+    total,
+    setTotal,
+    filters,
+    setFilters,
+    isLoading,
+    setIsLoading,
+  } = usePersons();
 
   return (
     <MainCard title="Persons">
@@ -22,23 +30,7 @@ const PersonsPage = () => {
       </Typography>
       <MyTable
         columns={_columns}
-        data={[
-          {
-            first_name: "Ken",
-            last_name: "Vilar",
-            email: "kvilar@unionresolute.com",
-          },
-          {
-            first_name: "Roselle",
-            last_name: "Ebarle",
-            email: "rebarle@unionresolute.com",
-          },
-          {
-            first_name: "John",
-            last_name: "Doe",
-            email: "jdoe@unionresolute.com",
-          },
-        ]}
+        data={personsData}
         totalItems={total || 0}
         tableName="HighlyQualifiedLeads"
         tableClassName="table-highly-qualified-leads gray-header table-sm"

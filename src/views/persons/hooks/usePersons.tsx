@@ -1,6 +1,23 @@
 import React, { useState } from "react";
 
 export const usePersons = () => {
+  const [personsData, setPersonsData] = useState<any[]>([
+    {
+      first_name: "Ken",
+      last_name: "Vilar",
+      email: "kvilar@unionresolute.com",
+    },
+    {
+      first_name: "Roselle",
+      last_name: "Ebarle",
+      email: "rebarle@unionresolute.com",
+    },
+    {
+      first_name: "John",
+      last_name: "Doe",
+      email: "jdoe@unionresolute.com",
+    },
+  ]);
   const [total, setTotal] = useState<number>(0);
   const [filters, setFilters] = useState<any>({
     limit: 10,
@@ -12,5 +29,14 @@ export const usePersons = () => {
     table: false,
   });
 
-  return { total, setTotal, filters, setFilters, isLoading, setIsLoading };
+  return {
+    personsData,
+    setPersonsData,
+    total,
+    setTotal,
+    filters,
+    setFilters,
+    isLoading,
+    setIsLoading,
+  };
 };
