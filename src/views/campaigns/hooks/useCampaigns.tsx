@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 export const useCampaigns = () => {
-  const [personsData, setPersonsData] = useState<any[]>([
+  const [campaignsData, setCampaignsData] = useState<any[]>([
     {
       first_name: "Ken",
       last_name: "Vilar",
@@ -36,8 +36,8 @@ export const useCampaigns = () => {
   });
 
   return {
-    personsData,
-    setPersonsData,
+    campaignsData,
+    setCampaignsData,
     total,
     setTotal,
     filters,
