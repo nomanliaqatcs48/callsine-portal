@@ -92,7 +92,7 @@ const Login = () => {
                     >
                       <Typography
                         component={Link}
-                        to="/pages/register/register3"
+                        to="/signup"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >
