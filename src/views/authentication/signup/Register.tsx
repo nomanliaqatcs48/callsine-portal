@@ -14,7 +14,7 @@ import AuthFooter from "../../../ui-component/cards/AuthFooter";
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
-  const theme = useTheme();
+  const theme: any = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
@@ -92,7 +92,7 @@ const Register = () => {
                     >
                       <Typography
                         component={Link}
-                        to="/pages/login/login3"
+                        to="/login"
                         variant="subtitle1"
                         sx={{ textDecoration: "none" }}
                       >
