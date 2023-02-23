@@ -288,8 +288,8 @@ const ProfileSection = () => {
                         component="nav"
                         sx={{
                           width: "100%",
-                          maxWidth: 350,
-                          minWidth: 300,
+                          maxWidth: 250, //maxWidth: 350,
+                          minWidth: 200, //minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
                           borderRadius: "10px",
                           [theme.breakpoints.down("md")]: {
