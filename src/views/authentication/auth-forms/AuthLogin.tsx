@@ -34,6 +34,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 import Google from "../../../assets/images/icons/social-google.svg";
+import { loginService } from "../../../services/auth.service";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -55,6 +56,33 @@ const AuthLogin = ({ ...others }) => {
 
   const handleMouseDownPassword = (event: any) => {
     event.preventDefault();
+  };
+
+  const onSubmit = async (
+    values: any,
+    { setErrors, setStatus, setSubmitting }: any
+  ) => {
+    try {
+      console.log("values", values);
+      values.username = values.email;
+      let res = await loginService(values);
+      console.log("res", res);
+    } catch (e: any) {
+      //
+    }
+    /*try {
+      if (scriptedRef.current) {
+        setStatus({ success: true });
+        setSubmitting(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      if (scriptedRef.current) {
+        setStatus({ success: false });
+        setErrors({ submit: err.message });
+        setSubmitting(false);
+      }
+    }*/
   };
 
   return (
@@ -145,24 +173,7 @@ const AuthLogin = ({ ...others }) => {
             .required("Email is required"),
           password: Yup.string().max(255).required("Password is required"),
         })}
-        onSubmit={async (
-          values: any,
-          { setErrors, setStatus, setSubmitting }: any
-        ) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err: any) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
-        }}
+        onSubmit={onSubmit}
       >
         {({
           errors,
