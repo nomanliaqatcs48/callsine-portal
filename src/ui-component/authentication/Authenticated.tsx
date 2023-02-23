@@ -16,8 +16,8 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
       if (!_check) {
         window.location.href = "/login";
       }
-    } catch (e) {
-      //
+    } catch ({ response }) {
+      console.error(response);
     }
   };
 

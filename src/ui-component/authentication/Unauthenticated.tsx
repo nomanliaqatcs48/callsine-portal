@@ -16,8 +16,8 @@ const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
       if (check) {
         window.location.href = "/dashboard";
       }
-    } catch (e) {
-      //
+    } catch ({ response }) {
+      console.error(response);
     }
   };
 
