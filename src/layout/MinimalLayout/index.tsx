@@ -1,4 +1,5 @@
 import { Outlet } from "react-router-dom";
+import Unauthenticated from "../../ui-component/authentication/Unauthenticated";
 
 // project imports
 // import Customization from "../Customization";
@@ -7,7 +8,9 @@ import { Outlet } from "react-router-dom";
 
 const MinimalLayout = () => (
   <>
-    <Outlet />
+    <Unauthenticated>
+      <Outlet />
+    </Unauthenticated>
     {/*<Customization />*/}
   </>
 );

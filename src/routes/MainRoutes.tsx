@@ -3,6 +3,7 @@ import { lazy } from "react";
 // project imports
 import MainLayout from "../layout/MainLayout";
 import Loadable from "../ui-component/Loadable";
+import Authenticated from "../ui-component/authentication/Authenticated";
 
 // utilities routing
 const DashboardDefault = Loadable(lazy(() => import("../views/dashboard")));
@@ -14,7 +15,11 @@ const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
 
 const MainRoutes = {
   path: "/",
-  element: <MainLayout />,
+  element: (
+    <Authenticated>
+      <MainLayout />
+    </Authenticated>
+  ),
   children: [
     {
       path: "/",
