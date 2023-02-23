@@ -184,7 +184,7 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          Johne Doe
+                          John Doe
                         </Typography>
                       </Stack>
                       {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
