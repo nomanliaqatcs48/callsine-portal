@@ -180,7 +180,7 @@ const ProfileSection = () => {
                   <Box sx={{ p: 2 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
-                        <Typography variant="h4">Good Morning,</Typography>
+                        <Typography variant="h4">Good day,</Typography>
                         <Typography
                           component="span"
                           variant="h4"
@@ -218,7 +218,8 @@ const ProfileSection = () => {
                     style={{
                       // height: "100%",
                       // maxHeight: "calc(100vh - 250px)",
-                      overflowX: "hidden",
+                      height: "100px",
+                      // overflowX: "hidden",
                     }}
                   >
                     <Box sx={{ p: 2 }}>
