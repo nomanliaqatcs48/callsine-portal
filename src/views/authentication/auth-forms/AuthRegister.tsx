@@ -312,7 +312,12 @@ const AuthRegister = ({ ...others }) => {
                   label={
                     <Typography variant="subtitle1">
                       Agree with &nbsp;
-                      <Typography variant="subtitle1" component={Link} to="#">
+                      <Typography
+                        variant="subtitle1"
+                        component={Link}
+                        to="#"
+                        sx={{ textDecoration: "underline" }}
+                      >
                         Terms & Condition.
                       </Typography>
                     </Typography>
