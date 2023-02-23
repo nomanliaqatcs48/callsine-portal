@@ -67,22 +67,24 @@ const AuthLogin = ({ ...others }) => {
       values.username = values.email;
       let res = await loginService(values);
       console.log("res", res);
-    } catch (e: any) {
-      //
-    }
-    /*try {
-      if (scriptedRef.current) {
-        setStatus({ success: true });
-        setSubmitting(false);
+      if (res?.data) {
+        localStorage.setItem("isAuthenticated", "yes");
+        localStorage.setItem("access", res.data.access);
+        localStorage.setItem("refresh", res.data.refresh);
+        window.location.href = "/dashboard";
+        if (scriptedRef.current) {
+          setStatus({ success: true });
+          setSubmitting(false);
+        }
       }
-    } catch (err: any) {
-      console.error(err);
+    } catch ({ response }) {
+      console.error(response);
       if (scriptedRef.current) {
         setStatus({ success: false });
-        setErrors({ submit: err.message });
+        setErrors({ submit: "Incorrect username or password." });
         setSubmitting(false);
       }
-    }*/
+    }
   };
 
   return (
