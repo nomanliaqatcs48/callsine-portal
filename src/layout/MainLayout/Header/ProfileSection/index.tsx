@@ -120,7 +120,7 @@ const ProfileSection = () => {
             lineHeight: 0,
           },
         }}
-        icon={
+        /*icon={
           <Avatar
             src={User1}
             sx={{
@@ -133,7 +133,7 @@ const ProfileSection = () => {
             aria-haspopup="true"
             color="inherit"
           />
-        }
+        }*/
         label={
           <IconSettings
             stroke={1.5}
