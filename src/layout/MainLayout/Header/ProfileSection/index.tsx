@@ -45,10 +45,12 @@ import {
 } from "@tabler/icons-react";
 import { clear } from "../../../../utils/storage";
 import { devLog } from "../../../../helpers/logs";
+import { useAuth } from "../../../../contexts/auth";
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
+  const auth: any = useAuth();
   const theme: any = useTheme();
   const customization = useSelector((state: any) => state.customization);
   const navigate = useNavigate();
@@ -184,7 +186,8 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          John Doe
+                          {auth?.first_name || "John"}{" "}
+                          {auth?.last_name || "Doe"}
                         </Typography>
                       </Stack>
                       {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
