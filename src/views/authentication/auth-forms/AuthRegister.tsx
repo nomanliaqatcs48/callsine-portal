@@ -116,11 +116,22 @@ const AuthRegister = ({ ...others }) => {
           setSubmitting(false);
         }
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (err: any) {
+      devLogError(err?.response);
       if (scriptedRef.current) {
         setStatus({ success: false });
-        setErrors({ submit: "There's something wrong." });
+        if (err?.response?.data?.email?.length > 0) {
+          setErrors({ submit: err?.response?.data?.email[0] });
+        } else if (err?.response?.data?.password1?.length > 0) {
+          setErrors({ submit: err?.response?.data?.password1[0] });
+        } else if (err?.response?.data?.password2?.length > 0) {
+          setErrors({ submit: err?.response?.data?.password2[0] });
+        } else if (err?.response?.data?.username?.length > 0) {
+          setErrors({ submit: err?.response?.data?.username[0] });
+        } else {
+          setErrors({ submit: "There's something wrong." });
+        }
+
         setSubmitting(false);
       }
     }
