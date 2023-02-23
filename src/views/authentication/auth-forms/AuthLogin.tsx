@@ -35,6 +35,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 // import Google from "../../../assets/images/icons/social-google.svg";
 import { loginService } from "../../../services/auth.service";
+import { saveString } from "../../../utils/storage";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -68,9 +69,9 @@ const AuthLogin = ({ ...others }) => {
       let res = await loginService(values);
       console.log("res", res);
       if (res?.data) {
-        localStorage.setItem("isAuthenticated", "yes");
-        localStorage.setItem("access", res.data.access);
-        localStorage.setItem("refresh", res.data.refresh);
+        await saveString("isAuthenticated", "yes");
+        await saveString("access", res.data.access);
+        await saveString("refresh", res.data.refresh);
         window.location.href = "/dashboard";
         if (scriptedRef.current) {
           setStatus({ success: true });
