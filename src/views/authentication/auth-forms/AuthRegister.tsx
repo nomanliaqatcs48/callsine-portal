@@ -39,6 +39,8 @@ import {
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { devLog, devLogError } from "../../../helpers/logs";
+import { loginService, signupService } from "../../../services/auth.service";
+import { saveString } from "../../../utils/storage";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -100,15 +102,25 @@ const AuthRegister = ({ ...others }) => {
       return;
     }
     try {
-      if (scriptedRef.current) {
-        setStatus({ success: true });
-        setSubmitting(false);
+      devLog("values", values);
+      values.username = values.email;
+      let res = await signupService(values);
+      devLog("res", res);
+      if (res?.data) {
+        await saveString("isAuthenticated", "yes");
+        await saveString("access", res.data.access_token);
+        await saveString("refresh", res.data.refresh_token);
+        window.location.href = "/dashboard";
+        if (scriptedRef.current) {
+          setStatus({ success: true });
+          setSubmitting(false);
+        }
       }
-    } catch (err: any) {
-      devLogError(err);
+    } catch ({ response }) {
+      devLogError(response);
       if (scriptedRef.current) {
         setStatus({ success: false });
-        setErrors({ submit: err.message });
+        setErrors({ submit: "There's something wrong." });
         setSubmitting(false);
       }
     }
