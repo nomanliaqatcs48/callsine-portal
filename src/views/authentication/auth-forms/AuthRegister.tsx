@@ -74,6 +74,25 @@ const AuthRegister = ({ ...others }) => {
     changePassword("123456");
   }, []);
 
+  const onSubmit = async (
+    values: any,
+    { setErrors, setStatus, setSubmitting }: any
+  ) => {
+    try {
+      if (scriptedRef.current) {
+        setStatus({ success: true });
+        setSubmitting(false);
+      }
+    } catch (err: any) {
+      console.error(err);
+      if (scriptedRef.current) {
+        setStatus({ success: false });
+        setErrors({ submit: err.message });
+        setSubmitting(false);
+      }
+    }
+  };
+
   return (
     <>
       {/*<Grid container direction="column" justifyContent="center" spacing={2}>
@@ -154,24 +173,7 @@ const AuthRegister = ({ ...others }) => {
             .required("Email is required"),
           password: Yup.string().max(255).required("Password is required"),
         })}
-        onSubmit={async (
-          values: any,
-          { setErrors, setStatus, setSubmitting }: any
-        ) => {
-          try {
-            if (scriptedRef.current) {
-              setStatus({ success: true });
-              setSubmitting(false);
-            }
-          } catch (err: any) {
-            console.error(err);
-            if (scriptedRef.current) {
-              setStatus({ success: false });
-              setErrors({ submit: err.message });
-              setSubmitting(false);
-            }
-          }
-        }}
+        onSubmit={onSubmit}
       >
         {({
           errors,
