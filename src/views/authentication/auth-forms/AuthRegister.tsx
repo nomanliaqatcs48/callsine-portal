@@ -46,8 +46,9 @@ const AuthRegister = ({ ...others }) => {
   const scriptedRef = useScriptRef();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state: any) => state.customization);
-  const [showPassword, setShowPassword] = useState(false);
-  const [checked, setChecked] = useState(true);
+  const [showPassword1, setShowPassword1] = useState<boolean>(false);
+  const [showPassword2, setShowPassword2] = useState<boolean>(false);
+  const [checked, setChecked] = useState<boolean>(true);
 
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState<any>();
@@ -56,11 +57,19 @@ const AuthRegister = ({ ...others }) => {
     console.error("Register");
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleClickShowPassword1 = () => {
+    setShowPassword1(!showPassword1);
   };
 
-  const handleMouseDownPassword = (event: any) => {
+  const handleClickShowPassword2 = () => {
+    setShowPassword2(!showPassword2);
+  };
+
+  const handleMouseDownPassword1 = (event: any) => {
+    event.preventDefault();
+  };
+
+  const handleMouseDownPassword2 = (event: any) => {
     event.preventDefault();
   };
 
@@ -163,16 +172,26 @@ const AuthRegister = ({ ...others }) => {
 
       <Formik
         initialValues={{
+          first_name: "",
+          last_name: "",
           email: "",
-          password: "",
+          username: "",
+          password1: "",
+          password2: "",
           submit: null,
         }}
         validationSchema={Yup.object().shape({
+          first_name: Yup.string().max(255).required("First Name is required"),
+          last_name: Yup.string().max(255).required("Last Name is required"),
           email: Yup.string()
             .email("Must be a valid email")
             .max(255)
             .required("Email is required"),
-          password: Yup.string().max(255).required("Password is required"),
+          username: Yup.string().max(255).required("Username is required"),
+          password1: Yup.string().max(255).required("Password is required"),
+          password2: Yup.string()
+            .max(255)
+            .required("Confirm password is required"),
         })}
         onSubmit={onSubmit}
       >
@@ -188,35 +207,70 @@ const AuthRegister = ({ ...others }) => {
           <form noValidate onSubmit={handleSubmit} {...others}>
             <Grid container spacing={matchDownSM ? 0 : 2}>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <FormControl
                   fullWidth
-                  label="First Name"
-                  margin="normal"
-                  name="fname"
-                  type="text"
-                  defaultValue=""
+                  error={Boolean(touched.first_name && errors.first_name)}
                   sx={{ ...theme.typography.customInput }}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-first_name-register">
+                    First Name
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-first_name-register"
+                    type="text"
+                    value={values.first_name}
+                    name="first_name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    inputProps={{}}
+                  />
+                  {touched.first_name && errors.first_name && (
+                    <FormHelperText
+                      error
+                      id="standard-weight-helper-text-first_name-register"
+                    >
+                      {errors.first_name}
+                    </FormHelperText>
+                  )}
+                </FormControl>
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <FormControl
                   fullWidth
-                  label="Last Name"
-                  margin="normal"
-                  name="lname"
-                  type="text"
-                  defaultValue=""
+                  error={Boolean(touched.last_name && errors.last_name)}
                   sx={{ ...theme.typography.customInput }}
-                />
+                >
+                  <InputLabel htmlFor="outlined-adornment-last_name-register">
+                    Last Name
+                  </InputLabel>
+                  <OutlinedInput
+                    id="outlined-adornment-last_name-register"
+                    type="text"
+                    value={values.last_name}
+                    name="last_name"
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    inputProps={{}}
+                  />
+                  {touched.last_name && errors.last_name && (
+                    <FormHelperText
+                      error
+                      id="standard-weight-helper-text-last_name-register"
+                    >
+                      {errors.last_name}
+                    </FormHelperText>
+                  )}
+                </FormControl>
               </Grid>
             </Grid>
+
             <FormControl
               fullWidth
               error={Boolean(touched.email && errors.email)}
               sx={{ ...theme.typography.customInput }}
             >
               <InputLabel htmlFor="outlined-adornment-email-register">
-                Email Address / Username
+                Email Address
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-register"
@@ -239,17 +293,44 @@ const AuthRegister = ({ ...others }) => {
 
             <FormControl
               fullWidth
-              error={Boolean(touched.password && errors.password)}
+              error={Boolean(touched.username && errors.username)}
               sx={{ ...theme.typography.customInput }}
             >
-              <InputLabel htmlFor="outlined-adornment-password-register">
+              <InputLabel htmlFor="outlined-adornment-username-register">
+                Username
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-username-register"
+                type="text"
+                value={values.username}
+                name="username"
+                onBlur={handleBlur}
+                onChange={handleChange}
+                inputProps={{}}
+              />
+              {touched.username && errors.username && (
+                <FormHelperText
+                  error
+                  id="standard-weight-helper-text-username-register"
+                >
+                  {errors.username}
+                </FormHelperText>
+              )}
+            </FormControl>
+
+            <FormControl
+              fullWidth
+              error={Boolean(touched.password1 && errors.password1)}
+              sx={{ ...theme.typography.customInput }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password1-register">
                 Password
               </InputLabel>
               <OutlinedInput
-                id="outlined-adornment-password-register"
-                type={showPassword ? "text" : "password"}
-                value={values.password}
-                name="password"
+                id="outlined-adornment-password1-register"
+                type={showPassword1 ? "text" : "password"}
+                value={values.password1}
+                name="password1"
                 label="Password"
                 onBlur={handleBlur}
                 onChange={(e) => {
@@ -260,23 +341,67 @@ const AuthRegister = ({ ...others }) => {
                   <InputAdornment position="end">
                     <IconButton
                       aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword}
-                      onMouseDown={handleMouseDownPassword}
+                      onClick={handleClickShowPassword1}
+                      onMouseDown={handleMouseDownPassword1}
                       edge="end"
                       size="large"
                     >
-                      {showPassword ? <Visibility /> : <VisibilityOff />}
+                      {showPassword1 ? <Visibility /> : <VisibilityOff />}
                     </IconButton>
                   </InputAdornment>
                 }
                 inputProps={{}}
               />
-              {touched.password && errors.password && (
+              {touched.password1 && errors.password1 && (
                 <FormHelperText
                   error
-                  id="standard-weight-helper-text-password-register"
+                  id="standard-weight-helper-text-password1-register"
                 >
-                  {errors.password}
+                  {errors.password1}
+                </FormHelperText>
+              )}
+            </FormControl>
+
+            <FormControl
+              fullWidth
+              error={Boolean(touched.password2 && errors.password2)}
+              sx={{ ...theme.typography.customInput }}
+            >
+              <InputLabel htmlFor="outlined-adornment-password2-register">
+                Confirm Password
+              </InputLabel>
+              <OutlinedInput
+                id="outlined-adornment-password2-register"
+                type={showPassword2 ? "text" : "password"}
+                value={values.password2}
+                name="password2"
+                label="Confirm Password"
+                onBlur={handleBlur}
+                onChange={(e) => {
+                  handleChange(e);
+                  // changePassword(e.target.value);
+                }}
+                endAdornment={
+                  <InputAdornment position="end">
+                    <IconButton
+                      aria-label="toggle confirm-password visibility"
+                      onClick={handleClickShowPassword2}
+                      onMouseDown={handleMouseDownPassword2}
+                      edge="end"
+                      size="large"
+                    >
+                      {showPassword2 ? <Visibility /> : <VisibilityOff />}
+                    </IconButton>
+                  </InputAdornment>
+                }
+                inputProps={{}}
+              />
+              {touched.password2 && errors.password2 && (
+                <FormHelperText
+                  error
+                  id="standard-weight-helper-text-password2-register"
+                >
+                  {errors.password2}
                 </FormHelperText>
               )}
             </FormControl>
