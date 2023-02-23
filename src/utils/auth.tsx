@@ -1,7 +1,7 @@
 import { loadString } from "./storage";
 
-export const checkIfAuthenticated = () => {
-  let _auth: any = loadString("isAuthenticated");
-  let _access: any = loadString("access");
+export const checkIfAuthenticated = async () => {
+  let _auth = await loadString("isAuthenticated");
+  let _access = await loadString("access");
   return !!(_auth && _access);
 };
