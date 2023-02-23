@@ -78,6 +78,7 @@ const AuthRegister = ({ ...others }) => {
     values: any,
     { setErrors, setStatus, setSubmitting }: any
   ) => {
+    console.log("onSubmit() values", values);
     try {
       if (scriptedRef.current) {
         setStatus({ success: true });
