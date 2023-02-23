@@ -7,10 +7,19 @@ type UnauthenticatedTypes = {
 
 const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
   useEffect(() => {
-    if (checkIfAuthenticated()) {
-      window.location.href = "/dashboard";
-    }
+    checkAuth();
   }, []);
+
+  const checkAuth = async () => {
+    try {
+      let check = await checkIfAuthenticated();
+      if (check) {
+        window.location.href = "/dashboard";
+      }
+    } catch (e) {
+      //
+    }
+  };
 
   return <>{children}</>;
 };

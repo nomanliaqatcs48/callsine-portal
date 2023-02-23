@@ -7,10 +7,21 @@ type AuthenticatedTypes = {
 
 const Authenticated = ({ children }: AuthenticatedTypes) => {
   useEffect(() => {
-    if (!checkIfAuthenticated()) {
-      window.location.href = "/login";
-    }
+    checkAuth();
   }, []);
+
+  const checkAuth = async () => {
+    try {
+      let _check = await checkIfAuthenticated();
+      console.log("_check", _check);
+      if (!_check) {
+        console.log("redirect to login");
+        window.location.href = "/login";
+      }
+    } catch (e) {
+      //
+    }
+  };
 
   return <>{children}</>;
 };
