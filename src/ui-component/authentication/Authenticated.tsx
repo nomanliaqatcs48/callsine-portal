@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { checkIfAuthenticated } from "../../utils/auth";
+import { devLogError } from "../../helpers/logs";
 
 type AuthenticatedTypes = {
   children: React.ReactNode;
@@ -17,7 +18,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
         window.location.href = "/login";
       }
     } catch ({ response }) {
-      console.error(response);
+      devLogError(response);
     }
   };
 

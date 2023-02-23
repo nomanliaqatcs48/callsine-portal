@@ -38,6 +38,7 @@ import {
 // assets
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { devLog, devLogError } from "../../../helpers/logs";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -54,7 +55,7 @@ const AuthRegister = ({ ...others }) => {
   const [level, setLevel] = useState<any>();
 
   const googleHandler = async () => {
-    console.error("Register");
+    devLogError("Register");
   };
 
   const handleClickShowPassword1 = () => {
@@ -91,7 +92,7 @@ const AuthRegister = ({ ...others }) => {
     values: any,
     { setErrors, setStatus, setSubmitting }: any
   ) => {
-    console.log("onSubmit() values", values);
+    devLog("onSubmit() values", values);
     if (!checkPasswords(values)) {
       setStatus({ success: false });
       setErrors({ submit: "Passwords don't match." });
@@ -104,7 +105,7 @@ const AuthRegister = ({ ...others }) => {
         setSubmitting(false);
       }
     } catch (err: any) {
-      console.error(err);
+      devLogError(err);
       if (scriptedRef.current) {
         setStatus({ success: false });
         setErrors({ submit: err.message });

@@ -44,6 +44,7 @@ import {
   IconUser,
 } from "@tabler/icons-react";
 import { clear } from "../../../../utils/storage";
+import { devLog } from "../../../../helpers/logs";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -62,7 +63,7 @@ const ProfileSection = () => {
    * */
   const anchorRef: any = useRef(null);
   const handleLogout = async () => {
-    console.log("Logout");
+    devLog("Logout");
     await clear();
     window.location.href = "/login";
   };

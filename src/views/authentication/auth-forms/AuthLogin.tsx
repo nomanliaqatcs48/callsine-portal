@@ -36,6 +36,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 // import Google from "../../../assets/images/icons/social-google.svg";
 import { loginService } from "../../../services/auth.service";
 import { saveString } from "../../../utils/storage";
+import { devLog, devLogError } from "../../../helpers/logs";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -47,7 +48,7 @@ const AuthLogin = ({ ...others }) => {
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
-    console.error("Login");
+    devLogError("Login");
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -64,10 +65,10 @@ const AuthLogin = ({ ...others }) => {
     { setErrors, setStatus, setSubmitting }: any
   ) => {
     try {
-      console.log("values", values);
+      devLog("values", values);
       values.username = values.email;
       let res = await loginService(values);
-      console.log("res", res);
+      devLog("res", res);
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
         await saveString("access", res.data.access);
@@ -79,7 +80,7 @@ const AuthLogin = ({ ...others }) => {
         }
       }
     } catch ({ response }) {
-      console.error(response);
+      devLogError(response);
       if (scriptedRef.current) {
         setStatus({ success: false });
         setErrors({ submit: "Incorrect username or password." });
