@@ -13,9 +13,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
   const checkAuth = async () => {
     try {
       let _check = await checkIfAuthenticated();
-      console.log("_check", _check);
       if (!_check) {
-        console.log("redirect to login");
         window.location.href = "/login";
       }
     } catch (e) {
