@@ -107,7 +107,7 @@ const AuthRegister = ({ ...others }) => {
       devLog("res", res);
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
-        await saveString("access", res.data.access_token);
+        await saveString("token", res.data.access_token);
         await saveString("refresh", res.data.refresh_token);
         await save("profile", res.data.user);
         window.location.href = "/dashboard";

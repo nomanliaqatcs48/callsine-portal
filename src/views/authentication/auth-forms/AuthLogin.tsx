@@ -71,7 +71,7 @@ const AuthLogin = ({ ...others }) => {
       devLog("res", res);
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
-        await saveString("access", res.data.access);
+        await saveString("token", res.data.access);
         await saveString("refresh", res.data.refresh);
         window.location.href = "/dashboard";
         if (scriptedRef.current) {
