@@ -40,7 +40,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { devLog, devLogError } from "../../../helpers/logs";
 import { loginService, signupService } from "../../../services/auth.service";
-import { saveString } from "../../../utils/storage";
+import { save, saveString } from "../../../utils/storage";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -109,6 +109,7 @@ const AuthRegister = ({ ...others }) => {
         await saveString("isAuthenticated", "yes");
         await saveString("access", res.data.access_token);
         await saveString("refresh", res.data.refresh_token);
+        await save("profile", res.data.user);
         window.location.href = "/dashboard";
         if (scriptedRef.current) {
           setStatus({ success: true });
