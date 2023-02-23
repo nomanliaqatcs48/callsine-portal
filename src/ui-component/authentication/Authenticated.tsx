@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { checkIfAuthenticated } from "../../utils/auth";
-import { devLogError } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
 import { AuthContext } from "../../contexts/auth";
-import { load } from "../../utils/storage";
+import { load, save } from "../../utils/storage";
+import { profileService } from "../../services/profile.service";
 
 type AuthenticatedTypes = {
   children: React.ReactNode;
@@ -21,6 +22,13 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
       let _profile = await load("profile");
       if (_profile) {
         setProfile(_profile);
+      } else {
+        let res = await profileService();
+        if (res?.data) {
+          await save("profile", res.data);
+          setProfile(res.data);
+        }
+        devLog("res", res);
       }
     } catch (e) {
       devLogError(e);
