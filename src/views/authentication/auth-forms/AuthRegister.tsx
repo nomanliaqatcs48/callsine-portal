@@ -83,11 +83,21 @@ const AuthRegister = ({ ...others }) => {
     changePassword("123456");
   }, []);
 
+  const checkPasswords = (values: any) => {
+    return values?.password1 === values?.password2;
+  };
+
   const onSubmit = async (
     values: any,
     { setErrors, setStatus, setSubmitting }: any
   ) => {
     console.log("onSubmit() values", values);
+    if (!checkPasswords(values)) {
+      setStatus({ success: false });
+      setErrors({ submit: "Passwords don't match." });
+      setSubmitting(false);
+      return;
+    }
     try {
       if (scriptedRef.current) {
         setStatus({ success: true });
