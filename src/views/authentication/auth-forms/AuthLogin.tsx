@@ -171,9 +171,9 @@ const AuthLogin = ({ ...others }) => {
         }}
         validationSchema={Yup.object().shape({
           email: Yup.string()
-            .email("Must be a valid email")
+            // .email("Must be a valid email")
             .max(255)
-            .required("Email is required"),
+            .required("Email or username is required"),
           password: Yup.string().max(255).required("Password is required"),
         })}
         onSubmit={onSubmit}
@@ -198,13 +198,14 @@ const AuthLogin = ({ ...others }) => {
               </InputLabel>
               <OutlinedInput
                 id="outlined-adornment-email-login"
-                type="email"
+                type="text"
                 value={values.email}
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChange}
                 label="Email Address / Username"
                 inputProps={{}}
+                autoComplete="off"
               />
               {touched.email && errors.email && (
                 <FormHelperText
@@ -246,6 +247,7 @@ const AuthLogin = ({ ...others }) => {
                 }
                 label="Password"
                 inputProps={{}}
+                autoComplete="off"
               />
               {touched.password && errors.password && (
                 <FormHelperText
