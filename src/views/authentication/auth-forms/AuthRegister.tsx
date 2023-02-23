@@ -103,7 +103,6 @@ const AuthRegister = ({ ...others }) => {
     }
     try {
       devLog("values", values);
-      values.username = values.email;
       let res = await signupService(values);
       devLog("res", res);
       if (res?.data) {
