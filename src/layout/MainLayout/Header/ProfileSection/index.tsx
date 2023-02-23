@@ -43,6 +43,7 @@ import {
   IconSettings,
   IconUser,
 } from "@tabler/icons-react";
+import { clear } from "../../../../utils/storage";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -62,6 +63,8 @@ const ProfileSection = () => {
   const anchorRef: any = useRef(null);
   const handleLogout = async () => {
     console.log("Logout");
+    await clear();
+    window.location.href = "/login";
   };
 
   const handleClose = (event: any) => {
