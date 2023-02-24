@@ -1,7 +1,8 @@
 import React from "react";
-import { Box, Tab, Tabs } from "@mui/material";
+import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
 import MainCard from "../../../ui-component/cards/MainCard";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
+import ActionBtn from "./components/ActionBtn";
 
 const CampaignDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -19,6 +20,11 @@ const CampaignDetailPage = () => {
 
   return (
     <MainCard title="Campaign Detail">
+      <Grid container justifyContent="end" alignItems="center">
+        <Grid item>
+          <ActionBtn />
+        </Grid>
+      </Grid>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
