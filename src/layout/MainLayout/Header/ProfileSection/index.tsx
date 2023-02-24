@@ -217,7 +217,7 @@ const ProfileSection = () => {
                     style={{
                       // height: "100%",
                       // maxHeight: "calc(100vh - 250px)",
-                      height: "80px",
+                      height: "65px",
                       // overflowX: "hidden",
                     }}
                   >
