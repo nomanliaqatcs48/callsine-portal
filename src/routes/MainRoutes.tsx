@@ -9,11 +9,11 @@ import Authenticated from "../ui-component/authentication/Authenticated";
 const DashboardDefault = Loadable(lazy(() => import("../views/dashboard")));
 const PersonsPage = Loadable(lazy(() => import("../views/persons")));
 const PersonDetailPage = Loadable(
-  lazy(() => import("../views/persons/detail/index"))
+  lazy(() => import("../views/persons/Detail/index"))
 );
 const CampaignsPage = Loadable(lazy(() => import("../views/campaigns")));
 const CampaignDetailPage = Loadable(
-  lazy(() => import("../views/campaigns/detail/index"))
+  lazy(() => import("../views/campaigns/Detail/index"))
 );
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
 
