@@ -177,7 +177,7 @@ const ProfileSection = () => {
                   boxShadow
                   shadow={theme.shadows[16]}
                 >
-                  <Box sx={{ p: 2 }}>
+                  <Box sx={{ p: 2, pb: 0 }}>
                     <Stack>
                       <Stack direction="row" spacing={0.5} alignItems="center">
                         <Typography variant="h4">Good day,</Typography>
@@ -218,11 +218,11 @@ const ProfileSection = () => {
                     style={{
                       // height: "100%",
                       // maxHeight: "calc(100vh - 250px)",
-                      height: "100px",
+                      height: "80px",
                       // overflowX: "hidden",
                     }}
                   >
-                    <Box sx={{ p: 2 }}>
+                    <Box sx={{ p: 2, pt: 0, pb: 0 }}>
                       {/*<UpgradePlanCard />*/}
                       {/*<Divider />*/}
                       {/*<Card
@@ -296,7 +296,7 @@ const ProfileSection = () => {
                             minWidth: "100%",
                           },
                           "& .MuiListItemButton-root": {
-                            mt: 0.5,
+                            mt: 0,
                           },
                         }}
                       >
