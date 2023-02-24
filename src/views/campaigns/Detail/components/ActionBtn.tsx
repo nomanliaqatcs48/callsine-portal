@@ -25,7 +25,7 @@ const ActionBtn = () => {
         onClick={handleClick}
         endIcon={<KeyboardArrowDownIcon />}
       >
-        Options
+        Actions
       </Button>
       <StyledMenu
         id="demo-customized-menu"
