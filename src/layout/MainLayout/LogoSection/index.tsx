@@ -21,7 +21,7 @@ const LogoSection = () => {
       component={Link}
       to={config.defaultPath}
     >
-      <Logo width={72} />
+      <Logo width={50} />
     </ButtonBase>
   );
 };
