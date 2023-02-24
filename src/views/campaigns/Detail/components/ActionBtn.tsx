@@ -1,10 +1,6 @@
 import React from "react";
-import { Button, Divider, MenuItem } from "@mui/material";
+import { Button, MenuItem } from "@mui/material";
 import StyledMenu from "../../../../ui-component/menu/StyledMenu";
-import EditIcon from "@mui/icons-material/Edit";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 const ActionBtn = () => {
@@ -41,21 +37,10 @@ const ActionBtn = () => {
         onClose={handleClose}
       >
         <MenuItem onClick={handleClose} disableRipple>
-          <EditIcon />
-          Edit
+          Add People to Campaign
         </MenuItem>
         <MenuItem onClick={handleClose} disableRipple>
-          <FileCopyIcon />
-          Duplicate
-        </MenuItem>
-        <Divider sx={{ my: 0.5 }} />
-        <MenuItem onClick={handleClose} disableRipple>
-          <ArchiveIcon />
-          Archive
-        </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
-          <MoreHorizIcon />
-          More
+          Add Step
         </MenuItem>
       </StyledMenu>
     </>
