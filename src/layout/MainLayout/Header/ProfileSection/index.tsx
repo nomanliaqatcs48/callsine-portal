@@ -186,8 +186,7 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          {auth?.first_name || "John"}{" "}
-                          {auth?.last_name || "Doe"}
+                          {auth?.first_name || "Admin"} {auth?.last_name}
                         </Typography>
                       </Stack>
                       {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
