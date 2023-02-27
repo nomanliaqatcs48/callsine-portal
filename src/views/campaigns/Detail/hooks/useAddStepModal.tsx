@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -30,6 +30,20 @@ export const useAddStepModal = () => {
 
   console.log("errors", errors);
 
+  useEffect(() => {
+    let isMounted = true;
+
+    if (isMounted) {
+      register("sender_signature_block", {
+        required: "This is required field.",
+      });
+    }
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
   const handleAddStepClickOpen = () => {
     setAddStepOpen(true);
     reset();
@@ -37,6 +51,10 @@ export const useAddStepModal = () => {
 
   const handleAddStepClose = () => {
     setAddStepOpen(false);
+  };
+
+  const handleMyEditorOnChange = (value: string, editor: any) => {
+    setValue("sender_signature_block", value);
   };
 
   const onSubmit = async (data: any) => {
@@ -129,7 +147,21 @@ export const useAddStepModal = () => {
                   />
                 </div>
                 <div>
-                  <MyEditor initialValue="ok" onEditorChange={() => null} />
+                  <MyEditor
+                    initialValue="ok"
+                    onEditorChange={(value: string, editor: any) =>
+                      handleMyEditorOnChange(value, editor)
+                    }
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="sender_signature_block"
+                    render={({ message }) => (
+                      <FormHelperText sx={{ color: "error.main" }}>
+                        {message}
+                      </FormHelperText>
+                    )}
+                  />
                 </div>
               </Box>
             </Grid>
