@@ -14,6 +14,7 @@ import {
 import Select from "react-select";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
+import MyModal from "../../../../ui-component/modal/MyModal";
 
 export const useAddPeopleToCampaignModal = () => {
   const [addPeopleOpen, setAddPeopleOpen] = React.useState<boolean>(false);
@@ -32,73 +33,70 @@ export const useAddPeopleToCampaignModal = () => {
 
   const renderAddPeopleModal = () => {
     return (
-      <Modal
+      <MyModal
         open={addPeopleOpen}
         onClose={handleAddPeopleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+        modalTitle="Create Campaign"
+        labelledby="Create Campaign"
+        describedby="create campaign modal"
       >
-        <Box sx={style} style={{ borderRadius: 4 }}>
-          <Typography variant="h4">Create Campaign</Typography>
-          <div style={{ height: 15 }} />
-          <Select
-            className="basic-single"
-            classNamePrefix="select"
-            defaultValue={null}
-            isClearable={true}
-            isSearchable={true}
-            name="client"
-            options={[
-              {
-                value: 1,
-                label: "1",
-              },
-              {
-                value: 2,
-                label: "2",
-              },
-              {
-                value: 3,
-                label: "3",
-              },
-              {
-                value: 4,
-                label: "4",
-              },
-              {
-                value: 5,
-                label: "5",
-              },
-              {
-                value: 6,
-                label: "6",
-              },
-            ]}
-            // onInputChange={(value: any) => {
-            //   setPersonLoading(true);
-            //   setPersons([]);
-            //   void handleSearchPerson(value);
-            // }}
-            // onChange={(value: any) => handleSelectPerson(value)}
-            // isLoading={personLoading}
-            // isDisabled={isLoading}
-          />
-          <ErrorMessage
-            errors={errors}
-            name="person"
-            render={({ message }) => (
-              <div className="union-error-message invalid-feedback">
-                {message}
-              </div>
-            )}
-          />
+        <Select
+          className="basic-single"
+          classNamePrefix="select"
+          defaultValue={null}
+          isClearable={true}
+          isSearchable={true}
+          name="client"
+          options={[
+            {
+              value: 1,
+              label: "1",
+            },
+            {
+              value: 2,
+              label: "2",
+            },
+            {
+              value: 3,
+              label: "3",
+            },
+            {
+              value: 4,
+              label: "4",
+            },
+            {
+              value: 5,
+              label: "5",
+            },
+            {
+              value: 6,
+              label: "6",
+            },
+          ]}
+          // onInputChange={(value: any) => {
+          //   setPersonLoading(true);
+          //   setPersons([]);
+          //   void handleSearchPerson(value);
+          // }}
+          // onChange={(value: any) => handleSelectPerson(value)}
+          // isLoading={personLoading}
+          // isDisabled={isLoading}
+        />
+        <ErrorMessage
+          errors={errors}
+          name="person"
+          render={({ message }) => (
+            <div className="union-error-message invalid-feedback">
+              {message}
+            </div>
+          )}
+        />
 
-          <DialogActions>
-            <Button onClick={() => null}>Cancel</Button>
-            <Button onClick={() => null}>Subscribe</Button>
-          </DialogActions>
-        </Box>
-      </Modal>
+        <DialogActions>
+          <Button onClick={() => null}>Cancel</Button>
+          <Button onClick={() => null}>Subscribe</Button>
+        </DialogActions>
+      </MyModal>
     );
   };
 
