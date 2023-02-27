@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 
 export const usePersons = () => {
-  const [personsData, setPersonsData] = useState<any[]>([
+  const [personsData, setPersonsData] = React.useState<any[]>([
     {
       id: 1,
       first_name: "Ken",
@@ -27,13 +27,13 @@ export const usePersons = () => {
       modified_date: "2023-02-17T17:06:11.224927Z",
     },
   ]);
-  const [total, setTotal] = useState<number>(0);
-  const [filters, setFilters] = useState<any>({
+  const [total, setTotal] = React.useState<number>(0);
+  const [filters, setFilters] = React.useState<any>({
     limit: 10,
     offset: 0,
     currentPage: 1,
   });
-  const [isLoading, setIsLoading] = useState({
+  const [isLoading, setIsLoading] = React.useState({
     onPage: true,
     table: false,
   });
