@@ -2,10 +2,20 @@ import React from "react";
 import { Button, MenuItem } from "@mui/material";
 import StyledMenu from "../../../../ui-component/menu/StyledMenu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+import { useAddPeopleToCampaignModal } from "../hooks/useAddPeopleToCampaignModal";
 
 const ActionBtn = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+
+  const {
+    addPeopleOpen,
+    setAddPeopleOpen,
+    handleAddPeopleClickOpen,
+    handleAddPeopleClose,
+    renderAddPeopleModal,
+  } = useAddPeopleToCampaignModal();
+
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -36,13 +46,26 @@ const ActionBtn = () => {
         open={open}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+            handleAddPeopleClickOpen();
+          }}
+          disableRipple
+        >
           Add People to Campaign
         </MenuItem>
-        <MenuItem onClick={handleClose} disableRipple>
+        <MenuItem
+          onClick={() => {
+            handleClose();
+          }}
+          disableRipple
+        >
           Add Step
         </MenuItem>
       </StyledMenu>
+
+      {addPeopleOpen && renderAddPeopleModal()}
     </>
   );
 };
