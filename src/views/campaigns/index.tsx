@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "./utils/utils";
@@ -19,7 +19,23 @@ const PersonsPage = () => {
 
   return (
     <MainCard title="Campaigns">
-      <Typography variant="body2" />
+      <Grid
+        container
+        direction="row"
+        justifyContent="flex-end"
+        alignItems="center"
+      >
+        <Button
+          disableElevation
+          // disabled={isSubmitting}
+          size="large"
+          type="submit"
+          variant="contained"
+          color="primary"
+        >
+          Create Campaign
+        </Button>
+      </Grid>
       <MyTable
         columns={_columns}
         data={campaignsData}
