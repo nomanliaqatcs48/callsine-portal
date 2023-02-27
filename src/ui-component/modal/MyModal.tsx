@@ -6,6 +6,7 @@ import { ErrorMessage } from "@hookform/error-message";
 type MyModal = {
   open: boolean;
   onClose: any;
+  modalTitle: string;
   labelledby: string;
   describedby: string;
   children: React.ReactNode;
@@ -14,6 +15,7 @@ type MyModal = {
 const MyModal = ({
   open,
   onClose,
+  modalTitle,
   labelledby,
   describedby,
   children,
@@ -26,6 +28,8 @@ const MyModal = ({
       aria-describedby={describedby}
     >
       <Box sx={style} style={{ borderRadius: 4 }}>
+        <Typography variant="h4">{modalTitle}</Typography>
+        <div style={{ height: 15 }} />
         {children}
       </Box>
     </Modal>
