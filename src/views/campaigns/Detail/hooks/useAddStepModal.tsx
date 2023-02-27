@@ -90,7 +90,6 @@ export const useAddStepModal = () => {
         <DialogContent>
           <Grid container spacing={gridSpacing}>
             <Grid item sm={7} xs={12}>
-              column 1
               <Box component="form" noValidate autoComplete="off">
                 <div>
                   <TextField
@@ -192,9 +191,7 @@ export const useAddStepModal = () => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleAddStepClose}>Cancel</Button>
-          <Button onClick={handleSubmit((data) => onSubmit(data))}>
-            Create
-          </Button>
+          <Button onClick={handleSubmit((data) => onSubmit(data))}>Add</Button>
         </DialogActions>
       </Dialog>
     );
