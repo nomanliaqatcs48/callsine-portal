@@ -83,7 +83,7 @@ export const useAddPeopleToCampaignModal = () => {
 
         <DialogActions>
           <Button onClick={() => null}>Cancel</Button>
-          <Button onClick={() => null}>Add Person</Button>
+          <Button onClick={() => null}>Add</Button>
         </DialogActions>
       </MyModal>
     );
