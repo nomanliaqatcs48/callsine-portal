@@ -84,7 +84,9 @@ export const useAddStepModal = () => {
         fullWidth={true}
         maxWidth="md"
       >
-        <DialogTitle>Add Step</DialogTitle>
+        <DialogTitle>
+          <Typography variant="h4">Add Step</Typography>
+        </DialogTitle>
         <DialogContent>
           <Grid container spacing={gridSpacing}>
             <Grid item sm={7} xs={12}>
@@ -162,7 +164,7 @@ export const useAddStepModal = () => {
                 </div>
                 <div>
                   <MyEditor
-                    initialValue="ok"
+                    initialValue=""
                     onEditorChange={(value: string, editor: any) => {
                       handleMyEditorOnChange(value, editor);
                       handlePreview(value);
