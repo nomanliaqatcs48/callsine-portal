@@ -1,14 +1,6 @@
 import React from "react";
-import {
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, DialogActions, TextField } from "@mui/material";
+import MyModal from "../../../../ui-component/modal/MyModal";
 
 export const useAddStepModal = () => {
   const [addStepOpen, setAddStepOpen] = React.useState<boolean>(false);
@@ -23,35 +15,27 @@ export const useAddStepModal = () => {
 
   const renderAddStepModal = () => {
     return (
-      <Dialog
+      <MyModal
         open={addStepOpen}
-        fullWidth={true}
-        maxWidth="xs"
         onClose={handleAddStepClose}
+        modalTitle="Add Step"
+        labelledby="Add Step"
+        describedby="add step modal"
       >
-        <DialogTitle>
-          <Typography variant="h4">Add Step</Typography>
-        </DialogTitle>
-        <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
-          />
-        </DialogContent>
+        <TextField
+          autoFocus
+          margin="dense"
+          id="name"
+          label="Email Address"
+          type="email"
+          fullWidth
+          variant="standard"
+        />
         <DialogActions>
           <Button onClick={handleAddStepClose}>Cancel</Button>
           <Button onClick={handleAddStepClose}>Subscribe</Button>
         </DialogActions>
-      </Dialog>
+      </MyModal>
     );
   };
 
