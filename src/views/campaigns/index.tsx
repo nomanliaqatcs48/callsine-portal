@@ -4,7 +4,7 @@ import MainCard from "../../ui-component/cards/MainCard";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "./utils/utils";
 import { useCampaigns } from "./hooks/useCampaigns";
-import CreateCampaign from "./components/CreateCampaign";
+import CreateCampaign from "../../ui-component/campaigns/CreateCampaign";
 
 const PersonsPage = () => {
   const {
