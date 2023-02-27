@@ -1,16 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Dialog,
-  DialogActions,
-  DialogContent,
-  DialogContentText,
-  DialogTitle,
-  Modal,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Button, DialogActions } from "@mui/material";
 import Select from "react-select";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
@@ -107,16 +96,4 @@ export const useAddPeopleToCampaignModal = () => {
     handleAddPeopleClose,
     renderAddPeopleModal,
   };
-};
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  boxShadow: 24,
-  p: 3,
-  pb: 0,
 };
