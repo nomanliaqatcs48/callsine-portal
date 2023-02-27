@@ -21,6 +21,14 @@ export const useAddStepModal = () => {
         modalTitle="Add Step"
         labelledby="Add Step"
         describedby="add step modal"
+        modalSxStyle={{
+          width: {
+            xs: 300,
+            sm: 600,
+            md: 800,
+            lg: 900,
+          },
+        }}
       >
         <TextField
           autoFocus

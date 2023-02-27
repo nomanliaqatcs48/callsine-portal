@@ -45,7 +45,6 @@ export default MyModal;
 
 const customStyle = {
   borderRadius: 4,
-  width: 400,
 };
 
 const style = {
@@ -54,6 +53,7 @@ const style = {
   left: "50%",
   transform: "translate(-50%, -50%)",
   bgcolor: "background.paper",
+  width: 400,
   boxShadow: 24,
   p: 3,
   pb: 1,
