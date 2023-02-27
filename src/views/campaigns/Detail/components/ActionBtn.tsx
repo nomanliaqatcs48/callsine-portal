@@ -3,6 +3,7 @@ import { Button, MenuItem } from "@mui/material";
 import StyledMenu from "../../../../ui-component/menu/StyledMenu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { useAddPeopleToCampaignModal } from "../hooks/useAddPeopleToCampaignModal";
+import { useAddStepModal } from "../hooks/useAddStepModal";
 
 const ActionBtn = () => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -15,6 +16,13 @@ const ActionBtn = () => {
     handleAddPeopleClose,
     renderAddPeopleModal,
   } = useAddPeopleToCampaignModal();
+  const {
+    addStepOpen,
+    setAddStepOpen,
+    handleAddStepClickOpen,
+    handleAddStepClose,
+    renderAddStepModal,
+  } = useAddStepModal();
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -58,6 +66,7 @@ const ActionBtn = () => {
         <MenuItem
           onClick={() => {
             handleClose();
+            handleAddStepClickOpen();
           }}
           disableRipple
         >
@@ -66,6 +75,7 @@ const ActionBtn = () => {
       </StyledMenu>
 
       {addPeopleOpen && renderAddPeopleModal()}
+      {addStepOpen && renderAddStepModal()}
     </>
   );
 };
