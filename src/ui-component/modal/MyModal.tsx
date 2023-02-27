@@ -5,7 +5,7 @@ type MyModal = {
   open: boolean;
   onClose: any;
   modalTitle: string;
-  modalStyle?: any;
+  modalCustomStyle?: any;
   labelledby: string;
   describedby: string;
   children: React.ReactNode;
@@ -15,7 +15,7 @@ const MyModal = ({
   open,
   onClose,
   modalTitle,
-  modalStyle = {},
+  modalCustomStyle = {},
   labelledby,
   describedby,
   children,
@@ -27,7 +27,7 @@ const MyModal = ({
       aria-labelledby={labelledby}
       aria-describedby={describedby}
     >
-      <Box sx={style} style={{ ...customStyle, ...modalStyle }}>
+      <Box sx={style} style={{ ...customStyle, ...modalCustomStyle }}>
         <Typography variant="h4">{modalTitle}</Typography>
         <div style={{ height: 15 }} />
         {children}
