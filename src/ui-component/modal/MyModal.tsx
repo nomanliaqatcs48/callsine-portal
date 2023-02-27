@@ -5,6 +5,7 @@ type MyModal = {
   open: boolean;
   onClose: any;
   modalTitle: string;
+  modalStyle?: any;
   labelledby: string;
   describedby: string;
   children: React.ReactNode;
@@ -14,6 +15,7 @@ const MyModal = ({
   open,
   onClose,
   modalTitle,
+  modalStyle = {},
   labelledby,
   describedby,
   children,
@@ -25,7 +27,7 @@ const MyModal = ({
       aria-labelledby={labelledby}
       aria-describedby={describedby}
     >
-      <Box sx={style} style={customStyle}>
+      <Box sx={style} style={{ ...customStyle, ...modalStyle }}>
         <Typography variant="h4">{modalTitle}</Typography>
         <div style={{ height: 15 }} />
         {children}
@@ -38,6 +40,7 @@ export default MyModal;
 
 const customStyle = {
   borderRadius: 4,
+  width: 400,
 };
 
 const style = {
@@ -45,7 +48,6 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: 400,
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 3,
