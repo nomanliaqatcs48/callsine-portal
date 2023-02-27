@@ -3,6 +3,7 @@ import React, { useState } from "react";
 export const usePersons = () => {
   const [personsData, setPersonsData] = useState<any[]>([
     {
+      id: 1,
       first_name: "Ken",
       last_name: "Vilar",
       email: "kvilar@unionresolute.com",
@@ -10,6 +11,7 @@ export const usePersons = () => {
       modified_date: "2023-02-15T17:06:11.224927Z",
     },
     {
+      id: 2,
       first_name: "Roselle",
       last_name: "Ebarle",
       email: "rebarle@unionresolute.com",
@@ -17,6 +19,7 @@ export const usePersons = () => {
       modified_date: "2023-02-16T17:06:11.224927Z",
     },
     {
+      id: 3,
       first_name: "John",
       last_name: "Doe",
       email: "jdoe@unionresolute.com",

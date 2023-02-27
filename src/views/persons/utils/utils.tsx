@@ -6,7 +6,7 @@ export const _columns: any = [
     accessor: "first_name",
     Cell: (cell: any) => {
       return (
-        <a className="" href="">
+        <a className="" href={`/persons/${cell?.row?.original?.id}`}>
           {cell?.value}
         </a>
       );
