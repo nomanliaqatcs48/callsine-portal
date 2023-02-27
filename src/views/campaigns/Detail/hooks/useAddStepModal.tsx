@@ -7,6 +7,7 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
+  Typography,
 } from "@mui/material";
 
 export const useAddStepModal = () => {
@@ -28,7 +29,9 @@ export const useAddStepModal = () => {
         maxWidth="xs"
         onClose={handleAddStepClose}
       >
-        <DialogTitle>Add Step</DialogTitle>
+        <DialogTitle>
+          <Typography variant="h4">Add Step</Typography>
+        </DialogTitle>
         <DialogContent>
           <DialogContentText>
             To subscribe to this website, please enter your email address here.

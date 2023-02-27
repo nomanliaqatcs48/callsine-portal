@@ -1,11 +1,13 @@
 import React from "react";
 import {
+  Box,
   Button,
   Dialog,
   DialogActions,
   DialogContent,
   DialogContentText,
   DialogTitle,
+  Modal,
   TextField,
   Typography,
 } from "@mui/material";
@@ -30,16 +32,15 @@ export const useAddPeopleToCampaignModal = () => {
 
   const renderAddPeopleModal = () => {
     return (
-      <Dialog
+      <Modal
         open={addPeopleOpen}
-        fullWidth={true}
-        maxWidth="xs"
         onClose={handleAddPeopleClose}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
       >
-        <DialogTitle>
-          <Typography variant="h4">Add Person to Campaign</Typography>
-        </DialogTitle>
-        <DialogContent>
+        <Box sx={style} style={{ borderRadius: 4 }}>
+          <Typography variant="h4">Create Campaign</Typography>
+          <div style={{ height: 15 }} />
           <Select
             className="basic-single"
             classNamePrefix="select"
@@ -91,12 +92,13 @@ export const useAddPeopleToCampaignModal = () => {
               </div>
             )}
           />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleAddPeopleClose}>Cancel</Button>
-          <Button onClick={handleAddPeopleClose}>Subscribe</Button>
-        </DialogActions>
-      </Dialog>
+
+          <DialogActions>
+            <Button onClick={() => null}>Cancel</Button>
+            <Button onClick={() => null}>Subscribe</Button>
+          </DialogActions>
+        </Box>
+      </Modal>
     );
   };
 
@@ -107,4 +109,16 @@ export const useAddPeopleToCampaignModal = () => {
     handleAddPeopleClose,
     renderAddPeopleModal,
   };
+};
+
+const style = {
+  position: "absolute" as "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
+  width: 400,
+  bgcolor: "background.paper",
+  boxShadow: 24,
+  p: 3,
+  pb: 0,
 };
