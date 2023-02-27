@@ -36,9 +36,9 @@ export const useAddPeopleToCampaignModal = () => {
       <MyModal
         open={addPeopleOpen}
         onClose={handleAddPeopleClose}
-        modalTitle="Create Campaign"
-        labelledby="Create Campaign"
-        describedby="create campaign modal"
+        modalTitle="Add People to Campaign"
+        labelledby="Add People to Campaign"
+        describedby="add people to campaign modal"
       >
         <Select
           className="basic-single"
