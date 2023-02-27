@@ -25,8 +25,8 @@ export const useAddPeopleToCampaignModal = () => {
       <MyModal
         open={addPeopleOpen}
         onClose={handleAddPeopleClose}
-        modalTitle="Add People to Campaign"
-        labelledby="Add People to Campaign"
+        modalTitle="Add Person to Campaign"
+        labelledby="Add Person to Campaign"
         describedby="add people to campaign modal"
       >
         <DialogContentText>
