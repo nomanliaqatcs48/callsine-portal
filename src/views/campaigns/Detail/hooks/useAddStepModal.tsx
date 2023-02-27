@@ -2,7 +2,10 @@ import React from "react";
 import {
   Box,
   Button,
+  Dialog,
   DialogActions,
+  DialogContent,
+  DialogTitle,
   FormHelperText,
   Grid,
   TextField,
@@ -12,6 +15,7 @@ import MyModal from "../../../../ui-component/modal/MyModal";
 import { gridSpacing } from "../../../../store/constant";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
+import MyEditor from "../../../../ui-component/editor/MyEditor";
 
 export const useAddStepModal = () => {
   const [addStepOpen, setAddStepOpen] = React.useState<boolean>(false);
@@ -42,113 +46,108 @@ export const useAddStepModal = () => {
 
   const renderAddStepModal = () => {
     return (
-      <MyModal
+      <Dialog
         open={addStepOpen}
         onClose={handleAddStepClose}
-        modalTitle="Add Step"
-        labelledby="Add Step"
-        describedby="add step modal"
-        modalSxStyle={{
-          width: {
-            xs: 300,
-            sm: 600,
-            md: 800,
-            lg: 900,
-            xl: 1200,
-          },
-        }}
+        fullWidth={true}
+        maxWidth="md"
       >
-        <Grid container spacing={gridSpacing}>
-          <Grid item sm={7} xs={12}>
-            column 1
-            <Box component="form" noValidate autoComplete="off">
-              <div>
-                <TextField
-                  error={!!errors.day}
-                  required
-                  margin="dense"
-                  id="day"
-                  label="Day Number"
-                  type="number"
-                  fullWidth
-                  defaultValue={1}
-                  {...register("day", {
-                    required: "This is required field.",
-                  })}
-                />
-                <ErrorMessage
-                  errors={errors}
-                  name="day"
-                  render={({ message }) => (
-                    <FormHelperText sx={{ color: "error.main" }}>
-                      {message}
-                    </FormHelperText>
-                  )}
-                />
-              </div>
-              <div>
-                <TextField
-                  error={!!errors.name}
-                  required
-                  margin="dense"
-                  id="name"
-                  label="Step Name"
-                  type="text"
-                  fullWidth
-                  {...register("name", {
-                    required: "This is required field.",
-                  })}
-                />
-                <ErrorMessage
-                  errors={errors}
-                  name="name"
-                  render={({ message }) => (
-                    <FormHelperText sx={{ color: "error.main" }}>
-                      {message}
-                    </FormHelperText>
-                  )}
-                />
-              </div>
-              <div>
-                <TextField
-                  error={!!errors.subject}
-                  required
-                  margin="dense"
-                  id="subject"
-                  label="Email Subject"
-                  type="text"
-                  fullWidth
-                  {...register("subject", {
-                    required: "This is required field.",
-                  })}
-                />
-                <ErrorMessage
-                  errors={errors}
-                  name="subject"
-                  render={({ message }) => (
-                    <FormHelperText sx={{ color: "error.main" }}>
-                      {message}
-                    </FormHelperText>
-                  )}
-                />
-              </div>
-              <div>This is for email content (CKEditor)</div>
-            </Box>
-          </Grid>
-          <Grid item sm={5} xs={12}>
-            <Grid>
-              <Typography>Preview</Typography>
-              <Grid className="preview-wrapper" />
+        <DialogTitle>Add Step</DialogTitle>
+        <DialogContent>
+          <Grid container spacing={gridSpacing}>
+            <Grid item sm={7} xs={12}>
+              column 1
+              <Box component="form" noValidate autoComplete="off">
+                <div>
+                  <TextField
+                    error={!!errors.day}
+                    required
+                    margin="dense"
+                    id="day"
+                    label="Day Number"
+                    type="number"
+                    fullWidth
+                    defaultValue={1}
+                    {...register("day", {
+                      required: "This is required field.",
+                    })}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="day"
+                    render={({ message }) => (
+                      <FormHelperText sx={{ color: "error.main" }}>
+                        {message}
+                      </FormHelperText>
+                    )}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    error={!!errors.name}
+                    required
+                    margin="dense"
+                    id="name"
+                    label="Step Name"
+                    type="text"
+                    fullWidth
+                    {...register("name", {
+                      required: "This is required field.",
+                    })}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="name"
+                    render={({ message }) => (
+                      <FormHelperText sx={{ color: "error.main" }}>
+                        {message}
+                      </FormHelperText>
+                    )}
+                  />
+                </div>
+                <div>
+                  <TextField
+                    error={!!errors.subject}
+                    required
+                    margin="dense"
+                    id="subject"
+                    label="Email Subject"
+                    type="text"
+                    fullWidth
+                    {...register("subject", {
+                      required: "This is required field.",
+                    })}
+                  />
+                  <ErrorMessage
+                    errors={errors}
+                    name="subject"
+                    render={({ message }) => (
+                      <FormHelperText sx={{ color: "error.main" }}>
+                        {message}
+                      </FormHelperText>
+                    )}
+                  />
+                </div>
+                <div>
+                  <MyEditor initialValue="ok" onEditorChange={() => null} />
+                </div>
+              </Box>
+            </Grid>
+            <Grid item sm={5} xs={12}>
+              <Grid>
+                <Typography>Preview</Typography>
+                <Grid className="preview-wrapper" />
+              </Grid>
             </Grid>
           </Grid>
-        </Grid>
+        </DialogContent>
         <DialogActions>
           <Button onClick={handleAddStepClose}>Cancel</Button>
           <Button onClick={handleSubmit((data) => onSubmit(data))}>
             Create
           </Button>
         </DialogActions>
-      </MyModal>
+      </Dialog>
     );
   };
 
