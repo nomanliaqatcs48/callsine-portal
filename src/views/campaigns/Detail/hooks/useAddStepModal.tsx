@@ -33,7 +33,7 @@ export const useAddStepModal = () => {
         />
         <DialogActions>
           <Button onClick={handleAddStepClose}>Cancel</Button>
-          <Button onClick={handleAddStepClose}>Subscribe</Button>
+          <Button onClick={handleAddStepClose}>Add Step</Button>
         </DialogActions>
       </MyModal>
     );
