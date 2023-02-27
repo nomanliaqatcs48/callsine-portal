@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, DialogActions } from "@mui/material";
+import { Button, DialogActions, DialogContentText } from "@mui/material";
 import Select from "react-select";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
@@ -29,6 +29,12 @@ export const useAddPeopleToCampaignModal = () => {
         labelledby="Add People to Campaign"
         describedby="add people to campaign modal"
       >
+        <DialogContentText>
+          Search for existing people to add to campaign
+        </DialogContentText>
+
+        <div style={{ height: 15 }} />
+
         <Select
           className="basic-single"
           classNamePrefix="select"
