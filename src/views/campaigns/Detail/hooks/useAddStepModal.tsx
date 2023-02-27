@@ -16,6 +16,7 @@ import { gridSpacing } from "../../../../store/constant";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import MyEditor from "../../../../ui-component/editor/MyEditor";
+import xss from "xss";
 
 export const useAddStepModal = () => {
   const [addStepOpen, setAddStepOpen] = React.useState<boolean>(false);
@@ -55,6 +56,21 @@ export const useAddStepModal = () => {
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
     setValue("sender_signature_block", value);
+  };
+
+  const handlePreview = (data: any) => {
+    let _preview: any = document.querySelector(".preview-wrapper");
+    if (_preview) {
+      if (data) {
+        setTimeout(() => {
+          _preview.innerHTML = xss(data);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          _preview.innerHTML = "";
+        }, 200);
+      }
+    }
   };
 
   const onSubmit = async (data: any) => {
@@ -149,9 +165,10 @@ export const useAddStepModal = () => {
                 <div>
                   <MyEditor
                     initialValue="ok"
-                    onEditorChange={(value: string, editor: any) =>
-                      handleMyEditorOnChange(value, editor)
-                    }
+                    onEditorChange={(value: string, editor: any) => {
+                      handleMyEditorOnChange(value, editor);
+                      handlePreview(value);
+                    }}
                   />
                   <ErrorMessage
                     errors={errors}
