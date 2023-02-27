@@ -3,22 +3,41 @@ import {
   Box,
   Button,
   DialogActions,
+  FormHelperText,
   Grid,
   TextField,
   Typography,
 } from "@mui/material";
 import MyModal from "../../../../ui-component/modal/MyModal";
 import { gridSpacing } from "../../../../store/constant";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 
 export const useAddStepModal = () => {
   const [addStepOpen, setAddStepOpen] = React.useState<boolean>(false);
 
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
+
+  console.log("errors", errors);
+
   const handleAddStepClickOpen = () => {
     setAddStepOpen(true);
+    reset();
   };
 
   const handleAddStepClose = () => {
     setAddStepOpen(false);
+  };
+
+  const onSubmit = async (data: any) => {
+    alert(JSON.stringify(errors));
+    alert(JSON.stringify(data));
   };
 
   const renderAddStepModal = () => {
@@ -45,6 +64,7 @@ export const useAddStepModal = () => {
             <Box component="form" noValidate autoComplete="off">
               <div>
                 <TextField
+                  error={!!errors.day}
                   required
                   margin="dense"
                   id="day"
@@ -52,26 +72,64 @@ export const useAddStepModal = () => {
                   type="number"
                   fullWidth
                   defaultValue={1}
+                  {...register("day", {
+                    required: "This is required field.",
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="day"
+                  render={({ message }) => (
+                    <FormHelperText sx={{ color: "error.main" }}>
+                      {message}
+                    </FormHelperText>
+                  )}
                 />
               </div>
               <div>
                 <TextField
+                  error={!!errors.name}
                   required
                   margin="dense"
                   id="name"
                   label="Step Name"
                   type="text"
                   fullWidth
+                  {...register("name", {
+                    required: "This is required field.",
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="name"
+                  render={({ message }) => (
+                    <FormHelperText sx={{ color: "error.main" }}>
+                      {message}
+                    </FormHelperText>
+                  )}
                 />
               </div>
               <div>
                 <TextField
+                  error={!!errors.subject}
                   required
                   margin="dense"
                   id="subject"
                   label="Email Subject"
                   type="text"
                   fullWidth
+                  {...register("subject", {
+                    required: "This is required field.",
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="subject"
+                  render={({ message }) => (
+                    <FormHelperText sx={{ color: "error.main" }}>
+                      {message}
+                    </FormHelperText>
+                  )}
                 />
               </div>
               <div>This is for email content (CKEditor)</div>
@@ -86,7 +144,9 @@ export const useAddStepModal = () => {
         </Grid>
         <DialogActions>
           <Button onClick={handleAddStepClose}>Cancel</Button>
-          <Button onClick={handleAddStepClose}>Create</Button>
+          <Button onClick={handleSubmit((data) => onSubmit(data))}>
+            Create
+          </Button>
         </DialogActions>
       </MyModal>
     );
