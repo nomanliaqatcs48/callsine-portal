@@ -47,5 +47,5 @@ const style = {
   bgcolor: "background.paper",
   boxShadow: 24,
   p: 3,
-  pb: 0,
+  pb: 1,
 };
