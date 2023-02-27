@@ -3,6 +3,9 @@ import { Box, Grid, Tab, Tabs, Typography } from "@mui/material";
 import MainCard from "../../../ui-component/cards/MainCard";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
 import ActionBtn from "./components/ActionBtn";
+import People from "./components/People";
+import Overview from "./components/Overview";
+import Emails from "./components/Emails";
 
 const CampaignDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -37,13 +40,13 @@ const CampaignDetailPage = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        Overview
+        {value === 0 && <Overview />}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        People
+        {value === 1 && <People />}
       </TabPanel>
       <TabPanel value={value} index={2}>
-        Emails
+        {value === 2 && <Emails />}
       </TabPanel>
     </MainCard>
   );
