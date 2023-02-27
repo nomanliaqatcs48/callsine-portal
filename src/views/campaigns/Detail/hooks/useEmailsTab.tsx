@@ -1,5 +1,5 @@
 import React from "react";
-import moment from "moment/moment";
+import moment from "moment";
 
 export const useEmailsTab = () => {
   const _columns: any = [
