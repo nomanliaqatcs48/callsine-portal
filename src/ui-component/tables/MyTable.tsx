@@ -453,9 +453,9 @@ const MyTable = (props: MyTableProps): JSX.Element => {
             component={Paper}
           >
             <Table
-              striped
-              bordered
-              hover
+              striped="true"
+              bordered="true"
+              hover="true"
               {...getTableProps()}
               className={tableName + " " + tableClassName}
             >
