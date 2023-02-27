@@ -4,40 +4,32 @@ import moment from "moment";
 export const useEmailsTab = () => {
   const _columns: any = [
     {
-      Header: "Name",
-      accessor: "name",
+      Header: "To",
+      accessor: "to",
     },
     {
-      Header: "Step",
-      accessor: "step",
-    },
-    {
-      Header: "Stage",
-      accessor: "stage",
+      Header: "Subject",
+      accessor: "subject",
     },
     {
       Header: "Status",
       accessor: "status",
     },
     {
-      Header: "Stats",
-      accessor: "stats",
+      Header: "Sent At",
+      accessor: "sent_at",
     },
     {
-      Header: "Assignee",
-      accessor: "assignee",
+      Header: "Opens",
+      accessor: "opens",
     },
     {
-      Header: "Owner",
-      accessor: "owner",
+      Header: "Clicks",
+      accessor: "clicks",
     },
     {
-      Header: "Last Contacted",
-      accessor: "last_contacted",
-      Cell: (cell: any) => {
-        if (!cell?.value) return "";
-        return moment.utc(cell?.value).format("MMMM D, YYYY");
-      },
+      Header: "Replies",
+      accessor: "replies",
     },
   ];
 
