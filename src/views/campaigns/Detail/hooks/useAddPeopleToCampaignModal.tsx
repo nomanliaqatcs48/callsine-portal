@@ -7,10 +7,18 @@ import {
   DialogContentText,
   DialogTitle,
   TextField,
+  Typography,
 } from "@mui/material";
+import Select from "react-select";
+import { ErrorMessage } from "@hookform/error-message";
+import { useForm } from "react-hook-form";
 
 export const useAddPeopleToCampaignModal = () => {
   const [addPeopleOpen, setAddPeopleOpen] = React.useState<boolean>(false);
+
+  const {
+    formState: { errors },
+  } = useForm();
 
   const handleAddPeopleClickOpen = () => {
     setAddPeopleOpen(true);
@@ -22,21 +30,66 @@ export const useAddPeopleToCampaignModal = () => {
 
   const renderAddPeopleModal = () => {
     return (
-      <Dialog open={addPeopleOpen} onClose={handleAddPeopleClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+      <Dialog
+        open={addPeopleOpen}
+        fullWidth={true}
+        maxWidth="xs"
+        onClose={handleAddPeopleClose}
+      >
+        <DialogTitle>
+          <Typography variant="h4">Add Person to Campaign</Typography>
+        </DialogTitle>
         <DialogContent>
-          <DialogContentText>
-            To subscribe to this website, please enter your email address here.
-            We will send updates occasionally.
-          </DialogContentText>
-          <TextField
-            autoFocus
-            margin="dense"
-            id="name"
-            label="Email Address"
-            type="email"
-            fullWidth
-            variant="standard"
+          <Select
+            className="basic-single"
+            classNamePrefix="select"
+            defaultValue={null}
+            isClearable={true}
+            isSearchable={true}
+            name="client"
+            options={[
+              {
+                value: 1,
+                label: "1",
+              },
+              {
+                value: 2,
+                label: "2",
+              },
+              {
+                value: 3,
+                label: "3",
+              },
+              {
+                value: 4,
+                label: "4",
+              },
+              {
+                value: 5,
+                label: "5",
+              },
+              {
+                value: 6,
+                label: "6",
+              },
+            ]}
+            // onInputChange={(value: any) => {
+            //   setPersonLoading(true);
+            //   setPersons([]);
+            //   void handleSearchPerson(value);
+            // }}
+            // onChange={(value: any) => handleSelectPerson(value)}
+            // isLoading={personLoading}
+            // isDisabled={isLoading}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="person"
+            render={({ message }) => (
+              <div className="union-error-message invalid-feedback">
+                {message}
+              </div>
+            )}
           />
         </DialogContent>
         <DialogActions>

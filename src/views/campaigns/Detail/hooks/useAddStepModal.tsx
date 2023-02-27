@@ -22,8 +22,13 @@ export const useAddStepModal = () => {
 
   const renderAddStepModal = () => {
     return (
-      <Dialog open={addStepOpen} onClose={handleAddStepClose}>
-        <DialogTitle>Subscribe</DialogTitle>
+      <Dialog
+        open={addStepOpen}
+        fullWidth={true}
+        maxWidth="xs"
+        onClose={handleAddStepClose}
+      >
+        <DialogTitle>Add Step</DialogTitle>
         <DialogContent>
           <DialogContentText>
             To subscribe to this website, please enter your email address here.
