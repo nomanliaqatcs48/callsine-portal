@@ -29,8 +29,6 @@ export const useAddStepModal = () => {
     formState: { errors },
   } = useForm();
 
-  console.log("errors", errors);
-
   useEffect(() => {
     let isMounted = true;
 
