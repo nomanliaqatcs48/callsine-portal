@@ -27,7 +27,7 @@ const MyModal = ({
       aria-labelledby={labelledby}
       aria-describedby={describedby}
     >
-      <Box sx={style} style={{ borderRadius: 4 }}>
+      <Box sx={style} style={customStyle}>
         <Typography variant="h4">{modalTitle}</Typography>
         <div style={{ height: 15 }} />
         {children}
@@ -37,6 +37,10 @@ const MyModal = ({
 };
 
 export default MyModal;
+
+const customStyle = {
+  borderRadius: 4,
+};
 
 const style = {
   position: "absolute" as "absolute",
