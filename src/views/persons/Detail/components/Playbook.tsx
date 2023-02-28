@@ -52,29 +52,15 @@ const Playbook = () => {
     <Grid container spacing={3}>
       <Grid item xs />
       <Grid item xs={6}>
-        <RenderCard
-          header="Sales Pitch"
-          content={
-            <>
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </>
-          }
-        />
+        {data?.playbook?.pitch && data?.playbook?.followup && (
+          <>
+            <RenderCard header="Sales Pitch" content={data?.playbook?.pitch} />
 
-        <div style={{ height: 15 }} />
+            <div style={{ height: 15 }} />
 
-        <RenderCard
-          header="Follow up"
-          content={
-            <>
-              well meaning and kindly.
-              <br />
-              {'"a benevolent smile"'}
-            </>
-          }
-        />
+            <RenderCard header="Follow up" content={data?.playbook?.followup} />
+          </>
+        )}
       </Grid>
       <Grid item xs />
     </Grid>
