@@ -18,7 +18,7 @@ export const _columns: any = [
   },
   {
     Header: "Email",
-    accessor: "email",
+    accessor: "work_email",
     width: 250,
     minWidth: 250,
     Cell: (cell: any) => {
