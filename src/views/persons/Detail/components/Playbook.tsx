@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import { personDetailService } from "../../../../services/persons.service";
 import { devLog, devLogError } from "../../../../helpers/logs";
@@ -52,15 +59,39 @@ const Playbook = () => {
     <Grid container spacing={3}>
       <Grid item xs />
       <Grid item xs={6}>
-        {data?.playbook?.pitch && data?.playbook?.followup && (
-          <>
-            <RenderCard header="Sales Pitch" content={data?.playbook?.pitch} />
+        {!isLoading?.onPage &&
+          data?.playbook?.pitch &&
+          data?.playbook?.followup && (
+            <>
+              <RenderCard
+                header="Sales Pitch"
+                content={data?.playbook?.pitch}
+              />
 
-            <div style={{ height: 15 }} />
+              <div style={{ height: 15 }} />
 
-            <RenderCard header="Follow up" content={data?.playbook?.followup} />
-          </>
-        )}
+              <RenderCard
+                header="Follow up"
+                content={data?.playbook?.followup}
+              />
+            </>
+          )}
+
+        {!isLoading?.onPage &&
+          !(data?.playbook?.pitch && data?.playbook?.followup) && (
+            <Button
+              disableElevation
+              // disabled={isSubmitting}
+              size="large"
+              type="submit"
+              variant="contained"
+              color="primary"
+              fullWidth
+              onClick={() => null}
+            >
+              Regenerate Playbook
+            </Button>
+          )}
       </Grid>
       <Grid item xs />
     </Grid>
