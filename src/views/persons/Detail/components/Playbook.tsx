@@ -8,7 +8,6 @@ import {
 import { devLog, devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import xss from "xss";
-import { useTheme } from "@mui/material/styles";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 
 const Playbook = () => {
@@ -21,7 +20,7 @@ const Playbook = () => {
 
   useEffect(() => {
     getPersonDetail();
-  }, []);
+  }, [id]);
 
   const getPersonDetail = async () => {
     try {
@@ -30,8 +29,8 @@ const Playbook = () => {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
         setTimeout(() => {
-          handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
-          handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
+          // handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
+          // handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
         });
       }
     } catch (e: any) {
@@ -49,8 +48,8 @@ const Playbook = () => {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
         setTimeout(() => {
-          handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
-          handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
+          // handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
+          // handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
         });
       }
     } catch (e: any) {
@@ -59,7 +58,7 @@ const Playbook = () => {
     }
   };
 
-  const handlePreviewPlaybook = (data: any, elClass: string) => {
+  /*const handlePreviewPlaybook = (data: any, elClass: string) => {
     devLog("data elClass", elClass, data);
     let _preview: any = document.querySelector(elClass);
     if (_preview) {
@@ -74,7 +73,7 @@ const Playbook = () => {
         }, 200);
       }
     }
-  };
+  };*/
 
   const RenderCard = ({ header, content, class_name }: any) => {
     return (
@@ -102,7 +101,9 @@ const Playbook = () => {
               variant="body2"
               className={class_name}
               style={{ whiteSpace: "pre-line" }}
-            />
+            >
+              {content}
+            </Typography>
           </CardContent>
         </Card>
       </Paper>
