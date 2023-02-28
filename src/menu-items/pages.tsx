@@ -23,14 +23,14 @@ const pages = {
       icon: icons.IconUsers,
       breadcrumbs: false,
     },
-    {
-      id: "campaigns",
-      title: "Campaigns",
-      type: "item",
-      url: "/campaigns",
-      icon: icons.IconKey,
-      breadcrumbs: false,
-    },
+    // {
+    //   id: "campaigns",
+    //   title: "Campaigns",
+    //   type: "item",
+    //   url: "/campaigns",
+    //   icon: icons.IconKey,
+    //   breadcrumbs: false,
+    // },
   ],
 };
 
