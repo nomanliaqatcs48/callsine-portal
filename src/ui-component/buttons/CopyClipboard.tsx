@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
-import { Avatar, ButtonBase } from "@mui/material";
+import React, { useLayoutEffect } from "react";
+import { Avatar, ButtonBase, Tooltip } from "@mui/material";
 import { IconCopy } from "@tabler/icons-react";
 import { useTheme } from "@mui/material/styles";
 import ClipboardJS from "clipboard";
@@ -11,8 +11,9 @@ type CopyClipboardTypes = {
 
 const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
   const theme: any = useTheme();
-  const copyBtn = useRef(null);
-  const [show, setShow] = useState<boolean>(false);
+  const copyBtn = React.useRef(null);
+  const [show, setShow] = React.useState<boolean>(false);
+  const [open, setOpen] = React.useState<boolean>(false);
 
   useLayoutEffect(() => {
     let _cl: any = document.querySelector(".clipboard");
@@ -38,33 +39,52 @@ const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
     }
   }, []);
 
+  const handleClick = () => {
+    onClick();
+    setTimeout(() => {
+      setOpen(true);
+    }, 500);
+  };
+
+  const handleClose = () => {
+    setTimeout(() => {
+      setOpen(false);
+    }, 1000);
+  };
+
+  const handleOpen = () => {
+    setOpen(true);
+  };
+
   return (
-    <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
-      <div
-        onClick={onClick}
-        data-clipboard-text={copyContent}
-        ref={copyBtn}
-        className="clipboard"
-      >
-        <Avatar
-          variant="rounded"
-          sx={{
-            ...theme.typography.commonAvatar,
-            ...theme.typography.mediumAvatar,
-            transition: "all .2s ease-in-out",
-            background: theme.palette.secondary.light,
-            color: theme.palette.secondary.dark,
-            "&:hover": {
-              background: theme.palette.secondary.dark,
-              color: theme.palette.secondary.light,
-            },
-          }}
-          color="inherit"
+    <Tooltip open={open} onClose={handleClose} title="Copied">
+      <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
+        <div
+          onClick={handleClick}
+          data-clipboard-text={copyContent}
+          ref={copyBtn}
+          className="clipboard"
         >
-          <IconCopy stroke={1.5} size="1.3rem" />
-        </Avatar>
-      </div>
-    </ButtonBase>
+          <Avatar
+            variant="rounded"
+            sx={{
+              ...theme.typography.commonAvatar,
+              ...theme.typography.mediumAvatar,
+              transition: "all .2s ease-in-out",
+              background: theme.palette.secondary.light,
+              color: theme.palette.secondary.dark,
+              "&:hover": {
+                background: theme.palette.secondary.dark,
+                color: theme.palette.secondary.light,
+              },
+            }}
+            color="inherit"
+          >
+            <IconCopy stroke={1.5} size="1.3rem" />
+          </Avatar>
+        </div>
+      </ButtonBase>
+    </Tooltip>
   );
 };
 
