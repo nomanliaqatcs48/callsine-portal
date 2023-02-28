@@ -13,12 +13,14 @@ import {
   regeneratePlaybookService,
 } from "../../../../services/persons.service";
 import { devLog, devLogError } from "../../../../helpers/logs";
+import { LoadingButton } from "@mui/lab";
 
 const Playbook = () => {
   const { id } = useParams();
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
+    regeneratePlaybook: false,
   });
 
   useEffect(() => {
@@ -40,16 +42,18 @@ const Playbook = () => {
   };
 
   const handleRegeneratePlaybook = async () => {
+    setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
+
     try {
       let res = await regeneratePlaybookService(Number(id));
       devLog(res);
       if (res?.data) {
         setData(res.data);
-        setIsLoading((prev: any) => ({ ...prev }));
+        setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       }
     } catch (e: any) {
       devLogError(e.response);
-      setIsLoading((prev: any) => ({ ...prev }));
+      setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
     }
   };
 
@@ -96,7 +100,8 @@ const Playbook = () => {
 
         {!isLoading?.onPage &&
           !(data?.playbook?.pitch && data?.playbook?.followup) && (
-            <Button
+            <LoadingButton
+              loading={isLoading?.regeneratePlaybook}
               disableElevation
               // disabled={isSubmitting}
               size="large"
@@ -107,7 +112,7 @@ const Playbook = () => {
               onClick={handleRegeneratePlaybook}
             >
               Regenerate Playbook
-            </Button>
+            </LoadingButton>
           )}
       </Grid>
       <Grid item xs />
