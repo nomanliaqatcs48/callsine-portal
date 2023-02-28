@@ -8,3 +8,7 @@ export const personsService = async () => {
 export const personDetailService = async (id: number) => {
   return await http.get(`${endpoints.PERSON}${id}/`);
 };
+
+export const regeneratePlaybookService = async (id: number) => {
+  return await http.get(`${endpoints.PERSON}${id}/create_playbook/`);
+};
