@@ -24,6 +24,17 @@ const Overview = () => {
     getPersonDetail();
   }, []);
 
+  const RenderTableItem = ({ header, value }: any) => {
+    return (
+      <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
+        <TableCell component="th" scope="row">
+          <Typography variant="h5">{header}</Typography>
+        </TableCell>
+        <TableCell>{value}</TableCell>
+      </TableRow>
+    );
+  };
+
   const getPersonDetail = async () => {
     try {
       let res = await personDetailService(Number(id));
@@ -134,14 +145,3 @@ const Overview = () => {
 };
 
 export default Overview;
-
-export const RenderTableItem = ({ header, value }: any) => {
-  return (
-    <TableRow sx={{ "&:last-child td, &:last-child th": { border: 0 } }}>
-      <TableCell component="th" scope="row">
-        <Typography variant="h5">{header}</Typography>
-      </TableCell>
-      <TableCell>{value}</TableCell>
-    </TableRow>
-  );
-};
