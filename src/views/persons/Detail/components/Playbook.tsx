@@ -95,7 +95,7 @@ const Playbook = () => {
                 {header}
               </Typography>
 
-              <CopyClipboard copyContent="" onClick={() => null} />
+              <CopyClipboard copyContent={content} onClick={() => null} />
             </Grid>
 
             <Typography
