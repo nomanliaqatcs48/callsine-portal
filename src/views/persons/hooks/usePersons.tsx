@@ -1,4 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import {
+  personDetailService,
+  personsService,
+} from "../../../services/persons.service";
+import { devLogError } from "../../../helpers/logs";
 
 export const usePersons = () => {
   const [personsData, setPersonsData] = React.useState<any[]>([
@@ -38,6 +43,24 @@ export const usePersons = () => {
     table: false,
   });
 
+  useEffect(() => {
+    getPeople();
+  }, []);
+
+  const getPeople = async () => {
+    try {
+      let res = await personsService();
+      if (res?.data) {
+        setTotal(res.data?.count);
+        setPersonsData(res.data?.results);
+        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch (e: any) {
+      devLogError(e.response);
+      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
+
   return {
     personsData,
     setPersonsData,
@@ -47,5 +70,6 @@ export const usePersons = () => {
     setFilters,
     isLoading,
     setIsLoading,
+    getPeople,
   };
 };

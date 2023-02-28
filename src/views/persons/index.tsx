@@ -15,6 +15,7 @@ const PersonsPage = () => {
     setFilters,
     isLoading,
     setIsLoading,
+    getPeople,
   } = usePersons();
 
   return (
