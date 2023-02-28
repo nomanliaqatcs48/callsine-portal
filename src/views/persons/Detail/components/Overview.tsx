@@ -94,6 +94,40 @@ const Overview = () => {
             </Table>
           </TableContainer>
         </Grid>
+
+        <Grid item xs={12} sm={6}>
+          <Typography variant="h4">Organization</Typography>
+          <TableContainer component={Paper}>
+            <Table aria-label="simple table">
+              <TableBody>
+                <RenderTableItem header="Name" value={data?.org?.name} />
+                <RenderTableItem header="Domain" value={data?.org?.domain} />
+                <RenderTableItem
+                  header="Revenue Range"
+                  value={data?.org?.revenue_range}
+                />
+                <RenderTableItem
+                  header="Employee Count"
+                  value={data?.org?.employee_count}
+                />
+                <RenderTableItem header="SIC" value={data?.org?.sic} />
+                <RenderTableItem
+                  header="SIC Description"
+                  value={data?.org?.sic_description}
+                />
+                <RenderTableItem header="NAICS" value={data?.org?.naics} />
+                <RenderTableItem
+                  header="NAICS Description"
+                  value={data?.org?.naics_description}
+                />
+                <RenderTableItem
+                  header="Industry"
+                  value={data?.org?.industry}
+                />
+              </TableBody>
+            </Table>
+          </TableContainer>
+        </Grid>
       </Grid>
     </>
   );
