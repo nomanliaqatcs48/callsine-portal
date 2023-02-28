@@ -21,10 +21,10 @@ const Overview = () => {
   });
 
   useEffect(() => {
-    getPersons();
+    getPersonDetail();
   }, []);
 
-  const getPersons = async () => {
+  const getPersonDetail = async () => {
     try {
       let res = await personDetailService(Number(id));
       devLog(res);
