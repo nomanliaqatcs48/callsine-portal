@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Grid,
   Paper,
@@ -8,9 +9,30 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import React from "react";
+import { devLogError } from "../../../../helpers/logs";
 
 const Overview = () => {
+  const [data, setData] = useState<any>(null);
+  const [isLoading, setIsLoading] = useState<any>({
+    onPage: true,
+  });
+
+  useEffect(() => {
+    getPersons();
+  }, []);
+
+  const getPersons = async () => {
+    try {
+      let res = await { data: [] };
+      if (res?.data) {
+        setData(res.data);
+        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch (e: any) {
+      devLogError(e.response);
+      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
   return (
     <>
       <Grid container spacing={2}>
