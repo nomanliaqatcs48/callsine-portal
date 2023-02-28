@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import {
   Grid,
   Paper,
+  Skeleton,
   Table,
   TableBody,
   TableCell,
@@ -30,7 +31,9 @@ const Overview = () => {
         <TableCell component="th" scope="row">
           <Typography variant="h5">{header}</Typography>
         </TableCell>
-        <TableCell>{value}</TableCell>
+        <TableCell>
+          {isLoading?.onPage ? <Skeleton width={200} /> : value}
+        </TableCell>
       </TableRow>
     );
   };
