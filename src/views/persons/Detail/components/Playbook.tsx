@@ -144,14 +144,14 @@ const Playbook = () => {
           data?.playbook?.pitch &&
           data?.playbook?.followup && (
             <>
-              <Grid item xs={6}>
+              <Grid item xs={12} lg={6}>
                 <RenderCard
                   header="Sales Pitch"
                   content={data?.playbook?.pitch}
                   class_name="sales_pitch"
                 />
               </Grid>
-              <Grid item xs={6}>
+              <Grid item xs={12} lg={6}>
                 <RenderCard
                   header="Follow up"
                   content={data?.playbook?.followup}
