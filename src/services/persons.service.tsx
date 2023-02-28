@@ -10,5 +10,5 @@ export const personDetailService = async (id: number) => {
 };
 
 export const regeneratePlaybookService = async (id: number) => {
-  return await http.get(`${endpoints.PERSON}${id}/create_playbook/`);
+  return await http.post(`${endpoints.PERSON}${id}/create_playbook/`);
 };
