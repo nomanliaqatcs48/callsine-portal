@@ -41,7 +41,6 @@ const Overview = () => {
   const getPersonDetail = async () => {
     try {
       let res = await personDetailService(Number(id));
-      devLog(res);
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
