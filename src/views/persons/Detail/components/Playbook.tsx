@@ -110,31 +110,11 @@ const Playbook = () => {
   };
 
   return (
-    <Grid container spacing={3}>
-      <Grid item xs />
-      <Grid item xs={6}>
-        {!isLoading?.onPage &&
-          data?.playbook?.pitch &&
-          data?.playbook?.followup && (
-            <>
-              <RenderCard
-                header="Sales Pitch"
-                content={data?.playbook?.pitch}
-                class_name="sales_pitch"
-              />
-
-              <div style={{ height: 15 }} />
-
-              <RenderCard
-                header="Follow up"
-                content={data?.playbook?.followup}
-                class_name="follow_up"
-              />
-            </>
-          )}
-
-        {!isLoading?.onPage &&
-          !(data?.playbook?.pitch && data?.playbook?.followup) && (
+    <>
+      <Grid container spacing={3}>
+        <Grid item xs />
+        <Grid item xs={6}>
+          {!isLoading?.onPage && (
             <LoadingButton
               loading={isLoading?.regeneratePlaybook}
               disableElevation
@@ -146,33 +126,41 @@ const Playbook = () => {
               fullWidth
               onClick={handleRegeneratePlaybook}
             >
-              Regenerate Playbook
+              {!(data?.playbook?.pitch && data?.playbook?.followup)
+                ? "Generate"
+                : "Regenerate"}{" "}
+              Playbook
             </LoadingButton>
           )}
-
-        <div style={{ height: 20 }} />
-
-        {!isLoading?.onPage && (
-          <LoadingButton
-            loading={isLoading?.regeneratePlaybook}
-            disableElevation
-            // disabled={isSubmitting}
-            size="large"
-            type="submit"
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleRegeneratePlaybook}
-          >
-            {!(data?.playbook?.pitch && data?.playbook?.followup)
-              ? "Generate"
-              : "Regenerate"}{" "}
-            Playbook
-          </LoadingButton>
-        )}
+        </Grid>
+        <Grid item xs />
       </Grid>
-      <Grid item xs />
-    </Grid>
+
+      <div style={{ height: 15 }} />
+
+      <Grid container spacing={3}>
+        {!isLoading?.onPage &&
+          data?.playbook?.pitch &&
+          data?.playbook?.followup && (
+            <>
+              <Grid item xs={6}>
+                <RenderCard
+                  header="Sales Pitch"
+                  content={data?.playbook?.pitch}
+                  class_name="sales_pitch"
+                />
+              </Grid>
+              <Grid item xs={6}>
+                <RenderCard
+                  header="Follow up"
+                  content={data?.playbook?.followup}
+                  class_name="follow_up"
+                />
+              </Grid>
+            </>
+          )}
+      </Grid>
+    </>
   );
 };
 
