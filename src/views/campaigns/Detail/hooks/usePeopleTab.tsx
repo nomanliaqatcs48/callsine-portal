@@ -6,13 +6,6 @@ export const usePeopleTab = () => {
     {
       Header: "First",
       accessor: "first_name",
-      Cell: (cell: any) => {
-        return (
-          <a className="" href={`/persons/${cell?.row?.original?.id}`}>
-            {cell?.value}
-          </a>
-        );
-      },
     },
     {
       Header: "Last",
