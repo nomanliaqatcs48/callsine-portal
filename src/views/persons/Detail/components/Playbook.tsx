@@ -14,6 +14,7 @@ import {
 } from "../../../../services/persons.service";
 import { devLog, devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
+import xss from "xss";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -30,10 +31,13 @@ const Playbook = () => {
   const getPersonDetail = async () => {
     try {
       let res = await personDetailService(Number(id));
-      devLog(res);
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+        setTimeout(() => {
+          handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
+          handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
+        });
       }
     } catch (e: any) {
       devLogError(e.response);
@@ -46,10 +50,13 @@ const Playbook = () => {
 
     try {
       let res = await regeneratePlaybookService(Number(id));
-      devLog(res);
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+        setTimeout(() => {
+          handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
+          handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
+        });
       }
     } catch (e: any) {
       devLogError(e.response);
@@ -57,7 +64,24 @@ const Playbook = () => {
     }
   };
 
-  const RenderCard = ({ header, content }: any) => {
+  const handlePreviewPlaybook = (data: any, elClass: string) => {
+    devLog("data elClass", elClass, data);
+    let _preview: any = document.querySelector(elClass);
+    if (_preview) {
+      devLog("_preview", _preview);
+      if (data) {
+        setTimeout(() => {
+          _preview.innerHTML = xss(data);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          _preview.innerHTML = "";
+        }, 200);
+      }
+    }
+  };
+
+  const RenderCard = ({ header, content, class_name }: any) => {
     return (
       <Paper elevation={3}>
         <Card sx={{ minWidth: 275 }}>
@@ -69,7 +93,7 @@ const Playbook = () => {
             >
               {header}
             </Typography>
-            <Typography variant="body2">{content}</Typography>
+            <Typography variant="body2" className={class_name} />
           </CardContent>
         </Card>
       </Paper>
@@ -87,6 +111,7 @@ const Playbook = () => {
               <RenderCard
                 header="Sales Pitch"
                 content={data?.playbook?.pitch}
+                class_name="sales_pitch"
               />
 
               <div style={{ height: 15 }} />
@@ -94,6 +119,7 @@ const Playbook = () => {
               <RenderCard
                 header="Follow up"
                 content={data?.playbook?.followup}
+                class_name="follow_up"
               />
             </>
           )}
