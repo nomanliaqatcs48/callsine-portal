@@ -93,7 +93,11 @@ const Playbook = () => {
             >
               {header}
             </Typography>
-            <Typography variant="body2" className={class_name} />
+            <Typography
+              variant="body2"
+              className={class_name}
+              style={{ whiteSpace: "pre-line" }}
+            />
           </CardContent>
         </Card>
       </Paper>
