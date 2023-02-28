@@ -8,7 +8,10 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import { personDetailService } from "../../../../services/persons.service";
+import {
+  personDetailService,
+  regeneratePlaybookService,
+} from "../../../../services/persons.service";
 import { devLog, devLogError } from "../../../../helpers/logs";
 
 const Playbook = () => {
@@ -33,6 +36,20 @@ const Playbook = () => {
     } catch (e: any) {
       devLogError(e.response);
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
+
+  const handleRegeneratePlaybook = async () => {
+    try {
+      let res = await regeneratePlaybookService(Number(id));
+      devLog(res);
+      if (res?.data) {
+        setData(res.data);
+        setIsLoading((prev: any) => ({ ...prev }));
+      }
+    } catch (e: any) {
+      devLogError(e.response);
+      setIsLoading((prev: any) => ({ ...prev }));
     }
   };
 
@@ -87,7 +104,7 @@ const Playbook = () => {
               variant="contained"
               color="primary"
               fullWidth
-              onClick={() => null}
+              onClick={handleRegeneratePlaybook}
             >
               Regenerate Playbook
             </Button>
