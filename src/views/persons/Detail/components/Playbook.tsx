@@ -149,6 +149,27 @@ const Playbook = () => {
               Regenerate Playbook
             </LoadingButton>
           )}
+
+        <div style={{ height: 20 }} />
+
+        {!isLoading?.onPage && (
+          <LoadingButton
+            loading={isLoading?.regeneratePlaybook}
+            disableElevation
+            // disabled={isSubmitting}
+            size="large"
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleRegeneratePlaybook}
+          >
+            {!(data?.playbook?.pitch && data?.playbook?.followup)
+              ? "Generate"
+              : "Regenerate"}{" "}
+            Playbook
+          </LoadingButton>
+        )}
       </Grid>
       <Grid item xs />
     </Grid>
