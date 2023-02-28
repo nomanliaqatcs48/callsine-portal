@@ -43,7 +43,11 @@ const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
     onClick();
     setTimeout(() => {
       setOpen(true);
-    }, 500);
+
+      setTimeout(() => {
+        setOpen(false);
+      }, 3000);
+    }, 100);
   };
 
   const handleClose = () => {
