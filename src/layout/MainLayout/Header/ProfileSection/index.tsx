@@ -98,6 +98,11 @@ const ProfileSection = () => {
     prevOpen.current = open;
   }, [open]);
 
+  const splitEmail = (email: string) => {
+    let emailArr = email.split("@");
+    return emailArr?.[0] || "";
+  };
+
   return (
     <>
       <Chip
@@ -186,7 +191,8 @@ const ProfileSection = () => {
                           variant="h4"
                           sx={{ fontWeight: 400 }}
                         >
-                          {auth?.first_name || "Admin"} {auth?.last_name}
+                          {auth?.first_name || splitEmail(auth?.email)}{" "}
+                          {auth?.last_name}
                         </Typography>
                       </Stack>
                       {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
