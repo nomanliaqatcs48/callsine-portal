@@ -26,7 +26,7 @@ export const usePlaybook = () => {
 
         <DialogActions>
           <Button onClick={handlePlaybookClose}>Cancel</Button>
-          <Button onClick={handlePlaybookClose}>Add</Button>
+          <Button onClick={handlePlaybookClose}>Edit</Button>
         </DialogActions>
       </MyModal>
     );

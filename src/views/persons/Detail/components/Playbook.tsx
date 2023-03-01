@@ -207,7 +207,7 @@ const Playbook = () => {
                   header="Sales Pitch"
                   content={data?.playbook?.pitch}
                   class_name="sales_pitch"
-                  handleClickEdit={() => null}
+                  handleClickEdit={handlePlaybookOpen}
                 />
 
                 <Grid sx={{ height: 20 }} />
@@ -216,13 +216,15 @@ const Playbook = () => {
                   header="Follow up"
                   content={data?.playbook?.followup}
                   class_name="follow_up"
-                  handleClickEdit={() => null}
+                  handleClickEdit={handlePlaybookOpen}
                 />
               </Grid>
               <Grid item lg />
             </>
           )}
       </Grid>
+
+      {playbookOpen && renderPlaybookModal()}
     </>
   );
 };
