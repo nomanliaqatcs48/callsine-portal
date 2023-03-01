@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Paper,
+  Typography,
+} from "@mui/material";
 import { useParams } from "react-router-dom";
 import {
   personDetailService,
@@ -9,6 +16,7 @@ import { devLog, devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import xss from "xss";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
+import { usePlaybook } from "../hooks/usePlaybook";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -17,6 +25,14 @@ const Playbook = () => {
     onPage: true,
     regeneratePlaybook: false,
   });
+
+  const {
+    playbookOpen,
+    setPlaybookOpen,
+    handlePlaybookOpen,
+    handlePlaybookClose,
+    renderPlaybookModal,
+  } = usePlaybook();
 
   useEffect(() => {
     getPersonDetail();
@@ -75,7 +91,12 @@ const Playbook = () => {
     }
   };*/
 
-  const RenderCard = ({ header, content, class_name }: any) => {
+  const RenderCard = ({
+    header,
+    content,
+    class_name,
+    handleClickEdit,
+  }: any) => {
     return (
       <Paper elevation={3}>
         <Card sx={{ minWidth: 275 }}>
@@ -113,6 +134,17 @@ const Playbook = () => {
               justifyContent="flex-end"
               alignItems="center"
             >
+              <Button
+                variant="outlined"
+                size="large"
+                color="primary"
+                onClick={handleClickEdit}
+              >
+                Edit
+              </Button>
+
+              <div style={{ width: 10 }} />
+
               <LoadingButton
                 loading={isLoading?.regeneratePlaybook}
                 disableElevation
@@ -175,6 +207,7 @@ const Playbook = () => {
                   header="Sales Pitch"
                   content={data?.playbook?.pitch}
                   class_name="sales_pitch"
+                  handleClickEdit={() => null}
                 />
 
                 <Grid sx={{ height: 20 }} />
@@ -183,6 +216,7 @@ const Playbook = () => {
                   header="Follow up"
                   content={data?.playbook?.followup}
                   class_name="follow_up"
+                  handleClickEdit={() => null}
                 />
               </Grid>
               <Grid item lg />
