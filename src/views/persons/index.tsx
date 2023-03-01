@@ -22,7 +22,7 @@ const PersonsPage = () => {
     <MainCard title="Persons">
       <Typography variant="body2" />
       <MyTable
-        columns={_columns}
+        columns={_columns()}
         data={personsData}
         totalItems={total || 0}
         tableName="HighlyQualifiedLeads"
