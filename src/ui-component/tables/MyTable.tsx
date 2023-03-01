@@ -32,6 +32,7 @@ import { useCustomMediaQuery } from "../../hooks/useCustomMediaQuery";
 import { ReactComponent as DescArrowIcon } from "../../assets/images/svg/desc-arrow.svg";
 import { ReactComponent as AscArrowIcon } from "../../assets/images/svg/asc-arrow.svg";
 import { ReactComponent as AscAndDescArrowIcon } from "../../assets/images/svg/asc-and-desc-arrows.svg";
+import { Typography } from "@mui/material";
 
 interface MyTableProps {
   columns: any;
@@ -491,11 +492,13 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                   sendSortedId(column, setSortBy, columns)
                                 }
                               >
-                                <div className="d-flex">
-                                  {
-                                    // Render the header
-                                    column.render("Header")
-                                  }
+                                <Typography variant="h5">
+                                  <strong>
+                                    {
+                                      // Render the header
+                                      column.render("Header")
+                                    }
+                                  </strong>
                                   {/*<span>
                                     {column.isSorted ? (
                                       column.isSortedDesc === true ? (
@@ -517,7 +520,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                       ""
                                     )}
                                   </span>*/}
-                                </div>
+                                </Typography>
                               </TableCell>
                             );
                           })
