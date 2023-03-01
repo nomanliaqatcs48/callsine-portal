@@ -12,9 +12,9 @@ import {
   personDetailService,
   regeneratePlaybookService,
 } from "../../../../services/persons.service";
-import { devLog, devLogError } from "../../../../helpers/logs";
+import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
-import xss from "xss";
+// import xss from "xss";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import { usePlaybook } from "../hooks/usePlaybook";
 
