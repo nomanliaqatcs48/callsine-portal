@@ -104,6 +104,31 @@ const Playbook = () => {
             >
               {content}
             </Typography>
+
+            <Grid sx={{ height: 20 }} />
+
+            <Grid
+              container
+              direction="row"
+              justifyContent="flex-end"
+              alignItems="center"
+            >
+              <LoadingButton
+                loading={isLoading?.regeneratePlaybook}
+                disableElevation
+                disabled={isLoading?.regeneratePlaybook}
+                size="large"
+                type="submit"
+                variant="contained"
+                color="primary"
+                onClick={() => null}
+              >
+                {!(data?.playbook?.pitch && data?.playbook?.followup)
+                  ? "Generate"
+                  : "Regenerate"}{" "}
+                Playbook
+              </LoadingButton>
+            </Grid>
           </CardContent>
         </Card>
       </Paper>
@@ -112,7 +137,7 @@ const Playbook = () => {
 
   return (
     <>
-      <Grid container spacing={3}>
+      {/*<Grid container spacing={3}>
         <Grid item xs />
         <Grid item xs={6}>
           {!isLoading?.onPage && (
@@ -135,29 +160,32 @@ const Playbook = () => {
           )}
         </Grid>
         <Grid item xs />
-      </Grid>
+      </Grid>*/}
 
-      <div style={{ height: 15 }} />
+      <Grid sx={{ height: 15 }} />
 
       <Grid container spacing={3}>
         {!isLoading?.onPage &&
           data?.playbook?.pitch &&
           data?.playbook?.followup && (
             <>
-              <Grid item xs={12} lg={6}>
+              <Grid item lg />
+              <Grid item xs={12} lg={8}>
                 <RenderCard
                   header="Sales Pitch"
                   content={data?.playbook?.pitch}
                   class_name="sales_pitch"
                 />
-              </Grid>
-              <Grid item xs={12} lg={6}>
+
+                <Grid sx={{ height: 20 }} />
+
                 <RenderCard
                   header="Follow up"
                   content={data?.playbook?.followup}
                   class_name="follow_up"
                 />
               </Grid>
+              <Grid item lg />
             </>
           )}
       </Grid>
