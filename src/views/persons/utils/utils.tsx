@@ -12,7 +12,9 @@ export const _columns: any = () => {
           <a
             className=""
             href={`/persons/${cell?.row?.original?.id}`}
-            style={{ color: theme.palette.orange.orangeDark }}
+            style={{
+              textDecoration: "underline",
+            }}
           >
             {cell?.value}
           </a>
