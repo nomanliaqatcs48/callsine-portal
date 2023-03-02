@@ -13,6 +13,7 @@ import SkeletonTotalOrderCard from "../../ui-component/cards/Skeleton/EarningCar
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { IconHandClick, IconUsers } from "@tabler/icons-react";
+import { usePersons } from "../../views/persons/hooks/usePersons";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   backgroundColor: theme.palette.primary.dark,
@@ -65,6 +66,16 @@ type TotalPersonsCardTypes = {
 const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
   const theme: any = useTheme();
 
+  const {
+    personsData,
+    setPersonsData,
+    total,
+    setTotal,
+    filters,
+    setFilters,
+    getPeople,
+  } = usePersons();
+
   return (
     <>
       {isLoading ? (
@@ -102,7 +113,7 @@ const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
                         mb: 0.75,
                       }}
                     >
-                      100
+                      {total}
                     </Typography>
                   </Grid>
                 </Grid>
