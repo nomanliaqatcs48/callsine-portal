@@ -4,6 +4,7 @@ import { Grid } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
 import RemainingClicks from "../../ui-component/cards/RemainingClicks";
 import { useAuth } from "../../contexts/auth";
+import TotalPersonsCard from "../../ui-component/cards/TotalPersons";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
@@ -24,6 +25,9 @@ const DashboardPage = () => {
               isLoading={isLoading?.onPage}
               value={auth?.clicks_remaining}
             />
+          </Grid>
+          <Grid item lg={4} md={6} sm={6} xs={12}>
+            <TotalPersonsCard isLoading={isLoading?.onPage} />
           </Grid>
         </Grid>
       </Grid>
