@@ -12,9 +12,8 @@ import {
   personDetailService,
   regeneratePlaybookService,
 } from "../../../../services/persons.service";
-import { devLog, devLogError } from "../../../../helpers/logs";
+import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
-// import xss from "xss";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import { usePlaybook } from "../hooks/usePlaybook";
 
@@ -45,10 +44,6 @@ const Playbook = () => {
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-        setTimeout(() => {
-          // handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
-          // handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
-        });
       }
     } catch (e: any) {
       devLogError(e.response);
@@ -64,33 +59,12 @@ const Playbook = () => {
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
-        setTimeout(() => {
-          // handlePreviewPlaybook(res.data?.playbook?.pitch, ".sales_pitch");
-          // handlePreviewPlaybook(res.data?.playbook?.followup, ".follow_up");
-        });
       }
     } catch (e: any) {
       devLogError(e.response);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
     }
   };
-
-  /*const handlePreviewPlaybook = (data: any, elClass: string) => {
-    devLog("data elClass", elClass, data);
-    let _preview: any = document.querySelector(elClass);
-    if (_preview) {
-      devLog("_preview", _preview);
-      if (data) {
-        setTimeout(() => {
-          _preview.innerHTML = xss(data);
-        }, 500);
-      } else {
-        setTimeout(() => {
-          _preview.innerHTML = "";
-        }, 200);
-      }
-    }
-  };*/
 
   const RenderCard = ({
     header,
