@@ -4,11 +4,21 @@ import MyModal from "../../../../ui-component/modal/MyModal";
 import MyEditor from "../../../../ui-component/editor/MyEditor";
 import { useForm } from "react-hook-form";
 import xss from "xss";
+import { devLogError } from "../../../../helpers/logs";
+import { updatePersonDetailService } from "../../../../services/persons.service";
+import { useParams } from "react-router-dom";
 
 export const usePlaybook = () => {
+  const { id } = useParams();
   const [playbookOpen, setPlaybookOpen] = React.useState<boolean>(false);
 
-  const { setValue } = useForm();
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm();
 
   const handlePlaybookOpen = () => {
     setPlaybookOpen(true);
@@ -16,6 +26,7 @@ export const usePlaybook = () => {
 
   const handlePlaybookClose = () => {
     setPlaybookOpen(false);
+    reset();
   };
 
   const renderPlaybookModal = (data: any, key: string | null) => {
@@ -40,7 +51,11 @@ export const usePlaybook = () => {
 
         <DialogActions>
           <Button onClick={handlePlaybookClose}>Cancel</Button>
-          <Button onClick={handlePlaybookClose}>Edit</Button>
+          <Button
+            onClick={handleSubmit((data) => onEditPlaybookSubmit(data, key))}
+          >
+            Edit
+          </Button>
         </DialogActions>
       </MyModal>
     );
@@ -68,6 +83,24 @@ export const usePlaybook = () => {
           _preview.innerHTML = "";
         }, 200);
       }
+    }
+  };
+
+  const onEditPlaybookSubmit = async (data: any, key: string | null) => {
+    let _data: any = { playbook: { pitch: data?.pitch } };
+
+    if (key === "followup") {
+      _data = { playbook: { followup: data?.followup } };
+    }
+
+    try {
+      let res = await updatePersonDetailService(Number(id), _data);
+      if (res?.data) {
+        handlePlaybookClose();
+      }
+    } catch ({ response }) {
+      devLogError(response);
+      handlePlaybookClose();
     }
   };
 
