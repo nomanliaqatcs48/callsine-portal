@@ -93,34 +93,30 @@ const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item>
-                    <Grid container alignItems="center">
-                      <Grid item>
-                        <Typography
-                          sx={{
-                            fontSize: "2.125rem",
-                            fontWeight: 500,
-                            mr: 1,
-                            mt: 1.75,
-                            mb: 0.75,
-                          }}
-                        >
-                          100
-                        </Typography>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <Typography
-                          sx={{
-                            fontSize: "1rem",
-                            fontWeight: 500,
-                            color: theme.palette.primary[200],
-                          }}
-                        >
-                          Total Persons
-                        </Typography>
-                      </Grid>
-                    </Grid>
+                    <Typography
+                      sx={{
+                        fontSize: "2.125rem",
+                        fontWeight: 500,
+                        mr: 1,
+                        mt: 1.75,
+                        mb: 0.75,
+                      }}
+                    >
+                      100
+                    </Typography>
                   </Grid>
                 </Grid>
+              </Grid>
+              <Grid item sx={{ mb: 1.25 }}>
+                <Typography
+                  sx={{
+                    fontSize: "1rem",
+                    fontWeight: 500,
+                    color: theme.palette.primary[200],
+                  }}
+                >
+                  Total Persons
+                </Typography>
               </Grid>
             </Grid>
           </Box>
