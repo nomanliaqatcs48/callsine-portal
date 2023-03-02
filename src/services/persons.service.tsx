@@ -10,7 +10,7 @@ export const getPersonDetailService = async (id: number) => {
 };
 
 export const updatePersonDetailService = async (id: number, data: any) => {
-  return await http.post(`${endpoints.PERSON}${id}/`, data);
+  return await http.put(`${endpoints.PERSON}${id}/`, data);
 };
 
 export const regeneratePlaybookService = async (id: number) => {
