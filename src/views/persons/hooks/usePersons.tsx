@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import {
-  personDetailService,
-  personsService,
+  getPersonDetailService,
+  getPeopleService,
 } from "../../../services/persons.service";
 import { devLogError } from "../../../helpers/logs";
 
@@ -24,7 +24,7 @@ export const usePersons = () => {
 
   const getPeople = async () => {
     try {
-      let res = await personsService();
+      let res = await getPeopleService();
       if (res?.data) {
         setTotal(res.data?.count);
         setPersonsData(res.data?.results);

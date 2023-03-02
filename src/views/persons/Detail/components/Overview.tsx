@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import { devLog, devLogError } from "../../../../helpers/logs";
-import { personDetailService } from "../../../../services/persons.service";
+import { getPersonDetailService } from "../../../../services/persons.service";
 import { useParams } from "react-router-dom";
 
 const Overview = () => {
@@ -40,7 +40,7 @@ const Overview = () => {
 
   const getPersonDetail = async () => {
     try {
-      let res = await personDetailService(Number(id));
+      let res = await getPersonDetailService(Number(id));
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));

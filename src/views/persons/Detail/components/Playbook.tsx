@@ -9,7 +9,7 @@ import {
 } from "@mui/material";
 import { useParams } from "react-router-dom";
 import {
-  personDetailService,
+  getPersonDetailService,
   regeneratePlaybookService,
 } from "../../../../services/persons.service";
 import { devLogError } from "../../../../helpers/logs";
@@ -40,7 +40,7 @@ const Playbook = () => {
 
   const getPersonDetail = async () => {
     try {
-      let res = await personDetailService(Number(id));
+      let res = await getPersonDetailService(Number(id));
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
