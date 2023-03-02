@@ -13,10 +13,7 @@ const MyEditor = ({ initialValue, onEditorChange }: MyEditorTypes) => {
     <Editor
       apiKey="w9b8q1k5xygg3uyj0vqhk0w9lgn1xog0f4auzbg5h8dc8ql6"
       onInit={(evt: any, editor: any) => (editorRef.current = editor)}
-      initialValue={
-        `<pre style="font-family: Helvetica,Arial,sans-serif">${initialValue}</pre>` ||
-        ""
-      }
+      initialValue={`<pre>${initialValue}</pre>` || ""}
       init={{
         height: 500,
         menubar: true,
@@ -46,7 +43,7 @@ const MyEditor = ({ initialValue, onEditorChange }: MyEditorTypes) => {
           "alignright alignjustify | bullist numlist outdent indent | " +
           "removeformat | help",
         content_style:
-          "body { font-family:Helvetica,Arial,sans-serif; font-size:14px }",
+          "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
       }}
       onEditorChange={(value: string, editor: any) => {
         onEditorChange(value, editor);
