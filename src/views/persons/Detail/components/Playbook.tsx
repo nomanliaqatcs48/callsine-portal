@@ -12,7 +12,7 @@ import {
   personDetailService,
   regeneratePlaybookService,
 } from "../../../../services/persons.service";
-import { devLogError } from "../../../../helpers/logs";
+import { devLog, devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 // import xss from "xss";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
@@ -25,6 +25,7 @@ const Playbook = () => {
     onPage: true,
     regeneratePlaybook: false,
   });
+  const [key, setKey] = useState<string | null>(null);
 
   const {
     playbookOpen,
@@ -207,7 +208,10 @@ const Playbook = () => {
                   header="Sales Pitch"
                   content={data?.playbook?.pitch}
                   class_name="sales_pitch"
-                  handleClickEdit={handlePlaybookOpen}
+                  handleClickEdit={() => {
+                    handlePlaybookOpen();
+                    setKey("pitch");
+                  }}
                 />
 
                 <Grid sx={{ height: 20 }} />
@@ -216,7 +220,10 @@ const Playbook = () => {
                   header="Follow up"
                   content={data?.playbook?.followup}
                   class_name="follow_up"
-                  handleClickEdit={handlePlaybookOpen}
+                  handleClickEdit={() => {
+                    handlePlaybookOpen();
+                    setKey("followup");
+                  }}
                 />
               </Grid>
               <Grid item lg />
@@ -224,7 +231,7 @@ const Playbook = () => {
           )}
       </Grid>
 
-      {playbookOpen && renderPlaybookModal()}
+      {playbookOpen && renderPlaybookModal(data, key)}
     </>
   );
 };
