@@ -17,6 +17,7 @@ const MyEditor = ({ initialValue, onEditorChange }: MyEditorTypes) => {
       init={{
         height: 500,
         menubar: true,
+        forced_root_block: "pre",
         plugins: [
           "advlist",
           "autolink",
