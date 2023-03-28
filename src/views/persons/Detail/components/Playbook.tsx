@@ -150,7 +150,9 @@ const Playbook = () => {
   return (
     <>
       <Grid container spacing={3}>
-        {!isLoading?.onPage && !data?.prompts && <RenderEmptyPlaybook />}
+        {!isLoading?.onPage && data.prompts.length === 0 && (
+          <RenderEmptyPlaybook />
+        )}
       </Grid>
 
       <Grid sx={{ height: 15 }} />
@@ -159,7 +161,7 @@ const Playbook = () => {
         <Grid item lg />
         <Grid item xs={12} lg={8}>
           {!isLoading?.onPage &&
-            data?.prompts &&
+            data.prompts.length > 0 &&
             data.prompts.map((o: any, idx: number) => {
               return (
                 <>
