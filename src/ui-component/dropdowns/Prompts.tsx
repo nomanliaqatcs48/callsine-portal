@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
-import { devLog } from "../../helpers/logs";
+import { devLogError } from "../../helpers/logs";
 import { getPromptsService } from "../../services/prompts.service";
 
 type PromptsTypes = {
+  onChange: any;
   [x: string]: any;
 };
 
-const Prompts = ({ ...props }: PromptsTypes) => {
+const Prompts = ({ onChange, ...props }: PromptsTypes) => {
   const [prompts, setPrompts] = useState<any[]>([]);
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [filters, setFilters] = React.useState<any>({
@@ -31,31 +32,31 @@ const Prompts = ({ ...props }: PromptsTypes) => {
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
       }
     } catch ({ response }) {
-      devLog("e", response);
+      devLogError("e", response);
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };
 
   const handleChangePrompt = () => {
-    //
+    onChange();
   };
 
   return (
     <FormControl
       fullWidth
-      // error={!!errors.provider}
+      // error={!!errors.prompts}
       margin="dense"
       required
       // disabled={mailAccountLoading?.form}
       {...props}
     >
-      <InputLabel id="provider-label">
+      <InputLabel id="prompts-label">
         {prompts?.length > 0 ? "Prompts" : "No data available"}
       </InputLabel>
       <Select
-        labelId="provider-label"
-        id="provider"
-        label="Provider"
+        labelId="prompts-label"
+        id="prompts"
+        label="Prompts"
         onChange={handleChangePrompt}
       >
         {prompts.map((o) => {

@@ -129,7 +129,7 @@ const Playbook = () => {
         <Grid item xs={12} md={5}>
           {!isLoading?.onPage && (
             <>
-              <Prompts margin="none" size="small" />
+              <Prompts onChange={() => null} margin="none" size="small" />
             </>
           )}
         </Grid>
