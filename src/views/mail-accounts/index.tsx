@@ -2,6 +2,7 @@ import { Grid } from "@mui/material";
 import React from "react";
 import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import MainCard from "../../ui-component/cards/MainCard";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
 import SearchField from "../../ui-component/forms/SearchField";
@@ -45,12 +46,12 @@ const MailAccountsPage = () => {
         justifyContent="flex-end"
         alignItems="center"
       >
-        {/*<CreateOrEditMailAccount
+        <CreateOrEditMailAccount
           btnText="Add Mail Account"
           onSubmit={getMailAccounts}
           onClick={() => null}
           btnVariant="contained"
-        />*/}
+        />
       </Grid>
       <div style={{ height: 3 }} />
       <Grid container spacing={2}>
