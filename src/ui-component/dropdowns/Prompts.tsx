@@ -12,7 +12,7 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
   const [prompts, setPrompts] = useState<any[]>([]);
   const [searchValue, setSearchValue] = React.useState<string>("");
   const [filters, setFilters] = React.useState<any>({
-    limit: 10,
+    limit: 9999,
     offset: 0,
     currentPage: 1,
   });
