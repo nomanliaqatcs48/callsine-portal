@@ -88,14 +88,17 @@ const Playbook = () => {
               justifyContent="flex-end"
               alignItems="center"
             >
-              <Button
+              <LoadingButton
                 variant="outlined"
                 size="large"
                 color="primary"
                 onClick={handleClickEdit}
+                loading={isLoading?.regeneratePlaybook}
+                disableElevation
+                disabled={isLoading?.regeneratePlaybook}
               >
                 Edit
-              </Button>
+              </LoadingButton>
 
               <div style={{ width: 10 }} />
 
@@ -104,7 +107,7 @@ const Playbook = () => {
                 disableElevation
                 disabled={isLoading?.regeneratePlaybook}
                 size="large"
-                type="submit"
+                type="button"
                 variant="contained"
                 color="primary"
                 onClick={() => null}
