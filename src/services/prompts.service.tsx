@@ -10,22 +10,27 @@ export const getPromptsService = async (
   );
 };
 
-export const getPromptResponsesFromPersonService = async (id: number) => {
-  return await http.get(`${endpoints.PROMPT_RESPONSES}/?person=${id}`);
+export const getPromptResponsesFromPersonService = async (personId: number) => {
+  return await http.get(`${endpoints.PROMPT_RESPONSES}/?person=${personId}`);
 };
 
 export const createResponsesService = async (
-  prompt: number,
-  person: number,
+  promptId: number,
+  personId: number,
   context: any
 ) => {
   return await http.post(`${endpoints.PROMPT_RESPONSES}`, {
-    prompt: prompt,
-    person: person,
+    prompt: promptId,
+    person: personId,
     context: context,
   });
 };
 
-export const generateResponsesService = async (prompt: number) => {
-  return await http.post(`${endpoints.PROMPT_RESPONSES}${prompt}/generate/`);
+export const generateResponsesService = async (
+  promptId: number,
+  personId: number
+) => {
+  return await http.post(
+    `${endpoints.PROMPT_RESPONSES}${promptId}/generate/?person=${personId}`
+  );
 };
