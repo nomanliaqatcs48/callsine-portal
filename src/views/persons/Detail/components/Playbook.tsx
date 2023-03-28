@@ -66,12 +66,7 @@ const Playbook = () => {
     }
   };
 
-  const RenderCard = ({
-    header,
-    content,
-    class_name,
-    handleClickEdit,
-  }: any) => {
+  const RenderCard = ({ content, handleClickEdit }: any) => {
     return (
       <Paper elevation={3}>
         <Card sx={{ minWidth: 275 }}>
@@ -79,25 +74,13 @@ const Playbook = () => {
             <Grid
               container
               direction="row"
-              justifyContent="space-between"
+              justifyContent="end"
               alignItems="center"
             >
-              <Typography
-                sx={{ fontSize: 14 }}
-                color="text.secondary"
-                gutterBottom
-              >
-                {header}
-              </Typography>
-
               <CopyClipboard copyContent={content} onClick={() => null} />
             </Grid>
 
-            <Typography
-              variant="body2"
-              className={class_name}
-              style={{ whiteSpace: "pre-line" }}
-            >
+            <Typography variant="body2" style={{ whiteSpace: "pre-line" }}>
               {content}
             </Typography>
 
@@ -130,10 +113,7 @@ const Playbook = () => {
                 color="primary"
                 onClick={() => null}
               >
-                {!(data?.playbook?.pitch && data?.playbook?.followup)
-                  ? "Generate"
-                  : "Regenerate"}{" "}
-                Playbook
+                Regenerate Playbook
               </LoadingButton>
             </Grid>
           </CardContent>
@@ -186,24 +166,9 @@ const Playbook = () => {
               <Grid item lg />
               <Grid item xs={12} lg={8}>
                 <RenderCard
-                  header="Sales Pitch"
                   content={data?.playbook?.pitch}
-                  class_name="sales_pitch"
                   handleClickEdit={() => {
                     handlePlaybookOpen();
-                    setKey("pitch");
-                  }}
-                />
-
-                <Grid sx={{ height: 20 }} />
-
-                <RenderCard
-                  header="Follow up"
-                  content={data?.playbook?.followup}
-                  class_name="follow_up"
-                  handleClickEdit={() => {
-                    handlePlaybookOpen();
-                    setKey("followup");
                   }}
                 />
               </Grid>
