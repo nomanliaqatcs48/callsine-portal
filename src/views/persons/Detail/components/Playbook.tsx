@@ -142,9 +142,9 @@ const Playbook = () => {
     );
   };
 
-  return (
-    <>
-      {/*<Grid container spacing={3}>
+  const RenderEmptyPlaybook = () => {
+    return (
+      <>
         <Grid item xs />
         <Grid item xs={6}>
           {!isLoading?.onPage && (
@@ -159,15 +159,22 @@ const Playbook = () => {
               fullWidth
               onClick={handleRegeneratePlaybook}
             >
-              {!(data?.playbook?.pitch && data?.playbook?.followup)
-                ? "Generate"
-                : "Regenerate"}{" "}
-              Playbook
+              Generate Playbook
             </LoadingButton>
           )}
         </Grid>
         <Grid item xs />
-      </Grid>*/}
+      </>
+    );
+  };
+
+  return (
+    <>
+      <Grid container spacing={3}>
+        {!(data?.playbook?.pitch && data?.playbook?.followup) && (
+          <RenderEmptyPlaybook />
+        )}
+      </Grid>
 
       <Grid sx={{ height: 15 }} />
 
