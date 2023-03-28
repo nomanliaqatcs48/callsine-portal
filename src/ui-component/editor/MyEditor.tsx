@@ -4,20 +4,39 @@ import { Editor } from "@tinymce/tinymce-react";
 type MyEditorTypes = {
   initialValue: any;
   onEditorChange: any;
+  isPreformatted: boolean;
+  onClick?: any;
+  onFocus?: any;
 };
 
-const MyEditor = ({ initialValue, onEditorChange }: MyEditorTypes) => {
+const MyEditor = ({
+  initialValue,
+  onEditorChange,
+  isPreformatted,
+  onClick,
+  onFocus,
+}: MyEditorTypes) => {
   const editorRef: any = React.useRef(null);
+
+  const getInitialValue = () => {
+    if (isPreformatted) {
+      return <pre>initialValue</pre>;
+    } else {
+      return initialValue;
+    }
+  };
 
   return (
     <Editor
       apiKey="w9b8q1k5xygg3uyj0vqhk0w9lgn1xog0f4auzbg5h8dc8ql6"
       onInit={(evt: any, editor: any) => (editorRef.current = editor)}
-      initialValue={`<pre>${initialValue}</pre>` || ""}
+      initialValue={getInitialValue() || ""}
+      onClick={onClick}
+      onFocus={onFocus}
       init={{
         height: 500,
         menubar: true,
-        forced_root_block: "pre",
+        forced_root_block: isPreformatted ? "pre" : "div",
         plugins: [
           "advlist",
           "autolink",
