@@ -1,10 +1,11 @@
 // assets
-import { IconKey, IconUsers } from "@tabler/icons-react";
+import { IconKey, IconUsers, IconMail } from "@tabler/icons-react";
 
 // constant
 const icons = {
   IconKey,
   IconUsers,
+  IconMail,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -21,6 +22,14 @@ const pages = {
       type: "item",
       url: "/persons",
       icon: icons.IconUsers,
+      breadcrumbs: false,
+    },
+    {
+      id: "mail-accounts",
+      title: "Mail Accounts",
+      type: "item",
+      url: "/mail-accounts",
+      icon: icons.IconMail,
       breadcrumbs: false,
     },
     // {
