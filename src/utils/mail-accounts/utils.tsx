@@ -1,5 +1,5 @@
 import NewGmailAccount from "../../ui-component/buttons/NewGmailAccount";
-// import NewOutlookAccount from "../../../ui-component/buttons/NewOutlookAccount";
+import NewOutlookAccount from "../../ui-component/buttons/NewOutlookAccount";
 // import DeleteMailAccount from "../../../ui-component/buttons/DeleteMailAccount";
 // import CreateOrEditMailAccount from "../../../ui-component/mail-account/CreateOrEditMailAccount";
 import React from "react";
@@ -50,14 +50,14 @@ export const _columns = (getMailAccounts: any) => {
         };
 
         if (cell?.row?.original?.provider === "outlook") {
-          /*showBtn = () => {
+          showBtn = () => {
             return (
               <NewOutlookAccount
                 buttonText="Connect"
                 email={cell?.row?.original?.email}
               />
             );
-          };*/
+          };
         }
 
         return cell?.value ? "Connected" : showBtn();
