@@ -35,7 +35,7 @@ const Playbook = () => {
     handlePreview,
   } = usePlaybook();
 
-  const handleRegeneratePlaybook = async () => {
+  const handleGeneratePlaybook = async () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
@@ -129,7 +129,7 @@ const Playbook = () => {
                 variant="contained"
                 color="primary"
                 fullWidth
-                onClick={handleRegeneratePlaybook}
+                onClick={handleGeneratePlaybook}
               >
                 Generate Playbook
               </LoadingButton>
