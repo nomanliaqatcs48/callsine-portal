@@ -15,8 +15,8 @@ import {
 import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
-import { usePlaybook } from "../hooks/usePlaybook";
 import Prompts from "../../../../ui-component/dropdowns/Prompts";
+import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
 
 const Playbook = () => {
   const { id } = useParams();

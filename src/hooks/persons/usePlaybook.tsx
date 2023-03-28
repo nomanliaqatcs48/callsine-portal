@@ -1,11 +1,11 @@
 import React from "react";
 import { Button, DialogActions } from "@mui/material";
-import MyModal from "../../../../ui-component/modal/MyModal";
-import MyEditor from "../../../../ui-component/editor/MyEditor";
+import MyModal from "../../ui-component/modal/MyModal";
+import MyEditor from "../../ui-component/editor/MyEditor";
 import { useForm } from "react-hook-form";
 import xss from "xss";
-import { devLogError } from "../../../../helpers/logs";
-import { updatePersonDetailService } from "../../../../services/persons.service";
+import { devLogError } from "../../helpers/logs";
+import { updatePersonDetailService } from "../../services/persons.service";
 import { useParams } from "react-router-dom";
 
 export const usePlaybook = () => {
