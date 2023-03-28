@@ -1,9 +1,10 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "./utils/utils";
 import { usePersons } from "./hooks/usePersons";
+import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
 
 const PersonsPage = () => {
   const {
@@ -20,13 +21,23 @@ const PersonsPage = () => {
 
   return (
     <MainCard title="Persons">
-      <Typography variant="body2" />
+      <div style={{ height: 3 }} />
+      <Grid container spacing={2}>
+        <Grid item xs={12} sm={6} md={4} lg={3}>
+          <TotalListSmallCard
+            isLoading={isLoading?.onPage}
+            value={total}
+            text="Total"
+          />
+        </Grid>
+      </Grid>
+      <div style={{ height: 20 }} />
       <MyTable
         columns={_columns()}
         data={personsData}
         totalItems={total || 0}
-        tableName="HighlyQualifiedLeads"
-        tableClassName="table-highly-qualified-leads gray-header table-sm"
+        tableName="PersonsTable"
+        tableClassName="table-persons gray-header table-sm"
         isTableLoading={isLoading?.table}
         filters={filters}
         setFilters={setFilters}
