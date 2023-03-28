@@ -16,6 +16,7 @@ import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import { usePlaybook } from "../hooks/usePlaybook";
+import Prompts from "../../../../ui-component/dropdowns/Prompts";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -125,21 +126,30 @@ const Playbook = () => {
     return (
       <>
         <Grid item xs />
-        <Grid item xs={6}>
+        <Grid item xs={12} md={5}>
           {!isLoading?.onPage && (
-            <LoadingButton
-              loading={isLoading?.regeneratePlaybook}
-              disableElevation
-              // disabled={isSubmitting}
-              size="large"
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleRegeneratePlaybook}
-            >
-              Generate Playbook
-            </LoadingButton>
+            <>
+              <Prompts margin="none" size="small" />
+            </>
+          )}
+        </Grid>
+        <Grid item xs={12} md={5}>
+          {!isLoading?.onPage && (
+            <>
+              <LoadingButton
+                loading={isLoading?.regeneratePlaybook}
+                disableElevation
+                // disabled={isSubmitting}
+                size="large"
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth
+                onClick={handleRegeneratePlaybook}
+              >
+                Generate Playbook
+              </LoadingButton>
+            </>
           )}
         </Grid>
         <Grid item xs />
