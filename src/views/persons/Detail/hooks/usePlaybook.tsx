@@ -29,9 +29,8 @@ export const usePlaybook = () => {
     reset();
   };
 
-  const renderPlaybookModal = (data: any, key: string | null) => {
-    let _initValue =
-      key === "pitch" ? data?.playbook?.pitch : data?.playbook?.followup;
+  const renderPlaybookModal = (data: any, key?: string | null) => {
+    let _initValue = data?.playbook?.pitch;
     return (
       <MyModal
         open={playbookOpen}
@@ -44,31 +43,18 @@ export const usePlaybook = () => {
         <MyEditor
           initialValue={_initValue}
           onEditorChange={(value: string, editor: any) => {
-            handleMyEditorOnChange(key, value, editor);
             handlePreview(value);
           }}
         />
 
         <DialogActions>
           <Button onClick={handlePlaybookClose}>Cancel</Button>
-          <Button
-            onClick={handleSubmit((data) => onEditPlaybookSubmit(data, key))}
-          >
+          <Button onClick={handleSubmit((data) => onEditPlaybookSubmit(data))}>
             Edit
           </Button>
         </DialogActions>
       </MyModal>
     );
-  };
-
-  const handleMyEditorOnChange = (
-    key: string | null,
-    value: string,
-    editor: any
-  ) => {
-    if (key) {
-      setValue(key, value);
-    }
   };
 
   const handlePreview = (data: any) => {
@@ -86,12 +72,8 @@ export const usePlaybook = () => {
     }
   };
 
-  const onEditPlaybookSubmit = async (data: any, key: string | null) => {
+  const onEditPlaybookSubmit = async (data: any) => {
     let _data: any = { playbook: { pitch: data?.pitch } };
-
-    if (key === "followup") {
-      _data = { playbook: { followup: data?.followup } };
-    }
 
     try {
       let res = await updatePersonDetailService(Number(id), _data);
@@ -110,7 +92,6 @@ export const usePlaybook = () => {
     handlePlaybookOpen,
     handlePlaybookClose,
     renderPlaybookModal,
-    handleMyEditorOnChange,
     handlePreview,
   };
 };

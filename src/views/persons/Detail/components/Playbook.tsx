@@ -24,7 +24,6 @@ const Playbook = () => {
     onPage: true,
     regeneratePlaybook: false,
   });
-  const [key, setKey] = useState<string | null>(null);
 
   const {
     playbookOpen,
@@ -66,7 +65,7 @@ const Playbook = () => {
     }
   };
 
-  const RenderCard = ({ content, handleClickEdit }: any) => {
+  const RenderCard = ({ data, handleClickEdit }: any) => {
     return (
       <Paper elevation={3}>
         <Card sx={{ minWidth: 275 }}>
@@ -77,11 +76,11 @@ const Playbook = () => {
               justifyContent="end"
               alignItems="center"
             >
-              <CopyClipboard copyContent={content} onClick={() => null} />
+              <CopyClipboard copyContent={data?.text} onClick={() => null} />
             </Grid>
 
             <Typography variant="body2" style={{ whiteSpace: "pre-line" }}>
-              {content}
+              {data?.text}
             </Typography>
 
             <Grid sx={{ height: 20 }} />
@@ -151,33 +150,34 @@ const Playbook = () => {
   return (
     <>
       <Grid container spacing={3}>
-        {!(data?.playbook?.pitch && data?.playbook?.followup) && (
-          <RenderEmptyPlaybook />
-        )}
+        {!isLoading?.onPage && !data?.prompts && <RenderEmptyPlaybook />}
       </Grid>
 
       <Grid sx={{ height: 15 }} />
 
       <Grid container spacing={3}>
-        {!isLoading?.onPage &&
-          data?.playbook?.pitch &&
-          data?.playbook?.followup && (
-            <>
-              <Grid item lg />
-              <Grid item xs={12} lg={8}>
-                <RenderCard
-                  content={data?.playbook?.pitch}
-                  handleClickEdit={() => {
-                    handlePlaybookOpen();
-                  }}
-                />
-              </Grid>
-              <Grid item lg />
-            </>
-          )}
+        <Grid item lg />
+        <Grid item xs={12} lg={8}>
+          {!isLoading?.onPage &&
+            data?.prompts &&
+            data.prompts.map((o: any, idx: number) => {
+              return (
+                <>
+                  <RenderCard
+                    data={o}
+                    handleClickEdit={() => {
+                      handlePlaybookOpen();
+                    }}
+                  />
+                  <Grid sx={{ height: 20 }} />
+                </>
+              );
+            })}
+        </Grid>
+        <Grid item lg />
       </Grid>
 
-      {playbookOpen && renderPlaybookModal(data, key)}
+      {playbookOpen && renderPlaybookModal(data)}
     </>
   );
 };
