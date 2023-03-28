@@ -4,7 +4,7 @@ import { Editor } from "@tinymce/tinymce-react";
 type MyEditorTypes = {
   initialValue: any;
   onEditorChange: any;
-  isPreformatted: boolean;
+  isPreformatted?: boolean;
   onClick?: any;
   onFocus?: any;
 };
@@ -12,7 +12,7 @@ type MyEditorTypes = {
 const MyEditor = ({
   initialValue,
   onEditorChange,
-  isPreformatted,
+  isPreformatted = false,
   onClick,
   onFocus,
 }: MyEditorTypes) => {
