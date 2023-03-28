@@ -48,10 +48,12 @@ const Playbook = () => {
       if (res?.data) {
         setData(res.data);
         getPersonDetail();
+        setPromptId(null);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       }
     } catch (e: any) {
       devLogError(e.response);
+      setPromptId(null);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
     }
   };
@@ -158,9 +160,7 @@ const Playbook = () => {
   return (
     <>
       <Grid container spacing={3}>
-        {!isLoading?.onPage && data.prompts?.length === 0 && (
-          <RenderEmptyPlaybook />
-        )}
+        <RenderEmptyPlaybook />
       </Grid>
 
       <Grid sx={{ height: 15 }} />
