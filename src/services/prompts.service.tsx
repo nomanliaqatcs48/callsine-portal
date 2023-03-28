@@ -1,8 +1,13 @@
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
-export const getPromptsService = async () => {
-  return await http.get(`${endpoints.PROMPTS}`);
+export const getPromptsService = async (
+  filters: any,
+  searchValue: string = ""
+) => {
+  return await http.get(
+    `${endpoints.PROMPTS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+  );
 };
 
 export const getPromptResponsesFromPersonService = async (id: number) => {
