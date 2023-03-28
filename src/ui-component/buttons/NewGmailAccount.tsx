@@ -26,12 +26,10 @@ const NewGmailAccount = ({
   size = "large",
   color,
 }: NewGmailAccountTypes) => {
-  const { profile }: any = useAuth();
+  const auth: any = useAuth();
 
   const handleClick = () => {
-    alert(JSON.stringify(profile));
-    return;
-    window.location.href = `${config.service.BASE_URL}/api/gmail/?login_hint=${email}&user_id=1=${profile?.id}/`;
+    window.location.href = `${config.service.BASE_URL}/api/gmail/?login_hint=${email}&user_id=1=${auth?.id}/`;
   };
 
   return (
