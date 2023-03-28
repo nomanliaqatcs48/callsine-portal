@@ -11,7 +11,7 @@ export const getPromptsService = async (
 };
 
 export const getPromptResponsesFromPersonService = async (personId: number) => {
-  return await http.get(`${endpoints.PROMPT_RESPONSES}/?person=${personId}`);
+  return await http.get(`${endpoints.PROMPT_RESPONSES}?person=${personId}`);
 };
 
 export const createResponsesService = async (
