@@ -1,7 +1,7 @@
 import NewGmailAccount from "../../ui-component/buttons/NewGmailAccount";
 import NewOutlookAccount from "../../ui-component/buttons/NewOutlookAccount";
-// import DeleteMailAccount from "../../../ui-component/buttons/DeleteMailAccount";
-// import CreateOrEditMailAccount from "../../../ui-component/mail-account/CreateOrEditMailAccount";
+import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
+import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import React from "react";
 
 export const _columns = (getMailAccounts: any) => {
@@ -70,20 +70,20 @@ export const _columns = (getMailAccounts: any) => {
       Cell: (cell: any) => {
         return (
           <>
-            {/*<CreateOrEditMailAccount
+            <CreateOrEditMailAccount
               id={cell?.row?.original?.id}
               defaultValue={cell?.row?.original}
               btnText="Edit"
               onSubmit={getMailAccounts}
               onClick={() => null}
               btnVariant="contained"
-            />*/}
+            />
             <span style={{ marginLeft: 5 }} />
-            {/*<DeleteMailAccount
+            <DeleteMailAccount
               id={cell?.row?.original?.id}
               buttonText="Delete"
               onLoadApi={getMailAccounts}
-            />*/}
+            />
           </>
         );
       },
