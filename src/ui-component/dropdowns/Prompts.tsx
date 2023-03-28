@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+} from "@mui/material";
 import { devLogError } from "../../helpers/logs";
 import { getPromptsService } from "../../services/prompts.service";
 
@@ -37,8 +43,8 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
     }
   };
 
-  const handleChangePrompt = () => {
-    onChange();
+  const handleChangePrompt = (e: SelectChangeEvent) => {
+    onChange(e.target.value);
   };
 
   return (

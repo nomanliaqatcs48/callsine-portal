@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Button,
   Card,
@@ -8,18 +8,16 @@ import {
   Typography,
 } from "@mui/material";
 import { useParams } from "react-router-dom";
-import {
-  getPersonDetailService,
-  regeneratePlaybookService,
-} from "../../../../services/persons.service";
 import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import Prompts from "../../../../ui-component/dropdowns/Prompts";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
+import { generateResponsesService } from "../../../../services/prompts.service";
 
 const Playbook = () => {
   const { id } = useParams();
+  const [promptId, setPromptId] = useState<number | null>(null);
 
   const {
     data,
@@ -39,7 +37,7 @@ const Playbook = () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
-      let res = await regeneratePlaybookService(Number(id));
+      let res = await generateResponsesService(Number(promptId), Number(id));
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
@@ -48,6 +46,10 @@ const Playbook = () => {
       devLogError(e.response);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
     }
+  };
+
+  const handlePromptOnChange = (promptId: number) => {
+    setPromptId(promptId);
   };
 
   const RenderCard = ({ data, handleClickEdit }: any) => {
@@ -113,7 +115,11 @@ const Playbook = () => {
         <Grid item xs={12} md={5}>
           {!isLoading?.onPage && (
             <>
-              <Prompts onChange={() => null} margin="none" size="small" />
+              <Prompts
+                onChange={handlePromptOnChange}
+                margin="none"
+                size="small"
+              />
             </>
           )}
         </Grid>
@@ -123,7 +129,7 @@ const Playbook = () => {
               <LoadingButton
                 loading={isLoading?.regeneratePlaybook}
                 disableElevation
-                // disabled={isSubmitting}
+                disabled={!promptId}
                 size="large"
                 type="submit"
                 variant="contained"
