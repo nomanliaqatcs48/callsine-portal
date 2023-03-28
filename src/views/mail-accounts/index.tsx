@@ -4,6 +4,7 @@ import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import MainCard from "../../ui-component/cards/MainCard";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
+import SearchField from "../../ui-component/forms/SearchField";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/mail-accounts/utils";
 
@@ -68,10 +69,10 @@ const MailAccountsPage = () => {
         justifyContent="flex-end"
         alignItems="center"
       >
-        {/*<SearchField
+        <SearchField
           searchValue={searchValue}
           onChange={handleSearchOnBeforeChange}
-        />*/}
+        />
       </Grid>
       <MyTable
         columns={_columns(getMailAccounts)}
