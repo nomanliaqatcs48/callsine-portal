@@ -1,19 +1,15 @@
 import React, { useState } from "react";
-import {
-  Button,
-  Card,
-  CardContent,
-  Grid,
-  Paper,
-  Typography,
-} from "@mui/material";
+import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { devLogError } from "../../../../helpers/logs";
 import { LoadingButton } from "@mui/lab";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import Prompts from "../../../../ui-component/dropdowns/Prompts";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
-import { createResponsesService } from "../../../../services/prompts.service";
+import {
+  createResponsesService,
+  generateResponsesService,
+} from "../../../../services/prompts.service";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -62,7 +58,34 @@ const Playbook = () => {
     setPromptId(promptId);
   };
 
-  const RenderCard = ({ data, handleClickEdit }: any) => {
+  const RenderCard = ({ promptItem, handleClickEdit }: any) => {
+    const [isBtnLoading, setIsBtnLoading] = useState<boolean>(false);
+    const regeneratePlaybook = async () => {
+      setIsBtnLoading(true);
+      try {
+        let res = await generateResponsesService(
+          Number(promptItem?.id),
+          Number(id)
+        );
+        if (res?.data) {
+          let _prompts = data.prompts.map((item: any) => {
+            if (item?.id === promptItem?.id) {
+              item = res?.data;
+            }
+            setData((prev: any) => {
+              let prompts = _prompts;
+              return { ...prev, prompts };
+            });
+            return item;
+          });
+          setIsBtnLoading(false);
+        }
+      } catch ({ response }) {
+        devLogError(response);
+        setIsBtnLoading(false);
+      }
+    };
+
     return (
       <Paper elevation={3}>
         <Card sx={{ minWidth: 275 }}>
@@ -73,11 +96,14 @@ const Playbook = () => {
               justifyContent="end"
               alignItems="center"
             >
-              <CopyClipboard copyContent={data?.text} onClick={() => null} />
+              <CopyClipboard
+                copyContent={promptItem?.text}
+                onClick={() => null}
+              />
             </Grid>
 
             <Typography variant="body2" style={{ whiteSpace: "pre-line" }}>
-              {data?.text}
+              {promptItem?.text}
             </Typography>
 
             <Grid sx={{ height: 20 }} />
@@ -93,9 +119,9 @@ const Playbook = () => {
                 size="large"
                 color="primary"
                 onClick={handleClickEdit}
-                loading={isLoading?.regeneratePlaybook}
+                loading={isLoading?.regeneratePlaybook || isBtnLoading}
                 disableElevation
-                disabled={isLoading?.regeneratePlaybook}
+                disabled={isLoading?.regeneratePlaybook || isBtnLoading}
               >
                 Edit
               </LoadingButton>
@@ -103,14 +129,14 @@ const Playbook = () => {
               <div style={{ width: 10 }} />
 
               <LoadingButton
-                loading={isLoading?.regeneratePlaybook}
+                loading={isLoading?.regeneratePlaybook || isBtnLoading}
                 disableElevation
-                disabled={isLoading?.regeneratePlaybook}
+                disabled={isLoading?.regeneratePlaybook || isBtnLoading}
                 size="large"
                 type="button"
                 variant="contained"
                 color="primary"
-                onClick={() => null}
+                onClick={regeneratePlaybook}
               >
                 Regenerate Playbook
               </LoadingButton>
@@ -177,7 +203,7 @@ const Playbook = () => {
               return (
                 <>
                   <RenderCard
-                    data={o}
+                    promptItem={o}
                     handleClickEdit={() => {
                       handlePlaybookOpen();
                     }}
