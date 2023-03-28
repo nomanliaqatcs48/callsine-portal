@@ -13,7 +13,7 @@ import { LoadingButton } from "@mui/lab";
 import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import Prompts from "../../../../ui-component/dropdowns/Prompts";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
-import { generateResponsesService } from "../../../../services/prompts.service";
+import { createResponsesService } from "../../../../services/prompts.service";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -37,9 +37,17 @@ const Playbook = () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
-      let res = await generateResponsesService(Number(promptId), Number(id));
+      let res = await createResponsesService(Number(promptId), Number(id), {
+        first_name: data?.first_name,
+        last_name: data?.last_name,
+        company_name: data?.org?.name,
+        company_domain: data?.org?.domain,
+        org_name: "Union Resolute",
+        org_domain: "unionresolute.com",
+      });
       if (res?.data) {
         setData(res.data);
+        getPersonDetail();
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       }
     } catch (e: any) {
@@ -150,7 +158,7 @@ const Playbook = () => {
   return (
     <>
       <Grid container spacing={3}>
-        {!isLoading?.onPage && data.prompts.length === 0 && (
+        {!isLoading?.onPage && data.prompts?.length === 0 && (
           <RenderEmptyPlaybook />
         )}
       </Grid>
@@ -161,7 +169,7 @@ const Playbook = () => {
         <Grid item lg />
         <Grid item xs={12} lg={8}>
           {!isLoading?.onPage &&
-            data.prompts.length > 0 &&
+            data.prompts?.length > 0 &&
             data.prompts.map((o: any, idx: number) => {
               return (
                 <>
