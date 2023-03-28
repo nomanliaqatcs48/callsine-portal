@@ -20,36 +20,20 @@ import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
 
 const Playbook = () => {
   const { id } = useParams();
-  const [data, setData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<any>({
-    onPage: true,
-    regeneratePlaybook: false,
-  });
 
   const {
+    data,
+    setData,
     playbookOpen,
     setPlaybookOpen,
+    isLoading,
+    setIsLoading,
+    getPersonDetail,
     handlePlaybookOpen,
     handlePlaybookClose,
     renderPlaybookModal,
+    handlePreview,
   } = usePlaybook();
-
-  useEffect(() => {
-    getPersonDetail();
-  }, [id]);
-
-  const getPersonDetail = async () => {
-    try {
-      let res = await getPersonDetailService(Number(id));
-      if (res?.data) {
-        setData(res.data);
-        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-      }
-    } catch (e: any) {
-      devLogError(e.response);
-      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-    }
-  };
 
   const handleRegeneratePlaybook = async () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));

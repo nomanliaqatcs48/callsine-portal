@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, DialogActions } from "@mui/material";
 import MyModal from "../../ui-component/modal/MyModal";
 import MyEditor from "../../ui-component/editor/MyEditor";
 import { useForm } from "react-hook-form";
 import xss from "xss";
 import { devLogError } from "../../helpers/logs";
-import { updatePersonDetailService } from "../../services/persons.service";
+import {
+  getPersonDetailService,
+  updatePersonDetailService,
+} from "../../services/persons.service";
 import { useParams } from "react-router-dom";
 
 export const usePlaybook = () => {
   const { id } = useParams();
+  const [data, setData] = useState<any>(null);
   const [playbookOpen, setPlaybookOpen] = React.useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<any>({
+    onPage: true,
+    regeneratePlaybook: false,
+  });
 
   const {
     register,
@@ -19,6 +27,23 @@ export const usePlaybook = () => {
     reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    getPersonDetail();
+  }, [id]);
+
+  const getPersonDetail = async () => {
+    try {
+      let res = await getPersonDetailService(Number(id));
+      if (res?.data) {
+        setData(res.data);
+        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch (e: any) {
+      devLogError(e.response);
+      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
 
   const handlePlaybookOpen = () => {
     setPlaybookOpen(true);
@@ -87,8 +112,13 @@ export const usePlaybook = () => {
   };
 
   return {
+    data,
+    setData,
     playbookOpen,
     setPlaybookOpen,
+    isLoading,
+    setIsLoading,
+    getPersonDetail,
     handlePlaybookOpen,
     handlePlaybookClose,
     renderPlaybookModal,
