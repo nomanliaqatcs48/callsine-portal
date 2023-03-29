@@ -11,7 +11,7 @@ export const getMailAccountsService = async (
 };
 
 export const getMailAccountDetailService = async (id: number) => {
-  return await http.get(`${endpoints.MAIL_ACCOUNT}/${id}/`);
+  return await http.get(`${endpoints.MAIL_ACCOUNT}${id}/`);
 };
 
 export const createMailAccountService = async (data: any) => {
