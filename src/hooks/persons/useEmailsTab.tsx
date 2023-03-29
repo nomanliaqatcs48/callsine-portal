@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getEmailsService } from "../../services/emails.service";
+import { useParams } from "react-router-dom";
 
 export const useEmailsTab = () => {
+  const { id } = useParams();
   const [emails, setEmails] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -24,7 +26,7 @@ export const useEmailsTab = () => {
     setIsLoading((prev: any) => ({ ...prev, cards: false }));
 
     try {
-      let res = await getEmailsService(filters, searchValue);
+      let res = await getEmailsService(Number(id), filters, searchValue);
       if (res?.data) {
         setEmails(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
