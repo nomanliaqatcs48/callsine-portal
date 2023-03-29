@@ -152,34 +152,22 @@ const Playbook = () => {
       <>
         <Grid item xs />
         <Grid item xs={12} md={5}>
-          {!isLoading?.onPage && (
-            <>
-              <Prompts
-                onChange={handlePromptOnChange}
-                margin="none"
-                size="small"
-              />
-            </>
-          )}
+          <Prompts onChange={handlePromptOnChange} margin="none" size="small" />
         </Grid>
         <Grid item xs={12} md={5}>
-          {!isLoading?.onPage && (
-            <>
-              <LoadingButton
-                loading={isLoading?.regeneratePlaybook}
-                disableElevation
-                disabled={!promptId}
-                size="large"
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                onClick={handleGeneratePlaybook}
-              >
-                Generate Playbook
-              </LoadingButton>
-            </>
-          )}
+          <LoadingButton
+            loading={isLoading?.regeneratePlaybook}
+            disableElevation
+            disabled={!promptId}
+            size="large"
+            type="submit"
+            variant="contained"
+            color="primary"
+            fullWidth
+            onClick={handleGeneratePlaybook}
+          >
+            Generate Playbook
+          </LoadingButton>
         </Grid>
         <Grid item xs />
       </>
