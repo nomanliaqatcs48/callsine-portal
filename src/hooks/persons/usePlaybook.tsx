@@ -18,6 +18,7 @@ export const usePlaybook = () => {
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     regeneratePlaybook: false,
+    resetPrompt: false,
   });
 
   const {

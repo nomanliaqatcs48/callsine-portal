@@ -46,6 +46,12 @@ const Playbook = () => {
         getPersonDetail();
         setPromptId(null);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+
+        //reset prompt
+        setIsLoading((prev: any) => ({ ...prev, resetPrompt: true }));
+        setTimeout(() =>
+          setIsLoading((prev: any) => ({ ...prev, resetPrompt: false }))
+        );
       }
     } catch (e: any) {
       devLogError(e.response);
@@ -152,7 +158,13 @@ const Playbook = () => {
       <Grid container spacing={3}>
         <Grid item xs />
         <Grid item xs={12} md={5}>
-          <Prompts onChange={handlePromptOnChange} margin="none" size="small" />
+          {!isLoading?.resetPrompt && (
+            <Prompts
+              onChange={handlePromptOnChange}
+              margin="none"
+              size="small"
+            />
+          )}
         </Grid>
         <Grid item xs={12} md={5}>
           <LoadingButton
