@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getEmailsService } from "../../services/emails.service";
 
-const useEmailsTab = () => {
+export const useEmailsTab = () => {
   const [emails, setEmails] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
