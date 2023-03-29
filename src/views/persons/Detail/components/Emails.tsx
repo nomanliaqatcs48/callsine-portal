@@ -2,9 +2,11 @@ import React, { useState } from "react";
 import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
 import { useEmailsTab } from "../../../../hooks/persons/useEmailsTab";
 import xss from "xss";
+import DeletePersonEmail from "../../../../ui-component/buttons/DeletePersonEmail";
 
 const Emails = () => {
   let {
+    id: personId,
     emails,
     setEmails,
     total,
@@ -68,13 +70,12 @@ const Emails = () => {
                         </Typography>
                       </div>
                       <div>
-                        {/*<CreateOrEditStep
-                          btnText="Edit Step"
-                          id={o?.email_template?.id}
-                          defaultValue={o}
-                          onClick={() => null}
-                          onSubmit={getAllCampaignSteps}
-                        />*/}
+                        <DeletePersonEmail
+                          buttonText="Delete"
+                          id={o?.id}
+                          personId={Number(personId)}
+                          onLoadApi={getAllCampaignSteps}
+                        />
                       </div>
                     </Grid>
 
