@@ -38,6 +38,7 @@ export const useEmailsTab = () => {
   };
 
   return {
+    id,
     emails,
     setEmails,
     total,
