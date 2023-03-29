@@ -39,10 +39,8 @@ const Emails = () => {
             emails?.length > 0 &&
             emails.map((o, idx) => {
               setTimeout(() => {
-                let _preview: any = document.querySelector(
-                  `.preview_${o?.email_template?.id}`
-                );
-                let _htmlMsg = o?.email_template?.html_message;
+                let _preview: any = document.querySelector(`.preview_${o?.id}`);
+                let _htmlMsg = o?.html_message;
                 if (_preview && _htmlMsg) {
                   _preview.innerHTML = xss(_htmlMsg);
                 }
@@ -82,9 +80,7 @@ const Emails = () => {
 
                     <div style={{ height: 10 }} />
 
-                    <Typography variant="body2">{o?.html_message}</Typography>
-
-                    <div className={`preview_${o?.email_template?.id}`} />
+                    <div className={`preview_${o?.id}`} />
                   </CardContent>
                 </Card>
               );
