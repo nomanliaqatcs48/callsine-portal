@@ -35,5 +35,17 @@ const useEmailsTab = () => {
     }
   };
 
-  return {};
+  return {
+    emails,
+    setEmails,
+    total,
+    setTotal,
+    searchValue,
+    setSearchValue,
+    filters,
+    setFilters,
+    isLoading,
+    setIsLoading,
+    getAllCampaignSteps,
+  };
 };
