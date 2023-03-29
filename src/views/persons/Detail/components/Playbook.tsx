@@ -147,7 +147,7 @@ const Playbook = () => {
     );
   };
 
-  const RenderEmptyPlaybook = () => {
+  const RenderGeneratePlaybook = () => {
     return (
       <>
         <Grid item xs />
@@ -189,7 +189,7 @@ const Playbook = () => {
   return (
     <>
       <Grid container spacing={3}>
-        <RenderEmptyPlaybook />
+        <RenderGeneratePlaybook />
       </Grid>
 
       <Grid sx={{ height: 15 }} />
