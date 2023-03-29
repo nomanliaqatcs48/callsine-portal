@@ -19,10 +19,10 @@ export const useEmailsTab = () => {
   });
 
   useEffect(() => {
-    getAllCampaignSteps();
+    getEmails();
   }, []);
 
-  const getAllCampaignSteps = async () => {
+  const getEmails = async () => {
     setIsLoading((prev: any) => ({ ...prev, cards: false }));
 
     try {
@@ -49,6 +49,6 @@ export const useEmailsTab = () => {
     setFilters,
     isLoading,
     setIsLoading,
-    getAllCampaignSteps,
+    getEmails,
   };
 };

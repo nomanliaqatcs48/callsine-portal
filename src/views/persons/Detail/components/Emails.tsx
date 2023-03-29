@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
 import { useEmailsTab } from "../../../../hooks/persons/useEmailsTab";
 import xss from "xss";
@@ -17,7 +17,7 @@ const Emails = () => {
     setFilters,
     isLoading,
     setIsLoading,
-    getAllCampaignSteps,
+    getEmails,
   } = useEmailsTab();
 
   return (
@@ -74,7 +74,7 @@ const Emails = () => {
                           buttonText="Delete"
                           id={o?.id}
                           personId={Number(personId)}
-                          onLoadApi={getAllCampaignSteps}
+                          onLoadApi={getEmails}
                         />
                       </div>
                     </Grid>
