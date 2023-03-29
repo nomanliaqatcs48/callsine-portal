@@ -147,9 +147,9 @@ const Playbook = () => {
     );
   };
 
-  const RenderGeneratePlaybook = () => {
-    return (
-      <>
+  return (
+    <>
+      <Grid container spacing={3}>
         <Grid item xs />
         <Grid item xs={12} md={5}>
           <Prompts onChange={handlePromptOnChange} margin="none" size="small" />
@@ -170,14 +170,6 @@ const Playbook = () => {
           </LoadingButton>
         </Grid>
         <Grid item xs />
-      </>
-    );
-  };
-
-  return (
-    <>
-      <Grid container spacing={3}>
-        <RenderGeneratePlaybook />
       </Grid>
 
       <Grid sx={{ height: 15 }} />
