@@ -123,7 +123,7 @@ const Playbook = () => {
                 disableElevation
                 disabled={isLoading?.regeneratePlaybook || isBtnLoading}
               >
-                Edit
+                Send as Email
               </LoadingButton>
 
               <div style={{ width: 10 }} />
