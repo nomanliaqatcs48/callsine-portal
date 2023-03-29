@@ -1,8 +1,16 @@
 import React from "react";
-import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  Grid,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import { useEmailsTab } from "../../../../hooks/persons/useEmailsTab";
 import xss from "xss";
 import DeletePersonEmail from "../../../../ui-component/buttons/DeletePersonEmail";
+import moment from "moment";
 
 const Emails = () => {
   let {
@@ -66,7 +74,15 @@ const Emails = () => {
                           {o?.to ? <a href={`mailto:${o.to}`}>{o.to}</a> : ""}
                         </Typography>
                         <Typography variant="subtitle2">
-                          <strong>Date Created:</strong> {o?.created_date}
+                          <strong>Date Created:</strong>{" "}
+                          <Tooltip
+                            title={moment.utc(o?.created_date).format("LLLL")}
+                            placement="top"
+                          >
+                            <span>
+                              {moment.utc(o?.created_date).format("L")}
+                            </span>
+                          </Tooltip>
                         </Typography>
                       </div>
                       <div>
