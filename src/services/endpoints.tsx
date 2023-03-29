@@ -6,5 +6,5 @@ export const endpoints = {
   MAIL_ACCOUNT: "/api/mail-accounts/",
   PROMPTS: "/api/prompts/",
   PROMPT_RESPONSES: "/api/prompt-responses/",
-  EMAILS: "/api/emails",
+  EMAILS: "/api/emails/",
 };
