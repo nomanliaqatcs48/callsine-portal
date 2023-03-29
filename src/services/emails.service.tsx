@@ -4,7 +4,7 @@ import { endpoints } from "./endpoints";
 export const getEmailsService = async (
   personId: number,
   filters: any,
-  searchValue: string = ""
+  searchValue: string
 ) => {
   return await http.get(
     `${endpoints.EMAILS}?person=${personId}&limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
