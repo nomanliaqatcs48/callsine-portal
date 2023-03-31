@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import MyEditor from "../editor/MyEditor";
+// import MyEditor from "../editor/MyEditor";
 import {
   Box,
   Button,
@@ -20,7 +20,7 @@ import {
 import xss from "xss";
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
-import { devLog } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
 import { emailAddressPattern } from "../../helpers/forms";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
@@ -29,6 +29,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import moment from "moment";
+import { createAsEmailService } from "../../services/emails.service";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -71,7 +72,11 @@ const CreateEmail = ({
         "scheduled_time",
       ].map((item: any) => {
         // register
-        register(item, { required: "This is required field." });
+        if (item !== "in_reply_to") {
+          register(item, { required: "This is required field." });
+        } else {
+          register(item);
+        }
 
         // set values
         if (item === "person") {
@@ -103,7 +108,7 @@ const CreateEmail = ({
   };
 
   const handleChangeScheduledTime = (value: any) => {
-    setValue("scheduled_time", moment(value));
+    setValue("scheduled_time", moment(value).format("YYYY-MM-DD h:mm:ss"));
     trigger("scheduled_time");
   };
 
@@ -129,6 +134,17 @@ const CreateEmail = ({
 
   const onSubmit = async (data: any) => {
     devLog("onSubmit data", data);
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let res = await createAsEmailService(data);
+      if (res?.data) {
+        handleClose();
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
+      devLogError(response);
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
+    }
   };
 
   return (
@@ -157,7 +173,6 @@ const CreateEmail = ({
                       fullWidth
                       error={!!errors.in_reply_to}
                       margin="dense"
-                      required
                       disabled={isLoading?.form}
                     >
                       <InputLabel id="in_reply_to">Parent Email</InputLabel>
