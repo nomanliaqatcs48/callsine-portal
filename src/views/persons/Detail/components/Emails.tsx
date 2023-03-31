@@ -11,6 +11,7 @@ import { useEmailsTab } from "../../../../hooks/persons/useEmailsTab";
 import xss from "xss";
 import DeletePersonEmail from "../../../../ui-component/buttons/DeletePersonEmail";
 import moment from "moment";
+import SendEmailNow from "../../../../ui-component/buttons/SendEmailNow";
 
 const Emails = () => {
   let {
@@ -99,9 +100,13 @@ const Emails = () => {
                     <Grid
                       container
                       direction="row"
-                      justifyContent="space-between"
+                      justifyContent="start"
                       alignItems="center"
                     >
+                      <SendEmailNow id={o?.id} buttonText="Send Now" />
+
+                      <div style={{ marginRight: 10 }} />
+
                       <DeletePersonEmail
                         buttonText="Delete"
                         id={o?.id}
