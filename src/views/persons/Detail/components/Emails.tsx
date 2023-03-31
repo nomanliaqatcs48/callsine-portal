@@ -95,7 +95,23 @@ const Emails = () => {
                       className={`preview_${o?.id}`}
                     />
 
-                    <div style={{ height: 10 }} />
+                    <div style={{ height: 50 }} />
+
+                    <Grid container>
+                      <Grid item xs={12}>
+                        <Typography variant="subtitle2">
+                          <strong>Scheduled Time:</strong>{" "}
+                          <Tooltip
+                            title={moment.utc(o?.scheduled_time).format("LLLL")}
+                            placement="top"
+                          >
+                            <span>
+                              {moment.utc(o?.scheduled_time).format("L")}
+                            </span>
+                          </Tooltip>
+                        </Typography>
+                      </Grid>
+                    </Grid>
 
                     <Grid
                       container
