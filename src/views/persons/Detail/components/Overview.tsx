@@ -10,20 +10,11 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
-import { devLog, devLogError } from "../../../../helpers/logs";
-import { getPersonDetailService } from "../../../../services/persons.service";
-import { useParams } from "react-router-dom";
+import { usePersonDetail } from "../../../../hooks/persons/usePersonDetail";
 
 const Overview = () => {
-  const { id } = useParams();
-  const [data, setData] = useState<any>(null);
-  const [isLoading, setIsLoading] = useState<any>({
-    onPage: true,
-  });
-
-  useEffect(() => {
-    getPersonDetail();
-  }, []);
+  let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
+    usePersonDetail();
 
   const RenderTableItem = ({ header, value }: any) => {
     return (
@@ -36,19 +27,6 @@ const Overview = () => {
         </TableCell>
       </TableRow>
     );
-  };
-
-  const getPersonDetail = async () => {
-    try {
-      let res = await getPersonDetailService(Number(id));
-      if (res?.data) {
-        setData(res.data);
-        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-      }
-    } catch (e: any) {
-      devLogError(e.response);
-      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-    }
   };
 
   return (
