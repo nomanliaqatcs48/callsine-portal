@@ -97,7 +97,7 @@ const Emails = () => {
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="subtitle2">
-                          <strong>Scheduled Time:</strong>{" "}
+                          <strong>Scheduled Time (UTC):</strong>{" "}
                           {moment.utc(o?.scheduled_time).format("LLLL")}
                         </Typography>
                       </Grid>
