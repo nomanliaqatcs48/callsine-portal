@@ -62,8 +62,7 @@ const CreateEmail = ({
   } = useForm();
   const { emails } = useEmailsTab();
   const { mailAccountsData } = useMailAccounts();
-  /*let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
-      usePersonDetail(true);*/
+  let { data: personDetail } = usePersonDetail(true);
 
   useEffect(() => {
     if (open) {
@@ -262,7 +261,7 @@ const CreateEmail = ({
                       id="to"
                       label="To:"
                       type="email"
-                      defaultValue={""}
+                      defaultValue={personDetail?.work_email}
                       fullWidth
                       {...register("to", {
                         required: "This is required field.",
