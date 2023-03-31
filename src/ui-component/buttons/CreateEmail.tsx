@@ -14,6 +14,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import xss from "xss";
@@ -50,6 +51,7 @@ const CreateEmail = ({
     handleSubmit,
     reset,
     getValues,
+    trigger,
     formState: { errors },
   } = useForm();
   const { emails } = useEmailsTab();
@@ -80,6 +82,16 @@ const CreateEmail = ({
   const handleClose = () => {
     setOpen(false);
     reset();
+  };
+
+  const handleChangeParentEmail = (event: SelectChangeEvent) => {
+    setValue("in_reply_to", event.target.value as string);
+    trigger("in_reply_to");
+  };
+
+  const handleChangeFromEmail = (event: SelectChangeEvent) => {
+    setValue("from_email", event.target.value as string);
+    trigger("from_email");
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -141,7 +153,7 @@ const CreateEmail = ({
                         id="in_reply_to"
                         label="Parent Email"
                         defaultValue={""}
-                        onChange={() => null}
+                        onChange={handleChangeParentEmail}
                       >
                         {!emails?.length && (
                           <MenuItem value="">No data available.</MenuItem>
@@ -183,7 +195,7 @@ const CreateEmail = ({
                         id="from_email"
                         label="From:"
                         defaultValue={""}
-                        onChange={() => null}
+                        onChange={handleChangeFromEmail}
                       >
                         {!mailAccountsData?.length && (
                           <MenuItem value="">No data available.</MenuItem>
