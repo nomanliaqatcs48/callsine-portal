@@ -21,6 +21,7 @@ import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
 import { devLog } from "../../helpers/logs";
 import { emailAddressPattern } from "../../helpers/forms";
+import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -48,6 +49,17 @@ const CreateEmail = ({
     getValues,
     formState: { errors },
   } = useForm();
+  let {
+    emails,
+    setEmails,
+    total,
+    setTotal,
+    searchValue,
+    setSearchValue,
+    filters,
+    setFilters,
+    getEmails,
+  } = useEmailsTab();
 
   useEffect(() => {
     if (open) {
@@ -126,9 +138,15 @@ const CreateEmail = ({
                         defaultValue={""}
                         onChange={() => null}
                       >
-                        <MenuItem value="parent_email_1">
-                          Parent Email 1
-                        </MenuItem>
+                        {emails?.length > 0 &&
+                          emails.map((item: any) => {
+                            return (
+                              <MenuItem value={item?.id} key={item?.id}>
+                                ID: {item?.id} <br />
+                                Subject: {item?.subject}
+                              </MenuItem>
+                            );
+                          })}
                       </Select>
                     </FormControl>
                     <ErrorMessage
