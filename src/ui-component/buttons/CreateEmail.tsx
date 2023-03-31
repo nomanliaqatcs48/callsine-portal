@@ -50,6 +50,8 @@ const CreateEmail = ({
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
+    from_email: false,
+    subject: false,
   });
   const {
     register,
@@ -103,12 +105,38 @@ const CreateEmail = ({
   };
 
   const handleChangeParentEmail = (event: SelectChangeEvent) => {
-    setValue("in_reply_to", event.target.value as string);
+    let { id, from_email, to, subject }: any = event.target.value || "";
+    setValue("in_reply_to", id);
     trigger("in_reply_to");
+
+    setIsLoading((prev: any) => ({ ...prev, from_email: true, subject: true }));
+    if (event.target.value) {
+      setValue("from_email", from_email as string);
+      setValue("to", to);
+      setValue("subject", subject);
+      setTimeout(() =>
+        setIsLoading((prev: any) => ({
+          ...prev,
+          from_email: false,
+          subject: false,
+        }))
+      );
+    } else {
+      setValue("from_email", "");
+      setValue("to", personDetail?.work_email);
+      setValue("subject", "");
+      setTimeout(() =>
+        setIsLoading((prev: any) => ({
+          ...prev,
+          from_email: false,
+          subject: false,
+        }))
+      );
+    }
   };
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
-    setValue("from_email", event.target.value as string);
+    setValue("from_email", event.target.value);
     trigger("from_email");
   };
 
@@ -201,7 +229,7 @@ const CreateEmail = ({
                         {emails?.length > 0 &&
                           emails.map((item: any) => {
                             return (
-                              <MenuItem value={item?.id} key={item?.id}>
+                              <MenuItem value={item} key={item?.id}>
                                 ID: {item?.id} <br />
                                 Subject: {item?.subject}
                               </MenuItem>
@@ -220,52 +248,54 @@ const CreateEmail = ({
                     />
                   </div>
 
-                  <div>
-                    <FormControl
-                      fullWidth
-                      error={!!errors.from_email}
-                      margin="dense"
-                      required
-                      disabled={isLoading?.form}
-                    >
-                      <InputLabel id="from_email">From:</InputLabel>
-                      <Select
-                        labelId="from_email"
-                        id="from_email"
-                        label="From:"
-                        defaultValue={""}
-                        onChange={handleChangeFromEmail}
+                  {!isLoading?.from_email && (
+                    <div>
+                      <FormControl
+                        fullWidth
+                        error={!!errors.from_email}
+                        margin="dense"
+                        required
+                        disabled={isLoading?.form || getValues("in_reply_to")}
                       >
-                        {!mailAccountsData?.length && (
-                          <MenuItem value="">No data available.</MenuItem>
-                        )}
+                        <InputLabel id="from_email">From:</InputLabel>
+                        <Select
+                          labelId="from_email"
+                          id="from_email"
+                          label="From:"
+                          defaultValue={getValues("from_email")}
+                          onChange={handleChangeFromEmail}
+                        >
+                          {!mailAccountsData?.length && (
+                            <MenuItem value="">No data available.</MenuItem>
+                          )}
 
-                        {mailAccountsData?.length > 0 &&
-                          mailAccountsData.map((item: any, idx: number) => {
-                            return (
-                              <MenuItem value={item?.id} key={idx}>
-                                {item?.email}
-                              </MenuItem>
-                            );
-                          })}
-                      </Select>
-                    </FormControl>
-                    <ErrorMessage
-                      errors={errors}
-                      name="from_email"
-                      render={({ message }) => (
-                        <FormHelperText sx={{ color: "error.main" }}>
-                          {message}
-                        </FormHelperText>
-                      )}
-                    />
-                  </div>
+                          {mailAccountsData?.length > 0 &&
+                            mailAccountsData.map((item: any, idx: number) => {
+                              return (
+                                <MenuItem value={item?.id} key={idx}>
+                                  {item?.email}
+                                </MenuItem>
+                              );
+                            })}
+                        </Select>
+                      </FormControl>
+                      <ErrorMessage
+                        errors={errors}
+                        name="from_email"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </div>
+                  )}
 
                   {!isPersonLoading?.onPage && (
                     <div>
                       <TextField
                         error={!!errors.to}
-                        disabled={isLoading?.form}
+                        disabled={isLoading?.form || getValues("in_reply_to")}
                         required
                         margin="dense"
                         id="to"
@@ -290,31 +320,33 @@ const CreateEmail = ({
                     </div>
                   )}
 
-                  <div>
-                    <TextField
-                      error={!!errors.subject}
-                      disabled={isLoading?.form}
-                      required
-                      margin="dense"
-                      id="subject"
-                      label="Subject"
-                      type="text"
-                      defaultValue={""}
-                      fullWidth
-                      {...register("subject", {
-                        required: "This is required field.",
-                      })}
-                    />
-                    <ErrorMessage
-                      errors={errors}
-                      name="subject"
-                      render={({ message }) => (
-                        <FormHelperText sx={{ color: "error.main" }}>
-                          {message}
-                        </FormHelperText>
-                      )}
-                    />
-                  </div>
+                  {!isLoading?.subject && (
+                    <div>
+                      <TextField
+                        error={!!errors.subject}
+                        disabled={isLoading?.form || getValues("in_reply_to")}
+                        required
+                        margin="dense"
+                        id="subject"
+                        label="Subject"
+                        type="text"
+                        defaultValue={""}
+                        fullWidth
+                        {...register("subject", {
+                          required: "This is required field.",
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="subject"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </div>
+                  )}
 
                   <div style={{ marginTop: 5 }} />
 
@@ -355,20 +387,6 @@ const CreateEmail = ({
                   </div>
 
                   <Grid item xs={11} sm={7} md={5} lg={4} xl={3}>
-                    {/*<TextField
-                      error={!!errors.scheduled_time}
-                      disabled={isLoading?.form}
-                      required
-                      margin="dense"
-                      id="scheduled_time"
-                      label="Scheduled Time"
-                      type="text"
-                      defaultValue={""}
-                      fullWidth
-                      {...register("scheduled_time", {
-                        required: "This is required field.",
-                      })}
-                    />*/}
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                       <DemoContainer components={["DateTimePicker"]}>
                         <DateTimePicker
