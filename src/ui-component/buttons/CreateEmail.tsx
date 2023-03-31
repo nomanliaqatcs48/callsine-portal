@@ -30,6 +30,7 @@ import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import moment from "moment";
 import { createAsEmailService } from "../../services/emails.service";
+import { usePersonDetail } from "../../hooks/persons/usePersonDetail";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -61,6 +62,8 @@ const CreateEmail = ({
   } = useForm();
   const { emails } = useEmailsTab();
   const { mailAccountsData } = useMailAccounts();
+  /*let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
+      usePersonDetail(true);*/
 
   useEffect(() => {
     if (open) {
@@ -160,10 +163,10 @@ const CreateEmail = ({
           scroll="body"
           fullWidth={true}
           maxWidth="xl"
-          aria-labelledby="Send as Email"
-          aria-describedby="Send as Email"
+          aria-labelledby="Create Email"
+          aria-describedby="Create Email"
         >
-          <DialogTitle variant="h4">Send as Email</DialogTitle>
+          <DialogTitle variant="h4">Create Email</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
@@ -392,7 +395,7 @@ const CreateEmail = ({
               variant="contained"
               color="primary"
             >
-              Edit
+              Create
             </Button>
           </DialogActions>
         </Dialog>
