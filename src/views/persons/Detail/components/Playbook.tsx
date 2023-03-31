@@ -10,6 +10,7 @@ import {
   createResponsesService,
   generateResponsesService,
 } from "../../../../services/prompts.service";
+import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -109,17 +110,17 @@ const Playbook = () => {
               justifyContent="flex-end"
               alignItems="center"
             >
-              {/*<LoadingButton
+              <CreateEmail
+                html_message={promptItem?.text}
+                handleEditorPreview={() => null}
+                buttonText="Send as Email"
                 variant="outlined"
                 size="large"
                 color="primary"
-                onClick={handleClickEdit}
                 loading={isLoading?.regeneratePlaybook || isBtnLoading}
                 disableElevation
                 disabled={isLoading?.regeneratePlaybook || isBtnLoading}
-              >
-                Send as Email
-              </LoadingButton>*/}
+              />
 
               <div style={{ width: 10 }} />
 

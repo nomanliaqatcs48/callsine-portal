@@ -9,26 +9,14 @@ type CreateEmailTypes = {
   html_message: any;
   handleEditorPreview: any;
   buttonText: string;
-  size?: "large" | "small" | "medium" | undefined;
-  color?:
-    | "primary"
-    | "inherit"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning"
-    | undefined;
-  style?: React.CSSProperties | undefined;
+  [x: string]: any;
 };
 
 const CreateEmail = ({
   html_message,
   handleEditorPreview,
   buttonText,
-  size,
-  color,
-  style,
+  ...props
 }: CreateEmailTypes) => {
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -76,15 +64,7 @@ const CreateEmail = ({
 
   return (
     <>
-      <Button
-        disableElevation
-        size={size}
-        type="button"
-        variant="contained"
-        color={color}
-        onClick={handleOpen}
-        style={style}
-      >
+      <Button type="button" onClick={handleOpen} {...props}>
         {buttonText}
       </Button>
 
