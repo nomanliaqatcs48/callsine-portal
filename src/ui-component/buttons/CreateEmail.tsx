@@ -1,9 +1,20 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import MyEditor from "../editor/MyEditor";
-import { Button, DialogActions } from "@mui/material";
-import MyModal from "../modal/MyModal";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  FormHelperText,
+  Grid,
+} from "@mui/material";
 import xss from "xss";
+import { gridSpacing } from "../../store/constant";
+import { ErrorMessage } from "@hookform/error-message";
+import { devLog } from "../../helpers/logs";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -21,18 +32,21 @@ const CreateEmail = ({
   const [open, setOpen] = useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
+    form: false,
   });
   const {
     register,
     setValue,
     handleSubmit,
     reset,
+    getValues,
     formState: { errors },
   } = useForm();
 
   useEffect(() => {
-    //
-  }, []);
+    register("html_message");
+    setValue("html_message", html_message);
+  }, [open]);
 
   const handleOpen = () => {
     setOpen(true);
@@ -64,7 +78,7 @@ const CreateEmail = ({
   };
 
   const onSubmit = async (data: any) => {
-    //
+    devLog("onSubmit data", data);
   };
 
   return (
@@ -74,30 +88,58 @@ const CreateEmail = ({
       </Button>
 
       {open && (
-        <MyModal
+        <Dialog
           open={open}
           onClose={handleClose}
-          modalTitle="Send as Email"
-          labelledby="Send as Email Modal"
-          describedby="send as email modal"
-          modalSxStyle={{ width: { xs: 400, sm: 500, md: 900 } }}
+          scroll="body"
+          fullWidth={true}
+          maxWidth="xl"
+          aria-labelledby="Send as Email"
+          aria-describedby="Send as Email"
         >
-          <MyEditor
-            initialValue={html_message}
-            onEditorChange={(value: string, editor: any) => {
-              handleMyEditorOnChange(value, editor);
-            }}
-            isPreformatted={true}
-            onFocus={(e: any) => null}
-          />
+          <DialogTitle variant="h4">Send as Email</DialogTitle>
+          <DialogContent>
+            <Grid container spacing={gridSpacing}>
+              <Grid item xs={12}>
+                <Box component="form" noValidate autoComplete="off">
+                  <div>
+                    <MyEditor
+                      initialValue={getValues("html_message")}
+                      onEditorChange={(value: string, editor: any) => {
+                        handleMyEditorOnChange(value, editor);
+                      }}
+                      isPreformatted={true}
+                      onFocus={(e: any) => null}
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name="html_message"
+                      render={({ message }) => (
+                        <FormHelperText sx={{ color: "error.main" }}>
+                          {message}
+                        </FormHelperText>
+                      )}
+                    />
+                  </div>
+                </Box>
+              </Grid>
+            </Grid>
+          </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleClose}>Cancel</Button>
-            <Button onClick={handleSubmit((data) => onSubmit(data))}>
+            <Button onClick={handleClose} disabled={isLoading?.form}>
+              Cancel
+            </Button>
+            <Button
+              onClick={handleSubmit((data) => onSubmit(data))}
+              disabled={isLoading?.form}
+              variant="contained"
+              color="primary"
+            >
               Edit
             </Button>
           </DialogActions>
-        </MyModal>
+        </Dialog>
       )}
     </>
   );
