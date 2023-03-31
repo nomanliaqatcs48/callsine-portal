@@ -34,3 +34,7 @@ export const deleteEmailService = async (personId: number, id: number) => {
 export const createAsEmailService = async (data: any) => {
   return await http.post(`${endpoints.EMAILS}`, data);
 };
+
+export const sendEmailService = async (emailId: number) => {
+  return await http.post(`${endpoints.EMAILS}${emailId}/send/`);
+};
