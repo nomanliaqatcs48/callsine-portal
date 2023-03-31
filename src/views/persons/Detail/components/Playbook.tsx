@@ -113,7 +113,7 @@ const Playbook = () => {
               <CreateEmail
                 html_message={promptItem?.text}
                 handleEditorPreview={() => null}
-                buttonText="Send as Email"
+                buttonText="Create Email"
                 variant="outlined"
                 size="large"
                 color="primary"
