@@ -76,15 +76,8 @@ const Emails = () => {
                           {o?.to ? <a href={`mailto:${o.to}`}>{o.to}</a> : ""}
                         </Typography>
                         <Typography variant="subtitle2">
-                          <Tooltip
-                            title={moment.utc(o?.created_date).format("LLLL")}
-                            placement="top"
-                          >
-                            <span>
-                              <strong>Date Created:</strong>{" "}
-                              {moment.utc(o?.created_date).format("L")}
-                            </span>
-                          </Tooltip>
+                          <strong>Date Created:</strong>{" "}
+                          {moment.utc(o?.created_date).format("LLLL")}
                         </Typography>
                         <Typography variant="subtitle2">
                           <strong>Status:</strong> {showStatus(o?.status)}
@@ -104,15 +97,8 @@ const Emails = () => {
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="subtitle2">
-                          <Tooltip
-                            title={moment.utc(o?.scheduled_time).format("LLLL")}
-                            placement="top"
-                          >
-                            <span>
-                              <strong>Scheduled Time:</strong>{" "}
-                              {moment.utc(o?.scheduled_time).format("L")}
-                            </span>
-                          </Tooltip>
+                          <strong>Scheduled Time:</strong>{" "}
+                          {moment.utc(o?.scheduled_time).format("LLLL")}
                         </Typography>
                       </Grid>
                     </Grid>
