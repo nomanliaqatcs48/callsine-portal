@@ -43,6 +43,11 @@ const CreateEmail = ({
     reset();
   };
 
+  const handleMyEditorOnChange = (value: string, editor: any) => {
+    setValue("html_message", value);
+    handleEditorPreview(value);
+  };
+
   const handlePreview = (data: any) => {
     let _preview: any = document.querySelector(".preview-wrapper");
     if (_preview) {
@@ -80,8 +85,10 @@ const CreateEmail = ({
           <MyEditor
             initialValue={html_message}
             onEditorChange={(value: string, editor: any) => {
-              handleEditorPreview(value);
+              handleMyEditorOnChange(value, editor);
             }}
+            isPreformatted={true}
+            onFocus={(e: any) => null}
           />
 
           <DialogActions>
