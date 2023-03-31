@@ -47,6 +47,7 @@ const CreateEmail = ({
 }: CreateEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(false);
+  const [parentEmailData, setParentEmailData] = useState<any>("");
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
@@ -111,6 +112,7 @@ const CreateEmail = ({
 
     setIsLoading((prev: any) => ({ ...prev, from_email: true, subject: true }));
     if (event.target.value) {
+      setParentEmailData(event.target.value);
       setValue("from_email", from_email as string);
       setValue("to", to);
       setValue("subject", subject);
@@ -122,6 +124,7 @@ const CreateEmail = ({
         }))
       );
     } else {
+      setParentEmailData("");
       setValue("from_email", "");
       setValue("to", personDetail?.work_email);
       setValue("subject", "");
