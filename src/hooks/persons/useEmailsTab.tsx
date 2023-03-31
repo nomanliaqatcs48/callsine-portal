@@ -37,6 +37,20 @@ export const useEmailsTab = () => {
     }
   };
 
+  const showStatus = (status: number) => {
+    if (status === 0) {
+      return "Sent";
+    } else if (status === 1) {
+      return "Failed";
+    } else if (status === 2) {
+      return "Queued";
+    } else if (status === 3) {
+      return "Requeued";
+    }
+
+    return "";
+  };
+
   return {
     id,
     emails,
@@ -50,5 +64,6 @@ export const useEmailsTab = () => {
     isLoading,
     setIsLoading,
     getEmails,
+    showStatus,
   };
 };
