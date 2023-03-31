@@ -85,14 +85,6 @@ const Emails = () => {
                           </Tooltip>
                         </Typography>
                       </div>
-                      <div>
-                        <DeletePersonEmail
-                          buttonText="Delete"
-                          id={o?.id}
-                          personId={Number(personId)}
-                          onLoadApi={getEmails}
-                        />
-                      </div>
                     </Grid>
 
                     <div style={{ height: 10 }} />
@@ -101,6 +93,22 @@ const Emails = () => {
                       variant="body2"
                       className={`preview_${o?.id}`}
                     />
+
+                    <div style={{ height: 10 }} />
+
+                    <Grid
+                      container
+                      direction="row"
+                      justifyContent="space-between"
+                      alignItems="center"
+                    >
+                      <DeletePersonEmail
+                        buttonText="Delete"
+                        id={o?.id}
+                        personId={Number(personId)}
+                        onLoadApi={getEmails}
+                      />
+                    </Grid>
                   </CardContent>
                 </Card>
               );
