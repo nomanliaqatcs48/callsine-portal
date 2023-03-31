@@ -30,3 +30,7 @@ export const updateEmailService = async (
 export const deleteEmailService = async (personId: number, id: number) => {
   return await http.delete(`${endpoints.EMAILS}${id}/?person=${personId}`);
 };
+
+export const sendEmailService = async (emailId: number, data: any) => {
+  return await http.post(`${endpoints.EMAILS}${emailId}/send/`, data);
+};
