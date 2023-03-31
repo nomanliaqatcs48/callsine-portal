@@ -97,9 +97,10 @@ const Emails = () => {
 
                     <div style={{ height: 10 }} />
 
-                    <Typography variant="body2">
-                      <div className={`preview_${o?.id}`} />
-                    </Typography>
+                    <Typography
+                      variant="body2"
+                      className={`preview_${o?.id}`}
+                    />
                   </CardContent>
                 </Card>
               );
