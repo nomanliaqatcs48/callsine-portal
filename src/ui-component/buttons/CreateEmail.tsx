@@ -60,9 +60,10 @@ const CreateEmail = ({
     trigger,
     formState: { errors },
   } = useForm();
-  const { emails } = useEmailsTab();
-  const { mailAccountsData } = useMailAccounts();
-  let { data: personDetail } = usePersonDetail(true);
+  const { emails } = useEmailsTab(open);
+  const { mailAccountsData } = useMailAccounts(open);
+  let { data: personDetail, isLoading: isPersonLoading } =
+    usePersonDetail(open);
 
   useEffect(() => {
     if (open) {
@@ -86,6 +87,8 @@ const CreateEmail = ({
         } else if (item === "html_message") {
           setValue("html_message", html_message);
         }
+
+        setValue("to", personDetail?.work_email);
       });
     }
   }, [open]);
@@ -252,32 +255,34 @@ const CreateEmail = ({
                     />
                   </div>
 
-                  <div>
-                    <TextField
-                      error={!!errors.to}
-                      disabled={isLoading?.form}
-                      required
-                      margin="dense"
-                      id="to"
-                      label="To:"
-                      type="email"
-                      defaultValue={personDetail?.work_email}
-                      fullWidth
-                      {...register("to", {
-                        required: "This is required field.",
-                        pattern: emailAddressPattern,
-                      })}
-                    />
-                    <ErrorMessage
-                      errors={errors}
-                      name="to"
-                      render={({ message }) => (
-                        <FormHelperText sx={{ color: "error.main" }}>
-                          {message}
-                        </FormHelperText>
-                      )}
-                    />
-                  </div>
+                  {!isPersonLoading?.onPage && (
+                    <div>
+                      <TextField
+                        error={!!errors.to}
+                        disabled={isLoading?.form}
+                        required
+                        margin="dense"
+                        id="to"
+                        label="To:"
+                        type="email"
+                        defaultValue={personDetail?.work_email}
+                        fullWidth
+                        {...register("to", {
+                          required: "This is required field.",
+                          pattern: emailAddressPattern,
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="to"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </div>
+                  )}
 
                   <div>
                     <TextField
