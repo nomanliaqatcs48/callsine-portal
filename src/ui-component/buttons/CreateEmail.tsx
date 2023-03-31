@@ -25,6 +25,9 @@ import { emailAddressPattern } from "../../helpers/forms";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import { useParams } from "react-router-dom";
+import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -313,8 +316,8 @@ const CreateEmail = ({
                     />
                   </div>
 
-                  <div>
-                    <TextField
+                  <Grid item xs={11} sm={7} md={5} lg={4} xl={3}>
+                    {/*<TextField
                       error={!!errors.scheduled_time}
                       disabled={isLoading?.form}
                       required
@@ -327,7 +330,15 @@ const CreateEmail = ({
                       {...register("scheduled_time", {
                         required: "This is required field.",
                       })}
-                    />
+                    />*/}
+                    <LocalizationProvider dateAdapter={AdapterMoment}>
+                      <DemoContainer components={["DateTimePicker"]}>
+                        <DateTimePicker
+                          label="Scheduled Time"
+                          onChange={(newValue) => devLog("newValue", newValue)}
+                        />
+                      </DemoContainer>
+                    </LocalizationProvider>
                     <ErrorMessage
                       errors={errors}
                       name="scheduled_time"
@@ -337,7 +348,7 @@ const CreateEmail = ({
                         </FormHelperText>
                       )}
                     />
-                  </div>
+                  </Grid>
                 </Box>
               </Grid>
             </Grid>
