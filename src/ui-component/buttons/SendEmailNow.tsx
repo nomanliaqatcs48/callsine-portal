@@ -10,9 +10,15 @@ type SendEmailNowTypes = {
   id: number;
   buttonText: string;
   onLoadApi?: any;
+  [x: string]: any;
 };
 
-const SendEmailNow = ({ id, buttonText, onLoadApi }: SendEmailNowTypes) => {
+const SendEmailNow = ({
+  id,
+  buttonText,
+  onLoadApi,
+  ...props
+}: SendEmailNowTypes) => {
   const [isLoading, setIsLoading] = useState<any>({
     button: false,
   });
@@ -41,6 +47,7 @@ const SendEmailNow = ({ id, buttonText, onLoadApi }: SendEmailNowTypes) => {
         variant="contained"
         color="primary"
         onClick={handleSend}
+        {...props}
       >
         {buttonText}
       </LoadingButton>
