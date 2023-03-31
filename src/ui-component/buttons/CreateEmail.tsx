@@ -23,6 +23,7 @@ import { devLog } from "../../helpers/logs";
 import { emailAddressPattern } from "../../helpers/forms";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import { useParams } from "react-router-dom";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -37,6 +38,7 @@ const CreateEmail = ({
   buttonText,
   ...props
 }: CreateEmailTypes) => {
+  const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
@@ -55,8 +57,19 @@ const CreateEmail = ({
 
   useEffect(() => {
     if (open) {
-      register("html_message");
-      setValue("html_message", html_message);
+      ["in_reply_to", "person", "from_email", "html_message"].map(
+        (item: any) => {
+          // register
+          register(item, { required: "This is required field." });
+
+          // set values
+          if (item === "person") {
+            setValue("person", personId);
+          } else if (item === "html_message") {
+            setValue("html_message", html_message);
+          }
+        }
+      );
     }
   }, [open]);
 
