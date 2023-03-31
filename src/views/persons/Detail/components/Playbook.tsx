@@ -15,19 +15,8 @@ const Playbook = () => {
   const { id } = useParams();
   const [promptId, setPromptId] = useState<number | null>(null);
 
-  const {
-    data,
-    setData,
-    playbookOpen,
-    setPlaybookOpen,
-    isLoading,
-    setIsLoading,
-    getPersonDetail,
-    handlePlaybookOpen,
-    handlePlaybookClose,
-    renderPlaybookModal,
-    handlePreview,
-  } = usePlaybook();
+  const { data, setData, isLoading, setIsLoading, getPersonDetail } =
+    usePlaybook();
 
   const handleGeneratePlaybook = async () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
@@ -64,7 +53,7 @@ const Playbook = () => {
     setPromptId(promptId);
   };
 
-  const RenderCard = ({ promptItem, handleClickEdit }: any) => {
+  const RenderCard = ({ promptItem }: any) => {
     const [isBtnLoading, setIsBtnLoading] = useState<boolean>(false);
     const regeneratePlaybook = async () => {
       setIsBtnLoading(true);
@@ -120,7 +109,7 @@ const Playbook = () => {
               justifyContent="flex-end"
               alignItems="center"
             >
-              <LoadingButton
+              {/*<LoadingButton
                 variant="outlined"
                 size="large"
                 color="primary"
@@ -130,7 +119,7 @@ const Playbook = () => {
                 disabled={isLoading?.regeneratePlaybook || isBtnLoading}
               >
                 Send as Email
-              </LoadingButton>
+              </LoadingButton>*/}
 
               <div style={{ width: 10 }} />
 
@@ -193,22 +182,15 @@ const Playbook = () => {
             data.prompts?.length > 0 &&
             data.prompts.map((o: any, idx: number) => {
               return (
-                <>
-                  <RenderCard
-                    promptItem={o}
-                    handleClickEdit={() => {
-                      handlePlaybookOpen();
-                    }}
-                  />
+                <React.Fragment key={idx}>
+                  <RenderCard promptItem={o} />
                   <Grid sx={{ height: 20 }} />
-                </>
+                </React.Fragment>
               );
             })}
         </Grid>
         <Grid item lg />
       </Grid>
-
-      {playbookOpen && renderPlaybookModal(data)}
     </>
   );
 };
