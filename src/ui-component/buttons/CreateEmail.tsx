@@ -61,6 +61,7 @@ const CreateEmail = ({
     reset,
     getValues,
     trigger,
+    setError,
     formState: { errors },
   } = useForm();
   const { emails } = useEmailsTab(open);
@@ -144,7 +145,19 @@ const CreateEmail = ({
   };
 
   const handleChangeScheduledTime = (value: any) => {
-    setValue("scheduled_time", moment(value).format("YYYY-MM-DD h:mm:ss"));
+    let _parentDate = moment.utc(parentEmailData?.scheduled_time);
+    let _thisScheduledDate = moment.utc(value);
+    let _diff = _parentDate.diff(_thisScheduledDate);
+
+    if (_diff >= 0) {
+      setError("scheduled_time", {
+        type: "custom",
+        message: "Scheduled time should be AFTER parent email’s scheduled time",
+      });
+      return;
+    }
+
+    setValue("scheduled_time", moment.utc(value).format("YYYY-MM-DD HH:mm:ss"));
     trigger("scheduled_time");
   };
 
@@ -234,7 +247,11 @@ const CreateEmail = ({
                             return (
                               <MenuItem value={item} key={item?.id}>
                                 ID: {item?.id} <br />
-                                Subject: {item?.subject}
+                                Subject: {item?.subject} <br />
+                                Scheduled Time:{" "}
+                                {moment(item?.scheduled_time).format(
+                                  "YYYY-MM-DD hh:mm:ss A"
+                                )}
                               </MenuItem>
                             );
                           })}
