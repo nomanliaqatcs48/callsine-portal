@@ -14,7 +14,7 @@ import { usePersonDetail } from "../../../../hooks/persons/usePersonDetail";
 
 const Overview = () => {
   let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
-    usePersonDetail(true);
+    usePersonDetail();
 
   const RenderTableItem = ({ header, value }: any) => {
     return (

@@ -3,7 +3,7 @@ import { devLogError } from "../../helpers/logs";
 import { getEmailsService } from "../../services/emails.service";
 import { useParams } from "react-router-dom";
 
-export const useEmailsTab = () => {
+export const useEmailsTab = (load: boolean = true) => {
   const { id } = useParams();
   const [emails, setEmails] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
@@ -19,8 +19,10 @@ export const useEmailsTab = () => {
   });
 
   useEffect(() => {
-    getEmails();
-  }, []);
+    if (load) {
+      getEmails();
+    }
+  }, [load]);
 
   const getEmails = async () => {
     setIsLoading((prev: any) => ({ ...prev, cards: false }));

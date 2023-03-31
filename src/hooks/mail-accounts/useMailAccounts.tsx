@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getMailAccountsService } from "../../services/mail-accounts.service";
 
-export const useMailAccounts = (open: boolean = true) => {
+export const useMailAccounts = (load: boolean = true) => {
   const [mailAccountsData, setMailAccountsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = React.useState<string>("");
@@ -17,10 +17,10 @@ export const useMailAccounts = (open: boolean = true) => {
   });
 
   useEffect(() => {
-    if (open) {
+    if (load) {
       getMailAccounts();
     }
-  }, [open, filters]);
+  }, [load, filters]);
 
   const getMailAccounts = async () => {
     setIsLoading((prev: any) => ({ ...prev, table: true }));

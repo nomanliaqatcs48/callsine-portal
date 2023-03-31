@@ -3,7 +3,7 @@ import { getPersonDetailService } from "../../services/persons.service";
 import { devLogError } from "../../helpers/logs";
 import { useParams } from "react-router-dom";
 
-export const usePersonDetail = (load: boolean = false) => {
+export const usePersonDetail = (load: boolean = true) => {
   const { id } = useParams();
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<any>({
@@ -14,7 +14,7 @@ export const usePersonDetail = (load: boolean = false) => {
     if (load) {
       getPersonDetail();
     }
-  }, []);
+  }, [load]);
 
   const getPersonDetail = async () => {
     try {
