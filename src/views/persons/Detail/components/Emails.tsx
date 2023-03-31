@@ -27,6 +27,7 @@ const Emails = () => {
     isLoading,
     setIsLoading,
     getEmails,
+    showStatus,
   } = useEmailsTab();
 
   return (
@@ -85,6 +86,9 @@ const Emails = () => {
                             </span>
                           </Tooltip>
                         </Typography>
+                        <Typography variant="subtitle2">
+                          <strong>Status:</strong> {showStatus(o?.status)}
+                        </Typography>
                       </div>
                     </Grid>
 
@@ -119,9 +123,13 @@ const Emails = () => {
                       justifyContent="start"
                       alignItems="center"
                     >
-                      <SendEmailNow id={o?.id} buttonText="Send Now" />
-
-                      <div style={{ marginRight: 10 }} />
+                      {showStatus(o?.status) === "Queued" && (
+                        <SendEmailNow
+                          id={o?.id}
+                          buttonText="Send Now"
+                          style={{ marginRight: 10 }}
+                        />
+                      )}
 
                       <DeletePersonEmail
                         buttonText="Delete"
