@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import MyEditor from "../editor/MyEditor";
 import { Button, DialogActions } from "@mui/material";
@@ -40,6 +40,10 @@ const CreateEmail = ({
     reset,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    //
+  }, []);
 
   const handleOpen = () => {
     setOpen(true);
