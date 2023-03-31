@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import MyEditor from "../editor/MyEditor";
 import { Button, DialogActions } from "@mui/material";
 import MyModal from "../modal/MyModal";
+import xss from "xss";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -52,6 +53,21 @@ const CreateEmail = ({
   const handleClose = () => {
     setOpen(false);
     reset();
+  };
+
+  const handlePreview = (data: any) => {
+    let _preview: any = document.querySelector(".preview-wrapper");
+    if (_preview) {
+      if (data) {
+        setTimeout(() => {
+          _preview.innerHTML = xss(data);
+        }, 500);
+      } else {
+        setTimeout(() => {
+          _preview.innerHTML = "";
+        }, 200);
+      }
+    }
   };
 
   const onSubmit = async (data: any) => {
