@@ -75,12 +75,12 @@ const Emails = () => {
                           {o?.to ? <a href={`mailto:${o.to}`}>{o.to}</a> : ""}
                         </Typography>
                         <Typography variant="subtitle2">
-                          <strong>Date Created:</strong>{" "}
                           <Tooltip
                             title={moment.utc(o?.created_date).format("LLLL")}
                             placement="top"
                           >
                             <span>
+                              <strong>Date Created:</strong>{" "}
                               {moment.utc(o?.created_date).format("L")}
                             </span>
                           </Tooltip>
@@ -100,12 +100,12 @@ const Emails = () => {
                     <Grid container>
                       <Grid item xs={12}>
                         <Typography variant="subtitle2">
-                          <strong>Scheduled Time:</strong>{" "}
                           <Tooltip
                             title={moment.utc(o?.scheduled_time).format("LLLL")}
                             placement="top"
                           >
                             <span>
+                              <strong>Scheduled Time:</strong>{" "}
                               {moment.utc(o?.scheduled_time).format("L")}
                             </span>
                           </Tooltip>
