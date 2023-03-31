@@ -189,7 +189,13 @@ const CreateEmail = ({
                         onChange={handleChangeParentEmail}
                       >
                         {!emails?.length && (
-                          <MenuItem value="">No data available.</MenuItem>
+                          <MenuItem value="" disabled>
+                            No data available.
+                          </MenuItem>
+                        )}
+
+                        {emails?.length > 0 && (
+                          <MenuItem value="">Please select</MenuItem>
                         )}
 
                         {emails?.length > 0 &&
