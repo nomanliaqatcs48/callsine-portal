@@ -66,7 +66,7 @@ const CreateEmail = ({
 
           // set values
           if (item === "person") {
-            setValue("person", personId);
+            setValue("person", Number(personId));
           } else if (item === "html_message") {
             setValue("html_message", html_message);
           }
