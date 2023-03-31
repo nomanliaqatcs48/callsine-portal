@@ -28,6 +28,7 @@ import { useParams } from "react-router-dom";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import moment from "moment";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -62,19 +63,23 @@ const CreateEmail = ({
 
   useEffect(() => {
     if (open) {
-      ["in_reply_to", "person", "from_email", "html_message"].map(
-        (item: any) => {
-          // register
-          register(item, { required: "This is required field." });
+      [
+        "in_reply_to",
+        "person",
+        "from_email",
+        "html_message",
+        "scheduled_time",
+      ].map((item: any) => {
+        // register
+        register(item, { required: "This is required field." });
 
-          // set values
-          if (item === "person") {
-            setValue("person", Number(personId));
-          } else if (item === "html_message") {
-            setValue("html_message", html_message);
-          }
+        // set values
+        if (item === "person") {
+          setValue("person", Number(personId));
+        } else if (item === "html_message") {
+          setValue("html_message", html_message);
         }
-      );
+      });
     }
   }, [open]);
 
@@ -95,6 +100,11 @@ const CreateEmail = ({
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
     setValue("from_email", event.target.value as string);
     trigger("from_email");
+  };
+
+  const handleChangeScheduledTime = (value: any) => {
+    setValue("scheduled_time", moment(value));
+    trigger("scheduled_time");
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -335,7 +345,9 @@ const CreateEmail = ({
                       <DemoContainer components={["DateTimePicker"]}>
                         <DateTimePicker
                           label="Scheduled Time"
-                          onChange={(newValue) => devLog("newValue", newValue)}
+                          onChange={(newValue) =>
+                            handleChangeScheduledTime(newValue)
+                          }
                         />
                       </DemoContainer>
                     </LocalizationProvider>
