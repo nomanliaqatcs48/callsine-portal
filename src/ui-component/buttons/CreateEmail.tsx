@@ -35,7 +35,7 @@ const CreateEmail = ({
   buttonText,
   ...props
 }: CreateEmailTypes) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
@@ -50,8 +50,10 @@ const CreateEmail = ({
   } = useForm();
 
   useEffect(() => {
-    register("html_message");
-    setValue("html_message", html_message);
+    if (open) {
+      register("html_message");
+      setValue("html_message", html_message);
+    }
   }, [open]);
 
   const handleOpen = () => {
