@@ -278,13 +278,29 @@ const CreateEmail = ({
                   <div style={{ marginTop: 5 }} />
 
                   <div>
-                    <MyEditor
+                    {/*<MyEditor
                       initialValue={getValues("html_message")}
                       onEditorChange={(value: string, editor: any) => {
                         handleMyEditorOnChange(value, editor);
                       }}
                       isPreformatted={true}
                       onFocus={(e: any) => null}
+                    />*/}
+                    <TextField
+                      error={!!errors.html_message}
+                      disabled={isLoading?.form}
+                      required
+                      multiline
+                      margin="dense"
+                      id="html_message"
+                      label="Message"
+                      type="text"
+                      defaultValue={html_message}
+                      fullWidth
+                      rows={16}
+                      {...register("html_message", {
+                        required: "This is required field.",
+                      })}
                     />
                     <ErrorMessage
                       errors={errors}
