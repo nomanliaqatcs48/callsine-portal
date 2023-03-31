@@ -22,6 +22,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import { devLog } from "../../helpers/logs";
 import { emailAddressPattern } from "../../helpers/forms";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
+import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -49,17 +50,8 @@ const CreateEmail = ({
     getValues,
     formState: { errors },
   } = useForm();
-  let {
-    emails,
-    setEmails,
-    total,
-    setTotal,
-    searchValue,
-    setSearchValue,
-    filters,
-    setFilters,
-    getEmails,
-  } = useEmailsTab();
+  const { emails } = useEmailsTab();
+  const { mailAccountsData } = useMailAccounts();
 
   useEffect(() => {
     if (open) {
@@ -138,6 +130,10 @@ const CreateEmail = ({
                         defaultValue={""}
                         onChange={() => null}
                       >
+                        {!emails?.length && (
+                          <MenuItem value="">No data available.</MenuItem>
+                        )}
+
                         {emails?.length > 0 &&
                           emails.map((item: any) => {
                             return (
@@ -176,7 +172,18 @@ const CreateEmail = ({
                         defaultValue={""}
                         onChange={() => null}
                       >
-                        <MenuItem value="from_email_1">From Email 1</MenuItem>
+                        {!mailAccountsData?.length && (
+                          <MenuItem value="">No data available.</MenuItem>
+                        )}
+
+                        {mailAccountsData?.length > 0 &&
+                          mailAccountsData.map((item: any, idx: number) => {
+                            return (
+                              <MenuItem value={item?.id} key={idx}>
+                                {item?.email}
+                              </MenuItem>
+                            );
+                          })}
                       </Select>
                     </FormControl>
                     <ErrorMessage
