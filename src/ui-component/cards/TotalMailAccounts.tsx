@@ -69,7 +69,7 @@ const TotalMailAccounts = () => {
 
   return (
     <>
-      {isLoading ? (
+      {isLoading?.onPage ? (
         <SkeletonEarningCard />
       ) : (
         <CardWrapper border={false} content={false}>
