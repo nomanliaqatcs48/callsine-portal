@@ -1,18 +1,8 @@
-import { useEffect, useState } from "react";
-
-// material-ui
 import { styled, useTheme } from "@mui/material/styles";
-import { Avatar, Box, Grid, Menu, MenuItem, Typography } from "@mui/material";
-
-// project imports
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonEarningCard from "../../ui-component/cards/Skeleton/EarningCard";
-
-// assets
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import { IconHandClick } from "@tabler/icons-react";
-import { devLogError } from "../../helpers/logs";
+import { IconMail } from "@tabler/icons-react";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
@@ -87,7 +77,7 @@ const TotalMailAccounts = () => {
                         mt: 1,
                       }}
                     >
-                      <IconHandClick size={20} strokeWidth={2} color="white" />
+                      <IconMail size={20} strokeWidth={2} color="white" />
                     </Avatar>
                   </Grid>
                 </Grid>
