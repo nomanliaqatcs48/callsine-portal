@@ -12,6 +12,7 @@ import xss from "xss";
 import DeletePersonEmail from "../../../../ui-component/buttons/DeletePersonEmail";
 import moment from "moment";
 import SendEmailNow from "../../../../ui-component/buttons/SendEmailNow";
+import VerticalTabs from "../../../../ui-component/tabs/EmailTabs";
 
 const Emails = () => {
   let {
@@ -45,7 +46,12 @@ const Emails = () => {
       }}
     >
       <Grid container spacing={0}>
-        <Grid item xs={12} sm={2} />
+        <Grid item xs={12}>
+          {!isLoading?.onPage && emails?.length > 0 && (
+            <VerticalTabs data={emails} />
+          )}
+        </Grid>
+        {/*<Grid item xs={12} sm={2} />
         <Grid item xs={12} sm={8}>
           {!isLoading?.onPage &&
             emails?.length > 0 &&
@@ -132,7 +138,7 @@ const Emails = () => {
           {!isLoading?.onPage && !emails?.length && (
             <div style={{ textAlign: "center" }}>Data not available.</div>
           )}
-        </Grid>
+        </Grid>*/}
       </Grid>
     </Paper>
   );

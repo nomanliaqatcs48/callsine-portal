@@ -1,8 +1,14 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
+import { Grid } from "@mui/material";
+import moment from "moment/moment";
+import SendEmailNow from "../buttons/SendEmailNow";
+import DeletePersonEmail from "../buttons/DeletePersonEmail";
+import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
+import xss from "xss";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -37,8 +43,14 @@ function a11yProps(index: number) {
   };
 }
 
-export default function VerticalTabs() {
-  const [value, setValue] = React.useState(0);
+interface VerticalTabsProps {
+  data: any;
+}
+
+export default function VerticalTabs({ data }: VerticalTabsProps) {
+  const [value, setValue] = useState<number>(0);
+
+  let { id: personId, getEmails, showStatus } = useEmailsTab(false);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -67,7 +79,10 @@ export default function VerticalTabs() {
           float: "left",
         }}
       >
-        <Tab
+        {data.map((item: any, idx: number) => {
+          return <Tab label={item?.subject} {...a11yProps(idx)} />;
+        })}
+        {/*<Tab
           label={
             <>
               Item One asdsad asd asd asd asdasdas.d asdasdasdsadh asdhasdjns
@@ -82,9 +97,82 @@ export default function VerticalTabs() {
         <Tab label="Item Four" {...a11yProps(3)} />
         <Tab label="Item Five" {...a11yProps(4)} />
         <Tab label="Item Six" {...a11yProps(5)} />
-        <Tab label="Item Seven" {...a11yProps(6)} />
+        <Tab label="Item Seven" {...a11yProps(6)} />*/}
       </Tabs>
-      <TabPanel value={value} index={0}>
+      {data.map((item: any, idx: number) => {
+        setTimeout(() => {
+          let _preview: any = document.querySelector(`.preview_${item?.id}`);
+          let _htmlMsg = item?.html_message;
+          if (_preview && _htmlMsg) {
+            _preview.innerHTML = xss(_htmlMsg);
+          }
+        }, 500);
+
+        return (
+          <TabPanel value={value} index={0}>
+            <Grid container>
+              <div>
+                <Typography variant="subtitle2">
+                  <strong>Subject:</strong> {item?.subject}
+                </Typography>
+                <Typography variant="subtitle2">
+                  <strong>To:</strong>{" "}
+                  {item?.to ? (
+                    <a href={`mailto:${item?.to}`}>{item?.to}</a>
+                  ) : (
+                    ""
+                  )}
+                </Typography>
+                <Typography variant="subtitle2">
+                  <strong>Date Created:</strong>{" "}
+                  {moment.utc(item?.created_date).format("LLLL")}
+                </Typography>
+                <Typography variant="subtitle2">
+                  <strong>Status:</strong> {showStatus(item?.status)}
+                </Typography>
+              </div>
+            </Grid>
+
+            <div style={{ height: 10 }} />
+
+            <Typography variant="body2" className={`preview_${item?.id}`} />
+
+            <div style={{ height: 50 }} />
+
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="subtitle2">
+                  <strong>Scheduled Time:</strong>{" "}
+                  {moment(item?.scheduled_time).format("LLLL")}
+                </Typography>
+              </Grid>
+            </Grid>
+
+            <Grid
+              container
+              direction="row"
+              justifyContent="start"
+              alignItems="center"
+            >
+              {showStatus(item?.status) === "Queued" && (
+                <SendEmailNow
+                  id={item?.id}
+                  buttonText="Send Now"
+                  style={{ marginRight: 10 }}
+                />
+              )}
+
+              <DeletePersonEmail
+                buttonText="Delete"
+                id={item?.id}
+                personId={Number(personId)}
+                onLoadApi={getEmails}
+              />
+            </Grid>
+          </TabPanel>
+        );
+      })}
+      {/*<TabPanel value={value} index={0}>
         Item One
       </TabPanel>
       <TabPanel value={value} index={1}>
@@ -104,7 +192,7 @@ export default function VerticalTabs() {
       </TabPanel>
       <TabPanel value={value} index={6}>
         Item Seven
-      </TabPanel>
+      </TabPanel>*/}
     </Box>
   );
 }
