@@ -109,7 +109,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
         }, 500);
 
         return (
-          <TabPanel value={value} index={0}>
+          <TabPanel value={value} index={idx}>
             <Grid container>
               <div>
                 <Typography variant="subtitle2">
