@@ -75,6 +75,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
           borderRight: 1,
           borderColor: "divider",
           width: 250,
+          minWidth: 250,
           textAlign: "left",
           float: "left",
         }}
@@ -135,7 +136,11 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
 
             <div style={{ height: 10 }} />
 
-            <Typography variant="body2" className={`preview_${item?.id}`} />
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="body2" className={`preview_${item?.id}`} />
+              </Grid>
+            </Grid>
 
             <div style={{ height: 50 }} />
 
