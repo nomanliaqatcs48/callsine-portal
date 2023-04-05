@@ -112,8 +112,6 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
           }
         }, 500);
 
-        console.log("isLg", isLg);
-
         return (
           <TabPanel value={value} index={idx}>
             <Grid container>
