@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import moment from "moment/moment";
 import SendEmailNow from "../buttons/SendEmailNow";
 import DeletePersonEmail from "../buttons/DeletePersonEmail";
@@ -48,6 +48,8 @@ interface VerticalTabsProps {
 }
 
 export default function VerticalTabs({ data }: VerticalTabsProps) {
+  const theme = useTheme();
+  const isLg = useMediaQuery(theme.breakpoints.up("lg"));
   const [value, setValue] = useState<number>(0);
 
   let { id: personId, getEmails, showStatus } = useEmailsTab(false);
@@ -109,13 +111,23 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
           }
         }, 500);
 
+        console.log("isLg", isLg);
+
         return (
           <TabPanel value={value} index={idx}>
             <Grid container>
+              <Grid item xs={12}>
+                <Typography variant="h3">{item?.subject}</Typography>
+              </Grid>
+            </Grid>
+
+            <Grid
+              container
+              direction={isLg ? "row" : "column"}
+              justifyContent={isLg ? "space-between" : "start"}
+              alignItems="center"
+            >
               <div>
-                <Typography variant="subtitle2">
-                  <strong>Subject:</strong> {item?.subject}
-                </Typography>
                 <Typography variant="subtitle2">
                   <strong>To:</strong>{" "}
                   {item?.to ? (
@@ -124,15 +136,16 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
                     ""
                   )}
                 </Typography>
+              </div>
+              <div>
                 <Typography variant="subtitle2">
-                  <strong>Date Created:</strong>{" "}
                   {moment.utc(item?.created_date).format("LLLL")}
-                </Typography>
-                <Typography variant="subtitle2">
-                  <strong>Status:</strong> {showStatus(item?.status)}
                 </Typography>
               </div>
             </Grid>
+            <Typography variant="subtitle2">
+              <strong>Status:</strong> {showStatus(item?.status)}
+            </Typography>
 
             <div style={{ height: 10 }} />
 
@@ -163,6 +176,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
                 <SendEmailNow
                   id={item?.id}
                   buttonText="Send Now"
+                  variant="outlined"
                   style={{ marginRight: 10 }}
                 />
               )}
@@ -172,6 +186,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
                 id={item?.id}
                 personId={Number(personId)}
                 onLoadApi={getEmails}
+                variant="outlined"
               />
             </Grid>
           </TabPanel>

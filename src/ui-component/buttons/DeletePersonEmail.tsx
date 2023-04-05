@@ -9,17 +9,7 @@ type DeletePersonEmailTypes = {
   personId: number;
   buttonText: string;
   onLoadApi?: any;
-  style?: React.CSSProperties | undefined;
-  size?: "large" | "small" | "medium" | undefined;
-  color?:
-    | "primary"
-    | "inherit"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning"
-    | undefined;
+  [x: string]: any;
 };
 
 const DeletePersonEmail = ({
@@ -27,9 +17,7 @@ const DeletePersonEmail = ({
   personId,
   buttonText,
   onLoadApi,
-  style,
-  size,
-  color = "error",
+  ...props
 }: DeletePersonEmailTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -58,12 +46,11 @@ const DeletePersonEmail = ({
     <>
       <Button
         disableElevation
-        size={size}
         type="button"
         variant="contained"
-        color={color}
+        color="error"
         onClick={handleOpen}
-        style={style}
+        {...props}
       >
         {buttonText}
       </Button>
