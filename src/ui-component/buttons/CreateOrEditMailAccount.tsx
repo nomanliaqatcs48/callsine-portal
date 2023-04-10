@@ -180,6 +180,27 @@ const CreateOrEditMailAccount = ({
                       )}
                     />
                   </div>
+<div>
+                    <TextField
+                      error={!!errors.password}
+                      disabled={mailAccountLoading?.form}
+                      margin="dense"
+                      id="password"
+                      label="Password"
+                      type="password"
+                      defaultValue={id ? defaultValue?.password : ""}
+                      fullWidth
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name="password"
+                      render={({ message }) => (
+                        <FormHelperText sx={{ color: "error.main" }}>
+                          {message}
+                        </FormHelperText>
+                      )}
+                    />
+                  </div>
 
                   <div>
                     <TextField
