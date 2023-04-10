@@ -8,7 +8,7 @@ import Prompts from "../../../../ui-component/dropdowns/Prompts";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
 import {
   createResponsesService,
-  generateResponsesService,
+  generateResponsesService, setPlaybook,
 } from "../../../../services/prompts.service";
 import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
 
@@ -23,7 +23,7 @@ const Playbook = () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
-      let res = await createResponsesService(Number(promptId), Number(id), {
+      let res = await setPlaybook(Number(promptId), Number(id), {
         first_name: data?.first_name,
         last_name: data?.last_name,
         company_name: data?.org?.name,

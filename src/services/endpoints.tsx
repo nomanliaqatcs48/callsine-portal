@@ -5,6 +5,7 @@ export const endpoints = {
   PERSON: "/api/persons/",
   MAIL_ACCOUNT: "/api/mail-accounts/",
   PROMPTS: "/api/prompts/",
+  PLAYBOOKS: "/api/playbooks/",
   PROMPT_RESPONSES: "/api/prompt-responses/",
   EMAILS: "/api/emails/",
 };

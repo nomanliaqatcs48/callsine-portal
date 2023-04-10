@@ -7,7 +7,7 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { devLogError } from "../../helpers/logs";
-import { getPromptsService } from "../../services/prompts.service";
+import {getPlaybooks, getPromptsService} from "../../services/prompts.service";
 
 type PromptsTypes = {
   onChange: any;
@@ -32,7 +32,7 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
 
   const getPrompts = async () => {
     try {
-      let res = await getPromptsService(filters, searchValue);
+      let res = await getPlaybooks(filters, searchValue);
       if (res?.data) {
         setPrompts(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
@@ -57,7 +57,7 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
       {...props}
     >
       <InputLabel id="prompts-label">
-        {prompts?.length > 0 ? "Prompts" : "No data available"}
+        {prompts?.length > 0 ? "Playbooks" : "No data available"}
       </InputLabel>
       <Select
         labelId="prompts-label"
@@ -68,7 +68,7 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
         {prompts.map((o) => {
           return (
             <MenuItem value={o.id} key={o.id} style={{ whiteSpace: "normal" }}>
-              <div>{o.text}</div>
+              <div>{o.name}</div>
             </MenuItem>
           );
         })}
