@@ -134,7 +134,7 @@ const Playbook = () => {
                 color="primary"
                 onClick={regeneratePlaybook}
               >
-                Regenerate Playbook
+                Regenerate Message
               </LoadingButton>
             </Grid>
           </CardContent>
