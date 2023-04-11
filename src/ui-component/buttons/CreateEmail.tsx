@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-// import MyEditor from "../editor/MyEditor";
+import MyEditor from "../editor/MyEditor";
 import {
   Box,
   Button,
@@ -89,7 +89,7 @@ const CreateEmail = ({
         if (item === "person") {
           setValue("person", Number(personId));
         } else if (item === "html_message") {
-          setValue("html_message", html_message);
+          setValue("html_message", html_message.replace(/\n/g, "<br />"));
         }
 
         setValue("to", personDetail?.work_email);
@@ -371,15 +371,15 @@ const CreateEmail = ({
                   <div style={{ marginTop: 5 }} />
 
                   <div>
-                    {/*<MyEditor
+                    <MyEditor
                       initialValue={getValues("html_message")}
                       onEditorChange={(value: string, editor: any) => {
                         handleMyEditorOnChange(value, editor);
                       }}
                       isPreformatted={true}
                       onFocus={(e: any) => null}
-                    />*/}
-                    <TextField
+                    />
+                    {/*<TextField
                       error={!!errors.html_message}
                       disabled={isLoading?.form}
                       required
@@ -394,7 +394,7 @@ const CreateEmail = ({
                       {...register("html_message", {
                         required: "This is required field.",
                       })}
-                    />
+                    />*/}
                     <ErrorMessage
                       errors={errors}
                       name="html_message"
