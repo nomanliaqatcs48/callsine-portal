@@ -7,8 +7,8 @@ import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import Prompts from "../../../../ui-component/dropdowns/Prompts";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
 import {
-  createResponsesService,
-  generateResponsesService, setPlaybook,
+  generateResponsesService,
+  setPlaybook,
 } from "../../../../services/prompts.service";
 import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
 
