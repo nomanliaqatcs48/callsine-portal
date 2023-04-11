@@ -154,7 +154,8 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
             <Grid container>
               <Grid item xs={12}>
                 {/*<textarea className={`preview_${item?.id}`} />*/}
-                <TextField
+                <div className={`preview_${item?.id}`} />
+                {/*<TextField
                   aria-readonly
                   multiline
                   margin="dense"
@@ -164,7 +165,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
                   defaultValue={item?.html_message}
                   fullWidth
                   rows={16}
-                />
+                />*/}
               </Grid>
             </Grid>
 
