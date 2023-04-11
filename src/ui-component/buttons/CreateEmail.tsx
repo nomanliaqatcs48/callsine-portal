@@ -31,6 +31,7 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import moment from "moment";
 import { createAsEmailService } from "../../services/emails.service";
 import { usePersonDetail } from "../../hooks/persons/usePersonDetail";
+import MyEditor from "../editor/MyEditor";
 
 type CreateEmailTypes = {
   html_message: any;

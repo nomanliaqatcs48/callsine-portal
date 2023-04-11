@@ -9,6 +9,14 @@ export const getPromptsService = async (
     `${endpoints.PROMPTS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
   );
 };
+export const getPlaybooks = async (
+  filters: any,
+  searchValue: string = ""
+) => {
+  return await http.get(
+    `${endpoints.PLAYBOOKS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+  );
+};
 
 export const getPromptResponsesFromPersonService = async (personId: number) => {
   return await http.get(`${endpoints.PROMPT_RESPONSES}?person=${personId}`);
@@ -22,6 +30,17 @@ export const createResponsesService = async (
   return await http.post(`${endpoints.PROMPT_RESPONSES}`, {
     prompt: promptId,
     person: personId,
+    context: context,
+  });
+};
+
+export const setPlaybook = async (
+    playbookId: number,
+    personId: number,
+    context: any
+)=> {
+  return await http.post(`/api/persons/${personId}/set_playbook/`, {
+    playbook_id: playbookId,
     context: context,
   });
 };
