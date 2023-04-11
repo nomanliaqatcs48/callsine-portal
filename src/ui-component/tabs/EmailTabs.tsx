@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, TextField, useMediaQuery, useTheme } from "@mui/material";
 import moment from "moment/moment";
 import SendEmailNow from "../buttons/SendEmailNow";
 import DeletePersonEmail from "../buttons/DeletePersonEmail";
@@ -65,7 +65,7 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
         flexGrow: 1,
         bgcolor: "background.paper",
         display: "flex",
-        height: 500,
+        // height: 500,
       }}
     >
       <Tabs
@@ -107,6 +107,9 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
         setTimeout(() => {
           let _preview: any = document.querySelector(`.preview_${item?.id}`);
           let _htmlMsg = item?.html_message;
+          if (_htmlMsg) {
+            _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
+          }
           if (_preview && _htmlMsg) {
             _preview.innerHTML = xss(_htmlMsg);
           }
@@ -150,7 +153,18 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
 
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant="body2" className={`preview_${item?.id}`} />
+                {/*<textarea className={`preview_${item?.id}`} />*/}
+                <TextField
+                  aria-readonly
+                  multiline
+                  margin="dense"
+                  id="html_message"
+                  label="Message"
+                  type="text"
+                  defaultValue={item?.html_message}
+                  fullWidth
+                  rows={16}
+                />
               </Grid>
             </Grid>
 
