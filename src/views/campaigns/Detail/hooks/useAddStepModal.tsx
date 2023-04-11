@@ -82,6 +82,7 @@ export const useAddStepModal = () => {
         onClose={handleAddStepClose}
         fullWidth={true}
         maxWidth="md"
+        disableEnforceFocus={true}
       >
         <DialogTitle>
           <Typography variant="h4">Add Step</Typography>

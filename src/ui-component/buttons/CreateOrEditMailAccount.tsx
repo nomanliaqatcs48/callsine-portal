@@ -146,6 +146,7 @@ const CreateOrEditMailAccount = ({
           maxWidth="xl"
           aria-labelledby={`${id ? "Edit" : "Add"} Mail Account`}
           aria-describedby={`${id ? "edit" : "add"} mail account modal`}
+          disableEnforceFocus={true}
         >
           <DialogTitle variant="h4">
             {id ? "Edit" : "Add"} Mail Account

@@ -211,6 +211,7 @@ const CreateEmail = ({
           maxWidth="xl"
           aria-labelledby="Create Email"
           aria-describedby="Create Email"
+          disableEnforceFocus={true}
         >
           <DialogTitle variant="h4">Create Email</DialogTitle>
           <DialogContent>
