@@ -162,6 +162,8 @@ const CreateEmail = ({
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
+    value = `<html><body>${value}</body></html>`;
+    devLog("handleMyEditorOnChange() value", value);
     setValue("html_message", value);
     handleEditorPreview(value);
   };
