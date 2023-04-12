@@ -46,9 +46,10 @@ function a11yProps(index: number) {
 
 interface VerticalTabsProps {
   data: any;
+  onLoadApi: any;
 }
 
-export default function VerticalTabs({ data }: VerticalTabsProps) {
+export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
   const theme = useTheme();
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
   const [value, setValue] = useState<number>(0);
@@ -205,7 +206,10 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
                 buttonText="Delete"
                 id={item?.id}
                 personId={Number(personId)}
-                onLoadApi={getEmails}
+                onLoadApi={() => {
+                  onLoadApi();
+                  setValue(0);
+                }}
                 variant="outlined"
               />
             </Grid>

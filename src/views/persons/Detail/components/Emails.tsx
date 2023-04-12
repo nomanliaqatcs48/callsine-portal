@@ -48,7 +48,7 @@ const Emails = () => {
       <Grid container spacing={0}>
         <Grid item xs={12}>
           {!isLoading?.onPage && emails?.length > 0 && (
-            <VerticalTabs data={emails} />
+            <VerticalTabs data={emails} onLoadApi={getEmails} />
           )}
         </Grid>
         {/*<Grid item xs={12} sm={2} />
