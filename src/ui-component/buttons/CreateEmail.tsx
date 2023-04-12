@@ -377,7 +377,7 @@ const CreateEmail = ({
                       onEditorChange={(value: string, editor: any) => {
                         handleMyEditorOnChange(value, editor);
                       }}
-                      isPreformatted={true}
+                      // isPreformatted={true}
                       onFocus={(e: any) => null}
                     />
                     {/*<TextField
