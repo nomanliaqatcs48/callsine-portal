@@ -199,6 +199,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                   buttonText="Send Now"
                   variant="outlined"
                   style={{ marginRight: 10 }}
+                  onLoadApi={onLoadApi}
                 />
               )}
 
