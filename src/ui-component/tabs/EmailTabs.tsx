@@ -148,6 +148,12 @@ export default function VerticalTabs({ data }: VerticalTabsProps) {
             <Typography variant="subtitle2">
               <strong>Status:</strong> {showStatus(item?.status)}
             </Typography>
+            <Typography variant="subtitle2">
+              <strong>Opens:</strong> {item?.opens}
+            </Typography>
+            <Typography variant="subtitle2">
+              <strong>Clicks:</strong> {item?.clicks}
+            </Typography>
 
             <div style={{ height: 10 }} />
 
