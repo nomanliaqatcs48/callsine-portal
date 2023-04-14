@@ -25,6 +25,9 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
               Employee Count: {data?.org?.employee_count}
             </Typography>
             <Typography variant="h6" color="text.secondary">
+              Industry: {data?.org?.industry}
+            </Typography>
+            <Typography variant="h6" color="text.secondary">
               SIC: {data?.org?.sic}
             </Typography>
             <Typography variant="h6" color="text.secondary">
@@ -35,9 +38,6 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
             </Typography>
             <Typography variant="h6" color="text.secondary">
               NAICS Description: {data?.org?.naics_description}
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              Industry: {data?.org?.industry}
             </Typography>
           </CardContent>
         </Card>
