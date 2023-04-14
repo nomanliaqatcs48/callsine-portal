@@ -22,7 +22,9 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
             <Typography variant="h5" gutterBottom>
               Organization
             </Typography>
-            <Typography color="text.secondary">{data?.org?.name}</Typography>
+            <Typography color="text.secondary" sx={{ fontWeight: 600 }}>
+              {data?.org?.name}
+            </Typography>
             <Typography variant="h6" color="text.secondary">
               Domain: {data?.org?.domain}
             </Typography>
