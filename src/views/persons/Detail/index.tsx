@@ -8,9 +8,13 @@ import Emails from "./components/Emails";
 import PersonDetailCard from "./components/PersonDetailCard";
 import PersonDetailOrgCard from "./components/PersonDetailOrgCard";
 import StatCard from "./components/StatCard";
+import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
+
+  let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
+    usePersonDetail();
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -25,14 +29,14 @@ const PersonDetailPage = () => {
 
   return (
     <MainCard title="Person Detail">
-      <Grid container spacing={0}>
-        <Grid item xs={12} lg={6} xl={4}>
-          <PersonDetailCard />
+      <Grid container spacing={4}>
+        <Grid item xs={12} lg={4}>
+          <PersonDetailCard data={data} />
         </Grid>
-        <Grid item xs={12} lg={6} xl={4}>
+        <Grid item xs={12} lg={4}>
           <PersonDetailOrgCard />
         </Grid>
-        <Grid item xs={12} lg={6} xl={4}>
+        <Grid item xs={12} lg={4}>
           <StatCard />
         </Grid>
       </Grid>
