@@ -11,7 +11,7 @@ export const _columns: any = () => {
         return (
           <a
             className=""
-            href={`/persons/${cell?.row?.original?.id}`}
+            href={`/people/${cell?.row?.original?.id}`}
             style={{
               textDecoration: "underline",
             }}

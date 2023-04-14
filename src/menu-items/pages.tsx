@@ -17,10 +17,10 @@ const pages = {
   type: "group",
   children: [
     {
-      id: "persons",
+      id: "people",
       title: "People",
       type: "item",
-      url: "/persons",
+      url: "/people",
       icon: icons.IconUsers,
       breadcrumbs: false,
     },

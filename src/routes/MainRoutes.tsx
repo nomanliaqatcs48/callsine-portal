@@ -37,11 +37,11 @@ const MainRoutes = {
       element: <DashboardDefault />,
     },
     {
-      path: "persons",
+      path: "people",
       element: <PersonsPage />,
     },
     {
-      path: "persons/:id",
+      path: "people/:id",
       element: <PersonDetailPage />,
     },
     {

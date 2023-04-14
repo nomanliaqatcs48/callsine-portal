@@ -30,7 +30,7 @@ const PersonDetailPage = () => {
     <MainCard
       title={
         <>
-          <Link href="/persons" underline="none" color="inherit">
+          <Link href="/people" underline="none" color="inherit">
             People
           </Link>{" "}
           /{" "}
@@ -58,6 +58,9 @@ const PersonDetailPage = () => {
           <StatCard />
         </Grid>
       </Grid>
+
+      <div style={{ height: 30 }} />
+
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
