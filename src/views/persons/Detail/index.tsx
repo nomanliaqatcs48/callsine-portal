@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Grid, Tab, Tabs } from "@mui/material";
+import { Box, Grid, Link, Tab, Tabs, Typography } from "@mui/material";
 import MainCard from "../../../ui-component/cards/MainCard";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
 import Playbook from "./components/Playbook";
@@ -28,7 +28,24 @@ const PersonDetailPage = () => {
 
   return (
     <MainCard
-      title={data?.first_name && `${data?.first_name} ${data?.last_name}`}
+      title={
+        <>
+          <Link href="/persons" underline="none" color="inherit">
+            People
+          </Link>{" "}
+          /{" "}
+          {data?.first_name && (
+            <Typography
+              variant="h4"
+              color="text.secondary"
+              component="span"
+              sx={{ fontWeight: "500" }}
+            >
+              {data?.first_name} {data?.last_name}
+            </Typography>
+          )}
+        </>
+      }
     >
       <Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
