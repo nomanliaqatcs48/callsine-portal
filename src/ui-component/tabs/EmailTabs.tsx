@@ -110,6 +110,10 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
           let _htmlMsg = item?.html_message;
           if (_htmlMsg) {
             _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
+            _htmlMsg = _htmlMsg.replace(
+              /<html>|<\/html>|<body>|<\/body>/gi,
+              ""
+            );
           }
           if (_preview && _htmlMsg) {
             _preview.innerHTML = xss(_htmlMsg);
