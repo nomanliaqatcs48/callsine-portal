@@ -14,7 +14,7 @@ export const updatePersonDetailService = async (id: number, data: any) => {
 };
 
 export const getPersonDetailStatService = async (id: number) => {
-  return await http.put(`${endpoints.PERSON}${id}/stats/`);
+  return await http.get(`${endpoints.PERSON}${id}/stats/`);
 };
 
 export const regeneratePlaybookService = async (id: number) => {
