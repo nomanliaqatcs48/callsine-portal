@@ -35,40 +35,42 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
             <Typography variant="h6" color="text.secondary">
               Industry: {data?.org?.industry}
             </Typography>
-            <Typography variant="h6" color="text.secondary">
-              SIC{" "}
-              <Tooltip
-                disableFocusListener
-                title={
-                  <>
-                    <span>{data?.org?.sic}</span>
-                    <br />
-                    <span>Description: {data?.org?.sic_description}</span>
-                  </>
-                }
-              >
-                <IconButton aria-label="work email" size="small">
-                  <IconSelect size={17} stroke={1.5} />
-                </IconButton>
-              </Tooltip>
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              NAICS{" "}
-              <Tooltip
-                disableFocusListener
-                title={
-                  <>
-                    <span>{data?.org?.naics}</span>
-                    <br />
-                    <span>Description: {data?.org?.naics_description}</span>
-                  </>
-                }
-              >
-                <IconButton aria-label="work email" size="small">
-                  <IconSelect size={17} stroke={1.5} />
-                </IconButton>
-              </Tooltip>
-            </Typography>
+            <div style={{ display: "flex", justifyContent: "space-between" }}>
+              <Typography variant="h6" color="text.secondary">
+                SIC{" "}
+                <Tooltip
+                  disableFocusListener
+                  title={
+                    <>
+                      <span>{data?.org?.sic}</span>
+                      <br />
+                      <span>Description: {data?.org?.sic_description}</span>
+                    </>
+                  }
+                >
+                  <IconButton aria-label="work email" size="small">
+                    <IconSelect size={17} stroke={1.5} />
+                  </IconButton>
+                </Tooltip>
+              </Typography>
+              <Typography variant="h6" color="text.secondary">
+                NAICS{" "}
+                <Tooltip
+                  disableFocusListener
+                  title={
+                    <>
+                      <span>{data?.org?.naics}</span>
+                      <br />
+                      <span>Description: {data?.org?.naics_description}</span>
+                    </>
+                  }
+                >
+                  <IconButton aria-label="work email" size="small">
+                    <IconSelect size={17} stroke={1.5} />
+                  </IconButton>
+                </Tooltip>
+              </Typography>
+            </div>
           </CardContent>
         </Card>
       </Paper>
