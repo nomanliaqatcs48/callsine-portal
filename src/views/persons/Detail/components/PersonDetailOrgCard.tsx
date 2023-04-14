@@ -1,5 +1,13 @@
 import React from "react";
-import { Card, CardContent, Paper, Typography } from "@mui/material";
+import {
+  Card,
+  CardContent,
+  IconButton,
+  Paper,
+  Tooltip,
+  Typography,
+} from "@mui/material";
+import { IconSelect } from "@tabler/icons-react";
 
 type PersonDetailOrgCardTypes = {
   data: any;
@@ -28,16 +36,38 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
               Industry: {data?.org?.industry}
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              SIC: {data?.org?.sic}
+              SIC{" "}
+              <Tooltip
+                disableFocusListener
+                title={
+                  <>
+                    <span>{data?.org?.sic}</span>
+                    <br />
+                    <span>Description: {data?.org?.sic_description}</span>
+                  </>
+                }
+              >
+                <IconButton aria-label="work email" size="small">
+                  <IconSelect size={17} stroke={1.5} />
+                </IconButton>
+              </Tooltip>
             </Typography>
             <Typography variant="h6" color="text.secondary">
-              SIC Description: {data?.org?.sic_description}
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              NAICS: {data?.org?.naics}
-            </Typography>
-            <Typography variant="h6" color="text.secondary">
-              NAICS Description: {data?.org?.naics_description}
+              NAICS{" "}
+              <Tooltip
+                disableFocusListener
+                title={
+                  <>
+                    <span>{data?.org?.naics}</span>
+                    <br />
+                    <span>Description: {data?.org?.naics_description}</span>
+                  </>
+                }
+              >
+                <IconButton aria-label="work email" size="small">
+                  <IconSelect size={17} stroke={1.5} />
+                </IconButton>
+              </Tooltip>
             </Typography>
           </CardContent>
         </Card>
