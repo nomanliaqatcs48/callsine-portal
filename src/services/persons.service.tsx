@@ -17,6 +17,10 @@ export const getPersonDetailStatService = async (id: number) => {
   return await http.get(`${endpoints.PERSON}${id}/stats/`);
 };
 
+export const getPersonDetailTrackingService = async (id: number) => {
+  return await http.get(`${endpoints.PERSON}${id}/tracking/`);
+};
+
 export const regeneratePlaybookService = async (id: number) => {
   return await http.post(`${endpoints.PERSON}${id}/create_playbook/`);
 };
