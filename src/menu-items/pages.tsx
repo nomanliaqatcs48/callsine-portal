@@ -18,7 +18,7 @@ const pages = {
   children: [
     {
       id: "persons",
-      title: "Persons",
+      title: "People",
       type: "item",
       url: "/persons",
       icon: icons.IconUsers,

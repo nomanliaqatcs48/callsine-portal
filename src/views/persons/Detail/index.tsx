@@ -27,7 +27,9 @@ const PersonDetailPage = () => {
   };
 
   return (
-    <MainCard title={`${data?.first_name} ${data?.last_name}`}>
+    <MainCard
+      title={data?.first_name && `${data?.first_name} ${data?.last_name}`}
+    >
       <Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
           <PersonDetailCard data={data} />
