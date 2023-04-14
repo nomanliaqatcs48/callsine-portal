@@ -34,7 +34,7 @@ const PersonDetailPage = () => {
           <PersonDetailCard data={data} />
         </Grid>
         <Grid item xs={12} lg={4}>
-          <PersonDetailOrgCard />
+          <PersonDetailOrgCard data={data} />
         </Grid>
         <Grid item xs={12} lg={4}>
           <StatCard />
