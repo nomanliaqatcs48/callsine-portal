@@ -11,7 +11,9 @@ const PersonDetailOrgCard = ({ data }: PersonDetailOrgCardTypes) => {
       <Paper elevation={3}>
         <Card>
           <CardContent>
-            <Typography variant="h5">Organization</Typography>
+            <Typography variant="h5" gutterBottom>
+              Organization
+            </Typography>
             <Typography color="text.secondary">{data?.org?.name}</Typography>
             <Typography variant="h6" color="text.secondary">
               Domain: {data?.org?.domain}
