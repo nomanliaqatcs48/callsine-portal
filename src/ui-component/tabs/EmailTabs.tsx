@@ -162,7 +162,12 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               </div>
             </Grid>
             <Typography variant="subtitle2">
-              <strong>From:</strong> {item?.headers && displayFromEmail(item)}
+              <strong>From:</strong>{" "}
+              {item?.headers && (
+                <a href={`mailto:${displayFromEmail(item)}`}>
+                  {displayFromEmail(item)}
+                </a>
+              )}
             </Typography>
             <Typography variant="subtitle2">
               <strong>Status:</strong> {showStatus(item?.status)}
