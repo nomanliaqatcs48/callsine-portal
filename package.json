@@ -24,6 +24,7 @@
     "clipboard": "^2.0.11",
     "formik": "^2.2.9",
     "framer-motion": "^9.0.4",
+    "lodash": "^4.17.21",
     "material-ui-popup-state": "^5.0.4",
     "moment": "^2.29.4",
     "prop-types": "^15.8.1",
