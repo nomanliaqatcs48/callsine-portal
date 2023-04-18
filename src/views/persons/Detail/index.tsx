@@ -8,6 +8,7 @@ import PersonDetailCard from "./components/PersonDetailCard";
 import PersonDetailOrgCard from "./components/PersonDetailOrgCard";
 import StatCard from "./components/StatCard";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
+import TrackingTab from "../../../ui-component/tabs/TrackingTab";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -69,6 +70,7 @@ const PersonDetailPage = () => {
         >
           <Tab label="Playbook" {...a11yProps(0)} />
           <Tab label="Emails" {...a11yProps(1)} />
+          <Tab label="Tracking" {...a11yProps(2)} />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -76,6 +78,9 @@ const PersonDetailPage = () => {
       </TabPanel>
       <TabPanel value={value} index={1}>
         {value === 1 && <Emails />}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+        {value === 2 && <TrackingTab />}
       </TabPanel>
     </MainCard>
   );
