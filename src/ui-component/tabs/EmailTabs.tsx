@@ -3,12 +3,13 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid, TextField, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, useMediaQuery, useTheme } from "@mui/material";
 import moment from "moment/moment";
 import SendEmailNow from "../buttons/SendEmailNow";
 import DeletePersonEmail from "../buttons/DeletePersonEmail";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 import xss from "xss";
+import _ from "lodash";
 
 interface TabPanelProps {
   children?: React.ReactNode;
@@ -58,6 +59,16 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
+  };
+
+  const displayFromEmail = (data: any) => {
+    let _headers = data?.headers || [];
+    let _from = { name: "From", value: "" };
+    _from = _.find(_headers, (o: any) => {
+      return o.name === "From";
+    });
+
+    return _from?.value;
   };
 
   return (
@@ -150,6 +161,9 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                 </Typography>
               </div>
             </Grid>
+            <Typography variant="subtitle2">
+              <strong>From:</strong> {item?.headers && displayFromEmail(item)}
+            </Typography>
             <Typography variant="subtitle2">
               <strong>Status:</strong> {showStatus(item?.status)}
             </Typography>
