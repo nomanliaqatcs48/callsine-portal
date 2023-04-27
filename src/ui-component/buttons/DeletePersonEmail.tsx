@@ -3,6 +3,9 @@ import { Button, DialogActions, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteEmailService } from "../../services/emails.service";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type DeletePersonEmailTypes = {
   id: number;
@@ -32,11 +35,13 @@ const DeletePersonEmail = ({
     try {
       let res = await deleteEmailService(personId, id);
       if (res?.status === 204) {
+        ToastSuccess("Email successfully deleted.");
         onLoadApi();
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
       }
     } catch ({ response }) {
+      ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
     }
@@ -82,6 +87,8 @@ const DeletePersonEmail = ({
           </DialogActions>
         </MyModal>
       )}
+
+      <ToastContainer />
     </>
   );
 };
