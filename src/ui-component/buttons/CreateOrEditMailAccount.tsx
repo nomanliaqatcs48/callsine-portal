@@ -117,7 +117,7 @@ const CreateOrEditMailAccount = ({
     try {
       let res = await createMailAccountService(data);
       if (res?.data) {
-        ToastSuccess("New mail account successfully added.");
+        ToastSuccess("New mail account successfully created.");
 
         onSubmit();
         handleClose();

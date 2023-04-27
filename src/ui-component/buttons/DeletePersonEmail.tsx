@@ -35,10 +35,10 @@ const DeletePersonEmail = ({
     try {
       let res = await deleteEmailService(personId, id);
       if (res?.status === 204) {
-        ToastSuccess("Email successfully deleted.");
         onLoadApi();
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
+        ToastSuccess("Email successfully deleted.");
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");

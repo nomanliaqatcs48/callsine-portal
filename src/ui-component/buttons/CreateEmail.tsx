@@ -31,6 +31,9 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import moment from "moment";
 import { createAsEmailService } from "../../services/emails.service";
 import { usePersonDetail } from "../../hooks/persons/usePersonDetail";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type CreateEmailTypes = {
   html_message: any;
@@ -189,10 +192,12 @@ const CreateEmail = ({
     try {
       let res = await createAsEmailService(data);
       if (res?.data) {
+        ToastSuccess("Email successfully created.");
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch ({ response }) {
+      ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, form: false }));
     }
@@ -451,6 +456,8 @@ const CreateEmail = ({
           </DialogActions>
         </Dialog>
       )}
+
+      <ToastContainer />
     </>
   );
 };
