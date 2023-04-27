@@ -185,6 +185,7 @@ const CreateOrEditMailAccount = ({
                     <TextField
                       error={!!errors.password}
                       disabled={mailAccountLoading?.form}
+                      required
                       margin="dense"
                       id="password"
                       label="Password"
