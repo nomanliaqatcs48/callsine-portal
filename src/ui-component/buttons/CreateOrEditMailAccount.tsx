@@ -67,7 +67,7 @@ const CreateOrEditMailAccount = ({
       required: "This is required field.",
     });
     register("signature");
-    setValue("provider", null);
+    setValue("provider", id ? defaultValue?.provider : null);
   }, []);
 
   const handleOpen = () => setOpen(true);
