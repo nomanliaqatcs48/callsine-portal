@@ -181,7 +181,7 @@ const CreateOrEditMailAccount = ({
                       )}
                     />
                   </div>
-<div>
+                  <div>
                     <TextField
                       error={!!errors.password}
                       disabled={mailAccountLoading?.form}
@@ -191,6 +191,9 @@ const CreateOrEditMailAccount = ({
                       type="password"
                       defaultValue={id ? defaultValue?.password : ""}
                       fullWidth
+                      {...register("password", {
+                        required: "This is required field.",
+                      })}
                     />
                     <ErrorMessage
                       errors={errors}
