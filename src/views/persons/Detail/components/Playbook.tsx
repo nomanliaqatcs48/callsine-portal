@@ -11,6 +11,9 @@ import {
   setPlaybook,
 } from "../../../../services/prompts.service";
 import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastError, ToastSuccess } from "../../../../helpers/toast";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -32,6 +35,7 @@ const Playbook = () => {
         org_domain: "unionresolute.com",
       });
       if (res?.data) {
+        ToastSuccess("Message successfully generated.");
         setData(res.data);
         getPersonDetail();
         setPromptId(null);
@@ -44,6 +48,7 @@ const Playbook = () => {
         );
       }
     } catch (e: any) {
+      ToastError("Something went wrong!");
       devLogError(e.response);
       setPromptId(null);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
@@ -64,6 +69,7 @@ const Playbook = () => {
           Number(id)
         );
         if (res?.data) {
+          ToastSuccess("Message successfully regenerated.");
           let _prompts = data.prompts.map((item: any) => {
             if (item?.id === promptItem?.id) {
               item = res?.data;
@@ -77,6 +83,7 @@ const Playbook = () => {
           setIsBtnLoading(false);
         }
       } catch ({ response }) {
+        ToastError("Something went wrong!");
         devLogError(response);
         setIsBtnLoading(false);
       }
@@ -192,6 +199,8 @@ const Playbook = () => {
         </Grid>
         <Grid item lg />
       </Grid>
+
+      <ToastContainer />
     </>
   );
 };
