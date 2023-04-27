@@ -26,7 +26,7 @@ import {
 import MyEditor from "../editor/MyEditor";
 import { emailAddressPattern } from "../../helpers/forms";
 import { ToastContainer, toast } from "react-toastify";
-import { ToastSuccess } from "../../helpers/toast";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
 import "react-toastify/dist/ReactToastify.css";
 
 type CreateOrEditMailAccountTypes = {
@@ -93,7 +93,7 @@ const CreateOrEditMailAccount = ({
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
-        ToastSuccess("Mail account successfully updated");
+        ToastSuccess("Mail account successfully updated.");
 
         onSubmit();
         handleClose();
@@ -103,6 +103,7 @@ const CreateOrEditMailAccount = ({
         }));
       }
     } catch ({ response }) {
+      ToastError("Something went wrong!");
       devLogError(response);
       setMailAccountLoading((beforeVal: any) => ({
         ...beforeVal,
@@ -116,7 +117,7 @@ const CreateOrEditMailAccount = ({
     try {
       let res = await createMailAccountService(data);
       if (res?.data) {
-        ToastSuccess("New mail account successfully added");
+        ToastSuccess("New mail account successfully added.");
 
         onSubmit();
         handleClose();
@@ -124,6 +125,7 @@ const CreateOrEditMailAccount = ({
         setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch ({ response }) {
+      ToastError("Something went wrong!");
       devLogError(response);
       setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
     }
