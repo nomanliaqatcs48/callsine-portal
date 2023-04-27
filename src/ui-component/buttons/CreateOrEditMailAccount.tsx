@@ -25,6 +25,9 @@ import {
 } from "../../services/mail-accounts.service";
 import MyEditor from "../editor/MyEditor";
 import { emailAddressPattern } from "../../helpers/forms";
+import { ToastContainer, toast } from "react-toastify";
+import { ToastSuccess } from "../../helpers/toast";
+import "react-toastify/dist/ReactToastify.css";
 
 type CreateOrEditMailAccountTypes = {
   id?: number | undefined;
@@ -90,6 +93,8 @@ const CreateOrEditMailAccount = ({
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
+        ToastSuccess("Mail account successfully updated");
+
         onSubmit();
         handleClose();
         setMailAccountLoading((beforeVal: any) => ({
@@ -111,6 +116,8 @@ const CreateOrEditMailAccount = ({
     try {
       let res = await createMailAccountService(data);
       if (res?.data) {
+        ToastSuccess("New mail account successfully added");
+
         onSubmit();
         handleClose();
         reset();
@@ -335,6 +342,7 @@ const CreateOrEditMailAccount = ({
           </DialogActions>
         </Dialog>
       )}
+      <ToastContainer />
     </>
   );
 };
