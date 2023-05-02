@@ -8,5 +8,10 @@ import PublicRoute from "./PublicRoutes";
 // ==============================|| ROUTING RENDER ||============================== //
 
 export default function ThemeRoutes() {
-  return useRoutes([MainRoutes, PublicRoute, AuthenticationRoutes]);
+  return useRoutes([
+    MainRoutes,
+    // PublicRoute,
+    AuthenticationRoutes,
+    //
+  ]);
 }
