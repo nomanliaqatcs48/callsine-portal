@@ -5,6 +5,7 @@ import Loadable from "../ui-component/Loadable";
 import MinimalLayout from "../layout/MinimalLayout";
 
 // login option 3 routing
+const Home = Loadable(lazy(() => import("../views/home/index")));
 const AuthLogin = Loadable(
   lazy(() => import("../views/authentication/login/Login"))
 );
@@ -18,6 +19,10 @@ const AuthenticationRoutes = {
   path: "/",
   element: <MinimalLayout />,
   children: [
+    {
+      path: "/home",
+      element: <Home />,
+    },
     {
       path: "/login",
       element: <AuthLogin />,

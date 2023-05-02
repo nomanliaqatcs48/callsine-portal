@@ -39,7 +39,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
     try {
       let _check = await checkIfAuthenticated();
       if (!_check) {
-        window.location.href = "/login";
+        window.location.href = "/home";
       }
     } catch ({ response }) {
       devLogError(response);
