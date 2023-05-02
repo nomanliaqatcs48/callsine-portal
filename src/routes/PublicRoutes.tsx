@@ -4,13 +4,7 @@ import { lazy } from "react";
 import Loadable from "../ui-component/Loadable";
 import MinimalLayout from "../layout/MinimalLayout";
 
-// login option 3 routing
-const AuthLogin = Loadable(
-  lazy(() => import("../views/authentication/login/Login"))
-);
-const AuthRegister = Loadable(
-  lazy(() => import("../views/authentication/signup/Register"))
-);
+const Home = Loadable(lazy(() => import("../views/home/index")));
 
 // ==============================|| AUTHENTICATION ROUTING ||============================== //
 
@@ -19,12 +13,12 @@ const AuthenticationRoutes = {
   element: <MinimalLayout />,
   children: [
     {
-      path: "/login",
-      element: <AuthLogin />,
+      path: "/",
+      element: <Home />,
     },
     {
-      path: "/signup",
-      element: <AuthRegister />,
+      path: "/home",
+      element: <Home />,
     },
   ],
 };
