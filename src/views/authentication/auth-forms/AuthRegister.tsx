@@ -503,6 +503,7 @@ const AuthRegister = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="secondary"
+                  sx={{ color: "#fff" }}
                 >
                   Sign up
                 </Button>

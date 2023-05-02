@@ -300,6 +300,7 @@ const AuthLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="secondary"
+                  sx={{ color: "#fff" }}
                 >
                   Sign in
                 </Button>
