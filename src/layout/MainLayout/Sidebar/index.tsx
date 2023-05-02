@@ -51,7 +51,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
       <MobileView>
         <Box sx={{ px: 2 }}>
           <MenuList />
-          <MenuCard />
+          {/*<MenuCard />*/}
         </Box>
       </MobileView>
     </>
