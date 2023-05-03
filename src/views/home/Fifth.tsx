@@ -17,9 +17,8 @@ const Fifth = () => {
         container
         sx={{
           p: { xs: 1, md: 3 },
-          pt: { xs: 10 },
-          pb: { xs: 10 },
-          border: "1px solid red",
+          pt: { xs: 10, md: 10 },
+          pb: { xs: 10, md: 10 },
         }}
       >
         <Grid

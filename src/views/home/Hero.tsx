@@ -4,9 +4,16 @@ import { Button, Grid, Typography } from "@mui/material";
 const Hero = () => {
   return (
     <>
-      <Grid container sx={{ p: { xs: 1 } }}>
-        <Grid item md={2} />
-        <Grid item md={8}>
+      <Grid
+        container
+        sx={{
+          p: { xs: 1, md: 3 },
+          pt: { xs: 10, md: 10 },
+          pb: { xs: 10, md: 10 },
+        }}
+      >
+        <Grid item md={2} xl={3} />
+        <Grid item md={8} xl={6}>
           <h1
             style={{ textAlign: "center", fontSize: 42, lineHeight: "2.5rem" }}
           >

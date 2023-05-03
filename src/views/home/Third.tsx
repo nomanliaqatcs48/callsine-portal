@@ -12,11 +12,10 @@ const Third = () => {
         container
         sx={{
           p: { xs: 1, md: 3 },
-          pt: { xs: 10 },
-          pb: { xs: 10 },
+          pt: { xs: 10, md: 10 },
+          pb: { xs: 10, md: 10 },
           background: "#eff2f6",
           flexDirection: { xs: "row", md: "row-reverse" },
-          border: "1px solid red",
         }}
       >
         <Grid
