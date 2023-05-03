@@ -11,6 +11,7 @@ type AuthenticatedTypes = {
 
 const Authenticated = ({ children }: AuthenticatedTypes) => {
   const [profile, setProfile] = useState<any>(null);
+  const [isOnPageLoading, setIsOnPageLoading] = useState<boolean>(true);
 
   useEffect(() => {
     checkAuth();
@@ -41,13 +42,17 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
       if (!_check) {
         window.location.href = "/login";
       }
+      setTimeout(() => setIsOnPageLoading(false), 500);
     } catch ({ response }) {
       devLogError(response);
+      setTimeout(() => setIsOnPageLoading(false), 500);
     }
   };
 
   return (
-    <AuthContext.Provider value={profile}>{children}</AuthContext.Provider>
+    <AuthContext.Provider value={profile}>
+      {!isOnPageLoading && children}
+    </AuthContext.Provider>
   );
 };
 

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { checkIfAuthenticated } from "../../utils/auth";
 import { devLogError } from "../../helpers/logs";
 
@@ -7,6 +7,8 @@ type UnauthenticatedTypes = {
 };
 
 const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
+  const [isOnPageLoading, setIsOnPageLoading] = useState<boolean>(true);
+
   useEffect(() => {
     checkAuth();
   }, []);
@@ -17,12 +19,14 @@ const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
       if (check) {
         window.location.href = "/dashboard";
       }
+      setTimeout(() => setIsOnPageLoading(false), 500);
     } catch ({ response }) {
       devLogError(response);
+      setTimeout(() => setIsOnPageLoading(false), 500);
     }
   };
 
-  return <>{children}</>;
+  return <>{!isOnPageLoading && children}</>;
 };
 
 export default Unauthenticated;
