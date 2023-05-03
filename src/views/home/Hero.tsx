@@ -4,7 +4,7 @@ import { Button, Grid, Typography } from "@mui/material";
 const Hero = () => {
   return (
     <>
-      <Grid container>
+      <Grid container sx={{ p: { xs: 1 } }}>
         <Grid item md={2} />
         <Grid item md={8}>
           <h1

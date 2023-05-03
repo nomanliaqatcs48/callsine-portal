@@ -8,7 +8,15 @@ const Third = () => {
 
   return (
     <>
-      <Grid container sx={{ flexDirection: { xs: "row", md: "row-reverse" } }}>
+      <Grid
+        container
+        sx={{
+          p: { xs: 1, md: 3 },
+          background: "#eff2f6",
+          flexDirection: { xs: "row", md: "row-reverse" },
+          border: "1px solid red",
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -24,10 +32,15 @@ const Third = () => {
             align="center"
             sx={{ fontSize: 42, p: { md: 3 } }}
           >
-            Find clients easily on LinkedIn without any technical skills
+            Develop your network to generate new opportunities!
           </Typography>
         </Grid>
-        <Grid item xs={12} md={6}>
+        <Grid
+          item
+          xs={12}
+          md={6}
+          sx={{ display: "flex", justifyContent: { lg: "flex-end" } }}
+        >
           <Image
             src="https://picsum.photos/seed/picsum/393/531"
             width={downMd ? "100%" : 393}
@@ -35,6 +48,7 @@ const Third = () => {
             showLoading
             alt="callsine"
           />
+          <Grid sx={{ height: 20 }} />
         </Grid>
       </Grid>
     </>
