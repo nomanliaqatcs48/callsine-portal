@@ -13,7 +13,15 @@ const Fifth = () => {
 
   return (
     <>
-      <Grid container sx={{ p: { xs: 1, md: 3 }, border: "1px solid red" }}>
+      <Grid
+        container
+        sx={{
+          p: { xs: 1, md: 3 },
+          pt: { xs: 10 },
+          pb: { xs: 10 },
+          border: "1px solid red",
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -47,9 +55,9 @@ const Fifth = () => {
             size="large"
             variant="contained"
             color="primary"
-            sx={{ fontSize: 16 }}
+            sx={{ fontSize: 16, fontWeight: 600 }}
           >
-            Download CallSine today - it's free
+            It's free, why not try it? ❤️
           </Button>
         </Grid>
       </Grid>

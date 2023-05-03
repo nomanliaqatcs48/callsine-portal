@@ -11,11 +11,11 @@ const Home = () => {
       <Hero />
       <div style={{ height: 50 }} />
       <Second />
-      <div style={{ height: 50 }} />
+
       <Third />
-      <div style={{ height: 50 }} />
+
       <Fourth />
-      <div style={{ height: 50 }} />
+
       <Fifth />
       <div style={{ height: 50 }} />
     </>

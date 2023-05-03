@@ -19,6 +19,8 @@ const Second = () => {
         container
         sx={{
           p: { xs: 1, md: 3 },
+          pt: { xs: 10 },
+          pb: { xs: 10 },
           background: "#fafafa",
           border: "1px solid red",
         }}
@@ -36,7 +38,7 @@ const Second = () => {
           <Typography
             variant="h2"
             align="center"
-            sx={{ fontSize: 42, p: { md: 3 } }}
+            sx={{ fontSize: 42, p: { md: 3 }, pb: { xs: 5 } }}
           >
             Find clients easily on LinkedIn without any technical skills
           </Typography>

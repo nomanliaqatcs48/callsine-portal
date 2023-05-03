@@ -12,6 +12,8 @@ const Third = () => {
         container
         sx={{
           p: { xs: 1, md: 3 },
+          pt: { xs: 10 },
+          pb: { xs: 10 },
           background: "#eff2f6",
           flexDirection: { xs: "row", md: "row-reverse" },
           border: "1px solid red",
@@ -30,7 +32,7 @@ const Third = () => {
           <Typography
             variant="h2"
             align="center"
-            sx={{ fontSize: 42, p: { md: 3 } }}
+            sx={{ fontSize: 42, p: { md: 3 }, pb: { xs: 5 } }}
           >
             Develop your network to generate new opportunities!
           </Typography>

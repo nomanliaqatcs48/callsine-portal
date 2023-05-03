@@ -16,7 +16,15 @@ const Fourth = () => {
 
   return (
     <>
-      <Grid container sx={{ p: { xs: 1, md: 3 }, border: "1px solid red" }}>
+      <Grid
+        container
+        sx={{
+          p: { xs: 1, md: 3 },
+          pt: { xs: 10 },
+          pb: { xs: 10 },
+          border: "1px solid red",
+        }}
+      >
         <Grid
           item
           xs={12}
@@ -40,24 +48,34 @@ const Fourth = () => {
               They know us better than we do
             </Typography>
           </div>
+          <div style={{ height: 20 }} />
           <div>
             <Typography
               align="center"
               textTransform="uppercase"
               sx={{
-                fontSize: 42,
+                fontSize: { xs: 26, sm: 42 },
                 fontWeight: 600,
               }}
             >
               Happy customers ❤️
             </Typography>
           </div>
+          <div style={{ height: 20 }} />
           <div>
-            <Rating name="read-only" value={5} size="large" readOnly />
+            <Rating
+              name="read-only"
+              value={5}
+              size="large"
+              readOnly
+              sx={{ fontSize: "2.875rem" }}
+            />
           </div>
+          <div style={{ height: 20 }} />
           <div style={{ fontSize: 18, fontWeight: 400 }}>
             <strong>5/5</strong> on Google Chrome Store
           </div>
+          <div style={{ height: 15 }} />
           <div>
             <Link
               href="https://chrome.google.com/webstore/detail/callsine/adfdjhchgaagmbpiobdijaemefkdkndm"

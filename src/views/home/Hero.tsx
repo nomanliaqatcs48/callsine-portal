@@ -32,7 +32,7 @@ const Hero = () => {
               size="large"
               variant="contained"
               color="primary"
-              sx={{ fontSize: 16 }}
+              sx={{ fontSize: 16, fontWeight: 600 }}
             >
               Download CallSine today - it's free
             </Button>
