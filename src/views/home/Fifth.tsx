@@ -39,7 +39,8 @@ const Fifth = () => {
             color="#fff"
             sx={{ fontSize: 46, p: { md: 3 } }}
           >
-            The LinkedIn + Email Prospecting is now 🚀
+            Revolutionize Your Sales Strategy with CallSine's Chrome Extension
+            🚀
           </Typography>
         </Grid>
         <Grid

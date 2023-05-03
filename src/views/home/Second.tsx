@@ -40,7 +40,7 @@ const Second = () => {
             align="center"
             sx={{ fontSize: 42, p: { md: 3 }, pb: { xs: 5 } }}
           >
-            Find clients easily on LinkedIn without any technical skills
+            Find Your Ideal Customers in a Click with CallSine
           </Typography>
         </Grid>
         <Grid item xs={12} md={6}>

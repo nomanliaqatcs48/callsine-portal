@@ -34,7 +34,7 @@ const Third = () => {
             align="center"
             sx={{ fontSize: 42, p: { md: 3 }, pb: { xs: 5 } }}
           >
-            Develop your network to generate new opportunities!
+            Save Time and Convert More Leads with CallSine's Sales Intelligence
           </Typography>
         </Grid>
         <Grid
