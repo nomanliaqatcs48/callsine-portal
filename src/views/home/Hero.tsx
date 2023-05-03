@@ -28,7 +28,12 @@ const Hero = () => {
               alignItems: "center",
             }}
           >
-            <Button size="large" variant="contained" color="primary">
+            <Button
+              size="large"
+              variant="contained"
+              color="primary"
+              sx={{ fontSize: 16 }}
+            >
               Download CallSine today - it's free
             </Button>
           </Grid>
