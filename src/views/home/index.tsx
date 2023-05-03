@@ -17,7 +17,6 @@ const Home = () => {
       <Fourth />
 
       <Fifth />
-      <div style={{ height: 50 }} />
     </>
   );
 };
