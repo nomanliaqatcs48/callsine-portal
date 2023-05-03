@@ -2,6 +2,8 @@ import React from "react";
 import {
   Button,
   Grid,
+  Link,
+  Rating,
   Typography,
   useMediaQuery,
   useTheme,
@@ -18,40 +20,53 @@ const Fourth = () => {
         <Grid
           item
           xs={12}
-          md={6}
           sx={{
             display: "flex",
+            flexDirection: "column",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          <Typography
-            variant="h2"
-            align="center"
-            sx={{ fontSize: 42, p: { md: 3 } }}
-          >
-            The LinkedIn + Email Prospecting is now 🚀
-          </Typography>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          md={6}
-          sx={{
-            pt: 2,
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <Button
-            size="large"
-            variant="contained"
-            color="primary"
-            sx={{ fontSize: 16 }}
-          >
-            Download CallSine today - it's free
-          </Button>
+          <div>
+            <Typography
+              align="center"
+              textTransform="uppercase"
+              sx={{
+                fontSize: 16,
+                fontWeight: 600,
+                color: theme.palette.primary.main,
+              }}
+            >
+              They know us better than we do
+            </Typography>
+          </div>
+          <div>
+            <Typography
+              align="center"
+              textTransform="uppercase"
+              sx={{
+                fontSize: 42,
+                fontWeight: 600,
+              }}
+            >
+              Happy customers ❤️
+            </Typography>
+          </div>
+          <div>
+            <Rating name="read-only" value={5} size="large" readOnly />
+          </div>
+          <div style={{ fontSize: 18, fontWeight: 400 }}>
+            <strong>5/5</strong> on Google Chrome Store
+          </div>
+          <div>
+            <Link
+              href="https://chrome.google.com/webstore/detail/callsine/adfdjhchgaagmbpiobdijaemefkdkndm"
+              underline="hover"
+              sx={{ fontSize: 14, fontWeight: 400 }}
+            >
+              See all reviews
+            </Link>
+          </div>
         </Grid>
       </Grid>
     </>

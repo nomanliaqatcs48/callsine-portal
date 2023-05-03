@@ -1,4 +1,5 @@
 import React from "react";
+import Fifth from "./Fifth";
 import Fourth from "./Fourth";
 import Hero from "./Hero";
 import Second from "./Second";
@@ -14,6 +15,8 @@ const Home = () => {
       <Third />
       <div style={{ height: 50 }} />
       <Fourth />
+      <div style={{ height: 50 }} />
+      <Fifth />
       <div style={{ height: 50 }} />
     </>
   );
