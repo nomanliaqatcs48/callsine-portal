@@ -19,6 +19,8 @@ const Fifth = () => {
           p: { xs: 1, md: 3 },
           pt: { xs: 10, md: 10 },
           pb: { xs: 10, md: 10 },
+          px: { lg: 15, xl: 30 },
+          background: "rgb(9,9,10)",
         }}
       >
         <Grid
@@ -34,7 +36,8 @@ const Fifth = () => {
           <Typography
             variant="h2"
             align="center"
-            sx={{ fontSize: 42, p: { md: 3 } }}
+            color="#fff"
+            sx={{ fontSize: 46, p: { md: 3 } }}
           >
             The LinkedIn + Email Prospecting is now 🚀
           </Typography>

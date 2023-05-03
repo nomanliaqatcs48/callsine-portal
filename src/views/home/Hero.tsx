@@ -10,10 +10,11 @@ const Hero = () => {
           p: { xs: 1, md: 3 },
           pt: { xs: 10, md: 10 },
           pb: { xs: 10, md: 10 },
+          px: { lg: 15, xl: 30 },
         }}
       >
-        <Grid item md={2} xl={3} />
-        <Grid item md={8} xl={6}>
+        <Grid item md={2} />
+        <Grid item md={8}>
           <h1
             style={{ textAlign: "center", fontSize: 42, lineHeight: "2.5rem" }}
           >

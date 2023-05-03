@@ -63,7 +63,7 @@ const Header = (props: HeaderProps) => {
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar color="inherit" elevation={0}>
-        <Toolbar>
+        <Toolbar sx={{ px: { lg: 15, xl: 30 } }}>
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -82,7 +82,9 @@ const Header = (props: HeaderProps) => {
           </Typography>
           <Box sx={{ display: { xs: "none", sm: "block" } }}>
             {navItems.map((item) => (
-              <Button key={item}>{item}</Button>
+              <Button key={item} sx={{ fontSize: 16 }}>
+                {item}
+              </Button>
             ))}
           </Box>
         </Toolbar>

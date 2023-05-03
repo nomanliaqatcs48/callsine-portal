@@ -22,6 +22,7 @@ const Fourth = () => {
           p: { xs: 1, md: 3 },
           pt: { xs: 10, md: 10 },
           pb: { xs: 10, md: 10 },
+          px: { lg: 15, xl: 30 },
         }}
       >
         <Grid
