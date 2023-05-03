@@ -2426,6 +2426,13 @@
   resolved "https://registry.yarnpkg.com/@types/mime/-/mime-3.0.1.tgz#5f8f2bca0a5863cb69bc0b0acd88c96cb1d4ae10"
   integrity sha512-Y4XFY5VJAuw0FgAqPNd6NNoV44jbq9Bz2L7Rh/J6jLTiHBSBJa9fxqQIvkIld4GsoDOcCbvzOUAbLPsSKKg+uA==
 
+"@types/mui-image@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/mui-image/-/mui-image-1.0.1.tgz#26f2ab97a640e0f1d81d94dbc276f8146fdc768f"
+  integrity sha512-HE+irW/EbADq6LrObWQIzpYu7sFHcTZTzp0K4JuKp2IUYGTkQhw2cVsJP2tk5h26Ex/MzDAMOXtmw71Z3SOTaQ==
+  dependencies:
+    "@types/react" "*"
+
 "@types/node@*":
   version "18.14.0"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-18.14.0.tgz#94c47b9217bbac49d4a67a967fdcdeed89ebb7d0"
