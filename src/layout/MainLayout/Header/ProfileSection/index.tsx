@@ -100,7 +100,7 @@ const ProfileSection = () => {
 
   const splitEmail = (email: string) => {
     let emailArr = email?.split("@");
-    return emailArr?.[0] || "";
+    return emailArr?.[0] || "Admin";
   };
 
   return (
