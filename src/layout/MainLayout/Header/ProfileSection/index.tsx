@@ -99,7 +99,7 @@ const ProfileSection = () => {
   }, [open]);
 
   const splitEmail = (email: string) => {
-    let emailArr = email.split("@");
+    let emailArr = email?.split("@");
     return emailArr?.[0] || "";
   };
 
