@@ -40,7 +40,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
     try {
       let _check = await checkIfAuthenticated();
       if (!_check) {
-        window.location.href = "/home";
+        window.location.href = "/login";
       }
       setTimeout(() => setIsOnPageLoading(false), 500);
     } catch ({ response }) {
