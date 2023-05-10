@@ -186,7 +186,7 @@ const ProfileSection = () => {
               </span>
               <KeyboardArrowDownIcon
                 fontSize="small"
-                sx={{ position: "relative", top: 5 }}
+                sx={{ position: "relative", top: -1, left: -8 }}
               />
             </span>
             {/*<IconSettings
