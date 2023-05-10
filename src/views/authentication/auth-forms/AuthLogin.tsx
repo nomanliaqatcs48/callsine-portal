@@ -315,7 +315,7 @@ const AuthLogin = ({ ...others }) => {
                 component={Link}
                 to="/signup"
                 variant="subtitle1"
-                className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-[#67a4e1] tw-font-bold hover:tw-text-[#579ce0]"
+                className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-bold hover:tw-text-primary"
               >
                 Don&apos;t have an account?
               </Typography>
