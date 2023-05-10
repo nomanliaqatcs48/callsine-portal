@@ -35,6 +35,7 @@ import MainCard from "../../../../ui-component/cards/MainCard";
 import Transitions from "../../../../ui-component/extended/Transitions";
 import UpgradePlanCard from "./UpgradePlanCard";
 import User1 from "../../../../assets/images/users/user-round.svg";
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 // assets
 import {
@@ -111,26 +112,30 @@ const ProfileSection = () => {
           alignItems: "center",
           borderRadius: "27px",
           transition: "all .2s ease-in-out",
-          borderColor: theme.palette.primary.light,
-          backgroundColor: theme.palette.primary.light,
+          borderColor: "transparent", //borderColor: theme.palette.primary.light,
+          backgroundColor: "transparent", //backgroundColor: theme.palette.primary.light,
           '&[aria-controls="menu-list-grow"], &:hover': {
             borderColor: theme.palette.primary.main,
             background: `${theme.palette.primary.main}!important`,
             color: theme.palette.primary.light,
             "& svg": {
-              stroke: theme.palette.primary.light,
+              // stroke: theme.palette.primary.light,
+              fill: "white",
+            },
+            "& .name": {
+              color: "white",
             },
           },
           "& .MuiChip-label": {
-            lineHeight: 0,
+            // lineHeight: 0,
           },
         }}
-        /*icon={
+        icon={
           <Avatar
             src={User1}
             sx={{
               ...theme.typography.mediumAvatar,
-              margin: "8px 0 8px 8px !important",
+              margin: "8px 8px 8px 8px !important",
               cursor: "pointer",
             }}
             ref={anchorRef}
@@ -138,13 +143,24 @@ const ProfileSection = () => {
             aria-haspopup="true"
             color="inherit"
           />
-        }*/
+        }
         label={
-          <IconSettings
-            stroke={1.5}
-            size="1.5rem"
-            color={theme.palette.primary.main}
-          />
+          <>
+            <span className="tw-text-black tw-tracking-wider tw-space-x-2">
+              <span className="name">
+                {auth?.first_name || splitEmail(auth?.email)} {auth?.last_name}
+              </span>
+              <KeyboardArrowDownIcon
+                fontSize="small"
+                sx={{ position: "relative", top: 5 }}
+              />
+            </span>
+            {/*<IconSettings
+              stroke={1.5}
+              size="1.5rem"
+              color={theme.palette.primary.main}
+            />*/}
+          </>
         }
         variant="outlined"
         ref={anchorRef}
