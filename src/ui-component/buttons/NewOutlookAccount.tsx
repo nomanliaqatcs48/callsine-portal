@@ -38,7 +38,7 @@ const NewOutlookAccount = ({
         disableElevation
         size={size}
         type="button"
-        variant="contained"
+        variant="outlined"
         color={color}
         onClick={handleClick}
         style={style}

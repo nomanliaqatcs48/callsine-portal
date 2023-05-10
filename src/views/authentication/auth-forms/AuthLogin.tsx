@@ -336,7 +336,7 @@ const AuthLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="secondary"
-                  className="tw-bg-primary tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3 hover:tw-bg-blue-700"
+                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3"
                   // sx={{ color: "#fff" }}
                 >
                   Sign in

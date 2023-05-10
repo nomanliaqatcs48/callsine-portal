@@ -137,7 +137,7 @@ const Playbook = () => {
                 disabled={isLoading?.regeneratePlaybook || isBtnLoading}
                 size="large"
                 type="button"
-                variant="contained"
+                variant="outlined"
                 color="primary"
                 onClick={regeneratePlaybook}
               >

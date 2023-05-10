@@ -9,7 +9,7 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type DeleteMailAccountTypes = {
   id: number;
-  buttonText: string;
+  buttonText: string | React.ReactNode;
   onLoadApi?: any;
   style?: React.CSSProperties | undefined;
   size?: "large" | "small" | "medium" | undefined;
@@ -22,6 +22,7 @@ type DeleteMailAccountTypes = {
     | "info"
     | "warning"
     | undefined;
+  [x: string]: any;
 };
 
 const DeleteMailAccount = ({
@@ -31,6 +32,7 @@ const DeleteMailAccount = ({
   style,
   size,
   color = "error",
+  ...other
 }: DeleteMailAccountTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -67,6 +69,7 @@ const DeleteMailAccount = ({
         color={color}
         onClick={handleOpen}
         style={style}
+        {...other}
       >
         {buttonText}
       </Button>
@@ -89,6 +92,7 @@ const DeleteMailAccount = ({
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
+              className="tw-bg-primary hover:tw-bg-primaryDark"
             >
               Yes, delete it!
             </Button>

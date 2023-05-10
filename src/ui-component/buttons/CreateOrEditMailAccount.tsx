@@ -31,12 +31,13 @@ import "react-toastify/dist/ReactToastify.css";
 
 type CreateOrEditMailAccountTypes = {
   id?: number | undefined;
-  btnText: string;
+  btnText: string | React.ReactNode;
   onSubmit: any;
   onClick: any;
   btnVariant?: "text" | "outlined" | "contained" | undefined;
   defaultValue?: any;
   btnStyle?: any;
+  [x: string]: any;
 };
 
 const CreateOrEditMailAccount = ({
@@ -47,6 +48,7 @@ const CreateOrEditMailAccount = ({
   defaultValue,
   btnStyle,
   btnText,
+  ...other
 }: CreateOrEditMailAccountTypes) => {
   const [open, setOpen] = React.useState(false);
   const [mailAccountLoading, setMailAccountLoading] = useState<any>({
@@ -143,6 +145,7 @@ const CreateOrEditMailAccount = ({
           onClick();
         }}
         style={btnStyle}
+        {...other}
       >
         {btnText}
       </Button>
@@ -336,7 +339,7 @@ const CreateOrEditMailAccount = ({
                 id ? onThisEditSubmit(data) : onThisAddSubmit(data)
               )}
               disabled={mailAccountLoading?.form}
-              variant="contained"
+              variant="outlined"
               color="primary"
             >
               {id ? "Edit" : "Add"}

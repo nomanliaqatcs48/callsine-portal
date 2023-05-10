@@ -448,7 +448,7 @@ const CreateEmail = ({
             <Button
               onClick={handleSubmit((data) => onSubmit(data))}
               disabled={isLoading?.form}
-              variant="contained"
+              variant="outlined"
               color="primary"
             >
               Create

@@ -1,8 +1,10 @@
+import React from "react";
 import NewGmailAccount from "../../ui-component/buttons/NewGmailAccount";
 import NewOutlookAccount from "../../ui-component/buttons/NewOutlookAccount";
 import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
-import React from "react";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export const _columns = (getMailAccounts: any) => {
   return [
@@ -69,22 +71,35 @@ export const _columns = (getMailAccounts: any) => {
       disableSortBy: true,
       Cell: (cell: any) => {
         return (
-          <>
+          <div className="tw-flex">
             <CreateOrEditMailAccount
               id={cell?.row?.original?.id}
               defaultValue={cell?.row?.original}
-              btnText="Edit"
+              btnText={
+                <>
+                  <EditIcon />
+                </>
+              }
               onSubmit={getMailAccounts}
               onClick={() => null}
-              btnVariant="contained"
+              btnVariant="outlined"
+              className="tw-border-transparent"
+              sx={{ p: 0, m: 0, width: 0, minWidth: 35 }}
             />
-            <span style={{ marginLeft: 5 }} />
+            <span className="" />
             <DeleteMailAccount
               id={cell?.row?.original?.id}
-              buttonText="Delete"
+              variant="outlined"
+              buttonText={
+                <>
+                  <DeleteIcon />
+                </>
+              }
               onLoadApi={getMailAccounts}
+              className="tw-border-transparent"
+              sx={{ p: 0, m: 0, width: 0, minWidth: 35 }}
             />
-          </>
+          </div>
         );
       },
     },
