@@ -40,7 +40,7 @@ const Login = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Grid item sx={{ mb: 3 }}>
+                  <Grid item className="-tw-mb-4">
                     <Link to="#">
                       <Logo />
                     </Link>
@@ -52,7 +52,7 @@ const Login = () => {
                       alignItems="center"
                       justifyContent="center"
                     >
-                      <Grid item>
+                      {/*<Grid item>
                         <Stack
                           alignItems="center"
                           justifyContent="center"
@@ -65,24 +65,24 @@ const Login = () => {
                           >
                             Hi, Welcome Back
                           </Typography>
-                          {/*<Typography
+                          <Typography
                             variant="caption"
                             fontSize="16px"
                             textAlign={matchDownSM ? "center" : "inherit"}
                           >
                             Enter your credentials to continue
-                          </Typography>*/}
+                          </Typography>
                         </Stack>
-                      </Grid>
+                      </Grid>*/}
                     </Grid>
                   </Grid>
                   <Grid item xs={12}>
                     <AuthLogin />
                   </Grid>
-                  <Grid item xs={12}>
+                  {/*<Grid item xs={12}>
                     <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
+                  </Grid>*/}
+                  {/*<Grid item xs={12}>
                     <Grid
                       item
                       container
@@ -99,7 +99,7 @@ const Login = () => {
                         Don&apos;t have an account?
                       </Typography>
                     </Grid>
-                  </Grid>
+                  </Grid>*/}
                 </Grid>
               </AuthCardWrapper>
             </Grid>

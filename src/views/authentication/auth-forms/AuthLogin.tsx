@@ -37,6 +37,7 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { loginService } from "../../../services/auth.service";
 import { saveString } from "../../../utils/storage";
 import { devLog, devLogError } from "../../../helpers/logs";
+import { Link } from "react-router-dom";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -192,11 +193,23 @@ const AuthLogin = ({ ...others }) => {
             <FormControl
               fullWidth
               error={Boolean(touched.email && errors.email)}
-              sx={{ ...theme.typography.customInput }}
+              sx={{
+                ...theme.typography.customInput,
+                "& > div > input": {
+                  padding: "10.5px 14px 11.5px !important",
+                  backgroundColor: "white",
+                },
+                "& fieldset": {
+                  borderRadius: 2,
+                  borderColor: "transparent",
+                  boxShadow: "0 0px 6px rgba(0, 0, 0, 0.1)",
+                },
+              }}
             >
-              <InputLabel htmlFor="outlined-adornment-email-login">
+              <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
+              {/*<InputLabel htmlFor="outlined-adornment-email-login">
                 Email Address / Username
-              </InputLabel>
+              </InputLabel>*/}
               <OutlinedInput
                 id="outlined-adornment-email-login"
                 type="text"
@@ -204,7 +217,7 @@ const AuthLogin = ({ ...others }) => {
                 name="email"
                 onBlur={handleBlur}
                 onChange={handleChange}
-                label="Email Address / Username"
+                // label="Email Address / Username"
                 inputProps={{}}
                 autoComplete="off"
               />
@@ -212,6 +225,7 @@ const AuthLogin = ({ ...others }) => {
                 <FormHelperText
                   error
                   id="standard-weight-helper-text-email-login"
+                  className="tw-ml-1"
                 >
                   {errors.email}
                 </FormHelperText>
@@ -221,11 +235,23 @@ const AuthLogin = ({ ...others }) => {
             <FormControl
               fullWidth
               error={Boolean(touched.password && errors.password)}
-              sx={{ ...theme.typography.customInput }}
+              sx={{
+                ...theme.typography.customInput,
+                "& > div > input": {
+                  padding: "10.5px 14px 11.5px !important",
+                  backgroundColor: "white",
+                },
+                "& fieldset": {
+                  borderRadius: 2,
+                  borderColor: "transparent",
+                  boxShadow: "0 0px 6px rgba(0, 0, 0, 0.1)",
+                },
+              }}
             >
-              <InputLabel htmlFor="outlined-adornment-password-login">
+              <div className="tw-text-xs tw-py-3 tw-font-medium">Password</div>
+              {/*<InputLabel htmlFor="outlined-adornment-password-login">
                 Password
-              </InputLabel>
+              </InputLabel>*/}
               <OutlinedInput
                 id="outlined-adornment-password-login"
                 type={showPassword ? "text" : "password"}
@@ -254,6 +280,7 @@ const AuthLogin = ({ ...others }) => {
                 <FormHelperText
                   error
                   id="standard-weight-helper-text-password-login"
+                  className="tw-ml-1"
                 >
                   {errors.password}
                 </FormHelperText>
@@ -262,10 +289,10 @@ const AuthLogin = ({ ...others }) => {
             <Stack
               direction="row"
               alignItems="center"
-              justifyContent="space-between"
+              justifyContent="end"
               spacing={1}
             >
-              <FormControlLabel
+              {/*<FormControlLabel
                 control={
                   <Checkbox
                     checked={checked}
@@ -275,7 +302,7 @@ const AuthLogin = ({ ...others }) => {
                   />
                 }
                 label="Remember me"
-              />
+              />*/}
               {/*<Typography
                 variant="subtitle1"
                 color="secondary"
@@ -283,6 +310,15 @@ const AuthLogin = ({ ...others }) => {
               >
                 Forgot Password?
               </Typography>*/}
+
+              <Typography
+                component={Link}
+                to="/signup"
+                variant="subtitle1"
+                className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-[#67a4e1] tw-font-bold hover:tw-text-[#579ce0]"
+              >
+                Don&apos;t have an account?
+              </Typography>
             </Stack>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
@@ -290,7 +326,7 @@ const AuthLogin = ({ ...others }) => {
               </Box>
             )}
 
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 3 }}>
               <AnimateButton>
                 <Button
                   disableElevation
@@ -300,7 +336,8 @@ const AuthLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="secondary"
-                  sx={{ color: "#fff" }}
+                  className="tw-bg-primary tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3 hover:tw-bg-blue-700"
+                  // sx={{ color: "#fff" }}
                 >
                   Sign in
                 </Button>

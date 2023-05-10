@@ -25,6 +25,7 @@ const AuthCardWrapper = ({ children, ...other }: AuthCardWrapperTypes) => (
       },
     }}
     content={false}
+    border={false}
     {...other}
   >
     <Box sx={{ p: { xs: 2, sm: 3, xl: 5 } }}>{children}</Box>

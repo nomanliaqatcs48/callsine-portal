@@ -5,7 +5,7 @@ import { Link, Typography, Stack } from "@mui/material";
 
 const AuthFooter = () => (
   <Stack direction="row" justifyContent="space-between">
-    <Typography
+    {/*<Typography
       variant="subtitle2"
       component={Link}
       href="https://app.callsine.com"
@@ -22,7 +22,7 @@ const AuthFooter = () => (
       underline="hover"
     >
       &copy; callsine.com
-    </Typography>
+    </Typography>*/}
   </Stack>
 );
 
