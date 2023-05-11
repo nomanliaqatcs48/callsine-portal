@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React from "react";
 import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
@@ -39,7 +39,9 @@ const MailAccountsPage = () => {
   }, 1000);
 
   return (
-    <MainCard title="Mail Accounts">
+    <div>
+      <Typography className="tw-text-4xl">Mail Accounts</Typography>
+      <Grid className="tw-my-5" />
       <Grid
         container
         direction="row"
@@ -50,11 +52,11 @@ const MailAccountsPage = () => {
           btnText="Add Mail Account"
           onSubmit={getMailAccounts}
           onClick={() => null}
-          btnVariant="contained"
+          btnVariant="outlined"
         />
       </Grid>
       <div style={{ height: 3 }} />
-      <Grid container spacing={2}>
+      {/*<Grid container spacing={2}>
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <TotalListSmallCard
             isLoading={isLoading?.onPage}
@@ -62,9 +64,9 @@ const MailAccountsPage = () => {
             text="Total"
           />
         </Grid>
-      </Grid>
+      </Grid>*/}
       <div style={{ height: 20 }} />
-      <Grid
+      {/*<Grid
         container
         direction="row"
         justifyContent="flex-end"
@@ -74,7 +76,7 @@ const MailAccountsPage = () => {
           searchValue={searchValue}
           onChange={handleSearchOnBeforeChange}
         />
-      </Grid>
+      </Grid>*/}
       <MyTable
         columns={_columns(getMailAccounts)}
         data={mailAccountsData}
@@ -92,7 +94,7 @@ const MailAccountsPage = () => {
         // sortedId={sortedId}
         // isOrderDesc={isOrderDesc}
       />
-    </MainCard>
+    </div>
   );
 };
 
