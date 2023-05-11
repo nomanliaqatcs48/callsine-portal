@@ -36,7 +36,7 @@ const PersonsPage = () => {
         container
         spacing={0}
         columnSpacing={{ xl: 2 }}
-        className="tw-space-y-5 lg:tw-space-y-0"
+        className="tw-space-y-5 lg:tw-space-y-0 lg:tw-space-x-3 xl:tw-space-x-0"
       >
         {/*search and filter*/}
         <Grid
@@ -44,9 +44,9 @@ const PersonsPage = () => {
           xs={12}
           sm={12}
           md={12}
-          lg={8}
+          lg={7}
           xl={9}
-          className="tw-bg-white tw-p-3 tw-border tw-border-[#eff0f1] tw-rounded-lg xl:tw-flex xl:tw-items-center"
+          className="tw-bg-white tw-p-3 tw-border tw-border-[#eff0f1] tw-rounded-lg sm:tw-px-32 xl:tw-flex xl:tw-items-center"
         >
           <Grid
             container
