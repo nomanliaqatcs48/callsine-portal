@@ -83,8 +83,8 @@ export const _columns = (getMailAccounts: any) => {
               onSubmit={getMailAccounts}
               onClick={() => null}
               btnVariant="outlined"
-              className="tw-border-transparent"
-              sx={{ p: 0, m: 0, width: 0, minWidth: 35 }}
+              className="tw-border-transparent tw-rounded-full tw-h-8"
+              sx={{ p: 2, m: 0, width: 0, minWidth: 35 }}
             />
             <span className="" />
             <DeleteMailAccount
@@ -96,8 +96,8 @@ export const _columns = (getMailAccounts: any) => {
                 </>
               }
               onLoadApi={getMailAccounts}
-              className="tw-border-transparent"
-              sx={{ p: 0, m: 0, width: 0, minWidth: 35 }}
+              className="tw-border-transparent tw-rounded-full tw-h-8"
+              sx={{ p: 2, m: 0, width: 0, minWidth: 35 }}
             />
           </div>
         );
