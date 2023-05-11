@@ -202,7 +202,7 @@ const AuthLogin = ({ ...others }) => {
                 "& fieldset": {
                   borderRadius: 2,
                   borderColor: "transparent",
-                  boxShadow: "0 0px 6px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 0px 3px 1px rgba(0, 0, 0, 0.1)",
                 },
               }}
             >
@@ -220,6 +220,13 @@ const AuthLogin = ({ ...others }) => {
                 // label="Email Address / Username"
                 inputProps={{}}
                 autoComplete="off"
+                sx={{
+                  "&:hover": {
+                    "& fieldset": {
+                      borderColor: "#2b8cc3!important",
+                    },
+                  },
+                }}
               />
               {touched.email && errors.email && (
                 <FormHelperText
@@ -244,7 +251,7 @@ const AuthLogin = ({ ...others }) => {
                 "& fieldset": {
                   borderRadius: 2,
                   borderColor: "transparent",
-                  boxShadow: "0 0px 6px rgba(0, 0, 0, 0.1)",
+                  boxShadow: "0 0px 3px 1px rgba(0, 0, 0, 0.1)",
                 },
               }}
             >
@@ -275,6 +282,14 @@ const AuthLogin = ({ ...others }) => {
                 label="Password"
                 inputProps={{}}
                 autoComplete="off"
+                className="tw-bg-transparent"
+                sx={{
+                  "&:hover": {
+                    "& fieldset": {
+                      borderColor: "#2b8cc3!important",
+                    },
+                  },
+                }}
               />
               {touched.password && errors.password && (
                 <FormHelperText
@@ -315,7 +330,7 @@ const AuthLogin = ({ ...others }) => {
                 component={Link}
                 to="/signup"
                 variant="subtitle1"
-                className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-bold hover:tw-text-primary"
+                className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary"
               >
                 Don&apos;t have an account?
               </Typography>
