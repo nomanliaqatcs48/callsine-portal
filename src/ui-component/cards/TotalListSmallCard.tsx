@@ -6,7 +6,7 @@ import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonTotalListSmall from "../../ui-component/cards/Skeleton/TotalListSmallCard";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
-  backgroundColor: theme.palette.secondary.dark,
+  backgroundColor: theme.palette.primary.main,
   color: "#fff",
   overflow: "hidden",
   position: "relative",
@@ -15,7 +15,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: "absolute",
     width: 210,
     height: 210,
-    background: theme.palette.secondary[800],
+    background: theme.palette.primary[800],
     borderRadius: "50%",
     top: -85,
     right: -95,
@@ -29,7 +29,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: "absolute",
     width: 210,
     height: 210,
-    background: theme.palette.secondary[800],
+    background: theme.palette.primary[800],
     borderRadius: "50%",
     top: -125,
     right: -15,
@@ -62,14 +62,14 @@ const TotalListSmallCard = ({
       ) : (
         <CardWrapper border={false} content={false}>
           <Box sx={{ p: 2.25 }}>
-            <Grid container direction="column">
+            <Grid container direction="column" alignItems="center">
               <Grid item>
                 <Grid container alignItems="center">
                   <Grid item sx={{ zIndex: 99 }}>
                     <Typography
                       sx={{
                         fontSize: "2.125rem",
-                        fontWeight: 500,
+                        fontWeight: 600,
                         mr: 1,
                         mt: 1.75,
                         mb: 0.75,
@@ -84,8 +84,8 @@ const TotalListSmallCard = ({
                 <Typography
                   sx={{
                     fontSize: "1rem",
-                    fontWeight: 500,
-                    color: theme.palette.secondary[200],
+                    fontWeight: 400,
+                    // color: theme.palette.primary[200],
                   }}
                 >
                   {text}
