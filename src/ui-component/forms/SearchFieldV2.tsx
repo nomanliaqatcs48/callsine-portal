@@ -5,9 +5,12 @@ import SearchIcon from "@mui/icons-material/Search";
 const SearchFieldV2 = () => {
   return (
     <>
-      <Typography className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-text-xs tw-font-medium">
+      <label
+        htmlFor="search-people"
+        className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-text-xs tw-font-medium"
+      >
         What are you looking for?
-      </Typography>
+      </label>
       <Grid>
         <div className="tw-relative">
           <input
