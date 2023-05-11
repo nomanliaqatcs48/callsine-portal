@@ -41,6 +41,7 @@ export const theme = (customization: any) => {
         xl: 1280,
         "2xl": 1536,
         "3xl": 1800,
+        "4xl": 1920,
       },
     },
     direction: "ltr",
