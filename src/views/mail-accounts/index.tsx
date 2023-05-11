@@ -88,6 +88,8 @@ const MailAccountsPage = () => {
         setFilters={setFilters}
         removePageSizeDropdown={false}
         isResponsive={true}
+        removeSelection={false}
+        hiddenColumns={["last_name"]}
         // setSortedId={setSortedId}
         // setIsOrderDesc={setIsOrderDesc}
         //

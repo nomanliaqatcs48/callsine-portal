@@ -5,7 +5,7 @@ export const _columns: any = () => {
   const theme: any = useTheme();
   return [
     {
-      Header: "First",
+      Header: "Name",
       accessor: "first_name",
       Cell: (cell: any) => {
         return (
@@ -16,7 +16,7 @@ export const _columns: any = () => {
               textDecoration: "underline",
             }}
           >
-            {cell?.value}
+            {cell?.value} {cell?.row?.original?.last_name}
           </a>
         );
       },

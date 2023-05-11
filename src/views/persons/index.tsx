@@ -109,6 +109,8 @@ const PersonsPage = () => {
         setFilters={setFilters}
         removePageSizeDropdown={false}
         isResponsive={true}
+        removeSelection={false}
+        hiddenColumns={["last_name"]}
         // topContent={renderSearch}
         // setSortedId={setSortedId}
         // setIsOrderDesc={setIsOrderDesc}

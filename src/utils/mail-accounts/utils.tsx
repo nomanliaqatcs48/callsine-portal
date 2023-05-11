@@ -9,8 +9,11 @@ import DeleteIcon from "@mui/icons-material/Delete";
 export const _columns = (getMailAccounts: any) => {
   return [
     {
-      Header: "First",
+      Header: "Name",
       accessor: "first_name",
+      Cell: (cell: any) => {
+        return `${cell?.value} ${cell?.row?.original?.last_name}`;
+      },
     },
     {
       Header: "Last",
@@ -39,7 +42,7 @@ export const _columns = (getMailAccounts: any) => {
       },
     },
     {
-      Header: "Connected",
+      Header: "Status",
       accessor: "connected",
       Cell: (cell: any) => {
         let showBtn = () => {
@@ -66,7 +69,7 @@ export const _columns = (getMailAccounts: any) => {
       },
     },
     {
-      Header: "",
+      Header: "Actions",
       accessor: "action",
       disableSortBy: true,
       Cell: (cell: any) => {
