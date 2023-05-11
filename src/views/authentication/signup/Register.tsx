@@ -59,7 +59,8 @@ const Register = () => {
                           spacing={1}
                         >
                           <Typography
-                            color={theme.palette.secondary.main}
+                            // color={theme.palette.secondary.main}
+                            className="tw-text-primary"
                             gutterBottom
                             variant={matchDownSM ? "h3" : "h2"}
                           >

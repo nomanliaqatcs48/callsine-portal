@@ -504,6 +504,7 @@ const AuthRegister = ({ ...others }) => {
                   variant="contained"
                   color="secondary"
                   sx={{ color: "#fff" }}
+                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3"
                 >
                   Sign up
                 </Button>
