@@ -171,6 +171,11 @@ const Playbook = () => {
             size="large"
             type="submit"
             variant="contained"
+            className={
+              promptId
+                ? "tw-bg-primary tw-text-white hover:tw-bg-primaryLight"
+                : ""
+            }
             color="primary"
             fullWidth
             onClick={handleGeneratePlaybook}
