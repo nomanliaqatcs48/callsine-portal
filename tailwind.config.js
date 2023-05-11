@@ -8,6 +8,7 @@ module.exports = {
         primary: "#1a76d2",
         primaryLight: "#3e8fe7",
         primaryDark: "#0758b6",
+        veryPrimaryLight: "#f8fbff",
 
         cyan: "hsl(180, 66%, 49%)",
         cyanLight: "hsl(180, 66%, 69%)",
