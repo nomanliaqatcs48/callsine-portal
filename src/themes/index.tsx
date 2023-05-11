@@ -40,6 +40,7 @@ export const theme = (customization: any) => {
         lg: 1024,
         xl: 1280,
         "2xl": 1536,
+        "3xl": 1800,
       },
     },
     direction: "ltr",
