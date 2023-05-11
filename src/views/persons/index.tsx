@@ -1,10 +1,19 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import {
+  FormControl,
+  Grid,
+  InputBase,
+  InputLabel,
+  OutlinedInput,
+  Typography,
+} from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "./utils/utils";
 import { usePersons } from "./hooks/usePersons";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
+import SearchFieldV2 from "../../ui-component/forms/SearchFieldV2";
+import Filter from "../../ui-component/dropdowns/Filter";
 
 const PersonsPage = () => {
   const {
@@ -20,10 +29,68 @@ const PersonsPage = () => {
   } = usePersons();
 
   return (
-    <MainCard title="People">
-      <div style={{ height: 3 }} />
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
+    <div>
+      <Typography className="tw-text-4xl">People</Typography>
+      <Grid className="tw-my-5" />
+      <Grid
+        container
+        spacing={0}
+        columnSpacing={{ xl: 2 }}
+        className="tw-space-y-5 lg:tw-space-y-0"
+      >
+        {/*search and filter*/}
+        <Grid
+          item
+          xs={12}
+          sm={12}
+          md={12}
+          lg={8}
+          xl={9}
+          className="tw-bg-white tw-p-3 tw-border tw-border-[#eff0f1] tw-rounded-lg xl:tw-flex xl:tw-items-center"
+        >
+          <Grid
+            container
+            className="tw-space-y-2 xl:tw-space-y-0 xl:tw-space-x-4"
+          >
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={5}>
+              <SearchFieldV2 />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
+              <Filter
+                id="title-filter"
+                showLabel={true}
+                labelText="Title"
+                data={[{ label: "All", value: "" }]}
+              />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
+              <Filter
+                id="company-filter"
+                showLabel={true}
+                labelText="Company"
+                data={[{ label: "All", value: "" }]}
+              />
+            </Grid>
+            <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
+              <Filter
+                id="industry-filter"
+                showLabel={true}
+                labelText="Industry"
+                data={[{ label: "All", value: "" }]}
+              />
+            </Grid>
+          </Grid>
+        </Grid>
+        {/*card*/}
+        <Grid
+          item
+          className="tw-flex tw-flex-col tw-justify-center tw-px-20 lg:tw-px-1"
+          xs={12}
+          sm={12}
+          md={12}
+          lg={4}
+          xl={3}
+        >
           <TotalListSmallCard
             isLoading={isLoading?.onPage}
             value={total}
@@ -50,7 +117,7 @@ const PersonsPage = () => {
         // sortedId={sortedId}
         // isOrderDesc={isOrderDesc}
       />
-    </MainCard>
+    </div>
   );
 };
 
