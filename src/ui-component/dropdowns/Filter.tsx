@@ -21,7 +21,7 @@ const Filter = ({ id, showLabel, labelText, data }: FilterProps) => {
       <div className="tw-relative">
         <select
           id={id}
-          className="tw-bg-white tw-border tw-border-[#f3f3f3] tw-text-gray-900 tw-text-xs tw-rounded-lg tw-block tw-w-full tw-p-2.5 tw-appearance-none hover:tw-border-blue-300 focus:tw-border-blue-300 focus:tw-outline-none"
+          className="tw-bg-white tw-border tw-border-[#f3f3f3] tw-text-gray-900 tw-text-xs tw-rounded-md tw-block tw-w-full tw-p-2.5 tw-appearance-none hover:tw-border-blue-300 focus:tw-border-blue-300 focus:tw-outline-none"
         >
           {data?.length > 0 &&
             data.map((item: any, idx: number) => {
