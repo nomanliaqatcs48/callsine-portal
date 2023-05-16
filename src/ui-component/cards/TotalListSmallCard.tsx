@@ -65,7 +65,7 @@ const TotalListSmallCard = ({
             <Grid container direction="column" alignItems="center">
               <Grid item>
                 <Grid container alignItems="center">
-                  <Grid item sx={{ zIndex: 99 }}>
+                  <Grid item className="tw-z-50">
                     <Typography
                       sx={{
                         fontSize: "2.125rem",
@@ -80,7 +80,7 @@ const TotalListSmallCard = ({
                   </Grid>
                 </Grid>
               </Grid>
-              <Grid item sx={{ mb: 1.25 }}>
+              <Grid item sx={{ mb: 1.25 }} className="tw-z-50">
                 <Typography
                   sx={{
                     fontSize: "1rem",

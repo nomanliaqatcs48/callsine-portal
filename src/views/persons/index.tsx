@@ -22,8 +22,10 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { useAuth } from "../../contexts/auth";
 
 const PersonsPage = () => {
+  const auth: any = useAuth();
   const {
     personsData,
     setPersonsData,
@@ -100,8 +102,8 @@ const PersonsPage = () => {
         >
           <TotalListSmallCard
             isLoading={isLoading?.onPage}
-            value={total}
-            text="Total"
+            value={auth?.clicks_remaining || 0}
+            text="Remaining People"
           />
         </Grid>
       </Grid>
@@ -208,7 +210,7 @@ const PersonsPage = () => {
               variant="text"
               className="tw-text-[#3fb0d5] hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
             >
-              6 People Total
+              {total || 0} People Total
             </Button>
           </Grid>
         </Grid>
