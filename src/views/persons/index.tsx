@@ -1,10 +1,13 @@
 import React from "react";
 import {
+  Button,
+  Divider,
   FormControl,
   Grid,
   InputBase,
   InputLabel,
   OutlinedInput,
+  Paper,
   Typography,
 } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
@@ -14,6 +17,11 @@ import { usePersons } from "./hooks/usePersons";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
 import SearchFieldV2 from "../../ui-component/forms/SearchFieldV2";
 import Filter from "../../ui-component/dropdowns/Filter";
+import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 const PersonsPage = () => {
   const {
@@ -98,26 +106,133 @@ const PersonsPage = () => {
         </Grid>
       </Grid>
       <div style={{ height: 20 }} />
-      <MyTable
-        columns={_columns()}
-        data={personsData}
-        totalItems={total || 0}
-        tableName="PersonsTable"
-        tableClassName="table-persons gray-header table-sm"
-        isTableLoading={isLoading?.table}
-        filters={filters}
-        setFilters={setFilters}
-        removePageSizeDropdown={false}
-        isResponsive={true}
-        removeSelection={false}
-        hiddenColumns={["last_name"]}
-        // topContent={renderSearch}
-        // setSortedId={setSortedId}
-        // setIsOrderDesc={setIsOrderDesc}
-        //
-        // sortedId={sortedId}
-        // isOrderDesc={isOrderDesc}
-      />
+      <Paper elevation={2} className="tw-pt-4">
+        <Grid container>
+          <Grid item xs={12} lg={2}>
+            <Typography className="tw-text-lg tw-font-medium tw-pl-3">
+              User Details
+            </Typography>
+          </Grid>
+          <Grid
+            item
+            xs={12}
+            lg={10}
+            className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
+          >
+            <CreateOrEditPerson
+              btnText={
+                <>
+                  <PersonAddAlt1Icon
+                    color="primary"
+                    sx={{ fontSize: 15 }}
+                    className="tw-mr-2"
+                  />
+                  Add User
+                </>
+              }
+              onSubmit={() => null}
+              onClick={() => null}
+            />
+
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-hidden lg:tw-block"
+              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+            />
+
+            <Button
+              onClick={() => null}
+              disabled={false}
+              className="tw-text-[#778da9]"
+            >
+              <FileUploadOutlinedIcon
+                sx={{ color: "#778da9", fontSize: 15 }}
+                className="tw-mr-2"
+              />
+              Import User
+            </Button>
+
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-hidden lg:tw-block"
+              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+            />
+
+            <Button
+              onClick={() => null}
+              disabled={false}
+              className="tw-text-[#778da9]"
+            >
+              <FileDownloadOutlinedIcon
+                sx={{ color: "#778da9", fontSize: 15 }}
+                className="tw-mr-2"
+              />
+              Export Users
+            </Button>
+
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-hidden lg:tw-block"
+              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+            />
+
+            <Button
+              onClick={() => null}
+              disabled={false}
+              className="tw-text-[#778da9]"
+            >
+              <DeleteIcon
+                sx={{ color: "#778da9", fontSize: 15 }}
+                className="tw-mr-2"
+              />
+              Delete
+            </Button>
+
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-hidden lg:tw-block"
+              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+            />
+
+            <Button
+              onClick={() => null}
+              disabled={false}
+              variant="text"
+              className="tw-text-[#3fb0d5] hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
+            >
+              6 People Total
+            </Button>
+          </Grid>
+        </Grid>
+        <MyTable
+          columns={_columns()}
+          data={personsData}
+          totalItems={total || 0}
+          tableName="PersonsTable"
+          tableClassName="table-persons gray-header table-sm"
+          isTableLoading={isLoading?.table}
+          filters={filters}
+          setFilters={setFilters}
+          removePageSizeDropdown={false}
+          isResponsive={true}
+          removeSelection={false}
+          hiddenColumns={["last_name"]}
+          // topContent={renderSearch}
+          // setSortedId={setSortedId}
+          // setIsOrderDesc={setIsOrderDesc}
+          //
+          // sortedId={sortedId}
+          // isOrderDesc={isOrderDesc}
+        />
+      </Paper>
     </div>
   );
 };
