@@ -13,15 +13,15 @@ import {
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
-import { devLogError } from "../../helpers/logs";
-import {
-  createMailAccountService,
-  updateMailAccountService,
-} from "../../services/mail-accounts.service";
+import { devLog, devLogError } from "../../helpers/logs";
+import { updateMailAccountService } from "../../services/mail-accounts.service";
 import { emailAddressPattern } from "../../helpers/forms";
 import { ToastContainer, toast } from "react-toastify";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import "react-toastify/dist/ReactToastify.css";
+import { createPeopleService } from "../../services/persons.service";
+import { load, save } from "../../utils/storage";
+import { profileService } from "../../services/profile.service";
 
 type CreateOrEditPersonTypes = {
   id?: number | undefined;
@@ -61,8 +61,37 @@ const CreateOrEditPerson = ({
   } = useForm();
 
   useEffect(() => {
-    //
+    register("created_by", {
+      required: "This is required field.",
+    });
+    register("modified_by", {
+      required: "This is required field.",
+    });
+    getProfile();
   }, []);
+
+  const getProfile = async () => {
+    try {
+      let _profile = await load("profile");
+      if (_profile) {
+        // set created_by and modified_by
+        setValue("created_by", _profile?.id);
+        setValue("modified_by", _profile?.id);
+      } else {
+        let res = await profileService();
+        if (res?.data) {
+          await save("profile", res.data);
+
+          // set created_by and modified_by
+          setValue("created_by", res.data?.id);
+          setValue("modified_by", res.data?.id);
+        }
+        devLog("res", res);
+      }
+    } catch (e) {
+      devLogError(e);
+    }
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -97,7 +126,7 @@ const CreateOrEditPerson = ({
   const onThisAddSubmit = async (data: any) => {
     setPersonLoading((prev: any) => ({ ...prev, form: true }));
     try {
-      let res = await createMailAccountService(data);
+      let res = await createPeopleService(data);
       if (res?.data) {
         ToastSuccess("New person successfully created.");
 
