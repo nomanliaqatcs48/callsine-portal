@@ -1,8 +1,10 @@
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
-export const getPeopleService = async () => {
-  return await http.get(`${endpoints.PERSON}`);
+export const getPeopleService = async (filters: any, searchValue: string) => {
+  return await http.get(
+    `${endpoints.PERSON}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+  );
 };
 
 export const createPeopleService = async (data: any) => {
