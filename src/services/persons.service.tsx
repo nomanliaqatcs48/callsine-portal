@@ -5,6 +5,10 @@ export const getPeopleService = async () => {
   return await http.get(`${endpoints.PERSON}`);
 };
 
+export const createPeopleService = async (data: any) => {
+  return await http.post(`${endpoints.PERSON}`, data);
+};
+
 export const getPersonDetailService = async (id: number) => {
   return await http.get(`${endpoints.PERSON}${id}/`);
 };
