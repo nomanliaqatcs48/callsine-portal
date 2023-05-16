@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getPersonDetailService,
   getPeopleService,
@@ -8,8 +8,9 @@ import { devLogError } from "../../../helpers/logs";
 export const usePersons = () => {
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
+  const [searchValue, setSearchValue] = useState<string>("");
   const [filters, setFilters] = React.useState<any>({
-    limit: 10,
+    limit: 9999,
     offset: 0,
     currentPage: 1,
   });
@@ -24,7 +25,7 @@ export const usePersons = () => {
 
   const getPeople = async () => {
     try {
-      let res = await getPeopleService();
+      let res = await getPeopleService(filters, searchValue);
       if (res?.data) {
         setTotal(res.data?.count);
         setPersonsData(res.data?.results);
