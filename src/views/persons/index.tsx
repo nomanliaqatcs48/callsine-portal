@@ -132,7 +132,7 @@ const PersonsPage = () => {
                   Add User
                 </>
               }
-              onSubmit={() => null}
+              onSubmit={getPeople}
               onClick={() => null}
             />
 
