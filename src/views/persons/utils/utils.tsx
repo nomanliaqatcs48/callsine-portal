@@ -129,6 +129,10 @@ export const _columns: any = () => {
                     ? ", " + cell?.row?.original?.state
                     : ""
                 }`}
+
+                {!cell?.row?.original?.city && !cell?.row?.original?.state
+                  ? "-"
+                  : ""}
               </span>
             ),
           },
