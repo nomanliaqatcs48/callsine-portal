@@ -279,7 +279,12 @@ const MyTable = (props: MyTableProps): JSX.Element => {
 
       return (
         <>
-          <input type="checkbox" ref={resolvedRef} {...rest} />
+          <input
+            type="checkbox"
+            className="tw-h-3.5 tw-h-3.5 tw-text-blue-600 tw-bg-gray-100 tw-border-gray-100 tw-rounded tw-border-opacity-50 tw-opacity-80 focus:tw-ring-blue-200 focus:tw-ring-1"
+            ref={resolvedRef}
+            {...rest}
+          />
         </>
       );
     }
