@@ -1,5 +1,8 @@
 import moment from "moment";
 import { useTheme } from "@mui/material/styles";
+import React from "react";
+import { Button } from "@mui/material";
+import { IconTrash } from "@tabler/icons-react";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
@@ -14,11 +17,8 @@ export const _columns: any = () => {
       Cell: (cell: any) => {
         return (
           <a
-            className=""
+            className="tw-no-underline"
             href={`/people/${cell?.row?.original?.id}`}
-            style={{
-              textDecoration: "underline",
-            }}
           >
             {cell?.value} {cell?.row?.original?.last_name}
           </a>
@@ -28,10 +28,31 @@ export const _columns: any = () => {
     {
       Header: () => {
         return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">Last</span>
+          <span className="tw-font-normal tw-text-xs tw-uppercase">Title</span>
         );
       },
-      accessor: "last_name",
+      accessor: "job_title",
+    },
+    {
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">
+            Company
+          </span>
+        );
+      },
+      accessor: "org.name",
+    },
+    {
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">Phone</span>
+        );
+      },
+      accessor: "phone",
+      Cell: (cell: any) => {
+        return <span>{cell?.value || "-"}</span>;
+      },
     },
     {
       Header: () => {
@@ -51,6 +72,62 @@ export const _columns: any = () => {
           >
             {cell?.value}
           </a>
+        );
+      },
+    },
+    {
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">
+            Location
+          </span>
+        );
+      },
+      accessor: "city",
+      Cell: (cell: any) => {
+        return `${cell?.row?.original?.city || ""}${
+          cell?.row?.original?.state ? ", " + cell?.row?.original?.state : ""
+        }`;
+      },
+    },
+    {
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">
+            Industry
+          </span>
+        );
+      },
+      accessor: "org.industry",
+      Cell: (cell: any) => {
+        return cell?.value || "-";
+      },
+    },
+    {
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">
+            Actions
+          </span>
+        );
+      },
+      disableSortBy: true,
+      accessor: "actions",
+      Cell: (cell: any) => {
+        return (
+          <>
+            <Button
+              onClick={() => null}
+              className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+            >
+              <IconTrash
+                style={{ color: theme.palette.primary.main }}
+                size="15"
+                strokeWidth={3}
+                className=""
+              />
+            </Button>
+          </>
         );
       },
     },
