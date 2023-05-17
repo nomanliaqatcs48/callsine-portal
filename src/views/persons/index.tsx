@@ -121,7 +121,7 @@ const PersonsPage = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
-            {/*<CreateOrEditPerson
+            <CreateOrEditPerson
               btnText={
                 <>
                   <PersonAddAlt1Icon
@@ -142,7 +142,7 @@ const PersonsPage = () => {
               flexItem
               className="tw-hidden lg:tw-block"
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />*/}
+            />
 
             <Button
               onClick={() => null}
