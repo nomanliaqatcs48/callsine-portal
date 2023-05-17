@@ -5,7 +5,11 @@ export const _columns: any = () => {
   const theme: any = useTheme();
   return [
     {
-      Header: "Name",
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">Name</span>
+        );
+      },
       accessor: "first_name",
       Cell: (cell: any) => {
         return (
@@ -22,11 +26,19 @@ export const _columns: any = () => {
       },
     },
     {
-      Header: "Last",
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">Last</span>
+        );
+      },
       accessor: "last_name",
     },
     {
-      Header: "Email",
+      Header: () => {
+        return (
+          <span className="tw-font-normal tw-text-xs tw-uppercase">Email</span>
+        );
+      },
       accessor: "work_email",
       width: 250,
       minWidth: 250,
@@ -42,7 +54,7 @@ export const _columns: any = () => {
         );
       },
     },
-    {
+    /*{
       Header: "Date Added",
       accessor: "created_date",
       width: 250,
@@ -51,8 +63,8 @@ export const _columns: any = () => {
         if (!cell?.value) return "";
         return moment.utc(cell?.value).format("MMMM D, YYYY");
       },
-    },
-    {
+    },*/
+    /*{
       Header: "Date Modified",
       accessor: "modified_date",
       width: 250,
@@ -61,6 +73,6 @@ export const _columns: any = () => {
         if (!cell?.value) return "";
         return moment.utc(cell?.value).format("MMMM D, YYYY");
       },
-    },
+    },*/
   ];
 };
