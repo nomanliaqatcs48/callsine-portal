@@ -182,6 +182,8 @@ const MyTable = (props: MyTableProps): JSX.Element => {
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
             </div>
           ),
+          width: 30,
+          minWidth: 30,
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
           Cell: ({ row }: any) => (
