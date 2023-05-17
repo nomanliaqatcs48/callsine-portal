@@ -54,7 +54,7 @@ export const _columns: any = () => {
             ),
             text: (
               <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                Lilian May
+                {cell?.value || ""} {cell?.row?.original?.last_name || ""}
               </span>
             ),
           },
@@ -69,7 +69,7 @@ export const _columns: any = () => {
             ),
             text: (
               <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                (555) 555-1234
+                {cell?.row?.original?.phone || "-"}
               </span>
             ),
           },
@@ -84,7 +84,17 @@ export const _columns: any = () => {
             ),
             text: (
               <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                johndoe@gmail.com
+                {cell?.row?.original?.work_email ? (
+                  <a
+                    href={`mailto:${cell?.row?.original?.work_email}`}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                  >
+                    {cell?.row?.original?.work_email}
+                  </a>
+                ) : (
+                  "-"
+                )}
               </span>
             ),
           },
@@ -99,7 +109,7 @@ export const _columns: any = () => {
             ),
             text: (
               <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                Co-Founder & CEO at Google
+                {cell?.row?.original?.job_title}
               </span>
             ),
           },
@@ -114,7 +124,11 @@ export const _columns: any = () => {
             ),
             text: (
               <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                San Ramon, CA
+                {`${cell?.row?.original?.city || ""}${
+                  cell?.row?.original?.state
+                    ? ", " + cell?.row?.original?.state
+                    : ""
+                }`}
               </span>
             ),
           },
@@ -139,7 +153,18 @@ export const _columns: any = () => {
                           {cell?.row?.original?.last_name || ""}
                         </span>
                         <div className="tw-text-[#1ea3ce] tw-text-sm tw-font-normal">
-                          {cell?.row?.original?.work_email}
+                          {cell?.row?.original?.work_email ? (
+                            <a
+                              href={`mailto:${cell?.row?.original?.work_email}`}
+                              target="_blank"
+                              rel="noreferrer noopener"
+                              className="hover:tw-text-[#1ea3ce]"
+                            >
+                              {cell?.row?.original?.work_email}
+                            </a>
+                          ) : (
+                            "-"
+                          )}
                         </div>
                       </div>
                     </div>
