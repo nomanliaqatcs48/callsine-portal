@@ -104,7 +104,7 @@ const CreateOrEditPerson = ({
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
-        ToastSuccess("Person successfully updated.");
+        ToastSuccess("User successfully updated.");
 
         onSubmit();
         handleClose();
@@ -128,7 +128,7 @@ const CreateOrEditPerson = ({
     try {
       let res = await createPeopleService(data);
       if (res?.data) {
-        ToastSuccess("New person successfully created.");
+        ToastSuccess("New user successfully created.");
 
         onSubmit();
         handleClose();
@@ -165,11 +165,11 @@ const CreateOrEditPerson = ({
           scroll="body"
           fullWidth={true}
           maxWidth="xl"
-          aria-labelledby={`${id ? "Edit" : "Add"} Person`}
-          aria-describedby={`${id ? "edit" : "add"} person modal`}
+          aria-labelledby={`${id ? "Edit" : "Add"} User`}
+          aria-describedby={`${id ? "edit" : "add"} user modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">{id ? "Edit" : "Add"} Person</DialogTitle>
+          <DialogTitle variant="h4">{id ? "Edit" : "Add"} User</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
