@@ -124,6 +124,8 @@ export const _columns: any = () => {
           <div className="">
             {cell?.value && (
               <Tooltip
+                enterDelay={1000}
+                leaveDelay={200}
                 title={
                   <>
                     {/*icon and name*/}
@@ -177,7 +179,7 @@ export const _columns: any = () => {
                         "& .MuiTooltip-tooltip": {
                           backgroundColor: theme.palette.common.white,
                           color: "rgba(0, 0, 0, 0.87)",
-                          borderRadius: "0.5rem",
+                          borderRadius: "0.75rem",
                           boxShadow: theme.shadows[1],
                           fontSize: 11,
                           paddingY: 2,
