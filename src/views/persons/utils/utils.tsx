@@ -270,7 +270,7 @@ export const _columns: any = () => {
               >
                 <Button
                   variant="text"
-                  className="tw-flex tw-items-center tw-gap-2 tw-text-inherit tw-text-xs tw-no-underline hover:tw-bg-transparent text"
+                  className="tw-flex tw-items-center tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text"
                   href={`/people/${cell?.row?.original?.id}`}
                 >
                   <div className="tw-relative tw-w-7 tw-h-7 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">

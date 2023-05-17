@@ -564,7 +564,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     // },
                                   })}
                                   // className="text-wrap text-break"
-                                  className="tw-text-[0.70rem]"
+                                  className="tw-text-[0.75rem] tw-leading-4"
                                 >
                                   {
                                     // Render the cell contents
