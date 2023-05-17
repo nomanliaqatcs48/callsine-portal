@@ -13,7 +13,7 @@ const Filter = ({ id, showLabel, labelText, data }: FilterProps) => {
       {showLabel && (
         <label
           htmlFor={id}
-          className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-text-xs tw-font-medium"
+          className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
         >
           {labelText}
         </label>
