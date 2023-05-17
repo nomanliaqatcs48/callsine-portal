@@ -14,7 +14,7 @@ const SearchFieldV2 = () => {
       <Grid>
         <div className="tw-relative">
           <input
-            type="text"
+            type="search"
             autoComplete="off"
             id="search-people"
             placeholder="Search"
