@@ -340,17 +340,19 @@ export const _columns: any = () => {
       Cell: (cell: any) => {
         return (
           <>
-            <Button
-              onClick={() => null}
-              className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
-            >
-              <IconTrash
-                style={{ color: theme.palette.primary.main }}
-                size="15"
-                strokeWidth={3}
-                className=""
-              />
-            </Button>
+            <Tooltip title="Delete">
+              <Button
+                onClick={() => null}
+                className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+              >
+                <IconTrash
+                  style={{ color: theme.palette.primary.main }}
+                  size="15"
+                  strokeWidth={3}
+                  className=""
+                />
+              </Button>
+            </Tooltip>
           </>
         );
       },
