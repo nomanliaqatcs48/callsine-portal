@@ -495,12 +495,12 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                 }
                               >
                                 <Typography variant="h5">
-                                  <strong>
+                                  <span className="tw-font-normal tw-text-[0.70rem] tw-text-[#364152] tw-uppercase">
                                     {
                                       // Render the header
                                       column.render("Header")
                                     }
-                                  </strong>
+                                  </span>
                                   {/*<span>
                                     {column.isSorted ? (
                                       column.isSortedDesc === true ? (
@@ -559,6 +559,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     // },
                                   })}
                                   // className="text-wrap text-break"
+                                  className="tw-text-[0.70rem]"
                                 >
                                   {
                                     // Render the cell contents

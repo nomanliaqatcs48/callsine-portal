@@ -3,63 +3,53 @@ import { useTheme } from "@mui/material/styles";
 import React from "react";
 import { Button } from "@mui/material";
 import { IconTrash } from "@tabler/icons-react";
+import { Image } from "mui-image";
+import { ReactComponent as UserIcon } from "../../../assets/images/svg/user.svg";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
   return [
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">Name</span>
-        );
-      },
+      Header: "Name",
       accessor: "first_name",
       Cell: (cell: any) => {
         return (
-          <a
-            className="tw-no-underline"
-            href={`/people/${cell?.row?.original?.id}`}
-          >
-            {cell?.value} {cell?.row?.original?.last_name}
-          </a>
+          <div className="tw-flex tw-gap-2">
+            {cell?.value && (
+              <>
+                <div className="tw-relative tw-w-7 tw-h-7 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
+                  <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
+                </div>
+
+                <a
+                  className="tw-no-underline tw-flex tw-items-center"
+                  href={`/people/${cell?.row?.original?.id}`}
+                >
+                  {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                </a>
+              </>
+            )}
+          </div>
         );
       },
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">Title</span>
-        );
-      },
+      Header: "Title",
       accessor: "job_title",
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">
-            Company
-          </span>
-        );
-      },
+      Header: "Company",
       accessor: "org.name",
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">Phone</span>
-        );
-      },
+      Header: "Phone",
       accessor: "phone",
       Cell: (cell: any) => {
         return <span>{cell?.value || "-"}</span>;
       },
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">Email</span>
-        );
-      },
+      Header: "Email",
       accessor: "work_email",
       width: 250,
       minWidth: 250,
@@ -69,6 +59,7 @@ export const _columns: any = () => {
             href={`mailto:${cell?.value}`}
             target="_blank"
             rel="noopener noreferrer"
+            className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
           >
             {cell?.value}
           </a>
@@ -76,13 +67,7 @@ export const _columns: any = () => {
       },
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">
-            Location
-          </span>
-        );
-      },
+      Header: "Location",
       accessor: "city",
       Cell: (cell: any) => {
         return `${cell?.row?.original?.city || ""}${
@@ -91,26 +76,14 @@ export const _columns: any = () => {
       },
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">
-            Industry
-          </span>
-        );
-      },
+      Header: "Industry",
       accessor: "org.industry",
       Cell: (cell: any) => {
         return cell?.value || "-";
       },
     },
     {
-      Header: () => {
-        return (
-          <span className="tw-font-normal tw-text-xs tw-uppercase">
-            Actions
-          </span>
-        );
-      },
+      Header: "Actions",
       disableSortBy: true,
       accessor: "actions",
       Cell: (cell: any) => {
