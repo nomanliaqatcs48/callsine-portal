@@ -22,6 +22,7 @@ import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import { devLog } from "../../../helpers/logs";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
@@ -138,6 +139,18 @@ export const _columns: any = () => {
           },
         ];
 
+        const clickFacebook = (url: string | URL | undefined) => {
+          if (url) {
+            window.open(url, "_blank");
+          }
+        };
+
+        const clickLinkedin = (url: string | URL | undefined) => {
+          if (url) {
+            window.open(url, "_blank");
+          }
+        };
+
         return (
           <div className="">
             {cell?.value && (
@@ -174,11 +187,21 @@ export const _columns: any = () => {
                     </div>
                     {/*social icons*/}
                     <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3">
-                      <div className="tw-py-[8px] tw-px-[11px] tw-w-[28px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110">
-                        <FacebookIcon className="" style={{ fill: "white" }} />
-                      </div>
-                      <div className="tw-py-[9px] tw-px-[8px] tw-w-[28px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110">
+                      <div
+                        onClick={() =>
+                          clickLinkedin(cell?.row?.original?.linkedin)
+                        }
+                        className="tw-cursor-pointer tw-py-[9px] tw-px-[8px] tw-w-[28px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110"
+                      >
                         <LinkedinIcon style={{ fill: "white" }} />
+                      </div>
+                      <div
+                        onClick={() =>
+                          clickFacebook(cell?.row?.original?.facebook)
+                        }
+                        className="tw-cursor-pointer tw-py-[8px] tw-px-[11px] tw-w-[28px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110"
+                      >
+                        <FacebookIcon style={{ fill: "white" }} />
                       </div>
                     </div>
                     {/*list*/}
