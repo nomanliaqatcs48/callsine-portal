@@ -187,22 +187,46 @@ export const _columns: any = () => {
                     </div>
                     {/*social icons*/}
                     <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3">
-                      <div
-                        onClick={() =>
-                          clickLinkedin(cell?.row?.original?.linkedin)
+                      <Tooltip
+                        title={
+                          cell?.row?.original?.linkedin
+                            ? "Linkedin"
+                            : "No linkedin url yet"
                         }
-                        className="tw-cursor-pointer tw-py-[9px] tw-px-[8px] tw-w-[28px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110"
                       >
-                        <LinkedinIcon style={{ fill: "white" }} />
-                      </div>
-                      <div
-                        onClick={() =>
-                          clickFacebook(cell?.row?.original?.facebook)
+                        <div
+                          onClick={() =>
+                            clickLinkedin(cell?.row?.original?.linkedin)
+                          }
+                          className={`${
+                            cell?.row?.original?.linkedin
+                              ? "tw-cursor-pointer"
+                              : "tw-cursor-not-allowed"
+                          } tw-py-[9px] tw-px-[8px] tw-w-[28px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110`}
+                        >
+                          <LinkedinIcon style={{ fill: "white" }} />
+                        </div>
+                      </Tooltip>
+                      <Tooltip
+                        title={
+                          cell?.row?.original?.facebook
+                            ? "Facebook"
+                            : "No facebook url yet"
                         }
-                        className="tw-cursor-pointer tw-py-[8px] tw-px-[11px] tw-w-[28px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110"
                       >
-                        <FacebookIcon style={{ fill: "white" }} />
-                      </div>
+                        <div
+                          onClick={() =>
+                            clickFacebook(cell?.row?.original?.facebook)
+                          }
+                          className={`${
+                            cell?.row?.original?.facebook
+                              ? "tw-cursor-pointer"
+                              : "tw-cursor-not-allowed"
+                          } tw-py-[8px] tw-px-[11px] tw-w-[28px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110`}
+                        >
+                          <FacebookIcon style={{ fill: "white" }} />
+                        </div>
+                      </Tooltip>
                     </div>
                     {/*list*/}
                     <List
