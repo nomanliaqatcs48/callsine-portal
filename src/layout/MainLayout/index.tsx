@@ -83,6 +83,47 @@ const MainLayout = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
 
+  const appBarStyleOpen = !leftDrawerOpened
+    ? {
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        transition: theme.transitions.create("margin", {
+          easing: theme.transitions.easing.sharp,
+          duration: theme.transitions.duration.leavingScreen,
+        }),
+        [theme.breakpoints.up("md")]: {
+          marginLeft: -(drawerWidth - 20),
+          width: `calc(99%)`,
+        },
+        [theme.breakpoints.down("md")]: {
+          marginLeft: "20px",
+          width: `calc(100% - ${drawerWidth}px)`,
+          padding: "16px",
+        },
+        [theme.breakpoints.down("sm")]: {
+          marginLeft: "10px",
+          width: `calc(100% - ${drawerWidth}px)`,
+          padding: "16px",
+          marginRight: "10px",
+        },
+      }
+    : {
+        transition: theme.transitions.create("margin", {
+          easing: theme.transitions.easing.easeOut,
+          duration: theme.transitions.duration.enteringScreen,
+        }),
+        marginLeft: 0,
+        borderBottomLeftRadius: 0,
+        borderBottomRightRadius: 0,
+        width: `calc(100% - ${drawerWidth}px)`,
+        [theme.breakpoints.down("md")]: {
+          marginLeft: "20px",
+        },
+        [theme.breakpoints.down("sm")]: {
+          marginLeft: "10px",
+        },
+      };
+
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
@@ -94,9 +135,10 @@ const MainLayout = () => {
         elevation={0}
         sx={{
           bgcolor: theme.palette.background.default,
-          transition: leftDrawerOpened
+          /*transition: leftDrawerOpened
             ? theme.transitions.create("width")
-            : "none",
+            : "none",*/
+          ...appBarStyleOpen,
         }}
       >
         <Toolbar>
