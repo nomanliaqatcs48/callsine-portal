@@ -137,7 +137,7 @@ const CreateOrEditPerson = ({
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
-        ToastSuccess("User successfully updated.");
+        ToastSuccess("Person successfully updated.");
 
         onSubmit();
         handleClose();
@@ -161,7 +161,7 @@ const CreateOrEditPerson = ({
     try {
       let res = await createPeopleService(data);
       if (res?.data) {
-        ToastSuccess("New user successfully created.");
+        ToastSuccess("New person successfully created.");
 
         onSubmit();
         handleClose();
