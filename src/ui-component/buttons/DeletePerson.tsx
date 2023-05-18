@@ -44,6 +44,7 @@ const DeletePerson = ({
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
+      setTimeout(() => window.location.reload(), 5000);
     }
   };
 
