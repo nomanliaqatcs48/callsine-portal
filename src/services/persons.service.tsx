@@ -19,8 +19,8 @@ export const updatePersonDetailService = async (id: number, data: any) => {
   return await http.put(`${endpoints.PERSON}${id}/`, data);
 };
 
-export const deletePersonDetailService = async (id: number, data: any) => {
-  return await http.delete(`${endpoints.PERSON}${id}/`, data);
+export const deletePersonDetailService = async (id: number) => {
+  return await http.delete(`${endpoints.PERSON}${id}/`);
 };
 
 export const getPersonDetailStatService = async (id: number) => {
