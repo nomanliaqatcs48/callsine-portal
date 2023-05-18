@@ -207,8 +207,8 @@ const CreateOrEditPerson = ({
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
-                  <Grid container>
-                    <Grid item xs={12}>
+                  <Grid container columnSpacing={1}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.first_name}
                         disabled={personLoading?.form}
@@ -234,7 +234,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.last_name}
                         disabled={personLoading?.form}
@@ -260,7 +260,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.job_title}
                         disabled={personLoading?.form}
@@ -286,7 +286,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.work_email}
                         disabled={personLoading?.form}
@@ -313,7 +313,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.personal_email}
                         disabled={personLoading?.form}
@@ -340,7 +340,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.linkedin}
                         disabled={personLoading?.form}
@@ -366,7 +366,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={4}>
                       <TextField
                         error={!!errors.email_domain}
                         disabled={personLoading?.form}
@@ -392,7 +392,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={4}>
                       <TextField
                         error={!!errors.city}
                         disabled={personLoading?.form}
@@ -418,7 +418,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    <Grid item xs={12} lg={4}>
                       <TextField
                         error={!!errors.state}
                         disabled={personLoading?.form}
