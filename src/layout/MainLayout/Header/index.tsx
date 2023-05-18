@@ -40,9 +40,12 @@ const Header = ({ handleLeftDrawerToggle }: HeaderTypes) => {
           component="span"
           sx={{ display: { xs: "none", md: "block" }, flexGrow: 1 }}
         >
-          <LogoSection />
+          {/*<LogoSection />*/}
         </Box>
-        <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
+        <ButtonBase
+          className="md:tw-relative md:tw-left-12"
+          sx={{ borderRadius: "12px", overflow: "hidden" }}
+        >
           {/*@ts-ignore*/}
           <Avatar
             variant="rounded"

@@ -87,8 +87,8 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
             color: theme.palette.text.primary,
             borderRight: "none",
             [theme.breakpoints.up("md")]: {
-              top: "88px",
-              // top: "0px",
+              // top: "88px",
+              top: "0px",
             },
           },
         }}
