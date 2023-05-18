@@ -13,6 +13,7 @@ import MenuList from "./MenuList";
 import LogoSection from "../LogoSection";
 import MenuCard from "./MenuCard";
 import { drawerWidth } from "../../../store/constant";
+import LogoSectionSidebar from "../LogoSectionSidebar";
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -30,12 +31,17 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
 
   const drawer = (
     <>
-      <Box sx={{ display: { xs: "block", md: "none" } }}>
+      <Box
+        className="tw-bg-primary"
+        // sx={{ display: { xs: "block", md: "none" } }}
+        sx={{ display: "block" }}
+      >
         <Box sx={{ display: "flex", p: 2, mx: "auto" }}>
-          <LogoSection />
+          {/*<LogoSection />*/}
+          <LogoSectionSidebar />
         </Box>
       </Box>
-      <BrowserView>
+      <BrowserView className="tw-bg-primary">
         <PerfectScrollbar
           component="div"
           style={{
@@ -82,6 +88,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
             borderRight: "none",
             [theme.breakpoints.up("md")]: {
               top: "88px",
+              // top: "0px",
             },
           },
         }}

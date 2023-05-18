@@ -38,7 +38,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
 
   const Icon = item?.icon;
   const itemIcon = item?.icon ? (
-    <Icon stroke={1.5} size="1.3rem" />
+    <Icon stroke={1.5} size="1.3rem" color={"white"} />
   ) : (
     <FiberManualRecordIcon
       sx={{
@@ -97,11 +97,22 @@ const NavItem = ({ item, level }: NavItemTypes) => {
         backgroundColor: level > 1 ? "transparent !important" : "inherit",
         py: level > 1 ? 1 : 1.25,
         pl: `${level * 24}px`,
+        "&.Mui-selected": {
+          color: "white",
+          backgroundColor: "#3dabd9",
+          "&:hover": {
+            backgroundColor: "#3dabd9",
+          },
+          "& .MuiListItemIcon-root": {
+            color: theme.menuSelected,
+          },
+        },
       }}
       selected={
         customization.isOpen.findIndex((id: any) => id === item.id) > -1
       }
       onClick={() => itemHandler(item.id)}
+      className="hover:tw-bg-transparent"
     >
       <ListItemIcon sx={{ my: "auto", minWidth: !item?.icon ? 18 : 36 }}>
         {itemIcon}
@@ -114,6 +125,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
                 ? "h5"
                 : "body1"
             }
+            className="tw-text-white tw-font-medium"
             color="inherit"
           >
             {item.title}
