@@ -157,8 +157,6 @@ const CreateOrEditPerson = ({
   };
 
   const onThisAddSubmit = async (data: any) => {
-    devLog("onThisAddSubmit() data", data);
-    return;
     setPersonLoading((prev: any) => ({ ...prev, form: true }));
     try {
       let res = await createPeopleService(data);
