@@ -197,7 +197,7 @@ const CreateOrEditPerson = ({
           onClose={handleClose}
           scroll="body"
           fullWidth={true}
-          maxWidth="xl"
+          // maxWidth="xl"
           aria-labelledby={`${id ? "Edit" : "Add"} Person`}
           aria-describedby={`${id ? "edit" : "add"} person modal`}
           disableEnforceFocus={true}
@@ -315,33 +315,6 @@ const CreateOrEditPerson = ({
 
                     <Grid item xs={12} lg={6}>
                       <TextField
-                        error={!!errors.personal_email}
-                        disabled={personLoading?.form}
-                        required
-                        margin="dense"
-                        id="personal_email"
-                        label="Personal Email"
-                        type="text"
-                        defaultValue={id ? defaultValue?.personal_email : ""}
-                        fullWidth
-                        {...register("personal_email", {
-                          required: "This is required field.",
-                          pattern: emailAddressPattern,
-                        })}
-                      />
-                      <ErrorMessage
-                        errors={errors}
-                        name="personal_email"
-                        render={({ message }) => (
-                          <FormHelperText sx={{ color: "error.main" }}>
-                            {message}
-                          </FormHelperText>
-                        )}
-                      />
-                    </Grid>
-
-                    <Grid item xs={12} lg={6}>
-                      <TextField
                         error={!!errors.linkedin}
                         disabled={personLoading?.form}
                         required
@@ -366,7 +339,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.email_domain}
                         disabled={personLoading?.form}
@@ -392,7 +365,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.city}
                         disabled={personLoading?.form}
@@ -418,7 +391,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={4}>
+                    <Grid item xs={12} lg={6}>
                       <TextField
                         error={!!errors.state}
                         disabled={personLoading?.form}
