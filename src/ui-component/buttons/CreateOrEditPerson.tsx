@@ -198,11 +198,11 @@ const CreateOrEditPerson = ({
           scroll="body"
           fullWidth={true}
           maxWidth="xl"
-          aria-labelledby={`${id ? "Edit" : "Add"} User`}
-          aria-describedby={`${id ? "edit" : "add"} user modal`}
+          aria-labelledby={`${id ? "Edit" : "Add"} Person`}
+          aria-describedby={`${id ? "edit" : "add"} person modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">{id ? "Edit" : "Add"} User</DialogTitle>
+          <DialogTitle variant="h4">{id ? "Edit" : "Add"} Person</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>

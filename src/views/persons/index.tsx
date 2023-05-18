@@ -130,7 +130,7 @@ const PersonsPage = () => {
                     sx={{ fontSize: 15 }}
                     className="tw-mr-2"
                   />
-                  Add User
+                  Add Person
                 </>
               }
               onSubmit={getPeople}
@@ -155,7 +155,7 @@ const PersonsPage = () => {
                   sx={{ color: "#778da9", fontSize: 15 }}
                   className="tw-mr-2"
                 />
-                Import User
+                Import Person
               </Button>
             </Tooltip>
 
@@ -177,7 +177,7 @@ const PersonsPage = () => {
                   sx={{ color: "#778da9", fontSize: 15 }}
                   className="tw-mr-2"
                 />
-                Export Users
+                Export People
               </Button>
             </Tooltip>
 
@@ -215,7 +215,8 @@ const PersonsPage = () => {
               variant="text"
               className="tw-text-[#3fb0d5] hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
             >
-              {total || 0} People Total
+              {total || 0} {total === 0 || total === 1 ? "Person" : "People"}{" "}
+              Total
             </Button>
           </Grid>
         </Grid>
