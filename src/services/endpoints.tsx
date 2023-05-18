@@ -8,4 +8,5 @@ export const endpoints = {
   PLAYBOOKS: "/api/playbooks/",
   PROMPT_RESPONSES: "/api/prompt-responses/",
   EMAILS: "/api/emails/",
+  ORGS: "/api/orgs/",
 };
