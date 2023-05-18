@@ -317,16 +317,13 @@ const CreateOrEditPerson = ({
                       <TextField
                         error={!!errors.linkedin}
                         disabled={personLoading?.form}
-                        required
                         margin="dense"
                         id="linkedin"
                         label="Linkedin"
                         type="text"
                         defaultValue={id ? defaultValue?.linkedin : ""}
                         fullWidth
-                        {...register("linkedin", {
-                          required: "This is required field.",
-                        })}
+                        {...register("linkedin")}
                       />
                       <ErrorMessage
                         errors={errors}
