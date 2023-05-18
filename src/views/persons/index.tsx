@@ -155,7 +155,7 @@ const PersonsPage = () => {
                   sx={{ color: "#778da9", fontSize: 15 }}
                   className="tw-mr-2"
                 />
-                Import Person
+                Import People
               </Button>
             </Tooltip>
 
