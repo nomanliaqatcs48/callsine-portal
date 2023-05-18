@@ -12,6 +12,7 @@ import {
   InputLabel,
   MenuItem,
   Select,
+  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
@@ -71,6 +72,10 @@ const CreateOrEditPerson = ({
     register("modified_by", {
       required: "This is required field.",
     });
+    register("org", {
+      required: "This is required field.",
+    });
+    setValue("org", id ? defaultValue?.org : null);
     getProfile();
   }, []);
 
@@ -103,6 +108,11 @@ const CreateOrEditPerson = ({
     reset();
   };
 
+  const handleChangeOrg = (event: SelectChangeEvent) => {
+    setValue("org", event.target.value as string);
+    trigger("org");
+  };
+
   const onThisEditSubmit = async (data: any) => {
     setPersonLoading((beforeVal: any) => ({ ...beforeVal, form: true }));
     try {
@@ -128,6 +138,8 @@ const CreateOrEditPerson = ({
   };
 
   const onThisAddSubmit = async (data: any) => {
+    devLog("onThisAddSubmit() data", data);
+    return;
     setPersonLoading((prev: any) => ({ ...prev, form: true }));
     try {
       let res = await createPeopleService(data);
@@ -423,15 +435,13 @@ const CreateOrEditPerson = ({
                         required
                         disabled={personLoading?.form}
                       >
-                        <InputLabel id="provider-label">
-                          Organization
-                        </InputLabel>
+                        <InputLabel id="org-label">Organization</InputLabel>
                         <Select
-                          labelId="org"
+                          labelId="org-label"
                           id="org"
                           label="Organization"
                           defaultValue={id ? defaultValue?.org : ""}
-                          onChange={() => null}
+                          onChange={handleChangeOrg}
                         >
                           {[
                             {
