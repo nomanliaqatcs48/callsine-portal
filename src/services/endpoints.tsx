@@ -9,4 +9,5 @@ export const endpoints = {
   PROMPT_RESPONSES: "/api/prompt-responses/",
   EMAILS: "/api/emails/",
   ORGS: "/api/orgs/",
+  IMPORT_PEOPLE: "/api/bulk-import/",
 };
