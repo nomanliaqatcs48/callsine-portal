@@ -8,7 +8,7 @@ import other from "./other";
 
 const menuItems = {
   // items: [dashboard, oldPages, pages, utilities, other]
-  items: [dashboard, pages],
+  items: [pages],
 };
 
 export default menuItems;

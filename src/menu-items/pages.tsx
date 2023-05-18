@@ -1,8 +1,14 @@
 // assets
-import { IconKey, IconUsers, IconMail } from "@tabler/icons-react";
+import {
+  IconDashboard,
+  IconKey,
+  IconUsers,
+  IconMail,
+} from "@tabler/icons-react";
 
 // constant
 const icons = {
+  IconDashboard,
   IconKey,
   IconUsers,
   IconMail,
@@ -16,6 +22,14 @@ const pages = {
   // caption: "Pages Caption",
   type: "group",
   children: [
+    {
+      id: "default",
+      title: "Dashboard",
+      type: "item",
+      url: "/dashboard",
+      icon: icons.IconDashboard,
+      breadcrumbs: false,
+    },
     {
       id: "people",
       title: "People",
