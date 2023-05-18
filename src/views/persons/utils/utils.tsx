@@ -23,6 +23,7 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import { devLog } from "../../../helpers/logs";
+import DeletePerson from "../../../ui-component/buttons/DeletePerson";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
@@ -340,7 +341,15 @@ export const _columns: any = () => {
       Cell: (cell: any) => {
         return (
           <>
-            <Tooltip title="Delete">
+            <DeletePerson id={cell?.row?.original?.id}>
+              <IconTrash
+                style={{ color: theme.palette.primary.main }}
+                size="15"
+                strokeWidth={3}
+                className=""
+              />
+            </DeletePerson>
+            {/*<Tooltip title="Delete">
               <Button
                 onClick={() => null}
                 className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
@@ -352,7 +361,7 @@ export const _columns: any = () => {
                   className=""
                 />
               </Button>
-            </Tooltip>
+            </Tooltip>*/}
           </>
         );
       },

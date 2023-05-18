@@ -11,16 +11,14 @@ import { IconTrash } from "@tabler/icons-react";
 
 type DeletePersonTypes = {
   id: number;
-  personId: number;
-  buttonText: string | React.ReactNode;
+  children: any;
   onLoadApi?: any;
   [x: string]: any;
 };
 
 const DeletePerson = ({
   id,
-  personId,
-  buttonText,
+  children,
   onLoadApi,
   ...props
 }: DeletePersonTypes) => {
@@ -67,7 +65,7 @@ const DeletePerson = ({
           className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
           {...props}
         >
-          {buttonText}
+          {children}
         </Button>
       </Tooltip>
 
@@ -85,7 +83,7 @@ const DeletePerson = ({
           </Typography>
           <DialogActions>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
