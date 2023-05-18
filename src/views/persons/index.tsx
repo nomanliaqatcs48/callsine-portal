@@ -24,6 +24,7 @@ import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../contexts/auth";
+import ImportPeople from "../../ui-component/buttons/ImportPeople";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -145,19 +146,7 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <Tooltip title="Coming Soon">
-              <Button
-                onClick={() => null}
-                disabled={false}
-                className="tw-text-[#778da9]"
-              >
-                <FileUploadOutlinedIcon
-                  sx={{ color: "#778da9", fontSize: 15 }}
-                  className="tw-mr-2"
-                />
-                Import People
-              </Button>
-            </Tooltip>
+            <ImportPeople />
 
             <Divider
               orientation="vertical"
