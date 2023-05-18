@@ -8,6 +8,7 @@ import {
   InputLabel,
   OutlinedInput,
   Paper,
+  Tooltip,
   Typography,
 } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
@@ -144,17 +145,19 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <Button
-              onClick={() => null}
-              disabled={false}
-              className="tw-text-[#778da9]"
-            >
-              <FileUploadOutlinedIcon
-                sx={{ color: "#778da9", fontSize: 15 }}
-                className="tw-mr-2"
-              />
-              Import User
-            </Button>
+            <Tooltip title="Coming Soon">
+              <Button
+                onClick={() => null}
+                disabled={false}
+                className="tw-text-[#778da9]"
+              >
+                <FileUploadOutlinedIcon
+                  sx={{ color: "#778da9", fontSize: 15 }}
+                  className="tw-mr-2"
+                />
+                Import User
+              </Button>
+            </Tooltip>
 
             <Divider
               orientation="vertical"
@@ -164,17 +167,19 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <Button
-              onClick={() => null}
-              disabled={false}
-              className="tw-text-[#778da9]"
-            >
-              <FileDownloadOutlinedIcon
-                sx={{ color: "#778da9", fontSize: 15 }}
-                className="tw-mr-2"
-              />
-              Export Users
-            </Button>
+            <Tooltip title="Coming Soon">
+              <Button
+                onClick={() => null}
+                disabled={false}
+                className="tw-text-[#778da9]"
+              >
+                <FileDownloadOutlinedIcon
+                  sx={{ color: "#778da9", fontSize: 15 }}
+                  className="tw-mr-2"
+                />
+                Export Users
+              </Button>
+            </Tooltip>
 
             <Divider
               orientation="vertical"
