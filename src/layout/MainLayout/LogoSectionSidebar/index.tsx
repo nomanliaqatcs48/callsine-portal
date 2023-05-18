@@ -17,7 +17,7 @@ const LogoSectionSidebar = () => {
       component={Link}
       to={config.defaultPath}
     >
-      <img src={logo} alt="CallSine" width="auto" className="tw-px-5" />
+      <img src={logo} alt="CallSine" width="auto" className="tw-pr-5" />
     </ButtonBase>
   );
 };
