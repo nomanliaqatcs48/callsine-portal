@@ -27,6 +27,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { createPeopleService } from "../../services/persons.service";
 import { load, save } from "../../utils/storage";
 import { profileService } from "../../services/profile.service";
+import { getOrgsService } from "../../services/org.service";
 
 type CreateOrEditPersonTypes = {
   id?: number | undefined;
@@ -50,6 +51,12 @@ const CreateOrEditPerson = ({
   ...other
 }: CreateOrEditPersonTypes) => {
   const [open, setOpen] = React.useState(false);
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [filters, setFilters] = React.useState<any>({
+    limit: 99999,
+    offset: 0,
+    currentPage: 1,
+  });
   const [personLoading, setPersonLoading] = useState<any>({
     onPage: true,
     form: false,
@@ -72,11 +79,12 @@ const CreateOrEditPerson = ({
     register("modified_by", {
       required: "This is required field.",
     });
-    register("org", {
+    /*register("org", {
       required: "This is required field.",
     });
-    setValue("org", id ? defaultValue?.org : null);
+    setValue("org", id ? defaultValue?.org : null);*/
     getProfile();
+    getOrgs();
   }, []);
 
   const getProfile = async () => {
@@ -99,6 +107,17 @@ const CreateOrEditPerson = ({
       }
     } catch (e) {
       devLogError(e);
+    }
+  };
+
+  const getOrgs = async () => {
+    try {
+      let res = await getOrgsService(filters, searchValue);
+      if (res?.data) {
+        devLog("res", res);
+      }
+    } catch (e: any) {
+      devLogError(e?.response);
     }
   };
 
@@ -427,7 +446,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12}>
+                    {/*<Grid item xs={12}>
                       <FormControl
                         fullWidth
                         error={!!errors.org}
@@ -471,7 +490,7 @@ const CreateOrEditPerson = ({
                           </FormHelperText>
                         )}
                       />
-                    </Grid>
+                    </Grid>*/}
                   </Grid>
                 </Box>
               </Grid>
