@@ -84,7 +84,7 @@ const CreateOrEditPerson = ({
     });
     setValue("org", id ? defaultValue?.org : null);*/
     getProfile();
-    getOrgs();
+    // getOrgs();
   }, []);
 
   const getProfile = async () => {
