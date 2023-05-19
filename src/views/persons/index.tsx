@@ -25,6 +25,7 @@ import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../contexts/auth";
 import ImportPeople from "../../ui-component/buttons/ImportPeople";
+import { ToastSuccess } from "../../helpers/toast";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -39,6 +40,11 @@ const PersonsPage = () => {
     setIsLoading,
     getPeople,
   } = usePersons();
+
+  const successfulUploadCsv = () => {
+    getPeople();
+    ToastSuccess("File successfully uploaded.");
+  };
 
   return (
     <div>
@@ -146,7 +152,7 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <ImportPeople />
+            <ImportPeople onLoadApi={successfulUploadCsv} />
 
             <Divider
               orientation="vertical"

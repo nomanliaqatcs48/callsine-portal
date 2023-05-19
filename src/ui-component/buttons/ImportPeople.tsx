@@ -11,7 +11,11 @@ import MyModal from "../modal/MyModal";
 import PeopleFileUpload from "../uploads/PeopleFileUpload";
 import { devLog } from "../../helpers/logs";
 
-const ImportPeople = () => {
+type ImportPeopleProps = {
+  onLoadApi: any;
+};
+
+const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
   const [importData, setImportData] = useState<any>(null);
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -22,7 +26,8 @@ const ImportPeople = () => {
   const handleClose = () => setOpen(false);
 
   const refresh = async () => {
-    devLog("refresh");
+    setOpen(false);
+    onLoadApi();
   };
 
   return (
