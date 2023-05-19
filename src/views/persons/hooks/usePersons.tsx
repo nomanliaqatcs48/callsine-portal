@@ -18,6 +18,7 @@ export const usePersons = () => {
     onPage: true,
     table: false,
   });
+  const [selectedPersonRows, setSelectedPersonRows] = useState<any[]>([]);
 
   useEffect(() => {
     getPeople();
@@ -46,6 +47,8 @@ export const usePersons = () => {
     setFilters,
     isLoading,
     setIsLoading,
+    selectedPersonRows,
+    setSelectedPersonRows,
     getPeople,
   };
 };
