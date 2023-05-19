@@ -26,6 +26,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { useAuth } from "../../contexts/auth";
 import ImportPeople from "../../ui-component/buttons/ImportPeople";
 import { ToastSuccess } from "../../helpers/toast";
+import ExportPeople from "../../ui-component/buttons/ExportPeople";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -38,6 +39,8 @@ const PersonsPage = () => {
     setFilters,
     isLoading,
     setIsLoading,
+    selectedPersonRows,
+    setSelectedPersonRows,
     getPeople,
   } = usePersons();
 
@@ -162,19 +165,7 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <Tooltip title="Coming Soon">
-              <Button
-                onClick={() => null}
-                disabled={false}
-                className="tw-text-[#778da9]"
-              >
-                <FileDownloadOutlinedIcon
-                  sx={{ color: "#778da9", fontSize: 15 }}
-                  className="tw-mr-2"
-                />
-                Export People
-              </Button>
-            </Tooltip>
+            <ExportPeople data={personsData} />
 
             <Divider
               orientation="vertical"
@@ -225,6 +216,7 @@ const PersonsPage = () => {
           filters={filters}
           setFilters={setFilters}
           removePageSizeDropdown={false}
+          // setSelectedFlatRows={setSelectedPersonRows}
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
