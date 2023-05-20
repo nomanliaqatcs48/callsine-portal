@@ -220,7 +220,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
 
   useEffect(() => {
     if (setSelectedFlatRows) {
-      setSelectedFlatRows(selectedFlatRows);
+      setSelectedFlatRows(selectedFlatRows.map((row: any) => row.original));
     }
   }, [selectedFlatRows]);
 
