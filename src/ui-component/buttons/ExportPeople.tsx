@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CSVLink } from "react-csv";
-import { Button } from "@mui/material";
+import { Button, Tooltip } from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
 
 type ExportPeopleTypes = {
@@ -28,17 +28,32 @@ const ExportPeople = ({ data }: ExportPeopleTypes) => {
   ];
 
   return (
-    <div>
-      <CSVLink data={data} headers={headers} filename={"people.csv"}>
-        <Button className="tw-text-[#778da9]">
-          <FileDownloadOutlinedIcon
-            sx={{ color: "#778da9", fontSize: 15 }}
-            className="tw-mr-2"
-          />
-          Export People
-        </Button>
+    <>
+      <CSVLink
+        data={data}
+        headers={headers}
+        filename={"people.csv"}
+        onClick={() => {
+          if (!data?.length) {
+            return false;
+          }
+        }}
+      >
+        <Tooltip title={data?.length > 0 ? "Export CSV" : "No data"}>
+          <Button
+            className={`tw-text-[#778da9] ${
+              data?.length > 0 ? "" : "tw-cursor-not-allowed"
+            }`}
+          >
+            <FileDownloadOutlinedIcon
+              sx={{ color: "#778da9", fontSize: 15 }}
+              className="tw-mr-2"
+            />
+            Export People
+          </Button>
+        </Tooltip>
       </CSVLink>
-    </div>
+    </>
   );
 };
 
