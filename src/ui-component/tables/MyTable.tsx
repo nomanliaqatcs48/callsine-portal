@@ -178,21 +178,21 @@ const MyTable = (props: MyTableProps): JSX.Element => {
           // to render a checkbox
           // @ts-ignore
           Header: ({ getToggleAllRowsSelectedProps }) => (
-            <div>
+            <>
               <IndeterminateCheckbox {...getToggleAllRowsSelectedProps()} />
-            </div>
+            </>
           ),
           width: 30,
           minWidth: 30,
           // The cell can use the individual row's getToggleRowSelectedProps method
           // to the render a checkbox
           Cell: ({ row }: any) => (
-            <div>
+            <>
               <IndeterminateCheckbox
                 // @ts-ignore
                 {...row.getToggleRowSelectedProps()}
               />
-            </div>
+            </>
           ),
         },
         ...columns,
