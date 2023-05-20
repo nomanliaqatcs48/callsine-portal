@@ -28,6 +28,7 @@ import ImportPeople from "../../ui-component/buttons/ImportPeople";
 import { ToastSuccess } from "../../helpers/toast";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import { devLog } from "../../helpers/logs";
+import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -180,17 +181,10 @@ const PersonsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <Button
-              onClick={() => null}
-              disabled={false}
-              className="tw-text-[#778da9]"
-            >
-              <DeleteIcon
-                sx={{ color: "#778da9", fontSize: 15 }}
-                className="tw-mr-2"
-              />
-              Delete
-            </Button>
+            <DeleteSelectedPeople
+              selectedPeople={selectedPersonRows}
+              onLoadApi={getPeople}
+            />
 
             <Divider
               orientation="vertical"
