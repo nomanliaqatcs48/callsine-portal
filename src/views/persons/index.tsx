@@ -50,7 +50,7 @@ const PersonsPage = () => {
   };
 
   return (
-    <div>
+    <>
       <Typography className="tw-text-4xl">People</Typography>
       <Grid className="tw-my-5" />
       <Grid
@@ -228,7 +228,7 @@ const PersonsPage = () => {
           // isOrderDesc={isOrderDesc}
         />
       </Paper>
-    </div>
+    </>
   );
 };
 
