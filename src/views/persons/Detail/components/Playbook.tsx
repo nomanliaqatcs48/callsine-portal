@@ -14,6 +14,7 @@ import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../helpers/toast";
+import _ from "lodash";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -57,6 +58,10 @@ const Playbook = () => {
 
   const handlePromptOnChange = (promptId: number) => {
     setPromptId(promptId);
+  };
+
+  const orderById = (data: any[]) => {
+    return _.orderBy(data, ["id"], ["asc"]);
   };
 
   const RenderCard = ({ promptItem }: any) => {
@@ -193,7 +198,7 @@ const Playbook = () => {
         <Grid item xs={12} lg={8}>
           {!isLoading?.onPage &&
             data.prompts?.length > 0 &&
-            data.prompts.map((o: any, idx: number) => {
+            orderById(data.prompts).map((o: any, idx: number) => {
               return (
                 <React.Fragment key={idx}>
                   <RenderCard promptItem={o} />
