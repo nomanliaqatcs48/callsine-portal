@@ -152,13 +152,13 @@ const CreateEmail = ({
     let _thisScheduledDate = moment.utc(value);
     let _diff = _parentDate.diff(_thisScheduledDate);
 
-    if (_diff >= 0) {
+    /*if (_diff >= 0) {
       setError("scheduled_time", {
         type: "custom",
         message: "Scheduled time should be AFTER parent email’s scheduled time",
       });
       return;
-    }
+    }*/
 
     setValue("scheduled_time", moment.utc(value).format("YYYY-MM-DD HH:mm:ss"));
     trigger("scheduled_time");
@@ -414,6 +414,7 @@ const CreateEmail = ({
                     />
                   </div>
 
+                  {/*date time picker*/}
                   <Grid item xs={11} sm={7} md={5} lg={4} xl={3}>
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                       <DemoContainer components={["DateTimePicker"]}>
