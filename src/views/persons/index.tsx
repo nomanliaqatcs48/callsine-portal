@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Button,
   Divider,
@@ -27,6 +27,7 @@ import { useAuth } from "../../contexts/auth";
 import ImportPeople from "../../ui-component/buttons/ImportPeople";
 import { ToastSuccess } from "../../helpers/toast";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
+import { devLog } from "../../helpers/logs";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -43,6 +44,10 @@ const PersonsPage = () => {
     setSelectedPersonRows,
     getPeople,
   } = usePersons();
+
+  useEffect(() => {
+    devLog("selectedPersonRows", selectedPersonRows);
+  }, [selectedPersonRows]);
 
   const successfulUploadCsv = () => {
     getPeople();
@@ -216,7 +221,7 @@ const PersonsPage = () => {
           filters={filters}
           setFilters={setFilters}
           removePageSizeDropdown={false}
-          // setSelectedFlatRows={setSelectedPersonRows}
+          setSelectedFlatRows={setSelectedPersonRows}
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
