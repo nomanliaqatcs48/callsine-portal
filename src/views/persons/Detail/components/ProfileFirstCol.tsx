@@ -3,12 +3,22 @@ import { Avatar, Button, Tooltip, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
 import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
+import { usePersonStats } from "../../../../hooks/persons/usePersonStats";
 
 type ProfileFirstColTypes = {
-  data: any[];
+  data: any;
 };
 
 const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
+  let {
+    id,
+    personStatData,
+    setPersonStatData,
+    isLoading,
+    setIsLoading,
+    getPersonDetailStat,
+  } = usePersonStats();
+
   return (
     <>
       {/*image, name, email, and icons*/}
@@ -23,20 +33,24 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
         <div className="tw-flex tw-flex-col tw-items-center">
           {/*name*/}
           <Typography className="tw-text-2xl tw-font-bold tw-text-black">
-            Lilian Moy
+            {`${data?.first_name} ${data?.last_name}`}
           </Typography>
           {/*email*/}
           <Button
             className="tw-font-normal tw-text-[#0096c7] tw-normal-case"
-            href="#"
+            href={`mailto:${data?.work_email}`}
+            target="_blank"
+            rel="noopener noreferrer"
           >
-            johndoe@gmail.com
+            {data?.work_email}
           </Button>
           {/*social icons*/}
           <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3 lg:tw-pt-1">
             <Tooltip title={"Linkedin"}>
               <div
-                onClick={() => null}
+                onClick={() => {
+                  data?.linkedin && window.open(data.linkedin, "_blank");
+                }}
                 className="tw-cursor-pointer tw-p-[0.6rem] tw-w-[32px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110"
               >
                 <LinkedinIcon style={{ fill: "white" }} />
@@ -44,7 +58,9 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             </Tooltip>
             <Tooltip title={"Facebook"}>
               <div
-                onClick={() => null}
+                onClick={() => {
+                  data?.facebook && window.open(data.facebook, "_blank");
+                }}
                 className="tw-cursor-pointer tw-p-[0.8rem] tw-w-[32px] tw-h-[32px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110"
               >
                 <FacebookIcon
@@ -63,7 +79,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Emails Sent
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            0
+            {personStatData?.emails_sent}
           </Typography>
         </div>
         <div>
@@ -71,7 +87,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Opened
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            0
+            {personStatData?.opened}
           </Typography>
         </div>
         <div>
@@ -79,7 +95,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Clicked
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            0
+            {personStatData?.clicked}
           </Typography>
         </div>
         <div>
@@ -87,7 +103,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Replied
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            0
+            {personStatData?.replied}
           </Typography>
         </div>
         <div>
@@ -95,7 +111,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Pageviews
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            0
+            {personStatData?.pageviews}
           </Typography>
         </div>
       </div>
