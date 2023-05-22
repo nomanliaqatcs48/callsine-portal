@@ -1,5 +1,23 @@
 import React from "react";
-import { Box, Grid, Link, Tab, Tabs, Typography } from "@mui/material";
+import {
+  Avatar,
+  Box,
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Link,
+  Paper,
+  Tab,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableRow,
+  Tabs,
+  Tooltip,
+  Typography,
+} from "@mui/material";
 import MainCard from "../../../ui-component/cards/MainCard";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
 import Playbook from "./components/Playbook";
@@ -9,6 +27,11 @@ import PersonDetailOrgCard from "./components/PersonDetailOrgCard";
 import StatCard from "./components/StatCard";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 import TrackingTab from "../../../ui-component/tabs/TrackingTab";
+import PersonIcon from "@mui/icons-material/Person";
+import { ReactComponent as LinkedinIcon } from "../../../assets/images/svg/linkedin.svg";
+import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/facebook.svg";
+import ProfileFirstCol from "./components/ProfileFirstCol";
+import ProfileSecondCol from "./components/ProfileSecondCol";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -28,26 +51,37 @@ const PersonDetailPage = () => {
   };
 
   return (
-    <MainCard
-      title={
-        <>
-          <Link href="/people" underline="none" color="inherit">
-            People
-          </Link>{" "}
-          /{" "}
-          {data?.first_name && (
-            <Typography
-              variant="h4"
-              color="text.secondary"
-              component="span"
-              sx={{ fontWeight: "500" }}
-            >
-              {data?.first_name} {data?.last_name}
-            </Typography>
-          )}
-        </>
-      }
-    >
+    <>
+      <Grid container>
+        <Grid item xs={12}>
+          <Paper elevation={0} className="tw-p-3 tw-rounded-md">
+            <Grid container className="tw-justify-evenly">
+              <Grid
+                item
+                xs={12}
+                xl={"auto"}
+                className="lg:tw-px-10 xl:tw-flex-col xl:tw-items-center xl:tw-justify-center xl:tw-border-r xl:tw-w-1/2 xl:tw-p-10 2xl:tw-px-16 3xl:tw-w-2/5"
+              >
+                <ProfileFirstCol />
+              </Grid>
+              <Grid item xs={12} className="tw-w-full tw-py-4 xl:tw-hidden">
+                <Divider variant="middle" />
+              </Grid>
+              <Grid
+                item
+                xs={12}
+                xl={"auto"}
+                className="xl:tw-p-9 xl:tw-w-1/2 3xl:tw-w-3/5"
+              >
+                <ProfileSecondCol />
+              </Grid>
+            </Grid>
+          </Paper>
+        </Grid>
+      </Grid>
+
+      <Grid className="tw-py-3" />
+
       <Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
           <PersonDetailCard data={data} />
@@ -82,7 +116,7 @@ const PersonDetailPage = () => {
       <TabPanel value={value} index={2}>
         {value === 2 && <TrackingTab />}
       </TabPanel>
-    </MainCard>
+    </>
   );
 };
 
