@@ -80,9 +80,9 @@ const PersonDetailPage = () => {
         </Grid>
       </Grid>
 
-      <Grid className="tw-py-3" />
+      <Container className="tw-py-2" />
 
-      <Grid container spacing={4}>
+      {/*<Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
           <PersonDetailCard data={data} />
         </Grid>
@@ -92,9 +92,7 @@ const PersonDetailPage = () => {
         <Grid item xs={12} lg={4}>
           <StatCard />
         </Grid>
-      </Grid>
-
-      <div style={{ height: 30 }} />
+      </Grid>*/}
 
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
