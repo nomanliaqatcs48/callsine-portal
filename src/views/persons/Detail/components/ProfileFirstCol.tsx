@@ -1,8 +1,8 @@
+import React from "react";
 import { Avatar, Button, Tooltip, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
 import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
-import React from "react";
 
 type ProfileFirstColTypes = {
   data: any[];
