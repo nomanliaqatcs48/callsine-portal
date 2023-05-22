@@ -44,6 +44,7 @@ export const _columns: any = () => {
       {
         Header: "Name",
         accessor: "first_name",
+        tdClassName: "tw-px-0",
         Cell: (cell: any) => {
           const listItems = [
             {
@@ -154,7 +155,7 @@ export const _columns: any = () => {
           };
 
           return (
-            <div className="">
+            <span className="">
               {cell?.value && (
                 <Tooltip
                   enterDelay={1000}
@@ -275,17 +276,19 @@ export const _columns: any = () => {
                 >
                   <Button
                     variant="text"
-                    className="tw-flex tw-items-center tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text"
+                    className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text"
                     href={`/people/${cell?.row?.original?.id}`}
                   >
-                    <div className="tw-relative tw-w-7 tw-h-7 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
+                    <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
                       <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
                     </div>
-                    {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                    <span>
+                      {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                    </span>
                   </Button>
                 </Tooltip>
               )}
-            </div>
+            </span>
           );
         },
       },
