@@ -4,7 +4,11 @@ import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/li
 import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
 import React from "react";
 
-const ProfileFirstCol = () => {
+type ProfileFirstColTypes = {
+  data: any[];
+};
+
+const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
   return (
     <>
       {/*image, name, email, and icons*/}

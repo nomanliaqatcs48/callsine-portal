@@ -62,7 +62,7 @@ const PersonDetailPage = () => {
                 xl={"auto"}
                 className="lg:tw-px-10 xl:tw-flex-col xl:tw-items-center xl:tw-justify-center xl:tw-border-r xl:tw-w-1/2 xl:tw-p-10 2xl:tw-px-16 3xl:tw-w-2/5"
               >
-                <ProfileFirstCol />
+                <ProfileFirstCol data={data} />
               </Grid>
               <Grid item xs={12} className="tw-w-full tw-py-4 xl:tw-hidden">
                 <Divider variant="middle" />
@@ -73,7 +73,7 @@ const PersonDetailPage = () => {
                 xl={"auto"}
                 className="xl:tw-p-9 xl:tw-w-1/2 3xl:tw-w-3/5"
               >
-                <ProfileSecondCol />
+                <ProfileSecondCol data={data} />
               </Grid>
             </Grid>
           </Paper>

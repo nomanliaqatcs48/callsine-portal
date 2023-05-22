@@ -8,7 +8,11 @@ import {
 } from "@mui/material";
 import React from "react";
 
-const ProfileSecondCol = () => {
+type ProfileSecondColTypes = {
+  data: any[];
+};
+
+const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
   const items = [
     {
       first: "Title",
