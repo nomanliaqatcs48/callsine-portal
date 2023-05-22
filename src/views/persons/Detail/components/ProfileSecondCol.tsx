@@ -1,5 +1,6 @@
 import React from "react";
 import {
+  Button,
   Paper,
   Table,
   TableBody,
@@ -9,34 +10,48 @@ import {
 } from "@mui/material";
 
 type ProfileSecondColTypes = {
-  data: any[];
+  data: any;
 };
 
 const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
   const items = [
     {
       first: "Title",
-      second: "Co-Founder and CEO",
+      second: data?.job_title || <hr className="tw-w-3 tw-bg-black" />,
     },
     {
       first: "Company",
-      second: "Google",
+      second: data?.org?.name || <hr className="tw-w-3 tw-bg-black" />,
     },
     {
       first: "Location",
-      second: "San Ramon, CA",
+      second:
+        data?.city && data?.state ? (
+          `${data?.city}${data?.state ? ", " + data.state : ""}`
+        ) : (
+          <hr className="tw-w-3 tw-bg-black" />
+        ),
     },
     {
       first: "Industry",
-      second: "Artificial Intelligence Advertising Cloud",
+      second: data?.org?.industry || <hr className="tw-w-3 tw-bg-black" />,
     },
     {
       first: "Email",
-      second: "johndoe@gmail.com",
+      second: data?.work_email ? (
+        <Button
+          href={`mailto:${data?.work_email}`}
+          className="tw-p-0 tw-normal-case"
+        >
+          {data?.work_email}
+        </Button>
+      ) : (
+        <hr className="tw-w-3 tw-bg-black" />
+      ),
     },
     {
       first: "Phone",
-      second: "(555) 555-1234",
+      second: data?.phone || <hr className="tw-w-3 tw-bg-black" />,
     },
   ];
 
