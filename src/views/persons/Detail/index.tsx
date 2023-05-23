@@ -95,44 +95,47 @@ const PersonDetailPage = () => {
       </Grid>*/}
 
       <Box
-        className="tw-bg-white tw-px-9 tw-py-4"
-        sx={{ borderBottom: 1, borderColor: "divider" }}
+        className="tw-bg-white tw-px-9 tw-pt-2 tw-pb-4 tw-border-[2px] tw-border-[#f4f4f4] tw-rounded-lg"
+        // sx={{ borderBottom: 1, borderColor: "divider" }}
       >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
-          className="tw-border-black"
+          className="tw-border-b tw-border-[#e8ebf5]"
+          sx={{
+            "& .MuiTabs-scroller": {
+              "& .MuiTabs-flexContainer": {
+                "& .MuiButtonBase-root": {
+                  "&:hover": {
+                    color: "#3485d7",
+                  },
+                  "&.Mui-selected": {
+                    color: "black",
+                  },
+                },
+              },
+              "& .MuiTabs-indicator": {
+                backgroundColor: "#3485d7",
+                height: "1px",
+              },
+            },
+          }}
         >
           <Tab
             label="Playbook"
             {...a11yProps(0)}
-            className="tw-text-black"
-            sx={{
-              "&.Mui-selected": {
-                color: "black",
-              },
-            }}
+            className="tw-text-black tw-tracking-wider"
           />
           <Tab
             label="Emails"
             {...a11yProps(1)}
-            className="tw-text-black"
-            sx={{
-              "&.Mui-selected": {
-                color: "black",
-              },
-            }}
+            className="tw-text-black tw-tracking-wider"
           />
           <Tab
             label="Tracking"
             {...a11yProps(2)}
-            className="tw-text-black"
-            sx={{
-              "&.Mui-selected": {
-                color: "black",
-              },
-            }}
+            className="tw-text-black tw-tracking-wider"
           />
         </Tabs>
       </Box>
