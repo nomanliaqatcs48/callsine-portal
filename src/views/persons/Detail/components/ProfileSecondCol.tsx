@@ -17,11 +17,11 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
   const items = [
     {
       first: "Title",
-      second: data?.job_title || <hr className="tw-w-3 tw-bg-black" />,
+      second: data?.job_title || <hr className="tw-w-3 tw-border-black" />,
     },
     {
       first: "Company",
-      second: data?.org?.name || <hr className="tw-w-3 tw-bg-black" />,
+      second: data?.org?.name || <hr className="tw-w-3 tw-border-black" />,
     },
     {
       first: "Location",
@@ -29,12 +29,12 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
         data?.city && data?.state ? (
           `${data?.city}${data?.state ? ", " + data.state : ""}`
         ) : (
-          <hr className="tw-w-3 tw-bg-black" />
+          <hr className="tw-w-3 tw-border-black" />
         ),
     },
     {
       first: "Industry",
-      second: data?.org?.industry || <hr className="tw-w-3 tw-bg-black" />,
+      second: data?.org?.industry || <hr className="tw-w-3 tw-border-black" />,
     },
     {
       first: "Email",
@@ -46,12 +46,12 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
           {data?.work_email}
         </Button>
       ) : (
-        <hr className="tw-w-3 tw-bg-black" />
+        <hr className="tw-w-3 tw-border-black" />
       ),
     },
     {
       first: "Phone",
-      second: data?.phone || <hr className="tw-w-3 tw-bg-black" />,
+      second: data?.phone || <hr className="tw-w-3 tw-border-black" />,
     },
   ];
 
