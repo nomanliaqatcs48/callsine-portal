@@ -32,6 +32,7 @@ import { ReactComponent as LinkedinIcon } from "../../../assets/images/svg/linke
 import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/facebook.svg";
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
+import GoBack from "../../../ui-component/buttons/GoBack";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -52,6 +53,11 @@ const PersonDetailPage = () => {
 
   return (
     <>
+      <Grid container>
+        <Grid item xs={12} className="tw-py-3">
+          <GoBack />
+        </Grid>
+      </Grid>
       <Grid container>
         <Grid item xs={12}>
           <Paper elevation={0} className="tw-p-3 tw-rounded-md">
