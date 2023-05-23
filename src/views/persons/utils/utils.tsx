@@ -300,13 +300,13 @@ export const _columns: any = () => {
         Header: "Company",
         accessor: "org.name",
       },
-      {
+      /*{
         Header: "Phone",
         accessor: "phone",
         Cell: (cell: any) => {
           return <span>{cell?.value || "-"}</span>;
         },
-      },
+      },*/
       {
         Header: "Email",
         accessor: "work_email",
@@ -332,7 +332,7 @@ export const _columns: any = () => {
         minWidth: 60,
         // Cell: (cell: any) => cell?.value,
       },
-      {
+      /*{
         Header: "Location",
         accessor: "city",
         Cell: (cell: any) => {
@@ -340,14 +340,14 @@ export const _columns: any = () => {
             cell?.row?.original?.state ? ", " + cell?.row?.original?.state : ""
           }`;
         },
-      },
-      {
+      },*/
+      /*{
         Header: "Industry",
         accessor: "org.industry",
         Cell: (cell: any) => {
           return cell?.value || "-";
         },
-      },
+      },*/
       {
         Header: "Actions",
         disableSortBy: true,
