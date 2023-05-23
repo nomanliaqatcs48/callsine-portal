@@ -41,7 +41,7 @@ export const _columns = (getMailAccounts: any) => {
         return <div style={{ textTransform: "capitalize" }}>{cell?.value}</div>;
       },
     },
-    {
+    /*{
       Header: "Status",
       accessor: "connected",
       Cell: (cell: any) => {
@@ -67,7 +67,7 @@ export const _columns = (getMailAccounts: any) => {
 
         return cell?.value ? "Connected" : showBtn();
       },
-    },
+    },*/
     {
       Header: "Actions",
       accessor: "action",
