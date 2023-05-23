@@ -10,7 +10,9 @@ import {
 } from "@mui/material";
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import { emailAddressPattern } from "../../helpers/forms";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { devLogError } from "../../helpers/logs";
+import { postUsersMeService } from "../../services/profile.service";
 
 const Profile = () => {
   const [isLoading, setIsLoading] = useState<any>({
@@ -25,6 +27,22 @@ const Profile = () => {
     getValues,
     formState: { errors },
   } = useForm();
+
+  const onSubmit = async (data: any) => {
+    isLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let res = await postUsersMeService(data);
+      if (res?.data) {
+        ToastSuccess("Profile successfully updated.");
+        reset();
+        isLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
+      ToastError("Something went wrong!");
+      devLogError(response);
+      isLoading((prev: any) => ({ ...prev, form: false }));
+    }
+  };
 
   return (
     <>
@@ -192,7 +210,7 @@ const Profile = () => {
                 {/*submit button*/}
                 <Grid item xs={12} lg={12} className="tw-py-2">
                   <Button
-                    onClick={() => null}
+                    onClick={handleSubmit((data) => onSubmit(data))}
                     disabled={isLoading?.form}
                     variant="outlined"
                     color="primary"
