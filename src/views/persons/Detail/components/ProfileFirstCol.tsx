@@ -33,7 +33,9 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
         <div className="tw-flex tw-flex-col tw-items-center">
           {/*name*/}
           <Typography className="tw-text-2xl tw-font-bold tw-text-black">
-            {`${data?.first_name} ${data?.last_name}`}
+            {`${data?.first_name || <hr className="tw-w-3 tw-bg-black" />} ${
+              data?.last_name || <hr className="tw-w-3 tw-bg-black" />
+            }`}
           </Typography>
           {/*email*/}
           <Button
@@ -42,7 +44,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             target="_blank"
             rel="noopener noreferrer"
           >
-            {data?.work_email}
+            {data?.work_email || ""}
           </Button>
           {/*social icons*/}
           <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3 lg:tw-pt-1">
@@ -79,7 +81,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Emails Sent
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.emails_sent}
+            {personStatData?.emails_sent || "0"}
           </Typography>
         </div>
         <div>
@@ -87,7 +89,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Opened
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.opened}
+            {personStatData?.opened || "0"}
           </Typography>
         </div>
         <div>
@@ -95,7 +97,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Clicked
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.clicked}
+            {personStatData?.clicked || "0"}
           </Typography>
         </div>
         <div>
@@ -103,7 +105,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Replied
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.replied}
+            {personStatData?.replied || "0"}
           </Typography>
         </div>
         <div>
@@ -111,7 +113,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Pageviews
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.pageviews}
+            {personStatData?.pageviews || "0"}
           </Typography>
         </div>
       </div>
