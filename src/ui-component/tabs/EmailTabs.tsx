@@ -216,7 +216,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               justifyContent="start"
               alignItems="center"
             >
-              {showStatus(item?.status) === "Queued" && (
+              {/*{showStatus(item?.status) === "Queued" && (*/}
                 <SendEmailNow
                   id={item?.id}
                   buttonText="Send Now"
@@ -224,7 +224,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                   style={{ marginRight: 10 }}
                   onLoadApi={onLoadApi}
                 />
-              )}
+              {/*)}*/}
 
               <DeletePersonEmail
                 buttonText="Delete"
