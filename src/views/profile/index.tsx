@@ -2,8 +2,13 @@ import React, { useState } from "react";
 import {
   Box,
   Button,
+  FormControl,
   FormHelperText,
   Grid,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
   Paper,
   TextField,
   Typography,
@@ -13,8 +18,15 @@ import { ErrorMessage } from "@hookform/error-message";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { devLogError } from "../../helpers/logs";
 import { postUsersMeService } from "../../services/profile.service";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { useTheme } from "@mui/material/styles";
 
 const Profile = () => {
+  const theme: any = useTheme();
+  const [showPassword, setShowPassword] = useState<boolean>(false);
+  const [showConfirmPassword, setShowConfirmPassword] =
+    useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     form: false,
   });
@@ -42,6 +54,18 @@ const Profile = () => {
       devLogError(response);
       isLoading((prev: any) => ({ ...prev, form: false }));
     }
+  };
+
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleClickShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
+
+  const handleMouseDownPassword = (event: any) => {
+    event.preventDefault();
   };
 
   return (
@@ -162,17 +186,41 @@ const Profile = () => {
                 </Grid>
 
                 {/*password*/}
-                <Grid item xs={12} lg={12}>
-                  <TextField
-                    error={!!errors.password}
-                    disabled={isLoading?.form}
-                    margin="dense"
-                    id="password"
-                    label="Password"
-                    type="password"
+                <Grid item xs={12} lg={12} className="">
+                  <FormControl
                     fullWidth
-                    {...register("password")}
-                  />
+                    error={Boolean(errors.password)}
+                    margin="dense"
+                    disabled={isLoading?.form}
+                    required
+                  >
+                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <OutlinedInput
+                      id="password"
+                      type={showPassword ? "text" : "password"}
+                      {...register("password", {
+                        required: "This is required field.",
+                      })}
+                      name="password"
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                            size="large"
+                          >
+                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Password"
+                      inputProps={{}}
+                      autoComplete="off"
+                      className="tw-bg-transparent"
+                    />
+                  </FormControl>
                   <ErrorMessage
                     errors={errors}
                     name="password"
@@ -185,17 +233,47 @@ const Profile = () => {
                 </Grid>
 
                 {/*confirm password*/}
-                <Grid item xs={12} lg={12}>
-                  <TextField
-                    error={!!errors.confirm_password}
-                    disabled={isLoading?.form}
-                    margin="dense"
-                    id="confirm_password"
-                    label="Confirm Password"
-                    type="password"
+                <Grid item xs={12} lg={12} className="">
+                  <FormControl
                     fullWidth
-                    {...register("confirm_password")}
-                  />
+                    error={Boolean(errors.confirm_password)}
+                    margin="dense"
+                    disabled={isLoading?.form}
+                    required
+                  >
+                    <InputLabel htmlFor="confirm_password">
+                      Confirm Password
+                    </InputLabel>
+                    <OutlinedInput
+                      id="confirm_password"
+                      type={showConfirmPassword ? "text" : "password"}
+                      {...register("confirm_password", {
+                        required: "This is required field.",
+                      })}
+                      name="confirm_password"
+                      endAdornment={
+                        <InputAdornment position="end">
+                          <IconButton
+                            aria-label="toggle password visibility"
+                            onClick={handleClickShowConfirmPassword}
+                            onMouseDown={handleMouseDownPassword}
+                            edge="end"
+                            size="large"
+                          >
+                            {showConfirmPassword ? (
+                              <Visibility />
+                            ) : (
+                              <VisibilityOff />
+                            )}
+                          </IconButton>
+                        </InputAdornment>
+                      }
+                      label="Confirm Password"
+                      inputProps={{}}
+                      autoComplete="off"
+                      className="tw-bg-transparent"
+                    />
+                  </FormControl>
                   <ErrorMessage
                     errors={errors}
                     name="confirm_password"
