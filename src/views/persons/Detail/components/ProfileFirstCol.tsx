@@ -30,22 +30,22 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             sx={{ color: "#ffffff" }}
           />
         </Avatar>
-        <div className="tw-flex tw-flex-col tw-items-center">
+        <div className="tw-flex tw-flex-col tw-items-start">
           {/*name*/}
           <Typography className="tw-text-2xl tw-font-bold tw-text-black">
-            {`${data?.first_name || <hr className="tw-w-3 tw-bg-black" />} ${
-              data?.last_name || <hr className="tw-w-3 tw-bg-black" />
-            }`}
+            {`${data?.first_name || ""} ${data?.last_name || ""}`}
           </Typography>
           {/*email*/}
-          <Button
-            className="tw-font-normal tw-text-[#0096c7] tw-normal-case"
-            href={`mailto:${data?.work_email}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {data?.work_email || ""}
-          </Button>
+          {data?.work_email && (
+            <Button
+              className="tw-font-normal tw-text-[#0096c7] tw-normal-case tw-pl-0"
+              href={`mailto:${data?.work_email}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {data?.work_email || ""}
+            </Button>
+          )}
           {/*social icons*/}
           <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3 lg:tw-pt-1">
             <Tooltip title={"Linkedin"}>
