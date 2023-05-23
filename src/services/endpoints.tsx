@@ -2,6 +2,7 @@ export const endpoints = {
   LOGIN: "/token/",
   SIGNUP: "/rest-auth/registration/",
   PROFILE: "/api/me/",
+  USERS_ME: "/api/users/me/",
   PERSON: "/api/persons/",
   MAIL_ACCOUNT: "/api/mail-accounts/",
   PROMPTS: "/api/prompts/",
