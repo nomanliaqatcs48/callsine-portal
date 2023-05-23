@@ -46,14 +46,14 @@ const pages = {
       icon: icons.IconMail,
       breadcrumbs: false,
     },
-    {
+    /*{
       id: "profile",
       title: "Profile",
       type: "item",
       url: "/profile",
       icon: icons.IconMail,
       breadcrumbs: false,
-    },
+    },*/
     // {
     //   id: "campaigns",
     //   title: "Campaigns",
