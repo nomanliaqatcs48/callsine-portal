@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   Box,
+  Button,
   FormHelperText,
   Grid,
   Paper,
@@ -28,13 +29,13 @@ const Profile = () => {
   return (
     <>
       <Paper elevation={1} className="tw-px-20 tw-py-10">
-        <Grid container className="">
+        <Grid container className="tw-max-w-2xl tw-mx-auto">
           <Grid item xs={12}>
             <Typography className="tw-text-lg">Profile</Typography>
           </Grid>
         </Grid>
         {/*form*/}
-        <Grid container className="">
+        <Grid container className="tw-max-w-2xl tw-mx-auto">
           <Grid item xs={12}>
             <Box component="form" noValidate autoComplete="off">
               <Grid container columnSpacing={1}>
@@ -186,6 +187,19 @@ const Profile = () => {
                       </FormHelperText>
                     )}
                   />
+                </Grid>
+
+                {/*submit button*/}
+                <Grid item xs={12} lg={12} className="tw-py-2">
+                  <Button
+                    onClick={() => null}
+                    disabled={isLoading?.form}
+                    variant="outlined"
+                    color="primary"
+                    className="tw-w-full tw-py-3 tw-uppercase tw-text-sm tw-rounded-lg"
+                  >
+                    Submit
+                  </Button>
                 </Grid>
               </Grid>
             </Box>
