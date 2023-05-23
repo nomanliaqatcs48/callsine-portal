@@ -161,6 +161,8 @@ const CreateOrEditPerson = ({
     try {
       data = {
         ...data,
+        company_name: data.company_name,
+        company_website: data.company_domain,
         org: { name: data.company_name, domain: data.company_domain },
       };
       let res = await createPeopleService(data);
