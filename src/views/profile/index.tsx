@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -17,7 +17,10 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { devLog, devLogError } from "../../helpers/logs";
-import { postUsersMeService } from "../../services/profile.service";
+import {
+  postUsersMeService,
+  profileService,
+} from "../../services/profile.service";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useTheme } from "@mui/material/styles";
@@ -45,6 +48,21 @@ const Profile = () => {
     setError,
     formState: { errors },
   } = useForm();
+
+  useEffect(() => {
+    GetUserMe();
+  }, []);
+
+  const GetUserMe = async () => {
+    try {
+      let response = await profileService();
+      if (response) {
+        devLog("response", response.data);
+      }
+    } catch ({ response }) {
+      devLogError(response);
+    }
+  };
 
   const onSubmit = async (data: any) => {
     setIsLoading((prev: any) => ({ ...prev, form: true }));
