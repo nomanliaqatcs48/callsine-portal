@@ -326,6 +326,13 @@ export const _columns: any = () => {
         },
       },
       {
+        Header: "Emails",
+        accessor: "email_count",
+        width: 60,
+        minWidth: 60,
+        // Cell: (cell: any) => cell?.value,
+      },
+      {
         Header: "Location",
         accessor: "city",
         Cell: (cell: any) => {
@@ -345,6 +352,8 @@ export const _columns: any = () => {
         Header: "Actions",
         disableSortBy: true,
         accessor: "actions",
+        width: 50,
+        minWidth: 50,
         Cell: (cell: any) => {
           return (
             <>
