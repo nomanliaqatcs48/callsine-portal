@@ -94,15 +94,46 @@ const PersonDetailPage = () => {
         </Grid>
       </Grid>*/}
 
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box
+        className="tw-bg-white tw-px-9 tw-py-4"
+        sx={{ borderBottom: 1, borderColor: "divider" }}
+      >
         <Tabs
           value={value}
           onChange={handleChange}
           aria-label="basic tabs example"
+          className="tw-border-black"
         >
-          <Tab label="Playbook" {...a11yProps(0)} />
-          <Tab label="Emails" {...a11yProps(1)} />
-          <Tab label="Tracking" {...a11yProps(2)} />
+          <Tab
+            label="Playbook"
+            {...a11yProps(0)}
+            className="tw-text-black"
+            sx={{
+              "&.Mui-selected": {
+                color: "black",
+              },
+            }}
+          />
+          <Tab
+            label="Emails"
+            {...a11yProps(1)}
+            className="tw-text-black"
+            sx={{
+              "&.Mui-selected": {
+                color: "black",
+              },
+            }}
+          />
+          <Tab
+            label="Tracking"
+            {...a11yProps(2)}
+            className="tw-text-black"
+            sx={{
+              "&.Mui-selected": {
+                color: "black",
+              },
+            }}
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
