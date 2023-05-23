@@ -189,19 +189,19 @@ const Profile = () => {
                 <Grid item xs={12} lg={12} className="">
                   <FormControl
                     fullWidth
-                    error={Boolean(errors.password)}
+                    error={Boolean(errors.password1)}
                     margin="dense"
                     disabled={isLoading?.form}
                     required
                   >
-                    <InputLabel htmlFor="password">Password</InputLabel>
+                    <InputLabel htmlFor="password1">Password</InputLabel>
                     <OutlinedInput
-                      id="password"
+                      id="password1"
                       type={showPassword ? "text" : "password"}
-                      {...register("password", {
+                      {...register("password1", {
                         required: "This is required field.",
                       })}
-                      name="password"
+                      name="password1"
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -223,7 +223,7 @@ const Profile = () => {
                   </FormControl>
                   <ErrorMessage
                     errors={errors}
-                    name="password"
+                    name="password1"
                     render={({ message }) => (
                       <FormHelperText sx={{ color: "error.main" }}>
                         {message}
@@ -236,21 +236,21 @@ const Profile = () => {
                 <Grid item xs={12} lg={12} className="">
                   <FormControl
                     fullWidth
-                    error={Boolean(errors.confirm_password)}
+                    error={Boolean(errors.password2)}
                     margin="dense"
                     disabled={isLoading?.form}
                     required
                   >
-                    <InputLabel htmlFor="confirm_password">
+                    <InputLabel htmlFor="password2">
                       Confirm Password
                     </InputLabel>
                     <OutlinedInput
-                      id="confirm_password"
+                      id="password2"
                       type={showConfirmPassword ? "text" : "password"}
-                      {...register("confirm_password", {
+                      {...register("password2", {
                         required: "This is required field.",
                       })}
-                      name="confirm_password"
+                      name="password2"
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
@@ -276,7 +276,7 @@ const Profile = () => {
                   </FormControl>
                   <ErrorMessage
                     errors={errors}
-                    name="confirm_password"
+                    name="password2"
                     render={({ message }) => (
                       <FormHelperText sx={{ color: "error.main" }}>
                         {message}
