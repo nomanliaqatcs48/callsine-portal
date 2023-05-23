@@ -159,6 +159,10 @@ const CreateOrEditPerson = ({
   const onThisAddSubmit = async (data: any) => {
     setPersonLoading((prev: any) => ({ ...prev, form: true }));
     try {
+      data = {
+        ...data,
+        org: { name: data.company_name, domain: data.company_domain },
+      };
       let res = await createPeopleService(data);
       if (res?.data) {
         ToastSuccess("New person successfully created.");
@@ -208,7 +212,7 @@ const CreateOrEditPerson = ({
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
                   <Grid container columnSpacing={1}>
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
                         error={!!errors.first_name}
                         disabled={personLoading?.form}
@@ -234,7 +238,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
                         error={!!errors.last_name}
                         disabled={personLoading?.form}
@@ -260,7 +264,7 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
                         error={!!errors.job_title}
                         disabled={personLoading?.form}
@@ -286,14 +290,14 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
                         error={!!errors.work_email}
                         disabled={personLoading?.form}
                         required
                         margin="dense"
                         id="work_email"
-                        label="Work Email"
+                        label="Email Address"
                         type="text"
                         defaultValue={id ? defaultValue?.work_email : ""}
                         fullWidth
@@ -313,13 +317,13 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
                         error={!!errors.linkedin}
                         disabled={personLoading?.form}
                         margin="dense"
                         id="linkedin"
-                        label="Linkedin"
+                        label="Linkedin URL"
                         type="text"
                         defaultValue={id ? defaultValue?.linkedin : ""}
                         fullWidth
@@ -336,24 +340,49 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
+                    <Grid item xs={12} lg={12}>
                       <TextField
-                        error={!!errors.email_domain}
+                        error={!!errors.company_domain}
                         disabled={personLoading?.form}
                         required
                         margin="dense"
-                        id="email_domain"
-                        label="Email Domain"
+                        id="company_domain"
+                        label="Company Website"
                         type="text"
-                        defaultValue={id ? defaultValue?.email_domain : ""}
+                        defaultValue={id ? defaultValue?.company_domain : ""}
                         fullWidth
-                        {...register("email_domain", {
+                        {...register("company_domain", {
                           required: "This is required field.",
                         })}
                       />
                       <ErrorMessage
                         errors={errors}
-                        name="email_domain"
+                        name="company_domain"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </Grid>
+                    <Grid item xs={12} lg={12}>
+                      <TextField
+                        error={!!errors.company_name}
+                        disabled={personLoading?.form}
+                        required
+                        margin="dense"
+                        id="company_name"
+                        label="Company Name"
+                        type="text"
+                        defaultValue={id ? defaultValue?.company_name : ""}
+                        fullWidth
+                        {...register("company_name", {
+                          required: "This is required field.",
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="company_name"
                         render={({ message }) => (
                           <FormHelperText sx={{ color: "error.main" }}>
                             {message}
@@ -362,57 +391,57 @@ const CreateOrEditPerson = ({
                       />
                     </Grid>
 
-                    <Grid item xs={12} lg={6}>
-                      <TextField
-                        error={!!errors.city}
-                        disabled={personLoading?.form}
-                        required
-                        margin="dense"
-                        id="city"
-                        label="City"
-                        type="text"
-                        defaultValue={id ? defaultValue?.city : ""}
-                        fullWidth
-                        {...register("city", {
-                          required: "This is required field.",
-                        })}
-                      />
-                      <ErrorMessage
-                        errors={errors}
-                        name="city"
-                        render={({ message }) => (
-                          <FormHelperText sx={{ color: "error.main" }}>
-                            {message}
-                          </FormHelperText>
-                        )}
-                      />
-                    </Grid>
+                    {/*<Grid item xs={12} lg={6}>*/}
+                    {/*  <TextField*/}
+                    {/*    error={!!errors.city}*/}
+                    {/*    disabled={personLoading?.form}*/}
+                    {/*    required*/}
+                    {/*    margin="dense"*/}
+                    {/*    id="city"*/}
+                    {/*    label="City"*/}
+                    {/*    type="text"*/}
+                    {/*    defaultValue={id ? defaultValue?.city : ""}*/}
+                    {/*    fullWidth*/}
+                    {/*    {...register("city", {*/}
+                    {/*      required: "This is required field.",*/}
+                    {/*    })}*/}
+                    {/*  />*/}
+                    {/*  <ErrorMessage*/}
+                    {/*    errors={errors}*/}
+                    {/*    name="city"*/}
+                    {/*    render={({ message }) => (*/}
+                    {/*      <FormHelperText sx={{ color: "error.main" }}>*/}
+                    {/*        {message}*/}
+                    {/*      </FormHelperText>*/}
+                    {/*    )}*/}
+                    {/*  />*/}
+                    {/*</Grid>*/}
 
-                    <Grid item xs={12} lg={6}>
-                      <TextField
-                        error={!!errors.state}
-                        disabled={personLoading?.form}
-                        required
-                        margin="dense"
-                        id="state"
-                        label="State"
-                        type="text"
-                        defaultValue={id ? defaultValue?.state : ""}
-                        fullWidth
-                        {...register("state", {
-                          required: "This is required field.",
-                        })}
-                      />
-                      <ErrorMessage
-                        errors={errors}
-                        name="state"
-                        render={({ message }) => (
-                          <FormHelperText sx={{ color: "error.main" }}>
-                            {message}
-                          </FormHelperText>
-                        )}
-                      />
-                    </Grid>
+                    {/*<Grid item xs={12} lg={6}>*/}
+                    {/*  <TextField*/}
+                    {/*    error={!!errors.state}*/}
+                    {/*    disabled={personLoading?.form}*/}
+                    {/*    required*/}
+                    {/*    margin="dense"*/}
+                    {/*    id="state"*/}
+                    {/*    label="State"*/}
+                    {/*    type="text"*/}
+                    {/*    defaultValue={id ? defaultValue?.state : ""}*/}
+                    {/*    fullWidth*/}
+                    {/*    {...register("state", {*/}
+                    {/*      required: "This is required field.",*/}
+                    {/*    })}*/}
+                    {/*  />*/}
+                    {/*  <ErrorMessage*/}
+                    {/*    errors={errors}*/}
+                    {/*    name="state"*/}
+                    {/*    render={({ message }) => (*/}
+                    {/*      <FormHelperText sx={{ color: "error.main" }}>*/}
+                    {/*        {message}*/}
+                    {/*      </FormHelperText>*/}
+                    {/*    )}*/}
+                    {/*  />*/}
+                    {/*</Grid>*/}
 
                     {/*<Grid item xs={12}>
                       <FormControl
