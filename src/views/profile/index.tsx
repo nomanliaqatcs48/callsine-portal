@@ -16,17 +16,22 @@ import {
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import { devLogError } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
 import { postUsersMeService } from "../../services/profile.service";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { useTheme } from "@mui/material/styles";
+import {
+  strengthColor,
+  strengthIndicator,
+} from "../../utils/password-strength";
 
 const Profile = () => {
   const theme: any = useTheme();
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [showConfirmPassword, setShowConfirmPassword] =
-    useState<boolean>(false);
+  const [showPassword1, setShowPassword1] = useState<boolean>(false);
+  const [showPassword2, setShowPassword2] = useState<boolean>(false);
+  const [strength, setStrength] = useState(0);
+  const [level, setLevel] = useState<any>();
   const [isLoading, setIsLoading] = useState<any>({
     form: false,
   });
@@ -37,35 +42,61 @@ const Profile = () => {
     reset,
     trigger,
     getValues,
+    setError,
     formState: { errors },
   } = useForm();
 
   const onSubmit = async (data: any) => {
-    isLoading((prev: any) => ({ ...prev, form: true }));
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    if (!checkPasswords(data)) {
+      setError("password2", {
+        type: "manual",
+        message: "Passwords don't match.",
+      });
+      setIsLoading((beforeVal: any) => ({
+        ...beforeVal,
+        form: false,
+      }));
+      return;
+    }
     try {
       let res = await postUsersMeService(data);
       if (res?.data) {
         ToastSuccess("Profile successfully updated.");
         reset();
-        isLoading((prev: any) => ({ ...prev, form: false }));
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
-      isLoading((prev: any) => ({ ...prev, form: false }));
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
     }
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
+  const handleClickShowPassword1 = () => {
+    setShowPassword1(!showPassword1);
   };
 
-  const handleClickShowConfirmPassword = () => {
-    setShowConfirmPassword(!showConfirmPassword);
+  const handleClickShowPassword2 = () => {
+    setShowPassword2(!showPassword2);
   };
 
-  const handleMouseDownPassword = (event: any) => {
+  const handleMouseDownPassword1 = (event: any) => {
     event.preventDefault();
+  };
+
+  const handleMouseDownPassword2 = (event: any) => {
+    event.preventDefault();
+  };
+
+  const changePassword = (value: any) => {
+    const temp = strengthIndicator(value);
+    setStrength(temp);
+    setLevel(strengthColor(temp));
+  };
+
+  const checkPasswords = (values: any) => {
+    return values?.password1 === values?.password2;
   };
 
   return (
@@ -197,21 +228,25 @@ const Profile = () => {
                     <InputLabel htmlFor="password1">Password</InputLabel>
                     <OutlinedInput
                       id="password1"
-                      type={showPassword ? "text" : "password"}
+                      type={showPassword1 ? "text" : "password"}
                       {...register("password1", {
                         required: "This is required field.",
+                        maxLength: {
+                          value: 255,
+                          message: "Too many characters",
+                        },
                       })}
                       name="password1"
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
                             aria-label="toggle password visibility"
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onClick={handleClickShowPassword1}
+                            onMouseDown={handleMouseDownPassword1}
                             edge="end"
                             size="large"
                           >
-                            {showPassword ? <Visibility /> : <VisibilityOff />}
+                            {showPassword1 ? <Visibility /> : <VisibilityOff />}
                           </IconButton>
                         </InputAdornment>
                       }
@@ -246,25 +281,25 @@ const Profile = () => {
                     </InputLabel>
                     <OutlinedInput
                       id="password2"
-                      type={showConfirmPassword ? "text" : "password"}
+                      type={showPassword2 ? "text" : "password"}
                       {...register("password2", {
                         required: "This is required field.",
+                        maxLength: {
+                          value: 255,
+                          message: "Too many characters",
+                        },
                       })}
                       name="password2"
                       endAdornment={
                         <InputAdornment position="end">
                           <IconButton
                             aria-label="toggle password visibility"
-                            onClick={handleClickShowConfirmPassword}
-                            onMouseDown={handleMouseDownPassword}
+                            onClick={handleClickShowPassword2}
+                            onMouseDown={handleMouseDownPassword2}
                             edge="end"
                             size="large"
                           >
-                            {showConfirmPassword ? (
-                              <Visibility />
-                            ) : (
-                              <VisibilityOff />
-                            )}
+                            {showPassword2 ? <Visibility /> : <VisibilityOff />}
                           </IconButton>
                         </InputAdornment>
                       }
