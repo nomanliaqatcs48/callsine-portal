@@ -13,6 +13,7 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import ImportPeople from "../../ui-component/buttons/ImportPeople";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
+import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 
 const MailAccountsPage = () => {
   const {
@@ -118,7 +119,7 @@ const MailAccountsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <ExportPeople data={[]} />
+            <ExportMailAccounts data={mailAccountsData} />
 
             <Divider
               orientation="vertical"
