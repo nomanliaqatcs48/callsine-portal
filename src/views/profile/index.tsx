@@ -28,16 +28,27 @@ import {
   strengthColor,
   strengthIndicator,
 } from "../../utils/password-strength";
+import { useProfile } from "../../hooks/profile/useProfile";
 
 const Profile = () => {
   const theme: any = useTheme();
-  const [showPassword1, setShowPassword1] = useState<boolean>(false);
-  const [showPassword2, setShowPassword2] = useState<boolean>(false);
-  const [strength, setStrength] = useState(0);
-  const [level, setLevel] = useState<any>();
-  const [isLoading, setIsLoading] = useState<any>({
-    form: false,
-  });
+  const {
+    showPassword1,
+    setShowPassword1,
+    showPassword2,
+    setShowPassword2,
+    strength,
+    setStrength,
+    level,
+    setLevel,
+    isLoading,
+    setIsLoading,
+    handleClickShowPassword1,
+    handleClickShowPassword2,
+    handleMouseDownPassword1,
+    handleMouseDownPassword2,
+  } = useProfile();
+
   const {
     register,
     setValue,
@@ -89,22 +100,6 @@ const Profile = () => {
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, form: false }));
     }
-  };
-
-  const handleClickShowPassword1 = () => {
-    setShowPassword1(!showPassword1);
-  };
-
-  const handleClickShowPassword2 = () => {
-    setShowPassword2(!showPassword2);
-  };
-
-  const handleMouseDownPassword1 = (event: any) => {
-    event.preventDefault();
-  };
-
-  const handleMouseDownPassword2 = (event: any) => {
-    event.preventDefault();
   };
 
   const changePassword = (value: any) => {
