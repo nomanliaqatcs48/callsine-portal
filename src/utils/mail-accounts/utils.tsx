@@ -4,8 +4,9 @@ import React, { useMemo } from "react";
 import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import EditIcon from "@mui/icons-material/Edit";
-import { IconTrash, IconEdit } from "@tabler/icons-react";
+import { IconTrash, IconPencil } from "@tabler/icons-react";
 import { useTheme } from "@mui/material/styles";
+import { Tooltip } from "@mui/material";
 
 export const _columns = (getMailAccounts: any) => {
   const theme: any = useTheme();
@@ -111,12 +112,14 @@ export const _columns = (getMailAccounts: any) => {
                 onLoadApi={getMailAccounts}
                 className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
               >
-                <IconEdit
-                  style={{ color: theme.palette.primary.main }}
-                  size="18"
-                  strokeWidth={3}
-                  className=""
-                />
+                <Tooltip title="Edit">
+                  <EditIcon
+                    style={{ color: theme.palette.primary.main, fontSize: 19 }}
+                    fontSize="small"
+                    strokeWidth={3}
+                    className=""
+                  />
+                </Tooltip>
               </CreateOrEditMailAccount>
               <DeleteMailAccount
                 id={cell?.row?.original?.id}
