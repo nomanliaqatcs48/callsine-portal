@@ -1,10 +1,13 @@
 import "react-dropzone-uploader/dist/styles.css";
 import Dropzone from "react-dropzone-uploader";
-import { devLog, devLogError } from "../../helpers/logs";
+import { devLog } from "../../helpers/logs";
 import config from "../../config";
 import { loadString } from "../../utils/storage";
+import React, { useState } from "react";
+import ErrorMessage from "../extended/ErrorMessage";
 
 const PeopleFileUpload = (props: any) => {
+  const [errorMsg, setErrorMsg] = useState<any>("");
   const {
     onChange,
     onRemove,
@@ -12,6 +15,7 @@ const PeopleFileUpload = (props: any) => {
     refresh,
     deleteFileAfterRemove = false,
   } = props;
+
   // specify upload params and url for your files
   const getUploadParams = async ({ file, meta }: any) => {
     devLog("getUploadParams() file", file);
@@ -91,11 +95,17 @@ const PeopleFileUpload = (props: any) => {
   // called every time a file's `status` changes
   const handleChangeStatus = ({ meta, file }: any, status: any) => {
     devLog("handleChangeStatus()", status, meta, file);
+    setErrorMsg("");
     if (status === "done") refresh();
     if (deleteFileAfterRemove) {
       if (status === "removed") {
         onRemove();
       }
+    }
+    if (status === "error_upload") {
+      setErrorMsg(
+        "Upload failed. Please make sure your CSV file uses the correct template"
+      );
     }
   };
 
@@ -105,19 +115,27 @@ const PeopleFileUpload = (props: any) => {
   };
 
   return (
-    <Dropzone
-      //@ts-ignore
-      getUploadParams={getUploadParams}
-      multiple={false}
-      autoUpload={true}
-      canCancel={false}
-      maxFiles={1}
-      SubmitButtonComponent={() => null}
-      inputContent="Drop A CSV"
-      onChangeStatus={handleChangeStatus}
-      onSubmit={handleSubmit}
-      accept=".csv"
-    />
+    <>
+      <Dropzone
+        //@ts-ignore
+        getUploadParams={getUploadParams}
+        multiple={false}
+        autoUpload={true}
+        canCancel={true}
+        maxFiles={1}
+        SubmitButtonComponent={() => null}
+        inputContent={
+          <div className="tw-text-sm tw-text-[#778da9] tw-border-[1px] tw-border-dashed">
+            Drop your CSV file here
+          </div>
+        }
+        onChangeStatus={handleChangeStatus}
+        onSubmit={handleSubmit}
+        accept=".csv"
+      />
+
+      <ErrorMessage>{errorMsg}</ErrorMessage>
+    </>
   );
 };
 
