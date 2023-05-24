@@ -1,6 +1,6 @@
 import React, { useMemo } from "react";
-import NewGmailAccount from "../../ui-component/buttons/NewGmailAccount";
-import NewOutlookAccount from "../../ui-component/buttons/NewOutlookAccount";
+// import NewGmailAccount from "../../ui-component/buttons/NewGmailAccount";
+// import NewOutlookAccount from "../../ui-component/buttons/NewOutlookAccount";
 import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import EditIcon from "@mui/icons-material/Edit";
