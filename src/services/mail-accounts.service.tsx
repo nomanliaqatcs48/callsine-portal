@@ -25,3 +25,7 @@ export const updateMailAccountService = async (id: number, data: any) => {
 export const deleteMailAccountService = async (id: number) => {
   return await http.delete(`${endpoints.MAIL_ACCOUNT}${id}/`);
 };
+
+export const testMailAccountService = async (id: number) => {
+  return await http.post(`${endpoints.MAIL_ACCOUNT}${id}/test/`);
+};
