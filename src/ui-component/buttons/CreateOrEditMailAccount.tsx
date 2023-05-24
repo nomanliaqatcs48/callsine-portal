@@ -160,7 +160,7 @@ const CreateOrEditMailAccount = ({
           aria-describedby={`${id ? "edit" : "add"} mail account modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">
+          <DialogTitle variant="h4" className="tw-pt-10">
             {id ? "Edit" : "Add"} Mail Account
           </DialogTitle>
           <DialogContent>
@@ -330,20 +330,36 @@ const CreateOrEditMailAccount = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
-            <Button onClick={handleClose} disabled={mailAccountLoading?.form}>
-              Cancel
-            </Button>
-            <Button
-              onClick={handleSubmit((data) =>
-                id ? onThisEditSubmit(data) : onThisAddSubmit(data)
-              )}
-              disabled={mailAccountLoading?.form}
-              variant="outlined"
-              color="primary"
-            >
-              {id ? "Edit" : "Add"}
-            </Button>
+          <DialogActions
+            className={`tw-flex ${
+              id ? "tw-justify-between" : "tw-justify-end"
+            } tw-px-6 tw-pb-10`}
+          >
+            {id && (
+              <Button
+                onClick={() => null}
+                disabled={mailAccountLoading?.form}
+                variant="outlined"
+                color="primary"
+              >
+                Test
+              </Button>
+            )}
+            <div>
+              <Button onClick={handleClose} disabled={mailAccountLoading?.form}>
+                Cancel
+              </Button>
+              <Button
+                onClick={handleSubmit((data) =>
+                  id ? onThisEditSubmit(data) : onThisAddSubmit(data)
+                )}
+                disabled={mailAccountLoading?.form}
+                variant="outlined"
+                color="primary"
+              >
+                {id ? "Edit" : "Add"}
+              </Button>
+            </div>
           </DialogActions>
         </Dialog>
       )}
