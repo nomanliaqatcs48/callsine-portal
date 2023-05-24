@@ -178,7 +178,7 @@ const PersonsPage = () => {
             />
 
             <DeleteSelectedPeople
-              selectedPeople={selectedPersonRows}
+              selectedRows={selectedPersonRows}
               onLoadApi={getPeople}
             />
 

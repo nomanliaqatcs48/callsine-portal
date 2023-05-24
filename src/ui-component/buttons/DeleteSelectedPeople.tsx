@@ -6,21 +6,21 @@ import { deletePersonDetailService } from "../../services/persons.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type DeleteSelectedPeopleTypes = {
-  selectedPeople: any[];
+  selectedRows: any[];
   onLoadApi: any;
 };
 
 const DeleteSelectedPeople = ({
-  selectedPeople,
+  selectedRows,
   onLoadApi,
 }: DeleteSelectedPeopleTypes) => {
   const onDelete = async () => {
-    devLog("selectedPeople", selectedPeople);
-    selectedPeople.map(async (item: any, idx) => {
+    devLog("selectedRows", selectedRows);
+    selectedRows.map(async (item: any, idx) => {
       try {
         let res = await deletePersonDetailService(item?.id);
         // if (res?.status === 204) {}
-        if (idx === selectedPeople?.length - 1) {
+        if (idx === selectedRows?.length - 1) {
           ToastSuccess("Selected people successfully deleted.");
           onLoadApi();
         }
