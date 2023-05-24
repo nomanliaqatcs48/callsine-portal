@@ -46,10 +46,6 @@ const PersonsPage = () => {
     getPeople,
   } = usePersons();
 
-  useEffect(() => {
-    devLog("selectedPersonRows", selectedPersonRows);
-  }, [selectedPersonRows]);
-
   const successfulUploadCsv = () => {
     getPeople();
     ToastSuccess("File successfully uploaded.");
