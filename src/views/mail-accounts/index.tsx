@@ -27,6 +27,8 @@ const MailAccountsPage = () => {
     setFilters,
     isLoading,
     setIsLoading,
+    selectedFlatRows,
+    setSelectedFlatRows,
     getMailAccounts,
   } = useMailAccounts();
 
@@ -127,7 +129,10 @@ const MailAccountsPage = () => {
               sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
             />
 
-            <DeleteSelectedPeople selectedPeople={[]} onLoadApi={() => null} />
+            <DeleteSelectedPeople
+              selectedPeople={selectedFlatRows}
+              onLoadApi={getMailAccounts}
+            />
 
             <Divider
               orientation="vertical"
@@ -158,6 +163,7 @@ const MailAccountsPage = () => {
           filters={filters}
           setFilters={setFilters}
           removePageSizeDropdown={false}
+          setSelectedFlatRows={setSelectedFlatRows}
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
