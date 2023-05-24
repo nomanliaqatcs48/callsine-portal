@@ -5,7 +5,7 @@ import {
 } from "../../../services/persons.service";
 import { devLogError } from "../../../helpers/logs";
 
-export const usePersons = () => {
+export const usePersons = (load: boolean = true) => {
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -21,8 +21,10 @@ export const usePersons = () => {
   const [selectedPersonRows, setSelectedPersonRows] = useState<any[]>([]);
 
   useEffect(() => {
-    getPeople();
-  }, []);
+    if (load) {
+      getPeople();
+    }
+  }, [load, filters]);
 
   const getPeople = async () => {
     try {
