@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getMailAccountsService } from "../../services/mail-accounts.service";
 
@@ -15,6 +15,7 @@ export const useMailAccounts = (load: boolean = true) => {
     onPage: true,
     table: false,
   });
+  const [selectedFlatRows, setSelectedFlatRows] = useState<any[]>([]);
 
   useEffect(() => {
     if (load) {
@@ -56,6 +57,8 @@ export const useMailAccounts = (load: boolean = true) => {
     setFilters,
     isLoading,
     setIsLoading,
+    selectedFlatRows,
+    setSelectedFlatRows,
     getMailAccounts,
   };
 };
