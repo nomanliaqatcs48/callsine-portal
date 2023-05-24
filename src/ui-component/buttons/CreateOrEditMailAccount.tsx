@@ -335,16 +335,6 @@ const CreateOrEditMailAccount = ({
               id ? "tw-justify-between" : "tw-justify-end"
             } tw-px-6 tw-pb-10`}
           >
-            {id && (
-              <Button
-                onClick={() => null}
-                disabled={mailAccountLoading?.form}
-                variant="outlined"
-                color="primary"
-              >
-                Test
-              </Button>
-            )}
             <div>
               <Button onClick={handleClose} disabled={mailAccountLoading?.form}>
                 Cancel
@@ -360,6 +350,16 @@ const CreateOrEditMailAccount = ({
                 {id ? "Edit" : "Add"}
               </Button>
             </div>
+            {id && (
+              <Button
+                onClick={() => null}
+                disabled={mailAccountLoading?.form}
+                variant="outlined"
+                color="primary"
+              >
+                Test
+              </Button>
+            )}
           </DialogActions>
         </Dialog>
       )}
