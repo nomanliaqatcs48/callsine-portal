@@ -2,7 +2,7 @@ import React from "react";
 import { FormHelperText } from "@mui/material";
 
 type ErrorMessageTypes = {
-  children: any;
+  children?: any;
   [x: string]: any;
 };
 
