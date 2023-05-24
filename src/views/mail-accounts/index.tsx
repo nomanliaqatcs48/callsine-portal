@@ -1,5 +1,5 @@
-import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import React from "react";
+import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
@@ -97,19 +97,17 @@ const MailAccountsPage = () => {
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
             <CreateOrEditMailAccount
-              btnText={
-                <>
-                  <PersonAddAlt1Icon
-                    color="primary"
-                    sx={{ fontSize: 15 }}
-                    className="tw-mr-2"
-                  />
-                  Add Users
-                </>
-              }
+              disableElevation
               onSubmit={getMailAccounts}
               onClick={() => null}
-            />
+            >
+              <PersonAddAlt1Icon
+                color="primary"
+                sx={{ fontSize: 15 }}
+                className="tw-mr-2"
+              />
+              Add Users
+            </CreateOrEditMailAccount>
 
             <Divider
               orientation="vertical"

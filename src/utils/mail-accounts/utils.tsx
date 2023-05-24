@@ -4,7 +4,7 @@ import React, { useMemo } from "react";
 import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import EditIcon from "@mui/icons-material/Edit";
-import { IconTrash } from "@tabler/icons-react";
+import { IconTrash, IconEdit } from "@tabler/icons-react";
 import { useTheme } from "@mui/material/styles";
 
 export const _columns = (getMailAccounts: any) => {
@@ -90,8 +90,8 @@ export const _columns = (getMailAccounts: any) => {
         disableSortBy: true,
         Cell: (cell: any) => {
           return (
-            <div className="tw-flex tw-justify-start">
-              <CreateOrEditMailAccount
+            <div className="tw-flex tw-justify-start tw-w-9">
+              {/*<CreateOrEditMailAccount
                 id={cell?.row?.original?.id}
                 defaultValue={cell?.row?.original}
                 btnText={
@@ -104,8 +104,20 @@ export const _columns = (getMailAccounts: any) => {
                 btnVariant="outlined"
                 className="tw-border-transparent tw-rounded-full tw-h-8"
                 sx={{ p: 2, m: 0, width: 0, minWidth: 35 }}
-              />
-              <span className="" />
+              />*/}
+              <CreateOrEditMailAccount
+                id={cell?.row?.original?.id}
+                defaultValue={cell?.row?.original}
+                onLoadApi={getMailAccounts}
+                className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+              >
+                <IconEdit
+                  style={{ color: theme.palette.primary.main }}
+                  size="18"
+                  strokeWidth={3}
+                  className=""
+                />
+              </CreateOrEditMailAccount>
               <DeleteMailAccount
                 id={cell?.row?.original?.id}
                 onLoadApi={getMailAccounts}

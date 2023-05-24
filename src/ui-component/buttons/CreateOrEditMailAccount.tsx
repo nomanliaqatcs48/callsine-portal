@@ -14,6 +14,7 @@ import {
   Select,
   SelectChangeEvent,
   TextField,
+  Tooltip,
 } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
@@ -31,25 +32,21 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 import "react-toastify/dist/ReactToastify.css";
 
 type CreateOrEditMailAccountTypes = {
-  id?: number | undefined;
-  btnText: string | React.ReactNode;
-  onSubmit: any;
-  onClick: any;
-  btnVariant?: "text" | "outlined" | "contained" | undefined;
+  id?: number;
+  children?: any;
+  onLoadApi?: any;
   defaultValue?: any;
-  btnStyle?: any;
+  onClick?: any;
   [x: string]: any;
 };
 
 const CreateOrEditMailAccount = ({
   id,
-  onSubmit,
-  onClick,
-  btnVariant = "text",
+  children,
+  onLoadApi,
   defaultValue,
-  btnStyle,
-  btnText,
-  ...other
+  onClick,
+  ...props
 }: CreateOrEditMailAccountTypes) => {
   const [open, setOpen] = React.useState(false);
   const [mailAccountLoading, setMailAccountLoading] = useState<any>({
@@ -98,7 +95,7 @@ const CreateOrEditMailAccount = ({
       if (res?.data) {
         ToastSuccess("Mail account successfully updated.");
 
-        onSubmit();
+        onLoadApi();
         handleClose();
         setMailAccountLoading((beforeVal: any) => ({
           ...beforeVal,
@@ -122,7 +119,7 @@ const CreateOrEditMailAccount = ({
       if (res?.data) {
         ToastSuccess("New mail account successfully created.");
 
-        onSubmit();
+        onLoadApi();
         handleClose();
         reset();
         setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
@@ -151,7 +148,7 @@ const CreateOrEditMailAccount = ({
 
   return (
     <>
-      <Button
+      {/*<Button
         disableElevation
         type="button"
         variant={btnVariant}
@@ -164,7 +161,17 @@ const CreateOrEditMailAccount = ({
         {...other}
       >
         {btnText}
+      </Button>*/}
+      <Button
+        onClick={() => {
+          handleOpen();
+          onClick();
+        }}
+        {...props}
+      >
+        {children}
       </Button>
+
       {open && (
         <Dialog
           open={open}
