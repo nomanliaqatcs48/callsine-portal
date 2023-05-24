@@ -18,9 +18,10 @@ import {
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
-import { devLogError } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
 import {
   createMailAccountService,
+  testMailAccountService,
   updateMailAccountService,
 } from "../../services/mail-accounts.service";
 import MyEditor from "../editor/MyEditor";
@@ -128,6 +129,20 @@ const CreateOrEditMailAccount = ({
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
+      devLogError(response);
+      setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+    }
+  };
+
+  const testMailAccount = async () => {
+    setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let response = await testMailAccountService(Number(id));
+      if (response) {
+        devLog("testMailAccount() response", response);
+        setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
       devLogError(response);
       setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
     }
@@ -352,7 +367,7 @@ const CreateOrEditMailAccount = ({
             </div>
             {id && (
               <Button
-                onClick={() => null}
+                onClick={testMailAccount}
                 disabled={mailAccountLoading?.form}
                 variant="outlined"
                 color="primary"
