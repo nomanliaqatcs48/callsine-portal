@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, DialogActions, Typography } from "@mui/material";
+import { Button, DialogActions, Tooltip, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
@@ -9,30 +9,16 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type DeleteMailAccountTypes = {
   id: number;
-  buttonText: string | React.ReactNode;
+  children: any;
   onLoadApi?: any;
-  style?: React.CSSProperties | undefined;
-  size?: "large" | "small" | "medium" | undefined;
-  color?:
-    | "primary"
-    | "inherit"
-    | "secondary"
-    | "success"
-    | "error"
-    | "info"
-    | "warning"
-    | undefined;
   [x: string]: any;
 };
 
 const DeleteMailAccount = ({
   id,
-  buttonText,
+  children,
   onLoadApi,
-  style,
-  size,
-  color = "error",
-  ...other
+  ...props
 }: DeleteMailAccountTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -61,18 +47,15 @@ const DeleteMailAccount = ({
 
   return (
     <>
-      <Button
-        disableElevation
-        size={size}
-        type="button"
-        variant="contained"
-        color={color}
-        onClick={handleOpen}
-        style={style}
-        {...other}
-      >
-        {buttonText}
-      </Button>
+      <Tooltip title="Delete">
+        <Button
+          onClick={handleOpen}
+          className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+          {...props}
+        >
+          {children}
+        </Button>
+      </Tooltip>
 
       {open && (
         <MyModal

@@ -5,8 +5,12 @@ import DeleteMailAccount from "../../ui-component/buttons/DeleteMailAccount";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import { IconTrash } from "@tabler/icons-react";
+import { useTheme } from "@mui/material/styles";
 
 export const _columns = (getMailAccounts: any) => {
+  const theme: any = useTheme();
+
   return [
     {
       Header: "Name",
@@ -24,13 +28,23 @@ export const _columns = (getMailAccounts: any) => {
       accessor: "email",
       Cell: (cell: any) => {
         return (
-          <a
-            href={`mailto:${cell?.value}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            {cell?.value}
-          </a>
+          <>
+            {/*<a
+              href={`mailto:${cell?.value}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              {cell?.value}
+            </a>*/}
+            <a
+              href={`mailto:${cell?.value}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
+            >
+              {cell?.value}
+            </a>
+          </>
         );
       },
     },
@@ -74,7 +88,7 @@ export const _columns = (getMailAccounts: any) => {
       disableSortBy: true,
       Cell: (cell: any) => {
         return (
-          <div className="tw-flex">
+          <div className="tw-flex tw-justify-start">
             <CreateOrEditMailAccount
               id={cell?.row?.original?.id}
               defaultValue={cell?.row?.original}
@@ -92,16 +106,15 @@ export const _columns = (getMailAccounts: any) => {
             <span className="" />
             <DeleteMailAccount
               id={cell?.row?.original?.id}
-              variant="outlined"
-              buttonText={
-                <>
-                  <DeleteIcon />
-                </>
-              }
               onLoadApi={getMailAccounts}
-              className="tw-border-transparent tw-rounded-full tw-h-8"
-              sx={{ p: 2, m: 0, width: 0, minWidth: 35 }}
-            />
+            >
+              <IconTrash
+                style={{ color: theme.palette.primary.main }}
+                size="18"
+                strokeWidth={3}
+                className=""
+              />
+            </DeleteMailAccount>
           </div>
         );
       },
