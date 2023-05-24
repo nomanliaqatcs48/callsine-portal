@@ -95,14 +95,20 @@ const MailAccountsPage = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
-            <Button disableElevation type="button" color="primary">
-              <PersonAddAlt1Icon
-                color="primary"
-                sx={{ fontSize: 15 }}
-                className="tw-mr-2"
-              />
-              Add Users
-            </Button>
+            <CreateOrEditMailAccount
+              btnText={
+                <>
+                  <PersonAddAlt1Icon
+                    color="primary"
+                    sx={{ fontSize: 15 }}
+                    className="tw-mr-2"
+                  />
+                  Add Users
+                </>
+              }
+              onSubmit={getMailAccounts}
+              onClick={() => null}
+            />
 
             <Divider
               orientation="vertical"
