@@ -143,6 +143,7 @@ const CreateOrEditMailAccount = ({
         setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch ({ response }) {
+      ToastError("Failed!");
       devLogError(response);
       setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
     }
