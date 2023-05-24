@@ -9,8 +9,7 @@ type ErrorMessageTypes = {
 const ErrorMessage = ({ children, ...props }: ErrorMessageTypes) => {
   return (
     <FormHelperText className="tw-py-2" sx={{ color: "error.main" }} {...props}>
-      {children ||
-        "Upload failed. Please make sure your CSV file uses the correct template"}
+      {children}
     </FormHelperText>
   );
 };
