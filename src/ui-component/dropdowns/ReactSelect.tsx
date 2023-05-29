@@ -70,9 +70,12 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
           : isSelected
           ? "white"
           : isFocused
-          ? "black"
-          : data.color,
+          ? "#0253ad"
+          : "#3486d7",
         cursor: isDisabled ? "not-allowed" : "pointer",
+        padding: "8px 18px",
+        fontWeight: 400,
+        fontSize: "0.83rem",
 
         ":active": {
           ...styles[":active"],
@@ -80,6 +83,17 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
         },
       };
     },
+    menu: (styles: any, { isLoading, placement, children }: any) => ({
+      ...styles,
+      border: "1px solid #74ace4",
+      boxShadow: "none",
+      borderRadius: 7,
+    }),
+    menuList: (styles: any) => ({
+      ...styles,
+      paddingTop: 10,
+      paddingBottom: 10,
+    }),
     input: (styles: any) => ({ ...styles }),
     placeholder: (styles: any) => ({
       ...styles,
@@ -87,7 +101,10 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
       fontSize: "0.7rem",
       fontWeight: 600,
     }),
-    singleValue: (styles: any, { data }: any) => ({ ...styles }),
+    singleValue: (styles: any, { data }: any) => ({
+      ...styles,
+      color: "white",
+    }),
     indicatorSeparator: (
       styles: any,
       { isDisabled, isFocused, innerProps }: any
