@@ -6,7 +6,10 @@ import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMail
 import EditIcon from "@mui/icons-material/Edit";
 import { IconTrash, IconPencil } from "@tabler/icons-react";
 import { useTheme } from "@mui/material/styles";
-import { Tooltip } from "@mui/material";
+import { Button, Divider, List, Tooltip } from "@mui/material";
+import { ReactComponent as UserIcon } from "../../assets/images/svg/user.svg";
+import { ReactComponent as LinkedinIcon } from "../../assets/images/svg/linkedin.svg";
+import { ReactComponent as FacebookIcon } from "../../assets/images/svg/facebook.svg";
 
 export const _columns = (getMailAccounts: any) => {
   const theme: any = useTheme();
@@ -17,7 +20,23 @@ export const _columns = (getMailAccounts: any) => {
         Header: "Name",
         accessor: "first_name",
         Cell: (cell: any) => {
-          return `${cell?.value} ${cell?.row?.original?.last_name}`;
+          return (
+            <span className="">
+              {cell?.value && (
+                <Button
+                  variant="text"
+                  className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text"
+                >
+                  <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
+                    <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
+                  </div>
+                  <span>
+                    {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                  </span>
+                </Button>
+              )}
+            </span>
+          );
         },
       },
       {
