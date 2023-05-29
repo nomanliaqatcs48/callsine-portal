@@ -7,7 +7,10 @@ import {
   SelectChangeEvent,
 } from "@mui/material";
 import { devLogError } from "../../helpers/logs";
-import {getPlaybooks, getPromptsService} from "../../services/prompts.service";
+import {
+  getPlaybooks,
+  getPromptsService,
+} from "../../services/prompts.service";
 
 type PromptsTypes = {
   onChange: any;
