@@ -1,7 +1,21 @@
-import { Grid, Paper } from "@mui/material";
+import { MouseEvent, useState } from "react";
+import {
+  Grid,
+  List,
+  ListItemButton,
+  ListItemIcon,
+  ListItemText,
+  Paper,
+} from "@mui/material";
 import ReactSelect from "../../../../../ui-component/dropdowns/ReactSelect";
 
 const PlaybookV2 = () => {
+  const [selectedIndex, setSelectedIndex] = useState(1);
+
+  const handleListItemClick = (event: MouseEvent, index: number) => {
+    setSelectedIndex(index);
+  };
+
   return (
     <>
       <Paper
@@ -43,6 +57,22 @@ const PlaybookV2 = () => {
                 onChange={() => null}
                 className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
               />
+            </div>
+            <div className="list-container">
+              <List component="nav" aria-label="secondary mailbox folder">
+                <ListItemButton
+                  selected={selectedIndex === 2}
+                  onClick={(event) => handleListItemClick(event, 2)}
+                >
+                  <ListItemText primary="Trash" />
+                </ListItemButton>
+                <ListItemButton
+                  selected={selectedIndex === 3}
+                  onClick={(event) => handleListItemClick(event, 3)}
+                >
+                  <ListItemText primary="Spam" />
+                </ListItemButton>
+              </List>
             </div>
           </Grid>
           <Grid item xs={7} lg={8}>
