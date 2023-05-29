@@ -13,9 +13,9 @@ const PlaybookV2 = () => {
             item
             xs={5}
             lg={4}
-            className="lg:tw-border-[1px] lg:tw-border-[#f0f1f3] tw-py-3"
+            className="lg:tw-border-[1px] lg:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
           >
-            <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-3">
+            <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               {/*title*/}
               <div className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
                 Playbooks
@@ -35,6 +35,14 @@ const PlaybookV2 = () => {
                   ]}
                 />
               </div>
+            </div>
+            <div className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5">
+              <input
+                type="search"
+                placeholder="Search"
+                onChange={() => null}
+                className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
+              />
             </div>
           </Grid>
           <Grid item xs={7} lg={8}>
