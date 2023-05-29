@@ -13,15 +13,18 @@ const PlaybookV2 = () => {
             item
             xs={5}
             lg={4}
-            className="lg:tw-border-[1px] lg:tw-border-[#f0f1f3]"
+            className="lg:tw-border-[1px] lg:tw-border-[#f0f1f3] tw-py-3"
           >
-            <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center xl:tw-flex-row xl:tw-justify-between">
-              <div className="tw-text-[0.95rem] tw-text-black tw-font-medium">
+            <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-3">
+              {/*title*/}
+              <div className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
                 Playbooks
               </div>
+              {/*dropdown*/}
               <div>
                 <ReactSelect
                   name="generate-playbook"
+                  className="basic-single tw-cursor-pointer"
                   variant="blue"
                   placeholder="GENERATE PLAYBOOK"
                   isClearable={false}
