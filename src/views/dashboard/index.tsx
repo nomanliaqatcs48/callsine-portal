@@ -24,7 +24,7 @@ const DashboardPage = () => {
           <Grid item lg={4} md={6} sm={6} xs={12}>
             <RemainingClicks
               isLoading={isLoading?.onPage}
-              value={auth?.clicks_remaining}
+              value={auth?.clicks_remaining || 0}
             />
           </Grid>
           <Grid item lg={4} md={6} sm={6} xs={12}>
