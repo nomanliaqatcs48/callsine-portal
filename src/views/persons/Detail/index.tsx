@@ -33,6 +33,7 @@ import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/faceb
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import GoBack from "../../../ui-component/buttons/GoBack";
+import PlaybookV2 from "./components/v2/PlaybookV2";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -146,6 +147,7 @@ const PersonDetailPage = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+        {value === 0 && <PlaybookV2 />}
         {value === 0 && <Playbook />}
       </TabPanel>
       <TabPanel value={value} index={1}>
