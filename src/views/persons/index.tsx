@@ -53,7 +53,7 @@ const PersonsPage = () => {
 
   return (
     <>
-      <Typography className="tw-text-4xl">People</Typography>
+      <Typography className="tw-text-4xl tw-text-black">People</Typography>
       <Grid className="tw-my-5" />
       <Grid
         container

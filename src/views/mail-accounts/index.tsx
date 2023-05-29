@@ -49,7 +49,9 @@ const MailAccountsPage = () => {
 
   return (
     <>
-      <Typography className="tw-text-4xl">Mail Accounts</Typography>
+      <Typography className="tw-text-4xl tw-text-black">
+        Mail Accounts
+      </Typography>
       <Grid className="tw-my-5" />
       {/*<Grid
         container
