@@ -88,6 +88,8 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
       border: "1px solid #74ace4",
       boxShadow: "none",
       borderRadius: 7,
+      background: "#f8fbff",
+      zIndex: 9,
     }),
     menuList: (styles: any) => ({
       ...styles,
