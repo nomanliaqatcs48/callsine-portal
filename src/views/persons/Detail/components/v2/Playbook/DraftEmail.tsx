@@ -6,7 +6,7 @@ import { IconTrash } from "@tabler/icons-react";
 const DraftEmail = () => {
   const SendContainer = () => {
     return (
-      <div className={`send-container ${containers}`}>
+      <div className={`send-container ${containers} xl:tw-py-5`}>
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
           {/*left*/}
           <div className="tw-flex tw-justify-center tw-items-center">
