@@ -7,7 +7,7 @@ import {
   ListItemText,
   Paper,
 } from "@mui/material";
-import ReactSelect from "../../../../../ui-component/dropdowns/ReactSelect";
+import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 
 const PlaybookV2 = () => {
   const [selectedIndex, setSelectedIndex] = useState(1);

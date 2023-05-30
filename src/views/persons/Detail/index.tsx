@@ -33,7 +33,7 @@ import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/faceb
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import GoBack from "../../../ui-component/buttons/GoBack";
-import PlaybookV2 from "./components/v2/PlaybookV2";
+import PlaybookV2 from "./components/v2/Playbook/PlaybookV2";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
