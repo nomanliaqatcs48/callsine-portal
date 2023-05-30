@@ -66,7 +66,7 @@ const PlaybookList = () => {
                 <ListItemText
                   primary={
                     <>
-                      <div className="tw-text-black tw-font-light tw-text-right tw-text-[0.70rem]">
+                      <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
                         {item.date}
                       </div>
                       <div className="tw-flex tw-justify-start">
