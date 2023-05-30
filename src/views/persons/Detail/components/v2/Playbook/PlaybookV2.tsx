@@ -10,6 +10,7 @@ import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import PlaybookList from "./PlaybookList";
 import DraftEmail from "./DraftEmail";
 import Email from "./Email";
+import SelectItem from "./SelectItem";
 
 const PlaybookV2 = () => {
   return (
@@ -60,8 +61,9 @@ const PlaybookV2 = () => {
             </div>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
-            <Email />
-            <DraftEmail />
+            <SelectItem />
+            {/*<Email />*/}
+            {/*<DraftEmail />*/}
           </Grid>
         </Grid>
       </Paper>
