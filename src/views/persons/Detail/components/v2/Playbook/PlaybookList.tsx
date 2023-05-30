@@ -2,9 +2,12 @@ import { List, ListItemButton, ListItemText, Tooltip } from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
 
-const PlaybookList = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+type PlaybookListProps = {
+  selectedIndex: number | null;
+  setSelectedIndex: any;
+};
 
+const PlaybookList = ({ selectedIndex, setSelectedIndex }: any) => {
   const playbookItems = [
     {
       date: "Saturday",

@@ -11,8 +11,11 @@ import PlaybookList from "./PlaybookList";
 import DraftEmail from "./DraftEmail";
 import Email from "./Email";
 import SelectItem from "./SelectItem";
+import { useState } from "react";
 
 const PlaybookV2 = () => {
+  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
   return (
     <>
       <Paper
@@ -57,13 +60,21 @@ const PlaybookV2 = () => {
               />
             </div>
             <div className="list-container">
-              <PlaybookList />
+              <PlaybookList
+                selectedIndex={selectedIndex}
+                setSelectedIndex={setSelectedIndex}
+              />
             </div>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
-            <SelectItem />
-            {/*<Email />*/}
-            {/*<DraftEmail />*/}
+            {selectedIndex !== null && (
+              <>
+                <Email />
+                {/*<DraftEmail />*/}
+              </>
+            )}
+
+            {selectedIndex === null && <SelectItem />}
           </Grid>
         </Grid>
       </Paper>
