@@ -7,7 +7,6 @@ const DraftEmail = () => {
   const SendContainer = () => {
     return (
       <div className={`send-container ${containers}`}>
-        {/*flex wrapper*/}
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
           {/*left*/}
           <div className="tw-flex tw-justify-center tw-items-center">
