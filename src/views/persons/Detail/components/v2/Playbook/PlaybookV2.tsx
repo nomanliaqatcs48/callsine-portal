@@ -15,9 +15,8 @@ const PlaybookV2 = () => {
   const playbookItems = [
     {
       date: "Saturday",
-      subject:
-        "Campaign Campaign lorem ipsum Campaign lorem ipsum Campaign lorem ipsum Campaign",
-      msg: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor",
+      subject: "Campaign 1",
+      msg: "Lorem ipsum ",
     },
     {
       date: "Saturday",
@@ -118,8 +117,13 @@ const PlaybookV2 = () => {
                               <div className="tw-text-black tw-font-light tw-text-right tw-text-[0.70rem]">
                                 {item.date}
                               </div>
-                              <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                                {item.subject}
+                              <div className="tw-flex tw-justify-start">
+                                <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
+                                  {item.subject}{" "}
+                                </div>
+                                <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
+                                  [Draft]
+                                </span>
                               </div>
                             </>
                           }
