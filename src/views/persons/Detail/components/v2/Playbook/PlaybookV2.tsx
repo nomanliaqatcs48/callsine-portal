@@ -12,9 +12,13 @@ import DraftEmail from "./DraftEmail";
 import Email from "./Email";
 import SelectItem from "./SelectItem";
 import { useState } from "react";
+import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 
 const PlaybookV2 = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+
+  const { data, setData, isLoading, setIsLoading, getPersonDetail } =
+    usePlaybook();
 
   return (
     <>
@@ -63,6 +67,7 @@ const PlaybookV2 = () => {
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
+                data={data?.prompts || []}
               />
             </div>
           </Grid>

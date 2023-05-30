@@ -3,11 +3,12 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
 
 type PlaybookListProps = {
+  data: any[];
   selectedIndex: number | null;
   setSelectedIndex: any;
 };
 
-const PlaybookList = ({ selectedIndex, setSelectedIndex }: any) => {
+const PlaybookList = ({ data, selectedIndex, setSelectedIndex }: any) => {
   const playbookItems = [
     {
       date: "Saturday",
@@ -39,68 +40,71 @@ const PlaybookList = ({ selectedIndex, setSelectedIndex }: any) => {
         aria-label="secondary mailbox folder"
         className="tw-py-0 tw-border-t tw-border-[#e8ecf5]"
       >
-        {playbookItems.map((item, idx) => {
-          return (
-            <ListItemButton
-              className="tw-transition-all tw-duration-700 tw-ease-linear"
-              selected={selectedIndex === idx}
-              onClick={(event) => handleListItemClick(event, idx)}
-              sx={{
-                borderBottom: "1px solid #e8ecf5",
-                "&.Mui-selected": {
-                  backgroundColor: "#f2fafc",
+        {data?.length > 0 &&
+          data.map((item: any, idx: any) => {
+            return (
+              <ListItemButton
+                className="tw-transition-all tw-duration-700 tw-ease-linear"
+                selected={selectedIndex === idx}
+                onClick={(event) => handleListItemClick(event, idx)}
+                sx={{
+                  borderBottom: "1px solid #e8ecf5",
+                  "&.Mui-selected": {
+                    backgroundColor: "#f2fafc",
+                    "&:hover": {
+                      backgroundColor: "#f2fafc",
+                    },
+                    "&::before": {
+                      content: '""',
+                      position: "absolute",
+                      borderLeft: "8px solid #0096c7",
+                      height: "100%",
+                      left: 0,
+                    },
+                  },
                   "&:hover": {
                     backgroundColor: "#f2fafc",
                   },
-                  "&::before": {
-                    content: '""',
-                    position: "absolute",
-                    borderLeft: "8px solid #0096c7",
-                    height: "100%",
-                    left: 0,
-                  },
-                },
-                "&:hover": {
-                  backgroundColor: "#f2fafc",
-                },
-              }}
-            >
-              <Tooltip title={item.subject}>
-                <ListItemText
-                  primary={
-                    <>
-                      <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
-                        {item.date}
-                      </div>
-                      <div className="tw-flex tw-justify-start">
-                        <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                          {item.subject}{" "}
+                }}
+              >
+                <Tooltip title={item?.subject || `Email ${idx}`}>
+                  <ListItemText
+                    primary={
+                      <>
+                        <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
+                          {item?.date || "Today"}
                         </div>
-                        <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
-                          [Draft]
-                        </span>
-                      </div>
-                    </>
-                  }
-                  secondary={
-                    <>
-                      <div className="tw-flex">
-                        <div className="tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight">
-                          {item.msg}
+                        <div className="tw-flex tw-justify-start">
+                          <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
+                            {item?.subject || `Email ${idx}`}
+                          </div>
+                          <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
+                            [Draft]
+                          </span>
                         </div>
-                        <div className="tw-w-1/12 tw-text-right">
-                          <WatchLaterIcon
-                            sx={{ fontSize: 15, color: "#1a76d2" }}
-                          />
+                      </>
+                    }
+                    secondary={
+                      <>
+                        <div className="tw-flex">
+                          <div className="tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight">
+                            {item?.text || ""}
+                          </div>
+                          <div className="tw-w-1/12 tw-text-right">
+                            <Tooltip title="Scheduled">
+                              <WatchLaterIcon
+                                sx={{ fontSize: 15, color: "#1a76d2" }}
+                              />
+                            </Tooltip>
+                          </div>
                         </div>
-                      </div>
-                    </>
-                  }
-                />
-              </Tooltip>
-            </ListItemButton>
-          );
-        })}
+                      </>
+                    }
+                  />
+                </Tooltip>
+              </ListItemButton>
+            );
+          })}
       </List>
     </>
   );
