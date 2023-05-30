@@ -69,8 +69,8 @@ const PlaybookV2 = () => {
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                <Email />
-                {/*<DraftEmail />*/}
+                {/*<Email />*/}
+                <DraftEmail />
               </>
             )}
 
