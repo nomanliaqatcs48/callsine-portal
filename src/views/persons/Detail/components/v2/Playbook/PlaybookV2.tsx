@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import PlaybookList from "./PlaybookList";
+import DraftEmail from "./DraftEmail";
 
 const PlaybookV2 = () => {
   return (
@@ -19,9 +20,10 @@ const PlaybookV2 = () => {
         <Grid container className="tw-p-0">
           <Grid
             item
-            xs={5}
+            xs={12}
+            sm={5}
             lg={4}
-            className="lg:tw-border-[1px] lg:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
+            className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
           >
             <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               {/*title*/}
@@ -56,10 +58,8 @@ const PlaybookV2 = () => {
               <PlaybookList />
             </div>
           </Grid>
-          <Grid item xs={7} lg={8}>
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem
-            ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
-            Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum Lorem ipsum
+          <Grid item xs={12} sm={7} lg={8}>
+            <DraftEmail />
           </Grid>
         </Grid>
       </Paper>
