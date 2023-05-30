@@ -74,7 +74,7 @@ const DeletePersonEmail = ({
           </Typography>
           <DialogActions>
             <Button
-              variant="contained"
+              variant="outlined"
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
