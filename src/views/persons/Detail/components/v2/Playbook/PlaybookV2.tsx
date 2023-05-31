@@ -128,28 +128,30 @@ const PlaybookV2 = () => {
               </div>
               {/*dropdown*/}
               <div className="tw-w-full xl:tw-w-[185px]">
-                <ReactSelect
-                  name="generate-playbook"
-                  className="basic-single tw-cursor-pointer"
-                  variant="blue"
-                  placeholder="GENERATE PLAYBOOK"
-                  isClearable={true}
-                  isSearchable={true}
-                  options={prompts.map((item: any, idx: number) => {
-                    item.value = item?.id;
-                    item.label = item?.name || "";
+                {!isLoading?.regeneratePlaybook && (
+                  <ReactSelect
+                    name="generate-playbook"
+                    className="basic-single tw-cursor-pointer"
+                    variant="blue"
+                    placeholder="GENERATE PLAYBOOK"
+                    isClearable={true}
+                    isSearchable={true}
+                    options={prompts.map((item: any, idx: number) => {
+                      item.value = item?.id;
+                      item.label = item?.name || "";
 
-                    return item;
-                  })}
-                  onChange={(newValue: any, actionMeta: any) => {
-                    // devLog("Value Changed");
-                    // devLog(newValue);
-                    // devLog(`action: ${actionMeta.action}`);
-                    // devLog("===========");
-                    handleGenerateOnChange(newValue);
-                    handleOpen();
-                  }}
-                />
+                      return item;
+                    })}
+                    onChange={(newValue: any, actionMeta: any) => {
+                      // devLog("Value Changed");
+                      // devLog(newValue);
+                      // devLog(`action: ${actionMeta.action}`);
+                      // devLog("===========");
+                      handleGenerateOnChange(newValue);
+                      handleOpen();
+                    }}
+                  />
+                )}
               </div>
             </div>
             <div className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5">
