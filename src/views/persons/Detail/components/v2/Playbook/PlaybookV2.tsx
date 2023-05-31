@@ -16,6 +16,7 @@ import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 
 const PlaybookV2 = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const [selectedData, setSelectedData] = useState<any>(null);
 
   const { data, setData, isLoading, setIsLoading, getPersonDetail } =
     usePlaybook();
@@ -68,6 +69,7 @@ const PlaybookV2 = () => {
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
                 data={data?.prompts || []}
+                setSelectedData={setSelectedData}
               />
             </div>
           </Grid>
@@ -75,7 +77,7 @@ const PlaybookV2 = () => {
             {selectedIndex !== null && (
               <>
                 {/*<Email />*/}
-                <DraftEmail />
+                <DraftEmail playBookData={data} selectedData={selectedData} />
               </>
             )}
 

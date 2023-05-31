@@ -6,9 +6,15 @@ type PlaybookListProps = {
   data: any[];
   selectedIndex: number | null;
   setSelectedIndex: any;
+  setSelectedData: any;
 };
 
-const PlaybookList = ({ data, selectedIndex, setSelectedIndex }: any) => {
+const PlaybookList = ({
+  data,
+  selectedIndex,
+  setSelectedIndex,
+  setSelectedData,
+}: any) => {
   const playbookItems = [
     {
       date: "Saturday",
@@ -46,7 +52,10 @@ const PlaybookList = ({ data, selectedIndex, setSelectedIndex }: any) => {
               <ListItemButton
                 className="tw-transition-all tw-duration-700 tw-ease-linear"
                 selected={selectedIndex === idx}
-                onClick={(event) => handleListItemClick(event, idx)}
+                onClick={(event) => {
+                  handleListItemClick(event, idx);
+                  setSelectedData(item);
+                }}
                 sx={{
                   borderBottom: "1px solid #e8ecf5",
                   "&.Mui-selected": {
@@ -76,7 +85,7 @@ const PlaybookList = ({ data, selectedIndex, setSelectedIndex }: any) => {
                         </div>
                         <div className="tw-flex tw-justify-start">
                           <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                            {item?.subject || `Email ${idx}`}
+                            {item?.subject || `Email ${idx + 1}`}
                           </div>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
                             [Draft]

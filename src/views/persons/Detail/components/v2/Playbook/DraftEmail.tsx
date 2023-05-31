@@ -3,7 +3,12 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 
-const DraftEmail = () => {
+type DraftEmailTypes = {
+  playBookData: any;
+  selectedData: any;
+};
+
+const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   const SendContainer = () => {
     return (
       <div className={`send-container ${containers} xl:tw-py-5`}>
@@ -76,7 +81,7 @@ const DraftEmail = () => {
           <div className={`${labelValue}`}>
             <input
               type="text"
-              value="johndoe@gmail.com"
+              defaultValue={playBookData?.work_email}
               className={`${labelValueInput}`}
             />
           </div>
@@ -91,11 +96,7 @@ const DraftEmail = () => {
         <div className="tw-flex">
           <div className={`${label}`}>Subject</div>
           <div className={`${labelValue}`}>
-            <input
-              type="text"
-              value="This is the email subject"
-              className={`${labelValueInput}`}
-            />
+            <input type="text" className={`${labelValueInput}`} />
           </div>
         </div>
       </div>
