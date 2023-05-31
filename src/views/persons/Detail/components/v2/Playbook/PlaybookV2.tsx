@@ -180,7 +180,7 @@ const PlaybookV2 = () => {
               </>
             )}
 
-            {selectedIndex === null && <SelectItem />}
+            {selectedIndex === null && <SelectItem prompts={data?.prompts} />}
           </Grid>
         </Grid>
       </Paper>
