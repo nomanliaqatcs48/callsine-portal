@@ -149,6 +149,7 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
         // devLog("===========");
       }}
       {...props}
+      // menuIsOpen
     />
   );
 };
