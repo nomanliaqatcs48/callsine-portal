@@ -67,11 +67,10 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
       setValue("to", playBookData?.work_email);
     });
     setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-  }, [open, selectedData]);
+  }, [selectedData]);
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
     setValue("from_email", event);
-    trigger("from_email");
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -139,7 +138,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               className="basic-single tw-cursor-pointer"
               variant="blue"
               placeholder="Please select"
-              isClearable={true}
+              isClearable={false}
               isSearchable={true}
               options={mailAccountsData.map((item: any, idx: number) => {
                 item.label = item.email;
@@ -227,16 +226,14 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     return (
       <div className={`message-container tw-p-0 xl:tw-p-0`}>
         <div className="">
-          {!isLoading?.onPage && (
-            <MyEditor
-              initialValue={getValues("html_message")}
-              onEditorChange={(value: string, editor: any) => {
-                handleMyEditorOnChange(value, editor);
-              }}
-              // isPreformatted={true}
-              onFocus={(e: any) => null}
-            />
-          )}
+          <MyEditor
+            initialValue={getValues("html_message")}
+            onEditorChange={(value: string, editor: any) => {
+              handleMyEditorOnChange(value, editor);
+            }}
+            // isPreformatted={true}
+            onFocus={(e: any) => null}
+          />
         </div>
       </div>
     );
