@@ -3,6 +3,8 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
+import MyEditor from "../../../../../../ui-component/editor/MyEditor";
+import React from "react";
 
 type DraftEmailTypes = {
   playBookData: any;
@@ -119,10 +121,18 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
 
   const MessageContainer = () => {
     return (
-      <div className={`message-container ${containers}`}>
-        <div className="tw-flex">
-          <div className={`${label}`}>Message</div>
-          <div className={`${labelValue}`}>This is temporary</div>
+      <div className={`message-container tw-p-0 xl:tw-p-0`}>
+        <div className="">
+          <MyEditor
+            initialValue={""}
+            onEditorChange={(value: string, editor: any) => {
+              // handleMyEditorOnChange(value, editor);
+            }}
+            // isPreformatted={true}
+            onFocus={(e: any) => null}
+          />
+          {/*<div className={`${label}`}>Message</div>
+          <div className={`${labelValue}`}>This is temporary</div>*/}
         </div>
       </div>
     );

@@ -1,0 +1,30 @@
+.message-container {
+  .tox.tox-tinymce {
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    border-width: 0;
+    .tox-editor-container {
+      .tox-editor-header {
+        padding: 0;
+        margin: 0;
+        background: whitesmoke;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+        .tox-menubar {
+          background: whitesmoke;
+          margin: 0;
+        }
+        .tox-toolbar-overlord {
+          padding: 0;
+          margin: 0;
+          border-width: 0;
+          .tox-toolbar__primary {
+            background: whitesmoke;
+          }
+        }
+      }
+    }
+  }
+}
