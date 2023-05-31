@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 
 export const usePlaybook = () => {
   const { id } = useParams();
+  const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
@@ -18,6 +19,9 @@ export const usePlaybook = () => {
   useEffect(() => {
     getPersonDetail();
   }, [id]);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const getPersonDetail = async () => {
     try {
@@ -48,5 +52,9 @@ export const usePlaybook = () => {
     isLoading,
     setIsLoading,
     getPersonDetail,
+    open,
+    setOpen,
+    handleOpen,
+    handleClose,
   };
 };
