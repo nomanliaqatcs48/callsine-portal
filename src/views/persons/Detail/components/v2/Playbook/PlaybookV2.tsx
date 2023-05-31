@@ -1,25 +1,84 @@
 import {
+  Button,
+  DialogActions,
   Grid,
   List,
   ListItemButton,
   ListItemText,
   Paper,
+  SelectChangeEvent,
   Tooltip,
+  Typography,
 } from "@mui/material";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import PlaybookList from "./PlaybookList";
 import DraftEmail from "./DraftEmail";
 import Email from "./Email";
 import SelectItem from "./SelectItem";
-import { useState } from "react";
+import React, { useState } from "react";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
+import MyModal from "../../../../../../ui-component/modal/MyModal";
+import { setPlaybook } from "../../../../../../services/prompts.service";
+import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
+import { devLogError } from "../../../../../../helpers/logs";
+import { useParams } from "react-router-dom";
 
 const PlaybookV2 = () => {
+  const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedData, setSelectedData] = useState<any>(null);
+  const [promptId, setPromptId] = useState<number | null>(null);
 
-  const { data, setData, isLoading, setIsLoading, getPersonDetail } =
-    usePlaybook();
+  const {
+    data,
+    setData,
+    isLoading,
+    setIsLoading,
+    getPersonDetail,
+    open,
+    setOpen,
+    handleOpen,
+    handleClose,
+  } = usePlaybook();
+
+  const handleGeneratePlaybook = async () => {
+    setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
+
+    try {
+      let res = await setPlaybook(Number(promptId), Number(id), {
+        first_name: data?.first_name,
+        last_name: data?.last_name,
+        company_name: data?.org?.name,
+        company_website: data?.org?.domain,
+        company_domain: data?.org?.domain,
+        org_name: "Union Resolute",
+        org_domain: "unionresolute.com",
+      });
+      if (res?.data) {
+        ToastSuccess("Message successfully generated.");
+        setData(res.data);
+        getPersonDetail();
+        setPromptId(null);
+        setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+
+        //reset prompt
+        setIsLoading((prev: any) => ({ ...prev, resetPrompt: true }));
+        setTimeout(() => {
+          setIsLoading((prev: any) => ({ ...prev, resetPrompt: false }));
+          handleClose();
+        });
+      }
+    } catch (e: any) {
+      ToastError("Something went wrong!");
+      devLogError(e.response);
+      setPromptId(null);
+      setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+    }
+  };
+
+  const handleGenerateOnChange = (newValue: any) => {
+    setPromptId(newValue?.value);
+  };
 
   return (
     <>
@@ -53,6 +112,14 @@ const PlaybookV2 = () => {
                     { label: "Playbook 1", value: 1 },
                     { label: "Playbook 2", value: 2 },
                   ]}
+                  onChange={(newValue: any, actionMeta: any) => {
+                    // devLog("Value Changed");
+                    // devLog(newValue);
+                    // devLog(`action: ${actionMeta.action}`);
+                    // devLog("===========");
+                    handleGenerateOnChange(newValue);
+                    handleOpen();
+                  }}
                 />
               </div>
             </div>
@@ -85,6 +152,35 @@ const PlaybookV2 = () => {
           </Grid>
         </Grid>
       </Paper>
+
+      {open && (
+        <MyModal
+          open={open}
+          onClose={handleClose}
+          modalTitle="Generate Playbook?"
+          labelledby="Generate Playbook?"
+          describedby="Generate Playbook modal"
+          modalSxStyle={{ width: { xs: 400 } }}
+        >
+          {/*<Typography variant="subtitle1">Generate Playbook?</Typography>*/}
+          <DialogActions>
+            <Button
+              variant="outlined"
+              color="primary"
+              onClick={handleGeneratePlaybook}
+              disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
+            >
+              Yes, please!
+            </Button>
+            <Button
+              onClick={handleClose}
+              disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
+            >
+              Cancel
+            </Button>
+          </DialogActions>
+        </MyModal>
+      )}
     </>
   );
 };
