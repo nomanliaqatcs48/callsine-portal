@@ -203,7 +203,7 @@ const selectBlueStyles = {
     paddingTop: 10,
     paddingBottom: 10,
   }),
-  input: (styles: any) => ({ ...styles }),
+  input: (styles: any) => ({ ...styles, color: "#889bb3" }),
   placeholder: (styles: any) => ({
     ...styles,
     color: "#889bb3",

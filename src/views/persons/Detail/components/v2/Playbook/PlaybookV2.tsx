@@ -41,14 +41,14 @@ const PlaybookV2 = () => {
                 Playbooks
               </div>
               {/*dropdown*/}
-              <div>
+              <div className="tw-w-full xl:tw-w-[185px]">
                 <ReactSelect
                   name="generate-playbook"
                   className="basic-single tw-cursor-pointer"
                   variant="blue"
                   placeholder="GENERATE PLAYBOOK"
-                  isClearable={false}
-                  isSearchable={false}
+                  isClearable={true}
+                  isSearchable={true}
                   options={[
                     { label: "Playbook 1", value: 1 },
                     { label: "Playbook 2", value: 2 },

@@ -96,7 +96,7 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
       paddingTop: 10,
       paddingBottom: 10,
     }),
-    input: (styles: any) => ({ ...styles }),
+    input: (styles: any) => ({ ...styles, color: "white" }),
     placeholder: (styles: any) => ({
       ...styles,
       color: "white",
@@ -106,6 +106,13 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
     singleValue: (styles: any, { data }: any) => ({
       ...styles,
       color: "white",
+    }),
+    clearIndicator: (styles: any) => ({
+      ...styles,
+      color: "white",
+      "&:hover": {
+        color: "white",
+      },
     }),
     indicatorSeparator: (
       styles: any,
