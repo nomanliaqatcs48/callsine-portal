@@ -76,7 +76,7 @@ const PlaybookList = ({
                   },
                 }}
               >
-                <Tooltip title={item?.subject || `Email ${idx}`}>
+                <Tooltip title={item?.subject || `Email ${idx + 1}`}>
                   <ListItemText
                     primary={
                       <>
