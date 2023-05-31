@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import {
   Button,
   DialogActions,
@@ -15,10 +16,12 @@ import PlaybookList from "./PlaybookList";
 import DraftEmail from "./DraftEmail";
 import Email from "./Email";
 import SelectItem from "./SelectItem";
-import React, { useState } from "react";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
-import { setPlaybook } from "../../../../../../services/prompts.service";
+import {
+  getPlaybooks,
+  setPlaybook,
+} from "../../../../../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { devLogError } from "../../../../../../helpers/logs";
 import { useParams } from "react-router-dom";
@@ -27,7 +30,14 @@ const PlaybookV2 = () => {
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedData, setSelectedData] = useState<any>(null);
+  const [prompts, setPrompts] = useState<any[]>([]);
   const [promptId, setPromptId] = useState<number | null>(null);
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [filters, setFilters] = React.useState<any>({
+    limit: 9999,
+    offset: 0,
+    currentPage: 1,
+  });
 
   const {
     data,
@@ -40,6 +50,23 @@ const PlaybookV2 = () => {
     handleOpen,
     handleClose,
   } = usePlaybook();
+
+  useEffect(() => {
+    getPrompts();
+  }, []);
+
+  const getPrompts = async () => {
+    try {
+      let res = await getPlaybooks(filters, searchValue);
+      if (res?.data) {
+        setPrompts(res.data?.results);
+        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch ({ response }) {
+      devLogError("e", response);
+      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
 
   const handleGeneratePlaybook = async () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
@@ -108,10 +135,12 @@ const PlaybookV2 = () => {
                   placeholder="GENERATE PLAYBOOK"
                   isClearable={true}
                   isSearchable={true}
-                  options={[
-                    { label: "Playbook 1", value: 1 },
-                    { label: "Playbook 2", value: 2 },
-                  ]}
+                  options={prompts.map((item: any, idx: number) => {
+                    item.value = item?.id;
+                    item.label = item?.name || "";
+
+                    return item;
+                  })}
                   onChange={(newValue: any, actionMeta: any) => {
                     // devLog("Value Changed");
                     // devLog(newValue);
