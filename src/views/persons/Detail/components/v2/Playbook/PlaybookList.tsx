@@ -81,33 +81,33 @@ const PlaybookList = ({
                   <ListItemText
                     primary={
                       <>
-                        <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
+                        <span className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
                           {item?.date || "Today"}
-                        </div>
-                        <div className="tw-flex tw-justify-start">
-                          <div className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
+                        </span>
+                        <span className="tw-flex tw-justify-start">
+                          <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
                             {item?.subject || `Email ${idx + 1}`}
-                          </div>
+                          </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
                             [Draft]
                           </span>
-                        </div>
+                        </span>
                       </>
                     }
                     secondary={
                       <>
-                        <div className="tw-flex">
-                          <div className="tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight">
+                        <span className="tw-flex">
+                          <span className="tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight">
                             {item?.text || ""}
-                          </div>
-                          <div className="tw-w-1/12 tw-text-right">
+                          </span>
+                          <span className="tw-w-1/12 tw-text-right">
                             <Tooltip title="Scheduled">
                               <WatchLaterIcon
                                 sx={{ fontSize: 15, color: "#1a76d2" }}
                               />
                             </Tooltip>
-                          </div>
-                        </div>
+                          </span>
+                        </span>
                       </>
                     }
                   />
