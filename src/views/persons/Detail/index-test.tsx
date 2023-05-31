@@ -1,35 +1,9 @@
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Link,
-  Paper,
-  Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Tabs,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import MainCard from "../../../ui-component/cards/MainCard";
+import { Box, Container, Divider, Grid, Paper, Tab, Tabs } from "@mui/material";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
-import Playbook from "./components/Playbook";
 import Emails from "./components/Emails";
-import PersonDetailCard from "./components/PersonDetailCard";
-import PersonDetailOrgCard from "./components/PersonDetailOrgCard";
-import StatCard from "./components/StatCard";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 import TrackingTab from "../../../ui-component/tabs/TrackingTab";
-import PersonIcon from "@mui/icons-material/Person";
-import { ReactComponent as LinkedinIcon } from "../../../assets/images/svg/linkedin.svg";
-import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/facebook.svg";
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import GoBack from "../../../ui-component/buttons/GoBack";

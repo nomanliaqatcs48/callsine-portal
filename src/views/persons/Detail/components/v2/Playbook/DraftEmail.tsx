@@ -70,7 +70,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   }, [open, selectedData]);
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
-    setValue("from_email", event.target.value);
+    setValue("from_email", event);
     trigger("from_email");
   };
 
