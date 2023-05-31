@@ -4,7 +4,9 @@ import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
-import React from "react";
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAccounts";
 
 type DraftEmailTypes = {
   playBookData: any;
@@ -12,6 +14,19 @@ type DraftEmailTypes = {
 };
 
 const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
+  const [open, setOpen] = useState<boolean>(true);
+  const {
+    register,
+    setValue,
+    handleSubmit,
+    reset,
+    getValues,
+    trigger,
+    setError,
+    formState: { errors },
+  } = useForm();
+  const { mailAccountsData } = useMailAccounts(open);
+
   const SendContainer = () => {
     return (
       <div className={`send-container ${containers} xl:tw-py-5`}>
@@ -72,17 +87,13 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               placeholder="Please select"
               isClearable={true}
               isSearchable={true}
-              options={[
-                { label: "Playbook 1", value: 1 },
-                { label: "Playbook 2", value: 2 },
-              ]}
+              options={mailAccountsData.map((item: any, idx: number) => {
+                item.label = item.email;
+                item.value = item.id;
+                return item;
+              })}
               styles={selectBlueStyles}
             />
-            {/*<input
-              type="text"
-              value="callsine@gmail.comasdasdasdadasdasdasda"
-              className={`${labelValueInput}`}
-            />*/}
           </div>
         </div>
       </div>
