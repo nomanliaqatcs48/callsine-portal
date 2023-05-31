@@ -26,6 +26,9 @@ type DraftEmailTypes = {
 const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<any>({
+    onPage: true,
+  });
   const {
     register,
     setValue,
@@ -57,12 +60,14 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
       if (item === "person") {
         setValue("person", Number(personId));
       } else if (item === "html_message") {
-        // setValue("html_message", html_message.replace(/\n/g, "<br />"));
+        devLog("selectedData?.html_message", selectedData?.text);
+        setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
       }
 
       setValue("to", playBookData?.work_email);
     });
-  }, [open]);
+    setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+  }, [open, selectedData]);
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
     setValue("from_email", event.target.value);
@@ -222,14 +227,16 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     return (
       <div className={`message-container tw-p-0 xl:tw-p-0`}>
         <div className="">
-          <MyEditor
-            initialValue={""}
-            onEditorChange={(value: string, editor: any) => {
-              handleMyEditorOnChange(value, editor);
-            }}
-            // isPreformatted={true}
-            onFocus={(e: any) => null}
-          />
+          {!isLoading?.onPage && (
+            <MyEditor
+              initialValue={getValues("html_message")}
+              onEditorChange={(value: string, editor: any) => {
+                handleMyEditorOnChange(value, editor);
+              }}
+              // isPreformatted={true}
+              onFocus={(e: any) => null}
+            />
+          )}
         </div>
       </div>
     );
