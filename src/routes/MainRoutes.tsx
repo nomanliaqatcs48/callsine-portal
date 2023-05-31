@@ -11,6 +11,9 @@ const PersonsPage = Loadable(lazy(() => import("../views/persons")));
 const PersonDetailPage = Loadable(
   lazy(() => import("../views/persons/Detail/index"))
 );
+const PersonDetailPageTest = Loadable(
+  lazy(() => import("../views/persons/Detail/index-test"))
+);
 const CampaignsPage = Loadable(lazy(() => import("../views/campaigns")));
 const CampaignDetailPage = Loadable(
   lazy(() => import("../views/campaigns/Detail/index"))
@@ -44,6 +47,10 @@ const MainRoutes = {
     {
       path: "people/:id",
       element: <PersonDetailPage />,
+    },
+    {
+      path: "people-test/:id",
+      element: <PersonDetailPageTest />,
     },
     {
       path: "campaigns",
