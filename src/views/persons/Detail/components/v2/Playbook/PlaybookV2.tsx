@@ -25,6 +25,7 @@ import {
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { devLogError } from "../../../../../../helpers/logs";
 import { useParams } from "react-router-dom";
+import { LoadingButton } from "@mui/lab";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -195,20 +196,22 @@ const PlaybookV2 = () => {
         >
           {/*<Typography variant="subtitle1">Generate Playbook?</Typography>*/}
           <DialogActions>
-            <Button
+            <LoadingButton
               variant="outlined"
               color="primary"
               onClick={handleGeneratePlaybook}
+              loading={isLoading?.regeneratePlaybook || isLoading?.submit}
               disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
             >
               Yes, please!
-            </Button>
-            <Button
+            </LoadingButton>
+            <LoadingButton
               onClick={handleClose}
+              loading={isLoading?.regeneratePlaybook || isLoading?.submit}
               disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
             >
               Cancel
-            </Button>
+            </LoadingButton>
           </DialogActions>
         </MyModal>
       )}
