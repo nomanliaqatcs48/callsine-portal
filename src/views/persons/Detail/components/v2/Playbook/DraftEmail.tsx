@@ -131,8 +131,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
             // isPreformatted={true}
             onFocus={(e: any) => null}
           />
-          {/*<div className={`${label}`}>Message</div>
-          <div className={`${labelValue}`}>This is temporary</div>*/}
         </div>
       </div>
     );
