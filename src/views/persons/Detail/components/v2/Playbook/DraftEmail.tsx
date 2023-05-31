@@ -1,12 +1,22 @@
-import { Button, Divider, Tooltip } from "@mui/material";
+import {
+  Button,
+  Divider,
+  FormHelperText,
+  SelectChangeEvent,
+  Tooltip,
+} from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAccounts";
+import { ErrorMessage } from "@hookform/error-message";
+import { useParams } from "react-router-dom";
+import { emailAddressPattern } from "../../../../../../helpers/forms";
+import { devLog } from "../../../../../../helpers/logs";
 
 type DraftEmailTypes = {
   playBookData: any;
@@ -14,6 +24,7 @@ type DraftEmailTypes = {
 };
 
 const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
+  const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
   const {
     register,
@@ -26,6 +37,44 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     formState: { errors },
   } = useForm();
   const { mailAccountsData } = useMailAccounts(open);
+
+  useEffect(() => {
+    [
+      // "in_reply_to",
+      "person",
+      "from_email",
+      "html_message",
+      "scheduled_time",
+    ].map((item: any) => {
+      // register
+      if (item !== "in_reply_to") {
+        register(item, { required: "This is required field." });
+      } else {
+        register(item);
+      }
+
+      // set values
+      if (item === "person") {
+        setValue("person", Number(personId));
+      } else if (item === "html_message") {
+        // setValue("html_message", html_message.replace(/\n/g, "<br />"));
+      }
+
+      setValue("to", playBookData?.work_email);
+    });
+  }, [open]);
+
+  const handleChangeFromEmail = (event: SelectChangeEvent) => {
+    setValue("from_email", event.target.value);
+    trigger("from_email");
+  };
+
+  const handleMyEditorOnChange = (value: string, editor: any) => {
+    value = `<html><body>${value}</body></html>`;
+    devLog("handleMyEditorOnChange() value", value);
+    setValue("html_message", value);
+    // handleEditorPreview(value);
+  };
 
   const SendContainer = () => {
     return (
@@ -93,6 +142,17 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
                 return item;
               })}
               styles={selectBlueStyles}
+              defaultValue={getValues("from_email")}
+              onChange={handleChangeFromEmail}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="from_email"
+              render={({ message }) => (
+                <FormHelperText sx={{ color: "error.main" }}>
+                  {message}
+                </FormHelperText>
+              )}
             />
           </div>
         </div>
@@ -110,6 +170,19 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               type="text"
               defaultValue={playBookData?.work_email}
               className={`${labelValueInput}`}
+              {...register("to", {
+                required: "This is required field.",
+                pattern: emailAddressPattern,
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="to"
+              render={({ message }) => (
+                <FormHelperText sx={{ color: "error.main" }}>
+                  {message}
+                </FormHelperText>
+              )}
             />
           </div>
         </div>
@@ -123,7 +196,22 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
         <div className="tw-flex">
           <div className={`${label}`}>Subject</div>
           <div className={`${labelValue}`}>
-            <input type="text" className={`${labelValueInput}`} />
+            <input
+              type="text"
+              className={`${labelValueInput}`}
+              {...register("subject", {
+                required: "This is required field.",
+              })}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="subject"
+              render={({ message }) => (
+                <FormHelperText sx={{ color: "error.main" }}>
+                  {message}
+                </FormHelperText>
+              )}
+            />
           </div>
         </div>
       </div>
@@ -137,7 +225,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           <MyEditor
             initialValue={""}
             onEditorChange={(value: string, editor: any) => {
-              // handleMyEditorOnChange(value, editor);
+              handleMyEditorOnChange(value, editor);
             }}
             // isPreformatted={true}
             onFocus={(e: any) => null}
