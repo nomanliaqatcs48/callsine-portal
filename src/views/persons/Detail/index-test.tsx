@@ -134,11 +134,11 @@ const PersonDetailPage = () => {
             {...a11yProps(0)}
             className="tw-text-black tw-tracking-wider"
           />
-          <Tab
+          {/*<Tab
             label="Emails"
             {...a11yProps(1)}
             className="tw-text-black tw-tracking-wider"
-          />
+          />*/}
           <Tab
             label="Tracking"
             {...a11yProps(2)}
