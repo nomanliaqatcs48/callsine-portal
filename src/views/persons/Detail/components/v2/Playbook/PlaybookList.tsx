@@ -50,6 +50,7 @@ const PlaybookList = ({
           data.map((item: any, idx: any) => {
             return (
               <ListItemButton
+                key={idx}
                 className="tw-transition-all tw-duration-700 tw-ease-linear"
                 selected={selectedIndex === idx}
                 onClick={(event) => {
