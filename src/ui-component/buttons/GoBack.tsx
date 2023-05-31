@@ -20,7 +20,7 @@ const GoBack = ({ children, ...props }: GoBackTypes) => {
             fontSize="small"
             sx={{ color: "#3e3e3f", fontSize: 14 }}
           />{" "}
-          Back to Profile
+          Back to People
         </>
       )}
     </Button>
