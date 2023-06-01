@@ -89,10 +89,7 @@ const PlaybookV2 = () => {
         setPromptId(null);
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
-        //reset prompt
-        setIsLoading((prev: any) => ({ ...prev, resetPrompt: true }));
         setTimeout(() => {
-          setIsLoading((prev: any) => ({ ...prev, resetPrompt: false }));
           handleClose();
         });
       }
@@ -206,7 +203,19 @@ const PlaybookV2 = () => {
               Yes, please!
             </LoadingButton>
             <LoadingButton
-              onClick={handleClose}
+              onClick={() => {
+                handleClose();
+                setIsLoading((prev: any) => ({
+                  ...prev,
+                  regeneratePlaybook: true,
+                }));
+                setTimeout(() =>
+                  setIsLoading((prev: any) => ({
+                    ...prev,
+                    regeneratePlaybook: false,
+                  }))
+                );
+              }}
               loading={isLoading?.regeneratePlaybook || isLoading?.submit}
               disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
             >
