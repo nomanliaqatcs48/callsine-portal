@@ -18,17 +18,24 @@ import { devLog, devLogError } from "../../../../../../helpers/logs";
 import { createAsEmailService } from "../../../../../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import SendLater from "../../../../../../ui-component/buttons/SendLater";
+import { LoadingButton } from "@mui/lab";
 
 type DraftEmailTypes = {
+  onLoadApi: any;
   playBookData: any;
   selectedData: any;
 };
 
-const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
+const DraftEmail = ({
+  onLoadApi,
+  playBookData,
+  selectedData,
+}: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
+    form: false,
   });
   const {
     register,
@@ -80,18 +87,18 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   const onSubmit = async (data: any) => {
     devLog("onSubmit data", data);
     setIsLoading((prev: any) => ({ ...prev, form: true }));
-    /*try {
+    try {
       let res = await createAsEmailService(data);
       if (res?.data) {
-        ToastSuccess("Email successfully created.");
-        handleClose();
+        ToastSuccess("Email successfully sent.");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
+        onLoadApi();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, form: false }));
-    }*/
+    }
   };
 
   const onSubmitSendLater = async (data: any) => {
@@ -110,17 +117,19 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
           {/*left*/}
           <div className="tw-flex tw-justify-center tw-items-center">
-            <Button
+            <LoadingButton
               type="button"
               variant="outlined"
               onClick={handleSubmit((data) => onSubmit(data))}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+              loading={isLoading?.form}
+              disabled={isLoading?.form}
             >
               <span className="tw-px-1.5 tw-text-xs tw-uppercase tw-font-medium">
                 Send
               </span>{" "}
               <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
-            </Button>
+            </LoadingButton>
             <Divider
               orientation="vertical"
               variant="middle"
@@ -139,6 +148,9 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
                 setError,
                 errors,
               }}
+              onLoadApi={onLoadApi}
+              loading={isLoading?.form}
+              disabled={isLoading?.form}
             />
           </div>
           {/*right*/}

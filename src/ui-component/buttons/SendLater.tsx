@@ -19,8 +19,15 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { devLog, devLogError } from "../../helpers/logs";
 import { createAsEmailService } from "../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { LoadingButton } from "@mui/lab";
 
-const SendLater = ({ useForm }: any) => {
+type SendLaterTypes = {
+  onLoadApi: any;
+  useForm: any;
+  [x: string]: any;
+};
+
+const SendLater = ({ onLoadApi, useForm, ...props }: SendLaterTypes) => {
   const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
@@ -74,6 +81,7 @@ const SendLater = ({ useForm }: any) => {
         ToastSuccess("Email successfully scheduled.");
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, form: false }));
+        onLoadApi();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
@@ -84,13 +92,14 @@ const SendLater = ({ useForm }: any) => {
 
   return (
     <>
-      <Button
+      <LoadingButton
         onClick={useForm?.handleSubmit((data: any) => clickSendLater(data))}
         className="tw-py-2 tw-px-0 sm:tw-py-3 sm:tw-px-1 sm:tw-min-w-min"
+        {...props}
       >
         <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
         <span className="tw-text-[#778da9] tw-text-xs tw-px-2">Send Later</span>
-      </Button>
+      </LoadingButton>
 
       {open && (
         <Dialog
@@ -137,17 +146,22 @@ const SendLater = ({ useForm }: any) => {
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleClose} disabled={isLoading?.form}>
+            <LoadingButton
+              onClick={handleClose}
+              disabled={isLoading?.form}
+              loading={isLoading?.form}
+            >
               Cancel
-            </Button>
-            <Button
+            </LoadingButton>
+            <LoadingButton
               onClick={useForm?.handleSubmit((data: any) => onSubmit(data))}
               disabled={isLoading?.form}
+              loading={isLoading?.form}
               variant="outlined"
               color="primary"
             >
               Send Later
-            </Button>
+            </LoadingButton>
           </DialogActions>
         </Dialog>
       )}

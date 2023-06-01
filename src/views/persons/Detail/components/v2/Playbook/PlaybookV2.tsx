@@ -173,7 +173,11 @@ const PlaybookV2 = () => {
             {selectedIndex !== null && (
               <>
                 {/*<Email />*/}
-                <DraftEmail playBookData={data} selectedData={selectedData} />
+                <DraftEmail
+                  onLoadApi={getPersonDetail}
+                  playBookData={data}
+                  selectedData={selectedData}
+                />
               </>
             )}
 
