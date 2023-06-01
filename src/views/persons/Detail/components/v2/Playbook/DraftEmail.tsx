@@ -113,7 +113,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
             </Button>
           </div>
           {/*right*/}
-          <div>
+          {/*<div>
             <Button onClick={() => null} className="tw-min-w-min">
               <IconTrash
                 strokeWidth={3}
@@ -121,7 +121,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
                 style={{ color: "#778da9" }}
               />
             </Button>
-          </div>
+          </div>*/}
         </div>
       </div>
     );
