@@ -9,10 +9,7 @@ export const getPromptsService = async (
     `${endpoints.PROMPTS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
   );
 };
-export const getPlaybooks = async (
-  filters: any,
-  searchValue: string = ""
-) => {
+export const getPlaybooks = async (filters: any, searchValue: string = "") => {
   return await http.get(
     `${endpoints.PLAYBOOKS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
   );
@@ -35,11 +32,22 @@ export const createResponsesService = async (
 };
 
 export const setPlaybook = async (
-    playbookId: number,
-    personId: number,
-    context: any
-)=> {
+  playbookId: number,
+  personId: number,
+  context: any
+) => {
   return await http.post(`/api/persons/${personId}/set_playbook/`, {
+    playbook_id: playbookId,
+    context: context,
+  });
+};
+
+export const setPlaybookV2Service = async (
+  playbookId: number,
+  personId: number,
+  context: any
+) => {
+  return await http.post(`/api/persons/${personId}/set_playbook_v2/`, {
     playbook_id: playbookId,
     context: context,
   });

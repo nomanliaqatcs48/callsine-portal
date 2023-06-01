@@ -21,6 +21,7 @@ import MyModal from "../../../../../../ui-component/modal/MyModal";
 import {
   getPlaybooks,
   setPlaybook,
+  setPlaybookV2Service,
 } from "../../../../../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { devLogError } from "../../../../../../helpers/logs";
@@ -73,7 +74,7 @@ const PlaybookV2 = () => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
-      let res = await setPlaybook(Number(promptId), Number(id), {
+      let res = await setPlaybookV2Service(Number(promptId), Number(id), {
         first_name: data?.first_name,
         last_name: data?.last_name,
         company_name: data?.org?.name,
