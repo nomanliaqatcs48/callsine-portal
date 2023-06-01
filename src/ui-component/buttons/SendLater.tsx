@@ -43,10 +43,7 @@ const SendLater = ({ onLoadApi, useForm, ...props }: SendLaterTypes) => {
   }, [open]);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => {
-    setOpen(false);
-    useForm?.unregister("scheduled_time");
-  };
+  const handleClose = () => setOpen(false);
 
   const clickSendLater = (data: any) => {
     handleOpen();

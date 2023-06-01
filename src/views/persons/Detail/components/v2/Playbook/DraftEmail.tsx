@@ -15,10 +15,16 @@ import { ErrorMessage } from "@hookform/error-message";
 import { useParams } from "react-router-dom";
 import { emailAddressPattern } from "../../../../../../helpers/forms";
 import { devLog, devLogError } from "../../../../../../helpers/logs";
-import { createAsEmailService } from "../../../../../../services/emails.service";
+import {
+  createAsEmailService,
+  sendEmailService,
+} from "../../../../../../services/emails.service";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import { LoadingButton } from "@mui/lab";
+import moment from "moment";
+import { ToastContainer } from "react-toastify";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -58,7 +64,7 @@ const DraftEmail = ({
       "person",
       "from_email",
       "html_message",
-      // "scheduled_time",
+      "scheduled_time",
     ].map((item: any) => {
       // register
       if (item !== "in_reply_to") {
@@ -75,6 +81,7 @@ const DraftEmail = ({
       }
 
       setValue("to", playBookData?.work_email);
+      setValue("scheduled_time", moment.utc().format("YYYY-MM-DD HH:mm:ss"));
     });
     setIsLoading((prev: any) => ({ ...prev, onPage: false }));
   }, [selectedData]);
@@ -84,12 +91,11 @@ const DraftEmail = ({
     trigger("from_email");
   };
 
-  const onSubmit = async (data: any) => {
-    devLog("onSubmit data", data);
-    setIsLoading((prev: any) => ({ ...prev, form: true }));
+  const handleSendNow = async (id: any) => {
     try {
-      let res = await createAsEmailService(data);
+      let res = await sendEmailService(id);
       if (res?.data) {
+        devLog("res?.data", res?.data);
         ToastSuccess("Email successfully sent.");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
         onLoadApi();
@@ -101,8 +107,25 @@ const DraftEmail = ({
     }
   };
 
-  const onSubmitSendLater = async (data: any) => {
-    devLog("onSubmitSendLater() data", data);
+  const onSubmit = async (data: any) => {
+    devLog("onSubmit data", data);
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let res = await createAsEmailService({
+        ...data,
+        from_email: data?.from_email?.id,
+      });
+      if (res?.data?.id) {
+        handleSendNow(res?.data?.id);
+      } else {
+        ToastError("Something went wrong!");
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
+      ToastError("Something went wrong!");
+      devLogError(response);
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
+    }
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -257,6 +280,8 @@ const DraftEmail = ({
           />
         </div>
       </div>
+
+      <ToastContainer />
     </>
   );
 };
