@@ -32,6 +32,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   });
   const {
     register,
+    unregister,
     setValue,
     handleSubmit,
     reset,
@@ -130,6 +131,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               onSubmit={onSubmitSendLater}
               useForm={{
                 register,
+                unregister,
                 setValue,
                 handleSubmit,
                 reset,

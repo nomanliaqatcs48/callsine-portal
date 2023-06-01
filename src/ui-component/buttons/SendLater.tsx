@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import {
   Box,
@@ -28,8 +28,19 @@ import { devLog } from "../../helpers/logs";
 const SendLater = ({ onSubmit, useForm }: any) => {
   const [open, setOpen] = useState<boolean>(false);
 
+  useEffect(() => {
+    if (open) {
+      useForm?.register("scheduled_time", {
+        required: "This is required field.",
+      });
+    }
+  }, [open]);
+
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    useForm?.unregister("scheduled_time");
+  };
 
   const clickSendLater = (data: any) => {
     handleOpen();
