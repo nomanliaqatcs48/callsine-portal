@@ -9,6 +9,8 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { BrowserRouter } from "react-router-dom";
 import config from "./config";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const container: any = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
@@ -16,6 +18,7 @@ root.render(
   <Provider store={store}>
     <BrowserRouter basename={config.basename}>
       <App />
+      <ToastContainer />
     </BrowserRouter>
   </Provider>
 );
