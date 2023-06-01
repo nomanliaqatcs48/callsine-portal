@@ -23,6 +23,8 @@ import {
   setPlaybook,
   setPlaybookV2Service,
 } from "../../../../../../services/prompts.service";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { devLogError } from "../../../../../../helpers/logs";
 import { useParams } from "react-router-dom";
@@ -99,6 +101,10 @@ const PlaybookV2 = () => {
       devLogError(e.response);
       setPromptId(null);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+
+      setTimeout(() => {
+        handleClose();
+      });
     }
   };
 
@@ -229,6 +235,8 @@ const PlaybookV2 = () => {
           </DialogActions>
         </MyModal>
       )}
+
+      <ToastContainer />
     </>
   );
 };
