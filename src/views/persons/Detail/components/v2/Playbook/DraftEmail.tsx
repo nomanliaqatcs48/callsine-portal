@@ -16,7 +16,9 @@ import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAc
 import { ErrorMessage } from "@hookform/error-message";
 import { useParams } from "react-router-dom";
 import { emailAddressPattern } from "../../../../../../helpers/forms";
-import { devLog } from "../../../../../../helpers/logs";
+import { devLog, devLogError } from "../../../../../../helpers/logs";
+import { createAsEmailService } from "../../../../../../services/emails.service";
+import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 
 type DraftEmailTypes = {
   playBookData: any;
@@ -41,13 +43,15 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
   } = useForm();
   const { mailAccountsData } = useMailAccounts(open);
 
+  devLog("errors", errors);
+
   useEffect(() => {
     [
       // "in_reply_to",
       "person",
       "from_email",
       "html_message",
-      "scheduled_time",
+      // "scheduled_time",
     ].map((item: any) => {
       // register
       if (item !== "in_reply_to") {
@@ -71,6 +75,24 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
     setValue("from_email", event);
+    trigger("from_email");
+  };
+
+  const onSubmit = async (data: any) => {
+    devLog("onSubmit data", data);
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    /*try {
+      let res = await createAsEmailService(data);
+      if (res?.data) {
+        ToastSuccess("Email successfully created.");
+        handleClose();
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
+      ToastError("Something went wrong!");
+      devLogError(response);
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
+    }*/
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -80,8 +102,8 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     // handleEditorPreview(value);
   };
 
-  const SendContainer = () => {
-    return (
+  return (
+    <>
       <div className={`send-container ${containers} xl:tw-py-5`}>
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
           {/*left*/}
@@ -89,7 +111,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
             <Button
               type="button"
               variant="outlined"
-              onClick={() => null}
+              onClick={handleSubmit((data) => onSubmit(data))}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
             >
               <span className="tw-px-1.5 tw-text-xs tw-uppercase tw-font-medium">
@@ -124,11 +146,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           </div>*/}
         </div>
       </div>
-    );
-  };
-
-  const FromContainer = () => {
-    return (
       <div className={`from-container ${containers}`}>
         <div className="tw-flex">
           <div className={`${label}`}>From</div>
@@ -161,11 +178,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           </div>
         </div>
       </div>
-    );
-  };
-
-  const ToContainer = () => {
-    return (
       <div className={`to-container ${containers}`}>
         <div className="tw-flex">
           <div className={`${label}`}>To</div>
@@ -191,11 +203,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           </div>
         </div>
       </div>
-    );
-  };
-
-  const SubjectContainer = () => {
-    return (
       <div className={`subject-container ${containers}`}>
         <div className="tw-flex">
           <div className={`${label}`}>Subject</div>
@@ -219,11 +226,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           </div>
         </div>
       </div>
-    );
-  };
-
-  const MessageContainer = () => {
-    return (
       <div className={`message-container tw-p-0 xl:tw-p-0`}>
         <div className="">
           <MyEditor
@@ -236,16 +238,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
           />
         </div>
       </div>
-    );
-  };
-
-  return (
-    <>
-      <SendContainer />
-      <FromContainer />
-      <ToContainer />
-      <SubjectContainer />
-      <MessageContainer />
     </>
   );
 };
