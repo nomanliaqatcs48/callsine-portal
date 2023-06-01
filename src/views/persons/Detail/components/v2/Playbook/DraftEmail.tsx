@@ -6,8 +6,6 @@ import {
   Tooltip,
 } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
-import { IconTrash } from "@tabler/icons-react";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
 import React, { useEffect, useState } from "react";
@@ -19,6 +17,7 @@ import { emailAddressPattern } from "../../../../../../helpers/forms";
 import { devLog, devLogError } from "../../../../../../helpers/logs";
 import { createAsEmailService } from "../../../../../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
+import SendLater from "../../../../../../ui-component/buttons/SendLater";
 
 type DraftEmailTypes = {
   playBookData: any;
@@ -64,7 +63,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
       if (item === "person") {
         setValue("person", Number(personId));
       } else if (item === "html_message") {
-        devLog("selectedData?.html_message", selectedData?.text);
         setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
       }
 
@@ -97,7 +95,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
     value = `<html><body>${value}</body></html>`;
-    devLog("handleMyEditorOnChange() value", value);
     setValue("html_message", value);
     // handleEditorPreview(value);
   };
@@ -125,14 +122,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               flexItem
               className="tw-mx-4"
             />
-            <Button className="tw-py-2 tw-px-0 sm:tw-py-3 sm:tw-px-1 sm:tw-min-w-min">
-              <ScheduleSendOutlinedIcon
-                sx={{ fontSize: 24, color: "#778da9" }}
-              />
-              <span className="tw-text-[#778da9] tw-text-xs tw-px-2">
-                Send Later
-              </span>
-            </Button>
+            <SendLater />
           </div>
           {/*right*/}
           {/*<div>
