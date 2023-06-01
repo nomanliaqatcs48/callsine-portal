@@ -31,9 +31,7 @@ const SendLater = ({ onSubmit, useForm }: any) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const clickSendLater = () => {
-    useForm?.trigger();
-    if (Object.keys(useForm?.errors)?.length > 0) return;
+  const clickSendLater = (data: any) => {
     handleOpen();
   };
 
@@ -60,7 +58,7 @@ const SendLater = ({ onSubmit, useForm }: any) => {
   return (
     <>
       <Button
-        onClick={clickSendLater}
+        onClick={useForm?.handleSubmit((data: any) => clickSendLater(data))}
         className="tw-py-2 tw-px-0 sm:tw-py-3 sm:tw-px-1 sm:tw-min-w-min"
       >
         <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
@@ -72,10 +70,10 @@ const SendLater = ({ onSubmit, useForm }: any) => {
           open={open}
           onClose={handleClose}
           scroll="body"
-          fullWidth={true}
-          maxWidth="xl"
-          aria-labelledby="Create Email"
-          aria-describedby="Create Email"
+          // fullWidth={true}
+          // maxWidth="xl"
+          aria-labelledby="Send Later"
+          aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
           <DialogTitle variant="h4">Send Later</DialogTitle>
@@ -84,7 +82,7 @@ const SendLater = ({ onSubmit, useForm }: any) => {
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
                   {/*date time picker*/}
-                  <Grid item xs={11} sm={7} md={5} lg={4} xl={3}>
+                  <Grid item xs={12}>
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                       <DemoContainer components={["DateTimePicker"]}>
                         <DateTimePicker
@@ -124,7 +122,7 @@ const SendLater = ({ onSubmit, useForm }: any) => {
               variant="outlined"
               color="primary"
             >
-              Create
+              Send Later
             </Button>
           </DialogActions>
         </Dialog>
