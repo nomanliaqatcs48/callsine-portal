@@ -7,26 +7,25 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   FormHelperText,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  TextField,
 } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
 import moment from "moment/moment";
 import { ErrorMessage } from "@hookform/error-message";
-import { emailAddressPattern } from "../../helpers/forms";
-import MyEditor from "../editor/MyEditor";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
-import { devLog } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
+import { createAsEmailService } from "../../services/emails.service";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
 
-const SendLater = ({ onSubmit, useForm }: any) => {
+const SendLater = ({ useForm }: any) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<any>({
+    onPage: true,
+    form: false,
+  });
 
   useEffect(() => {
     if (open) {
@@ -64,6 +63,23 @@ const SendLater = ({ onSubmit, useForm }: any) => {
       moment.utc(value).format("YYYY-MM-DD HH:mm:ss")
     );
     useForm?.trigger("scheduled_time");
+  };
+
+  const onSubmit = async (data: any) => {
+    devLog("onSubmit data", data);
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let res = await createAsEmailService(data);
+      if (res?.data) {
+        ToastSuccess("Email successfully scheduled.");
+        handleClose();
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch ({ response }) {
+      ToastError("Something went wrong!");
+      devLogError(response);
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
+    }
   };
 
   return (
@@ -121,15 +137,12 @@ const SendLater = ({ onSubmit, useForm }: any) => {
           </DialogContent>
 
           <DialogActions>
-            <Button
-              onClick={handleClose}
-              // disabled={isLoading?.form}
-            >
+            <Button onClick={handleClose} disabled={isLoading?.form}>
               Cancel
             </Button>
             <Button
               onClick={useForm?.handleSubmit((data: any) => onSubmit(data))}
-              // disabled={isLoading?.form}
+              disabled={isLoading?.form}
               variant="outlined"
               color="primary"
             >

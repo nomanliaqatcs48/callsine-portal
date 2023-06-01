@@ -128,7 +128,6 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               className="tw-mx-4"
             />
             <SendLater
-              onSubmit={onSubmitSendLater}
               useForm={{
                 register,
                 unregister,
