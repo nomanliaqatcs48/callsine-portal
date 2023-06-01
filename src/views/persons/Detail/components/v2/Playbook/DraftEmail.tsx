@@ -39,7 +39,7 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     trigger,
     setError,
     formState: { errors },
-  } = useForm();
+  } = useForm({ mode: "onChange" });
   const { mailAccountsData } = useMailAccounts(open);
 
   devLog("errors", errors);
@@ -93,6 +93,10 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
     }*/
   };
 
+  const onSubmitSendLater = async (data: any) => {
+    devLog("onSubmitSendLater() data", data);
+  };
+
   const handleMyEditorOnChange = (value: string, editor: any) => {
     value = `<html><body>${value}</body></html>`;
     setValue("html_message", value);
@@ -122,7 +126,19 @@ const DraftEmail = ({ playBookData, selectedData }: DraftEmailTypes) => {
               flexItem
               className="tw-mx-4"
             />
-            <SendLater />
+            <SendLater
+              onSubmit={onSubmitSendLater}
+              useForm={{
+                register,
+                setValue,
+                handleSubmit,
+                reset,
+                getValues,
+                trigger,
+                setError,
+                errors,
+              }}
+            />
           </div>
           {/*right*/}
           {/*<div>
