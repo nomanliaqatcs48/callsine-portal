@@ -11,8 +11,6 @@ import {
   setPlaybook,
 } from "../../../../services/prompts.service";
 import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../helpers/toast";
 import _ from "lodash";
 
@@ -210,8 +208,6 @@ const Playbook = () => {
         </Grid>
         <Grid item lg />
       </Grid>
-
-      <ToastContainer />
     </>
   );
 };

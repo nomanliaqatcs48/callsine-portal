@@ -19,12 +19,10 @@ import {
   createAsEmailService,
   sendEmailService,
 } from "../../../../../../services/emails.service";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import { LoadingButton } from "@mui/lab";
 import moment from "moment";
-import { ToastContainer } from "react-toastify";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -280,8 +278,6 @@ const DraftEmail = ({
           />
         </div>
       </div>
-
-      <ToastContainer />
     </>
   );
 };
