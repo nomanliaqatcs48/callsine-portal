@@ -227,7 +227,6 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               {/*)}*/}
 
               <DeletePersonEmail
-                buttonText="Delete"
                 id={item?.id}
                 personId={Number(personId)}
                 onLoadApi={() => {
@@ -235,7 +234,9 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                   setValue(0);
                 }}
                 variant="outlined"
-              />
+              >
+                Delete
+              </DeletePersonEmail>
             </Grid>
           </TabPanel>
         );

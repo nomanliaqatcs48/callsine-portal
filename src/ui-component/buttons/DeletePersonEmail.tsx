@@ -8,16 +8,16 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 type DeletePersonEmailTypes = {
   id: number;
   personId: number;
-  buttonText: string;
   onLoadApi?: any;
+  children: any;
   [x: string]: any;
 };
 
 const DeletePersonEmail = ({
   id,
   personId,
-  buttonText,
   onLoadApi,
+  children,
   ...props
 }: DeletePersonEmailTypes) => {
   const [open, setOpen] = React.useState(false);
@@ -55,7 +55,7 @@ const DeletePersonEmail = ({
         onClick={handleOpen}
         {...props}
       >
-        {buttonText}
+        {children}
       </Button>
 
       {open && (

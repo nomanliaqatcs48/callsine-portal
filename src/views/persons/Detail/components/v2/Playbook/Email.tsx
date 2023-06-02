@@ -8,9 +8,12 @@ import moment from "moment";
 import xss from "xss";
 import { devLogError } from "../../../../../../helpers/logs";
 import { getMailAccountDetailService } from "../../../../../../services/mail-accounts.service";
+import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
+import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 
-const Email = ({ playBookData, selectedData }: any) => {
+const Email = ({ onLoadApi, playBookData, selectedData }: any) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
+  let { id: personId, getEmails, showStatus } = useEmailsTab(false);
 
   useLayoutEffect(() => {
     GetFromEmailDetail();
@@ -42,6 +45,10 @@ const Email = ({ playBookData, selectedData }: any) => {
     }
   };
 
+  const handleDeleteEmail = () => {
+    //
+  };
+
   return (
     <>
       <div
@@ -67,13 +74,27 @@ const Email = ({ playBookData, selectedData }: any) => {
           </div>
           {/*right*/}
           <div>
-            <Button onClick={() => null} className="tw-min-w-min">
+            <DeletePersonEmail
+              id={selectedData?.id}
+              personId={Number(personId)}
+              onLoadApi={onLoadApi}
+              variant="text"
+              color="inherit"
+              className="tw-min-w-min"
+            >
               <IconTrash
                 strokeWidth={3}
                 size={18}
                 style={{ color: "#778da9" }}
               />
-            </Button>
+            </DeletePersonEmail>
+            {/*<Button onClick={handleDeleteEmail} className="tw-min-w-min">
+              <IconTrash
+                strokeWidth={3}
+                size={18}
+                style={{ color: "#778da9" }}
+              />
+            </Button>*/}
           </div>
         </div>
       </div>

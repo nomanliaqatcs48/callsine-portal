@@ -179,7 +179,15 @@ const PlaybookV2 = () => {
             {selectedIndex !== null && (
               <>
                 {_.includes([0, 1, 2, 3], selectedData?.status) ? (
-                  <Email playBookData={data} selectedData={selectedData} />
+                  <Email
+                    onLoadApi={() => {
+                      getPersonDetail();
+                      setSelectedData(null);
+                      setSelectedIndex(null);
+                    }}
+                    playBookData={data}
+                    selectedData={selectedData}
+                  />
                 ) : (
                   <DraftEmail
                     onLoadApi={getPersonDetail}
