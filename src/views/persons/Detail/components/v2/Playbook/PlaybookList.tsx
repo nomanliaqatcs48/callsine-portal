@@ -3,6 +3,7 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
 import xss from "xss";
+import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 
 type PlaybookListProps = {
   data: any[];
@@ -39,20 +40,6 @@ const PlaybookList = ({
 
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
-  };
-
-  const showStatus = (status: number) => {
-    if (status === 0) {
-      return "Sent";
-    } else if (status === 1) {
-      return "Failed";
-    } else if (status === 2) {
-      return "Queued";
-    } else if (status === 3) {
-      return "Requeued";
-    }
-
-    return "";
   };
 
   return (
@@ -142,11 +129,13 @@ const PlaybookList = ({
                             )}
                           </span>
                           <span className="tw-w-1/12 tw-text-right">
-                            <Tooltip title="Scheduled">
-                              <WatchLaterIcon
-                                sx={{ fontSize: 15, color: "#1a76d2" }}
-                              />
-                            </Tooltip>
+                            {item?.scheduled_time && (
+                              <Tooltip title="Scheduled">
+                                <WatchLaterIcon
+                                  sx={{ fontSize: 15, color: "#1a76d2" }}
+                                />
+                              </Tooltip>
+                            )}
                           </span>
                         </span>
                       </>
