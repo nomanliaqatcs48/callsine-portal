@@ -3,14 +3,32 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import moment from "moment";
 import xss from "xss";
+import { devLogError } from "../../../../../../helpers/logs";
+import { getMailAccountDetailService } from "../../../../../../services/mail-accounts.service";
 
 const Email = ({ playBookData, selectedData }: any) => {
+  const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
+
   useLayoutEffect(() => {
+    GetFromEmailDetail();
     renderMessage();
   }, []);
+
+  const GetFromEmailDetail = async () => {
+    try {
+      let response = await getMailAccountDetailService(
+        selectedData?.from_email
+      );
+      if (response?.data) {
+        setFromEmailDetail(response?.data);
+      }
+    } catch ({ response }) {
+      devLogError(response);
+    }
+  };
 
   const renderMessage = () => {
     let _preview: any = document.querySelector(`.render_message`);
@@ -38,10 +56,11 @@ const Email = ({ playBookData, selectedData }: any) => {
               </div>
               <div className="tw-pl-1.5">
                 <div className="tw-text-black tw-text-[0.9rem] tw-font-medium">
-                  {selectedData?.from_email}
+                  From: {fromEmailDetail?.first_name}{" "}
+                  {fromEmailDetail?.last_name}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
-                  {selectedData?.to}
+                  To: {selectedData?.to}
                 </div>
               </div>
             </div>
