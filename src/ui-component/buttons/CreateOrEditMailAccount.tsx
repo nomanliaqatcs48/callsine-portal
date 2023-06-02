@@ -27,9 +27,7 @@ import {
 } from "../../services/mail-accounts.service";
 import MyEditor from "../editor/MyEditor";
 import { emailAddressPattern } from "../../helpers/forms";
-import { ToastContainer, toast } from "react-toastify";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import "react-toastify/dist/ReactToastify.css";
 
 type CreateOrEditMailAccountTypes = {
   id?: number;
@@ -386,7 +384,6 @@ const CreateOrEditMailAccount = ({
           </DialogActions>
         </Dialog>
       )}
-      <ToastContainer />
     </>
   );
 };

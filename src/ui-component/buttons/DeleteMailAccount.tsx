@@ -3,8 +3,6 @@ import { Button, DialogActions, Tooltip, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type DeleteMailAccountTypes = {
@@ -85,8 +83,6 @@ const DeleteMailAccount = ({
           </DialogActions>
         </MyModal>
       )}
-
-      <ToastContainer />
     </>
   );
 };

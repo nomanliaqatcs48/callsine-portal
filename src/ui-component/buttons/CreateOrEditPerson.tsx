@@ -21,9 +21,7 @@ import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
 import { updateMailAccountService } from "../../services/mail-accounts.service";
 import { emailAddressPattern } from "../../helpers/forms";
-import { ToastContainer, toast } from "react-toastify";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import "react-toastify/dist/ReactToastify.css";
 import { createPeopleService } from "../../services/persons.service";
 import { load, save } from "../../utils/storage";
 import { profileService } from "../../services/profile.service";
@@ -513,7 +511,6 @@ const CreateOrEditPerson = ({
           </DialogActions>
         </Dialog>
       )}
-      <ToastContainer />
     </>
   );
 };

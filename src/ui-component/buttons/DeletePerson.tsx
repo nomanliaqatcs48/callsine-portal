@@ -3,8 +3,6 @@ import { Button, DialogActions, Tooltip, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteEmailService } from "../../services/emails.service";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { deletePersonDetailService } from "../../services/persons.service";
 import { IconTrash } from "@tabler/icons-react";
@@ -97,8 +95,6 @@ const DeletePerson = ({
           </DialogActions>
         </MyModal>
       )}
-
-      <ToastContainer />
     </>
   );
 };

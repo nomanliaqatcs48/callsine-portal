@@ -31,8 +31,6 @@ import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import moment from "moment";
 import { createAsEmailService } from "../../services/emails.service";
 import { usePersonDetail } from "../../hooks/persons/usePersonDetail";
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 
 type CreateEmailTypes = {
@@ -457,8 +455,6 @@ const CreateEmail = ({
           </DialogActions>
         </Dialog>
       )}
-
-      <ToastContainer />
     </>
   );
 };
