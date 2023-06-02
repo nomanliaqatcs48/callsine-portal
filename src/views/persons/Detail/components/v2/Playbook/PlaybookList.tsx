@@ -41,6 +41,20 @@ const PlaybookList = ({
     setSelectedIndex(index);
   };
 
+  const showStatus = (status: number) => {
+    if (status === 0) {
+      return "Sent";
+    } else if (status === 1) {
+      return "Failed";
+    } else if (status === 2) {
+      return "Queued";
+    } else if (status === 3) {
+      return "Requeued";
+    }
+
+    return "";
+  };
+
   return (
     <>
       <List
@@ -101,9 +115,9 @@ const PlaybookList = ({
                   <ListItemText
                     primary={
                       <>
-                        <span className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem]">
+                        <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
                           {item?.date || "Today"}
-                        </span>
+                        </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
                             {item?.subject || `Subject ${idx + 1}`}
