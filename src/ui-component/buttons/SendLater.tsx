@@ -73,7 +73,10 @@ const SendLater = ({ onLoadApi, useForm, ...props }: SendLaterTypes) => {
     devLog("onSubmit data", data);
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
-      let res = await createAsEmailService(data);
+      let res = await createAsEmailService({
+        ...data,
+        from_email: data?.from_email?.id,
+      });
       if (res?.data) {
         ToastSuccess("Email successfully scheduled.");
         handleClose();
