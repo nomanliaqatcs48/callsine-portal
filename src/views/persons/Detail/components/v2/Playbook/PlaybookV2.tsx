@@ -27,6 +27,7 @@ import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { devLogError } from "../../../../../../helpers/logs";
 import { useParams } from "react-router-dom";
 import { LoadingButton } from "@mui/lab";
+import _ from "lodash";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -177,12 +178,15 @@ const PlaybookV2 = () => {
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                {/*<Email />*/}
-                <DraftEmail
-                  onLoadApi={getPersonDetail}
-                  playBookData={data}
-                  selectedData={selectedData}
-                />
+                {_.includes([0, 1, 2, 3], selectedData?.status) ? (
+                  <Email playBookData={data} selectedData={selectedData} />
+                ) : (
+                  <DraftEmail
+                    onLoadApi={getPersonDetail}
+                    playBookData={data}
+                    selectedData={selectedData}
+                  />
+                )}
               </>
             )}
 

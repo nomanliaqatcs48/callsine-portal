@@ -3,11 +3,29 @@ import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import { IconTrash } from "@tabler/icons-react";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
-import React from "react";
+import React, { useEffect, useLayoutEffect } from "react";
+import moment from "moment";
+import xss from "xss";
 
-const Email = () => {
-  const NameAndEmail = () => {
-    return (
+const Email = ({ playBookData, selectedData }: any) => {
+  useLayoutEffect(() => {
+    renderMessage();
+  }, []);
+
+  const renderMessage = () => {
+    let _preview: any = document.querySelector(`.render_message`);
+    let _htmlMsg = selectedData?.html_message;
+    if (_htmlMsg) {
+      _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
+      _htmlMsg = _htmlMsg.replace(/<html>|<\/html>|<body>|<\/body>/gi, "");
+    }
+    if (_preview && _htmlMsg) {
+      _preview.innerHTML = xss(_htmlMsg);
+    }
+  };
+
+  return (
+    <>
       <div
         className={`name-email-container tw-py-2 tw-border-b tw-border-[#f2f3f9] ${containers} xl:tw-py-5`}
       >
@@ -20,10 +38,10 @@ const Email = () => {
               </div>
               <div className="tw-pl-1.5">
                 <div className="tw-text-black tw-text-[0.9rem] tw-font-medium">
-                  Andrew Julian
+                  {selectedData?.from_email}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
-                  andrewjulian@gmail.com
+                  {selectedData?.to}
                 </div>
               </div>
             </div>
@@ -40,39 +58,19 @@ const Email = () => {
           </div>
         </div>
       </div>
-    );
-  };
-
-  const EmailDate = () => {
-    return (
       <div className={`date-container ${containers} tw-pt-6`}>
         <span className="tw-text-xs tw-text-[#99a9be] tw-tracking-[-0.5px]">
-          May 3, 2023, 10:21 PM
+          <div>{moment.utc(selectedData?.scheduled_time).format("lll")}</div>
         </span>
       </div>
-    );
-  };
-
-  const Subject = () => {
-    return (
       <div className={`subject-container ${containers}`}>
         <h3 className="tw-text-black tw-text-lg tw-font-semibold tw-pb-5 xl:tw-text-[1.4rem]">
-          Campaigns
+          {selectedData?.subject}
         </h3>
       </div>
-    );
-  };
-
-  const Message = () => {
-    return <div className={`message-container ${containers}`}>Message</div>;
-  };
-
-  return (
-    <>
-      <NameAndEmail />
-      <EmailDate />
-      <Subject />
-      <Message />
+      <div
+        className={`message-container ${containers} tw-text-[0.875rem] render_message`}
+      />
     </>
   );
 };
