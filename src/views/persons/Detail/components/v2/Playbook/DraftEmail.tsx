@@ -118,6 +118,7 @@ const DraftEmail = ({
       } else {
         ToastError("Something went wrong!");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
+        onLoadApi();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
