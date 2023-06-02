@@ -4,6 +4,8 @@ import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
 import xss from "xss";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
+import moment from "moment";
+import _ from "lodash";
 
 type PlaybookListProps = {
   data: any[];
@@ -103,14 +105,18 @@ const PlaybookList = ({
                     primary={
                       <>
                         <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
-                          {item?.date || "Today"}
+                          {item?.created_date
+                            ? moment.utc(item.created_date).format("ll")
+                            : "Today"}
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
                             {item?.subject || `Subject ${idx + 1}`}
                           </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
-                            [Draft]
+                            {_.includes([0, 1, 2, 3], item?.status)
+                              ? ""
+                              : "[Draft]"}
                           </span>
                         </span>
                       </>
