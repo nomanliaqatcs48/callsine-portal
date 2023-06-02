@@ -108,16 +108,16 @@ const PersonDetailPage = () => {
             {...a11yProps(0)}
             className="tw-text-black tw-tracking-wider"
           />
+          <Tab
+            label="Tracking"
+            {...a11yProps(1)}
+            className="tw-text-black tw-tracking-wider"
+          />
           {/*<Tab
             label="Emails"
             {...a11yProps(1)}
             className="tw-text-black tw-tracking-wider"
           />*/}
-          <Tab
-            label="Tracking"
-            {...a11yProps(2)}
-            className="tw-text-black tw-tracking-wider"
-          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -125,11 +125,11 @@ const PersonDetailPage = () => {
         {/*{value === 0 && <Playbook />}*/}
       </TabPanel>
       <TabPanel value={value} index={1}>
+        {value === 1 && <TrackingTab />}
+      </TabPanel>
+      {/*<TabPanel value={value} index={1}>
         {value === 1 && <Emails />}
-      </TabPanel>
-      <TabPanel value={value} index={2}>
-        {value === 2 && <TrackingTab />}
-      </TabPanel>
+      </TabPanel>*/}
     </>
   );
 };
