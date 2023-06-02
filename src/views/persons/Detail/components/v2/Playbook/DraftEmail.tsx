@@ -75,11 +75,22 @@ const DraftEmail = ({
       if (item === "person") {
         setValue("person", Number(personId));
       } else if (item === "html_message") {
-        setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
+        if (selectedData?.text) {
+          setValue(
+            "html_message",
+            selectedData?.text?.replace(/\n/g, "<br />")
+          );
+        } else {
+          setValue(
+            "html_message",
+            selectedData?.html_message?.replace(/\n/g, "<br />")
+          );
+        }
       }
 
       setValue("to", playBookData?.work_email);
       setValue("scheduled_time", moment.utc().format("YYYY-MM-DD HH:mm:ss"));
+      setValue("subject", selectedData?.subject);
     });
     setIsLoading((prev: any) => ({ ...prev, onPage: false }));
   }, [selectedData]);
