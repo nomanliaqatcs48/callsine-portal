@@ -1,9 +1,6 @@
-import { Button, Divider } from "@mui/material";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
+import React, { useLayoutEffect, useState } from "react";
 import { IconTrash } from "@tabler/icons-react";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
-import React, { useEffect, useLayoutEffect, useState } from "react";
 import moment from "moment";
 import xss from "xss";
 import { devLogError } from "../../../../../../helpers/logs";
@@ -11,9 +8,14 @@ import { getMailAccountDetailService } from "../../../../../../services/mail-acc
 import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 
-const Email = ({ onLoadApi, playBookData, selectedData }: any) => {
+type EmailTypes = {
+  onLoadApi: any;
+  selectedData: any;
+};
+
+const Email = ({ onLoadApi, selectedData }: EmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
-  let { id: personId, getEmails, showStatus } = useEmailsTab(false);
+  let { id: personId } = useEmailsTab(false);
 
   useLayoutEffect(() => {
     GetFromEmailDetail();
@@ -43,10 +45,6 @@ const Email = ({ onLoadApi, playBookData, selectedData }: any) => {
     if (_preview && _htmlMsg) {
       _preview.innerHTML = xss(_htmlMsg);
     }
-  };
-
-  const handleDeleteEmail = () => {
-    //
   };
 
   return (
@@ -88,13 +86,6 @@ const Email = ({ onLoadApi, playBookData, selectedData }: any) => {
                 style={{ color: "#778da9" }}
               />
             </DeletePersonEmail>
-            {/*<Button onClick={handleDeleteEmail} className="tw-min-w-min">
-              <IconTrash
-                strokeWidth={3}
-                size={18}
-                style={{ color: "#778da9" }}
-              />
-            </Button>*/}
           </div>
         </div>
       </div>

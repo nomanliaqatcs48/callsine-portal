@@ -1,16 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Button,
-  DialogActions,
-  Grid,
-  List,
-  ListItemButton,
-  ListItemText,
-  Paper,
-  SelectChangeEvent,
-  Tooltip,
-  Typography,
-} from "@mui/material";
+import { DialogActions, Grid, Paper } from "@mui/material";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import PlaybookList from "./PlaybookList";
 import DraftEmail from "./DraftEmail";
@@ -20,7 +9,6 @@ import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
 import {
   getPlaybooks,
-  setPlaybook,
   setPlaybookV2Service,
 } from "../../../../../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
@@ -185,7 +173,6 @@ const PlaybookV2 = () => {
                       setSelectedData(null);
                       setSelectedIndex(null);
                     }}
-                    playBookData={data}
                     selectedData={selectedData}
                   />
                 ) : (
@@ -212,7 +199,6 @@ const PlaybookV2 = () => {
           describedby="Generate Playbook modal"
           modalSxStyle={{ width: { xs: 400 } }}
         >
-          {/*<Typography variant="subtitle1">Generate Playbook?</Typography>*/}
           <DialogActions>
             <LoadingButton
               variant="outlined"
