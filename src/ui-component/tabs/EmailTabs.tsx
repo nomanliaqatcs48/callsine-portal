@@ -217,13 +217,13 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               alignItems="center"
             >
               {/*{showStatus(item?.status) === "Queued" && (*/}
-                <SendEmailNow
-                  id={item?.id}
-                  buttonText="Send Now"
-                  variant="outlined"
-                  style={{ marginRight: 10 }}
-                  onLoadApi={onLoadApi}
-                />
+              <SendEmailNow
+                id={item?.id}
+                buttonText="Send Now"
+                variant="outlined"
+                style={{ marginRight: 10 }}
+                onLoadApi={onLoadApi}
+              />
               {/*)}*/}
 
               <DeletePersonEmail
