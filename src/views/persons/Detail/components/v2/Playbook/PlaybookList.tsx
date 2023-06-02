@@ -1,6 +1,8 @@
 import { List, ListItemButton, ListItemText, Tooltip } from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
+import { devLog } from "../../../../../../helpers/logs";
+import xss from "xss";
 
 type PlaybookListProps = {
   data: any[];
@@ -48,6 +50,24 @@ const PlaybookList = ({
       >
         {data?.length > 0 &&
           data.map((item: any, idx: any) => {
+            setTimeout(() => {
+              let _preview: any = document.querySelector(
+                `.removeTags_html_${item?.id}`
+              );
+              let _htmlMsg = item?.html_message;
+              if (_htmlMsg) {
+                _htmlMsg = _htmlMsg.replace(/\n/g, "");
+                _htmlMsg = _htmlMsg.replace(/<br \/>|<br>|<br\/>/gi, "");
+                _htmlMsg = _htmlMsg.replace(
+                  /<html>|<\/html>|<body>|<\/body>/gi,
+                  ""
+                );
+              }
+              if (_preview && _htmlMsg) {
+                _preview.innerHTML = xss(_htmlMsg);
+              }
+            }, 500);
+
             return (
               <ListItemButton
                 key={idx}
@@ -97,8 +117,15 @@ const PlaybookList = ({
                     secondary={
                       <>
                         <span className="tw-flex">
-                          <span className="tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight">
+                          <span
+                            className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
+                          >
                             {item?.text || ""}
+                            {item?.html_message && (
+                              <span
+                                className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
+                              />
+                            )}
                           </span>
                           <span className="tw-w-1/12 tw-text-right">
                             <Tooltip title="Scheduled">
