@@ -169,7 +169,7 @@ const PlaybookV2 = () => {
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
-                data={data?.prompts || []}
+                data={data?.prompts ? [...data?.prompts, ...data?.emails] : []}
                 setSelectedData={setSelectedData}
               />
             </div>
