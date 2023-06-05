@@ -44,6 +44,76 @@ const PlaybookList = ({
     setSelectedIndex(index);
   };
 
+  const subtext = (item: any) => {
+    setTimeout(() => {
+      let _preview: any = document.querySelector(
+        `.removeTags_html_${item?.id}`
+      );
+      let _htmlMsg = item?.html_message;
+      if (_htmlMsg) {
+        _htmlMsg = _htmlMsg.replace(/\n/g, "");
+        _htmlMsg = _htmlMsg.replace(/<br \/>|<br>|<br\/>/gi, "");
+        _htmlMsg = _htmlMsg.replace(/<html>|<\/html>|<body>|<\/body>/gi, "");
+      }
+      if (_preview && _htmlMsg) {
+        _preview.innerHTML = xss(_htmlMsg);
+      }
+    }, 500);
+    if (item.status === "generated_email" && item?.promptResponse) {
+      return (
+        <>
+          <span className="tw-flex">
+            <span
+              className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
+            >
+              {item?.promptResponse?.text || ""}
+              {item?.promptResponse && (
+                <span
+                  className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
+                />
+              )}
+            </span>
+            <span className="tw-w-1/12 tw-text-right">
+              {item?.scheduled_time && (
+                <Tooltip title="Scheduled">
+                  <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
+                </Tooltip>
+              )}
+            </span>
+          </span>
+        </>
+      );
+    } else if (item.status === "scheduled" && item?.scheduledEmail) {
+      return (
+        <>
+          <span className="tw-flex">
+            <span
+              className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
+            >
+              {item?.scheduledEmail?.text || ""}
+              {item?.scheduledEmail?.html_message &&
+                item?.scheduledEmail
+                  ?.html_message
+                // <span
+                //     className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
+                //   />
+              }
+            </span>
+            <span className="tw-w-1/12 tw-text-right">
+              {item?.scheduled_time && (
+                <Tooltip title="Scheduled">
+                  <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
+                </Tooltip>
+              )}
+            </span>
+          </span>
+        </>
+      );
+    } else {
+      return "";
+    }
+  };
+
   return (
     <>
       <List
@@ -53,24 +123,6 @@ const PlaybookList = ({
       >
         {data?.length > 0 &&
           data.map((item: any, idx: any) => {
-            setTimeout(() => {
-              let _preview: any = document.querySelector(
-                `.removeTags_html_${item?.id}`
-              );
-              let _htmlMsg = item?.html_message;
-              if (_htmlMsg) {
-                _htmlMsg = _htmlMsg.replace(/\n/g, "");
-                _htmlMsg = _htmlMsg.replace(/<br \/>|<br>|<br\/>/gi, "");
-                _htmlMsg = _htmlMsg.replace(
-                  /<html>|<\/html>|<body>|<\/body>/gi,
-                  ""
-                );
-              }
-              if (_preview && _htmlMsg) {
-                _preview.innerHTML = xss(_htmlMsg);
-              }
-            }, 500);
-
             return (
               <ListItemButton
                 key={idx}
@@ -78,7 +130,11 @@ const PlaybookList = ({
                 selected={selectedIndex === idx}
                 onClick={(event) => {
                   handleListItemClick(event, idx);
-                  setSelectedData(item);
+                  if (item?.status === "generated_email") {
+                    setSelectedData(item?.promptResponse);
+                  } else {
+                    setSelectedData(item?.scheduledEmail);
+                  }
                 }}
                 sx={{
                   borderBottom: "1px solid #e8ecf5",
@@ -111,41 +167,15 @@ const PlaybookList = ({
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                            {item?.subject || `Subject ${idx + 1}`}
+                            {item?.subject || `Email ${idx + 1}`}
                           </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
-                            {_.includes([0, 1, 2, 3], item?.status)
-                              ? ""
-                              : "[Draft]"}
+                            {item.status === "scheduled" ? "" : "[Draft]"}
                           </span>
                         </span>
                       </>
                     }
-                    secondary={
-                      <>
-                        <span className="tw-flex">
-                          <span
-                            className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
-                          >
-                            {item?.text || ""}
-                            {item?.html_message && (
-                              <span
-                                className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
-                              />
-                            )}
-                          </span>
-                          <span className="tw-w-1/12 tw-text-right">
-                            {item?.scheduled_time && (
-                              <Tooltip title="Scheduled">
-                                <WatchLaterIcon
-                                  sx={{ fontSize: 15, color: "#1a76d2" }}
-                                />
-                              </Tooltip>
-                            )}
-                          </span>
-                        </span>
-                      </>
-                    }
+                    secondary={subtext(item)}
                   />
                 </Tooltip>
               </ListItemButton>

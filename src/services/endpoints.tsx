@@ -11,4 +11,5 @@ export const endpoints = {
   EMAILS: "/api/emails/",
   ORGS: "/api/orgs/",
   IMPORT_PEOPLE: "/api/bulk-import/",
+  SEQUENCE_EVENTS: "/api/sequence-events/",
 };

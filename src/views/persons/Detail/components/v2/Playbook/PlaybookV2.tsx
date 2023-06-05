@@ -1,21 +1,21 @@
-import React, { useEffect, useState } from "react";
+import { LoadingButton } from "@mui/lab";
 import { DialogActions, Grid, Paper } from "@mui/material";
-import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
-import PlaybookList from "./PlaybookList";
-import DraftEmail from "./DraftEmail";
-import Email from "./Email";
-import SelectItem from "./SelectItem";
-import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
-import MyModal from "../../../../../../ui-component/modal/MyModal";
+import _ from "lodash";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { devLogError } from "../../../../../../helpers/logs";
+import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
+import { useFetchProspectSequenceEvent } from "../../../../../../hooks/persons/useProspectEvents";
 import {
   getPlaybooks,
   setPlaybookV2Service,
 } from "../../../../../../services/prompts.service";
-import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
-import { devLogError } from "../../../../../../helpers/logs";
-import { useParams } from "react-router-dom";
-import { LoadingButton } from "@mui/lab";
-import _ from "lodash";
+import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
+import MyModal from "../../../../../../ui-component/modal/MyModal";
+import DraftEmail from "./DraftEmail";
+import Email from "./Email";
+import PlaybookList from "./PlaybookList";
+import SelectItem from "./SelectItem";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -29,38 +29,51 @@ const PlaybookV2 = () => {
     offset: 0,
     currentPage: 1,
   });
-
   const {
     data,
+    loading,
     setData,
-    isLoading,
-    setIsLoading,
-    getPersonDetail,
-    open,
-    setOpen,
+    setLoading,
+    error,
     handleOpen,
     handleClose,
-  } = usePlaybook();
+    getPersonDetail,
+    open,
+  } = useFetchProspectSequenceEvent(String(id));
+
+  console.log("in the playbook v2");
+  console.log(data);
+  // const {
+  //   data,
+  //   setData,
+  //   isLoading,
+  //   setIsLoading,
+  //   getPersonDetail,
+  //   open,
+  //   setOpen,
+  //   handleOpen,
+  //   handleClose,
+  // } = usePlaybook();
 
   useEffect(() => {
-    getPrompts();
+    // getPrompts();
   }, []);
 
-  const getPrompts = async () => {
-    try {
-      let res = await getPlaybooks(filters, searchValue);
-      if (res?.data) {
-        setPrompts(res.data?.results);
-        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-      }
-    } catch ({ response }) {
-      devLogError("e", response);
-      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-    }
-  };
+  // const getPrompts = async () => {
+  //   try {
+  //     let res = await getPlaybooks(filters, searchValue);
+  //     if (res?.data) {
+  //       setPrompts(res.data?.results);
+  //       setLoading((prev: any) => ({ ...prev, onPage: false }));
+  //     }
+  //   } catch ({ response }) {
+  //     devLogError("e", response);
+  //     setLoading((prev: any) => ({ ...prev, onPage: false }));
+  //   }
+  // };
 
   const handleGeneratePlaybook = async () => {
-    setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
+    setLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
       let res = await setPlaybookV2Service(Number(promptId), Number(id), {
@@ -77,7 +90,7 @@ const PlaybookV2 = () => {
         setData(res.data);
         getPersonDetail();
         setPromptId(null);
-        setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+        setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
         setTimeout(() => {
           handleClose();
@@ -87,7 +100,7 @@ const PlaybookV2 = () => {
       ToastError("Something went wrong!");
       devLogError(e.response);
       setPromptId(null);
-      setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+      setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
       setTimeout(() => {
         handleClose();
@@ -120,7 +133,7 @@ const PlaybookV2 = () => {
               </div>
               {/*dropdown*/}
               <div className="tw-w-full xl:tw-w-[185px]">
-                {!isLoading?.regeneratePlaybook && (
+                {!loading?.regeneratePlaybook && (
                   <ReactSelect
                     name="generate-playbook"
                     className="basic-single tw-cursor-pointer"
@@ -158,7 +171,7 @@ const PlaybookV2 = () => {
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
-                data={data?.prompts ? [...data?.prompts, ...data?.emails] : []}
+                data={data?.results ? [...data?.results] : []}
                 setSelectedData={setSelectedData}
               />
             </div>
@@ -204,27 +217,27 @@ const PlaybookV2 = () => {
               variant="outlined"
               color="primary"
               onClick={handleGeneratePlaybook}
-              loading={isLoading?.regeneratePlaybook || isLoading?.submit}
-              disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
+              loading={loading?.regeneratePlaybook || loading?.submit}
+              disabled={loading?.regeneratePlaybook || loading?.submit}
             >
               Yes, please!
             </LoadingButton>
             <LoadingButton
               onClick={() => {
                 handleClose();
-                setIsLoading((prev: any) => ({
+                setLoading((prev: any) => ({
                   ...prev,
                   regeneratePlaybook: true,
                 }));
                 setTimeout(() =>
-                  setIsLoading((prev: any) => ({
+                  setLoading((prev: any) => ({
                     ...prev,
                     regeneratePlaybook: false,
                   }))
                 );
               }}
-              loading={isLoading?.regeneratePlaybook || isLoading?.submit}
-              disabled={isLoading?.regeneratePlaybook || isLoading?.submit}
+              loading={loading?.regeneratePlaybook || loading?.submit}
+              disabled={loading?.regeneratePlaybook || loading?.submit}
             >
               Cancel
             </LoadingButton>

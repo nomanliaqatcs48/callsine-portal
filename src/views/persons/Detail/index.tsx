@@ -1,38 +1,14 @@
+import { Box, Container, Divider, Grid, Paper, Tab, Tabs } from "@mui/material";
 import React from "react";
-import {
-  Avatar,
-  Box,
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Link,
-  Paper,
-  Tab,
-  Table,
-  TableBody,
-  TableCell,
-  TableContainer,
-  TableRow,
-  Tabs,
-  Tooltip,
-  Typography,
-} from "@mui/material";
-import MainCard from "../../../ui-component/cards/MainCard";
-import TabPanel from "../../../ui-component/tabs/TabPanel";
-import Playbook from "./components/Playbook";
-import Emails from "./components/Emails";
-import PersonDetailCard from "./components/PersonDetailCard";
-import PersonDetailOrgCard from "./components/PersonDetailOrgCard";
-import StatCard from "./components/StatCard";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
+import GoBack from "../../../ui-component/buttons/GoBack";
+import SequenceTab from "../../../ui-component/tabs/SequenceTab";
+import TabPanel from "../../../ui-component/tabs/TabPanel";
 import TrackingTab from "../../../ui-component/tabs/TrackingTab";
-import PersonIcon from "@mui/icons-material/Person";
-import { ReactComponent as LinkedinIcon } from "../../../assets/images/svg/linkedin.svg";
-import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/facebook.svg";
+import Emails from "./components/Emails";
+import Playbook from "./components/Playbook";
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
-import GoBack from "../../../ui-component/buttons/GoBack";
 import PlaybookV2 from "./components/v2/Playbook/PlaybookV2";
 
 const PersonDetailPage = () => {
@@ -148,7 +124,7 @@ const PersonDetailPage = () => {
       </Box>
       <TabPanel value={value} index={0}>
         {/*{value === 0 && <PlaybookV2 />}*/}
-        {value === 0 && <Playbook />}
+        {value === 0 && <PlaybookV2 />}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {value === 1 && <Emails />}
