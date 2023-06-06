@@ -45,20 +45,6 @@ const PlaybookList = ({
   };
 
   const subtext = (item: any) => {
-    setTimeout(() => {
-      let _preview: any = document.querySelector(
-        `.removeTags_html_${item?.id}`
-      );
-      let _htmlMsg = item?.html_message;
-      if (_htmlMsg) {
-        _htmlMsg = _htmlMsg.replace(/\n/g, "");
-        _htmlMsg = _htmlMsg.replace(/<br \/>|<br>|<br\/>/gi, "");
-        _htmlMsg = _htmlMsg.replace(/<html>|<\/html>|<body>|<\/body>/gi, "");
-      }
-      if (_preview && _htmlMsg) {
-        _preview.innerHTML = xss(_htmlMsg);
-      }
-    }, 500);
     if (item.status === "generated_email" && item?.promptResponse) {
       return (
         <>
@@ -84,6 +70,11 @@ const PlaybookList = ({
         </>
       );
     } else if (item.status === "scheduled" && item?.scheduledEmail) {
+      const strippedString = item?.scheduledEmail?.html_message.replace(
+        /<[^>]*>?/gm,
+        ""
+      );
+      const result = strippedString.trim();
       return (
         <>
           <span className="tw-flex">
@@ -91,9 +82,8 @@ const PlaybookList = ({
               className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
             >
               {item?.scheduledEmail?.text || ""}
-              {item?.scheduledEmail?.html_message &&
-                item?.scheduledEmail
-                  ?.html_message
+              {
+                item?.scheduledEmail?.html_message && result
                 // <span
                 //     className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
                 //   />

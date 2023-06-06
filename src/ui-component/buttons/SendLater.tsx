@@ -22,12 +22,18 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { LoadingButton } from "@mui/lab";
 
 type SendLaterTypes = {
+  position: any;
   onLoadApi: any;
   useForm: any;
   [x: string]: any;
 };
 
-const SendLater = ({ onLoadApi, useForm, ...props }: SendLaterTypes) => {
+const SendLater = ({
+  position,
+  onLoadApi,
+  useForm,
+  ...props
+}: SendLaterTypes) => {
   const [open, setOpen] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
@@ -76,6 +82,7 @@ const SendLater = ({ onLoadApi, useForm, ...props }: SendLaterTypes) => {
       let res = await createAsEmailService({
         ...data,
         from_email: data?.from_email?.id,
+        position: position,
       });
       if (res?.data) {
         ToastSuccess("Email successfully scheduled.");

@@ -35,6 +35,6 @@ export const createAsEmailService = async (data: any) => {
   return await http.post(`${endpoints.EMAILS}`, data);
 };
 
-export const sendEmailService = async (emailId: number) => {
+export const sendEmailService = async (emailId: number, position: number) => {
   return await http.post(`${endpoints.EMAILS}${emailId}/send/`);
 };

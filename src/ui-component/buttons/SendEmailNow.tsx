@@ -15,6 +15,7 @@ type SendEmailNowTypes = {
 
 const SendEmailNow = ({
   id,
+  position,
   buttonText,
   onLoadApi,
   ...props
@@ -26,7 +27,7 @@ const SendEmailNow = ({
   const handleSend = async () => {
     setIsLoading((prev: any) => ({ ...prev, button: true }));
     try {
-      let res = await sendEmailService(id);
+      let res = await sendEmailService(id, position);
       if (res?.data) {
         onLoadApi();
         setIsLoading((prev: any) => ({ ...prev, button: false }));

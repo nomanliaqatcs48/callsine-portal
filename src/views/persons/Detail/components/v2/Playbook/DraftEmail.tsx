@@ -28,12 +28,14 @@ type DraftEmailTypes = {
   onLoadApi: any;
   playBookData: any;
   selectedData: any;
+  position: any;
 };
 
 const DraftEmail = ({
   onLoadApi,
   playBookData,
   selectedData,
+  position,
 }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
@@ -55,6 +57,8 @@ const DraftEmail = ({
   const { mailAccountsData } = useMailAccounts(open);
 
   devLog("errors", errors);
+  console.log("POSITION");
+  console.log(position);
 
   useEffect(() => {
     [
@@ -102,7 +106,7 @@ const DraftEmail = ({
 
   const handleSendNow = async (id: any) => {
     try {
-      let res = await sendEmailService(id);
+      let res = await sendEmailService(id, position);
       if (res?.data) {
         devLog("res?.data", res?.data);
         ToastSuccess("Email successfully sent.");
@@ -123,6 +127,7 @@ const DraftEmail = ({
       let res = await createAsEmailService({
         ...data,
         from_email: data?.from_email?.id,
+        position: position,
       });
       if (res?.data?.id) {
         handleSendNow(res?.data?.id);
@@ -184,6 +189,7 @@ const DraftEmail = ({
               onLoadApi={onLoadApi}
               loading={isLoading?.form}
               disabled={isLoading?.form}
+              position={position}
             />
           </div>
           {/*right*/}

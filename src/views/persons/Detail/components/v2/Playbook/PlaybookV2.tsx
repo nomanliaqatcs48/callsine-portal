@@ -6,16 +6,15 @@ import { useParams } from "react-router-dom";
 import { devLogError } from "../../../../../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { useFetchProspectSequenceEvent } from "../../../../../../hooks/persons/useProspectEvents";
-import {
-  getPlaybooks,
-  setPlaybookV2Service,
-} from "../../../../../../services/prompts.service";
+import { setPlaybookV2Service } from "../../../../../../services/prompts.service";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
 import DraftEmail from "./DraftEmail";
 import Email from "./Email";
 import PlaybookList from "./PlaybookList";
 import SelectItem from "./SelectItem";
+import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
+import { getPlaybooks } from "../../../../../../services/prompts.service";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -24,6 +23,12 @@ const PlaybookV2 = () => {
   const [prompts, setPrompts] = useState<any[]>([]);
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = React.useState<string>("");
+  const {
+    data: playBookData,
+    setData: setPlayBookData,
+    isLoading: playbookLoading,
+    setIsLoading: setPlaybookLoading,
+  } = usePlaybook();
   const [filters, setFilters] = React.useState<any>({
     limit: 9999,
     offset: 0,
@@ -40,9 +45,7 @@ const PlaybookV2 = () => {
     getPersonDetail,
     open,
   } = useFetchProspectSequenceEvent(String(id));
-
-  console.log("in the playbook v2");
-  console.log(data);
+  console.log(playBookData);
   // const {
   //   data,
   //   setData,
@@ -56,21 +59,21 @@ const PlaybookV2 = () => {
   // } = usePlaybook();
 
   useEffect(() => {
-    // getPrompts();
+    getPrompts();
   }, []);
 
-  // const getPrompts = async () => {
-  //   try {
-  //     let res = await getPlaybooks(filters, searchValue);
-  //     if (res?.data) {
-  //       setPrompts(res.data?.results);
-  //       setLoading((prev: any) => ({ ...prev, onPage: false }));
-  //     }
-  //   } catch ({ response }) {
-  //     devLogError("e", response);
-  //     setLoading((prev: any) => ({ ...prev, onPage: false }));
-  //   }
-  // };
+  const getPrompts = async () => {
+    try {
+      let res = await getPlaybooks(filters, searchValue);
+      if (res?.data) {
+        setPrompts(res.data?.results);
+        setLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch ({ response }) {
+      devLogError("e", response);
+      setLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
 
   const handleGeneratePlaybook = async () => {
     setLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
@@ -187,9 +190,11 @@ const PlaybookV2 = () => {
                       setSelectedIndex(null);
                     }}
                     selectedData={selectedData}
+                    position={selectedIndex + 1}
                   />
                 ) : (
                   <DraftEmail
+                    position={selectedIndex + 1}
                     onLoadApi={getPersonDetail}
                     playBookData={data}
                     selectedData={selectedData}
@@ -198,7 +203,9 @@ const PlaybookV2 = () => {
               </>
             )}
 
-            {selectedIndex === null && <SelectItem prompts={data?.prompts} />}
+            {selectedIndex === null && (
+              <SelectItem prompts={playBookData?.prompts} />
+            )}
           </Grid>
         </Grid>
       </Paper>

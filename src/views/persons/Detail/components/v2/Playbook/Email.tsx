@@ -1,19 +1,20 @@
-import React, { useLayoutEffect, useState } from "react";
 import { IconTrash } from "@tabler/icons-react";
-import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
 import moment from "moment";
+import { useLayoutEffect, useState } from "react";
 import xss from "xss";
+import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
 import { devLogError } from "../../../../../../helpers/logs";
+import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import { getMailAccountDetailService } from "../../../../../../services/mail-accounts.service";
 import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
-import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 
 type EmailTypes = {
   onLoadApi: any;
   selectedData: any;
+  position: any;
 };
 
-const Email = ({ onLoadApi, selectedData }: EmailTypes) => {
+const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
 
