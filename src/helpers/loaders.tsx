@@ -12,3 +12,12 @@ export const insertBodyLoader = () => {
     );
   }
 };
+
+export const removeBodyLoader = () => {
+  let _body: any = document.querySelector("body");
+  let _body_loader: any = document.querySelector("#body-loader");
+  if (_body) {
+    _body.classList.toggle("tw-overflow-hidden");
+    _body_loader.remove();
+  }
+};
