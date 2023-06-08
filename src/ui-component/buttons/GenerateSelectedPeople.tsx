@@ -19,6 +19,7 @@ const GenerateSelectedPeople = ({
       var ids = selectedRows.map((item: any, idx) => {
         return item.id;
       });
+      devLog("ids", ids);
       let res = await bulkGenerateService(ids);
       if (res?.status === 201) {
         ToastSuccess("Email generation successfully started.");

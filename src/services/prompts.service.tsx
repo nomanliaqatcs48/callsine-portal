@@ -63,7 +63,7 @@ export const generateResponsesService = async (
 };
 
 export const bulkGenerateService = async (personList: any[]) => {
-  return await http.post(`/api/persons/1/bulk_generate/`, {
+  return await http.post(`/api/persons/bulk_generate/`, {
     personList: personList,
   });
 };
