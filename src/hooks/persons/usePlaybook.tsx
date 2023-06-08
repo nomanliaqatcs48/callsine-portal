@@ -7,6 +7,7 @@ import {
 import { useParams } from "react-router-dom";
 import { generateResponsesService } from "../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
@@ -52,6 +53,7 @@ export const usePlaybook = (load: boolean = true) => {
 
   const regeneratePlaybook = async (promptItem: any) => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
+    insertBodyLoader();
     try {
       let res = await generateResponsesService(
         Number(promptItem?.id),
@@ -70,11 +72,13 @@ export const usePlaybook = (load: boolean = true) => {
           return item;
         });
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+        removeBodyLoader();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
+      removeBodyLoader();
     }
   };
 
