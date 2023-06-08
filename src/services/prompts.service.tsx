@@ -61,3 +61,9 @@ export const generateResponsesService = async (
     `${endpoints.PROMPT_RESPONSES}${promptId}/generate/?person=${personId}`
   );
 };
+
+export const bulkGenerateService = async (personList: any[]) => {
+  return await http.post(`/api/persons/1/bulk_generate/`, {
+    personList: personList,
+  });
+};
