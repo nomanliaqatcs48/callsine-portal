@@ -131,11 +131,13 @@ const PlaybookList = ({
                     primary={
                       <>
                         <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
-                          {item?.scheduledEmail?.created_date
-                            ? moment(item?.scheduledEmail?.created_date).format(
-                                "lll"
-                              )
-                            : "Today"}
+                          {item?.scheduledEmail?.created_date ? (
+                            moment(item?.scheduledEmail?.created_date).format(
+                              "lll"
+                            )
+                          ) : (
+                            <span className="tw-invisible">This is hidden</span>
+                          )}
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
