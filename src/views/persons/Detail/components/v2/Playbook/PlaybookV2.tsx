@@ -195,7 +195,7 @@ const PlaybookV2 = () => {
                   <DraftEmail
                     position={selectedIndex + 1}
                     onLoadApi={getPersonDetail}
-                    playBookData={data}
+                    playBookData={playBookData}
                     selectedData={selectedData}
                   />
                 )}
