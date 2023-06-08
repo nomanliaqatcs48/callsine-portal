@@ -206,7 +206,7 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
-              onClick={() => regeneratePlaybook(selectedData?.id)}
+              onClick={() => regeneratePlaybook(selectedData)}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
               loading={false}
               disabled={false}
