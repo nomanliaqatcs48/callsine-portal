@@ -160,7 +160,9 @@ const PlaybookList = ({
                             {item?.subject || `Email ${idx + 1}`}
                           </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
-                            {item.status === "scheduled" ? "" : "[Draft]"}
+                            {_.includes(item?.status, "scheduled")
+                              ? ""
+                              : "[Draft]"}
                           </span>
                         </span>
                       </>
