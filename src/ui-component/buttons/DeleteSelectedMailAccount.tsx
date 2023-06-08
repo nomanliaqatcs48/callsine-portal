@@ -2,7 +2,7 @@ import React from "react";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Tooltip } from "@mui/material";
 import { devLog, devLogError } from "../../helpers/logs";
-import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { ToastError, ToastSuccess, ToastWarning } from "../../helpers/toast";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
 
 type DeleteSelectedMailAccountsTypes = {
@@ -16,6 +16,10 @@ const DeleteSelectedMailAccounts = ({
 }: DeleteSelectedMailAccountsTypes) => {
   const onDelete = async () => {
     devLog("selectedRows", selectedRows);
+    if (!selectedRows?.length) {
+      ToastWarning("Please select mail account");
+      return;
+    }
     selectedRows.map(async (item: any, idx) => {
       try {
         let res = await deleteMailAccountService(item?.id);
