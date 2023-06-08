@@ -1,6 +1,7 @@
+import { useLayoutEffect, useState } from "react";
+import { Tooltip } from "@mui/material";
 import { IconTrash } from "@tabler/icons-react";
 import moment from "moment";
-import { useLayoutEffect, useState } from "react";
 import xss from "xss";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
 import { devLogError } from "../../../../../../helpers/logs";
@@ -92,7 +93,9 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
       </div>
       <div className={`date-container ${containers} tw-pt-6`}>
         <span className="tw-text-xs tw-text-[#99a9be] tw-tracking-[-0.5px]">
-          <div>{moment(selectedData?.scheduled_time).format("lll")}</div>
+          <Tooltip title="Scheduled Time">
+            <span>{moment(selectedData?.scheduled_time).format("lll")}</span>
+          </Tooltip>
         </span>
       </div>
       <div className={`subject-container ${containers}`}>
