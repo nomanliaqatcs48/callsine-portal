@@ -131,12 +131,12 @@ const PlaybookList = ({
                     primary={
                       <>
                         <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
-                          {item?.scheduledEmail?.created_date &&
+                          {item?.scheduledEmail?.scheduled_time &&
                           _.includes(
                             [0, 1, 2, 3],
                             item?.scheduledEmail?.status
                           ) ? (
-                            moment(item?.scheduledEmail?.created_date).format(
+                            moment(item?.scheduledEmail?.scheduled_time).format(
                               "lll"
                             )
                           ) : (
