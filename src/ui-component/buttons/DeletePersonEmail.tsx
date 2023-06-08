@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, DialogActions, Typography } from "@mui/material";
+import { Button, DialogActions, Tooltip, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteEmailService } from "../../services/emails.service";
@@ -47,16 +47,18 @@ const DeletePersonEmail = ({
 
   return (
     <>
-      <Button
-        disableElevation
-        type="button"
-        variant="contained"
-        color="error"
-        onClick={handleOpen}
-        {...props}
-      >
-        {children}
-      </Button>
+      <Tooltip title="Delete Email">
+        <Button
+          disableElevation
+          type="button"
+          variant="contained"
+          color="error"
+          onClick={handleOpen}
+          {...props}
+        >
+          {children}
+        </Button>
+      </Tooltip>
 
       {open && (
         <MyModal
