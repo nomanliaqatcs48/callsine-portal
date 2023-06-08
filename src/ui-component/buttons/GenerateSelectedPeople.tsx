@@ -16,7 +16,6 @@ const GenerateSelectedPeople = ({
   const onGenerate = async () => {
     devLog("selectedRows", selectedRows);
     if (selectedRows.length > 0) {
-      console.log("in the bulk");
       var ids = selectedRows.map((item: any, idx) => {
         return item.id;
       });
