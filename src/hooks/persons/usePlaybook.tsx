@@ -8,7 +8,7 @@ import { useParams } from "react-router-dom";
 import { generateResponsesService } from "../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 
-export const usePlaybook = () => {
+export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
@@ -19,8 +19,10 @@ export const usePlaybook = () => {
   });
 
   useEffect(() => {
-    getPersonDetail();
-  }, [id]);
+    if (load) {
+      getPersonDetail();
+    }
+  }, [load, id]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);

@@ -23,6 +23,7 @@ import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import { LoadingButton } from "@mui/lab";
 import moment from "moment";
+import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -55,6 +56,7 @@ const DraftEmail = ({
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const { mailAccountsData } = useMailAccounts(open);
+  const { regeneratePlaybook } = usePlaybook(false);
 
   devLog("errors", errors);
   console.log("POSITION");
@@ -204,7 +206,7 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
-              onClick={() => null}
+              onClick={() => regeneratePlaybook(selectedData?.id)}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
               loading={false}
               disabled={false}
