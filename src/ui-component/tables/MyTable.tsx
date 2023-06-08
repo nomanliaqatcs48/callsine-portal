@@ -55,6 +55,7 @@ interface MyTableProps {
   setSortedId?: any;
   setIsOrderDesc?: any;
   isResponsive?: boolean;
+
   //
   sortedId?: any;
   isOrderDesc?: any;
@@ -84,6 +85,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
     isTableLoading = false,
     removePageSizeDropdown = true,
     setSelectedFlatRows,
+
     topContent,
     showSearch = false,
     hiddenColumns = [],

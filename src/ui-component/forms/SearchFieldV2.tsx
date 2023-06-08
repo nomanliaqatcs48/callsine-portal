@@ -1,6 +1,5 @@
-import React from "react";
-import { Grid, Typography } from "@mui/material";
 import SearchIcon from "@mui/icons-material/Search";
+import { Grid } from "@mui/material";
 
 const SearchFieldV2 = () => {
   return (

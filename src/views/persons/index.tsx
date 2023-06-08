@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Divider,
@@ -29,9 +29,11 @@ import { ToastSuccess } from "../../helpers/toast";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import { devLog } from "../../helpers/logs";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
+import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
+
   const {
     personsData,
     setPersonsData,
@@ -125,7 +127,7 @@ const PersonsPage = () => {
         <Grid container>
           <Grid item xs={12} lg={2}>
             <Typography className="tw-text-lg tw-font-medium tw-pl-3">
-              User Details
+              Person Details
             </Typography>
           </Grid>
           <Grid
@@ -134,6 +136,17 @@ const PersonsPage = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
+            <GenerateSelectedPeople
+              selectedRows={selectedPersonRows}
+              onLoadApi={getPeople}
+            />
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-hidden lg:tw-block"
+              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+            />
             <CreateOrEditPerson
               btnText={
                 <>
@@ -215,6 +228,7 @@ const PersonsPage = () => {
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
+
           // topContent={renderSearch}
           // setSortedId={setSortedId}
           // setIsOrderDesc={setIsOrderDesc}

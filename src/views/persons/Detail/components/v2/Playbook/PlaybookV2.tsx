@@ -45,7 +45,6 @@ const PlaybookV2 = () => {
     getPersonDetail,
     open,
   } = useFetchProspectSequenceEvent(String(id));
-  console.log(playBookData);
   // const {
   //   data,
   //   setData,

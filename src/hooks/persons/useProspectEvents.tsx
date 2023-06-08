@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import { getProspectSequenceEventService } from "../../services/sequences.service";
 
 export const useFetchProspectSequenceEvent = (personId: string) => {
-  const [user, setUser] = useState<string>("lkelly@unionresolute.com");
-
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<any>({
     onPage: true,
@@ -18,7 +16,7 @@ export const useFetchProspectSequenceEvent = (personId: string) => {
 
   useEffect(() => {
     setLoading(true);
-    getProspectSequenceEventService(user, personId)
+    getProspectSequenceEventService(personId)
       .then((response) => {
         setData(response.data);
         setLoading(false);
@@ -27,11 +25,11 @@ export const useFetchProspectSequenceEvent = (personId: string) => {
         setError(err);
         setLoading(false);
       });
-  }, [user, personId]);
+  }, [personId]);
 
   const getPersonDetail = () => {
     setLoading(true);
-    getProspectSequenceEventService(user, personId)
+    getProspectSequenceEventService(personId)
       .then((response) => {
         setData(response.data);
         setLoading(false);
