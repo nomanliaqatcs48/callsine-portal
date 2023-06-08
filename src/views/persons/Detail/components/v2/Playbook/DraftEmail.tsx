@@ -152,7 +152,7 @@ const DraftEmail = ({
   return (
     <>
       <div className={`send-container ${containers} xl:tw-py-5`}>
-        <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
+        <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
           {/*left*/}
           <div className="tw-flex tw-justify-center tw-items-center">
             <LoadingButton
@@ -193,15 +193,27 @@ const DraftEmail = ({
             />
           </div>
           {/*right*/}
-          {/*<div>
-            <Button onClick={() => null} className="tw-min-w-min">
+          <div className="tw-py-2">
+            {/*<Button onClick={() => null} className="tw-min-w-min">
               <IconTrash
                 strokeWidth={3}
                 size={18}
                 style={{ color: "#778da9" }}
               />
-            </Button>
-          </div>*/}
+            </Button>*/}
+            <LoadingButton
+              type="button"
+              variant="outlined"
+              onClick={() => null}
+              className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+              loading={false}
+              disabled={false}
+            >
+              <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                Regenerate
+              </span>
+            </LoadingButton>
+          </div>
         </div>
       </div>
       <div className={`from-container ${containers}`}>
