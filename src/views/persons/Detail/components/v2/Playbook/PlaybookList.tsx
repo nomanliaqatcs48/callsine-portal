@@ -20,26 +20,6 @@ const PlaybookList = ({
   setSelectedIndex,
   setSelectedData,
 }: any) => {
-  const playbookItems = [
-    {
-      date: "Saturday",
-      subject: "Campaign 1",
-      msg: "Lorem ipsum ",
-    },
-    {
-      date: "Saturday",
-      subject:
-        "Campaign Campaign lorem ipsum Campaign lorem ipsum Campaign lorem ipsum Campaign",
-      msg: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor",
-    },
-    {
-      date: "Saturday",
-      subject:
-        "Campaign Campaign lorem ipsum Campaign lorem ipsum Campaign lorem ipsum Campaign",
-      msg: "Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor Lorem ipsum dolor",
-    },
-  ];
-
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
   };
