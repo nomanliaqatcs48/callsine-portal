@@ -131,8 +131,10 @@ const PlaybookList = ({
                     primary={
                       <>
                         <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
-                          {item?.created_date
-                            ? moment.utc(item.created_date).format("ll")
+                          {item?.scheduledEmail?.created_date
+                            ? moment(item?.scheduledEmail?.created_date).format(
+                                "lll"
+                              )
                             : "Today"}
                         </div>
                         <span className="tw-flex tw-justify-start">

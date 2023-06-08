@@ -92,7 +92,7 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
       </div>
       <div className={`date-container ${containers} tw-pt-6`}>
         <span className="tw-text-xs tw-text-[#99a9be] tw-tracking-[-0.5px]">
-          <div>{moment.utc(selectedData?.scheduled_time).format("lll")}</div>
+          <div>{moment(selectedData?.scheduled_time).format("lll")}</div>
         </span>
       </div>
       <div className={`subject-container ${containers}`}>
