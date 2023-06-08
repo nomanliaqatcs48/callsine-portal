@@ -3,7 +3,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Button, Tooltip } from "@mui/material";
 import { devLog, devLogError } from "../../helpers/logs";
 import { deletePersonDetailService } from "../../services/persons.service";
-import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { ToastError, ToastSuccess, ToastWarning } from "../../helpers/toast";
 
 type DeleteSelectedPeopleTypes = {
   selectedRows: any[];
@@ -16,6 +16,10 @@ const DeleteSelectedPeople = ({
 }: DeleteSelectedPeopleTypes) => {
   const onDelete = async () => {
     devLog("selectedRows", selectedRows);
+    if (!selectedRows?.length) {
+      ToastWarning("Please select person");
+      return;
+    }
     selectedRows.map(async (item: any, idx) => {
       try {
         let res = await deletePersonDetailService(item?.id);
