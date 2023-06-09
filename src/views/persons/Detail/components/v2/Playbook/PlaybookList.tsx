@@ -6,6 +6,7 @@ import xss from "xss";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import moment from "moment";
 import _ from "lodash";
+import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 
 type PlaybookListProps = {
   data: any[];
@@ -56,6 +57,13 @@ const PlaybookList = ({
         ""
       );
       const result = strippedString.trim();
+
+      let isSent: boolean = false;
+      let _now = moment.utc();
+      let _scheduledTime = moment.utc(item?.scheduledEmail?.scheduled_time);
+      let _diff = _now.diff(_scheduledTime);
+      if (_diff > 0) isSent = true;
+
       return (
         <>
           <span className="tw-flex">
@@ -72,9 +80,19 @@ const PlaybookList = ({
             </span>
             <span className="tw-w-1/12 tw-text-right">
               {item?.scheduledEmail?.scheduled_time && (
-                <Tooltip title="Scheduled">
-                  <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
-                </Tooltip>
+                <>
+                  {isSent ? (
+                    <Tooltip title="Sent">
+                      <MarkEmailReadOutlinedIcon
+                        sx={{ fontSize: 15, color: "#1a76d2" }}
+                      />
+                    </Tooltip>
+                  ) : (
+                    <Tooltip title="Scheduled">
+                      <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
+                    </Tooltip>
+                  )}
+                </>
               )}
             </span>
           </span>
