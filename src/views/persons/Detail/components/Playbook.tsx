@@ -68,10 +68,7 @@ const Playbook = () => {
     const regeneratePlaybook = async () => {
       setIsBtnLoading(true);
       try {
-        let res = await generateResponsesService(
-          Number(promptItem?.id),
-          Number(id)
-        );
+        let res = await generateResponsesService(0);
         if (res?.data) {
           ToastSuccess("Message successfully regenerated.");
           let _prompts = data.prompts.map((item: any) => {
