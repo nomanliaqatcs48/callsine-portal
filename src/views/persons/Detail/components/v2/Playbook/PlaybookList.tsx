@@ -126,7 +126,9 @@ const PlaybookList = ({
                   },
                 }}
               >
-                <Tooltip title={item?.subject || `Subject ${idx + 1}`}>
+                <Tooltip
+                  title={item?.scheduledEmail?.subject || `Email ${idx + 1}`}
+                >
                   <ListItemText
                     primary={
                       <>
