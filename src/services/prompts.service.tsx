@@ -53,13 +53,13 @@ export const setPlaybookV2Service = async (
   });
 };
 
-export const generateResponsesService = async (
-  promptId: number,
-  personId: number
-) => {
+export const generateResponsesService = async (sequenceEventId: number) => {
   return await http.post(
-    `${endpoints.PROMPT_RESPONSES}${promptId}/generate/?person=${personId}`
+    `${endpoints.SEQUENCE_EVENTS}${sequenceEventId}/generate/`
   );
+  /*return await http.post(
+    `${endpoints.PROMPT_RESPONSES}${promptId}/generate/?person=${personId}`
+  );*/
 };
 
 export const bulkGenerateService = async (personList: any[]) => {
