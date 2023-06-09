@@ -20,6 +20,7 @@ const PlaybookList = ({
   setSelectedIndex,
   setSelectedData,
 }: any) => {
+  let countIndexForEmailSubject: number = 0;
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
   };
@@ -93,6 +94,9 @@ const PlaybookList = ({
       >
         {data?.length > 0 &&
           data.map((item: any, idx: any) => {
+            let _count = item?.scheduledEmail?.subject
+              ? ""
+              : ++countIndexForEmailSubject;
             return (
               <ListItemButton
                 key={idx}
@@ -127,7 +131,7 @@ const PlaybookList = ({
                 }}
               >
                 <Tooltip
-                  title={item?.scheduledEmail?.subject || `Email ${idx + 1}`}
+                  title={item?.scheduledEmail?.subject || `Email ${_count}`}
                 >
                   <ListItemText
                     primary={
@@ -147,8 +151,7 @@ const PlaybookList = ({
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                            {item?.scheduledEmail?.subject ||
-                              `Email ${idx + 1}`}
+                            {item?.scheduledEmail?.subject || `Email ${_count}`}
                           </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
                             {_.includes(item?.status, "scheduled") &&
