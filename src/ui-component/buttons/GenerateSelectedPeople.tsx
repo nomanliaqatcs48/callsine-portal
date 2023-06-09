@@ -1,7 +1,7 @@
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import { Button, Tooltip } from "@mui/material";
 import { devLog, devLogError } from "../../helpers/logs";
-import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { ToastError, ToastSuccess, ToastWarning } from "../../helpers/toast";
 import { bulkGenerateService } from "../../services/prompts.service";
 
 type GenerateSelectedPeopleProps = {
@@ -15,6 +15,10 @@ const GenerateSelectedPeople = ({
 }: GenerateSelectedPeopleProps) => {
   const onGenerate = async () => {
     devLog("selectedRows", selectedRows);
+    if (!selectedRows?.length) {
+      ToastWarning("Please select person");
+      return;
+    }
     if (selectedRows.length > 0) {
       var ids = selectedRows.map((item: any, idx) => {
         return item.id;
