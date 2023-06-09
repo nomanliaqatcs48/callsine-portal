@@ -73,7 +73,7 @@ export const usePlaybook = (load: boolean = true) => {
         return;
       }
     } catch ({ response }) {
-      ToastError("Something went wrong!");
+      // ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       removeBodyLoader();
