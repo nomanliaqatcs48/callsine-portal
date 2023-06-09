@@ -41,7 +41,7 @@ const PlaybookList = ({
               )}
             </span>
             <span className="tw-w-1/12 tw-text-right">
-              {item?.scheduled_time && (
+              {item?.scheduledEmail?.scheduled_time && (
                 <Tooltip title="Scheduled">
                   <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
                 </Tooltip>
@@ -71,7 +71,7 @@ const PlaybookList = ({
               }
             </span>
             <span className="tw-w-1/12 tw-text-right">
-              {item?.scheduled_time && (
+              {item?.scheduledEmail?.scheduled_time && (
                 <Tooltip title="Scheduled">
                   <WatchLaterIcon sx={{ fontSize: 15, color: "#1a76d2" }} />
                 </Tooltip>
