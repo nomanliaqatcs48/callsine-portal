@@ -46,6 +46,8 @@ const SendLater = ({
         required: "This is required field.",
       });
       useForm?.setValue("scheduled_time", null);
+    } else {
+      useForm?.unregister("scheduled_time");
     }
   }, [open]);
 
