@@ -308,6 +308,16 @@ const DraftEmail = ({
             // isPreformatted={true}
             onFocus={(e: any) => null}
           />
+
+          <ErrorMessage
+            errors={errors}
+            name="html_message"
+            render={({ message }) => (
+              <FormHelperText sx={{ color: "error.main" }}>
+                {message}
+              </FormHelperText>
+            )}
+          />
         </div>
       </div>
     </>
