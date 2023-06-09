@@ -52,7 +52,10 @@ const SendLater = ({
   }, [open]);
 
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (event: any, reason: any) => {
+    if (reason && reason === "backdropClick") return;
+    setOpen(false);
+  };
 
   const clickSendLater = (data: any) => {
     handleOpen();
@@ -78,7 +81,7 @@ const SendLater = ({
     useForm?.trigger("scheduled_time");
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: any, event: any) => {
     devLog("onSubmit data", data);
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
@@ -89,7 +92,7 @@ const SendLater = ({
       });
       if (res?.data) {
         ToastSuccess("Email successfully scheduled.");
-        handleClose();
+        handleClose(event, "");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
         onLoadApi();
       }
@@ -157,14 +160,16 @@ const SendLater = ({
 
           <DialogActions>
             <LoadingButton
-              onClick={handleClose}
+              onClick={(event: any) => handleClose(event, "")}
               disabled={isLoading?.form}
               loading={isLoading?.form}
             >
               Cancel
             </LoadingButton>
             <LoadingButton
-              onClick={useForm?.handleSubmit((data: any) => onSubmit(data))}
+              onClick={useForm?.handleSubmit((data: any, event: any) =>
+                onSubmit(data, event)
+              )}
               disabled={isLoading?.form}
               loading={isLoading?.form}
               variant="outlined"
