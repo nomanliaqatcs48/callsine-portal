@@ -53,6 +53,18 @@ const PersonsPage = () => {
     ToastSuccess("File successfully uploaded.");
   };
 
+  const MyDivider = () => {
+    return (
+      <Divider
+        orientation="vertical"
+        variant="middle"
+        flexItem
+        className="tw-hidden lg:tw-block"
+        sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+      />
+    );
+  };
+
   return (
     <>
       <Typography className="tw-text-4xl tw-text-black">People</Typography>
@@ -140,13 +152,9 @@ const PersonsPage = () => {
               selectedRows={selectedPersonRows}
               onLoadApi={getPeople}
             />
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+
+            <MyDivider />
+
             <CreateOrEditPerson
               btnText={
                 <>
@@ -162,46 +170,22 @@ const PersonsPage = () => {
               onClick={() => null}
             />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <ImportPeople onLoadApi={successfulUploadCsv} />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <ExportPeople data={personsData} />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <DeleteSelectedPeople
               selectedRows={selectedPersonRows}
               onLoadApi={getPeople}
             />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <Button
               onClick={() => null}

@@ -47,6 +47,18 @@ const MailAccountsPage = () => {
     });
   }, 1000);
 
+  const MyDivider = () => {
+    return (
+      <Divider
+        orientation="vertical"
+        variant="middle"
+        flexItem
+        className="tw-hidden lg:tw-block"
+        sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+      />
+    );
+  };
+
   return (
     <>
       <Typography className="tw-text-4xl tw-text-black">
@@ -114,36 +126,18 @@ const MailAccountsPage = () => {
               Add Users
             </CreateOrEditMailAccount>
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <ExportMailAccounts data={mailAccountsData} />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <DeleteSelectedMailAccounts
               selectedRows={selectedFlatRows}
               onLoadApi={getMailAccounts}
             />
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-hidden lg:tw-block"
-              sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
-            />
+            <MyDivider />
 
             <Button
               onClick={() => null}
