@@ -24,6 +24,10 @@ import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import { LoadingButton } from "@mui/lab";
 import moment from "moment";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
+import {
+  insertBodyLoader,
+  removeBodyLoader,
+} from "../../../../../../helpers/loaders";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -115,18 +119,21 @@ const DraftEmail = ({
         devLog("res?.data", res?.data);
         ToastSuccess("Email successfully sent.");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
+        removeBodyLoader();
         onLoadApi();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, form: false }));
+      removeBodyLoader();
     }
   };
 
   const onSubmit = async (data: any) => {
     devLog("onSubmit data", data);
     setIsLoading((prev: any) => ({ ...prev, form: true }));
+    insertBodyLoader();
     try {
       let res = await createAsEmailService({
         ...data,
@@ -138,12 +145,14 @@ const DraftEmail = ({
       } else {
         ToastError("Something went wrong!");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
+        removeBodyLoader();
         onLoadApi();
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, form: false }));
+      removeBodyLoader();
     }
   };
 
