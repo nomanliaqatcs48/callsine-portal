@@ -51,18 +51,15 @@ export const usePlaybook = (load: boolean = true) => {
     }
   };
 
-  const regeneratePlaybook = async (promptItem: any) => {
+  const regeneratePlaybook = async (sequenceEvent: any) => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
     insertBodyLoader();
     try {
-      let res = await generateResponsesService(
-        Number(promptItem?.id),
-        Number(id)
-      );
+      let res = await generateResponsesService(Number(sequenceEvent?.id));
       if (res?.data) {
         ToastSuccess("Message successfully regenerated.");
         let _prompts = data.prompts.map((item: any) => {
-          if (item?.id === promptItem?.id) {
+          if (item?.id === sequenceEvent?.id) {
             item = res?.data;
           }
           setData((prev: any) => {
@@ -73,12 +70,14 @@ export const usePlaybook = (load: boolean = true) => {
         });
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
         removeBodyLoader();
+        return;
       }
     } catch ({ response }) {
       ToastError("Something went wrong!");
       devLogError(response);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       removeBodyLoader();
+      return;
     }
   };
 

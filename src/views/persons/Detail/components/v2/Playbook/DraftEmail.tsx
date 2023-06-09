@@ -30,6 +30,7 @@ type DraftEmailTypes = {
   playBookData: any;
   selectedData: any;
   position: any;
+  selectedSequenceEvent: any;
 };
 
 const DraftEmail = ({
@@ -37,6 +38,7 @@ const DraftEmail = ({
   playBookData,
   selectedData,
   position,
+  selectedSequenceEvent,
 }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
@@ -206,7 +208,7 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
-              onClick={() => regeneratePlaybook(selectedData)}
+              onClick={() => regeneratePlaybook(selectedSequenceEvent)}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
               loading={false}
               disabled={false}

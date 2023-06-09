@@ -20,6 +20,7 @@ const PlaybookV2 = () => {
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedData, setSelectedData] = useState<any>(null);
+  const [selectedSequenceEvent, setSelectedSequenceEvent] = useState<any>(null);
   const [prompts, setPrompts] = useState<any[]>([]);
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = React.useState<string>("");
@@ -175,6 +176,7 @@ const PlaybookV2 = () => {
                 setSelectedIndex={setSelectedIndex}
                 data={data?.results ? [...data?.results] : []}
                 setSelectedData={setSelectedData}
+                setSelectedSequenceEvent={setSelectedSequenceEvent}
               />
             </div>
           </Grid>
@@ -201,6 +203,7 @@ const PlaybookV2 = () => {
                     }}
                     playBookData={playBookData}
                     selectedData={selectedData}
+                    selectedSequenceEvent={selectedSequenceEvent}
                   />
                 )}
               </>

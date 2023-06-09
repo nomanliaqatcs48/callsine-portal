@@ -13,6 +13,7 @@ type PlaybookListProps = {
   selectedIndex: number | null;
   setSelectedIndex: any;
   setSelectedData: any;
+  setSelectedSequenceEvent: any;
 };
 
 const PlaybookList = ({
@@ -20,6 +21,7 @@ const PlaybookList = ({
   selectedIndex,
   setSelectedIndex,
   setSelectedData,
+  setSelectedSequenceEvent,
 }: any) => {
   let countIndexForEmailSubject: number = 0;
   const handleListItemClick = (event: MouseEvent, index: number) => {
@@ -127,6 +129,7 @@ const PlaybookList = ({
                   } else {
                     setSelectedData(item?.scheduledEmail);
                   }
+                  setSelectedSequenceEvent(item);
                 }}
                 sx={{
                   borderBottom: "1px solid #e8ecf5",
