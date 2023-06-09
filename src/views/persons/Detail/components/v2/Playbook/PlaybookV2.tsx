@@ -74,7 +74,7 @@ const PlaybookV2 = () => {
     }
   };
 
-  const handleGeneratePlaybook = async () => {
+  const handleGeneratePlaybook = async (event: any) => {
     setLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
@@ -95,7 +95,7 @@ const PlaybookV2 = () => {
         setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
         setTimeout(() => {
-          handleClose();
+          handleClose(event, "");
         });
       }
     } catch (e: any) {
@@ -105,7 +105,7 @@ const PlaybookV2 = () => {
       setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
       setTimeout(() => {
-        handleClose();
+        handleClose(event, "");
       });
     }
   };
@@ -233,8 +233,8 @@ const PlaybookV2 = () => {
               Yes, please!
             </LoadingButton>
             <LoadingButton
-              onClick={() => {
-                handleClose();
+              onClick={(event: any) => {
+                handleClose(event, "");
                 setLoading((prev: any) => ({
                   ...prev,
                   regeneratePlaybook: true,

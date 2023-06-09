@@ -12,7 +12,10 @@ export const useFetchProspectSequenceEvent = (personId: string) => {
   const [error, setError] = useState<any>(null);
   const [open, setOpen] = useState<any>(false);
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = (event: any, reason: any) => {
+    if (reason && reason === "backdropClick") return;
+    setOpen(false);
+  };
 
   useEffect(() => {
     setLoading(true);
