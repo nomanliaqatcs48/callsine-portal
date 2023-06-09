@@ -41,10 +41,15 @@ const DeleteSelectedMailAccounts = ({
         <Button
           onClick={onDelete}
           disabled={false}
-          className="tw-text-[#778da9]"
+          className={`${
+            selectedRows?.length > 0 ? "tw-text-[#1a76d2]" : "tw-text-[#778da9]"
+          }`}
         >
           <DeleteIcon
-            sx={{ color: "#778da9", fontSize: 15 }}
+            sx={{
+              color: selectedRows?.length > 0 ? "#1a76d2" : "#778da9",
+              fontSize: 15,
+            }}
             className="tw-mr-2"
           />
           Delete

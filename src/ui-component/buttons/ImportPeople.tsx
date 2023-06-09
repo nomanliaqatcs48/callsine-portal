@@ -36,10 +36,10 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
         <Button
           onClick={handleOpen}
           disabled={false}
-          className="tw-text-[#778da9]"
+          // className="tw-text-[#778da9]"
         >
           <FileUploadOutlinedIcon
-            sx={{ color: "#778da9", fontSize: 15 }}
+            sx={{ color: "#1a76d2", fontSize: 15 }}
             className="tw-mr-2"
           />
           Import People

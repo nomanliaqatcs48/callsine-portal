@@ -41,12 +41,10 @@ const ExportPeople = ({ data }: ExportPeopleTypes) => {
       >
         <Tooltip title={data?.length > 0 ? "Export CSV" : "No data"}>
           <Button
-            className={`tw-text-[#778da9] ${
-              data?.length > 0 ? "" : "tw-cursor-not-allowed"
-            }`}
+            className={`${data?.length > 0 ? "" : "tw-cursor-not-allowed"}`}
           >
             <FileDownloadOutlinedIcon
-              sx={{ color: "#778da9", fontSize: 15 }}
+              sx={{ color: "#1a76d2", fontSize: 15 }}
               className="tw-mr-2"
             />
             Export People
