@@ -21,7 +21,13 @@ const DeleteSelectedPeople = ({
     submit: false,
   });
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if (!selectedRows?.length) {
+      ToastWarning("Please select person");
+      return;
+    }
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const onDelete = async () => {
