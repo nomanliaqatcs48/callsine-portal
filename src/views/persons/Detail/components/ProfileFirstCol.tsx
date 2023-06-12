@@ -48,22 +48,26 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
           )}
           {/*social icons*/}
           <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3 lg:tw-pt-1">
-            <Tooltip title={"Linkedin"}>
+            <Tooltip title={data?.linkedin ? "Linkedin" : ""}>
               <div
                 onClick={() => {
                   data?.linkedin && window.open(data.linkedin, "_blank");
                 }}
-                className="tw-cursor-pointer tw-p-[0.6rem] tw-w-[32px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110"
+                className={`tw-p-[0.6rem] tw-w-[32px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110 ${
+                  data?.linkedin ? "tw-cursor-pointer" : "tw-cursor-not-allowed"
+                }`}
               >
                 <LinkedinIcon style={{ fill: "white" }} />
               </div>
             </Tooltip>
-            <Tooltip title={"Facebook"}>
+            <Tooltip title={data?.facebook ? "Facebook" : "No facebook yet"}>
               <div
                 onClick={() => {
                   data?.facebook && window.open(data.facebook, "_blank");
                 }}
-                className="tw-cursor-pointer tw-p-[0.8rem] tw-w-[32px] tw-h-[32px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110"
+                className={`tw-p-[0.8rem] tw-w-[32px] tw-h-[32px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110 ${
+                  data?.facebook ? "tw-cursor-pointer" : "tw-cursor-not-allowed"
+                }`}
               >
                 <FacebookIcon
                   className="-tw-mt-0.5"
