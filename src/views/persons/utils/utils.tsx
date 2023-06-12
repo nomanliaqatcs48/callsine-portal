@@ -214,7 +214,7 @@ export const _columns: any = () => {
                           title={
                             cell?.row?.original?.facebook
                               ? "Facebook"
-                              : "No facebook url yet"
+                              : "No facebook yet"
                           }
                         >
                           <div
