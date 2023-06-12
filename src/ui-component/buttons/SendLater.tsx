@@ -47,14 +47,21 @@ const SendLater = ({
       });
       useForm?.setValue("scheduled_time", null);
     } else {
-      useForm?.unregister("scheduled_time");
+      useForm?.setValue(
+        "scheduled_time",
+        moment.utc().format("YYYY-MM-DD HH:mm:ss")
+      );
     }
   }, [open]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = (event: any, reason: any) => {
     if (reason && reason === "backdropClick") return;
-    setOpen(false);
+    useForm?.setValue(
+      "scheduled_time",
+      moment.utc().format("YYYY-MM-DD HH:mm:ss")
+    );
+    setTimeout(() => setOpen(false));
   };
 
   const clickSendLater = (data: any) => {
