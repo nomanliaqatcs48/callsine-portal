@@ -38,6 +38,7 @@ const DeleteSelectedMailAccounts = ({
         if (idx === selectedRows?.length - 1) {
           ToastSuccess("Selected mail account successfully deleted.");
           setIsLoading((prev: any) => ({ ...prev, submit: false }));
+          handleClose();
           onLoadApi();
         }
       } catch ({ response }) {

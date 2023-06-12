@@ -38,6 +38,7 @@ const DeleteSelectedPeople = ({
         if (idx === selectedRows?.length - 1) {
           ToastSuccess("Selected people successfully deleted.");
           setIsLoading((prev: any) => ({ ...prev, submit: false }));
+          handleClose();
           onLoadApi();
         }
       } catch ({ response }) {
