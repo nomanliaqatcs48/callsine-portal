@@ -119,7 +119,10 @@ const CreateOrEditPerson = ({
     }
   };
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    reset();
+    setOpen(true);
+  };
   const handleClose = () => {
     setOpen(false);
     reset();
@@ -139,6 +142,7 @@ const CreateOrEditPerson = ({
 
         onSubmit();
         handleClose();
+        reset();
         setPersonLoading((beforeVal: any) => ({
           ...beforeVal,
           form: false,
