@@ -3,7 +3,7 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
-import { Grid, useMediaQuery, useTheme } from "@mui/material";
+import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
 import moment from "moment/moment";
 import SendEmailNow from "../buttons/SendEmailNow";
 import DeletePersonEmail from "../buttons/DeletePersonEmail";
@@ -159,37 +159,57 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               alignItems="center"
             >
               <div>
-                <Typography variant="subtitle2">
+                <Typography
+                  variant="subtitle2"
+                  className="tw-flex tw-items-center"
+                >
                   <strong>To:</strong>{" "}
                   {item?.to ? (
                     <a href={`mailto:${item?.to}`}>{item?.to}</a>
                   ) : (
-                    ""
+                    <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
                   )}
                 </Typography>
               </div>
               <div>
-                <Typography variant="subtitle2">
-                  {moment.utc(item?.created_date).format("LLLL")}
-                </Typography>
+                <Tooltip title="Date Created">
+                  <Typography variant="subtitle2">
+                    {moment.utc(item?.created_date).format("LLLL")}
+                  </Typography>
+                </Tooltip>
               </div>
             </Grid>
-            <Typography variant="subtitle2">
+            <Typography variant="subtitle2" className="tw-flex tw-items-center">
               <strong>From:</strong>{" "}
-              {item?.headers && (
+              {item?.headers ? (
                 <a href={`mailto:${displayFromEmail(item)}`}>
                   {displayFromEmail(item)}
                 </a>
+              ) : (
+                <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
               )}
             </Typography>
-            <Typography variant="subtitle2">
-              <strong>Status:</strong> {showStatus(item?.status)}
+            <Typography variant="subtitle2" className="tw-flex tw-items-center">
+              <strong>Status:</strong>{" "}
+              {item?.status ? (
+                showStatus(item?.status)
+              ) : (
+                <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+              )}
             </Typography>
             <Typography variant="subtitle2">
               <strong>Opens:</strong> {item?.opens}
             </Typography>
             <Typography variant="subtitle2">
               <strong>Clicks:</strong> {item?.clicks}
+            </Typography>
+            <Typography variant="subtitle2" className="tw-flex tw-items-center">
+              <strong>Scheduled Date:</strong>{" "}
+              {item?.scheduled_time ? (
+                moment.utc(item?.scheduled_time).format("LLLL")
+              ) : (
+                <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+              )}
             </Typography>
 
             <div style={{ height: 10 }} />
