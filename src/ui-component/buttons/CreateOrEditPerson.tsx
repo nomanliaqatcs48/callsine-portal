@@ -495,18 +495,19 @@ const CreateOrEditPerson = ({
           </DialogContent>
 
           <DialogActions>
-            <Button onClick={handleClose} disabled={personLoading?.form}>
-              Cancel
-            </Button>
             <Button
               onClick={handleSubmit((data) =>
                 id ? onThisEditSubmit(data) : onThisAddSubmit(data)
               )}
               disabled={personLoading?.form}
-              variant="outlined"
+              variant="contained"
               color="primary"
+              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
               {id ? "Edit" : "Add"}
+            </Button>
+            <Button onClick={handleClose} disabled={personLoading?.form}>
+              Cancel
             </Button>
           </DialogActions>
         </Dialog>

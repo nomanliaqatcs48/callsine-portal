@@ -160,22 +160,23 @@ const SendLater = ({
 
           <DialogActions>
             <LoadingButton
-              onClick={(event: any) => handleClose(event, "")}
-              disabled={isLoading?.form}
-              loading={isLoading?.form}
-            >
-              Cancel
-            </LoadingButton>
-            <LoadingButton
               onClick={useForm?.handleSubmit((data: any, event: any) =>
                 onSubmit(data, event)
               )}
               disabled={isLoading?.form}
               loading={isLoading?.form}
-              variant="outlined"
+              variant="contained"
               color="primary"
+              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
               Send Later
+            </LoadingButton>
+            <LoadingButton
+              onClick={(event: any) => handleClose(event, "")}
+              disabled={isLoading?.form}
+              loading={isLoading?.form}
+            >
+              Cancel
             </LoadingButton>
           </DialogActions>
         </Dialog>
