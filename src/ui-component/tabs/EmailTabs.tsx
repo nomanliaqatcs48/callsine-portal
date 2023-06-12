@@ -54,6 +54,8 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
   const theme = useTheme();
   const isLg = useMediaQuery(theme.breakpoints.up("lg"));
   const [value, setValue] = useState<number>(0);
+  let countIndexForEmailSubjectAtSidebar: number = 0;
+  let countIndexForEmailSubject: number = 0;
 
   let { id: personId, getEmails, showStatus } = useEmailsTab(false);
 
@@ -96,7 +98,15 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
         }}
       >
         {data.map((item: any, idx: number) => {
-          return <Tab label={item?.subject} {...a11yProps(idx)} />;
+          let _countSidebar = item?.subject
+            ? ""
+            : ++countIndexForEmailSubjectAtSidebar;
+          return (
+            <Tab
+              label={item?.subject ? item?.subject : "Email " + _countSidebar}
+              {...a11yProps(idx)}
+            />
+          );
         })}
         {/*<Tab
           label={
@@ -116,6 +126,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
         <Tab label="Item Seven" {...a11yProps(6)} />*/}
       </Tabs>
       {data.map((item: any, idx: number) => {
+        let _count = item?.subject ? "" : ++countIndexForEmailSubject;
         setTimeout(() => {
           let _preview: any = document.querySelector(`.preview_${item?.id}`);
           let _htmlMsg = item?.html_message;
@@ -135,7 +146,9 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
           <TabPanel value={value} index={idx}>
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant="h3">{item?.subject}</Typography>
+                <Typography variant="h3">
+                  {item?.subject ? item?.subject : "Email " + _count}
+                </Typography>
               </Grid>
             </Grid>
 
