@@ -73,7 +73,7 @@ const DeleteMailAccount = ({
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
-              className="tw-bg-primary hover:tw-bg-primaryDark"
+              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
               Yes, delete it!
             </Button>

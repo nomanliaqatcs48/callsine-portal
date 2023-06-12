@@ -82,10 +82,11 @@ const DeletePerson = ({
           </Typography>
           <DialogActions>
             <Button
-              variant="outlined"
+              variant="contained"
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
+              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
               Yes, delete it!
             </Button>

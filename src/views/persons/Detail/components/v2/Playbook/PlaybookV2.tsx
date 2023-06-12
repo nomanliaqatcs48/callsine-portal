@@ -227,11 +227,12 @@ const PlaybookV2 = () => {
         >
           <DialogActions>
             <LoadingButton
-              variant="outlined"
+              variant="contained"
               color="primary"
               onClick={handleGeneratePlaybook}
               loading={loading?.regeneratePlaybook || loading?.submit}
               disabled={loading?.regeneratePlaybook || loading?.submit}
+              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
               Yes, please!
             </LoadingButton>
