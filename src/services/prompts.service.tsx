@@ -62,8 +62,12 @@ export const generateResponsesService = async (sequenceEventId: number) => {
   );*/
 };
 
-export const bulkGenerateService = async (personList: any[]) => {
+export const bulkGenerateService = async (
+  personList: any[],
+  playbook_id: number
+) => {
   return await http.post(`/api/persons/bulk_generate/`, {
     personList: personList,
+    playbook_id: playbook_id,
   });
 };

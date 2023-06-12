@@ -4,16 +4,22 @@ import {
   Dialog,
   DialogActions,
   DialogContent,
+  FormHelperText,
   Tooltip,
   Typography,
 } from "@mui/material";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess, ToastWarning } from "../../helpers/toast";
-import { bulkGenerateService } from "../../services/prompts.service";
-import React, { useState } from "react";
+import {
+  bulkGenerateService,
+  getPlaybooks,
+} from "../../services/prompts.service";
+import React, { useEffect, useState } from "react";
 import MyModal from "../modal/MyModal";
 import ReactSelect from "../dropdowns/ReactSelect";
 import { useForm } from "react-hook-form";
+import moment from "moment";
+import { ErrorMessage } from "@hookform/error-message";
 
 type GenerateSelectedPeopleProps = {
   selectedRows: any[];
@@ -27,7 +33,16 @@ const GenerateSelectedPeople = ({
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
+    onPage: true,
   });
+  const [prompts, setPrompts] = useState<any[]>([]);
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [filters, setFilters] = React.useState<any>({
+    limit: 9999,
+    offset: 0,
+    currentPage: 1,
+  });
+  const [playbookId, setPlaybookId] = useState<any>(null);
   const {
     register,
     unregister,
@@ -40,6 +55,28 @@ const GenerateSelectedPeople = ({
     formState: { errors },
   } = useForm();
 
+  useEffect(() => {
+    if (open) {
+      getPrompts();
+      register("playbook_id", {
+        required: "This is required field.",
+      });
+    }
+  }, [open]);
+
+  const getPrompts = async () => {
+    try {
+      let res = await getPlaybooks(filters, searchValue);
+      if (res?.data) {
+        setPrompts(res.data?.results);
+        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      }
+    } catch ({ response }) {
+      devLogError("e", response);
+      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    }
+  };
+
   const handleOpen = () => {
     if (!selectedRows?.length) {
       ToastWarning("Please select person");
@@ -47,9 +84,19 @@ const GenerateSelectedPeople = ({
     }
     setOpen(true);
   };
-  const handleClose = () => setOpen(false);
+  const handleClose = () => {
+    setOpen(false);
+    setPlaybookId(null);
+    reset();
+  };
 
-  const onGenerate = async () => {
+  const handleGenerateOnChange = (newValue: any) => {
+    setPlaybookId(newValue);
+    setValue("playbook_id", newValue);
+    trigger("playbook_id");
+  };
+
+  const onGenerate = async (data: any) => {
     devLog("selectedRows", selectedRows);
     if (!selectedRows?.length) {
       ToastWarning("Please select person");
@@ -60,8 +107,9 @@ const GenerateSelectedPeople = ({
         return item.id;
       });
       devLog("ids", ids);
-      let res = await bulkGenerateService(ids);
+      let res = await bulkGenerateService(ids, Number(playbookId?.value));
       if (res?.status === 201) {
+        handleClose();
         ToastSuccess("Email generation successfully started.");
         onLoadApi();
       }
@@ -90,7 +138,7 @@ const GenerateSelectedPeople = ({
     <>
       <Tooltip title="Generate emails for selected people">
         <Button
-          onClick={onGenerate}
+          onClick={handleOpen}
           disabled={false}
           className="tw-text-[#778da9]"
           style={{ color: selectedRows.length > 0 ? "#1a76d2" : "#778da9" }}
@@ -106,7 +154,7 @@ const GenerateSelectedPeople = ({
         </Button>
       </Tooltip>
 
-      {/*{open && (
+      {open && (
         <Dialog
           open={open}
           onClose={handleClose}
@@ -120,19 +168,42 @@ const GenerateSelectedPeople = ({
         >
           <DialogContent className="tw-pt-6">
             <ReactSelect
-              name="generate-playbook"
+              name="select-playbook"
               className="basic-single tw-cursor-pointer"
               variant="blue"
-              placeholder="GENERATE PLAYBOOK"
+              placeholder="Select Playbook"
               isClearable={true}
               isSearchable={true}
+              options={prompts.map((item: any, idx: number) => {
+                item.value = item?.id;
+                item.label = item?.name || "";
+
+                return item;
+              })}
+              styles={selectBlueStyles}
+              onChange={(newValue: any, actionMeta: any) => {
+                // devLog("Value Changed");
+                // devLog(newValue);
+                // devLog(`action: ${actionMeta.action}`);
+                // devLog("===========");
+                handleGenerateOnChange(newValue);
+              }}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="playbook_id"
+              render={({ message }) => (
+                <FormHelperText sx={{ color: "error.main" }}>
+                  {message}
+                </FormHelperText>
+              )}
             />
           </DialogContent>
           <DialogActions className="tw-pb-6">
             <Button
               variant="contained"
               color="primary"
-              onClick={onGenerate}
+              onClick={handleSubmit((data) => onGenerate(data))}
               disabled={isLoading?.submit}
               className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
@@ -143,9 +214,93 @@ const GenerateSelectedPeople = ({
             </Button>
           </DialogActions>
         </Dialog>
-      )}*/}
+      )}
     </>
   );
+};
+
+const selectBlueStyles = {
+  control: (styles: any) => ({
+    ...styles,
+    backgroundColor: "#1a76d2",
+    boxShadow: "none",
+    border: "1px solid #1a76d2",
+    cursor: "pointer",
+  }),
+  option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? undefined
+        : isSelected
+        ? "#1a76d2"
+        : isFocused
+        ? "white"
+        : undefined,
+      color: isDisabled
+        ? "#ccc"
+        : isSelected
+        ? "white"
+        : isFocused
+        ? "#0253ad"
+        : "#3486d7",
+      cursor: isDisabled ? "not-allowed" : "pointer",
+      padding: "8px 18px",
+      fontWeight: 400,
+      fontSize: "0.83rem",
+
+      ":active": {
+        ...styles[":active"],
+        backgroundColor: !isDisabled ? data.color : undefined,
+      },
+    };
+  },
+  menu: (styles: any, { isLoading, placement, children }: any) => ({
+    ...styles,
+    border: "1px solid #74ace4",
+    boxShadow: "none",
+    borderRadius: 7,
+    background: "#f8fbff",
+    zIndex: 9,
+    position: "relative",
+  }),
+  menuList: (styles: any) => ({
+    ...styles,
+    paddingTop: 10,
+    paddingBottom: 10,
+  }),
+  input: (styles: any) => ({ ...styles, color: "white" }),
+  placeholder: (styles: any) => ({
+    ...styles,
+    color: "white",
+    fontSize: "0.7rem",
+    fontWeight: 600,
+  }),
+  singleValue: (styles: any, { data }: any) => ({
+    ...styles,
+    color: "white",
+  }),
+  clearIndicator: (styles: any) => ({
+    ...styles,
+    color: "white",
+    "&:hover": {
+      color: "white",
+    },
+  }),
+  indicatorSeparator: (
+    styles: any,
+    { isDisabled, isFocused, innerProps }: any
+  ) => ({ ...styles, display: "none" }),
+  dropdownIndicator: (styles: any) => ({
+    ...styles,
+    color: "white",
+    ":hover": {
+      color: "white",
+    },
+    svg: {
+      width: 16,
+    },
+  }),
 };
 
 export default GenerateSelectedPeople;
