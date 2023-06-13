@@ -93,9 +93,9 @@ const PlaybookV2 = () => {
         setData(res.data);
         getPersonDetail();
         setPromptId(null);
-        setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
         setTimeout(() => {
+          setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
           handleClose(event, "");
         });
       }
@@ -103,9 +103,9 @@ const PlaybookV2 = () => {
       ToastError("Something went wrong!");
       devLogError(e.response);
       setPromptId(null);
-      setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
 
       setTimeout(() => {
+        setLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
         handleClose(event, "");
       });
     }
@@ -220,8 +220,16 @@ const PlaybookV2 = () => {
         <MyModal
           open={open}
           onClose={handleClose}
-          modalTitle="Generate Playbook?"
-          labelledby="Generate Playbook?"
+          modalTitle={
+            loading?.regeneratePlaybook || loading?.submit
+              ? "Generating..."
+              : "Generate Playbook?"
+          }
+          labelledby={
+            loading?.regeneratePlaybook || loading?.submit
+              ? "Generating..."
+              : "Generate Playbook?"
+          }
           describedby="Generate Playbook modal"
           modalSxStyle={{ width: { xs: 400 } }}
         >
