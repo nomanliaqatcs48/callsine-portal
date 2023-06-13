@@ -3,6 +3,7 @@ import { Button, Grid, Tooltip } from "@mui/material";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
 import MyModal from "../modal/MyModal";
 import PeopleFileUpload from "../uploads/PeopleFileUpload";
+import AddUserDataUpload from "../uploads/AddUserDataUpload";
 
 type AddUserDataTypes = {
   onLoadApi: any;
@@ -50,7 +51,7 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
         >
           <Grid container spacing={2} className="tw-p-3">
             <Grid item xs={12}>
-              <PeopleFileUpload instance={userData} refresh={refresh} />
+              <AddUserDataUpload instance={userData} refresh={refresh} />
             </Grid>
           </Grid>
         </MyModal>
