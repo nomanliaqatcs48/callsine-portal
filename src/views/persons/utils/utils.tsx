@@ -194,7 +194,7 @@ export const _columns: any = () => {
                           title={
                             cell?.row?.original?.linkedin
                               ? "Linkedin"
-                              : "No linkedin url yet"
+                              : "No linkedin yet"
                           }
                         >
                           <div

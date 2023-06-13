@@ -48,7 +48,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
           )}
           {/*social icons*/}
           <div className="tw-flex tw-justify-center tw-items-center tw-gap-6 tw-pt-5 tw-pb-3 lg:tw-pt-1">
-            <Tooltip title={data?.linkedin ? "Linkedin" : ""}>
+            <Tooltip title={data?.linkedin ? "Linkedin" : "No linkedin yet"}>
               <div
                 onClick={() => {
                   data?.linkedin && window.open(data.linkedin, "_blank");
