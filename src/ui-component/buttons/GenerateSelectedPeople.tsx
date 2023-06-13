@@ -107,13 +107,18 @@ const GenerateSelectedPeople = ({
         return item.id;
       });
       devLog("ids", ids);
-      let res = await bulkGenerateService(ids, Number(playbookId?.value));
-      if (res?.status === 201) {
-        handleClose();
-        ToastSuccess("Email generation successfully started.");
-        onLoadApi();
-      }
-      if (res?.status === 500) {
+      try {
+        let res = await bulkGenerateService(ids, Number(playbookId?.value));
+        if (res?.status === 201) {
+          handleClose();
+          ToastSuccess("Email generation successfully started.");
+          onLoadApi();
+        }
+        if (res?.status === 500) {
+          ToastError("Something went wrong");
+        }
+      } catch (e: any) {
+        devLogError("error", e.response);
         ToastError("Something went wrong");
       }
 
