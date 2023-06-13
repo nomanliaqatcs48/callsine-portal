@@ -16,7 +16,7 @@ import { IconHandClick, IconUsers } from "@tabler/icons-react";
 import { usePersons } from "../../views/persons/hooks/usePersons";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
-  backgroundColor: theme.palette.primary.dark,
+  backgroundColor: theme.palette.primary.main,
   color: "#fff",
   overflow: "hidden",
   position: "relative",
