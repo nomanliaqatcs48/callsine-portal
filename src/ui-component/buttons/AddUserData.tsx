@@ -58,3 +58,5 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
     </>
   );
 };
+
+export default AddUserData;
