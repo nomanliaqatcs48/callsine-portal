@@ -1,12 +1,10 @@
 import React from "react";
 import { Button, Grid, Paper, Typography } from "@mui/material";
-import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
 import { useUserData } from "../../hooks/user-data/useUserData";
 import AddUserData from "../../ui-component/buttons/AddUserData";
+import DeleteUserData from "../../ui-component/buttons/DeleteUserData";
 
 const Data = () => {
   const {
@@ -82,9 +80,9 @@ const Data = () => {
 
             <MyDivider />
 
-            <DeleteSelectedMailAccounts
-              selectedRows={[]}
-              onLoadApi={() => null}
+            <DeleteUserData
+              selectedRows={selectedFlatRows}
+              onLoadApi={getUsers}
             />
 
             <MyDivider />
