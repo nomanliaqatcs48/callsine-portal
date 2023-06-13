@@ -20,6 +20,7 @@ const CampaignDetailPage = Loadable(
 );
 const MailAccountsPage = Loadable(lazy(() => import("../views/mail-accounts")));
 const ProfilePage = Loadable(lazy(() => import("../views/profile")));
+const DataPage = Loadable(lazy(() => import("../views/data")));
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -67,6 +68,10 @@ const MainRoutes = {
     {
       path: "profile",
       element: <ProfilePage />,
+    },
+    {
+      path: "data",
+      element: <DataPage />,
     },
     {
       path: "sample-page",

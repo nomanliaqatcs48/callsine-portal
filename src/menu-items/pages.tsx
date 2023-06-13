@@ -4,6 +4,7 @@ import {
   IconKey,
   IconUsers,
   IconMail,
+  IconFileDatabase,
 } from "@tabler/icons-react";
 
 // constant
@@ -12,6 +13,7 @@ const icons = {
   IconKey,
   IconUsers,
   IconMail,
+  IconFileDatabase,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -44,6 +46,14 @@ const pages = {
       type: "item",
       url: "/mail-accounts",
       icon: icons.IconMail,
+      breadcrumbs: false,
+    },
+    {
+      id: "data",
+      title: "Data",
+      type: "item",
+      url: "/data",
+      icon: icons.IconFileDatabase,
       breadcrumbs: false,
     },
     /*{
