@@ -23,7 +23,7 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
         backgroundColor: isDisabled
           ? undefined
           : isSelected
-          ? "#ff003f"
+          ? "#1a76d2"
           : isFocused
           ? "white"
           : undefined,

@@ -97,6 +97,7 @@ const PersonsPage = () => {
                 showLabel={true}
                 labelText="Title"
                 data={[{ label: "All", value: "" }]}
+                onChange={() => null}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
@@ -105,6 +106,7 @@ const PersonsPage = () => {
                 showLabel={true}
                 labelText="Company"
                 data={[{ label: "All", value: "" }]}
+                onChange={() => null}
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
@@ -113,6 +115,7 @@ const PersonsPage = () => {
                 showLabel={true}
                 labelText="Industry"
                 data={[{ label: "All", value: "" }]}
+                onChange={() => null}
               />
             </Grid>
           </Grid>
