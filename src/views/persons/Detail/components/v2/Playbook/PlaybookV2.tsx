@@ -174,7 +174,11 @@ const PlaybookV2 = () => {
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
-                data={data?.results ? [...data?.results] : []}
+                data={
+                  _.orderBy(data?.results, ["position"], ["asc"])
+                    ? [..._.orderBy(data?.results, ["position"], ["asc"])]
+                    : []
+                }
                 setSelectedData={setSelectedData}
                 setSelectedSequenceEvent={setSelectedSequenceEvent}
               />
