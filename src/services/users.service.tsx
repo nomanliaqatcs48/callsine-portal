@@ -9,3 +9,7 @@ export const getUserDataService = async (
     `${endpoints.USER_DATA}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
   );
 };
+
+export const deleteUserDataService = async (id: number) => {
+  return await http.delete(`${endpoints.USER_DATA}${id}/`);
+};
