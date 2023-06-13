@@ -18,7 +18,13 @@ const DeleteUserData = ({ selectedRows, onLoadApi }: DeleteUserDataTypes) => {
     submit: false,
   });
 
-  const handleOpen = () => setOpen(true);
+  const handleOpen = () => {
+    if (!selectedRows?.length) {
+      ToastWarning("Please select user data");
+      return;
+    }
+    setOpen(true);
+  };
   const handleClose = () => setOpen(false);
 
   const onDelete = async () => {
