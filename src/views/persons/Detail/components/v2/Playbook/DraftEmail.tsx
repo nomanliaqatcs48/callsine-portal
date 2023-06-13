@@ -88,15 +88,29 @@ const DraftEmail = ({
         setValue("person", Number(personId));
       } else if (item === "html_message") {
         if (selectedData?.text) {
-          setValue(
-            "html_message",
-            selectedData?.text?.replace(/\n/g, "<br />")
-          );
+          if (
+            selectedData?.text &&
+            selectedData?.text?.toLowerCase() !== "none"
+          ) {
+            setValue(
+              "html_message",
+              selectedData?.text?.replace(/\n/g, "<br />")
+            );
+          } else {
+            setValue("html_message", null);
+          }
         } else {
-          setValue(
-            "html_message",
-            selectedData?.html_message?.replace(/\n/g, "<br />")
-          );
+          if (
+            selectedData?.html_message &&
+            selectedData?.html_message?.toLowerCase() !== "none"
+          ) {
+            setValue(
+              "html_message",
+              selectedData?.html_message?.replace(/\n/g, "<br />")
+            );
+          } else {
+            setValue("html_message", null);
+          }
         }
       }
 

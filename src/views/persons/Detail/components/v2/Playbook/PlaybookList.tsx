@@ -36,7 +36,10 @@ const PlaybookList = ({
             <span
               className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
             >
-              {item?.promptResponse?.text || ""}
+              {item?.promptResponse?.text &&
+              item?.promptResponse?.text?.toLowerCase() !== "none"
+                ? item?.promptResponse?.text
+                : ""}
               {item?.promptResponse && (
                 <span
                   className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
@@ -74,7 +77,10 @@ const PlaybookList = ({
             >
               {item?.scheduledEmail?.text || ""}
               {
-                item?.scheduledEmail?.html_message && result
+                item?.scheduledEmail?.html_message &&
+                item?.scheduledEmail?.html_message.toLowerCase() !== "none"
+                  ? result
+                  : ""
                 // <span
                 //     className={`tw-text-[0.875rem] removeTags_html_${item?.id}`}
                 //   />
