@@ -133,7 +133,7 @@ const AddUserDataUpload = (props: any) => {
         }
         onChangeStatus={handleChangeStatus}
         onSubmit={handleSubmit}
-        accept=".csv"
+        accept="*"
       />
 
       <ErrorMessage>{errorMsg}</ErrorMessage>
