@@ -266,7 +266,7 @@ const CreateOrEditMailAccount = ({
                     />
                   </div>
 
-                  <Grid container>
+                  <Grid container className="tw-mb-2.5">
                     <Grid item xs={12}>
                       <TextField
                         error={!!errors.last_name}
@@ -294,7 +294,7 @@ const CreateOrEditMailAccount = ({
                     </Grid>
                   </Grid>
 
-                  <div>
+                  <Box className="tw-mb-1.5">
                     <MyEditor
                       initialValue={
                         id ? defaultValue?.signature : getValues("signature")
@@ -314,7 +314,7 @@ const CreateOrEditMailAccount = ({
                         </FormHelperText>
                       )}
                     />
-                  </div>
+                  </Box>
 
                   <div>
                     <FormControl
