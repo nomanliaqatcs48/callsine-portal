@@ -203,14 +203,6 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
             <Typography variant="subtitle2">
               <strong>Clicks:</strong> {item?.clicks}
             </Typography>
-            <Typography variant="subtitle2" className="tw-flex tw-items-center">
-              <strong>Scheduled Date:</strong>{" "}
-              {item?.scheduled_time ? (
-                moment.utc(item?.scheduled_time).format("LLLL")
-              ) : (
-                <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
-              )}
-            </Typography>
 
             <div style={{ height: 10 }} />
 
@@ -236,9 +228,16 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
 
             <Grid container>
               <Grid item xs={12}>
-                <Typography variant="subtitle2">
-                  <strong>Scheduled Time:</strong>{" "}
-                  {moment(item?.scheduled_time).format("LLLL")}
+                <Typography
+                  variant="subtitle2"
+                  className="tw-flex tw-items-center"
+                >
+                  <strong>Scheduled Date:</strong>{" "}
+                  {item?.scheduled_time ? (
+                    moment.utc(item?.scheduled_time).format("LLLL")
+                  ) : (
+                    <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+                  )}
                 </Typography>
               </Grid>
             </Grid>
