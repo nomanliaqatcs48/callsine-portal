@@ -57,7 +57,7 @@ export const usePlaybook = (load: boolean = true) => {
     try {
       let res = await generateResponsesService(Number(sequenceEvent?.id));
       if (res?.data) {
-        ToastSuccess("Message successfully regenerated.");
+        ToastSuccess("Email successfully regenerated.");
         let _prompts = data.prompts.map((item: any) => {
           if (item?.id === sequenceEvent?.id) {
             item = res?.data;
