@@ -31,6 +31,7 @@ export const useUserData = (load: boolean = true) => {
       if (response) {
         devLog("getUsers", response);
         setData(response?.data?.results);
+        setTotal(response?.data?.results?.length || 0);
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
       }
     } catch (e: any) {
