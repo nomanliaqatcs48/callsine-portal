@@ -9,6 +9,7 @@ import {
   FormControl,
   FormHelperText,
   Grid,
+  IconButton,
   InputLabel,
   MenuItem,
   Select,
@@ -28,6 +29,8 @@ import {
 import MyEditor from "../editor/MyEditor";
 import { emailAddressPattern } from "../../helpers/forms";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 type CreateOrEditMailAccountTypes = {
   id?: number;
@@ -52,6 +55,7 @@ const CreateOrEditMailAccount = ({
     form: false,
     signature: false,
   });
+  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -144,6 +148,14 @@ const CreateOrEditMailAccount = ({
     }
   };
 
+  const handleClickShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleMouseDownPassword = (event: any) => {
+    event.preventDefault();
+  };
+
   return (
     <>
       {/*<Button
@@ -215,20 +227,30 @@ const CreateOrEditMailAccount = ({
                     />
                   </div>
                   <div>
-                    <TextField
-                      error={!!errors.password}
-                      disabled={mailAccountLoading?.form}
-                      required
-                      margin="dense"
-                      id="password"
-                      label="Password"
-                      type="password"
-                      defaultValue={id ? defaultValue?.password : ""}
-                      fullWidth
-                      {...register("password", {
-                        required: "This is required field.",
-                      })}
-                    />
+                    <Box className="tw-relative">
+                      <TextField
+                        error={!!errors.password}
+                        disabled={mailAccountLoading?.form}
+                        required
+                        margin="dense"
+                        id="password"
+                        label="Password"
+                        type={showPassword ? "text" : "password"}
+                        defaultValue={id ? defaultValue?.password : ""}
+                        fullWidth
+                        {...register("password", {
+                          required: "This is required field.",
+                        })}
+                      />
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        className="tw-absolute tw-right-0 tw-inset-y-0"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </Box>
                     <ErrorMessage
                       errors={errors}
                       name="password"
