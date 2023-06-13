@@ -6,6 +6,7 @@ import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelecte
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
 import { useUserData } from "../../hooks/user-data/useUserData";
+import AddUserData from "../../ui-component/buttons/AddUserData";
 
 const Data = () => {
   const {
@@ -77,18 +78,7 @@ const Data = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
-            <CreateOrEditMailAccount
-              disableElevation
-              onSubmit={() => null}
-              onClick={() => null}
-            >
-              <PersonAddAlt1Icon
-                color="primary"
-                sx={{ fontSize: 15 }}
-                className="tw-mr-2"
-              />
-              Add Data
-            </CreateOrEditMailAccount>
+            <AddUserData onLoadApi={() => null} />
 
             <MyDivider />
 
