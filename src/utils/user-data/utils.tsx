@@ -4,12 +4,11 @@ export const _columns = () => {
   return useMemo(
     () => [
       {
-        Header: "First Name",
+        Header: "Full Name",
         accessor: "user.first_name",
-      },
-      {
-        Header: "Last Name",
-        accessor: "user.last_name",
+        Cell: (cell: any) => {
+          return `${cell?.value} ${cell?.row?.original?.user?.last_name}`;
+        },
       },
       {
         Header: "File",

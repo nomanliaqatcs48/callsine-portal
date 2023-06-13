@@ -30,6 +30,7 @@ export const useUserData = (load: boolean = true) => {
       let response = await getUserDataService(filters, searchValue);
       if (response) {
         devLog("getUsers", response);
+        setData(response?.data?.results);
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
       }
     } catch (e: any) {
