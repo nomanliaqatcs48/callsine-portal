@@ -69,7 +69,7 @@ const Data = () => {
         <Grid container>
           <Grid item xs={12} lg={2}>
             <Typography className="tw-text-lg tw-font-medium tw-pl-3">
-              Accounts
+              Data
             </Typography>
           </Grid>
           <Grid
@@ -78,7 +78,7 @@ const Data = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
-            <AddUserData onLoadApi={() => null} />
+            <AddUserData onLoadApi={getUsers} />
 
             <MyDivider />
 
