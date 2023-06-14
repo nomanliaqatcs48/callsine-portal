@@ -103,7 +103,7 @@ const CreateOrEditPerson = ({
         }
         devLog("res", res);
       }
-    } catch (e) {
+    } catch (e: any) {
       devLogError(e);
     }
   };
@@ -148,9 +148,9 @@ const CreateOrEditPerson = ({
           form: false,
         }));
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(e?.response);
       setPersonLoading((beforeVal: any) => ({
         ...beforeVal,
         form: false,
@@ -176,9 +176,13 @@ const CreateOrEditPerson = ({
         reset();
         setPersonLoading((prev: any) => ({ ...prev, form: false }));
       }
-    } catch ({ response }) {
-      ToastError("Something went wrong!");
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(e?.response);
+      if (e?.response?.data && Object.keys(e.response.data)?.length > 0) {
+        ToastError(e.response.data[Object.keys(e.response.data)[0]][0]);
+      } else {
+        ToastError("Something went wrong!");
+      }
       setPersonLoading((prev: any) => ({ ...prev, form: false }));
     }
   };
