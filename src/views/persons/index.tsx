@@ -30,6 +30,7 @@ import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import { devLog } from "../../helpers/logs";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
+import { useAsyncDebounce } from "react-table";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -39,6 +40,8 @@ const PersonsPage = () => {
     setPersonsData,
     total,
     setTotal,
+    searchValue,
+    setSearchValue,
     filters,
     setFilters,
     isLoading,
@@ -52,6 +55,16 @@ const PersonsPage = () => {
     getPeople();
     ToastSuccess("File successfully uploaded.");
   };
+
+  const handleSearchOnBeforeChange = (e: any) => {
+    setIsLoading((prev: any) => ({ ...prev, search: true }));
+    setSearchValue(e.target.value);
+    void handleSearchOnChange();
+  };
+
+  const handleSearchOnChange = useAsyncDebounce(async () => {
+    setFilters((prev: any) => ({ ...prev, filters }));
+  }, 1000);
 
   const MyDivider = () => {
     return (
@@ -89,7 +102,7 @@ const PersonsPage = () => {
             className="tw-space-y-2 xl:tw-space-y-0 xl:tw-space-x-4"
           >
             <Grid item xs={12} sm={12} md={12} lg={12} xl={5}>
-              <SearchFieldV2 />
+              <SearchFieldV2 onChange={handleSearchOnBeforeChange} />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
               <Filter

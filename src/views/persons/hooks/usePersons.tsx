@@ -12,11 +12,11 @@ export const usePersons = (load: boolean = true) => {
   const [filters, setFilters] = React.useState<any>({
     limit: 9999,
     offset: 0,
-    currentPage: 1,
   });
   const [isLoading, setIsLoading] = React.useState({
     onPage: true,
     table: false,
+    search: false,
   });
   const [selectedPersonRows, setSelectedPersonRows] = useState<any[]>([]);
 
@@ -45,6 +45,8 @@ export const usePersons = (load: boolean = true) => {
     setPersonsData,
     total,
     setTotal,
+    searchValue,
+    setSearchValue,
     filters,
     setFilters,
     isLoading,

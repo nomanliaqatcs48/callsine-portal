@@ -1,7 +1,11 @@
 import SearchIcon from "@mui/icons-material/Search";
 import { Grid } from "@mui/material";
 
-const SearchFieldV2 = () => {
+type SearchFieldV2Types = {
+  onChange: any;
+};
+
+const SearchFieldV2 = ({ onChange }: SearchFieldV2Types) => {
   return (
     <>
       <label
@@ -18,6 +22,7 @@ const SearchFieldV2 = () => {
             id="search-people"
             placeholder="Search"
             className="tw-bg-veryPrimaryLight tw-border tw-border-[#e8eafa] tw-border-opacity-30 tw-text-gray-900 tw-text-xs tw-rounded-md tw-font-medium tw-block tw-w-full tw-p-2.5 tw-pl-10 placeholder:tw-text-[0.85rem] placeholder:tw-font-medium hover:tw-border-blue-300 focus:tw-border-blue-300 focus:tw-outline-none"
+            onChange={onChange}
           />
           <SearchIcon
             fontSize="small"
