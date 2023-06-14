@@ -105,7 +105,7 @@ const selectStyles = {
     ...styles,
     fontSize: 12,
   }),
-  input: (styles: any) => ({ ...styles }),
+  input: (styles: any) => ({ ...styles, fontSize: 12 }),
   placeholder: (styles: any) => ({ ...styles, fontSize: 12 }),
   singleValue: (styles: any, { data }: any) => ({ ...styles, fontSize: 12 }),
   indicatorSeparator: (
