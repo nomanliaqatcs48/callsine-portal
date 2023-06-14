@@ -6,13 +6,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   FormHelperText,
   Grid,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
   TextField,
 } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
@@ -65,8 +60,6 @@ const CreateOrEditPerson = ({
     setValue,
     handleSubmit,
     reset,
-    trigger,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -81,7 +74,7 @@ const CreateOrEditPerson = ({
       required: "This is required field.",
     });
     setValue("org", id ? defaultValue?.org : null);*/
-    getProfile();
+    void getProfile();
     // getOrgs();
   }, []);
 
@@ -108,17 +101,6 @@ const CreateOrEditPerson = ({
     }
   };
 
-  const getOrgs = async () => {
-    try {
-      let res = await getOrgsService(filters, searchValue);
-      if (res?.data) {
-        devLog("res", res);
-      }
-    } catch (e: any) {
-      devLogError(e?.response);
-    }
-  };
-
   const handleOpen = () => {
     reset();
     setOpen(true);
@@ -126,11 +108,6 @@ const CreateOrEditPerson = ({
   const handleClose = () => {
     setOpen(false);
     reset();
-  };
-
-  const handleChangeOrg = (event: SelectChangeEvent) => {
-    setValue("org", event.target.value as string);
-    trigger("org");
   };
 
   const onThisEditSubmit = async (data: any) => {
@@ -398,104 +375,6 @@ const CreateOrEditPerson = ({
                         )}
                       />
                     </Grid>
-
-                    {/*<Grid item xs={12} lg={6}>*/}
-                    {/*  <TextField*/}
-                    {/*    error={!!errors.city}*/}
-                    {/*    disabled={personLoading?.form}*/}
-                    {/*    required*/}
-                    {/*    margin="dense"*/}
-                    {/*    id="city"*/}
-                    {/*    label="City"*/}
-                    {/*    type="text"*/}
-                    {/*    defaultValue={id ? defaultValue?.city : ""}*/}
-                    {/*    fullWidth*/}
-                    {/*    {...register("city", {*/}
-                    {/*      required: "This is required field.",*/}
-                    {/*    })}*/}
-                    {/*  />*/}
-                    {/*  <ErrorMessage*/}
-                    {/*    errors={errors}*/}
-                    {/*    name="city"*/}
-                    {/*    render={({ message }) => (*/}
-                    {/*      <FormHelperText sx={{ color: "error.main" }}>*/}
-                    {/*        {message}*/}
-                    {/*      </FormHelperText>*/}
-                    {/*    )}*/}
-                    {/*  />*/}
-                    {/*</Grid>*/}
-
-                    {/*<Grid item xs={12} lg={6}>*/}
-                    {/*  <TextField*/}
-                    {/*    error={!!errors.state}*/}
-                    {/*    disabled={personLoading?.form}*/}
-                    {/*    required*/}
-                    {/*    margin="dense"*/}
-                    {/*    id="state"*/}
-                    {/*    label="State"*/}
-                    {/*    type="text"*/}
-                    {/*    defaultValue={id ? defaultValue?.state : ""}*/}
-                    {/*    fullWidth*/}
-                    {/*    {...register("state", {*/}
-                    {/*      required: "This is required field.",*/}
-                    {/*    })}*/}
-                    {/*  />*/}
-                    {/*  <ErrorMessage*/}
-                    {/*    errors={errors}*/}
-                    {/*    name="state"*/}
-                    {/*    render={({ message }) => (*/}
-                    {/*      <FormHelperText sx={{ color: "error.main" }}>*/}
-                    {/*        {message}*/}
-                    {/*      </FormHelperText>*/}
-                    {/*    )}*/}
-                    {/*  />*/}
-                    {/*</Grid>*/}
-
-                    {/*<Grid item xs={12}>
-                      <FormControl
-                        fullWidth
-                        error={!!errors.org}
-                        margin="dense"
-                        required
-                        disabled={personLoading?.form}
-                      >
-                        <InputLabel id="org-label">Organization</InputLabel>
-                        <Select
-                          labelId="org-label"
-                          id="org"
-                          label="Organization"
-                          defaultValue={id ? defaultValue?.org : ""}
-                          onChange={handleChangeOrg}
-                        >
-                          {[
-                            {
-                              id: 1,
-                              label: "condenast.com",
-                            },
-
-                            {
-                              id: 2,
-                              label: "peaksware.com",
-                            },
-                          ].map((item, idx) => {
-                            return (
-                              <MenuItem key={idx} value={item.id}>
-                                {item.label}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                      <ErrorMessage
-                        errors={errors}
-                        name="org"
-                        render={({ message }) => (
-                          <FormHelperText sx={{ color: "error.main" }}>
-                            {message}
-                          </FormHelperText>
-                        )}
-                      />
-                    </Grid>*/}
                   </Grid>
                 </Box>
               </Grid>
