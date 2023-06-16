@@ -10,7 +10,7 @@ export const usePersons = (load: boolean = true) => {
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
   const [filters, setFilters] = React.useState<any>({
-    limit: 9999,
+    limit: 10,
     offset: 0,
   });
   const [isLoading, setIsLoading] = React.useState({
