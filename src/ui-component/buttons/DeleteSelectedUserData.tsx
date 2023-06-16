@@ -12,7 +12,10 @@ type DeleteUserDataTypes = {
   onLoadApi: any;
 };
 
-const DeleteUserData = ({ selectedRows, onLoadApi }: DeleteUserDataTypes) => {
+const DeleteSelectedUserData = ({
+  selectedRows,
+  onLoadApi,
+}: DeleteUserDataTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
@@ -110,4 +113,4 @@ const DeleteUserData = ({ selectedRows, onLoadApi }: DeleteUserDataTypes) => {
   );
 };
 
-export default DeleteUserData;
+export default DeleteSelectedUserData;

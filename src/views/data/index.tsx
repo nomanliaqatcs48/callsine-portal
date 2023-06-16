@@ -4,7 +4,7 @@ import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
 import { useUserData } from "../../hooks/user-data/useUserData";
 import AddUserData from "../../ui-component/buttons/AddUserData";
-import DeleteUserData from "../../ui-component/buttons/DeleteUserData";
+import DeleteSelectedUserData from "../../ui-component/buttons/DeleteSelectedUserData";
 
 const Data = () => {
   const {
@@ -80,7 +80,7 @@ const Data = () => {
 
             <MyDivider />
 
-            <DeleteUserData
+            <DeleteSelectedUserData
               selectedRows={selectedFlatRows}
               onLoadApi={getUsers}
             />
