@@ -98,7 +98,7 @@ const Data = () => {
           </Grid>
         </Grid>
         <MyTable
-          columns={_columns()}
+          columns={_columns(getUsers)}
           data={data}
           totalItems={total || 0}
           tableName="UserData"
