@@ -97,12 +97,14 @@ const MainLayout = () => {
         },
         [theme.breakpoints.down("md")]: {
           marginLeft: "20px",
-          width: `calc(100% - ${drawerWidth}px)`,
+          // width: `calc(100% - ${drawerWidth}px)`,
+          width: "100%",
           padding: "16px",
         },
         [theme.breakpoints.down("sm")]: {
           marginLeft: "10px",
-          width: `calc(100% - ${drawerWidth}px)`,
+          // width: `calc(100% - ${drawerWidth}px)`,
+          width: "100%",
           padding: "16px",
           marginRight: "10px",
         },
@@ -116,11 +118,16 @@ const MainLayout = () => {
         borderBottomLeftRadius: 0,
         borderBottomRightRadius: 0,
         width: `calc(100% - ${drawerWidth}px)`,
+        [theme.breakpoints.down("lg")]: {
+          // width: `calc(100% - ${drawerWidth}px)`,
+        },
         [theme.breakpoints.down("md")]: {
           marginLeft: "20px",
+          width: `100%`,
         },
         [theme.breakpoints.down("sm")]: {
           marginLeft: "10px",
+          width: "100%",
         },
       };
 
