@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-import {
-  getPersonDetailService,
-  getPeopleService,
-} from "../../../services/persons.service";
+import { getPeopleService } from "../../../services/persons.service";
 import { devLogError } from "../../../helpers/logs";
 
-export const usePersons = (load: boolean = true) => {
+export const usePersons = (
+  load: boolean = true,
+  filtersParam: any = {
+    limit: 10,
+    offset: 0,
+  }
+) => {
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filters, setFilters] = React.useState<any>({
-    limit: 10,
-    offset: 0,
-  });
+  const [filters, setFilters] = React.useState<any>(filtersParam);
   const [isLoading, setIsLoading] = React.useState({
     onPage: true,
     table: false,
