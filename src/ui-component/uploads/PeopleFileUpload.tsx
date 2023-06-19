@@ -18,8 +18,10 @@ const PeopleFileUpload = (props: any) => {
 
   // specify upload params and url for your files
   const getUploadParams = async ({ file, meta }: any) => {
-    devLog("getUploadParams() file", file);
-    devLog("getUploadParams() meta", meta);
+    devLog(() => {
+      console.log("getUploadParams() file", file);
+      console.log("getUploadParams() meta", meta);
+    });
     let formData = new FormData();
     let _token = await loadString("token");
     formData.append("file", file);
@@ -55,8 +57,8 @@ const PeopleFileUpload = (props: any) => {
         }
       };
       xhr.onerror = (e) => {
-        devLog("e", e);
-        devLog("onerror", xhr.statusText);
+        console.log("e", e);
+        console.log("onerror", xhr.statusText);
         // setErrorMsg('No contacts found.');
         // setLoading(false);
       };
@@ -94,7 +96,9 @@ const PeopleFileUpload = (props: any) => {
 
   // called every time a file's `status` changes
   const handleChangeStatus = ({ meta, file }: any, status: any) => {
-    devLog("handleChangeStatus()", status, meta, file);
+    devLog(() => {
+      console.log("handleChangeStatus()", status, meta, file);
+    });
     setErrorMsg("");
     if (status === "done") refresh();
     if (deleteFileAfterRemove) {
@@ -111,7 +115,9 @@ const PeopleFileUpload = (props: any) => {
 
   // receives array of files that are done uploading when submit button is clicked
   const handleSubmit = (files: any, allFiles: any) => {
-    devLog("handleSubmit() files", files);
+    devLog(() => {
+      console.log("handleSubmit() files", files);
+    });
   };
 
   return (

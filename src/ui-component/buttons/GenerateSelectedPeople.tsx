@@ -97,7 +97,9 @@ const GenerateSelectedPeople = ({
   };
 
   const onGenerate = async (data: any) => {
-    devLog("selectedRows", selectedRows);
+    devLog(() => {
+      console.log("selectedRows", selectedRows);
+    });
     if (!selectedRows?.length) {
       ToastWarning("Please select person");
       return;
@@ -106,7 +108,9 @@ const GenerateSelectedPeople = ({
       var ids = selectedRows.map((item: any, idx) => {
         return item.id;
       });
-      devLog("ids", ids);
+      devLog(() => {
+        console.log("ids", ids);
+      });
       try {
         let res = await bulkGenerateService(ids, Number(playbookId?.value));
         if (res?.status === 201) {
@@ -187,10 +191,12 @@ const GenerateSelectedPeople = ({
               })}
               styles={selectBlueStyles}
               onChange={(newValue: any, actionMeta: any) => {
-                // devLog("Value Changed");
-                // devLog(newValue);
-                // devLog(`action: ${actionMeta.action}`);
-                // devLog("===========");
+                devLog(() => {
+                  // console.group("Value Changed");
+                  // console.log(newValue);
+                  // console.log(`action: ${actionMeta.action}`);
+                  // console.groupEnd("===========");
+                });
                 handleGenerateOnChange(newValue);
               }}
             />

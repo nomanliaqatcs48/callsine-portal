@@ -31,7 +31,9 @@ const DeleteSelectedUserData = ({
   const handleClose = () => setOpen(false);
 
   const onDelete = async () => {
-    devLog("selectedRows", selectedRows);
+    devLog(() => {
+      console.log("selectedRows", selectedRows);
+    });
     if (!selectedRows?.length) {
       ToastWarning("Please select user data");
       return;

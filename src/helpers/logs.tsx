@@ -1,6 +1,6 @@
-export const devLog = (...data: any) => {
+export const devLog = (callback: any) => {
   if (process.env.NODE_ENV === "development") {
-    console.log(data);
+    callback();
   }
 };
 

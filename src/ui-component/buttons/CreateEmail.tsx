@@ -164,7 +164,9 @@ const CreateEmail = ({
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
     value = `<html><body>${value}</body></html>`;
-    devLog("handleMyEditorOnChange() value", value);
+    devLog(() => {
+      console.log("handleMyEditorOnChange() value", value);
+    });
     setValue("html_message", value);
     handleEditorPreview(value);
   };
@@ -185,7 +187,9 @@ const CreateEmail = ({
   };
 
   const onSubmit = async (data: any) => {
-    devLog("onSubmit data", data);
+    devLog(() => {
+      console.log("onSubmit data", data);
+    });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
       let res = await createAsEmailService(data);

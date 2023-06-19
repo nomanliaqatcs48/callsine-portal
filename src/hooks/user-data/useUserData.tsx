@@ -29,7 +29,9 @@ export const useUserData = (load: boolean = true) => {
     try {
       let response = await getUserDataService(filters, searchValue);
       if (response) {
-        devLog("getUsers", response);
+        devLog(() => {
+          console.log("getUsers", response);
+        });
         setData(response?.data?.results);
         setTotal(response?.data?.results?.length || 0);
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));

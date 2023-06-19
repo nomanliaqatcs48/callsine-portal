@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "../config";
-import { devLog } from "../helpers/logs";
+import { devLog, devLogError } from "../helpers/logs";
 
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
@@ -21,13 +21,17 @@ axios.interceptors.request.use(
 
 axios.interceptors.response.use(
   (res) => {
-    // devLog("test res", res);
+    /*devLog(() => {
+      console.log("test res", res);
+    });*/
     return res;
   },
   async (err) => {
     const originalConfig = err.config;
-    // devLog("test err", err);
-    // devLog("test originalConfig", originalConfig);
+    /*devLog(() => {
+      console.log("test err", err);
+      console.log("test originalConfig", originalConfig);
+    });*/
 
     if (
       !originalConfig.url.includes("/login") &&
@@ -48,7 +52,7 @@ axios.interceptors.response.use(
           originalConfig.headers["Authorization"] = `Bearer ${rs.data.access}`;
           return axios(originalConfig);
         } catch (_error: any) {
-          devLog(_error.toJSON());
+          devLogError(_error.toJSON());
           Object.keys(localStorage).forEach(function (key) {
             localStorage.removeItem(key);
           });

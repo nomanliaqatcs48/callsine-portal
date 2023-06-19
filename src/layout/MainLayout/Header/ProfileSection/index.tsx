@@ -66,7 +66,9 @@ const ProfileSection = () => {
    * */
   const anchorRef: any = useRef(null);
   const handleLogout = async () => {
-    devLog("Logout");
+    devLog(() => {
+      console.log("Logout");
+    });
     await clear();
     window.location.href = "/login";
   };

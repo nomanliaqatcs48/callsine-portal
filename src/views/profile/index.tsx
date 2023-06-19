@@ -68,7 +68,9 @@ const Profile = () => {
     try {
       let response = await profileService();
       if (response) {
-        devLog("response", response.data);
+        devLog(() => {
+          console.log("response", response.data);
+        });
       }
     } catch ({ response }) {
       devLogError(response);

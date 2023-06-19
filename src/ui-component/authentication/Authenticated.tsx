@@ -29,7 +29,9 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
           await save("profile", res.data);
           setProfile(res.data);
         }
-        devLog("res", res);
+        devLog(() => {
+          console.log("res", res);
+        });
       }
     } catch (e) {
       devLogError(e);

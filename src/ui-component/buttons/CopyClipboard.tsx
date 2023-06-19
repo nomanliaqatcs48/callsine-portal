@@ -18,18 +18,24 @@ const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
   useLayoutEffect(() => {
     let _cl: any = document.querySelector(".clipboard");
     if (_cl) {
-      // devLog("_cl", _cl);
+      /*devLog(() => {
+        console.log("_cl", _cl)
+      });*/
       let _clipboard = new ClipboardJS(".clipboard");
 
       _clipboard.on("success", function (e) {
-        // devLog("Action:", e.action);
+        /*devLog(() => {
+          console.log("Action:", e.action);
+        });*/
 
         if (e.action === "copy") {
           setShow(true);
           setTimeout(() => setShow(false), 4000);
         }
-        // devLog("Text:", e.text);
-        // devLog("Trigger:", e.trigger);
+        /*devLog(() => {
+          console.log("Text:", e.text)
+          console.log("Trigger:", e.trigger)
+        });*/
         e.clearSelection();
       });
 

@@ -94,7 +94,9 @@ const CreateOrEditPerson = ({
           setValue("created_by", res.data?.id);
           setValue("modified_by", res.data?.id);
         }
-        devLog("res", res);
+        devLog(() => {
+          console.log("res", res);
+        });
       }
     } catch (e: any) {
       devLogError(e);

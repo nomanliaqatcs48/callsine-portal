@@ -142,7 +142,9 @@ const CreateOrEditMailAccount = ({
     try {
       let response = await testMailAccountService(Number(id));
       if (response) {
-        devLog("testMailAccount() response", response);
+        devLog(() => {
+          console.log("testMailAccount() response", response);
+        });
         ToastSuccess("Successfully tested.");
         setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
       }

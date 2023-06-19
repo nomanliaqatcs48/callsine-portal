@@ -66,10 +66,14 @@ const AuthLogin = ({ ...others }) => {
     { setErrors, setStatus, setSubmitting }: any
   ) => {
     try {
-      devLog("values", values);
+      devLog(() => {
+        console.log("values", values);
+      });
       values.username = values.email;
       let res = await loginService(values);
-      devLog("res", res);
+      devLog(() => {
+        console.log("res", res);
+      });
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access);

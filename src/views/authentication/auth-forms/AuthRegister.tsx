@@ -94,7 +94,9 @@ const AuthRegister = ({ ...others }) => {
     values: any,
     { setErrors, setStatus, setSubmitting }: any
   ) => {
-    devLog("onSubmit() values", values);
+    devLog(() => {
+      console.log("onSubmit() values", values);
+    });
     if (!checkPasswords(values)) {
       setStatus({ success: false });
       setErrors({ submit: "Passwords don't match." });
@@ -102,9 +104,13 @@ const AuthRegister = ({ ...others }) => {
       return;
     }
     try {
-      devLog("values", values);
+      devLog(() => {
+        console.log("values", values);
+      });
       let res = await signupService(values);
-      devLog("res", res);
+      devLog(() => {
+        console.log("res", res);
+      });
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access_token);

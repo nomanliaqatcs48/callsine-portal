@@ -89,7 +89,9 @@ const SendLater = ({
   };
 
   const onSubmit = async (data: any, event: any) => {
-    devLog("onSubmit data", data);
+    devLog(() => {
+      console.log("onSubmit data", data);
+    });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
       let res = await createAsEmailService({

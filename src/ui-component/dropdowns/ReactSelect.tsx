@@ -1,4 +1,5 @@
 import Select from "react-select";
+import { devLog } from "../../helpers/logs";
 
 type ReactSelectTypes = {
   name: string;
@@ -144,16 +145,20 @@ const ReactSelect = ({ name, variant, ...props }: ReactSelectTypes) => {
       isRtl={false}
       styles={variant === "normal" ? selectStyles : selectBlueStyles}
       onChange={(newValue, actionMeta) => {
-        // devLog("Value Changed");
-        // devLog(newValue);
-        // devLog(`action: ${actionMeta.action}`);
-        // devLog("===========");
+        devLog(() => {
+          // console.group("Value Changed");
+          // console.log(newValue);
+          // console.log(`action: ${actionMeta.action}`);
+          // console.groupEnd();
+        });
       }}
       onInputChange={(inputValue: any, actionMeta: any) => {
-        // devLog("Input Changed");
-        // devLog(inputValue);
-        // devLog(`action: ${actionMeta.action}`);
-        // devLog("===========");
+        devLog(() => {
+          // console.group("Input Changed");
+          // console.log(inputValue);
+          // console.log(`action: ${actionMeta.action}`);
+          // console.groupEnd();
+        });
       }}
       {...props}
       // menuIsOpen

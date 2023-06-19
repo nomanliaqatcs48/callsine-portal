@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getPeopleService } from "../../../services/persons.service";
-import { devLogError } from "../../../helpers/logs";
+import { devLog, devLogError } from "../../../helpers/logs";
 
 export const usePersons = (
   load: boolean = true,
@@ -30,6 +30,9 @@ export const usePersons = (
     try {
       let res = await getPeopleService(filters, searchValue);
       if (res?.data) {
+        devLog(() => {
+          console.log("res?.data", res?.data);
+        });
         setTotal(res.data?.count);
         setPersonsData(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));

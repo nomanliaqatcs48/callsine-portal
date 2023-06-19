@@ -3,7 +3,7 @@ import { DialogActions, Grid, Paper } from "@mui/material";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { devLogError } from "../../../../../../helpers/logs";
+import { devLog, devLogError } from "../../../../../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { useFetchProspectSequenceEvent } from "../../../../../../hooks/persons/useProspectEvents";
 import { setPlaybookV2Service } from "../../../../../../services/prompts.service";
@@ -151,10 +151,12 @@ const PlaybookV2 = () => {
                       return item;
                     })}
                     onChange={(newValue: any, actionMeta: any) => {
-                      // devLog("Value Changed");
-                      // devLog(newValue);
-                      // devLog(`action: ${actionMeta.action}`);
-                      // devLog("===========");
+                      devLog(() => {
+                        // console.group("Value Changed");
+                        // console.log(newValue);
+                        // console.log(`action: ${actionMeta.action}`);
+                        // console.groupEnd();
+                      });
                       handleGenerateOnChange(newValue);
                       handleOpen();
                     }}

@@ -64,7 +64,9 @@ const DraftEmail = ({
   const { mailAccountsData } = useMailAccounts(open);
   const { regeneratePlaybook } = usePlaybook(false);
 
-  devLog("errors", errors);
+  devLog(() => {
+    console.log("errors", errors);
+  });
   console.log("POSITION");
   console.log(position);
 
@@ -130,7 +132,9 @@ const DraftEmail = ({
     try {
       let res = await sendEmailService(id, position);
       if (res?.data) {
-        devLog("res?.data", res?.data);
+        devLog(() => {
+          console.log("res?.data", res?.data);
+        });
         ToastSuccess("Email successfully sent.");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
         removeBodyLoader();
@@ -145,7 +149,9 @@ const DraftEmail = ({
   };
 
   const onSubmit = async (data: any) => {
-    devLog("onSubmit data", data);
+    devLog(() => {
+      console.log("onSubmit data", data);
+    });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     insertBodyLoader();
     try {
