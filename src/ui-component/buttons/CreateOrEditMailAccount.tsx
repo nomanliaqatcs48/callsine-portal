@@ -289,7 +289,7 @@ const CreateOrEditMailAccount = ({
                     />
                   </div>
 
-                  <Grid container className="tw-mb-2.5">
+                  <Grid container>
                     <Grid item xs={12}>
                       <TextField
                         error={!!errors.last_name}
@@ -317,29 +317,7 @@ const CreateOrEditMailAccount = ({
                     </Grid>
                   </Grid>
 
-                  <Box className="tw-mb-1.5">
-                    <MyEditor
-                      initialValue={
-                        id ? defaultValue?.signature : getValues("signature")
-                      }
-                      onEditorChange={(value: string, editor: any) => {
-                        handleMyEditorOnChange(value, editor);
-                      }}
-                      isPreformatted={false}
-                      onFocus={(e: any) => null}
-                    />
-                    <ErrorMessage
-                      errors={errors}
-                      name="signature"
-                      render={({ message }) => (
-                        <FormHelperText sx={{ color: "error.main" }}>
-                          {message}
-                        </FormHelperText>
-                      )}
-                    />
-                  </Box>
-
-                  <div>
+                  <div className="tw-mb-2.5">
                     <FormControl
                       fullWidth
                       error={!!errors.provider}
@@ -369,6 +347,28 @@ const CreateOrEditMailAccount = ({
                       )}
                     />
                   </div>
+
+                  <Box className="tw-mb-1.5">
+                    <MyEditor
+                      initialValue={
+                        id ? defaultValue?.signature : getValues("signature")
+                      }
+                      onEditorChange={(value: string, editor: any) => {
+                        handleMyEditorOnChange(value, editor);
+                      }}
+                      isPreformatted={false}
+                      onFocus={(e: any) => null}
+                    />
+                    <ErrorMessage
+                      errors={errors}
+                      name="signature"
+                      render={({ message }) => (
+                        <FormHelperText sx={{ color: "error.main" }}>
+                          {message}
+                        </FormHelperText>
+                      )}
+                    />
+                  </Box>
                 </Box>
               </Grid>
             </Grid>
