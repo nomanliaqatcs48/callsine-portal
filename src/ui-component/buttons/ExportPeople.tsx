@@ -2,7 +2,7 @@ import React from "react";
 import { CSVLink } from "react-csv";
 import { Button, Tooltip } from "@mui/material";
 import FileDownloadOutlinedIcon from "@mui/icons-material/FileDownloadOutlined";
-import { usePersons } from "../../views/persons/hooks/usePersons";
+import { usePersons } from "../../hooks/persons/usePersons";
 
 const ExportPeople = () => {
   const { personsData } = usePersons(true, {

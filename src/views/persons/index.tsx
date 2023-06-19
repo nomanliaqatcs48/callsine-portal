@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "./utils/utils";
-import { usePersons } from "./hooks/usePersons";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
 import SearchFieldV2 from "../../ui-component/forms/SearchFieldV2";
 import Filter from "../../ui-component/dropdowns/Filter";
@@ -15,6 +14,7 @@ import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
 import { useAsyncDebounce } from "react-table";
+import { usePersons } from "../../hooks/persons/usePersons";
 
 const PersonsPage = () => {
   const auth: any = useAuth();

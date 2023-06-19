@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { getPeopleService } from "../../../services/persons.service";
-import { devLog, devLogError } from "../../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
+import { getPeopleService } from "../../services/persons.service";
 
 export const usePersons = (
   load: boolean = true,

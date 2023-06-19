@@ -13,7 +13,7 @@ import SkeletonTotalOrderCard from "../../ui-component/cards/Skeleton/EarningCar
 import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { IconHandClick, IconUsers } from "@tabler/icons-react";
-import { usePersons } from "../../views/persons/hooks/usePersons";
+import { usePersons } from "../../hooks/persons/usePersons";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   backgroundColor: theme.palette.primary.main,
