@@ -40,8 +40,10 @@ const Prompts = ({ onChange, ...props }: PromptsTypes) => {
         setPrompts(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
       }
-    } catch ({ response }) {
-      devLogError("e", response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error("e", e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };

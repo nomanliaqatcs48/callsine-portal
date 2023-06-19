@@ -24,7 +24,9 @@ export const usePersonDetail = (load: boolean = true) => {
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
       }
     } catch (e: any) {
-      devLogError(e.response);
+      devLogError(() => {
+        console.error(e.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };

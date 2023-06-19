@@ -32,8 +32,10 @@ const SendEmailNow = ({
         onLoadApi();
         setIsLoading((prev: any) => ({ ...prev, button: false }));
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, button: false }));
     }
   };

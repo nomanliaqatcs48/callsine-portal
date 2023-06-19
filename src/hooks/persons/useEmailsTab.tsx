@@ -33,8 +33,10 @@ export const useEmailsTab = (load: boolean = true) => {
         setEmails(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
     }
   };

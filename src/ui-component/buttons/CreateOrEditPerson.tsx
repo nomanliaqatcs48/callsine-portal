@@ -99,7 +99,9 @@ const CreateOrEditPerson = ({
         });
       }
     } catch (e: any) {
-      devLogError(e);
+      devLogError(() => {
+        console.error(e);
+      });
     }
   };
 
@@ -129,7 +131,9 @@ const CreateOrEditPerson = ({
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(e?.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setPersonLoading((beforeVal: any) => ({
         ...beforeVal,
         form: false,
@@ -156,7 +160,9 @@ const CreateOrEditPerson = ({
         setPersonLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch (e: any) {
-      devLogError(e?.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       if (e?.response?.data && Object.keys(e.response.data)?.length > 0) {
         ToastError(e.response.data[Object.keys(e.response.data)[0]][0]);
       } else {

@@ -107,7 +107,9 @@ const CreateOrEditMailAccount = ({
       return;
     } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(e?.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setMailAccountLoading((beforeVal: any) => ({
         ...beforeVal,
         form: false,
@@ -131,7 +133,9 @@ const CreateOrEditMailAccount = ({
       return;
     } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(e?.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
       return;
     }
@@ -150,7 +154,9 @@ const CreateOrEditMailAccount = ({
       }
     } catch (e: any) {
       ToastError("Failed!");
-      devLogError(e?.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
     }
   };

@@ -4,8 +4,10 @@ export const devLog = (callback: any) => {
   }
 };
 
-export const devLogError = (...data: any) => {
+export const devLogError = (callback: any) => {
   if (process.env.NODE_ENV === "development") {
-    console.error(data);
+    console.group("error");
+    callback();
+    console.groupEnd();
   }
 };

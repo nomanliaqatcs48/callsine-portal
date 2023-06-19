@@ -20,8 +20,10 @@ const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
         window.location.href = "/dashboard";
       }
       setTimeout(() => setIsOnPageLoading(false), 500);
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setTimeout(() => setIsOnPageLoading(false), 500);
     }
   };

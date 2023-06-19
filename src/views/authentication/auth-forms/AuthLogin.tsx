@@ -49,7 +49,9 @@ const AuthLogin = ({ ...others }) => {
   const [checked, setChecked] = useState(true);
 
   const googleHandler = async () => {
-    devLogError("Login");
+    devLog(() => {
+      console.log("Login");
+    });
   };
 
   const [showPassword, setShowPassword] = useState(false);
@@ -84,8 +86,10 @@ const AuthLogin = ({ ...others }) => {
           setSubmitting(false);
         }
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       if (scriptedRef.current) {
         setStatus({ success: false });
         setErrors({ submit: "Incorrect username or password." });

@@ -57,7 +57,9 @@ const AuthRegister = ({ ...others }) => {
   const [level, setLevel] = useState<any>();
 
   const googleHandler = async () => {
-    devLogError("Register");
+    devLogError(() => {
+      console.error("Register");
+    });
   };
 
   const handleClickShowPassword1 = () => {
@@ -123,7 +125,9 @@ const AuthRegister = ({ ...others }) => {
         }
       }
     } catch (err: any) {
-      devLogError(err?.response);
+      devLogError(() => {
+        console.error(err?.response);
+      });
       if (scriptedRef.current) {
         setStatus({ success: false });
         if (err?.response?.data?.email?.length > 0) {

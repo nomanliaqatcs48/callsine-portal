@@ -64,7 +64,7 @@ const PeopleFileUpload = (props: any) => {
       };
       xhr.send(formData);
     } catch (e: any) {
-      devLogError(e?.response);
+      console.error(e?.response);
       // setError('username', {
       //   type: 'manual',
       //   message: 'Incorrect username or password.',

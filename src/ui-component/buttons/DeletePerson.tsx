@@ -38,9 +38,11 @@ const DeletePerson = ({
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
         ToastSuccess("Person successfully deleted.");
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
       setTimeout(() => window.location.reload(), 5000);
     }

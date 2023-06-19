@@ -80,9 +80,9 @@ const SequenceTab = () => {
   //         });
   //         setIsBtnLoading(false);
   //       }
-  //     } catch ({ response }) {
+  //     } catch (e: any) {
   //       ToastError("Something went wrong!");
-  //       devLogError(response);
+  //       console.error(response);
   //       setIsBtnLoading(false);
   //     }
   //   };

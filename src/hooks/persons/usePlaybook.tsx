@@ -36,7 +36,9 @@ export const usePlaybook = (load: boolean = true) => {
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
       }
     } catch (e: any) {
-      devLogError(e.response);
+      devLogError(() => {
+        console.error(e.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };
@@ -46,8 +48,10 @@ export const usePlaybook = (load: boolean = true) => {
 
     try {
       let res = await updatePersonDetailService(Number(id), _data);
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
     }
   };
 
@@ -72,9 +76,11 @@ export const usePlaybook = (load: boolean = true) => {
         removeBodyLoader();
         return;
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       // ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       removeBodyLoader();
       return;

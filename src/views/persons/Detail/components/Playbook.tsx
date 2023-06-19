@@ -49,7 +49,9 @@ const Playbook = () => {
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(e.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setPromptId(null);
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
     }
@@ -83,9 +85,11 @@ const Playbook = () => {
           });
           setIsBtnLoading(false);
         }
-      } catch ({ response }) {
+      } catch (e: any) {
         ToastError("Something went wrong!");
-        devLogError(response);
+        devLogError(() => {
+          console.error(e?.response);
+        });
         setIsBtnLoading(false);
       }
     };

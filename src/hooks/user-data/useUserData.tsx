@@ -37,7 +37,9 @@ export const useUserData = (load: boolean = true) => {
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
       }
     } catch (e: any) {
-      devLogError("e", e.response);
+      devLogError(() => {
+        console.error("e", e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
     }
   };

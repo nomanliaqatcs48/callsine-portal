@@ -52,7 +52,9 @@ axios.interceptors.response.use(
           originalConfig.headers["Authorization"] = `Bearer ${rs.data.access}`;
           return axios(originalConfig);
         } catch (_error: any) {
-          devLogError(_error.toJSON());
+          devLogError(() => {
+            console.error(_error.toJSON());
+          });
           Object.keys(localStorage).forEach(function (key) {
             localStorage.removeItem(key);
           });

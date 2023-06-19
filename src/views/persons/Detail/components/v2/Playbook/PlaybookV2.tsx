@@ -69,8 +69,10 @@ const PlaybookV2 = () => {
         setPrompts(res.data?.results);
         setLoading((prev: any) => ({ ...prev, onPage: false }));
       }
-    } catch ({ response }) {
-      devLogError("e", response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error("e", e?.response);
+      });
       setLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };
@@ -101,7 +103,9 @@ const PlaybookV2 = () => {
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(e.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setPromptId(null);
 
       setTimeout(() => {

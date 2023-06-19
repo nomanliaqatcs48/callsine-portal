@@ -43,8 +43,10 @@ export const useMailAccounts = (
         }
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
     }
   };

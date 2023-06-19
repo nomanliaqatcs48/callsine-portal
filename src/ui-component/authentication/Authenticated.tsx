@@ -33,8 +33,10 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
           console.log("res", res);
         });
       }
-    } catch (e) {
-      devLogError(e);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e);
+      });
     }
   };
 
@@ -45,8 +47,10 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
         window.location.href = "/login";
       }
       setTimeout(() => setIsOnPageLoading(false), 500);
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setTimeout(() => setIsOnPageLoading(false), 500);
     }
   };

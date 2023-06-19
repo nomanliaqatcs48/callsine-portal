@@ -72,8 +72,10 @@ const Profile = () => {
           console.log("response", response.data);
         });
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
     }
   };
 
@@ -97,9 +99,11 @@ const Profile = () => {
         reset();
         setIsLoading((prev: any) => ({ ...prev, form: false }));
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, form: false }));
     }
   };

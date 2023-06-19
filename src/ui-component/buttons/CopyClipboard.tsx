@@ -3,6 +3,7 @@ import { Avatar, ButtonBase, Tooltip } from "@mui/material";
 import { IconCopy } from "@tabler/icons-react";
 import { useTheme } from "@mui/material/styles";
 import ClipboardJS from "clipboard";
+import { devLogError } from "../../helpers/logs";
 
 type CopyClipboardTypes = {
   copyContent: string | null;
@@ -40,7 +41,9 @@ const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
       });
 
       _clipboard.on("error", function (e) {
-        // devLogError("Action:", e.action); devLogError("Trigger:", e.trigger);
+        devLogError(() => {
+          // console.error("Action:", e.action); console.error("Trigger:", e.trigger);
+        });
       });
     }
   }, []);

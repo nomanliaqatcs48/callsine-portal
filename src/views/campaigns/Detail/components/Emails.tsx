@@ -43,7 +43,9 @@ const Emails = () => {
         setEmailsData(res.data);
       }
     } catch (e: any) {
-      devLogError(e.response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
     }
   };
   return (

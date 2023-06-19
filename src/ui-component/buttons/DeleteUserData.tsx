@@ -36,9 +36,11 @@ const DeleteUserData = ({
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
     }
   };

@@ -32,8 +32,10 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
       if (response?.data) {
         setFromEmailDetail(response?.data);
       }
-    } catch ({ response }) {
-      devLogError(response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
     }
   };
 

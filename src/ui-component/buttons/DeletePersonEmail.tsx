@@ -38,9 +38,11 @@ const DeletePersonEmail = ({
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
         ToastSuccess("Email successfully deleted.");
       }
-    } catch ({ response }) {
+    } catch (e: any) {
       ToastError("Something went wrong!");
-      devLogError(response);
+      devLogError(() => {
+        console.error(e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
     }
   };

@@ -71,8 +71,10 @@ const GenerateSelectedPeople = ({
         setPrompts(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
       }
-    } catch ({ response }) {
-      devLogError("e", response);
+    } catch (e: any) {
+      devLogError(() => {
+        console.error("e", e?.response);
+      });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
   };
@@ -122,7 +124,9 @@ const GenerateSelectedPeople = ({
           ToastError("Something went wrong");
         }
       } catch (e: any) {
-        devLogError("error", e.response);
+        devLogError(() => {
+          console.error("error", e?.response);
+        });
         ToastError("Something went wrong");
       }
 
@@ -135,9 +139,9 @@ const GenerateSelectedPeople = ({
       //     //   ToastSuccess("Email generation successfully started.");
       //     //   onLoadApi();
       //     // }
-      //   } catch ({ response }) {
+      //   } catch (e: any) {
       //     ToastError("Something went wrong!");
-      //     devLogError(response);
+      //     console.error(e?.response);
       //   }
       // });
     }
