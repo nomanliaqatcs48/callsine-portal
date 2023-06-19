@@ -115,7 +115,7 @@ const MailAccountsPage = () => {
           >
             <CreateOrEditMailAccount
               disableElevation
-              onSubmit={getMailAccounts}
+              onLoadApi={getMailAccounts}
               onClick={() => null}
             >
               <PersonAddAlt1Icon
