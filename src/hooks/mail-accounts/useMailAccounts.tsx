@@ -2,15 +2,18 @@ import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getMailAccountsService } from "../../services/mail-accounts.service";
 
-export const useMailAccounts = (load: boolean = true) => {
-  const [mailAccountsData, setMailAccountsData] = React.useState<any[]>([]);
-  const [total, setTotal] = React.useState<number>(0);
-  const [searchValue, setSearchValue] = React.useState<string>("");
-  const [filters, setFilters] = React.useState<any>({
+export const useMailAccounts = (
+  load: boolean = true,
+  filtersParam: any = {
     limit: 10,
     offset: 0,
     currentPage: 1,
-  });
+  }
+) => {
+  const [mailAccountsData, setMailAccountsData] = React.useState<any[]>([]);
+  const [total, setTotal] = React.useState<number>(0);
+  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [filters, setFilters] = React.useState<any>(filtersParam);
   const [isLoading, setIsLoading] = React.useState({
     onPage: true,
     table: false,

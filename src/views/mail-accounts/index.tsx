@@ -128,7 +128,7 @@ const MailAccountsPage = () => {
 
             <MyDivider />
 
-            <ExportMailAccounts data={mailAccountsData} />
+            <ExportMailAccounts />
 
             <MyDivider />
 
