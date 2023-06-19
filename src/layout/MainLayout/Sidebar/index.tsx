@@ -55,8 +55,13 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
           {/*<MenuCard />*/}
         </PerfectScrollbar>
       </BrowserView>
-      <MobileView>
-        <Box sx={{ px: 2 }}>
+      <MobileView className="tw-bg-primary">
+        <Box
+          sx={{
+            px: 2,
+            height: !matchUpMd ? "calc(100vh - 56px)" : "calc(100vh - 74px)",
+          }}
+        >
           <MenuList />
           {/*<MenuCard />*/}
         </Box>
