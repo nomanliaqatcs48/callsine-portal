@@ -37,7 +37,7 @@ type CreateOrEditMailAccountTypes = {
   children?: any;
   onLoadApi?: any;
   defaultValue?: any;
-  onClick?: any;
+  onClick: any;
   [x: string]: any;
 };
 
@@ -73,7 +73,8 @@ const CreateOrEditMailAccount = ({
     });
     register("signature");
     setValue("provider", id ? defaultValue?.provider : null);
-  }, []);
+    setShowPassword(false);
+  }, [open]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {

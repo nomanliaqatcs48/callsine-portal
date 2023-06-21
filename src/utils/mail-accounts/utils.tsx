@@ -130,6 +130,7 @@ export const _columns = (getMailAccounts: any) => {
                 defaultValue={cell?.row?.original}
                 onLoadApi={getMailAccounts}
                 className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+                onClick={() => null}
               >
                 <Tooltip title="Edit">
                   <EditIcon
