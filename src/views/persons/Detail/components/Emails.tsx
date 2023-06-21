@@ -29,7 +29,10 @@ const Emails = () => {
     setIsLoading,
     getEmails,
     showStatus,
-  } = useEmailsTab();
+  } = useEmailsTab(true, {
+    limit: 99999,
+    offset: 0,
+  });
 
   return (
     <Paper
