@@ -3,16 +3,18 @@ import { devLogError } from "../../helpers/logs";
 import { getEmailsService } from "../../services/emails.service";
 import { useParams } from "react-router-dom";
 
-export const useEmailsTab = (load: boolean = true) => {
+export const useEmailsTab = (
+  load: boolean = true,
+  _filters: any = {
+    limit: 10,
+    offset: 0,
+  }
+) => {
   const { id } = useParams();
   const [emails, setEmails] = useState<any[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
-  const [filters, setFilters] = useState<any>({
-    limit: 9999,
-    offset: 0,
-    currentPage: 1,
-  });
+  const [filters, setFilters] = useState<any>(_filters);
   const [isLoading, setIsLoading] = useState({
     onPage: true,
     cards: false,
