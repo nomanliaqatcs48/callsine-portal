@@ -50,6 +50,9 @@ const DraftEmail = ({
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
+    in_reply_to: false,
+    from_email: false,
+    subject: false,
   });
   const {
     register,
@@ -77,6 +80,14 @@ const DraftEmail = ({
   });
 
   useEffect(() => {
+    setIsLoading((prev: any) => ({
+      ...prev,
+      from_email: true,
+      in_reply_to: true,
+    }));
+    devLog(() => {
+      console.log("selectedData", selectedData);
+    });
     [
       "in_reply_to",
       "person",
@@ -122,11 +133,20 @@ const DraftEmail = ({
         }
       }
 
+      setValue("in_reply_to", "");
+      setValue("from_email", "");
       setValue("to", playBookData?.work_email);
       setValue("scheduled_time", moment.utc().format("YYYY-MM-DD HH:mm:ss"));
       setValue("subject", selectedData?.subject);
     });
-    setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+    setTimeout(() => {
+      setIsLoading((prev: any) => ({
+        ...prev,
+        onPage: false,
+        from_email: false,
+        in_reply_to: false,
+      }));
+    });
   }, [selectedData]);
 
   const handleChangeFromEmail = (event: SelectChangeEvent) => {
@@ -299,25 +319,27 @@ const DraftEmail = ({
         <div className="tw-flex">
           <div className={`${label}`}>Parent Email</div>
           <div className={`${labelValue}`}>
-            <ReactSelect
-              name="in_reply_to"
-              className="basic-single tw-cursor-pointer"
-              variant="blue"
-              placeholder="Please select"
-              isClearable={true}
-              isSearchable={true}
-              options={emails.map((item: any, idx: number) => {
-                let _count = item?.subject ? "" : ++countIndexForEmailSubject;
-                item.label = `ID: ${item?.id} | Subject: ${
-                  item?.subject ? item?.subject : "Email " + _count
-                }`;
-                item.value = item.id;
-                return item;
-              })}
-              styles={selectBlueStyles}
-              defaultValue={getValues("in_reply_to")}
-              onChange={handleChangeParentEmail}
-            />
+            {!isLoading?.in_reply_to && (
+              <ReactSelect
+                name="in_reply_to"
+                className="basic-single tw-cursor-pointer"
+                variant="blue"
+                placeholder="Please select"
+                isClearable={true}
+                isSearchable={true}
+                options={emails.map((item: any, idx: number) => {
+                  let _count = item?.subject ? "" : ++countIndexForEmailSubject;
+                  item.label = `ID: ${item?.id} | Subject: ${
+                    item?.subject ? item?.subject : "Email " + _count
+                  }`;
+                  item.value = item.id;
+                  return item;
+                })}
+                styles={selectBlueStyles}
+                defaultValue={getValues("in_reply_to")}
+                onChange={handleChangeParentEmail}
+              />
+            )}
             <ErrorMessage
               errors={errors}
               name="in_reply_to"
@@ -334,22 +356,24 @@ const DraftEmail = ({
         <div className="tw-flex">
           <div className={`${label}`}>From</div>
           <div className={`${labelValue}`}>
-            <ReactSelect
-              name="from"
-              className="basic-single tw-cursor-pointer"
-              variant="blue"
-              placeholder="Please select"
-              isClearable={false}
-              isSearchable={true}
-              options={mailAccountsData.map((item: any, idx: number) => {
-                item.label = item.email;
-                item.value = item.id;
-                return item;
-              })}
-              styles={selectBlueStyles}
-              defaultValue={getValues("from_email")}
-              onChange={handleChangeFromEmail}
-            />
+            {!isLoading?.from_email && (
+              <ReactSelect
+                name="from"
+                className="basic-single tw-cursor-pointer"
+                variant="blue"
+                placeholder="Please select"
+                isClearable={false}
+                isSearchable={true}
+                options={mailAccountsData.map((item: any, idx: number) => {
+                  item.label = item.email;
+                  item.value = item.id;
+                  return item;
+                })}
+                styles={selectBlueStyles}
+                defaultValue={getValues("from_email")}
+                onChange={handleChangeFromEmail}
+              />
+            )}
             <ErrorMessage
               errors={errors}
               name="from_email"
@@ -366,15 +390,17 @@ const DraftEmail = ({
         <div className="tw-flex">
           <div className={`${label}`}>To</div>
           <div className={`${labelValue}`}>
-            <input
-              type="text"
-              defaultValue={playBookData?.work_email}
-              className={`${labelValueInput}`}
-              {...register("to", {
-                required: "This is required field.",
-                pattern: emailAddressPattern,
-              })}
-            />
+            {!isLoading?.onPage && (
+              <input
+                type="text"
+                defaultValue={playBookData?.work_email}
+                className={`${labelValueInput}`}
+                {...register("to", {
+                  required: "This is required field.",
+                  pattern: emailAddressPattern,
+                })}
+              />
+            )}
             <ErrorMessage
               errors={errors}
               name="to"
@@ -391,13 +417,15 @@ const DraftEmail = ({
         <div className="tw-flex">
           <div className={`${label}`}>Subject</div>
           <div className={`${labelValue}`}>
-            <input
-              type="text"
-              className={`${labelValueInput}`}
-              {...register("subject", {
-                required: "This is required field.",
-              })}
-            />
+            {!isLoading?.subject && (
+              <input
+                type="text"
+                className={`${labelValueInput}`}
+                {...register("subject", {
+                  required: "This is required field.",
+                })}
+              />
+            )}
             <ErrorMessage
               errors={errors}
               name="subject"
