@@ -28,6 +28,7 @@ import {
   insertBodyLoader,
   removeBodyLoader,
 } from "../../../../../../helpers/loaders";
+import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -63,16 +64,21 @@ const DraftEmail = ({
   } = useForm({ mode: "onChange" });
   const { mailAccountsData } = useMailAccounts(open);
   const { regeneratePlaybook } = usePlaybook(false);
+  const { emails } = useEmailsTab(open, {
+    limit: 99999,
+    offset: 0,
+  });
+  let countIndexForEmailSubject: number = 0;
 
   devLog(() => {
     console.log("errors", errors);
+    console.log("POSITION");
+    console.log(position);
   });
-  console.log("POSITION");
-  console.log(position);
 
   useEffect(() => {
     [
-      // "in_reply_to",
+      "in_reply_to",
       "person",
       "from_email",
       "html_message",
@@ -186,6 +192,42 @@ const DraftEmail = ({
     // handleEditorPreview(value);
   };
 
+  const handleChangeParentEmail = (event: any) => {
+    setValue("in_reply_to", event?.id);
+    trigger("in_reply_to");
+
+    setIsLoading((prev: any) => ({ ...prev, from_email: true, subject: true }));
+    if (event?.id) {
+      devLog(() => {
+        console.log("id", event?.id);
+        console.log("from_email", event?.from_email);
+        console.log("to", event?.to);
+        console.log("subject", event?.subject);
+      });
+      setValue("from_email", event?.from_email as string);
+      setValue("to", event?.to);
+      setValue("subject", event?.subject);
+      setTimeout(() =>
+        setIsLoading((prev: any) => ({
+          ...prev,
+          from_email: false,
+          subject: false,
+        }))
+      );
+    } else {
+      setValue("from_email", "");
+      setValue("to", playBookData?.work_email);
+      setValue("subject", "");
+      setTimeout(() =>
+        setIsLoading((prev: any) => ({
+          ...prev,
+          from_email: false,
+          subject: false,
+        }))
+      );
+    }
+  };
+
   return (
     <>
       <div className={`send-container ${containers} xl:tw-py-5`}>
@@ -250,6 +292,41 @@ const DraftEmail = ({
                 Regenerate
               </span>
             </LoadingButton>
+          </div>
+        </div>
+      </div>
+      <div className={`parent-email-container ${containers}`}>
+        <div className="tw-flex">
+          <div className={`${label}`}>Parent Email</div>
+          <div className={`${labelValue}`}>
+            <ReactSelect
+              name="in_reply_to"
+              className="basic-single tw-cursor-pointer"
+              variant="blue"
+              placeholder="Please select"
+              isClearable={true}
+              isSearchable={true}
+              options={emails.map((item: any, idx: number) => {
+                let _count = item?.subject ? "" : ++countIndexForEmailSubject;
+                item.label = `ID: ${item?.id} | Subject: ${
+                  item?.subject ? item?.subject : "Email " + _count
+                }`;
+                item.value = item.id;
+                return item;
+              })}
+              styles={selectBlueStyles}
+              defaultValue={getValues("in_reply_to")}
+              onChange={handleChangeParentEmail}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="in_reply_to"
+              render={({ message }) => (
+                <FormHelperText sx={{ color: "error.main" }}>
+                  {message}
+                </FormHelperText>
+              )}
+            />
           </div>
         </div>
       </div>
