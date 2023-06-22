@@ -93,6 +93,7 @@ export const usePlaybook = (load: boolean = true) => {
     personId: number,
     data: any
   ) => {
+    insertBodyLoader();
     try {
       let response = await updateProspectSequenceEventDetailService(
         id,
@@ -103,13 +104,19 @@ export const usePlaybook = (load: boolean = true) => {
         devLog(() => {
           console.log("response", response?.data);
         });
-        ToastSuccess("Prospect sequence event successfully updated.");
+        setTimeout(() => {
+          removeBodyLoader();
+          ToastSuccess("Prospect sequence event successfully updated.");
+        });
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
-      ToastSuccess("Something went wrong.");
+      setTimeout(() => {
+        removeBodyLoader();
+        ToastSuccess("Something went wrong.");
+      });
     }
   };
 
