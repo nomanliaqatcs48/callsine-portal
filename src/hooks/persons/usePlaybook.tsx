@@ -8,6 +8,7 @@ import { useParams } from "react-router-dom";
 import { generateResponsesService } from "../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { updateProspectSequenceEventDetailService } from "../../services/sequences.service";
 
 export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
@@ -87,6 +88,22 @@ export const usePlaybook = (load: boolean = true) => {
     }
   };
 
+  const updateProspectSequenceEvent = async (id: any, personId: number) => {
+    try {
+      let response = await updateProspectSequenceEventDetailService(
+        id,
+        personId
+      );
+      if (response?.data) {
+        console.log("response", response?.data);
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
+    }
+  };
+
   return {
     data,
     setData,
@@ -98,5 +115,6 @@ export const usePlaybook = (load: boolean = true) => {
     handleOpen,
     handleClose,
     regeneratePlaybook,
+    updateProspectSequenceEvent,
   };
 };
