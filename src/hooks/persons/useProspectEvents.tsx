@@ -2,12 +2,17 @@
 import { useState, useEffect } from "react";
 import { getProspectSequenceEventService } from "../../services/sequences.service";
 
-export const useFetchProspectSequenceEvent = (personId: string) => {
+export const useFetchProspectSequenceEvent = (
+  personId: string,
+  filters: any,
+  searchValue: string = ""
+) => {
   const [data, setData] = useState<any>(null);
   const [loading, setLoading] = useState<any>({
     onPage: true,
     regeneratePlaybook: false,
     resetPrompt: false,
+    search: false,
   });
   const [error, setError] = useState<any>(null);
   const [open, setOpen] = useState<any>(false);
@@ -19,7 +24,7 @@ export const useFetchProspectSequenceEvent = (personId: string) => {
 
   useEffect(() => {
     setLoading(true);
-    getProspectSequenceEventService(personId)
+    getProspectSequenceEventService(personId, filters, searchValue)
       .then((response) => {
         setData(response.data);
         setLoading(false);
@@ -32,7 +37,7 @@ export const useFetchProspectSequenceEvent = (personId: string) => {
 
   const getPersonDetail = () => {
     setLoading(true);
-    getProspectSequenceEventService(personId)
+    getProspectSequenceEventService(personId, filters, searchValue)
       .then((response) => {
         setData(response.data);
         setLoading(false);

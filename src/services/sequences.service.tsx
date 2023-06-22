@@ -8,7 +8,7 @@ export const getProspectSequenceEventService = async (
   searchValue: string = ""
 ) => {
   return await http.get(
-    `${endpoints.SEQUENCE_EVENTS}?person.id=${personId}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+    `${endpoints.SEQUENCE_EVENTS}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}&person.id=${personId}`
   );
 };
 

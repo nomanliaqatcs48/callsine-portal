@@ -15,6 +15,7 @@ import PlaybookList from "./PlaybookList";
 import SelectItem from "./SelectItem";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { getPlaybooks } from "../../../../../../services/prompts.service";
+import { useAsyncDebounce } from "react-table";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -30,8 +31,8 @@ const PlaybookV2 = () => {
     isLoading: playbookLoading,
     setIsLoading: setPlaybookLoading,
   } = usePlaybook();
-  const [filters, setFilters] = React.useState<any>({
-    limit: 9999,
+  const [filters, setFilters] = useState<any>({
+    limit: 99999,
     offset: 0,
     currentPage: 1,
   });
@@ -45,7 +46,7 @@ const PlaybookV2 = () => {
     handleClose,
     getPersonDetail,
     open,
-  } = useFetchProspectSequenceEvent(String(id));
+  } = useFetchProspectSequenceEvent(String(id), filters, searchValue);
   // const {
   //   data,
   //   setData,
@@ -119,6 +120,16 @@ const PlaybookV2 = () => {
     setPromptId(newValue?.value);
   };
 
+  const handleSearchOnChange = useAsyncDebounce(async () => {
+    getPersonDetail();
+  }, 1000);
+
+  const handleSearchOnBeforeChange = (e: any) => {
+    setLoading((prev: any) => ({ ...prev, search: true }));
+    setSearchValue(e.target.value);
+    void handleSearchOnChange();
+  };
+
   return (
     <>
       <Paper
@@ -172,7 +183,7 @@ const PlaybookV2 = () => {
               <input
                 type="search"
                 placeholder="Search"
-                onChange={() => null}
+                onChange={handleSearchOnBeforeChange}
                 className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
               />
             </div>

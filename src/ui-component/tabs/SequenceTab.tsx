@@ -47,7 +47,17 @@ interface ProspectSequenceEvent {
 
 const SequenceTab = () => {
   const { id } = useParams();
-  const { data, loading, error } = useFetchProspectSequenceEvent(String(id));
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [filters, setFilters] = useState<any>({
+    limit: 99999,
+    offset: 0,
+    currentPage: 1,
+  });
+  const { data, loading, error } = useFetchProspectSequenceEvent(
+    String(id),
+    filters,
+    searchValue
+  );
 
   if (loading) return <div>Loading...</div>;
   if (error) return <div>Error: {error.message}</div>;
