@@ -88,11 +88,16 @@ export const usePlaybook = (load: boolean = true) => {
     }
   };
 
-  const updateProspectSequenceEvent = async (id: any, personId: number) => {
+  const updateProspectSequenceEvent = async (
+    id: any,
+    personId: number,
+    data: any
+  ) => {
     try {
       let response = await updateProspectSequenceEventDetailService(
         id,
-        personId
+        personId,
+        data
       );
       if (response?.data) {
         console.log("response", response?.data);
