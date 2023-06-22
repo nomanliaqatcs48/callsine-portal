@@ -292,7 +292,7 @@ const DraftEmail = ({
             />
           </div>
           {/*right*/}
-          <div className="tw-py-2">
+          <div className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-1">
             {/*<Button onClick={() => null} className="tw-min-w-min">
               <IconTrash
                 strokeWidth={3}
@@ -300,6 +300,18 @@ const DraftEmail = ({
                 style={{ color: "#778da9" }}
               />
             </Button>*/}
+            <LoadingButton
+              type="button"
+              variant="outlined"
+              onClick={() => null}
+              className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+              loading={false}
+              disabled={false}
+            >
+              <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                Save Draft
+              </span>
+            </LoadingButton>
             <LoadingButton
               type="button"
               variant="outlined"
