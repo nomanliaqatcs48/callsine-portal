@@ -29,11 +29,7 @@ function TabPanel(props: TabPanelProps) {
       {...other}
       style={{ width: "100%" }}
     >
-      {value === index && (
-        <Box sx={{ p: 3 }}>
-          <Typography>{children}</Typography>
-        </Box>
-      )}
+      {value === index && <Box sx={{ p: 3 }}>{children}</Box>}
     </div>
   );
 }
@@ -103,6 +99,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
             : ++countIndexForEmailSubjectAtSidebar;
           return (
             <Tab
+              key={idx}
               label={item?.subject ? item?.subject : "Email " + _countSidebar}
               {...a11yProps(idx)}
             />
@@ -143,7 +140,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
         }, 500);
 
         return (
-          <TabPanel value={value} index={idx}>
+          <TabPanel key={idx} value={value} index={idx}>
             <Grid container>
               <Grid item xs={12}>
                 <Typography variant="h3">
