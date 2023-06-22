@@ -250,12 +250,14 @@ const DraftEmail = ({
   };
 
   const handleSaveDraft = () => {
+    let _data = {
+      html_message: getValues("html_message"),
+    };
     void updateProspectSequenceEvent(
       selectedSequenceEvent?.person,
       selectedData?.id,
-      {
-        html_message: getValues("html_message"),
-      }
+      _data,
+      onLoadApi()
     );
   };
 

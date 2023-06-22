@@ -92,7 +92,8 @@ export const usePlaybook = (load: boolean = true) => {
   const updateProspectSequenceEvent = async (
     personId: number,
     id: any,
-    data: any
+    data: any,
+    onLoadApi: any
   ) => {
     insertBodyLoader();
     try {
@@ -104,6 +105,7 @@ export const usePlaybook = (load: boolean = true) => {
         setTimeout(() => {
           removeBodyLoader();
           ToastSuccess("Prospect sequence event successfully updated.");
+          onLoadApi();
         });
       }
     } catch (e: any) {
