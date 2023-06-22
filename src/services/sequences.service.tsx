@@ -2,8 +2,14 @@
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
-export const getProspectSequenceEventService = async (personId: string) => {
-  return await http.get(`${endpoints.SEQUENCE_EVENTS}?person.id=${personId}`);
+export const getProspectSequenceEventService = async (
+  personId: string,
+  filters: any,
+  searchValue: string = ""
+) => {
+  return await http.get(
+    `${endpoints.SEQUENCE_EVENTS}?person.id=${personId}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+  );
 };
 
 export const updateProspectSequenceEventDetailService = async (
