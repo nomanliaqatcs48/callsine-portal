@@ -72,10 +72,12 @@ const AuthLogin = ({ ...others }) => {
         console.log("values", values);
       });
       values.username = values.email;
-      let res = await loginService(values);
-      devLog(() => {
-        console.log("res", res);
-      });
+      const requestData = {
+        username: values.email,
+        password: values.password,
+      };
+      let res = await loginService(requestData);
+      devLog("res", res);
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access);
