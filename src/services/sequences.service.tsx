@@ -8,9 +8,11 @@ export const getProspectSequenceEventService = async (personId: string) => {
 
 export const updateProspectSequenceEventDetailService = async (
   id: number,
-  personId: number
+  personId: number,
+  data: any
 ) => {
-  return await http.get(
-    `${endpoints.SEQUENCE_EVENTS}${id}/?person.id=${personId}`
+  return await http.put(
+    `${endpoints.SEQUENCE_EVENTS}${id}/?person.id=${personId}`,
+    data
   );
 };
