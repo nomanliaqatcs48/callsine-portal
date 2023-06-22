@@ -8,7 +8,7 @@ export const getProspectSequenceEventService = async (personId: string) => {
 
 export const updateProspectSequenceEventDetailService = async (
   id: number,
-  personId: string
+  personId: number
 ) => {
   return await http.get(
     `${endpoints.SEQUENCE_EVENTS}${id}/?person.id=${personId}`
