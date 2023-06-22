@@ -9,6 +9,7 @@ import { generateResponsesService } from "../../services/prompts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { updateProspectSequenceEventDetailService } from "../../services/sequences.service";
+import { updateEmailService } from "../../services/emails.service";
 
 export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
@@ -89,17 +90,13 @@ export const usePlaybook = (load: boolean = true) => {
   };
 
   const updateProspectSequenceEvent = async (
-    id: any,
     personId: number,
+    id: any,
     data: any
   ) => {
     insertBodyLoader();
     try {
-      let response = await updateProspectSequenceEventDetailService(
-        id,
-        personId,
-        data
-      );
+      let response = await updateEmailService(personId, id, data);
       if (response?.data) {
         devLog(() => {
           console.log("response", response?.data);

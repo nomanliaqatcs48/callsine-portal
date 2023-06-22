@@ -251,15 +251,10 @@ const DraftEmail = ({
 
   const handleSaveDraft = () => {
     void updateProspectSequenceEvent(
-      selectedSequenceEvent?.id,
       selectedSequenceEvent?.person,
+      selectedData?.id,
       {
-        person: Number(personId),
-        position: position,
-        status: selectedSequenceEvent?.status,
-        scheduledEmail: {
-          html_message: "Dear Ken",
-        },
+        html_message: getValues("html_message"),
       }
     );
   };
