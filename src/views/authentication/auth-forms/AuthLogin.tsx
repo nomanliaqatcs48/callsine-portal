@@ -77,7 +77,9 @@ const AuthLogin = ({ ...others }) => {
         password: values.password,
       };
       let res = await loginService(requestData);
-      devLog("res", res);
+      devLog(() => {
+        console.log("res", res);
+      });
       if (res?.data) {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access);
