@@ -66,7 +66,8 @@ const DraftEmail = ({
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const { mailAccountsData } = useMailAccounts(open);
-  const { regeneratePlaybook } = usePlaybook(false);
+  const { regeneratePlaybook, updateProspectSequenceEvent } =
+    usePlaybook(false);
   const { emails } = useEmailsTab(open, {
     limit: 99999,
     offset: 0,
@@ -248,6 +249,21 @@ const DraftEmail = ({
     }
   };
 
+  const handleSaveDraft = () => {
+    void updateProspectSequenceEvent(
+      selectedSequenceEvent?.id,
+      selectedSequenceEvent?.person,
+      {
+        person: Number(personId),
+        position: position,
+        status: selectedSequenceEvent?.status,
+        scheduledEmail: {
+          html_message: "Dear Ken",
+        },
+      }
+    );
+  };
+
   return (
     <>
       <div className={`send-container ${containers} xl:tw-py-5`}>
@@ -303,7 +319,7 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
-              onClick={() => null}
+              onClick={handleSaveDraft}
               className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
               loading={false}
               disabled={false}

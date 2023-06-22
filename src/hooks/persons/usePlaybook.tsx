@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { devLogError } from "../../helpers/logs";
+import { devLog, devLogError } from "../../helpers/logs";
 import {
   getPersonDetailService,
   updatePersonDetailService,
@@ -100,12 +100,16 @@ export const usePlaybook = (load: boolean = true) => {
         data
       );
       if (response?.data) {
-        console.log("response", response?.data);
+        devLog(() => {
+          console.log("response", response?.data);
+        });
+        ToastSuccess("Prospect sequence event successfully updated.");
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
+      ToastSuccess("Something went wrong.");
     }
   };
 
