@@ -13,9 +13,9 @@ export const getPeopleService = async (
   let _ordering = `&ordering=${
     isOrderDesc === undefined ? "" : isOrderDesc ? "-" + sortedId : sortedId
   }`;
-  let _titleFilter = `&title=${searchFilterValue?.title}`;
-  let _companyFilter = `&company_name=${searchFilterValue?.company}`;
-  let _industryFilter = `&org.industry=${searchFilterValue?.industry}`;
+  let _titleFilter = `&job_title=${searchFilterValue?.title}`;
+  let _companyFilter = `&org_name=${searchFilterValue?.company}`;
+  let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
 
   return await http.get(
     `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}`

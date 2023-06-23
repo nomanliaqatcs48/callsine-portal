@@ -72,7 +72,7 @@ const PersonsPage = () => {
   };
 
   const handleSearchOnChange = useAsyncDebounce(async () => {
-    setFilters((prev: any) => ({ ...prev, filters }));
+    setFilters((prev: any) => ({ ...prev, limit: 10, offset: 0 }));
   }, 1000);
 
   const MyDivider = () => {
