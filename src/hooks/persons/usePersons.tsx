@@ -21,6 +21,11 @@ export const usePersons = (
     search: false,
   });
   const [selectedPersonRows, setSelectedPersonRows] = useState<any[]>([]);
+  const [searchFilterValue, setSearchFilterValue] = useState({
+    title: "",
+    company: "",
+    industry: "",
+  });
 
   devLog(() => {
     console.log("sortedId", sortedId);
@@ -38,7 +43,8 @@ export const usePersons = (
         filters,
         searchValue,
         sortedId,
-        isOrderDesc
+        isOrderDesc,
+        searchFilterValue
       );
       if (res?.data) {
         devLog(() => {
@@ -74,5 +80,7 @@ export const usePersons = (
     setSortedId,
     isOrderDesc,
     setIsOrderDesc,
+    searchFilterValue,
+    setSearchFilterValue,
   };
 };

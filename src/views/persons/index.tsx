@@ -15,6 +15,7 @@ import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeopl
 import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
 import { useAsyncDebounce } from "react-table";
 import { usePersons } from "../../hooks/persons/usePersons";
+import SearchFilter from "../../ui-component/forms/SearchFilter";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -37,6 +38,8 @@ const PersonsPage = () => {
     setSortedId,
     isOrderDesc,
     setIsOrderDesc,
+    searchFilterValue,
+    setSearchFilterValue,
   } = usePersons();
 
   const successfulUploadCsv = () => {
@@ -47,6 +50,24 @@ const PersonsPage = () => {
   const handleSearchOnBeforeChange = (e: any) => {
     setIsLoading((prev: any) => ({ ...prev, search: true }));
     setSearchValue(e.target.value);
+    void handleSearchOnChange();
+  };
+
+  const handleSearchTitle = (e: any) => {
+    setSearchFilterValue((prev: any) => ({ ...prev, title: e.target.value }));
+    void handleSearchOnChange();
+  };
+
+  const handleSearchCompany = (e: any) => {
+    setSearchFilterValue((prev: any) => ({ ...prev, company: e.target.value }));
+    void handleSearchOnChange();
+  };
+
+  const handleSearchIndustry = (e: any) => {
+    setSearchFilterValue((prev: any) => ({
+      ...prev,
+      industry: e.target.value,
+    }));
     void handleSearchOnChange();
   };
 
@@ -93,30 +114,66 @@ const PersonsPage = () => {
               <SearchFieldV2 onChange={handleSearchOnBeforeChange} />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
-              <Filter
+              {/*<Filter
                 id="title-filter"
                 showLabel={true}
                 labelText="Title"
                 data={[{ label: "All", value: "" }]}
                 onChange={() => null}
+              />*/}
+              <label
+                htmlFor="search-title"
+                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+              >
+                Title
+              </label>
+              <SearchFilter
+                searchValue={searchFilterValue?.title}
+                onChange={handleSearchTitle}
+                placeholder="Search Title"
+                id="search-title"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
-              <Filter
+              {/*<Filter
                 id="company-filter"
                 showLabel={true}
                 labelText="Company"
                 data={[{ label: "All", value: "" }]}
                 onChange={() => null}
+              />*/}
+              <label
+                htmlFor="search-company"
+                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+              >
+                Company
+              </label>
+              <SearchFilter
+                searchValue={searchFilterValue?.company}
+                onChange={handleSearchCompany}
+                placeholder="Search Company"
+                id="search-company"
               />
             </Grid>
             <Grid item xs={12} sm={12} md={12} lg={12} xl={2}>
-              <Filter
+              {/*<Filter
                 id="industry-filter"
                 showLabel={true}
                 labelText="Industry"
                 data={[{ label: "All", value: "" }]}
                 onChange={() => null}
+              />*/}
+              <label
+                htmlFor="search-industry"
+                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+              >
+                Industry
+              </label>
+              <SearchFilter
+                searchValue={searchFilterValue?.industry}
+                onChange={handleSearchIndustry}
+                placeholder="Search Industry"
+                id="search-industry"
               />
             </Grid>
           </Grid>
