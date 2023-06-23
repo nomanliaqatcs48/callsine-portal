@@ -13,6 +13,8 @@ export const usePersons = (
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
   const [filters, setFilters] = React.useState<any>(filtersParam);
+  const [sortedId, setSortedId] = useState<string>("");
+  const [isOrderDesc, setIsOrderDesc] = useState<any>("");
   const [isLoading, setIsLoading] = React.useState({
     onPage: true,
     table: false,
@@ -20,15 +22,24 @@ export const usePersons = (
   });
   const [selectedPersonRows, setSelectedPersonRows] = useState<any[]>([]);
 
+  devLog(() => {
+    console.log("sortedId", sortedId);
+  });
+
   useEffect(() => {
     if (load) {
       getPeople();
     }
-  }, [load, filters]);
+  }, [load, filters, sortedId, isOrderDesc]);
 
   const getPeople = async () => {
     try {
-      let res = await getPeopleService(filters, searchValue);
+      let res = await getPeopleService(
+        filters,
+        searchValue,
+        sortedId,
+        isOrderDesc
+      );
       if (res?.data) {
         devLog(() => {
           console.log("res?.data", res?.data);
@@ -59,5 +70,9 @@ export const usePersons = (
     selectedPersonRows,
     setSelectedPersonRows,
     getPeople,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
   };
 };

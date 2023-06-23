@@ -33,6 +33,10 @@ const PersonsPage = () => {
     selectedPersonRows,
     setSelectedPersonRows,
     getPeople,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
   } = usePersons();
 
   const successfulUploadCsv = () => {
@@ -212,13 +216,12 @@ const PersonsPage = () => {
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
-
           // topContent={renderSearch}
-          // setSortedId={setSortedId}
-          // setIsOrderDesc={setIsOrderDesc}
+          setSortedId={setSortedId}
+          setIsOrderDesc={setIsOrderDesc}
           //
-          // sortedId={sortedId}
-          // isOrderDesc={isOrderDesc}
+          sortedId={sortedId}
+          isOrderDesc={isOrderDesc}
         />
       </Paper>
     </>

@@ -1,9 +1,18 @@
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
-export const getPeopleService = async (filters: any, searchValue: string) => {
+export const getPeopleService = async (
+  filters: any,
+  searchValue: string,
+  sortedId: any,
+  isOrderDesc: any
+) => {
   return await http.get(
-    `${endpoints.PERSON}?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
+    `${endpoints.PERSON}?limit=${filters.limit}&offset=${
+      filters.offset
+    }&search=${searchValue}&ordering=${
+      isOrderDesc === undefined ? "" : isOrderDesc ? "-" + sortedId : sortedId
+    }`
   );
 };
 

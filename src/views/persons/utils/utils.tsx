@@ -299,6 +299,7 @@ export const _columns: any = () => {
       {
         Header: "Company",
         accessor: "org.name",
+        sorting_id: "org__name",
       },
       /*{
         Header: "Phone",
