@@ -31,6 +31,10 @@ const MailAccountsPage = () => {
     selectedFlatRows,
     setSelectedFlatRows,
     getMailAccounts,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
   } = useMailAccounts();
 
   const handleSearchOnBeforeChange = (e: any) => {
@@ -164,11 +168,11 @@ const MailAccountsPage = () => {
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
-          // setSortedId={setSortedId}
-          // setIsOrderDesc={setIsOrderDesc}
+          setSortedId={setSortedId}
+          setIsOrderDesc={setIsOrderDesc}
           //
-          // sortedId={sortedId}
-          // isOrderDesc={isOrderDesc}
+          sortedId={sortedId}
+          isOrderDesc={isOrderDesc}
         />
       </Paper>
     </>

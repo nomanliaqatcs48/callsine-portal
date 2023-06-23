@@ -19,17 +19,24 @@ export const useMailAccounts = (
     table: false,
   });
   const [selectedFlatRows, setSelectedFlatRows] = useState<any[]>([]);
+  const [sortedId, setSortedId] = useState<string>("");
+  const [isOrderDesc, setIsOrderDesc] = useState<any>("");
 
   useEffect(() => {
     if (load) {
       getMailAccounts();
     }
-  }, [load, filters]);
+  }, [load, filters, sortedId, isOrderDesc]);
 
   const getMailAccounts = async () => {
     setIsLoading((prev: any) => ({ ...prev, table: true }));
     try {
-      let res = await getMailAccountsService(filters, searchValue);
+      let res = await getMailAccountsService(
+        filters,
+        searchValue,
+        sortedId,
+        isOrderDesc
+      );
       if (res?.data) {
         setMailAccountsData(res.data?.results);
         setTotal(res.data?.count);
@@ -65,5 +72,9 @@ export const useMailAccounts = (
     selectedFlatRows,
     setSelectedFlatRows,
     getMailAccounts,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
   };
 };
