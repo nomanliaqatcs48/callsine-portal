@@ -29,9 +29,12 @@ import Select from "react-select";
 import { useCustomMediaQuery } from "../../hooks/useCustomMediaQuery";
 
 // images + icons
-import { ReactComponent as DescArrowIcon } from "../../assets/images/svg/desc-arrow.svg";
-import { ReactComponent as AscArrowIcon } from "../../assets/images/svg/asc-arrow.svg";
-import { ReactComponent as AscAndDescArrowIcon } from "../../assets/images/svg/asc-and-desc-arrows.svg";
+// import { ReactComponent as DescArrowIcon } from "../../assets/images/svg/desc-arrow.svg";
+// import { ReactComponent as AscArrowIcon } from "../../assets/images/svg/asc-arrow.svg";
+// import { ReactComponent as AscAndDescArrowIcon } from "../../assets/images/svg/asc-and-desc-arrows.svg";
+import NorthIcon from "@mui/icons-material/North";
+import SouthIcon from "@mui/icons-material/South";
+import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { Typography } from "@mui/material";
 
 interface MyTableProps {
@@ -487,6 +490,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                               style: {
                                 minWidth: column.minWidth,
                                 width: column.width,
+                                cursor: "pointer",
                               },
                             };
                             return (
@@ -508,27 +512,33 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                       column.render("Header")
                                     }
                                   </span>
-                                  {/*<span>
+                                  <span>
                                     {column.isSorted ? (
                                       column.isSortedDesc === true ? (
-                                        <DescArrowIcon />
+                                        <SouthIcon sx={{ fontSize: 12 }} />
                                       ) : column.isSortedDesc === false ? (
-                                        <AscArrowIcon />
+                                        <NorthIcon sx={{ fontSize: 12 }} />
                                       ) : column.disableSortBy ? (
                                         ""
                                       ) : (
-                                        <AscAndDescArrowIcon
-                                          style={{ opacity: 0.25 }}
-                                        />
+                                        <>
+                                          <SwapVertIcon sx={{ fontSize: 14 }} />
+                                          {/*<AscAndDescArrowIcon
+                                            style={{ opacity: 0.25 }}
+                                          />*/}
+                                        </>
                                       )
                                     ) : column.canSort ? (
-                                      <AscAndDescArrowIcon
-                                        style={{ opacity: 0.25 }}
-                                      />
+                                      <>
+                                        <SwapVertIcon sx={{ fontSize: 14 }} />
+                                        {/*<AscAndDescArrowIcon
+                                          style={{ opacity: 0.25 }}
+                                        />*/}
+                                      </>
                                     ) : (
                                       ""
                                     )}
-                                  </span>*/}
+                                  </span>
                                 </Typography>
                               </TableCell>
                             );

@@ -329,8 +329,8 @@ export const _columns: any = () => {
       {
         Header: "Emails",
         accessor: "email_count",
-        width: 60,
-        minWidth: 60,
+        width: 90,
+        minWidth: 90,
         // Cell: (cell: any) => cell?.value,
       },
       /*{
