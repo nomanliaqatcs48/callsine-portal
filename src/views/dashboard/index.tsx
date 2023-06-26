@@ -6,6 +6,9 @@ import RemainingClicks from "../../ui-component/cards/RemainingClicks";
 import { useAuth } from "../../contexts/auth";
 import TotalPersonsCard from "../../ui-component/cards/TotalPersons";
 import TotalMailAccounts from "../../ui-component/cards/TotalMailAccounts";
+import CallsineDataGrid from "../../ui-component/tables/CallsineDataGrid";
+import CallsineBarChart from "../../ui-component/charts/CallsineBarChart";
+import CallsineLineChart from "../../ui-component/charts/CallsineLineChart";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
@@ -35,6 +38,37 @@ const DashboardPage = () => {
           </Grid>
         </Grid>
       </Grid>
+      {/*<Grid item xs={12}>
+        <Grid container spacing={gridSpacing}>
+          <Grid item xs={12}>
+            <CallsineBarChart
+              _xs={290}
+              _sm={600}
+              _md={480}
+              _lg={740}
+              _xl={1000}
+              _2xl={1250}
+              _3xl={1520}
+              _4xl={1620}
+            />
+          </Grid>
+          <Grid item xs={12} className="3xl:tw-w-1/2">
+            <CallsineLineChart
+              _xs={290}
+              _sm={600}
+              _md={480}
+              _lg={740}
+              _xl={1000}
+              _2xl={1250}
+              _3xl={1520}
+              _4xl={1620}
+            />
+          </Grid>
+          <Grid item xs={12}>
+            <CallsineDataGrid />
+          </Grid>
+        </Grid>
+      </Grid>*/}
     </Grid>
   );
 };
