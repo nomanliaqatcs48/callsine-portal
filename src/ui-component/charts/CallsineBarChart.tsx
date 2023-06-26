@@ -24,21 +24,20 @@ const CallsineBarChart = ({
   _4xl = 550,
   ...props
 }: CallsineBarChartTypes) => {
-  const isXs = useMediaQuery("(min-width:0)");
   const isSm = useMediaQuery("(min-width:640px)");
   const isMd = useMediaQuery("(min-width:768px)");
   const isLg = useMediaQuery("(min-width:1024px)");
   const isXl = useMediaQuery("(min-width:1280px)");
-  const isXxl = useMediaQuery("(min-width:1536px)");
-  const isXxxl = useMediaQuery("(min-width:1800px)");
-  const isXxxxl = useMediaQuery("(min-width:1920px)");
+  const is2xl = useMediaQuery("(min-width:1536px)");
+  const is3xl = useMediaQuery("(min-width:1800px)");
+  const is4xl = useMediaQuery("(min-width:1920px)");
 
   const barChartWidth = (): number => {
-    if (isXxxxl) {
+    if (is4xl) {
       return _4xl;
-    } else if (isXxxl) {
+    } else if (is3xl) {
       return _3xl;
-    } else if (isXxl) {
+    } else if (is2xl) {
       return _2xl;
     } else if (isXl) {
       return _xl;
