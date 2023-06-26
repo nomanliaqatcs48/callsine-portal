@@ -1,5 +1,5 @@
 import { useMediaQuery } from "@mui/material";
-import { BarChart } from "@mui/x-charts/BarChart";
+import { BarChart } from "@mui/x-charts";
 
 type CallsineBarChartTypes = {
   [x: string]: any;
