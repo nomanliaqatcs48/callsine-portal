@@ -129,9 +129,7 @@ const DraftEmail = ({
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
     trigger("from_email");
-    if (event?.signature) {
-      setValueHtmlMsg(event?.signature);
-    }
+    setValueHtmlMsg(event?.signature || "");
   };
 
   const handleSendNow = async (id: any) => {
@@ -240,21 +238,15 @@ const DraftEmail = ({
     );
   };
 
-  const setValueHtmlMsg = (addSignature?: string | null) => {
+  const setValueHtmlMsg = (addSignature: string | null = "") => {
     if (selectedData?.text) {
       if (selectedData?.text && selectedData?.text?.toLowerCase() !== "none") {
-        setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
-        if (addSignature) {
-          setValue(
-            "html_message",
-            selectedData?.text?.replace(/\n/g, "<br />") + addSignature
-          );
-        }
+        setValue(
+          "html_message",
+          selectedData?.text?.replace(/\n/g, "<br />") + addSignature
+        );
       } else {
-        setValue("html_message", null);
-        if (addSignature) {
-          setValue("html_message", addSignature);
-        }
+        setValue("html_message", "" + addSignature);
       }
     } else {
       if (
@@ -263,19 +255,10 @@ const DraftEmail = ({
       ) {
         setValue(
           "html_message",
-          selectedData?.html_message?.replace(/\n/g, "<br />")
+          selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
         );
-        if (addSignature) {
-          setValue(
-            "html_message",
-            selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
-          );
-        }
       } else {
-        setValue("html_message", null);
-        if (addSignature) {
-          setValue("html_message", addSignature);
-        }
+        setValue("html_message", "" + addSignature);
       }
     }
   };
