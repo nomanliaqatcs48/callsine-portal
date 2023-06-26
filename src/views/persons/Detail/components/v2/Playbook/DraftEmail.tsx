@@ -107,31 +107,7 @@ const DraftEmail = ({
       if (item === "person") {
         setValue("person", Number(personId));
       } else if (item === "html_message") {
-        if (selectedData?.text) {
-          if (
-            selectedData?.text &&
-            selectedData?.text?.toLowerCase() !== "none"
-          ) {
-            setValue(
-              "html_message",
-              selectedData?.text?.replace(/\n/g, "<br />")
-            );
-          } else {
-            setValue("html_message", null);
-          }
-        } else {
-          if (
-            selectedData?.html_message &&
-            selectedData?.html_message?.toLowerCase() !== "none"
-          ) {
-            setValue(
-              "html_message",
-              selectedData?.html_message?.replace(/\n/g, "<br />")
-            );
-          } else {
-            setValue("html_message", null);
-          }
-        }
+        setValueHtmlMsg();
       }
 
       setValue("in_reply_to", "");
@@ -150,9 +126,12 @@ const DraftEmail = ({
     });
   }, [selectedData]);
 
-  const handleChangeFromEmail = (event: SelectChangeEvent) => {
+  const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
     trigger("from_email");
+    if (event?.signature) {
+      setValueHtmlMsg(event?.signature);
+    }
   };
 
   const handleSendNow = async (id: any) => {
@@ -259,6 +238,46 @@ const DraftEmail = ({
       _data,
       onLoadApi()
     );
+  };
+
+  const setValueHtmlMsg = (addSignature?: string | null) => {
+    if (selectedData?.text) {
+      if (selectedData?.text && selectedData?.text?.toLowerCase() !== "none") {
+        setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
+        if (addSignature) {
+          setValue(
+            "html_message",
+            selectedData?.text?.replace(/\n/g, "<br />") + addSignature
+          );
+        }
+      } else {
+        setValue("html_message", null);
+        if (addSignature) {
+          setValue("html_message", addSignature);
+        }
+      }
+    } else {
+      if (
+        selectedData?.html_message &&
+        selectedData?.html_message?.toLowerCase() !== "none"
+      ) {
+        setValue(
+          "html_message",
+          selectedData?.html_message?.replace(/\n/g, "<br />")
+        );
+        if (addSignature) {
+          setValue(
+            "html_message",
+            selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
+          );
+        }
+      } else {
+        setValue("html_message", null);
+        if (addSignature) {
+          setValue("html_message", addSignature);
+        }
+      }
+    }
   };
 
   return (
