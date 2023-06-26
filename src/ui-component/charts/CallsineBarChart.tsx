@@ -24,6 +24,9 @@ const CallsineBarChart = ({
   _4xl = 550,
   ...props
 }: CallsineBarChartTypes) => {
+  const uData = [4000, 3000, 2000, 2780, 1890, 2390, 3490];
+  const xLabels = ["A", "B", "C", "D", "E", "F", "G"];
+
   const isSm = useMediaQuery("(min-width:640px)");
   const isMd = useMediaQuery("(min-width:768px)");
   const isLg = useMediaQuery("(min-width:1024px)");
@@ -56,8 +59,8 @@ const CallsineBarChart = ({
     <>
       <BarChart
         className="callsine-bar-chart"
-        xAxis={[{ scaleType: "band", data: ["group A", "group B", "group C"] }]}
-        series={[{ data: [4, 3, 5] }, { data: [1, 6, 3] }, { data: [2, 5, 6] }]}
+        xAxis={[{ data: xLabels, scaleType: "band" }]}
+        series={[{ data: uData, label: "pv", id: "pvId", stack: "total" }]}
         width={barChartWidth()}
         height={275}
         {...props}
