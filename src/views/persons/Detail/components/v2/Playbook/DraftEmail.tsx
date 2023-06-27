@@ -258,6 +258,21 @@ const DraftEmail = ({
             })?.[0]
           : ""
       );
+
+      //update signature
+      if (event?.from_email) {
+        let _mailAccount = _.filter(mailAccountsData, (o: any) => {
+          o.label = o.email;
+          o.value = o.id;
+          return o?.id === event?.from_email;
+        })?.[0];
+        setCurrentSignature(_mailAccount?.signature || "");
+        setValueHtmlMsg(_mailAccount?.signature || "", true);
+      } else {
+        setCurrentSignature("");
+        setValueHtmlMsg("", true);
+      }
+
       setValue("to", event?.to || getValues("to"));
       setValue("subject", event?.subject || getValues("subject"));
       setTimeout(() =>
@@ -269,6 +284,11 @@ const DraftEmail = ({
       );
     } else {
       setValue("from_email", "");
+
+      //update signature
+      setCurrentSignature("");
+      setValueHtmlMsg("", true);
+
       setValue("to", playBookData?.work_email);
       setValue("subject", "");
       setTimeout(() =>
