@@ -289,7 +289,9 @@ const DraftEmail = ({
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
       subject: getValues("subject") || "",
-      html_message: getValues("html_message"),
+      html_message: getValues("html_message")
+        ? getValues("html_message")?.replace(/\n/g, "")
+        : "",
     };
     devLog(() => {
       console.log("selectedSequenceEvent", selectedSequenceEvent);
