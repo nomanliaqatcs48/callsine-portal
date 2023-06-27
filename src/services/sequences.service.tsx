@@ -22,3 +22,9 @@ export const updateProspectSequenceEventDetailService = async (
     data
   );
 };
+
+export const getSequenceEventScheduledEmailService = async () => {
+  return await http.get(
+    `${endpoints.SEQUENCE_EVENTS}?scheduledEmail__status=None`
+  );
+};
