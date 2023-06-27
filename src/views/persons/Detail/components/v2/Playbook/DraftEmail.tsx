@@ -124,29 +124,43 @@ const DraftEmail = ({
   useEffect(() => {
     setIsLoading((prev: any) => ({
       ...prev,
-      from_email: true,
+      in_reply_to: true,
     }));
     setValue(
-      "from_email",
-      selectedData?.from_email
-        ? _.filter(mailAccountsData, (o: any) => {
-            devLog(() => {
-              console.log("o?.id", o?.id);
-              console.log("selectedData?.from_email", selectedData?.from_email);
-            });
-            return o?.id === selectedData?.from_email;
-          })
+      "in_reply_to",
+      selectedData?.in_reply_to
+        ? _.filter(emails, (o: any) => o?.id === selectedData?.in_reply_to)
         : ""
     );
     setTimeout(() => {
       setIsLoading((prev: any) => ({
         ...prev,
-        onPage: false,
-        from_email: false,
         in_reply_to: false,
       }));
-    });
-  }, [mailAccountsData]);
+    }, 500);
+  }, [selectedData, selectedSequenceEvent, emails]);
+
+  useEffect(() => {
+    setIsLoading((prev: any) => ({
+      ...prev,
+      from_email: true,
+    }));
+    setValue(
+      "from_email",
+      selectedData?.from_email
+        ? _.filter(
+            mailAccountsData,
+            (o: any) => o?.id === selectedData?.from_email
+          )
+        : ""
+    );
+    setTimeout(() => {
+      setIsLoading((prev: any) => ({
+        ...prev,
+        from_email: false,
+      }));
+    }, 500);
+  }, [selectedData, selectedSequenceEvent, mailAccountsData]);
 
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
