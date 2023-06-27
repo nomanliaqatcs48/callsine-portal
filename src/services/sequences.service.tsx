@@ -26,13 +26,14 @@ export const updateProspectSequenceEventDetailService = async (
 
 export const getSequenceEventScheduledEmailService = async (
   filters: any,
-  searchValue: string = ""
+  searchValue: string = "",
+  is_dashboard: boolean = false
 ) => {
   let _profile: any = await load("profile");
   let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
   let _search = `&search=${searchValue}`;
 
   return await http.get(
-    `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=&user__id=${_profile?.id}`
+    `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=&user__id=${_profile?.id}&is_dashboard=${is_dashboard}`
   );
 };
