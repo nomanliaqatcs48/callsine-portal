@@ -1,10 +1,4 @@
-import {
-  Button,
-  Divider,
-  FormHelperText,
-  SelectChangeEvent,
-  Tooltip,
-} from "@mui/material";
+import { Divider, FormHelperText } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
@@ -29,6 +23,7 @@ import {
   removeBodyLoader,
 } from "../../../../../../helpers/loaders";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
+import _ from "lodash";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -125,6 +120,33 @@ const DraftEmail = ({
       }));
     });
   }, [selectedData]);
+
+  useEffect(() => {
+    setIsLoading((prev: any) => ({
+      ...prev,
+      from_email: true,
+    }));
+    setValue(
+      "from_email",
+      selectedData?.from_email
+        ? _.filter(mailAccountsData, (o: any) => {
+            devLog(() => {
+              console.log("o?.id", o?.id);
+              console.log("selectedData?.from_email", selectedData?.from_email);
+            });
+            return o?.id === selectedData?.from_email;
+          })
+        : ""
+    );
+    setTimeout(() => {
+      setIsLoading((prev: any) => ({
+        ...prev,
+        onPage: false,
+        from_email: false,
+        in_reply_to: false,
+      }));
+    });
+  }, [mailAccountsData]);
 
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
