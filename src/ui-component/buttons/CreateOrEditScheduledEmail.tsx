@@ -69,7 +69,7 @@ const CreateOrEditScheduledEmail = ({
     register("html_message", {
       required: "This is required field.",
     });
-    setValue("html_message", defaultValue?.scheduledEmail?.html_message || "");
+    setValueHtmlMsg();
   }, [open]);
 
   const handleOpen = () => setOpen(true);
@@ -82,11 +82,35 @@ const CreateOrEditScheduledEmail = ({
     setValue("html_message", value);
   };
 
+  const setValueHtmlMsg = () => {
+    if (defaultValue?.scheduledEmail?.text) {
+      if (
+        defaultValue?.scheduledEmail?.text &&
+        defaultValue?.scheduledEmail?.text?.toLowerCase() !== "none"
+      ) {
+        setValue(
+          "html_message",
+          defaultValue?.scheduledEmail?.text?.replace(/\n/g, "<br />")
+        );
+      } else {
+        setValue("html_message", "");
+      }
+    } else {
+      if (
+        defaultValue?.scheduledEmail?.html_message &&
+        defaultValue?.scheduledEmail?.html_message?.toLowerCase() !== "none"
+      ) {
+        setValue(
+          "html_message",
+          defaultValue?.scheduledEmail?.html_message?.replace(/\n/g, "<br />")
+        );
+      } else {
+        setValue("html_message", "");
+      }
+    }
+  };
+
   const onThisEditSubmit = async (data: any) => {
-    devLog(() => {
-      console.log("onThisEditSubmit() data", data);
-    });
-    return;
     setScheduledEmailLoading((beforeVal: any) => ({
       ...beforeVal,
       form: true,
@@ -178,7 +202,10 @@ const CreateOrEditScheduledEmail = ({
                     <MyEditor
                       initialValue={
                         id
-                          ? defaultValue?.scheduledEmail?.html_message
+                          ? defaultValue?.scheduledEmail?.html_message?.replace(
+                              /\n/g,
+                              "<br />"
+                            )
                           : getValues("html_message")
                       }
                       onEditorChange={(value: string, editor: any) => {
