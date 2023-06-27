@@ -107,7 +107,10 @@ const DraftEmail = ({
 
       setValue("in_reply_to", "");
       setValue("from_email", "");
-      setValue("to", playBookData?.work_email);
+      setValue(
+        "to",
+        selectedData?.to ? selectedData?.to : playBookData?.work_email
+      );
       setValue("scheduled_time", moment.utc().format("YYYY-MM-DD HH:mm:ss"));
       setValue("subject", selectedData?.subject);
     });
