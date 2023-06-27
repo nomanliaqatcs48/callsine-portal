@@ -33,7 +33,8 @@ export const useDashboard = (
     try {
       let response = await getSequenceEventScheduledEmailService(
         _filters || filters,
-        searchValue
+        searchValue,
+        "true"
       );
       if (response?.data) {
         devLog(() => {
