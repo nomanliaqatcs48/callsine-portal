@@ -307,26 +307,43 @@ const DraftEmail = ({
   };
 
   const setValueHtmlMsg = (addSignature: string | null = "") => {
+    // when you change the from_email field make sure that what you write in html_message must maintain
     if (selectedData?.text) {
       if (selectedData?.text && selectedData?.text?.toLowerCase() !== "none") {
-        setValue(
-          "html_message",
-          selectedData?.text?.replace(/\n/g, "<br />") + addSignature
-        );
+        if (addSignature) {
+          setValue("html_message", getValues("html_message") + addSignature);
+        } else {
+          setValue(
+            "html_message",
+            selectedData?.text?.replace(/\n/g, "<br />") + addSignature
+          );
+        }
       } else {
-        setValue("html_message", "" + addSignature);
+        if (addSignature) {
+          setValue("html_message", getValues("html_message") + addSignature);
+        } else {
+          setValue("html_message", "" + addSignature);
+        }
       }
     } else {
       if (
         selectedData?.html_message &&
         selectedData?.html_message?.toLowerCase() !== "none"
       ) {
-        setValue(
-          "html_message",
-          selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
-        );
+        if (addSignature) {
+          setValue("html_message", getValues("html_message") + addSignature);
+        } else {
+          setValue(
+            "html_message",
+            selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
+          );
+        }
       } else {
-        setValue("html_message", "" + addSignature);
+        if (addSignature) {
+          setValue("html_message", getValues("html_message") + addSignature);
+        } else {
+          setValue("html_message", "" + addSignature);
+        }
       }
     }
   };
