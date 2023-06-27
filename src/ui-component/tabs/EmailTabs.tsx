@@ -126,13 +126,16 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
         let _count = item?.subject ? "" : ++countIndexForEmailSubject;
         setTimeout(() => {
           let _preview: any = document.querySelector(`.preview_${item?.id}`);
-          let _htmlMsg = item?.html_message;
+          let _htmlMsg = item?.html_message || "";
           if (_htmlMsg) {
             _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
             _htmlMsg = _htmlMsg.replace(
               /<html>|<\/html>|<body>|<\/body>/gi,
               ""
             );
+          }
+          if (_htmlMsg.toLowerCase() === "none") {
+            _htmlMsg = "";
           }
           if (_preview && _htmlMsg) {
             _preview.innerHTML = xss(_htmlMsg);
