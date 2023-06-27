@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
 import { gridSpacing } from "../../store/constant";
 import RemainingClicks from "../../ui-component/cards/RemainingClicks";
@@ -61,8 +61,13 @@ const DashboardPage = () => {
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} className="tw-mt-5">
         <Grid container spacing={gridSpacing}>
+          <Grid item xs={12}>
+            <Typography className="tw-text-lg tw-font-medium tw-pl-3">
+              Scheduled Emails
+            </Typography>
+          </Grid>
           <Grid item xs={12}>
             <MyTable
               columns={_columns(personsData, mailAccountsData)}
