@@ -218,7 +218,7 @@ const AuthLogin = ({ ...others }) => {
                 },
               }}
             >
-              <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
+              <div className="tw-text-xs tw-py-3 tw-font-medium">Username</div>
               {/*<InputLabel htmlFor="outlined-adornment-email-login">
                 Email Address / Username
               </InputLabel>*/}
