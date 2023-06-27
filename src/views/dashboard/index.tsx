@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { Grid } from "@mui/material";
 
 import { gridSpacing } from "../../store/constant";
@@ -14,6 +14,8 @@ import { getSequenceEventScheduledEmailService } from "../../services/sequences.
 import { useDashboard } from "../../hooks/dashboard/useDashboard";
 import { _columns } from "../../utils/dashboard/utils";
 import MyTable from "../../ui-component/tables/MyTable";
+import { usePersons } from "../../hooks/persons/usePersons";
+import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
@@ -32,6 +34,14 @@ const DashboardPage = () => {
     selectedFlatRows,
     setSelectedFlatRows,
   } = useDashboard();
+  const { personsData } = usePersons(true, {
+    limit: 99999,
+    offset: 0,
+  });
+  const { mailAccountsData } = useMailAccounts(true, {
+    limit: 99999,
+    offset: 0,
+  });
 
   return (
     <Grid container spacing={gridSpacing}>
@@ -55,7 +65,7 @@ const DashboardPage = () => {
         <Grid container spacing={gridSpacing}>
           <Grid item xs={12}>
             <MyTable
-              columns={_columns()}
+              columns={_columns(personsData, mailAccountsData)}
               data={scheduledEmails}
               totalItems={total || 0}
               tableName="ScheduledEmailsTable"
