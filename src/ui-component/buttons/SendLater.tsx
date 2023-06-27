@@ -96,6 +96,7 @@ const SendLater = ({
     try {
       let res = await createAsEmailService({
         ...data,
+        in_reply_to: data?.id,
         from_email: data?.from_email?.id,
         position: position,
       });
