@@ -17,7 +17,14 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
         return (
           <>
             {_person?.[0] ? (
-              `${_person[0]?.first_name} ${_person[0]?.last_name}`
+              <>
+                <a
+                  href={`/people/${_person[0]?.id}`}
+                  className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
+                >
+                  {_person[0]?.first_name} {_person[0]?.last_name}
+                </a>
+              </>
             ) : (
               <hr className="tw-w-3 tw-border-black" />
             )}
@@ -45,7 +52,16 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
         return (
           <>
             {_from?.[0] ? (
-              `${_from[0]?.email}`
+              <>
+                <a
+                  href={`mailto:${_from[0]?.email}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
+                >
+                  {_from[0]?.email}
+                </a>
+              </>
             ) : (
               <hr className="tw-w-3 tw-border-black" />
             )}
@@ -58,7 +74,20 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
       accessor: "scheduledEmail.to",
       disableSortBy: true,
       Cell: (cell: any) => {
-        return cell?.value || <hr className="tw-w-3 tw-border-black" />;
+        return cell?.value ? (
+          <>
+            <a
+              href={`mailto:${cell?.value}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
+            >
+              {cell?.value}
+            </a>
+          </>
+        ) : (
+          <hr className="tw-w-3 tw-border-black" />
+        );
       },
     },
   ];
