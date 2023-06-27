@@ -27,7 +27,7 @@ export const updateProspectSequenceEventDetailService = async (
 export const getSequenceEventScheduledEmailService = async (
   filters: any,
   searchValue: string = "",
-  is_dashboard: boolean = false
+  is_dashboard: string = "false"
 ) => {
   let _profile: any = await load("profile");
   let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
