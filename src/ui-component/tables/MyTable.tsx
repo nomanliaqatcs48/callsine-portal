@@ -504,6 +504,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                 onClick={() =>
                                   sendSortedId(column, setSortBy, columns)
                                 }
+                                className="tw-group"
                               >
                                 <Typography variant="h5">
                                   <span className="tw-font-normal tw-text-[0.70rem] tw-text-[#364152] tw-uppercase">
@@ -522,7 +523,10 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                         ""
                                       ) : (
                                         <>
-                                          <SwapVertIcon sx={{ fontSize: 14 }} />
+                                          <SwapVertIcon
+                                            sx={{ fontSize: 14 }}
+                                            className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-200 tw-ease-linear"
+                                          />
                                           {/*<AscAndDescArrowIcon
                                             style={{ opacity: 0.25 }}
                                           />*/}
@@ -530,7 +534,10 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                       )
                                     ) : column.canSort ? (
                                       <>
-                                        <SwapVertIcon sx={{ fontSize: 14 }} />
+                                        <SwapVertIcon
+                                          sx={{ fontSize: 14 }}
+                                          className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-500 tw-ease-linear"
+                                        />
                                         {/*<AscAndDescArrowIcon
                                           style={{ opacity: 0.25 }}
                                         />*/}
