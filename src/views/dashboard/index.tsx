@@ -16,6 +16,7 @@ import { _columns } from "../../utils/dashboard/utils";
 import MyTable from "../../ui-component/tables/MyTable";
 import { usePersons } from "../../hooks/persons/usePersons";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import TotalScheduledEmailsCard from "../../ui-component/cards/TotalScheduledEmails";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
@@ -47,17 +48,20 @@ const DashboardPage = () => {
     <Grid container spacing={gridSpacing}>
       <Grid item xs={12}>
         <Grid container spacing={gridSpacing}>
-          <Grid item lg={4} md={6} sm={6} xs={12}>
+          <Grid item xs={12} sm={6} md={6} xl={3}>
             <RemainingClicks
               isLoading={isLoading?.onPage}
               value={auth?.clicks_remaining || 0}
             />
           </Grid>
-          <Grid item lg={4} md={6} sm={6} xs={12}>
+          <Grid item xs={12} sm={6} md={6} xl={3}>
             <TotalPersonsCard isLoading={isLoading?.onPage} />
           </Grid>
-          <Grid item lg={4} md={6} sm={6} xs={12}>
+          <Grid item xs={12} sm={6} md={6} xl={3}>
             <TotalMailAccounts />
+          </Grid>
+          <Grid item xs={12} sm={6} md={6} xl={3}>
+            <TotalScheduledEmailsCard />
           </Grid>
         </Grid>
       </Grid>

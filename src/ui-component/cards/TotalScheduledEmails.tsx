@@ -14,6 +14,7 @@ import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import { IconHandClick, IconUsers } from "@tabler/icons-react";
 import { usePersons } from "../../hooks/persons/usePersons";
+import { useDashboard } from "../../hooks/dashboard/useDashboard";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   backgroundColor: theme.palette.primary.main,
@@ -59,26 +60,14 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
-type TotalPersonsCardTypes = {
-  isLoading: boolean;
-};
-
-const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
+const TotalScheduledEmailsCard = () => {
   const theme: any = useTheme();
 
-  const {
-    personsData,
-    setPersonsData,
-    total,
-    setTotal,
-    filters,
-    setFilters,
-    getPeople,
-  } = usePersons();
+  let { isLoading, total } = useDashboard();
 
   return (
     <>
-      {isLoading ? (
+      {isLoading?.onPage ? (
         <SkeletonTotalOrderCard />
       ) : (
         <CardWrapper border={false} content={false}>
@@ -126,7 +115,7 @@ const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
                     color: theme.palette.primary[200],
                   }}
                 >
-                  Persons
+                  Scheduled Emails
                 </Typography>
               </Grid>
             </Grid>
@@ -137,4 +126,4 @@ const TotalPersonsCard = ({ isLoading }: TotalPersonsCardTypes) => {
   );
 };
 
-export default TotalPersonsCard;
+export default TotalScheduledEmailsCard;
