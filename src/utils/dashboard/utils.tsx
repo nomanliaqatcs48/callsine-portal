@@ -90,5 +90,19 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
         );
       },
     },
+    {
+      Header: "Status",
+      accessor: "status",
+      disableSortBy: true,
+      Cell: (cell: any) => {
+        return cell?.value.toLowerCase()?.includes("scheduled") ? (
+          "Scheduled Email"
+        ) : cell?.value.toLowerCase()?.includes("generated") ? (
+          "Generated Email"
+        ) : (
+          <hr className="tw-w-3 tw-border-black" />
+        );
+      },
+    },
   ];
 };
