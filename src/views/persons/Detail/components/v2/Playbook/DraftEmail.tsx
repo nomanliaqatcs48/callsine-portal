@@ -230,6 +230,11 @@ const DraftEmail = ({
     let _data = {
       html_message: getValues("html_message"),
     };
+    devLog(() => {
+      console.log("selectedSequenceEvent", selectedSequenceEvent);
+      console.log("selectedData", selectedData);
+      console.log("playBookData", playBookData);
+    });
     void updateProspectSequenceEvent(
       selectedSequenceEvent?.person,
       selectedData?.id,
@@ -315,18 +320,20 @@ const DraftEmail = ({
                 style={{ color: "#778da9" }}
               />
             </Button>*/}
-            <LoadingButton
-              type="button"
-              variant="outlined"
-              onClick={handleSaveDraft}
-              className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
-              loading={false}
-              disabled={false}
-            >
-              <span className="tw-px-1.5 tw-text-xs tw-font-medium">
-                Save Draft
-              </span>
-            </LoadingButton>
+            {selectedData?.id && (
+              <LoadingButton
+                type="button"
+                variant="outlined"
+                onClick={handleSaveDraft}
+                className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+                loading={false}
+                disabled={false}
+              >
+                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                  Save Draft
+                </span>
+              </LoadingButton>
+            )}
             <LoadingButton
               type="button"
               variant="outlined"
