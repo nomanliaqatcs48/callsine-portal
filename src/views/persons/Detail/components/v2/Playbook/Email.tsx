@@ -43,7 +43,7 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
     let _preview: any = document.querySelector(`.render_message`);
     let _htmlMsg = selectedData?.html_message;
     if (_htmlMsg) {
-      _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
+      _htmlMsg = _htmlMsg.replace(/\n/g, "");
       _htmlMsg = _htmlMsg.replace(/<html>|<\/html>|<body>|<\/body>/gi, "");
     }
     if (_preview && _htmlMsg) {
