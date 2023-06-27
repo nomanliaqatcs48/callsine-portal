@@ -228,6 +228,9 @@ const DraftEmail = ({
 
   const handleSaveDraft = () => {
     let _data = {
+      in_reply_to: getValues("in_reply_to") || null,
+      from_email: getValues("from_email")?.id || null,
+      to: getValues("to") || "",
       html_message: getValues("html_message"),
     };
     devLog(() => {
