@@ -3,6 +3,10 @@ import _ from "lodash";
 import { IconTrash } from "@tabler/icons-react";
 import DeleteScheduledEmail from "../../ui-component/buttons/DeleteScheduledEmail";
 import { useTheme } from "@mui/material/styles";
+import { Tooltip } from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
+import CreateOrEditScheduledEmail from "../../ui-component/buttons/CreateOrEditScheduledEmail";
 
 export const _columns = (
   getScheduledEmails: any,
@@ -16,6 +20,23 @@ export const _columns = (
       Header: "ID",
       accessor: "id",
       disableSortBy: true,
+      Cell: (cell: any) => {
+        return (
+          <>
+            <CreateOrEditScheduledEmail
+              id={cell?.row?.original?.id}
+              defaultValue={cell?.row?.original}
+              personId={cell?.row?.original?.person}
+              onLoadApi={getScheduledEmails}
+              className="tw-min-w-fit"
+              onClick={() => null}
+              variant="text"
+            >
+              {cell?.value}
+            </CreateOrEditScheduledEmail>
+          </>
+        );
+      },
     },
     {
       Header: "Person",
