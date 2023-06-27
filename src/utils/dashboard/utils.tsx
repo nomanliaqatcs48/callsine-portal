@@ -7,6 +7,7 @@ import { Tooltip } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import CreateOrEditScheduledEmail from "../../ui-component/buttons/CreateOrEditScheduledEmail";
+import moment from "moment/moment";
 
 export const _columns = (
   getScheduledEmails: any,
@@ -63,11 +64,15 @@ export const _columns = (
       },
     },
     {
-      Header: "Subject",
-      accessor: "scheduledEmail.subject",
+      Header: "Scheduled Time",
+      accessor: "scheduledEmail.scheduled_time",
       disableSortBy: true,
       Cell: (cell: any) => {
-        return cell?.value || <hr className="tw-w-3 tw-border-black" />;
+        return cell?.value ? (
+          <>{moment(cell?.value).format("lll")}</>
+        ) : (
+          <hr className="tw-w-3 tw-border-black" />
+        );
       },
     },
     {
