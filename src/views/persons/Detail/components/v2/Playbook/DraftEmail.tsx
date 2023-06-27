@@ -105,8 +105,8 @@ const DraftEmail = ({
         setValueHtmlMsg();
       }
 
-      setValue("in_reply_to", "");
-      setValue("from_email", "");
+      // setValue("in_reply_to", "");
+      // setValue("from_email", "");
       setValue(
         "to",
         selectedData?.to ? selectedData?.to : playBookData?.work_email
@@ -132,7 +132,10 @@ const DraftEmail = ({
     setValue(
       "in_reply_to",
       selectedData?.in_reply_to
-        ? _.filter(emails, (o: any) => o?.id === selectedData?.in_reply_to)
+        ? _.filter(emails, (o: any) => {
+            o.value = o.id;
+            return o?.in_reply_to === selectedData?.in_reply_to;
+          })
         : ""
     );
     setTimeout(() => {
@@ -140,7 +143,7 @@ const DraftEmail = ({
         ...prev,
         in_reply_to: false,
       }));
-    }, 500);
+    }, 1000);
   }, [selectedData, selectedSequenceEvent, emails]);
 
   useEffect(() => {
@@ -151,10 +154,11 @@ const DraftEmail = ({
     setValue(
       "from_email",
       selectedData?.from_email
-        ? _.filter(
-            mailAccountsData,
-            (o: any) => o?.id === selectedData?.from_email
-          )
+        ? _.filter(mailAccountsData, (o: any) => {
+            o.label = o.email;
+            o.value = o.id;
+            return o?.id === selectedData?.from_email;
+          })
         : ""
     );
     setTimeout(() => {
@@ -162,7 +166,7 @@ const DraftEmail = ({
         ...prev,
         from_email: false,
       }));
-    }, 500);
+    }, 1000);
   }, [selectedData, selectedSequenceEvent, mailAccountsData]);
 
   const handleChangeFromEmail = (event: any) => {
@@ -242,9 +246,18 @@ const DraftEmail = ({
         console.log("to", event?.to);
         console.log("subject", event?.subject);
       });
-      setValue("from_email", event?.from_email as string);
-      setValue("to", event?.to);
-      setValue("subject", event?.subject);
+      setValue(
+        "from_email",
+        event?.from_email
+          ? _.filter(mailAccountsData, (o: any) => {
+              o.label = o.email;
+              o.value = o.id;
+              return o?.id === event?.from_email;
+            })
+          : getValues("from_email")
+      );
+      setValue("to", event?.to || getValues("to"));
+      setValue("subject", event?.subject || getValues("subject"));
       setTimeout(() =>
         setIsLoading((prev: any) => ({
           ...prev,
@@ -271,6 +284,7 @@ const DraftEmail = ({
       in_reply_to: getValues("in_reply_to")?.id || null,
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
+      subject: getValues("subject") || "",
       html_message: getValues("html_message"),
     };
     devLog(() => {
