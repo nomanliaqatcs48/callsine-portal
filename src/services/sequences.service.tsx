@@ -37,3 +37,14 @@ export const getSequenceEventScheduledEmailService = async (
     `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=&user__id=${_profile?.id}&is_dashboard=${is_dashboard}`
   );
 };
+
+export const deleteSequenceEventService = async (
+  id: any,
+  is_dashboard: string = "false"
+) => {
+  let _profile: any = await load("profile");
+
+  return await http.delete(
+    `${endpoints.SEQUENCE_EVENTS}${id}/?scheduledEmail__status=&user__id=${_profile?.id}&is_dashboard=${is_dashboard}`
+  );
+};
