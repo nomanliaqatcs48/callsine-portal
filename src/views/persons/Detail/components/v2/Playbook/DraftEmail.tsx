@@ -135,7 +135,7 @@ const DraftEmail = ({
         ? _.filter(emails, (o: any) => {
             o.value = o.id;
             return o?.in_reply_to === selectedData?.in_reply_to;
-          })
+          })?.[0]
         : ""
     );
     setTimeout(() => {
@@ -158,7 +158,7 @@ const DraftEmail = ({
             o.label = o.email;
             o.value = o.id;
             return o?.id === selectedData?.from_email;
-          })
+          })?.[0]
         : ""
     );
     setTimeout(() => {
@@ -280,6 +280,10 @@ const DraftEmail = ({
   };
 
   const handleSaveDraft = () => {
+    devLog(() => {
+      console.log('getValues("in_reply_to")', getValues("in_reply_to"));
+      console.log('getValues("from_email")', getValues("from_email"));
+    });
     let _data = {
       in_reply_to: getValues("in_reply_to")?.id || null,
       from_email: getValues("from_email")?.id || null,
@@ -296,7 +300,7 @@ const DraftEmail = ({
       selectedSequenceEvent?.person,
       selectedData?.id,
       _data,
-      onLoadApi()
+      onLoadApi
     );
   };
 
