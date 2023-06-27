@@ -117,11 +117,15 @@ const CreateOrEditScheduledEmail = ({
       ...beforeVal,
       form: true,
     }));
+    let _data = {
+      ...data,
+      html_message: data?.html_message?.replace(/\n/g, ""),
+    };
     try {
       const res = await updateEmailService(
         Number(personId),
         Number(defaultValue?.scheduledEmail?.id),
-        data
+        _data
       );
       if (res?.data) {
         ToastSuccess("Scheduled email successfully updated.");
