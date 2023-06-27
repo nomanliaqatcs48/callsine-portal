@@ -49,6 +49,7 @@ const DraftEmail = ({
     from_email: false,
     subject: false,
   });
+  const [currentSignature, setCurrentSignature] = useState<string>("");
   const {
     register,
     unregister,
@@ -172,7 +173,8 @@ const DraftEmail = ({
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
     trigger("from_email");
-    setValueHtmlMsg(event?.signature || "");
+    setCurrentSignature(event?.signature || "");
+    setValueHtmlMsg(event?.signature || "", true);
   };
 
   const handleSendNow = async (id: any) => {
@@ -306,12 +308,19 @@ const DraftEmail = ({
     );
   };
 
-  const setValueHtmlMsg = (addSignature: string | null = "") => {
+  const setValueHtmlMsg = (
+    addSignature: string | null = "",
+    isAddSignature: boolean = false
+  ) => {
     // when you change the from_email field make sure that what you write in html_message must maintain
     if (selectedData?.text) {
       if (selectedData?.text && selectedData?.text?.toLowerCase() !== "none") {
-        if (addSignature) {
-          setValue("html_message", getValues("html_message") + addSignature);
+        if (isAddSignature) {
+          setValue(
+            "html_message",
+            getValues("html_message")?.replace(`${currentSignature}`, "") +
+              addSignature
+          );
         } else {
           setValue(
             "html_message",
@@ -319,8 +328,12 @@ const DraftEmail = ({
           );
         }
       } else {
-        if (addSignature) {
-          setValue("html_message", getValues("html_message") + addSignature);
+        if (isAddSignature) {
+          setValue(
+            "html_message",
+            getValues("html_message")?.replace(`${currentSignature}`, "") +
+              addSignature
+          );
         } else {
           setValue("html_message", "" + addSignature);
         }
@@ -330,8 +343,12 @@ const DraftEmail = ({
         selectedData?.html_message &&
         selectedData?.html_message?.toLowerCase() !== "none"
       ) {
-        if (addSignature) {
-          setValue("html_message", getValues("html_message") + addSignature);
+        if (isAddSignature) {
+          setValue(
+            "html_message",
+            getValues("html_message")?.replace(`${currentSignature}`, "") +
+              addSignature
+          );
         } else {
           setValue(
             "html_message",
@@ -339,8 +356,12 @@ const DraftEmail = ({
           );
         }
       } else {
-        if (addSignature) {
-          setValue("html_message", getValues("html_message") + addSignature);
+        if (isAddSignature) {
+          setValue(
+            "html_message",
+            getValues("html_message")?.replace(`${currentSignature}`, "") +
+              addSignature
+          );
         } else {
           setValue("html_message", "" + addSignature);
         }
