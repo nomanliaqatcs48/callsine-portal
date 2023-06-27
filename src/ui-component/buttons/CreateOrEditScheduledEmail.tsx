@@ -235,7 +235,7 @@ const CreateOrEditScheduledEmail = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
+          <DialogActions className="tw-mb-4">
             <Button
               onClick={handleSubmit((data) =>
                 id ? onThisEditSubmit(data) : onThisEditSubmit(data)
