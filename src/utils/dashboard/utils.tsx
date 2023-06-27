@@ -28,7 +28,7 @@ export const _columns = (
               defaultValue={cell?.row?.original}
               personId={cell?.row?.original?.person}
               onLoadApi={getScheduledEmails}
-              className="tw-min-w-fit"
+              className="tw-p-0 tw-min-w-fit"
               onClick={() => null}
               variant="text"
             >

@@ -66,13 +66,10 @@ const CreateOrEditScheduledEmail = ({
   } = useForm();
 
   useEffect(() => {
-    register("html_signature", {
+    register("html_message", {
       required: "This is required field.",
     });
-    setValue(
-      "html_signature",
-      defaultValue?.scheduledEmail?.html_message || ""
-    );
+    setValue("html_message", defaultValue?.scheduledEmail?.html_message || "");
   }, [open]);
 
   const handleOpen = () => setOpen(true);
@@ -82,7 +79,7 @@ const CreateOrEditScheduledEmail = ({
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
-    setValue("html_signature", value);
+    setValue("html_message", value);
   };
 
   const onThisEditSubmit = async (data: any) => {
