@@ -23,8 +23,14 @@ export const updateProspectSequenceEventDetailService = async (
   );
 };
 
-export const getSequenceEventScheduledEmailService = async () => {
+export const getSequenceEventScheduledEmailService = async (
+  filters: any,
+  searchValue: string = ""
+) => {
+  let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
+  let _search = `&search=${searchValue}`;
+
   return await http.get(
-    `${endpoints.SEQUENCE_EVENTS}?scheduledEmail__status=None`
+    `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=None`
   );
 };
