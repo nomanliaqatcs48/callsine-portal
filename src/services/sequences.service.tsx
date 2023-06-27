@@ -1,6 +1,7 @@
 // ProspectSequenceEventService.ts
 import http from "./axios";
 import { endpoints } from "./endpoints";
+import { load } from "../utils/storage";
 
 export const getProspectSequenceEventService = async (
   personId: string,
@@ -27,10 +28,11 @@ export const getSequenceEventScheduledEmailService = async (
   filters: any,
   searchValue: string = ""
 ) => {
+  let _profile: any = await load("profile");
   let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
   let _search = `&search=${searchValue}`;
 
   return await http.get(
-    `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=None`
+    `${endpoints.SEQUENCE_EVENTS}${_filters}${_search}&scheduledEmail__status=&user__id=${_profile?.id}`
   );
 };
