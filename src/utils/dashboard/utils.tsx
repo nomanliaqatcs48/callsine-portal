@@ -61,21 +61,5 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
         return cell?.value || <hr className="tw-w-3 tw-border-black" />;
       },
     },
-    {
-      Header: "Opens",
-      accessor: "scheduledEmail.opens",
-      disableSortBy: true,
-      Cell: (cell: any) => {
-        return cell?.value || "0";
-      },
-    },
-    {
-      Header: "Clicks",
-      accessor: "scheduledEmail.clicks",
-      disableSortBy: true,
-      Cell: (cell: any) => {
-        return cell?.value || "0";
-      },
-    },
   ];
 };
