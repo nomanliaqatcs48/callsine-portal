@@ -206,7 +206,7 @@ const DraftEmail = ({
     try {
       let res = await createAsEmailService({
         ...data,
-        in_reply_to: data?.id,
+        in_reply_to: data?.in_reply_to?.id,
         from_email: data?.from_email?.id,
         position: position,
       });
@@ -253,8 +253,8 @@ const DraftEmail = ({
               o.label = o.email;
               o.value = o.id;
               return o?.id === event?.from_email;
-            })
-          : getValues("from_email")
+            })?.[0]
+          : ""
       );
       setValue("to", event?.to || getValues("to"));
       setValue("subject", event?.subject || getValues("subject"));
