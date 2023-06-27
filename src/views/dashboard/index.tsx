@@ -61,7 +61,10 @@ const DashboardPage = () => {
             <TotalMailAccounts />
           </Grid>
           <Grid item xs={12} sm={6} md={6} xl={3}>
-            <TotalScheduledEmailsCard />
+            <TotalScheduledEmailsCard
+              isLoading={isLoading}
+              value={total || 0}
+            />
           </Grid>
         </Grid>
       </Grid>
@@ -74,7 +77,11 @@ const DashboardPage = () => {
           </Grid>
           <Grid item xs={12}>
             <MyTable
-              columns={_columns(personsData, mailAccountsData)}
+              columns={_columns(
+                getScheduledEmails,
+                personsData,
+                mailAccountsData
+              )}
               data={scheduledEmails}
               totalItems={total || 0}
               tableName="ScheduledEmailsTable"

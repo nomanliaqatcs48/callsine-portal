@@ -60,10 +60,8 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
 
 // ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
 
-const TotalScheduledEmailsCard = () => {
+const TotalScheduledEmailsCard = ({ isLoading, value }: any) => {
   const theme: any = useTheme();
-
-  let { isLoading, total } = useDashboard();
 
   return (
     <>
@@ -102,7 +100,7 @@ const TotalScheduledEmailsCard = () => {
                         mb: 0.75,
                       }}
                     >
-                      {total}
+                      {value}
                     </Typography>
                   </Grid>
                 </Grid>

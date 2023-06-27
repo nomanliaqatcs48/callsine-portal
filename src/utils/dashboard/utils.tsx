@@ -1,7 +1,16 @@
 import React from "react";
 import _ from "lodash";
+import { IconTrash } from "@tabler/icons-react";
+import DeleteScheduledEmail from "../../ui-component/buttons/DeleteScheduledEmail";
+import { useTheme } from "@mui/material/styles";
 
-export const _columns = (personsData: any, mailAccountsData: any): any[] => {
+export const _columns = (
+  getScheduledEmails: any,
+  personsData: any,
+  mailAccountsData: any
+): any[] => {
+  const theme: any = useTheme();
+
   return [
     {
       Header: "ID",
@@ -101,6 +110,30 @@ export const _columns = (personsData: any, mailAccountsData: any): any[] => {
           "Generated Email"
         ) : (
           <hr className="tw-w-3 tw-border-black" />
+        );
+      },
+    },
+    {
+      Header: "Action",
+      accessor: "action",
+      disableSortBy: true,
+      width: 50,
+      minWidth: 50,
+      Cell: (cell: any) => {
+        return (
+          <>
+            <DeleteScheduledEmail
+              id={cell?.row?.original?.id}
+              onLoadApi={getScheduledEmails}
+            >
+              <IconTrash
+                style={{ color: theme.palette.primary.main }}
+                size="15"
+                strokeWidth={3}
+                className=""
+              />
+            </DeleteScheduledEmail>
+          </>
         );
       },
     },
