@@ -1,20 +1,8 @@
-import PropTypes from "prop-types";
-import { useState } from "react";
-
-// material-ui
 import { useTheme, styled } from "@mui/material/styles";
-import { Avatar, Box, Button, Grid, Typography } from "@mui/material";
-
-// project imports
+import { Avatar, Box, Grid, Typography } from "@mui/material";
 import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonTotalOrderCard from "../../ui-component/cards/Skeleton/EarningCard";
-
-// assets
-import LocalMallOutlinedIcon from "@mui/icons-material/LocalMallOutlined";
-import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
-import { IconHandClick, IconUsers } from "@tabler/icons-react";
-import { usePersons } from "../../hooks/persons/usePersons";
-import { useDashboard } from "../../hooks/dashboard/useDashboard";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   backgroundColor: theme.palette.primary.main,
@@ -58,8 +46,6 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   },
 }));
 
-// ==============================|| DASHBOARD - TOTAL ORDER LINE CHART CARD ||============================== //
-
 const TotalScheduledEmailsCard = ({ isLoading, value }: any) => {
   const theme: any = useTheme();
 
@@ -83,7 +69,7 @@ const TotalScheduledEmailsCard = ({ isLoading, value }: any) => {
                         mt: 1,
                       }}
                     >
-                      <IconUsers size={20} strokeWidth={2} color="white" />
+                      <WatchLaterIcon sx={{ color: "white", fontSize: 20 }} />
                     </Avatar>
                   </Grid>
                 </Grid>
