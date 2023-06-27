@@ -199,6 +199,7 @@ const DraftEmail = ({
     try {
       let res = await createAsEmailService({
         ...data,
+        in_reply_to: data?.id,
         from_email: data?.from_email?.id,
         position: position,
       });
@@ -227,7 +228,7 @@ const DraftEmail = ({
   };
 
   const handleChangeParentEmail = (event: any) => {
-    setValue("in_reply_to", event?.id);
+    setValue("in_reply_to", event);
     trigger("in_reply_to");
 
     setIsLoading((prev: any) => ({ ...prev, from_email: true, subject: true }));
@@ -264,7 +265,7 @@ const DraftEmail = ({
 
   const handleSaveDraft = () => {
     let _data = {
-      in_reply_to: getValues("in_reply_to") || null,
+      in_reply_to: getValues("in_reply_to")?.id || null,
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
       html_message: getValues("html_message"),
