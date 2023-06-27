@@ -28,6 +28,7 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { updateProspectSequenceEventDetailService } from "../../services/sequences.service";
+import { updateEmailService } from "../../services/emails.service";
 
 type CreateOrEditScheduledEmailTypes = {
   id?: number;
@@ -69,7 +70,8 @@ const CreateOrEditScheduledEmail = ({
     register("html_message", {
       required: "This is required field.",
     });
-    setValueHtmlMsg();
+
+    setValuesInit();
   }, [open]);
 
   const handleOpen = () => setOpen(true);
@@ -82,7 +84,7 @@ const CreateOrEditScheduledEmail = ({
     setValue("html_message", value);
   };
 
-  const setValueHtmlMsg = () => {
+  const setValuesInit = () => {
     if (defaultValue?.scheduledEmail?.text) {
       if (
         defaultValue?.scheduledEmail?.text &&
@@ -116,9 +118,9 @@ const CreateOrEditScheduledEmail = ({
       form: true,
     }));
     try {
-      const res = await updateProspectSequenceEventDetailService(
-        Number(id),
+      const res = await updateEmailService(
         Number(personId),
+        Number(defaultValue?.scheduledEmail?.id),
         data
       );
       if (res?.data) {
