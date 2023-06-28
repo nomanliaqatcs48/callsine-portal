@@ -274,7 +274,7 @@ const DraftEmail = ({
       }
 
       setValue("to", event?.to || getValues("to"));
-      setValue("subject", event?.subject || getValues("subject"));
+      setValue("subject", "RE: " + (event?.subject || ""));
       setTimeout(() =>
         setIsLoading((prev: any) => ({
           ...prev,
