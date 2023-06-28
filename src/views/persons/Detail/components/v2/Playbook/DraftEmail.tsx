@@ -205,12 +205,25 @@ const DraftEmail = ({
     });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     insertBodyLoader();
+
+    let _parentEmailMsg = data?.in_reply_to?.html_message || "";
+    if (_parentEmailMsg) {
+      _parentEmailMsg = _parentEmailMsg.replace(
+        /<html>|<\/html>|<body>|<\/body>/gi,
+        ""
+      );
+      _parentEmailMsg = `<div></div><blockquote>${_parentEmailMsg}</blockquote>`;
+    }
+
     try {
       let res = await createAsEmailService({
         ...data,
         in_reply_to: data?.in_reply_to?.id,
         from_email: data?.from_email?.id,
         position: position,
+        html_message: `<html><body>${
+          data?.html_message + _parentEmailMsg
+        }</body></html>`,
       });
       if (res?.data?.id) {
         handleSendNow(res?.data?.id);
@@ -231,7 +244,7 @@ const DraftEmail = ({
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
-    value = `<html><body>${value}</body></html>`;
+    // value = `<html><body>${value}</body></html>`;
     setValue("html_message", value);
     // handleEditorPreview(value);
   };
@@ -239,6 +252,10 @@ const DraftEmail = ({
   const handleChangeParentEmail = (event: any) => {
     setValue("in_reply_to", event);
     trigger("in_reply_to");
+
+    devLog(() => {
+      console.log("handleChangeParentEmail() event", event);
+    });
 
     setIsLoading((prev: any) => ({ ...prev, from_email: true, subject: true }));
     if (event?.id) {
