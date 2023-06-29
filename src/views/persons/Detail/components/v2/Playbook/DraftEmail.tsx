@@ -142,11 +142,20 @@ const DraftEmail = ({
           o.value = o.id;
           return o?.in_reply_to === selectedData?.in_reply_to;
         })?.[0] || "";
+      let _mailAccount =
+        _.filter(mailAccountsData, (o: any) => {
+          o.label = o.email;
+          o.value = o.id;
+          return o?.id === selectedData?.from_email;
+        })?.[0] || "";
       let _formatParentEmailMsg =
         _html_message?.html_message?.replace(
           /<html>|<\/html>|<body>|<\/body>/gi,
           ""
         ) || "";
+      _formatParentEmailMsg = _formatParentEmailMsg
+        ? `<div>From: ${_mailAccount?.first_name} ${_mailAccount?.last_name} (${_mailAccount?.email})</div><div>Scheduled Time: ${_html_message?.scheduled_time}</div><div>From: ${_html_message?.to}</div>${_formatParentEmailMsg}`
+        : "";
       _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
       setValue("parent_email_html_message", _formatParentEmailMsg);
     } else {
@@ -318,11 +327,20 @@ const DraftEmail = ({
             o.value = o.id;
             return o?.in_reply_to === event?.in_reply_to;
           })?.[0] || "";
+        let _mailAccount =
+          _.filter(mailAccountsData, (o: any) => {
+            o.label = o.email;
+            o.value = o.id;
+            return o?.id === event?.from_email;
+          })?.[0] || "";
         let _formatParentEmailMsg =
           _html_message?.html_message?.replace(
             /<html>|<\/html>|<body>|<\/body>/gi,
             ""
           ) || "";
+        _formatParentEmailMsg = _formatParentEmailMsg
+          ? `<div>From: ${_mailAccount?.first_name} ${_mailAccount?.last_name} (${_mailAccount?.email})</div><div>Scheduled Time: ${_html_message?.scheduled_time}</div><div>From: ${_html_message?.to}</div>${_formatParentEmailMsg}`
+          : "";
         _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
         setValue("parent_email_html_message", _formatParentEmailMsg);
       } else {
