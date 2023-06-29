@@ -212,7 +212,7 @@ const DraftEmail = ({
         /<html>|<\/html>|<body>|<\/body>/gi,
         ""
       );
-      _parentEmailMsg = `<div></div><blockquote>${_parentEmailMsg}</blockquote>`;
+      _parentEmailMsg = `<br><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_parentEmailMsg}</blockquote>`;
     }
 
     try {
