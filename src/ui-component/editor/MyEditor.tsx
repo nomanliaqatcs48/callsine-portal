@@ -9,6 +9,7 @@ type MyEditorTypes = {
   onClick?: any;
   onFocus?: any;
   editorHeight?: number;
+  [x: string]: any;
 };
 
 const MyEditor = ({
@@ -18,6 +19,7 @@ const MyEditor = ({
   onClick,
   onFocus,
   editorHeight = 500,
+  ...props
 }: MyEditorTypes) => {
   const editorRef: any = React.useRef(null);
 
@@ -72,6 +74,7 @@ const MyEditor = ({
         onEditorChange={(value: string, editor: any) => {
           onEditorChange(value, editor);
         }}
+        {...props}
       />
     </GrammarlyEditorPlugin>
   );
