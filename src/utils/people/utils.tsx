@@ -1,5 +1,4 @@
 import React, { useMemo } from "react";
-import moment from "moment";
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
@@ -8,22 +7,18 @@ import {
   List,
   ListItem,
   ListItemAvatar,
-  ListItemText,
-  Paper,
   Tooltip,
-  Typography,
 } from "@mui/material";
 import { IconTrash } from "@tabler/icons-react";
-import { ReactComponent as UserIcon } from "../../../assets/images/svg/user.svg";
-import { ReactComponent as FacebookIcon } from "../../../assets/images/svg/facebook.svg";
-import { ReactComponent as LinkedinIcon } from "../../../assets/images/svg/linkedin.svg";
+import { ReactComponent as UserIcon } from "../../assets/images/svg/user.svg";
+import { ReactComponent as FacebookIcon } from "../../assets/images/svg/facebook.svg";
+import { ReactComponent as LinkedinIcon } from "../../assets/images/svg/linkedin.svg";
 import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
-import { devLog } from "../../../helpers/logs";
-import DeletePerson from "../../../ui-component/buttons/DeletePerson";
+import DeletePerson from "../../ui-component/buttons/DeletePerson";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
@@ -324,7 +319,6 @@ export const _columns: any = () => {
         accessor: "email_count",
         width: 90,
         minWidth: 90,
-        // Cell: (cell: any) => cell?.value,
       },
       {
         Header: "Actions",
@@ -343,19 +337,6 @@ export const _columns: any = () => {
                   className=""
                 />
               </DeletePerson>
-              {/*<Tooltip title="Delete">
-              <Button
-                onClick={() => null}
-                className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
-              >
-                <IconTrash
-                  style={{ color: theme.palette.primary.main }}
-                  size="15"
-                  strokeWidth={3}
-                  className=""
-                />
-              </Button>
-            </Tooltip>*/}
             </>
           );
         },

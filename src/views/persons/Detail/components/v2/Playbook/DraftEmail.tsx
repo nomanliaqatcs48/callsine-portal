@@ -24,7 +24,10 @@ import {
 } from "../../../../../../helpers/loaders";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import _ from "lodash";
-import { selectBlueStyles, _styles } from "../../../../utils/utils";
+import {
+  selectBlueStyles,
+  _styles,
+} from "../../../../../../utils/people/utils";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 
 type DraftEmailTypes = {
