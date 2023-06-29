@@ -315,8 +315,8 @@ export const _columns: any = () => {
         },
       },
       {
-        Header: "Emails",
-        accessor: "email_count",
+        Header: "Sent Emails",
+        accessor: "sent_emails",
         width: 90,
         minWidth: 90,
       },
