@@ -10,7 +10,7 @@ import { setPlaybookV2Service } from "../../../../../../services/prompts.service
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
 import DraftEmail from "./DraftEmail";
-import Email from "./Email";
+import SentOrScheduledEmail from "./SentOrScheduledEmail";
 import PlaybookList from "./PlaybookList";
 import SelectItem from "./SelectItem";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
@@ -205,7 +205,7 @@ const PlaybookV2 = () => {
             {selectedIndex !== null && (
               <>
                 {_.includes([0, 1, 2, 3], selectedData?.status) ? (
-                  <Email
+                  <SentOrScheduledEmail
                     onLoadApi={() => {
                       getPersonDetail();
                       setSelectedData(null);

@@ -9,13 +9,17 @@ import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import { getMailAccountDetailService } from "../../../../../../services/mail-accounts.service";
 import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
 
-type EmailTypes = {
+type SentOrScheduledEmailTypes = {
   onLoadApi: any;
   selectedData: any;
   position: any;
 };
 
-const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
+const SentOrScheduledEmail = ({
+  position,
+  onLoadApi,
+  selectedData,
+}: SentOrScheduledEmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
 
@@ -122,4 +126,4 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
 
 const containers = "tw-px-2 xl:tw-px-10";
 
-export default Email;
+export default SentOrScheduledEmail;
