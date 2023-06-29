@@ -141,11 +141,12 @@ const DraftEmail = ({
         _.filter(emails, (o: any) => {
           o.value = o.id;
           return o?.in_reply_to === selectedData?.in_reply_to;
-        })?.[0]?.html_message || "";
-      let _formatParentEmailMsg = _html_message.replace(
-        /<html>|<\/html>|<body>|<\/body>/gi,
-        ""
-      );
+        })?.[0] || "";
+      let _formatParentEmailMsg =
+        _html_message?.html_message?.replace(
+          /<html>|<\/html>|<body>|<\/body>/gi,
+          ""
+        ) || "";
       _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
       setValue("parent_email_html_message", _formatParentEmailMsg);
     } else {
@@ -316,11 +317,12 @@ const DraftEmail = ({
           _.filter(emails, (o: any) => {
             o.value = o.id;
             return o?.in_reply_to === event?.in_reply_to;
-          })?.[0]?.html_message || "";
-        let _formatParentEmailMsg = _html_message.replace(
-          /<html>|<\/html>|<body>|<\/body>/gi,
-          ""
-        );
+          })?.[0] || "";
+        let _formatParentEmailMsg =
+          _html_message?.html_message?.replace(
+            /<html>|<\/html>|<body>|<\/body>/gi,
+            ""
+          ) || "";
         _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
         setValue("parent_email_html_message", _formatParentEmailMsg);
       } else {
