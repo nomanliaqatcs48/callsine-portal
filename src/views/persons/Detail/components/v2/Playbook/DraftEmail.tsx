@@ -630,7 +630,11 @@ const DraftEmail = ({
         </div>
       </div>
       <div className={`signature-container tw-px-3 tw-py-4`}>
-        <Box className={`${_styles?.label}`}>Signature</Box>
+        <Box
+          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto`}
+        >
+          Signature
+        </Box>
         <div className="">
           <MyEditor
             initialValue={getValues("signature")}
@@ -638,12 +642,24 @@ const DraftEmail = ({
               handleSignatureOnChange(value, editor);
             }}
             onFocus={(e: any) => null}
-            editorHeight={250}
+            disabled
+            init={{
+              height: 150,
+              menubar: false,
+              plugins: [],
+              selector: "textarea",
+              toolbar: false,
+              statusbar: false,
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
+            }}
           />
         </div>
       </div>
       <div className={`parent-email-thread-container tw-px-3 tw-py-4`}>
-        <Box className={`${_styles?.label} xl:tw-w-auto`}>
+        <Box
+          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto`}
+        >
           Parent Email Thread
         </Box>
         <div className="">
@@ -655,6 +671,16 @@ const DraftEmail = ({
             onFocus={(e: any) => null}
             editorHeight={400}
             disabled
+            init={{
+              height: 400,
+              menubar: false,
+              plugins: [],
+              selector: "textarea",
+              toolbar: false,
+              statusbar: false,
+              content_style:
+                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
+            }}
           />
         </div>
       </div>
