@@ -301,13 +301,6 @@ export const _columns: any = () => {
         accessor: "org.name",
         sorting_id: "org__name",
       },
-      /*{
-        Header: "Phone",
-        accessor: "phone",
-        Cell: (cell: any) => {
-          return <span>{cell?.value || "-"}</span>;
-        },
-      },*/
       {
         Header: "Email",
         accessor: "work_email",
@@ -333,22 +326,6 @@ export const _columns: any = () => {
         minWidth: 90,
         // Cell: (cell: any) => cell?.value,
       },
-      /*{
-        Header: "Location",
-        accessor: "city",
-        Cell: (cell: any) => {
-          return `${cell?.row?.original?.city || ""}${
-            cell?.row?.original?.state ? ", " + cell?.row?.original?.state : ""
-          }`;
-        },
-      },*/
-      /*{
-        Header: "Industry",
-        accessor: "org.industry",
-        Cell: (cell: any) => {
-          return cell?.value || "-";
-        },
-      },*/
       {
         Header: "Actions",
         disableSortBy: true,
@@ -383,27 +360,116 @@ export const _columns: any = () => {
           );
         },
       },
-      /*{
-      Header: "Date Added",
-      accessor: "created_date",
-      width: 250,
-      minWidth: 250,
-      Cell: (cell: any) => {
-        if (!cell?.value) return "";
-        return moment.utc(cell?.value).format("MMMM D, YYYY");
-      },
-    },*/
-      /*{
-      Header: "Date Modified",
-      accessor: "modified_date",
-      width: 250,
-      minWidth: 250,
-      Cell: (cell: any) => {
-        if (!cell?.value) return "";
-        return moment.utc(cell?.value).format("MMMM D, YYYY");
-      },
-    },*/
     ],
     []
   );
+};
+
+export const selectBlueStyles = {
+  control: (styles: any) => ({
+    ...styles,
+    display: "flex",
+    backgroundColor: "transparent",
+    boxShadow: "none",
+    border: "1px solid transparent", //"1px solid #1a76d2",
+    cursor: "pointer",
+    justifyContent: "start",
+    alignItems: "start",
+    minHeight: 0,
+    borderRadius: 0,
+    transitionProperty: "all",
+    transitionTimingFunction: "cubic-bezier(0.4, 0, 0.2, 1)",
+    transitionDuration: "500ms",
+    "&:hover": {
+      borderColor: "transparent",
+    },
+    "&.select__control--menu-is-open": {
+      borderBottom: "1px solid #1a76d2",
+    },
+  }),
+  option: (styles: any, { data, isDisabled, isFocused, isSelected }: any) => {
+    return {
+      ...styles,
+      backgroundColor: isDisabled
+        ? undefined
+        : isSelected
+        ? "#1a76d2"
+        : isFocused
+        ? "white"
+        : undefined,
+      color: isDisabled
+        ? "#ccc"
+        : isSelected
+        ? "white"
+        : isFocused
+        ? "#0253ad"
+        : "#3486d7",
+      cursor: isDisabled ? "not-allowed" : "pointer",
+      padding: "8px 18px",
+      fontWeight: 400,
+      fontSize: "0.83rem",
+
+      ":active": {
+        ...styles[":active"],
+        backgroundColor: !isDisabled ? data.color : undefined,
+      },
+    };
+  },
+  menu: (styles: any, { isLoading, placement, children }: any) => ({
+    ...styles,
+    border: "1px solid #74ace4",
+    boxShadow: "none",
+    borderRadius: 7,
+    background: "#f8fbff",
+    zIndex: 9,
+    position: "relative",
+  }),
+  menuList: (styles: any) => ({
+    ...styles,
+    paddingTop: 10,
+    paddingBottom: 10,
+  }),
+  input: (styles: any) => ({ ...styles, color: "#889bb3" }),
+  placeholder: (styles: any) => ({
+    ...styles,
+    color: "#889bb3",
+    fontSize: "0.875rem",
+    fontWeight: 400,
+  }),
+  valueContainer: (styles: any) => ({
+    ...styles,
+    padding: 0,
+    display: "flex",
+  }),
+  singleValue: (styles: any, { data }: any) => ({
+    ...styles,
+    color: "#889bb3",
+  }),
+  clearIndicator: (styles: any) => ({ ...styles, padding: 0 }),
+  indicatorSeparator: (
+    styles: any,
+    { isDisabled, isFocused, innerProps }: any
+  ) => ({ ...styles, display: "none" }),
+  dropdownIndicator: (styles: any) => ({
+    ...styles,
+    display: "none",
+    color: "#889bb3",
+    ":hover": {
+      color: "#889bb3",
+    },
+    svg: {
+      width: 16,
+    },
+  }),
+};
+
+export const _styles = {
+  containers:
+    "tw-px-2 tw-py-2 tw-border-b tw-border-[#f2f3f9] xl:tw-px-10 xl:tw-py-3",
+  label:
+    "tw-w-4/12 tw-font-light tw-text-[#889bb3] lg:tw-w-3/12 xl:tw-w-2/12 2xl:tw-w-1/12 tw-flex tw-items-center",
+  labelValue:
+    "tw-w-8/12 tw-font-normal tw-text-[#889bb3] tw-truncate lg:tw-w-9/12 xl:tw-w-10/12 2xl:tw-w-11/12 2xl:tw-pl-4",
+  labelValueInput:
+    "tw-w-full tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
 };
