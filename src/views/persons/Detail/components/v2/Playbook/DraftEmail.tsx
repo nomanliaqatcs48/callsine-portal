@@ -631,7 +631,7 @@ const DraftEmail = ({
       </div>
       <div className={`signature-container tw-px-3 tw-py-4`}>
         <Box
-          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto`}
+          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto 2xl:tw-w-auto`}
         >
           Signature
         </Box>
@@ -658,7 +658,7 @@ const DraftEmail = ({
       </div>
       <div className={`parent-email-thread-container tw-px-3 tw-py-4`}>
         <Box
-          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto`}
+          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto 2xl:tw-w-auto`}
         >
           Parent Email Thread
         </Box>
