@@ -1,4 +1,4 @@
-import { Divider, FormHelperText } from "@mui/material";
+import { Box, Divider, FormHelperText } from "@mui/material";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
@@ -54,7 +54,6 @@ const DraftEmail = ({
     from_email: false,
     subject: false,
   });
-  const [currentSignature, setCurrentSignature] = useState<string>("");
   const {
     register,
     unregister,
@@ -135,6 +134,23 @@ const DraftEmail = ({
           })?.[0]
         : ""
     );
+
+    // update parent email html message rich editor
+    if (selectedData?.in_reply_to) {
+      let _html_message =
+        _.filter(emails, (o: any) => {
+          o.value = o.id;
+          return o?.in_reply_to === selectedData?.in_reply_to;
+        })?.[0]?.html_message || "";
+      let _formatParentEmailMsg = _html_message.replace(
+        /<html>|<\/html>|<body>|<\/body>/gi,
+        ""
+      );
+      _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
+      setValue("parent_email_html_message", _formatParentEmailMsg);
+    } else {
+      setValue("parent_email_html_message", "");
+    }
     setTimeout(() => {
       setIsLoading((prev: any) => ({
         ...prev,
@@ -158,6 +174,18 @@ const DraftEmail = ({
           })?.[0]
         : ""
     );
+
+    // update signature
+    if (selectedData?.from_email) {
+      let _mailAccount = _.filter(mailAccountsData, (o: any) => {
+        o.label = o.email;
+        o.value = o.id;
+        return o?.id === selectedData?.from_email;
+      })?.[0];
+      setValue("signature", _mailAccount?.signature || "");
+    } else {
+      setValue("signature", "");
+    }
     setTimeout(() => {
       setIsLoading((prev: any) => ({
         ...prev,
@@ -169,8 +197,9 @@ const DraftEmail = ({
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
     trigger("from_email");
-    setCurrentSignature(event?.signature || "");
-    setValueHtmlMsg(event?.signature || "", true);
+    // setCurrentSignature(event?.signature || "");
+    // setValueHtmlMsg(event?.signature || "", true);
+    setValue("signature", event?.signature || "");
   };
 
   const handleSendNow = async (id: any) => {
@@ -202,15 +231,6 @@ const DraftEmail = ({
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     insertBodyLoader();
 
-    let _parentEmailMsg = data?.in_reply_to?.html_message || "";
-    if (_parentEmailMsg) {
-      _parentEmailMsg = _parentEmailMsg.replace(
-        /<html>|<\/html>|<body>|<\/body>/gi,
-        ""
-      );
-      _parentEmailMsg = `<br><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_parentEmailMsg}</blockquote>`;
-    }
-
     try {
       let res = await createAsEmailService({
         ...data,
@@ -218,7 +238,9 @@ const DraftEmail = ({
         from_email: data?.from_email?.id,
         position: position,
         html_message: `<html><body>${
-          data?.html_message + _parentEmailMsg
+          data?.html_message +
+          data?.signature.replace(/\n/g, "") +
+          data?.parent_email_html_message.replace(/\n/g, "")
         }</body></html>`,
       });
       if (res?.data?.id) {
@@ -241,6 +263,14 @@ const DraftEmail = ({
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
     setValue("html_message", value);
+  };
+
+  const handleSignatureOnChange = (value: string, editor: any) => {
+    setValue("signature", value);
+  };
+
+  const handleParentEmailHtmlMsgOnChange = (value: string, editor: any) => {
+    setValue("parent_email_html_message", value);
   };
 
   const handleChangeParentEmail = (event: any) => {
@@ -271,11 +301,30 @@ const DraftEmail = ({
           o.value = o.id;
           return o?.id === event?.from_email;
         })?.[0];
-        setCurrentSignature(_mailAccount?.signature || "");
-        setValueHtmlMsg(_mailAccount?.signature || "", true);
+        // setCurrentSignature(_mailAccount?.signature || "");
+        // setValueHtmlMsg(_mailAccount?.signature || "", true);
+        setValue("signature", _mailAccount?.signature || "");
       } else {
-        setCurrentSignature("");
-        setValueHtmlMsg("", true);
+        // setCurrentSignature("");
+        // setValueHtmlMsg("", true);
+        setValue("signature", "");
+      }
+
+      // update parent email html message rich editor
+      if (event?.in_reply_to) {
+        let _html_message =
+          _.filter(emails, (o: any) => {
+            o.value = o.id;
+            return o?.in_reply_to === event?.in_reply_to;
+          })?.[0]?.html_message || "";
+        let _formatParentEmailMsg = _html_message.replace(
+          /<html>|<\/html>|<body>|<\/body>/gi,
+          ""
+        );
+        _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
+        setValue("parent_email_html_message", _formatParentEmailMsg);
+      } else {
+        setValue("parent_email_html_message", "");
       }
 
       setValue("to", event?.to || getValues("to"));
@@ -291,11 +340,13 @@ const DraftEmail = ({
       setValue("from_email", "");
 
       //update signature
-      setCurrentSignature("");
-      setValueHtmlMsg("", true);
+      // setCurrentSignature("");
+      // setValueHtmlMsg("", true);
 
       setValue("to", playBookData?.work_email);
       setValue("subject", "");
+      setValue("signature", "");
+      setValue("parent_email_html_message", "");
       setTimeout(() =>
         setIsLoading((prev: any) => ({
           ...prev,
@@ -312,9 +363,10 @@ const DraftEmail = ({
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
       subject: getValues("subject") || "",
-      html_message: getValues("html_message")
-        ? getValues("html_message")?.replace(/\n/g, "")
-        : "",
+      html_message:
+        getValues("html_message")?.replace(/\n/g, "") +
+        getValues("signature")?.replace(/\n/g, "") +
+        getValues("parent_email_html_message")?.replace(/\n/g, ""),
     };
     void updateProspectSequenceEvent(
       selectedSequenceEvent?.person,
@@ -324,63 +376,24 @@ const DraftEmail = ({
     );
   };
 
-  const setValueHtmlMsg = (
-    addSignature: string | null = "",
-    isAddSignature: boolean = false
-  ) => {
-    // when you change the from_email field make sure that what you write in html_message must maintain
+  const setValueHtmlMsg = () => {
     if (selectedData?.text) {
       if (selectedData?.text && selectedData?.text?.toLowerCase() !== "none") {
-        if (isAddSignature) {
-          setValue(
-            "html_message",
-            getValues("html_message")?.replace(`${currentSignature}`, "") +
-              addSignature
-          );
-        } else {
-          setValue(
-            "html_message",
-            selectedData?.text?.replace(/\n/g, "<br />") + addSignature
-          );
-        }
+        setValue("html_message", selectedData?.text?.replace(/\n/g, "<br />"));
       } else {
-        if (isAddSignature) {
-          setValue(
-            "html_message",
-            getValues("html_message")?.replace(`${currentSignature}`, "") +
-              addSignature
-          );
-        } else {
-          setValue("html_message", "" + addSignature);
-        }
+        setValue("html_message", "");
       }
     } else {
       if (
         selectedData?.html_message &&
         selectedData?.html_message?.toLowerCase() !== "none"
       ) {
-        if (isAddSignature) {
-          setValue(
-            "html_message",
-            getValues("html_message")?.replace(`${currentSignature}`, "") +
-              addSignature
-          );
-        } else {
-          setValue(
-            "html_message",
-            selectedData?.html_message?.replace(/\n/g, "<br />") + addSignature
-          );
-        }
+        setValue(
+          "html_message",
+          selectedData?.html_message?.replace(/\n/g, "<br />")
+        );
       } else {
-        if (isAddSignature) {
-          setValue(
-            "html_message",
-            getValues("html_message")?.replace(`${currentSignature}`, "") +
-              addSignature
-          );
-        } else {
-          setValue("html_message", "" + addSignature);
-        }
+        setValue("html_message", "");
       }
     }
   };
@@ -610,6 +623,35 @@ const DraftEmail = ({
                 {message}
               </FormHelperText>
             )}
+          />
+        </div>
+      </div>
+      <div className={`signature-container tw-px-3 tw-py-4`}>
+        <Box className={`${_styles?.label}`}>Signature</Box>
+        <div className="">
+          <MyEditor
+            initialValue={getValues("signature")}
+            onEditorChange={(value: string, editor: any) => {
+              handleSignatureOnChange(value, editor);
+            }}
+            onFocus={(e: any) => null}
+            editorHeight={250}
+          />
+        </div>
+      </div>
+      <div className={`parent-email-thread-container tw-px-3 tw-py-4`}>
+        <Box className={`${_styles?.label} xl:tw-w-auto`}>
+          Parent Email Thread
+        </Box>
+        <div className="">
+          <MyEditor
+            initialValue={getValues("parent_email_html_message")}
+            onEditorChange={(value: string, editor: any) => {
+              handleParentEmailHtmlMsgOnChange(value, editor);
+            }}
+            onFocus={(e: any) => null}
+            editorHeight={400}
+            disabled
           />
         </div>
       </div>

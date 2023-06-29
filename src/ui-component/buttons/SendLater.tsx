@@ -99,6 +99,11 @@ const SendLater = ({
         in_reply_to: data?.id,
         from_email: data?.from_email?.id,
         position: position,
+        html_message: `<html><body>${
+          data?.html_message +
+          data?.signature.replace(/\n/g, "") +
+          data?.parent_email_html_message.replace(/\n/g, "")
+        }</body></html>`,
       });
       if (res?.data) {
         ToastSuccess("Email successfully scheduled.");
