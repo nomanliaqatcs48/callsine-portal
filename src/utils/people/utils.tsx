@@ -327,7 +327,11 @@ export const _columns: any = () => {
         width: 90,
         minWidth: 90,
         Cell: (cell: any) => {
-          return cell?.value ? moment(cell.value).format("YYYY/MM/DD") : "";
+          return cell?.value ? (
+            moment(cell.value).format("YYYY/MM/DD")
+          ) : (
+            <hr className="tw-w-3 tw-border-black" />
+          );
         },
       },
       {
@@ -336,7 +340,11 @@ export const _columns: any = () => {
         width: 90,
         minWidth: 90,
         Cell: (cell: any) => {
-          return cell?.value ? moment(cell.value).format("YYYY/MM/DD") : "";
+          return cell?.value ? (
+            moment(cell.value).format("YYYY/MM/DD")
+          ) : (
+            <hr className="tw-w-3 tw-border-black" />
+          );
         },
       },
       {
