@@ -47,7 +47,15 @@ const Email = ({ position, onLoadApi, selectedData }: EmailTypes) => {
       _htmlMsg = _htmlMsg.replace(/<html>|<\/html>|<body>|<\/body>/gi, "");
     }
     if (_preview && _htmlMsg) {
-      _preview.innerHTML = xss(_htmlMsg);
+      _preview.innerHTML = xss(_htmlMsg, {
+        onIgnoreTagAttr: function (tag, name, value, isWhiteAttr) {
+          if (name === "style") {
+            // escape its value using built-in escapeAttrValue function
+            // @ts-ignore
+            return name + '="' + xss.escapeAttrValue(value) + '"';
+          }
+        },
+      });
     }
   };
 

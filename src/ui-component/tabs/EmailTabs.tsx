@@ -128,7 +128,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
           let _preview: any = document.querySelector(`.preview_${item?.id}`);
           let _htmlMsg = item?.html_message || "";
           if (_htmlMsg) {
-            _htmlMsg = _htmlMsg.replace(/\n/g, "<br />");
+            _htmlMsg = _htmlMsg.replace(/\n/g, "");
             _htmlMsg = _htmlMsg.replace(
               /<html>|<\/html>|<body>|<\/body>/gi,
               ""
@@ -138,7 +138,15 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
             _htmlMsg = "";
           }
           if (_preview && _htmlMsg) {
-            _preview.innerHTML = xss(_htmlMsg);
+            _preview.innerHTML = xss(_htmlMsg, {
+              onIgnoreTagAttr: function (tag, name, value, isWhiteAttr) {
+                if (name === "style") {
+                  // escape its value using built-in escapeAttrValue function
+                  // @ts-ignore
+                  return name + '="' + xss.escapeAttrValue(value) + '"';
+                }
+              },
+            });
           }
         }, 500);
 
