@@ -25,6 +25,7 @@ import {
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import _ from "lodash";
 import { selectBlueStyles, _styles } from "../../../../utils/utils";
+import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -565,13 +566,15 @@ const DraftEmail = ({
           <div className={`${_styles?.label}`}>Subject</div>
           <div className={`${_styles?.labelValue}`}>
             {!isLoading?.subject && (
-              <input
-                type="text"
-                className={`${_styles?.labelValueInput}`}
-                {...register("subject", {
-                  required: "This is required field.",
-                })}
-              />
+              <GrammarlyEditorPlugin clientId="client_XceQ4Hc6Jw4SS4kSvkSWVx">
+                <input
+                  type="text"
+                  className={`${_styles?.labelValueInput}`}
+                  {...register("subject", {
+                    required: "This is required field.",
+                  })}
+                />
+              </GrammarlyEditorPlugin>
             )}
             <ErrorMessage
               errors={errors}
