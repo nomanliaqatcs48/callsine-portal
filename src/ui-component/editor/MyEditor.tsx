@@ -8,6 +8,7 @@ type MyEditorTypes = {
   isPreformatted?: boolean;
   onClick?: any;
   onFocus?: any;
+  editorHeight?: number;
 };
 
 const MyEditor = ({
@@ -16,6 +17,7 @@ const MyEditor = ({
   isPreformatted = false,
   onClick,
   onFocus,
+  editorHeight = 500,
 }: MyEditorTypes) => {
   const editorRef: any = React.useRef(null);
 
@@ -36,7 +38,7 @@ const MyEditor = ({
         onClick={onClick}
         onFocus={onFocus}
         init={{
-          height: 500,
+          height: editorHeight,
           menubar: true,
           forced_root_block: isPreformatted ? "pre" : "div",
           plugins: [
