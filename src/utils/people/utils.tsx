@@ -293,7 +293,7 @@ export const _columns: any = () => {
       },
       {
         Header: "Company",
-        accessor: "org.name",
+        accessor: "company_name",
         sorting_id: "org__name",
       },
       {
@@ -317,6 +317,18 @@ export const _columns: any = () => {
       {
         Header: "Emails",
         accessor: "email_count",
+        width: 90,
+        minWidth: 90,
+      },
+      {
+        Header: "Last Contacted",
+        accessor: "last_contacted",
+        width: 90,
+        minWidth: 90,
+      },
+      {
+        Header: "Next Scheduled",
+        accessor: "next_scheduled_email",
         width: 90,
         minWidth: 90,
       },
