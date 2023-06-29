@@ -19,6 +19,7 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import DeletePerson from "../../ui-component/buttons/DeletePerson";
+import moment from "moment/moment";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
@@ -325,12 +326,18 @@ export const _columns: any = () => {
         accessor: "last_contacted",
         width: 90,
         minWidth: 90,
+        Cell: (cell: any) => {
+          return cell?.value ? moment(cell.value).format("YYYY/MM/DD") : "";
+        },
       },
       {
         Header: "Next Scheduled",
         accessor: "next_scheduled_email",
         width: 90,
         minWidth: 90,
+        Cell: (cell: any) => {
+          return cell?.value ? moment(cell.value).format("YYYY/MM/DD") : "";
+        },
       },
       {
         Header: "Actions",
