@@ -210,6 +210,14 @@ const DraftEmail = ({
     }, 1000);
   }, [selectedData, selectedSequenceEvent, mailAccountsData]);
 
+  useEffect(() => {
+    if (errors && Object.keys(errors)?.length > 0) {
+      if (Object.keys(errors)?.[0] === "html_message") {
+        ToastError("Email message is required.");
+      }
+    }
+  });
+
   const handleChangeFromEmail = (event: any) => {
     setValue("from_email", event);
     trigger("from_email");
