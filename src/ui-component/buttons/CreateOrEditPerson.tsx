@@ -163,8 +163,21 @@ const CreateOrEditPerson = ({
       devLogError(() => {
         console.error(e?.response);
       });
-      if (e?.response?.data && Object.keys(e.response.data)?.length > 0) {
-        ToastError(e.response.data[Object.keys(e.response.data)[0]][0]);
+      if (e?.response?.data) {
+        if (Object.keys(e?.response?.data)?.length > 0) {
+          if (
+            typeof e?.response?.data[Object.keys(e.response.data)?.[0]] ===
+            "string"
+          ) {
+            ToastError("Something went wrong!");
+          } else {
+            ToastError(
+              e?.response?.data[Object.keys(e.response.data)?.[0]]?.[0]
+            );
+          }
+        } else {
+          ToastError("Something went wrong!");
+        }
       } else {
         ToastError("Something went wrong!");
       }
