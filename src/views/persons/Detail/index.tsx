@@ -8,6 +8,7 @@ import Emails from "./components/Emails";
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import PlaybookV2 from "./components/v2/Playbook/PlaybookV2";
+import CustomFieldsTab from "../../../ui-component/tabs/CustomFieldsTab";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -118,6 +119,11 @@ const PersonDetailPage = () => {
             {...a11yProps(2)}
             className="tw-text-black tw-tracking-wider"
           />
+          <Tab
+            label="Custom Fields"
+            {...a11yProps(3)}
+            className="tw-text-black tw-tracking-wider"
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -129,6 +135,9 @@ const PersonDetailPage = () => {
       </TabPanel>
       <TabPanel value={value} index={2}>
         {value === 2 && <TrackingTab />}
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+        {value === 3 && <CustomFieldsTab data={data} />}
       </TabPanel>
     </>
   );
