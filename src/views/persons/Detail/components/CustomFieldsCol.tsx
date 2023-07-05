@@ -53,7 +53,7 @@ const CustomFieldsCol = ({ data }: ProfileSecondColTypes) => {
       first: "Phone",
       second: data?.phone || <hr className="tw-w-3 tw-border-black" />,
     },
-    ...data.custom_fields.map((d: any) => ({
+    ...data?.custom_fields.map((d: any) => ({
       first: d.custom_field.name,
       second: d.value || <hr className="tw-w-3 tw-border-black" />,
     })),
