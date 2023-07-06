@@ -1,6 +1,7 @@
 // useFetchProspectSequenceEvent.ts
 import { useState, useEffect } from "react";
 import { getProspectSequenceEventService } from "../../services/sequences.service";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 export const useFetchProspectSequenceEvent = (
   personId: string,
@@ -37,14 +38,17 @@ export const useFetchProspectSequenceEvent = (
 
   const getPersonDetail = () => {
     setLoading(true);
+    insertBodyLoader();
     getProspectSequenceEventService(personId, filters, searchValue)
       .then((response) => {
         setData(response.data);
         setLoading(false);
+        removeBodyLoader();
       })
       .catch((err) => {
         setError(err);
         setLoading(false);
+        removeBodyLoader();
       });
   };
 
