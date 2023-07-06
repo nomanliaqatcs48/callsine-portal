@@ -25,14 +25,17 @@ export const useFetchProspectSequenceEvent = (
 
   useEffect(() => {
     setLoading(true);
+    insertBodyLoader();
     getProspectSequenceEventService(personId, filters, searchValue)
       .then((response) => {
         setData(response.data);
         setLoading(false);
+        removeBodyLoader();
       })
       .catch((err) => {
         setError(err);
         setLoading(false);
+        removeBodyLoader();
       });
   }, [personId]);
 
