@@ -57,7 +57,7 @@ export const usePlaybook = (load: boolean = true) => {
     }
   };
 
-  const regeneratePlaybook = async (sequenceEvent: any) => {
+  const regeneratePlaybook = async (sequenceEvent: any, onLoadApi: any) => {
     setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
     insertBodyLoader();
     try {
@@ -76,6 +76,7 @@ export const usePlaybook = (load: boolean = true) => {
         });
         setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
         removeBodyLoader();
+        onLoadApi();
         return;
       }
     } catch (e: any) {
@@ -85,7 +86,7 @@ export const usePlaybook = (load: boolean = true) => {
       });
       setIsLoading((prev: any) => ({ ...prev, regeneratePlaybook: false }));
       removeBodyLoader();
-      return;
+      onLoadApi();
     }
   };
 
