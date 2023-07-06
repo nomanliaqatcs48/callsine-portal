@@ -103,9 +103,9 @@ export const usePlaybook = (load: boolean = true) => {
           console.log("response", response?.data);
         });
         setTimeout(() => {
+          onLoadApi();
           removeBodyLoader();
           ToastSuccess("Prospect sequence event successfully updated.");
-          onLoadApi();
         });
       }
     } catch (e: any) {
