@@ -186,7 +186,16 @@ const PlaybookList = ({
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
-                            {item?.scheduledEmail?.subject || `Email ${_count}`}
+                            {item?.scheduledEmail?.subject
+                              ? item?.scheduledEmail?.subject?.includes(
+                                  "Subject Line: "
+                                )
+                                ? item?.scheduledEmail?.subject?.replace(
+                                    /Subject Line: /gi,
+                                    ""
+                                  )
+                                : item?.scheduledEmail?.subject
+                              : `Email ${_count}`}
                           </span>
                           <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
                             {_.includes(item?.status, "scheduled") &&
