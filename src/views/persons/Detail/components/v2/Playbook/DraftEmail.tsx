@@ -160,7 +160,9 @@ const DraftEmail = ({
             _html_message?.scheduled_time
               ? moment(_html_message?.scheduled_time).format("lll")
               : ""
-          }</div><div>From: ${_html_message?.to}</div>${_formatParentEmailMsg}`
+          }</div><div>To: ${
+            _html_message?.to
+          }</div>${_formatParentEmailMsg}<br/>`
         : "";
       _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
       setValue("parent_email_html_message", _formatParentEmailMsg);
@@ -359,9 +361,9 @@ const DraftEmail = ({
               _html_message?.scheduled_time
                 ? moment(_html_message?.scheduled_time).format("lll")
                 : ""
-            }</div><div>From: ${
+            }</div><div>To: ${
               _html_message?.to
-            }</div>${_formatParentEmailMsg}`
+            }</div>${_formatParentEmailMsg}<br/>`
           : "";
         _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
         setValue("parent_email_html_message", _formatParentEmailMsg);
