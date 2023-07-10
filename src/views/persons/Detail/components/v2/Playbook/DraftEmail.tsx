@@ -410,7 +410,14 @@ const DraftEmail = ({
       // setValueHtmlMsg("", true);
 
       setValue("to", playBookData?.work_email);
-      setValue("subject", "");
+      setValue(
+        "subject",
+        selectedData?.subject
+          ? selectedData?.subject?.includes("Subject Line: ")
+            ? selectedData?.subject?.replace(/Subject Line: /gi, "")
+            : selectedData?.subject
+          : ""
+      );
       setValue("signature", "");
       setValue("parent_email_html_message", "");
       setTimeout(() =>
