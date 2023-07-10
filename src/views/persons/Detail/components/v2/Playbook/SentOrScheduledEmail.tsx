@@ -26,7 +26,7 @@ const SentOrScheduledEmail = ({
   useLayoutEffect(() => {
     GetFromEmailDetail();
     renderMessage();
-  }, []);
+  }, [selectedData]);
 
   const GetFromEmailDetail = async () => {
     try {
