@@ -603,6 +603,10 @@ const DraftEmail = ({
                       item.label = item.label.replace(/Subject Line: /gi, "");
                     }
 
+                    if (item?.position !== null) {
+                      item.label = `${item.label} (${item.position})`;
+                    }
+
                     item.value = item.id;
                     return item;
                   })
