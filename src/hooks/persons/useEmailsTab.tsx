@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getEmailsService } from "../../services/emails.service";
 import { useParams } from "react-router-dom";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 export const useEmailsTab = (
   load: boolean = true,
@@ -28,18 +29,21 @@ export const useEmailsTab = (
 
   const getEmails = async () => {
     setIsLoading((prev: any) => ({ ...prev, cards: false }));
+    insertBodyLoader();
 
     try {
       let res = await getEmailsService(Number(id), filters, searchValue);
       if (res?.data) {
         setEmails(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
+        removeBodyLoader();
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
       setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
+      removeBodyLoader();
     }
   };
 
