@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { devLogError } from "../../helpers/logs";
 import { getMailAccountsService } from "../../services/mail-accounts.service";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 export const useMailAccounts = (
   load: boolean = true,
@@ -30,6 +31,7 @@ export const useMailAccounts = (
 
   const getMailAccounts = async () => {
     setIsLoading((prev: any) => ({ ...prev, table: true }));
+    insertBodyLoader();
     try {
       let res = await getMailAccountsService(
         filters,
@@ -49,12 +51,14 @@ export const useMailAccounts = (
           });
         }
         setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
+        removeBodyLoader();
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
       setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
+      removeBodyLoader();
     }
   };
 

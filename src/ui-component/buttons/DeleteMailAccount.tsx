@@ -4,6 +4,7 @@ import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 type DeleteMailAccountTypes = {
   id: number;
@@ -28,6 +29,7 @@ const DeleteMailAccount = ({
 
   const handleDelete = async () => {
     setIsLoading((prev: any) => ({ ...prev, submit: true }));
+    insertBodyLoader();
     try {
       let res = await deleteMailAccountService(id);
       if (res?.status === 204) {
@@ -35,6 +37,7 @@ const DeleteMailAccount = ({
         onLoadApi();
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
+        removeBodyLoader();
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
@@ -42,6 +45,7 @@ const DeleteMailAccount = ({
         console.error(e?.response);
       });
       setIsLoading((prev: any) => ({ ...prev, submit: false }));
+      removeBodyLoader();
     }
   };
 
