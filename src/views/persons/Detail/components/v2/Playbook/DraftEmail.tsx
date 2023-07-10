@@ -548,7 +548,7 @@ const DraftEmail = ({
                 isSearchable={true}
                 options={emails.map((item: any, idx: number) => {
                   let _count = item?.subject ? "" : ++countIndexForEmailSubject;
-                  item.label = `ID: ${item?.id} | Subject: ${
+                  item.label = `ID: ${item?.id} | ${
                     item?.subject ? item?.subject : "Email " + _count
                   }`;
                   item.value = item.id;
