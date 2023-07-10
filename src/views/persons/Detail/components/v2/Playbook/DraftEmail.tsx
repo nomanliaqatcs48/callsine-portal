@@ -108,7 +108,14 @@ const DraftEmail = ({
         selectedData?.to ? selectedData?.to : playBookData?.work_email
       );
       setValue("scheduled_time", moment.utc().format("YYYY-MM-DD HH:mm:ss"));
-      setValue("subject", selectedData?.subject);
+      setValue(
+        "subject",
+        selectedData?.subject
+          ? selectedData?.subject?.includes("Subject Line: ")
+            ? selectedData?.subject?.replace(/Subject Line: /gi, "")
+            : selectedData?.subject
+          : ""
+      );
     });
     setTimeout(() => {
       setIsLoading((prev: any) => ({
