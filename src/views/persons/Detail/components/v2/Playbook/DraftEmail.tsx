@@ -374,6 +374,30 @@ const DraftEmail = ({
           : "";
         _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
         setValue("parent_email_html_message", _formatParentEmailMsg);
+      } else if (event?.status === 0 && event?.scheduled_time) {
+        // if status is 0 and scheduled_time is not null
+        let _mailAccount =
+          _.filter(mailAccountsData, (o: any) => {
+            o.label = o.email;
+            o.value = o.id;
+            return o?.id === event?.from_email;
+          })?.[0] || "";
+        let _formatParentEmailMsg =
+          event?.html_message?.replace(
+            /<html>|<\/html>|<body>|<\/body>/gi,
+            ""
+          ) || "";
+        _formatParentEmailMsg = _formatParentEmailMsg
+          ? `<div>From: ${_mailAccount?.first_name} ${
+              _mailAccount?.last_name
+            } (${_mailAccount?.email})</div><div>Scheduled Time: ${
+              event?.scheduled_time
+                ? moment(event?.scheduled_time).format("lll")
+                : ""
+            }</div><div>To: ${event?.to}</div><br/>${_formatParentEmailMsg}`
+          : "";
+        _formatParentEmailMsg = `<br /><blockquote style="margin: 0 0 0 0.8ex;border-left-width: 1px;border-left-style: solid;padding-left: 1ex;border-left-color: rgb(204,204,204);">${_formatParentEmailMsg}</blockquote>`;
+        setValue("parent_email_html_message", _formatParentEmailMsg);
       } else {
         setValue("parent_email_html_message", "");
       }
