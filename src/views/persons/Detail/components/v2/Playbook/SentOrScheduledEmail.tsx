@@ -83,6 +83,15 @@ const SentOrScheduledEmail = ({
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
                   To: {selectedData?.to}
                 </div>
+                <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
+                  Opens: {selectedData?.opens}
+                </div>
+                <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
+                  Clicks: {selectedData?.clicks}
+                </div>
+                <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
+                  Position: {selectedData?.position}
+                </div>
               </div>
             </div>
           </div>
