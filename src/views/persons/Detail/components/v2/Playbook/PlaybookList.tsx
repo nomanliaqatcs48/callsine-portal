@@ -166,7 +166,13 @@ const PlaybookList = ({
                 }}
               >
                 <Tooltip
-                  title={item?.scheduledEmail?.subject || `Email ${_count}`}
+                  title={
+                    item?.scheduledEmail?.subject
+                      ? item?.scheduledEmail?.position !== null
+                        ? `${item?.scheduledEmail?.subject} (${item?.scheduledEmail?.position})`
+                        : item?.scheduledEmail?.subject
+                      : `Email ${_count}`
+                  }
                 >
                   <ListItemText
                     primary={
