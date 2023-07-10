@@ -372,16 +372,22 @@ const DraftEmail = ({
       }
 
       setValue("to", event?.to || getValues("to"));
-      setValue(
-        "subject",
-        `${
-          event?.subject
-            ? event?.subject?.includes("RE: ")
-              ? "RE: " + event?.subject.replace(/RE: /gi, "")
-              : "RE: " + event?.subject
-            : ""
-        }`
-      );
+
+      // for subject
+      let _eventSubject = event?.subject || "";
+      if (_eventSubject) {
+        if (_eventSubject?.includes("RE: ")) {
+          _eventSubject = "RE: " + _eventSubject.replace(/RE: /gi, "");
+        } else {
+          _eventSubject = "RE: " + _eventSubject;
+        }
+
+        if (_eventSubject?.includes("Subject Line: ")) {
+          _eventSubject = _eventSubject.replace(/Subject Line: /gi, "");
+        }
+      }
+      setValue("subject", _eventSubject);
+
       setTimeout(() =>
         setIsLoading((prev: any) => ({
           ...prev,
@@ -551,6 +557,11 @@ const DraftEmail = ({
                   item.label = `ID: ${item?.id} | ${
                     item?.subject ? item?.subject : "Email " + _count
                   }`;
+
+                  if (item?.label?.includes("Subject Line: ")) {
+                    item.label = item.label.replace(/Subject Line: /gi, "");
+                  }
+
                   item.value = item.id;
                   return item;
                 })}
