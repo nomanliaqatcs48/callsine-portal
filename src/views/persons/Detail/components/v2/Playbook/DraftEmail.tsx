@@ -566,19 +566,25 @@ const DraftEmail = ({
                 placeholder="Please select"
                 isClearable={true}
                 isSearchable={true}
-                options={emails.map((item: any, idx: number) => {
-                  let _count = item?.subject ? "" : ++countIndexForEmailSubject;
-                  item.label = `ID: ${item?.id} | ${
-                    item?.subject ? item?.subject : "Email " + _count
-                  }`;
+                options={emails
+                  .map((item: any, idx: number) => {
+                    let _count = item?.subject
+                      ? ""
+                      : ++countIndexForEmailSubject;
+                    item.label = `ID: ${item?.id} | ${
+                      item?.subject ? item?.subject : "Email " + _count
+                    }`;
 
-                  if (item?.label?.includes("Subject Line: ")) {
-                    item.label = item.label.replace(/Subject Line: /gi, "");
-                  }
+                    if (item?.label?.includes("Subject Line: ")) {
+                      item.label = item.label.replace(/Subject Line: /gi, "");
+                    }
 
-                  item.value = item.id;
-                  return item;
-                })}
+                    item.value = item.id;
+                    return item;
+                  })
+                  .filter((item: any, idx: number) => {
+                    return item?.scheduled_time;
+                  })}
                 styles={selectBlueStyles}
                 defaultValue={getValues("in_reply_to")}
                 onChange={handleChangeParentEmail}
