@@ -127,7 +127,7 @@ const SentOrScheduledEmail = ({
         </h3>
       </div>
       <div
-        className={`message-container ${containers} tw-text-[0.875rem] render_message`}
+        className={`message-container ${containers} tw-text-[0.775rem] render_message`}
       />
     </>
   );
