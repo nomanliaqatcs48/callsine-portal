@@ -460,10 +460,7 @@ const DraftEmail = ({
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
       subject: getValues("subject") || "",
-      html_message:
-        getValues("html_message")?.replace(/\n/g, "") +
-        getValues("signature")?.replace(/\n/g, "") +
-        getValues("parent_email_html_message")?.replace(/\n/g, ""),
+      html_message: getValues("html_message")?.replace(/\n/g, ""),
     };
     void updateProspectSequenceEvent(
       selectedSequenceEvent?.person,
