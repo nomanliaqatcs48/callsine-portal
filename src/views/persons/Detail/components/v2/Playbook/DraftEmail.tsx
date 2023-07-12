@@ -47,6 +47,7 @@ const DraftEmail = ({
 }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
+  const [isSubjectDisabled, setIsSubjectDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
@@ -418,6 +419,7 @@ const DraftEmail = ({
         }
       }
       setValue("subject", _eventSubject);
+      setIsSubjectDisabled(true);
 
       setTimeout(() =>
         setIsLoading((prev: any) => ({
@@ -442,6 +444,7 @@ const DraftEmail = ({
             : selectedData?.subject
           : ""
       );
+      setIsSubjectDisabled(false);
       setValue("signature", "");
       setValue("parent_email_html_message", "");
       setTimeout(() =>
@@ -700,6 +703,7 @@ const DraftEmail = ({
                   {...register("subject", {
                     required: "This is required field.",
                   })}
+                  disabled={isSubjectDisabled}
                 />
               </GrammarlyEditorPlugin>
             )}
