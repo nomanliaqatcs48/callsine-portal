@@ -171,7 +171,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                   variant="subtitle2"
                   className="tw-flex tw-items-center"
                 >
-                  <strong>To:</strong>{" "}
+                  <strong>To:&nbsp;</strong>{" "}
                   {item?.to ? (
                     <a href={`mailto:${item?.to}`}>{item?.to}</a>
                   ) : (
@@ -188,7 +188,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               </div>
             </Grid>
             <Typography variant="subtitle2" className="tw-flex tw-items-center">
-              <strong>From:</strong>{" "}
+              <strong>From:&nbsp;</strong>{" "}
               {item?.headers ? (
                 <a href={`mailto:${displayFromEmail(item)}`}>
                   {displayFromEmail(item)}
@@ -198,18 +198,18 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               )}
             </Typography>
             <Typography variant="subtitle2" className="tw-flex tw-items-center">
-              <strong>Status:</strong>{" "}
-              {item?.status ? (
+              <strong>Status:&nbsp;</strong>{" "}
+              {item?.status !== null ? (
                 showStatus(item?.status)
               ) : (
                 <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
               )}
             </Typography>
             <Typography variant="subtitle2">
-              <strong>Opens:</strong> {item?.opens}
+              <strong>Opens:&nbsp;</strong> {item?.opens}
             </Typography>
             <Typography variant="subtitle2">
-              <strong>Clicks:</strong> {item?.clicks}
+              <strong>Clicks:&nbsp;</strong> {item?.clicks}
             </Typography>
 
             <div style={{ height: 10 }} />
@@ -240,7 +240,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                   variant="subtitle2"
                   className="tw-flex tw-items-center"
                 >
-                  <strong>Scheduled Date:</strong>{" "}
+                  <strong>Scheduled Date:&nbsp;</strong>{" "}
                   {item?.scheduled_time ? (
                     moment.utc(item?.scheduled_time).format("LLLL")
                   ) : (
@@ -256,15 +256,15 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               justifyContent="start"
               alignItems="center"
             >
-              {/*{showStatus(item?.status) === "Queued" && (*/}
-              <SendEmailNow
-                id={item?.id}
-                buttonText="Send Now"
-                variant="outlined"
-                style={{ marginRight: 10 }}
-                onLoadApi={onLoadApi}
-              />
-              {/*)}*/}
+              {showStatus(item?.status) !== "Sent" && (
+                <SendEmailNow
+                  id={item?.id}
+                  buttonText="Send Now"
+                  variant="outlined"
+                  style={{ marginRight: 10 }}
+                  onLoadApi={onLoadApi}
+                />
+              )}
 
               <DeletePersonEmail
                 id={item?.id}
