@@ -85,7 +85,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Emails Sent
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
-            {personStatData?.emails_sent || "0"}
+            {data?.sent_emails || "0"}
           </Typography>
         </div>
         <div>
