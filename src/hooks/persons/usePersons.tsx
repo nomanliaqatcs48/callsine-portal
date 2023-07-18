@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getPeopleService } from "../../services/persons.service";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 
 export const usePersons = (
   load: boolean = true,
@@ -38,6 +39,7 @@ export const usePersons = (
   }, [load, filters, sortedId, isOrderDesc]);
 
   const getPeople = async () => {
+    insertBodyLoader();
     try {
       let res = await getPeopleService(
         filters,
@@ -53,12 +55,14 @@ export const usePersons = (
         setTotal(res.data?.count);
         setPersonsData(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+        removeBodyLoader();
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
+      removeBodyLoader();
     }
   };
 
