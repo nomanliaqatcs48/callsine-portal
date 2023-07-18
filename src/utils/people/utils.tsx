@@ -352,6 +352,13 @@ export const _columns: any = () => {
         accessor: "tags",
         width: 80,
         minWidth: 80,
+        Cell: (cell: any) => {
+          let res = "";
+          if (cell?.value?.length > 0) {
+            res = cell?.value.map((item: any) => item.name).join(", ");
+          }
+          return res;
+        },
       },
       {
         Header: "Actions",
