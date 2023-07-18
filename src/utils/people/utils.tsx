@@ -348,6 +348,12 @@ export const _columns: any = () => {
         },
       },
       {
+        Header: "Tags",
+        accessor: "tags",
+        width: 80,
+        minWidth: 80,
+      },
+      {
         Header: "Actions",
         disableSortBy: true,
         accessor: "actions",
