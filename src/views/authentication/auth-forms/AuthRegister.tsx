@@ -50,7 +50,6 @@ const AuthRegister = ({ ...others }) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state: any) => state.customization);
   const [showPassword1, setShowPassword1] = useState<boolean>(false);
-  const [showPassword2, setShowPassword2] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(true);
 
   const [strength, setStrength] = useState(0);
@@ -66,17 +65,13 @@ const AuthRegister = ({ ...others }) => {
     setShowPassword1(!showPassword1);
   };
 
-  const handleClickShowPassword2 = () => {
-    setShowPassword2(!showPassword2);
-  };
+
 
   const handleMouseDownPassword1 = (event: any) => {
     event.preventDefault();
   };
 
-  const handleMouseDownPassword2 = (event: any) => {
-    event.preventDefault();
-  };
+
 
   const changePassword = (value: any) => {
     const temp = strengthIndicator(value);
@@ -88,9 +83,7 @@ const AuthRegister = ({ ...others }) => {
     changePassword("123456");
   }, []);
 
-  const checkPasswords = (values: any) => {
-    return values?.password1 === values?.password2;
-  };
+
 
   const onSubmit = async (
     values: any,
@@ -99,12 +92,7 @@ const AuthRegister = ({ ...others }) => {
     devLog(() => {
       console.log("onSubmit() values", values);
     });
-    if (!checkPasswords(values)) {
-      setStatus({ success: false });
-      setErrors({ submit: "Passwords don't match." });
-      setSubmitting(false);
-      return;
-    }
+
     try {
       devLog(() => {
         console.log("values", values);
@@ -134,10 +122,6 @@ const AuthRegister = ({ ...others }) => {
           setErrors({ submit: err?.response?.data?.email[0] });
         } else if (err?.response?.data?.password1?.length > 0) {
           setErrors({ submit: err?.response?.data?.password1[0] });
-        } else if (err?.response?.data?.password2?.length > 0) {
-          setErrors({ submit: err?.response?.data?.password2[0] });
-        } else if (err?.response?.data?.username?.length > 0) {
-          setErrors({ submit: err?.response?.data?.username[0] });
         } else {
           setErrors({ submit: "There's something wrong." });
         }
@@ -149,79 +133,13 @@ const AuthRegister = ({ ...others }) => {
 
   return (
     <>
-      {/*<Grid container direction="column" justifyContent="center" spacing={2}>
-        <Grid item xs={12}>
-          <AnimateButton>
-            <Button
-              variant="outlined"
-              fullWidth
-              onClick={googleHandler}
-              size="large"
-              sx={{
-                color: "grey.700",
-                backgroundColor: theme.palette.grey[50],
-                borderColor: theme.palette.grey[100],
-              }}
-            >
-              <Box sx={{ mr: { xs: 1, sm: 2, width: 20 } }}>
-                <img
-                  src={Google}
-                  alt="google"
-                  width={16}
-                  height={16}
-                  style={{ marginRight: matchDownSM ? 8 : 16 }}
-                />
-              </Box>
-              Sign up with Google
-            </Button>
-          </AnimateButton>
-        </Grid>
-        <Grid item xs={12}>
-          <Box sx={{ alignItems: "center", display: "flex" }}>
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-            <Button
-              variant="outlined"
-              sx={{
-                cursor: "unset",
-                m: 2,
-                py: 0.5,
-                px: 7,
-                borderColor: `${theme.palette.grey[100]} !important`,
-                color: `${theme.palette.grey[900]}!important`,
-                fontWeight: 500,
-                borderRadius: `${customization.borderRadius}px`,
-              }}
-              disableRipple
-              disabled
-            >
-              OR
-            </Button>
-            <Divider sx={{ flexGrow: 1 }} orientation="horizontal" />
-          </Box>
-        </Grid>
-        <Grid
-          item
-          xs={12}
-          container
-          alignItems="center"
-          justifyContent="center"
-        >
-          <Box sx={{ mb: 2 }}>
-            <Typography variant="subtitle1">
-              Sign up with Email address
-            </Typography>
-          </Box>
-        </Grid>
-      </Grid>*/}
 
       <Formik
         initialValues={{
           first_name: "",
           last_name: "",
           email: "",
-          username: "",
           password1: "",
-          password2: "",
           submit: null,
         }}
         validationSchema={Yup.object().shape({
@@ -231,11 +149,8 @@ const AuthRegister = ({ ...others }) => {
             .email("Must be a valid email")
             .max(255)
             .required("Email is required"),
-          username: Yup.string().max(255).required("Username is required"),
           password1: Yup.string().max(255).required("Password is required"),
-          password2: Yup.string()
-            .max(255)
-            .required("Confirm password is required"),
+
         })}
         onSubmit={onSubmit}
       >
@@ -249,21 +164,69 @@ const AuthRegister = ({ ...others }) => {
           values,
         }: any) => (
           <form noValidate onSubmit={handleSubmit} {...others}>
-            <Grid container spacing={matchDownSM ? 0 : 2}>
-              <Grid item xs={12} sm={6}>
-                <FormControl
-                  fullWidth
-                  error={Boolean(touched.first_name && errors.first_name)}
-                  sx={{ ...theme.typography.customInput }}
-                >
-                  <InputLabel htmlFor="outlined-adornment-first_name-register">
-                    First Name
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-first_name-register"
+            <Grid>
+              <Typography
+                sx={{
+                  font: 'normal normal 600 40px/80px',
+                  letterSpacing: "2px",
+                  color: '#000',
+                  fontSize: '40px',
+                  fontWeight: '600'
+                }}>
+                Create An Account
+              </Typography>
+              <Typography
+                sx={{
+                  font: 'normal normal normal 18px/80px',
+                  letterSpacing: "0.9px",
+                  color: '#000',
+                  display: 'flex'
+                }}>
+                Already an user?
+
+                <Link to="/login" className="tw-text-xs tw-no-underline hover:tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary">
+                  <Typography
+                    sx={{
+                      font: 'normal normal normal 18px/80px',
+                      letterSpacing: "0.9px",
+                      color: '#1976D2',
+                      marginLeft: '5px'
+                    }}>
+                    Sign In
+                  </Typography>
+                </Link>
+              </Typography>
+            </Grid>
+
+            <Box sx={{ mt: 3 }}>
+              <Grid container spacing={2}>
+                <Grid item xs={12} sm={6}>
+                  <div className="tw-text-xs tw-py-3 tw-font-medium">First Name</div>
+                  <TextField
+                    required
+                    fullWidth
+                    sx={{
+                      '& input.MuiOutlinedInput-input': {
+                        backgroundColor: '#FFF',
+                        borderRadius: '10px'
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          border: "1px solid #ECEFFF",
+                          marginTop: "0px",
+                          boxShadow: "0px 1px 3px #0000001A",
+                        },
+                        "&:hover fieldset": {
+                          border: "1px solid #222",
+                        },
+                        "&.Mui-focused fieldset": {
+                          border: "1px solid #222",
+                        },
+                      },
+                    }}
                     type="text"
-                    value={values.first_name}
                     name="first_name"
+                    value={values.first_name}
                     onBlur={handleBlur}
                     onChange={handleChange}
                     inputProps={{}}
@@ -276,26 +239,40 @@ const AuthRegister = ({ ...others }) => {
                       {errors.first_name}
                     </FormHelperText>
                   )}
-                </FormControl>
-              </Grid>
-              <Grid item xs={12} sm={6}>
-                <FormControl
-                  fullWidth
-                  error={Boolean(touched.last_name && errors.last_name)}
-                  sx={{ ...theme.typography.customInput }}
-                >
-                  <InputLabel htmlFor="outlined-adornment-last_name-register">
-                    Last Name
-                  </InputLabel>
-                  <OutlinedInput
-                    id="outlined-adornment-last_name-register"
+
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                <div className="tw-text-xs tw-py-3 tw-font-medium">Last Name</div>
+                  <TextField
+                    required
+                    fullWidth
                     type="text"
                     value={values.last_name}
                     name="last_name"
                     onBlur={handleBlur}
                     onChange={handleChange}
                     inputProps={{}}
+                    sx={{
+                      '& input.MuiOutlinedInput-input': {
+                        backgroundColor: '#FFF',
+                        borderRadius: '10px'
+                      },
+                      "& .MuiOutlinedInput-root": {
+                        "& fieldset": {
+                          border: "1px solid #ECEFFF",
+                          marginTop: "0px",
+                          boxShadow: "0px 1px 3px #0000001A",
+                        },
+                        "&:hover fieldset": {
+                          border: "1px solid #222",
+                        },
+                        "&.Mui-focused fieldset": {
+                          border: "1px solid #222",
+                        },
+                      },
+                    }}
                   />
+
                   {touched.last_name && errors.last_name && (
                     <FormHelperText
                       error
@@ -304,151 +281,95 @@ const AuthRegister = ({ ...others }) => {
                       {errors.last_name}
                     </FormHelperText>
                   )}
-                </FormControl>
+                </Grid>
               </Grid>
-            </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+              <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
+                <TextField
+                  required
+                  fullWidth
+                  type="email"
+                  value={values.email}
+                  name="email"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  inputProps={{}}
+                  sx={{
+                    '& input.MuiOutlinedInput-input': {
+                      backgroundColor: '#FFF',
+                      borderRadius: '10px'
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        border: "1px solid #ECEFFF",
+                        marginTop: "0px",
+                        boxShadow: "0px 1px 3px #0000001A",
+                      },
+                      "&:hover fieldset": {
+                        border: "1px solid #222",
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: "1px solid #222",
+                      },
+                    },
+                  }}
+                />
+                {touched.email && errors.email && (
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text--register"
+                  >
+                    {errors.email}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+              <div className="tw-text-xs tw-py-3 tw-font-medium">Password</div>
+                <TextField
+                  required
+                  fullWidth
+                  type="password"
+                  value={values.password1}
+                  name="password1"
+                  onBlur={handleBlur}
+                  onChange={(e) => {
+                    handleChange(e);
+                    changePassword(e.target.value);
+                  }}
 
-            <FormControl
-              fullWidth
-              error={Boolean(touched.email && errors.email)}
-              sx={{ ...theme.typography.customInput }}
-            >
-              <InputLabel htmlFor="outlined-adornment-email-register">
-                Email Address
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-email-register"
-                type="email"
-                value={values.email}
-                name="email"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                inputProps={{}}
-              />
-              {touched.email && errors.email && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text--register"
-                >
-                  {errors.email}
-                </FormHelperText>
-              )}
-            </FormControl>
+                  inputProps={{}}
+                  sx={{
+                    '& input.MuiOutlinedInput-input': {
+                      backgroundColor: '#FFF',
+                      borderRadius: '10px'
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        border: "1px solid #ECEFFF",
+                        marginTop: "0px",
+                        boxShadow: "0px 1px 3px #0000001A",
+                      },
+                      "&:hover fieldset": {
+                        border: "1px solid #222",
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: "1px solid #222",
+                      },
+                    },
+                  }}
+                />
+                {touched.password1 && errors.password1 && (
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-password1-register"
+                  >
+                    {errors.password1}
+                  </FormHelperText>
+                )}
+              </Grid>
+            </Box>
 
-            <FormControl
-              fullWidth
-              error={Boolean(touched.username && errors.username)}
-              sx={{ ...theme.typography.customInput }}
-            >
-              <InputLabel htmlFor="outlined-adornment-username-register">
-                Username
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-username-register"
-                type="text"
-                value={values.username}
-                name="username"
-                onBlur={handleBlur}
-                onChange={handleChange}
-                inputProps={{}}
-              />
-              {touched.username && errors.username && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-username-register"
-                >
-                  {errors.username}
-                </FormHelperText>
-              )}
-            </FormControl>
 
-            <FormControl
-              fullWidth
-              error={Boolean(touched.password1 && errors.password1)}
-              sx={{ ...theme.typography.customInput }}
-            >
-              <InputLabel htmlFor="outlined-adornment-password1-register">
-                Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password1-register"
-                type={showPassword1 ? "text" : "password"}
-                value={values.password1}
-                name="password1"
-                label="Password"
-                onBlur={handleBlur}
-                onChange={(e) => {
-                  handleChange(e);
-                  changePassword(e.target.value);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle password visibility"
-                      onClick={handleClickShowPassword1}
-                      onMouseDown={handleMouseDownPassword1}
-                      edge="end"
-                      size="large"
-                    >
-                      {showPassword1 ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                inputProps={{}}
-              />
-              {touched.password1 && errors.password1 && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-password1-register"
-                >
-                  {errors.password1}
-                </FormHelperText>
-              )}
-            </FormControl>
-
-            <FormControl
-              fullWidth
-              error={Boolean(touched.password2 && errors.password2)}
-              sx={{ ...theme.typography.customInput }}
-            >
-              <InputLabel htmlFor="outlined-adornment-password2-register">
-                Confirm Password
-              </InputLabel>
-              <OutlinedInput
-                id="outlined-adornment-password2-register"
-                type={showPassword2 ? "text" : "password"}
-                value={values.password2}
-                name="password2"
-                label="Confirm Password"
-                onBlur={handleBlur}
-                onChange={(e) => {
-                  handleChange(e);
-                  // changePassword(e.target.value);
-                }}
-                endAdornment={
-                  <InputAdornment position="end">
-                    <IconButton
-                      aria-label="toggle confirm-password visibility"
-                      onClick={handleClickShowPassword2}
-                      onMouseDown={handleMouseDownPassword2}
-                      edge="end"
-                      size="large"
-                    >
-                      {showPassword2 ? <Visibility /> : <VisibilityOff />}
-                    </IconButton>
-                  </InputAdornment>
-                }
-                inputProps={{}}
-              />
-              {touched.password2 && errors.password2 && (
-                <FormHelperText
-                  error
-                  id="standard-weight-helper-text-password2-register"
-                >
-                  {errors.password2}
-                </FormHelperText>
-              )}
-            </FormControl>
 
             {strength !== 0 && (
               <FormControl fullWidth>
@@ -470,39 +391,12 @@ const AuthRegister = ({ ...others }) => {
               </FormControl>
             )}
 
-            <Grid container alignItems="center" justifyContent="space-between">
-              <Grid item>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={checked}
-                      onChange={(event) => setChecked(event.target.checked)}
-                      name="checked"
-                      color="primary"
-                    />
-                  }
-                  label={
-                    <Typography variant="subtitle1">
-                      Agree with &nbsp;
-                      <Typography
-                        variant="subtitle1"
-                        component={Link}
-                        to="#"
-                        sx={{ textDecoration: "underline" }}
-                      >
-                        Terms & Condition.
-                      </Typography>
-                    </Typography>
-                  }
-                />
-              </Grid>
-            </Grid>
+
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
                 <FormHelperText error>{errors.submit}</FormHelperText>
               </Box>
             )}
-
             <Box sx={{ mt: 2 }}>
               <AnimateButton>
                 <Button

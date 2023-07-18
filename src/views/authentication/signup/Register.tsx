@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Divider, Grid, Stack, Box, useMediaQuery } from "@mui/material";
 
 // project imports
 import AuthWrapper from "../AuthWrapper";
@@ -10,13 +10,14 @@ import AuthCardWrapper from "../AuthCardWrapper";
 import Logo from "../../../ui-component/Logo";
 import AuthRegister from "../auth-forms/AuthRegister";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
-
+import imageOne from "../../../assets/images/register/Group3.png";
+import imageTwo from "../../../assets/images/register/Rectangle1.png"
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
   const theme: any = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
-
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   return (
     <AuthWrapper>
       <Grid
@@ -25,90 +26,36 @@ const Register = () => {
         justifyContent="flex-end"
         sx={{ minHeight: "100vh" }}
       >
-        <Grid item xs={12}>
+        <Grid container
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          sx={{ minHeight: "100vh" }}>
+
           <Grid
             container
-            justifyContent="center"
+            spacing={0}
             alignItems="center"
-            sx={{ minHeight: "calc(100vh - 68px)" }}
+            justifyContent="center"
           >
-            <Grid item sx={{ m: { xs: 1, sm: 3 }, mb: 0 }}>
-              <AuthCardWrapper>
-                <Grid
-                  container
-                  spacing={2}
-                  alignItems="center"
-                  justifyContent="center"
-                >
-                  <Grid item sx={{ mb: 3 }}>
-                    <Link to="#">
-                      <Logo />
-                    </Link>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      container
-                      direction={matchDownSM ? "column-reverse" : "row"}
-                      alignItems="center"
-                      justifyContent="center"
-                    >
-                      <Grid item>
-                        <Stack
-                          alignItems="center"
-                          justifyContent="center"
-                          spacing={1}
-                        >
-                          <Typography
-                            // color={theme.palette.secondary.main}
-                            className="tw-text-primary"
-                            gutterBottom
-                            variant={matchDownSM ? "h3" : "h2"}
-                          >
-                            Sign up
-                          </Typography>
-                          {/*<Typography
-                            variant="caption"
-                            fontSize="16px"
-                            textAlign={matchDownSM ? "center" : "inherit"}
-                          >
-                            Enter your credentials to continue
-                          </Typography>*/}
-                        </Stack>
-                      </Grid>
-                    </Grid>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <AuthRegister />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Divider />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <Grid
-                      item
-                      container
-                      direction="column"
-                      alignItems="center"
-                      xs={12}
-                    >
-                      <Typography
-                        component={Link}
-                        to="/login"
-                        variant="subtitle1"
-                        sx={{ textDecoration: "none" }}
-                      >
-                        Already have an account?
-                      </Typography>
-                    </Grid>
-                  </Grid>
-                </Grid>
-              </AuthCardWrapper>
+            
+            <Grid item xs={12}
+              sx={{
+                display: 'flex',
+                flexDirection: 'column',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingLeft: '50px',
+                paddingRight: '50px'
+              }}>
+              <AuthRegister />
             </Grid>
+
           </Grid>
         </Grid>
-        <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
+        {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>
           <AuthFooter />
-        </Grid>
+        </Grid> */}
       </Grid>
     </AuthWrapper>
   );
