@@ -350,6 +350,7 @@ export const _columns: any = () => {
       {
         Header: "Tags",
         accessor: "tags",
+        disableSortBy: true,
         width: 80,
         minWidth: 80,
         Cell: (cell: any) => {
