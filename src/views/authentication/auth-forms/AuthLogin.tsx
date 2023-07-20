@@ -338,14 +338,14 @@ const AuthLogin = ({ ...others }) => {
                 Forgot Password?
               </Typography>*/}
 
-              <Typography
+              {/*<Typography
                 component={Link}
                 to="/signup"
                 variant="subtitle1"
                 className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary"
               >
                 Don&apos;t have an account?
-              </Typography>
+              </Typography>*/}
             </Stack>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
