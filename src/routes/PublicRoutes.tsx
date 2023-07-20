@@ -7,6 +7,7 @@ import { Outlet } from "react-router-dom";
 import Unauthenticated from "../ui-component/authentication/Unauthenticated";
 
 const Home = Loadable(lazy(() => import("../views/home/index")));
+const HomePage = Loadable(lazy(() => import("../views/home")));
 
 const AuthenticationRoutes = {
   path: "/",
@@ -23,6 +24,10 @@ const AuthenticationRoutes = {
     {
       path: "/home",
       element: <Home />,
+    },
+    {
+      path: "asdasdleadresolution07202023",
+      element: <HomePage />,
     },
   ],
 };
