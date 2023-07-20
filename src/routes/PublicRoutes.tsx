@@ -26,7 +26,7 @@ const AuthenticationRoutes = {
       element: <Home />,
     },
     {
-      path: "/asdasdleadresolution07202023",
+      path: "/asdasdleadresolution07202023!$",
       element: <HomePage />,
     },
   ],
