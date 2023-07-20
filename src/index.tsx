@@ -1,11 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
+
+import "@fontsource/poppins";
+import "@fontsource/roboto";
+
 import "./assets/styles/main.scss";
 import "./index.css";
 import "./globals.css";
-
-import "@fontsource/poppins";
-
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
