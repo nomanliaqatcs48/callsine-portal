@@ -17,14 +17,14 @@ const AuthenticationRoutes = {
     </Unauthenticated>
   ),
   children: [
-    {
+    /*{
       path: "/",
       element: <Home />,
     },
     {
       path: "/home",
       element: <Home />,
-    },
+    },*/
     {
       path: "/asdasdleadresolution07202023!$",
       element: <HomePage />,
