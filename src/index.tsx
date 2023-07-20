@@ -11,6 +11,7 @@ import { BrowserRouter } from "react-router-dom";
 import config from "./config";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import "@fontsource/poppins";
 
 const container: any = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
