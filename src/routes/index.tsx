@@ -10,7 +10,7 @@ import PublicRoute from "./PublicRoutes";
 export default function ThemeRoutes() {
   return useRoutes([
     MainRoutes,
-    // PublicRoute,
+    PublicRoute,
     AuthenticationRoutes,
     //
   ]);

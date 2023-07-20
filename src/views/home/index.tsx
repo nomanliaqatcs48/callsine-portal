@@ -1,22 +1,20 @@
 import React from "react";
-import Fifth from "./Fifth";
-import Fourth from "./Fourth";
-import Hero from "./Hero";
-import Second from "./Second";
-import Third from "./Third";
+import Banner from "./Banner";
+import Find from "./Find";
+import Numbers from "./Numbers";
+import Footer from "./Footer";
+import TakeControl from "./TakeControl";
+import Reviews from "./Reviews";
 
 const Home = () => {
   return (
     <>
-      <Hero />
-      <div style={{ height: 50 }} />
-      <Second />
-
-      <Third />
-
-      <Fourth />
-
-      <Fifth />
+      <Banner />
+      <Find />
+      <TakeControl />
+      <Numbers />
+      <Reviews />
+      <Footer />
     </>
   );
 };
