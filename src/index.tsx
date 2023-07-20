@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 
 import "@fontsource/poppins";
 import "@fontsource/roboto";
+import "@fontsource/inter";
 
 import "./assets/styles/main.scss";
 import "./index.css";
