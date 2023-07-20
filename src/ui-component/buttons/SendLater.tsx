@@ -176,7 +176,11 @@ const SendLater = ({
                   <Grid item xs={12} className="tw-py-2">
                     <FormGroup>
                       <FormControlLabel
-                        control={<Checkbox />}
+                        control={
+                          <Checkbox
+                            {...useForm?.register("isAutoSchedule", {})}
+                          />
+                        }
                         label="Auto schedule other emails"
                       />
                     </FormGroup>
