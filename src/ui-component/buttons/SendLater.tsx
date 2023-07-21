@@ -51,6 +51,8 @@ const SendLater = ({
         required: "This is required field.",
       });
       useForm?.setValue("scheduled_time", null);
+
+      setChecked(false);
     } else {
       useForm?.setValue(
         "scheduled_time",
