@@ -12,7 +12,7 @@ import MyModal from "../../../../../../ui-component/modal/MyModal";
 import DraftEmail from "./DraftEmail";
 import SentOrScheduledEmail from "./SentOrScheduledEmail";
 import PlaybookList from "./PlaybookList";
-import SelectItem from "./SelectItem";
+import SelectItemNull from "./SelectItemNull";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { getPlaybooks } from "../../../../../../services/prompts.service";
 import { useAsyncDebounce } from "react-table";
@@ -147,7 +147,7 @@ const PlaybookV2 = () => {
             <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               {/*title*/}
               <div className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
-                Playbooks
+                Email
               </div>
               {/*dropdown*/}
               <div className="tw-w-full xl:tw-w-[185px]">
@@ -231,7 +231,11 @@ const PlaybookV2 = () => {
             )}
 
             {selectedIndex === null && (
-              <SelectItem prompts={playBookData?.prompts} />
+              <SelectItemNull
+                prompts={playBookData?.prompts}
+                stringForEmpty={"Empty data"}
+                stringForNotEmpty={"Select an email"}
+              />
             )}
           </Grid>
         </Grid>
