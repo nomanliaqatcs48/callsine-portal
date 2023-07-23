@@ -12,10 +12,10 @@ import MyModal from "../../../../../../ui-component/modal/MyModal";
 import DraftEmail from "./DraftEmail";
 import SentOrScheduledEmail from "./SentOrScheduledEmail";
 import PlaybookList from "./PlaybookList";
-import SelectItemNull from "./SelectItemNull";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { getPlaybooks } from "../../../../../../services/prompts.service";
 import { useAsyncDebounce } from "react-table";
+import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
