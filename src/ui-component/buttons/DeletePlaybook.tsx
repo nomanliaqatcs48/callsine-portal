@@ -29,6 +29,7 @@ const DeletePlaybook = ({
 
   const handleDelete = async () => {
     ToastSuccess("This functionality is in progress.");
+    handleClose();
     return;
     setIsLoading((prev: any) => ({ ...prev, submit: true }));
     insertBodyLoader();
