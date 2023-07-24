@@ -35,11 +35,11 @@ import { _styles } from "../../utils/playbooks/utils";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 
 type CreateOrEditPlaybookTypes = {
-  id?: number;
-  children?: any;
-  onLoadApi?: any;
-  defaultValue?: any;
+  children: any;
+  onLoadApi: any;
   onClick: any;
+  id?: number;
+  defaultValue?: any;
   [x: string]: any;
 };
 
