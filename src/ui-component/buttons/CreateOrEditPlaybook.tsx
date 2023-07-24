@@ -33,6 +33,7 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { _styles } from "../../utils/playbooks/utils";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import CloseIcon from "@mui/icons-material/Close";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -189,7 +190,14 @@ const CreateOrEditPlaybook = ({
             variant="h5"
             className="tw-text-black tw-bg-[#EAEAEA] tw-tracking-[0.36px] tw-font-normal tw-py-6"
           >
-            {id ? "Edit" : "New"} Prompt
+            <Box className="tw-flex tw-justify-between">
+              <Box>{id ? "Edit" : "New"} Prompt</Box>
+              <Box>
+                <Button className="tw-min-w-min" onClick={handleClose}>
+                  <CloseIcon sx={{ color: "#A5A5A5", fontSize: 15 }} />
+                </Button>
+              </Box>
+            </Box>
           </DialogTitle>
           <DialogContent className="tw-p-0">
             <Grid container spacing={0}>
@@ -240,11 +248,12 @@ const CreateOrEditPlaybook = ({
                       >
                         <textarea
                           rows={9}
-                          className={`${_styles?.labelValueInput}`}
+                          className={`${_styles?.labelValueInput} placeholder:tw-text-[#B9B9B9] placeholder`}
                           defaultValue={selectedData?.message}
                           {...register("message", {
                             required: "This is required field.",
                           })}
+                          placeholder="Add prompt here..."
                         />
                         <ErrorMessage
                           errors={errors}
