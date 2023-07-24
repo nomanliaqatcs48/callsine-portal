@@ -26,7 +26,8 @@ export const dummyData = () => {
           id: 2,
           position: "2",
           name: "Playbook 2",
-          message: "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+          message:
+            "Write A Short Follow Up Email, From (Forg_Name]| To (First_Name|| At (Icompany_Namell. This Should Be No More Than 100 Words, And Should eference That We Are Following Up On An Email Sent Previously. essage Should Reference The Case Study At This Link: ttps://Www.Dbadbadba.Com/Case_Studies/B_Charitable And Direct The Recipient To That Link In The Body Of The Message. Say One Thing In The Message That Relates To This Case Study: Https://Www.Dbadbadba.Com/Case_Studies/_Charitable And That It Might Be Interesting To (Company_Namell. Message Should Not Refer To The Sender Of This Message By Name In The Body Of The Message. Tone Should Be Conversational. Message Should Refer To (Forg_Namell’s Experience. Message Should Not Refer To Sender As “We” But Instead As *” Message Should Not Repeat Words Like “Experience”",
         },
       ],
     },
