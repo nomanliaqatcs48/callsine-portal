@@ -11,6 +11,7 @@ import { selectBlueStyles } from "../../../utils/people/utils";
 import { ErrorMessage } from "@hookform/error-message";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import { useForm } from "react-hook-form";
+import CreateOrEditPlaybook from "../../buttons/CreateOrEditPlaybook";
 
 const ViewPlaybook = () => {
   const {
@@ -35,7 +36,10 @@ const ViewPlaybook = () => {
           <Box className="tw-flex tw-justify-center tw-items-center" />
           {/*right*/}
           <Box className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-[1px]">
-            <Button onClick={() => null} className="tw-min-w-min border">
+            <CreateOrEditPlaybook
+              onClick={() => null}
+              className="tw-min-w-min border"
+            >
               <Box className="tw-bg-[#1a76d2] tw-py-[10px] tw-px-[12px] tw-rounded-md">
                 <EditIcon
                   style={{ color: "#ffffff", fontSize: 21 }}
@@ -43,7 +47,7 @@ const ViewPlaybook = () => {
                   strokeWidth={3}
                 />
               </Box>
-            </Button>
+            </CreateOrEditPlaybook>
             <Button onClick={() => null} className="tw-min-w-min border">
               <Box className="tw-bg-[#d00200] tw-p-[12px] tw-rounded-md">
                 <IconTrash

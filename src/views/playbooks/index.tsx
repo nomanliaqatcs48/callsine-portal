@@ -6,6 +6,7 @@ import PlaybookList from "../persons/Detail/components/v2/Playbook/PlaybookList"
 import _ from "lodash";
 import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
+import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 
 const PlaybooksPage = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -30,31 +31,15 @@ const PlaybooksPage = () => {
               <Box className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
                 Playbook
               </Box>
-              <Box className="tw-w-full xl:tw-w-[185px]">
-                <ReactSelect
-                  name="generate-playbook"
-                  className="basic-single tw-cursor-pointer"
-                  variant="blue"
-                  placeholder="Playbook"
-                  isClearable={true}
-                  isSearchable={true}
-                  options={[
-                    { label: "1", value: "1" },
-                    { label: "2", value: "2" },
-                  ].map((item: any, idx: number) => {
-                    return item;
-                  })}
-                  onChange={(newValue: any, actionMeta: any) => {
-                    devLog(() => {
-                      // console.group("Value Changed");
-                      // console.log(newValue);
-                      // console.log(`action: ${actionMeta.action}`);
-                      // console.groupEnd();
-                    });
-                    // handleGenerateOnChange(newValue);
-                    // handleOpen();
-                  }}
-                />
+              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end">
+                <CreateOrEditPlaybook
+                  onClick={() => null}
+                  variant="contained"
+                  color="primary"
+                  className="tw-bg-[#1a76d2] tw-text-[11px] tw-text-white tw-px-[15px] tw-py-[10px] tw-rounded-md tw-uppercase"
+                >
+                  Add Prompt
+                </CreateOrEditPlaybook>
               </Box>
             </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5" />
