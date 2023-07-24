@@ -12,8 +12,14 @@ import { ErrorMessage } from "@hookform/error-message";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import { useForm } from "react-hook-form";
 import CreateOrEditPlaybook from "../../buttons/CreateOrEditPlaybook";
+import DeletePlaybook from "../../buttons/DeletePlaybook";
 
-const ViewPlaybook = () => {
+type ViewPlaybookTypes = {
+  selectedData: any;
+  onLoadApi: any;
+};
+
+const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
   const {
     register,
     unregister,
@@ -48,7 +54,11 @@ const ViewPlaybook = () => {
                 />
               </Box>
             </CreateOrEditPlaybook>
-            <Button onClick={() => null} className="tw-min-w-min border">
+            <DeletePlaybook
+              id={selectedData?.id}
+              className="tw-min-w-min border"
+              onLoadApi={() => null}
+            >
               <Box className="tw-bg-[#d00200] tw-p-[12px] tw-rounded-md">
                 <IconTrash
                   strokeWidth={3}
@@ -58,7 +68,7 @@ const ViewPlaybook = () => {
                   }}
                 />
               </Box>
-            </Button>
+            </DeletePlaybook>
           </Box>
         </Box>
       </Box>
@@ -66,28 +76,18 @@ const ViewPlaybook = () => {
         <Box className="tw-flex">
           <Box className={`${_styles?.label}`}>Prompt Name:</Box>
           <Box className={`${_styles?.labelValue} tw-text-black`}>
-            Playbook 1
+            {selectedData?.name}
           </Box>
         </Box>
       </Box>
-      <Box className={`message-container ${_styles?.containers}`}>
+      <Box
+        className={`message-container ${_styles?.containers} tw-border-none`}
+      >
         <Box className="tw-flex">
           <Box
             className={`${_styles?.message} tw-text-[12px] tw-text-black tw-py-3.5`}
           >
-            Write A Short Follow Up Email, From (Forg_Name]| To (First_Name|| At
-            (Icompany_Namell. This Should Be No More Than 100 Words, And Should
-            Reference That We Are Following Up On An Email Sent Previously.
-            Message Should Reference The Case Study At This Link:
-            Https://Www.Dbadbadba.Com/Case_Studies/B_Charitable And Direct The
-            Recipient To That Link In The Body Of The Message. Say One Thing In
-            The Message That Relates To This Case Study:
-            Https://Www.Dbadbadba.Com/Case_Studies/_Charitable And That It Might
-            Be Interesting To (Company_Namell. Message Should Not Refer To The
-            Sender Of This Message By Name In The Body Of The Message. Tone
-            Should Be Conversational. Message Should Refer To (Forg_Namell’s
-            Experience. Message Should Not Refer To Sender As “We” But Instead
-            As *” Message Should Not Repeat Words Like “Experience”
+            {selectedData?.message}
           </Box>
         </Box>
       </Box>

@@ -85,7 +85,10 @@ const PlaybooksPage = () => {
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                <ViewPlaybook />
+                <ViewPlaybook
+                  selectedData={selectedData}
+                  onLoadApi={() => null}
+                />
               </>
             )}
 
