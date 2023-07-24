@@ -10,3 +10,18 @@ export const _styles = {
   message:
     "tw-w-full tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
 };
+
+export const dummyData = [
+  {
+    id: 1,
+    position: "1",
+    name: "Playbook 1",
+    message: "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+  },
+  {
+    id: 2,
+    position: "2",
+    name: "Playbook 2",
+    message: "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+  },
+];

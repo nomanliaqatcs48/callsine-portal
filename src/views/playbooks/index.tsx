@@ -7,6 +7,7 @@ import _ from "lodash";
 import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
+import { dummyData } from "../../utils/playbooks/utils";
 
 const PlaybooksPage = () => {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
@@ -48,44 +49,8 @@ const PlaybooksPage = () => {
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
                 data={
-                  _.orderBy(
-                    [
-                      {
-                        name: "Playbook 1",
-                        message:
-                          "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
-                        position: "1",
-                      },
-                      {
-                        name: "Playbook 2",
-                        message:
-                          "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
-                        position: "2",
-                      },
-                    ],
-                    ["position"],
-                    ["asc"]
-                  )
-                    ? [
-                        ..._.orderBy(
-                          [
-                            {
-                              name: "Playbook 1",
-                              message:
-                                "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
-                              position: "1",
-                            },
-                            {
-                              name: "Playbook 2",
-                              message:
-                                "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
-                              position: "2",
-                            },
-                          ],
-                          ["position"],
-                          ["asc"]
-                        ),
-                      ]
+                  _.orderBy(dummyData, ["position"], ["asc"])
+                    ? [..._.orderBy(dummyData, ["position"], ["asc"])]
                     : []
                 }
                 setSelectedData={setSelectedData}
@@ -96,17 +61,13 @@ const PlaybooksPage = () => {
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                {_.includes([0, 1, 2, 3], selectedData?.status) ? (
-                  <ViewPlaybook />
-                ) : (
-                  <ViewPlaybook />
-                )}
+                <ViewPlaybook />
               </>
             )}
 
             {selectedIndex === null && (
               <SelectItemNull
-                prompts={[]}
+                prompts={dummyData}
                 stringForEmpty={"Empty data"}
                 stringForNotEmpty={"Select a playbook"}
               />
