@@ -53,6 +53,7 @@ const PlaybooksPage = () => {
               <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end">
                 <CreateOrEditPlaybook
                   onClick={() => null}
+                  onLoadApi={() => null}
                   variant="contained"
                   color="primary"
                   className="tw-bg-[#1a76d2] tw-text-[11px] tw-text-white tw-px-[15px] tw-py-[10px] tw-rounded-md tw-uppercase"
