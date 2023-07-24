@@ -31,6 +31,8 @@ import { emailAddressPattern } from "../../helpers/forms";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { _styles } from "../../utils/playbooks/utils";
+import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 
 type CreateOrEditPlaybookTypes = {
   id?: number;
@@ -193,37 +195,77 @@ const CreateOrEditPlaybook = ({
           aria-describedby={`${id ? "edit" : "add"} playbook modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4" className="tw-pt-10">
+          <DialogTitle
+            variant="h5"
+            className="tw-text-black tw-bg-[#EAEAEA] tw-tracking-[0.36px] tw-font-normal tw-py-6"
+          >
             {id ? "Edit" : "New"} Prompt
           </DialogTitle>
-          <DialogContent>
-            <Grid container spacing={gridSpacing}>
+          <DialogContent className="tw-p-0">
+            <Grid container spacing={0}>
               <Grid item xs={12}>
-                <Box component="form" noValidate autoComplete="off">
-                  <Box>
-                    <TextField
-                      error={!!errors.email}
-                      disabled={mailAccountLoading?.form}
-                      required
-                      margin="dense"
-                      id="name"
-                      label="Name"
-                      type="text"
-                      defaultValue={id ? defaultValue?.name : ""}
-                      fullWidth
-                      {...register("name", {
-                        required: "This is required field.",
-                      })}
-                    />
-                    <ErrorMessage
-                      errors={errors}
-                      name="name"
-                      render={({ message }) => (
-                        <FormHelperText sx={{ color: "error.main" }}>
-                          {message}
-                        </FormHelperText>
-                      )}
-                    />
+                <Box
+                  className={`name-container ${_styles?.containers} tw-px-[24px] xl:tw-px-[24px]`}
+                >
+                  <div className="tw-flex tw-flex-col lg:tw-flex-row">
+                    <div
+                      className={`${_styles?.label} tw-w-full lg:tw-w-2/12 xl:tw-w-1/12`}
+                    >
+                      Prompt Name:
+                    </div>
+                    <div
+                      className={`${_styles?.labelValue} tw-w-full lg:tw-w-10/12 lg:tw-ml-3 xl:tw-w-11/12`}
+                    >
+                      <input
+                        type="text"
+                        className={`${_styles?.labelValueInput}`}
+                        {...register("name", {
+                          required: "This is required field.",
+                        })}
+                        defaultValue="Playbook 1"
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="name"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </div>
+                  </div>
+                </Box>
+              </Grid>
+              <Grid item xs={12}>
+                <Box
+                  className={`message-container ${_styles?.containers} tw-px-[24px] xl:tw-px-[24px]`}
+                >
+                  <Box className="tw-flex">
+                    <Box
+                      className={`${_styles?.message} tw-text-[12px] tw-text-black tw-py-3.5`}
+                    >
+                      <div
+                        className={`${_styles?.labelValue} tw-w-full lg:tw-w-full xl:tw-w-full 2xl:tw-w-full 2xl:tw-pl-0`}
+                      >
+                        <textarea
+                          rows={9}
+                          className={`${_styles?.labelValueInput}`}
+                          {...register("message", {
+                            required: "This is required field.",
+                          })}
+                        />
+                        <ErrorMessage
+                          errors={errors}
+                          name="message"
+                          render={({ message }) => (
+                            <FormHelperText sx={{ color: "error.main" }}>
+                              {message}
+                            </FormHelperText>
+                          )}
+                        />
+                      </div>
+                    </Box>
                   </Box>
                 </Box>
               </Grid>
