@@ -47,6 +47,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
               className="tw-min-w-min border"
               id={selectedData?.id}
               onLoadApi={() => null}
+              selectedData={selectedData}
             >
               <Box className="tw-bg-[#1a76d2] tw-py-[10px] tw-px-[12px] tw-rounded-md">
                 <EditIcon

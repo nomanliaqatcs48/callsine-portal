@@ -40,15 +40,17 @@ type CreateOrEditPlaybookTypes = {
   onClick: any;
   id?: number;
   defaultValue?: any;
+  selectedData?: any;
   [x: string]: any;
 };
 
 const CreateOrEditPlaybook = ({
-  id,
   children,
   onLoadApi,
-  defaultValue,
   onClick,
+  id,
+  defaultValue,
+  selectedData,
   ...props
 }: CreateOrEditPlaybookTypes) => {
   const [open, setOpen] = React.useState(false);
@@ -69,36 +71,21 @@ const CreateOrEditPlaybook = ({
     formState: { errors },
   } = useForm();
 
-  useEffect(() => {
-    register("provider", {
-      required: "This is required field.",
-    });
-    register("signature");
-    setValue("provider", id ? defaultValue?.provider : null);
-    setShowPassword(false);
-  }, [open]);
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
     reset();
   };
 
-  const handleChangeProvider = (event: SelectChangeEvent) => {
-    setValue("provider", event.target.value as string);
-    trigger("provider");
-  };
-
-  const handleMyEditorOnChange = (value: string, editor: any) => {
-    setValue("signature", value);
-  };
-
   const onThisEditSubmit = async (data: any) => {
+    ToastSuccess("This functionality is still in progress.");
+    handleClose();
+    return;
     setMailAccountLoading((beforeVal: any) => ({ ...beforeVal, form: true }));
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
-        ToastSuccess("Mail account successfully updated.");
+        ToastSuccess("Prompt successfully updated.");
 
         onLoadApi();
         handleClose();
@@ -122,11 +109,14 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisAddSubmit = async (data: any) => {
+    ToastSuccess("This functionality is still in progress.");
+    handleClose();
+    return;
     setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
     try {
       let res = await createMailAccountService(data);
       if (res?.data) {
-        ToastSuccess("New mail account successfully created.");
+        ToastSuccess("New prompt successfully created.");
 
         onLoadApi();
         handleClose();
@@ -192,7 +182,7 @@ const CreateOrEditPlaybook = ({
           fullWidth={true}
           maxWidth="lg"
           aria-labelledby={`${id ? "Edit" : "New"} Prompt`}
-          aria-describedby={`${id ? "edit" : "add"} playbook modal`}
+          aria-describedby={`${id ? "edit" : "add"} prompt modal`}
           disableEnforceFocus={true}
         >
           <DialogTitle
@@ -222,7 +212,7 @@ const CreateOrEditPlaybook = ({
                         {...register("name", {
                           required: "This is required field.",
                         })}
-                        defaultValue="Playbook 1"
+                        defaultValue={selectedData?.name}
                       />
                       <ErrorMessage
                         errors={errors}
@@ -251,6 +241,7 @@ const CreateOrEditPlaybook = ({
                         <textarea
                           rows={9}
                           className={`${_styles?.labelValueInput}`}
+                          defaultValue={selectedData?.message}
                           {...register("message", {
                             required: "This is required field.",
                           })}
@@ -272,11 +263,7 @@ const CreateOrEditPlaybook = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions
-            className={`tw-flex ${
-              id ? "tw-justify-between" : "tw-justify-end"
-            } tw-px-6 tw-pb-5`}
-          >
+          <DialogActions className="tw-flex tw-justify-end tw-px-6 tw-pb-5">
             <Box>
               <Button
                 onClick={handleSubmit((data) =>
@@ -287,7 +274,7 @@ const CreateOrEditPlaybook = ({
                 color="primary"
                 className="tw-bg-primary tw-font-medium hover:tw-bg-primaryDark tw-text-[13px] tw-px-[12px] tw-uppercase"
               >
-                {id ? "Edit" : "Save Prompt"}
+                Save Prompt
               </Button>
             </Box>
           </DialogActions>
