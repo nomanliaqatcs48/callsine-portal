@@ -190,7 +190,7 @@ const CreateOrEditPlaybook = ({
           onClose={handleClose}
           scroll="body"
           fullWidth={true}
-          maxWidth="xl"
+          maxWidth="lg"
           aria-labelledby={`${id ? "Edit" : "New"} Prompt`}
           aria-describedby={`${id ? "edit" : "add"} playbook modal`}
           disableEnforceFocus={true}
@@ -209,12 +209,12 @@ const CreateOrEditPlaybook = ({
                 >
                   <div className="tw-flex tw-flex-col lg:tw-flex-row">
                     <div
-                      className={`${_styles?.label} tw-w-full lg:tw-w-2/12 xl:tw-w-1/12`}
+                      className={`${_styles?.label} tw-w-full lg:tw-w-2/12 2xl:tw-w-2/12`}
                     >
                       Prompt Name:
                     </div>
                     <div
-                      className={`${_styles?.labelValue} tw-w-full lg:tw-w-10/12 lg:tw-ml-3 xl:tw-w-11/12`}
+                      className={`${_styles?.labelValue} tw-w-full lg:tw-w-10/12 lg:tw-ml-3`}
                     >
                       <input
                         type="text"
