@@ -78,7 +78,7 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisEditSubmit = async (data: any) => {
-    ToastSuccess("This functionality is still in progress.");
+    ToastSuccess("This functionality is in progress.");
     handleClose();
     return;
     setMailAccountLoading((beforeVal: any) => ({ ...beforeVal, form: true }));
@@ -109,7 +109,7 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisAddSubmit = async (data: any) => {
-    ToastSuccess("This functionality is still in progress.");
+    ToastSuccess("This functionality is in progress.");
     handleClose();
     return;
     setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
