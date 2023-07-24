@@ -2,7 +2,7 @@ import { Box, Grid, Paper } from "@mui/material";
 import React, { useState } from "react";
 import { devLog } from "../../helpers/logs";
 import ReactSelect from "../../ui-component/dropdowns/ReactSelect";
-import PlaybookList from "../persons/Detail/components/v2/Playbook/PlaybookList";
+import PlaybookList from "./components/PlaybookList";
 import _ from "lodash";
 import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
@@ -49,13 +49,39 @@ const PlaybooksPage = () => {
                 setSelectedIndex={setSelectedIndex}
                 data={
                   _.orderBy(
-                    [{ position: "1" }, { position: "2" }],
+                    [
+                      {
+                        name: "Playbook 1",
+                        message:
+                          "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+                        position: "1",
+                      },
+                      {
+                        name: "Playbook 2",
+                        message:
+                          "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+                        position: "2",
+                      },
+                    ],
                     ["position"],
                     ["asc"]
                   )
                     ? [
                         ..._.orderBy(
-                          [{ position: "1" }, { position: "2" }],
+                          [
+                            {
+                              name: "Playbook 1",
+                              message:
+                                "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+                              position: "1",
+                            },
+                            {
+                              name: "Playbook 2",
+                              message:
+                                "Lorem Ipsum Dolor Sit Amet, Consectetur Adidd",
+                              position: "2",
+                            },
+                          ],
                           ["position"],
                           ["asc"]
                         ),
