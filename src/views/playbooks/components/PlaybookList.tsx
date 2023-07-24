@@ -12,7 +12,6 @@ type PlaybookListProps = {
   selectedIndex: number | null;
   setSelectedIndex: any;
   setSelectedData: any;
-  setSelectedSequenceEvent: any;
 };
 
 const PlaybookList = ({
@@ -20,7 +19,6 @@ const PlaybookList = ({
   selectedIndex,
   setSelectedIndex,
   setSelectedData,
-  setSelectedSequenceEvent,
 }: PlaybookListProps) => {
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
@@ -62,12 +60,7 @@ const PlaybookList = ({
                 selected={selectedIndex === idx}
                 onClick={(event) => {
                   handleListItemClick(event, idx);
-                  if (item?.status === "generated_email") {
-                    setSelectedData(item?.promptResponse);
-                  } else {
-                    setSelectedData(item?.scheduledEmail);
-                  }
-                  setSelectedSequenceEvent(item);
+                  setSelectedData(item);
                 }}
                 sx={{
                   borderBottom: "1px solid #e8ecf5",

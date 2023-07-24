@@ -1,18 +1,36 @@
+import React from "react";
 import { Box, Grid, Paper } from "@mui/material";
-import React, { useState } from "react";
-import { devLog } from "../../helpers/logs";
-import ReactSelect from "../../ui-component/dropdowns/ReactSelect";
 import PlaybookList from "./components/PlaybookList";
 import _ from "lodash";
 import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
-import { dummyData } from "../../utils/playbooks/utils";
+import { usePlaybook } from "../../hooks/playbook/usePlaybook";
 
 const PlaybooksPage = () => {
-  const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
-  const [selectedData, setSelectedData] = useState<any>(null);
-  const [selectedSequenceEvent, setSelectedSequenceEvent] = useState<any>(null);
+  let {
+    playbookData,
+    setPlaybookData,
+    filters,
+    setFilters,
+    total,
+    setTotal,
+    searchValue,
+    setSearchValue,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
+    selectedIndex,
+    setSelectedIndex,
+    selectedData,
+    setSelectedData,
+    isLoading,
+    setIsLoading,
+    getAllPlaybook,
+    handleSearchOnChange,
+    handleSearchOnBeforeChange,
+  } = usePlaybook(true);
 
   return (
     <>
@@ -43,18 +61,24 @@ const PlaybooksPage = () => {
                 </CreateOrEditPlaybook>
               </Box>
             </Box>
-            <Box className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5" />
+            <div className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5">
+              <input
+                type="search"
+                placeholder="Search"
+                onChange={handleSearchOnBeforeChange}
+                className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
+              />
+            </div>
             <Box className="list-container">
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
                 data={
-                  _.orderBy(dummyData, ["position"], ["asc"])
-                    ? [..._.orderBy(dummyData, ["position"], ["asc"])]
+                  _.orderBy(playbookData, ["position"], ["asc"])
+                    ? [..._.orderBy(playbookData, ["position"], ["asc"])]
                     : []
                 }
                 setSelectedData={setSelectedData}
-                setSelectedSequenceEvent={setSelectedSequenceEvent}
               />
             </Box>
           </Grid>
@@ -67,7 +91,7 @@ const PlaybooksPage = () => {
 
             {selectedIndex === null && (
               <SelectItemNull
-                prompts={dummyData}
+                prompts={playbookData}
                 stringForEmpty={"Empty data"}
                 stringForNotEmpty={"Select a playbook"}
               />
