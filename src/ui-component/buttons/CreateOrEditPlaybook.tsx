@@ -239,7 +239,7 @@ const CreateOrEditPlaybook = ({
               </Grid>
               <Grid item xs={12}>
                 <Box
-                  className={`message-container ${_styles?.containers} tw-px-[24px] xl:tw-px-[24px]`}
+                  className={`message-container ${_styles?.containers} tw-border-b-0 tw-px-[24px] xl:tw-px-[24px]`}
                 >
                   <Box className="tw-flex">
                     <Box
@@ -275,7 +275,7 @@ const CreateOrEditPlaybook = ({
           <DialogActions
             className={`tw-flex ${
               id ? "tw-justify-between" : "tw-justify-end"
-            } tw-px-6 tw-pb-10`}
+            } tw-px-6 tw-pb-5`}
           >
             <Box>
               <Button
@@ -285,7 +285,7 @@ const CreateOrEditPlaybook = ({
                 disabled={mailAccountLoading?.form}
                 variant="contained"
                 color="primary"
-                className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+                className="tw-bg-primary tw-font-medium hover:tw-bg-primaryDark tw-text-[13px] tw-px-[12px] tw-uppercase"
               >
                 {id ? "Edit" : "Save Prompt"}
               </Button>
