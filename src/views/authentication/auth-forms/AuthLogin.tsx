@@ -218,7 +218,9 @@ const AuthLogin = ({ ...others }) => {
                 },
               }}
             >
-              <div className="tw-text-xs tw-py-3 tw-font-medium">Username</div>
+              <div className="tw-text-[15px] tw-leading-[23px] tw-tracking-[0.3px] tw-text-black tw-py-3 tw-font-normal">
+                Username
+              </div>
               {/*<InputLabel htmlFor="outlined-adornment-email-login">
                 Email Address / Username
               </InputLabel>*/}
@@ -267,7 +269,9 @@ const AuthLogin = ({ ...others }) => {
                 },
               }}
             >
-              <div className="tw-text-xs tw-py-3 tw-font-medium">Password</div>
+              <div className="tw-text-[15px] tw-leading-[23px] tw-tracking-[0.3px] tw-text-black tw-py-3 tw-font-normal">
+                Password
+              </div>
               {/*<InputLabel htmlFor="outlined-adornment-password-login">
                 Password
               </InputLabel>*/}
@@ -363,7 +367,7 @@ const AuthLogin = ({ ...others }) => {
                   type="submit"
                   variant="contained"
                   color="secondary"
-                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3"
+                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-[20px] tw-leading-[30px] tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3"
                   // sx={{ color: "#fff" }}
                 >
                   Sign in
