@@ -11,7 +11,7 @@ const GoBack = ({ children, ...props }: GoBackTypes) => {
   return (
     <Button
       href={`/people`}
-      className="tw-text-inherit tw-text-xs tw-font-medium tw-text-[#3e3e3f]"
+      className="tw-text-inherit tw-text-[16px] tw-font-normal tw-text-black tw-tracking-[0.32px]"
       {...props}
     >
       {children || (

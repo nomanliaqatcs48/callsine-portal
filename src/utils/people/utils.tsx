@@ -373,7 +373,7 @@ export const _columns: any = () => {
               <DeletePerson id={cell?.row?.original?.id}>
                 <IconTrash
                   style={{ color: theme.palette.primary.main }}
-                  size="15"
+                  size="16"
                   strokeWidth={3}
                   className=""
                 />

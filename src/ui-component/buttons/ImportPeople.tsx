@@ -36,7 +36,7 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
         <Button
           onClick={handleOpen}
           disabled={false}
-          // className="tw-text-[#778da9]"
+          className="tw-text-[16px] tw-tracking-[0.32px]"
         >
           <FileUploadOutlinedIcon
             sx={{ color: "#1a76d2", fontSize: 15 }}

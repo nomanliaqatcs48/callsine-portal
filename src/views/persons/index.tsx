@@ -123,7 +123,7 @@ const PersonsPage = () => {
               />*/}
               <label
                 htmlFor="search-title"
-                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+                className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start"
               >
                 Title
               </label>
@@ -144,7 +144,7 @@ const PersonsPage = () => {
               />*/}
               <label
                 htmlFor="search-company"
-                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+                className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start"
               >
                 Company
               </label>
@@ -165,7 +165,7 @@ const PersonsPage = () => {
               />*/}
               <label
                 htmlFor="search-industry"
-                className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+                className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start"
               >
                 Industry
               </label>
@@ -199,7 +199,7 @@ const PersonsPage = () => {
       <Paper elevation={2} className="tw-pt-4">
         <Grid container>
           <Grid item xs={12} lg={2}>
-            <Typography className="tw-text-lg tw-font-medium tw-pl-3">
+            <Typography className="tw-text-[24px] tw-tracking-[0.48px] tw-font-normal tw-pl-3">
               Person Details
             </Typography>
           </Grid>
@@ -252,7 +252,7 @@ const PersonsPage = () => {
               onClick={() => null}
               disabled={false}
               variant="text"
-              className="tw-text-[#3fb0d5] hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
+              className="tw-text-[16px] tw-tracking-[0.32px] tw-text-callsineLightBlue tw-font-normal hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
             >
               {total || 0} {total === 0 || total === 1 ? "Person" : "People"}{" "}
               Total

@@ -507,7 +507,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                 className="tw-group"
                               >
                                 <Typography variant="h5">
-                                  <span className="tw-font-normal tw-text-[0.70rem] tw-text-[#364152] tw-uppercase">
+                                  <span className="tw-font-normal tw-text-[0.70rem] tw-text-black tw-uppercase">
                                     {
                                       // Render the header
                                       column.render("Header")
@@ -583,7 +583,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     // },
                                   })}
                                   // className="text-wrap text-break"
-                                  className={`tw-text-[0.75rem] tw-leading-4 ${cell?.column?.tdClassName}`}
+                                  className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
                                 >
                                   {
                                     // Render the cell contents

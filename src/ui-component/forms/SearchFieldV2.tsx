@@ -10,7 +10,7 @@ const SearchFieldV2 = ({ onChange }: SearchFieldV2Types) => {
     <>
       <label
         htmlFor="search-people"
-        className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start tw-font-medium"
+        className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start"
       >
         What are you looking for?
       </label>
@@ -21,7 +21,7 @@ const SearchFieldV2 = ({ onChange }: SearchFieldV2Types) => {
             autoComplete="off"
             id="search-people"
             placeholder="Search"
-            className="tw-bg-veryPrimaryLight tw-border tw-border-[#e8eafa] tw-border-opacity-30 tw-text-gray-900 tw-text-xs tw-rounded-md tw-font-medium tw-block tw-w-full tw-p-2.5 tw-pl-10 placeholder:tw-text-[0.85rem] placeholder:tw-font-medium hover:tw-border-blue-300 focus:tw-border-blue-300 focus:tw-outline-none"
+            className="tw-bg-veryPrimaryLight tw-border tw-border-[#e8eafa] tw-border-opacity-30 tw-text-gray-900 tw-text-[16px] tw-rounded-md tw-font-normal tw-block tw-w-full tw-p-2.5 tw-pl-10 placeholder:tw-text-[16px] placeholder:tw-font-normal hover:tw-border-blue-300 focus:tw-border-blue-300 focus:tw-outline-none"
             onChange={onChange}
           />
           <SearchIcon
