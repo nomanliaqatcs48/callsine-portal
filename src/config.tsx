@@ -4,7 +4,7 @@ const config = {
   // like '/berry-material-react/react/default'
   basename: "",
   defaultPath: "/login",
-  fontFamily: `'Roboto', sans-serif`,
+  fontFamily: `'Poppins', sans-serif`,
   borderRadius: 12,
   service: {
     BASE_URL: env.REACT_APP_SERVICE_BASE_URL,
