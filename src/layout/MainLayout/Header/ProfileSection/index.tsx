@@ -182,7 +182,7 @@ const ProfileSection = () => {
         }
         label={
           <>
-            <span className="tw-text-black tw-tracking-wider tw-space-x-2">
+            <span className="tw-text-black tw-font-normal tw-text-[16px] tw-tracking-wider tw-space-x-2">
               <span className="name">
                 {auth?.first_name || splitEmail(auth?.email)} {auth?.last_name}
               </span>
