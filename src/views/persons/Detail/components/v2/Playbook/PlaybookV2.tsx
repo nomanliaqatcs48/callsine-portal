@@ -1,5 +1,5 @@
 import { LoadingButton } from "@mui/lab";
-import { DialogActions, Grid, Paper } from "@mui/material";
+import { Box, DialogActions, Grid, Paper } from "@mui/material";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -144,13 +144,13 @@ const PlaybookV2 = () => {
             lg={4}
             className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
           >
-            <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
+            <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               {/*title*/}
-              <div className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
+              <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
                 Email
-              </div>
+              </Box>
               {/*dropdown*/}
-              <div className="tw-w-full xl:tw-w-[185px]">
+              <Box className="tw-w-full xl:tw-w-[185px]">
                 {!loading?.regeneratePlaybook && (
                   <ReactSelect
                     name="generate-playbook"
@@ -177,17 +177,17 @@ const PlaybookV2 = () => {
                     }}
                   />
                 )}
-              </div>
-            </div>
-            <div className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5">
+              </Box>
+            </Box>
+            <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
               <input
                 type="search"
                 placeholder="Search"
                 onChange={handleSearchOnBeforeChange}
-                className="tw-bg-[#f8fbff] tw-text-black tw-font-light tw-tracking-[0.32px] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+                className="tw-bg-[#f8fbff] tw-text-[16px] tw-text-black tw-font-light tw-tracking-[0.32px] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
               />
-            </div>
-            <div className="list-container">
+            </Box>
+            <Box className="list-container">
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
@@ -199,7 +199,7 @@ const PlaybookV2 = () => {
                 setSelectedData={setSelectedData}
                 setSelectedSequenceEvent={setSelectedSequenceEvent}
               />
-            </div>
+            </Box>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
