@@ -26,6 +26,7 @@ module.exports = {
 
         callsineGray: "#778da9",
         callsineLightBlue: "#0096c7",
+        callsineVeryLightBlue: "#2dafda",
 
         cyan: "hsl(180, 66%, 49%)",
         cyanLight: "hsl(180, 66%, 69%)",
