@@ -16,10 +16,13 @@ module.exports = {
         "4xl": "1920px",
       },
       colors: {
-        primary: "#1a76d2",
+        primary: "#1976d2",
         primaryLight: "#3e8fe7",
         primaryDark: "#0758b6",
         veryPrimaryLight: "#f8fbff",
+
+        callsineGray: "#778da9",
+        callsineLightBlue: "#0096c7",
 
         cyan: "hsl(180, 66%, 49%)",
         cyanLight: "hsl(180, 66%, 69%)",
