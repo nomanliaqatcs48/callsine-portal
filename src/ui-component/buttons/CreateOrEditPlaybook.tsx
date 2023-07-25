@@ -191,10 +191,12 @@ const CreateOrEditPlaybook = ({
             className="tw-text-black tw-bg-[#EAEAEA] tw-tracking-[0.36px] tw-font-normal tw-py-6"
           >
             <Box className="tw-flex tw-justify-between">
-              <Box>{id ? "Edit" : "New"} Prompt</Box>
+              <Box className="tw-text-[18px] tw-flex tw-flex-col tw-justify-center tw-align-middle">
+                {id ? "Edit" : "New"} Prompt
+              </Box>
               <Box>
                 <Button className="tw-min-w-min" onClick={handleClose}>
-                  <CloseIcon sx={{ color: "#A5A5A5", fontSize: 15 }} />
+                  <CloseIcon sx={{ color: "#A5A5A5", fontSize: 26 }} />
                 </Button>
               </Box>
             </Box>
@@ -241,14 +243,14 @@ const CreateOrEditPlaybook = ({
                 >
                   <Box className="tw-flex">
                     <Box
-                      className={`${_styles?.message} tw-text-[12px] tw-text-black tw-py-3.5`}
+                      className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5`}
                     >
-                      <div
-                        className={`${_styles?.labelValue} tw-w-full lg:tw-w-full xl:tw-w-full 2xl:tw-w-full 2xl:tw-pl-0`}
+                      <Box
+                        className={`tw-text-[18px] tw-text-black tw-truncate tw-font-normal tw-w-full lg:tw-w-full xl:tw-w-full 2xl:tw-w-full 2xl:tw-pl-0`}
                       >
                         <textarea
                           rows={9}
-                          className={`${_styles?.labelValueInput} placeholder:tw-text-[#B9B9B9] placeholder`}
+                          className={`${_styles?.labelValueInput} tw-text-[16px] placeholder:tw-text-[#B9B9B9] placeholder:tw-font-normal`}
                           defaultValue={selectedData?.message}
                           {...register("message", {
                             required: "This is required field.",
@@ -264,7 +266,7 @@ const CreateOrEditPlaybook = ({
                             </FormHelperText>
                           )}
                         />
-                      </div>
+                      </Box>
                     </Box>
                   </Box>
                 </Box>
@@ -281,7 +283,7 @@ const CreateOrEditPlaybook = ({
                 disabled={mailAccountLoading?.form}
                 variant="contained"
                 color="primary"
-                className="tw-bg-primary tw-font-medium hover:tw-bg-primaryDark tw-text-[13px] tw-px-[12px] tw-uppercase"
+                className="tw-bg-primary tw-font-medium hover:tw-bg-primaryDark tw-text-[16px] tw-px-[26px] tw-py-[13px] tw-uppercase"
               >
                 Save Prompt
               </Button>

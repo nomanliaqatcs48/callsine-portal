@@ -49,7 +49,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
               onLoadApi={() => null}
               selectedData={selectedData}
             >
-              <Box className="tw-bg-[#1a76d2] tw-py-[10px] tw-px-[12px] tw-rounded-md">
+              <Box className="tw-bg-[#1a76d2] tw-px-[15.5px] tw-py-[17px] tw-rounded-md">
                 <EditIcon
                   style={{ color: "#ffffff", fontSize: 21 }}
                   fontSize="small"
@@ -62,7 +62,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
               className="tw-min-w-min border"
               onLoadApi={() => null}
             >
-              <Box className="tw-bg-[#d00200] tw-p-[12px] tw-rounded-md">
+              <Box className="tw-bg-[#d00200] tw-p-[17.5px] tw-rounded-md">
                 <IconTrash
                   strokeWidth={3}
                   size={20}
@@ -75,7 +75,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
           </Box>
         </Box>
       </Box>
-      <Box className={`name-container ${_styles?.containers}`}>
+      <Box className={`name-container ${_styles?.containers} xl:tw-py-7`}>
         <Box className="tw-flex">
           <Box className={`${_styles?.label}`}>Prompt Name:</Box>
           <Box className={`${_styles?.labelValue} tw-text-black`}>
@@ -88,7 +88,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
       >
         <Box className="tw-flex">
           <Box
-            className={`${_styles?.message} tw-text-[12px] tw-text-black tw-py-3.5`}
+            className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5`}
           >
             {selectedData?.message}
           </Box>

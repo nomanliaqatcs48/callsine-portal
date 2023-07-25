@@ -47,7 +47,7 @@ const PlaybooksPage = () => {
             className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
           >
             <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
-              <Box className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
+              <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
                 Playbook
               </Box>
               <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end">
@@ -56,7 +56,7 @@ const PlaybooksPage = () => {
                   onLoadApi={() => null}
                   variant="contained"
                   color="primary"
-                  className="tw-bg-[#1a76d2] tw-text-[11px] tw-text-white tw-px-[15px] tw-py-[10px] tw-rounded-md tw-uppercase"
+                  className="tw-bg-primary tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
                 >
                   Add Prompt
                 </CreateOrEditPlaybook>
@@ -67,7 +67,7 @@ const PlaybooksPage = () => {
                 type="search"
                 placeholder="Search"
                 onChange={handleSearchOnBeforeChange}
-                className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
+                className="tw-bg-[#F8FBFF] tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
               />
             </div>
             <Box className="list-container">

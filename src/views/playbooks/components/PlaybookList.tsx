@@ -33,7 +33,7 @@ const PlaybookList = ({
       <>
         <span className="tw-flex">
           <span
-            className={`tw-w-11/12 tw-truncate tw-text-[#778da9] tw-font-extralight`}
+            className={`tw-w-11/12 tw-truncate tw-text-callsineGray tw-text-[16px] tw-font-light`}
           >
             {item?.message && item?.message.toLowerCase() !== "none"
               ? result
@@ -92,7 +92,7 @@ const PlaybookList = ({
                         >
                           <Box
                             component={"span"}
-                            className="tw-text-black tw-font-semibold tw-truncate tw-mb-1"
+                            className="tw-text-black tw-font-medium tw-text-[18px] tw-leading-[27px] tw-truncate tw-mb-1"
                           >
                             {item?.name || ""}
                           </Box>
