@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, DialogActions, Tooltip, Typography } from "@mui/material";
+import { Button, DialogActions, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLogError } from "../../helpers/logs";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
@@ -54,15 +54,13 @@ const DeletePlaybook = ({
 
   return (
     <>
-      <Tooltip title="Delete">
-        <Button
-          onClick={handleOpen}
-          className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
-          {...props}
-        >
-          {children}
-        </Button>
-      </Tooltip>
+      <Button
+        onClick={handleOpen}
+        className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"
+        {...props}
+      >
+        {children}
+      </Button>
 
       {open && (
         <MyModal
