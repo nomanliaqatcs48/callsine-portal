@@ -10,6 +10,9 @@ module.exports = {
       xl: "1280px",
       "2xl": "1536px",
     },
+    fontFamily: {
+      comfortaa: ["Comfortaa", "sans-serif"],
+    },
     extend: {
       screens: {
         "3xl": "1800px",

@@ -6,6 +6,8 @@ import "@fontsource/poppins/400.css";
 import "@fontsource/poppins/500.css";
 import "@fontsource/poppins/600.css";
 import "@fontsource/poppins/700.css";
+import "@fontsource/comfortaa/400.css";
+import "@fontsource/comfortaa/500.css";
 import "@fontsource/roboto";
 import "@fontsource/inter";
 
