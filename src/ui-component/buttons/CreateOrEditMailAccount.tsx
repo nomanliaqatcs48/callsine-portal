@@ -191,6 +191,7 @@ const CreateOrEditMailAccount = ({
           handleOpen();
           onClick();
         }}
+        className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-primary"
         {...props}
       >
         {children}

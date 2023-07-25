@@ -37,7 +37,7 @@ const ExportMailAccounts = () => {
           <Button
             className={`${
               mailAccountsData?.length > 0 ? "" : "tw-cursor-not-allowed"
-            }`}
+            } tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-primary`}
           >
             <FileDownloadOutlinedIcon
               sx={{ color: "#1a76d2", fontSize: 15 }}

@@ -107,7 +107,7 @@ const MailAccountsPage = () => {
       <Paper elevation={0} className="tw-pt-4">
         <Grid container>
           <Grid item xs={12} lg={2}>
-            <Typography className="tw-text-lg tw-font-medium tw-pl-3">
+            <Typography className="tw-font-normal tw-text-[24px] tw-tracking-[0.48px] tw-text-black tw-pl-3">
               Accounts
             </Typography>
           </Grid>
@@ -147,7 +147,7 @@ const MailAccountsPage = () => {
               onClick={() => null}
               disabled={false}
               variant="text"
-              className="tw-text-[#3fb0d5] hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
+              className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-callsineLightBlue hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
             >
               {total || 0} Mail{" "}
               {total === 0 || total === 1 ? "Account" : "Accounts"}

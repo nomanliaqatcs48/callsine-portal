@@ -25,7 +25,7 @@ export const _columns = (getMailAccounts: any) => {
               {cell?.value && (
                 <Button
                   variant="text"
-                  className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text tw-cursor-auto"
+                  className="tw-font-normal tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-black tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text tw-cursor-auto"
                 >
                   <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
                     <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
@@ -60,7 +60,7 @@ export const _columns = (getMailAccounts: any) => {
                 href={`mailto:${cell?.value}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="tw-text-[#0096c7] hover:tw-text-[#0096c7]"
+                className="tw-text-callsineLightBlue hover:tw-text-callsineVeryLightBlue"
               >
                 {cell?.value}
               </a>
