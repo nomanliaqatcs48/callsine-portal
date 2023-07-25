@@ -505,11 +505,11 @@ const DraftEmail = ({
               type="button"
               variant="outlined"
               onClick={handleSubmit((data) => onSubmit(data))}
-              className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+              className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
               loading={isLoading?.form}
               disabled={isLoading?.form}
             >
-              <span className="tw-px-1.5 tw-text-xs tw-uppercase tw-font-medium">
+              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
                 Send
               </span>{" "}
               <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
@@ -556,7 +556,7 @@ const DraftEmail = ({
                 loading={false}
                 disabled={false}
               >
-                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                <span className="tw-px-1.5 tw-text-xs tw-font-normal tw-text-callsineGray">
                   Save Draft
                 </span>
               </LoadingButton>

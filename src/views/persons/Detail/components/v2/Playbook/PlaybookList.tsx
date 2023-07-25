@@ -40,9 +40,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span
-              className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
-            >
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
               {item?.promptResponse?.text &&
               item?.promptResponse?.text?.toLowerCase() !== "none"
                 ? result
@@ -80,9 +78,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span
-              className={`tw-w-11/12 tw-truncate tw-text-[#8c9fb7] tw-font-extralight`}
-            >
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
               {item?.scheduledEmail?.text || ""}
               {
                 item?.scheduledEmail?.html_message &&
@@ -148,9 +144,9 @@ const PlaybookList = ({
                 sx={{
                   borderBottom: "1px solid #e8ecf5",
                   "&.Mui-selected": {
-                    backgroundColor: "#f2fafc",
+                    backgroundColor: "rgba(0, 150, 199, 0.05)",
                     "&:hover": {
-                      backgroundColor: "#f2fafc",
+                      backgroundColor: "rgba(0, 150, 199, 0.1)",
                     },
                     "&::before": {
                       content: '""',
@@ -177,7 +173,7 @@ const PlaybookList = ({
                   <ListItemText
                     primary={
                       <>
-                        <div className="tw-text-black tw-font-normal tw-text-right tw-text-[0.70rem] tw-w-full">
+                        <div className="tw-text-black tw-font-normal tw-text-right tw-text-[14px] tw-tracking-[0.28px] tw-w-full">
                           {item?.scheduledEmail?.scheduled_time &&
                           _.includes(
                             [0, 1, 2, 3],
@@ -191,7 +187,7 @@ const PlaybookList = ({
                           )}
                         </div>
                         <span className="tw-flex tw-justify-start">
-                          <span className="tw-text-black tw-font-semibold tw-truncate tw-mb-1">
+                          <span className="tw-text-black tw-font-medium tw-text-[18px] tw-tracking-[0.36px] tw-truncate tw-mb-1">
                             {item?.scheduledEmail?.subject
                               ? item?.scheduledEmail?.subject?.includes(
                                   "Subject Line: "
@@ -203,7 +199,7 @@ const PlaybookList = ({
                                 : item?.scheduledEmail?.subject
                               : `Email ${_count}`}
                           </span>
-                          <span className="tw-text-[#db3f3e] tw-font-semibold tw-text-[0.75rem] tw-pl-1">
+                          <span className="tw-text-callsineRed tw-font-medium tw-text-[14px] tw-tracking-[0.28px] tw-pl-1">
                             {_.includes(item?.status, "scheduled") &&
                             _.includes(
                               [0, 1, 2, 3],

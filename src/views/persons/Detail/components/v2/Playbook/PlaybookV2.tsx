@@ -146,7 +146,7 @@ const PlaybookV2 = () => {
           >
             <div className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               {/*title*/}
-              <div className="tw-text-[0.95rem] tw-text-black tw-font-medium tw-py-2">
+              <div className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
                 Email
               </div>
               {/*dropdown*/}
@@ -184,7 +184,7 @@ const PlaybookV2 = () => {
                 type="search"
                 placeholder="Search"
                 onChange={handleSearchOnBeforeChange}
-                className="tw-bg-[#f8fbff] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-xs"
+                className="tw-bg-[#f8fbff] tw-text-black tw-font-light tw-tracking-[0.32px] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-2.5 tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
               />
             </div>
             <div className="list-container">

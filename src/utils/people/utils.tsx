@@ -272,7 +272,7 @@ export const _columns: any = () => {
                 >
                   <Button
                     variant="text"
-                    className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text"
+                    className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent tw-font-normal"
                     href={`/people/${cell?.row?.original?.id}`}
                   >
                     <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
@@ -455,7 +455,7 @@ export const selectBlueStyles = {
   placeholder: (styles: any) => ({
     ...styles,
     color: "#889bb3",
-    fontSize: "0.875rem",
+    fontSize: "16px",
     fontWeight: 400,
   }),
   valueContainer: (styles: any) => ({
@@ -466,6 +466,7 @@ export const selectBlueStyles = {
   singleValue: (styles: any, { data }: any) => ({
     ...styles,
     color: "#889bb3",
+    fontSize: "16px",
   }),
   clearIndicator: (styles: any) => ({ ...styles, padding: 0 }),
   indicatorSeparator: (
@@ -489,9 +490,9 @@ export const _styles = {
   containers:
     "tw-px-2 tw-py-2 tw-border-b tw-border-[#f2f3f9] xl:tw-px-10 xl:tw-py-3",
   label:
-    "tw-w-4/12 tw-font-light tw-text-[#889bb3] lg:tw-w-3/12 xl:tw-w-2/12 2xl:tw-w-1/12 tw-flex tw-items-center",
+    "tw-w-4/12 tw-font-normal tw-text-[16px] tw-text-callsineGray lg:tw-w-3/12 xl:tw-w-2/12 2xl:tw-w-1/12 tw-flex tw-items-center",
   labelValue:
     "tw-w-8/12 tw-font-normal tw-text-[#889bb3] tw-truncate lg:tw-w-9/12 xl:tw-w-10/12 2xl:tw-w-11/12 2xl:tw-pl-4",
   labelValueInput:
-    "tw-w-full tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
+    "tw-w-full tw-outline-none tw-border-b tw-text-[16px] tw-text-callsineGray tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
 };

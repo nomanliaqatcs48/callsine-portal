@@ -125,7 +125,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
                 ? "h5"
                 : "body1"
             }
-            className="tw-text-white tw-font-medium"
+            className="tw-text-white tw-font-medium tw-text-[18px]"
             color="inherit"
           >
             {item.title}

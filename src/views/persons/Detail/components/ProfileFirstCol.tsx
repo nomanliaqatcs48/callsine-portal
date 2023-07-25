@@ -53,7 +53,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
                 onClick={() => {
                   data?.linkedin && window.open(data.linkedin, "_blank");
                 }}
-                className={`tw-p-[0.6rem] tw-w-[32px] tw-bg-[#4465a8] tw-rounded-full tw-scale-110 ${
+                className={`tw-p-[0.8rem] tw-w-[40px] tw-h-[40px] tw-bg-[#4465A8] tw-rounded-full tw-scale-110 ${
                   data?.linkedin ? "tw-cursor-pointer" : "tw-cursor-not-allowed"
                 }`}
               >
@@ -65,7 +65,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
                 onClick={() => {
                   data?.facebook && window.open(data.facebook, "_blank");
                 }}
-                className={`tw-p-[0.8rem] tw-w-[32px] tw-h-[32px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110 ${
+                className={`tw-p-[1rem] tw-w-[40px] tw-h-[40px] tw-bg-[#1677f2] tw-rounded-full tw-scale-110 ${
                   data?.facebook ? "tw-cursor-pointer" : "tw-cursor-not-allowed"
                 }`}
               >
@@ -81,42 +81,42 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
       {/*emails sent, opened, clicked*/}
       <div className="tw-flex tw-flex-col tw-items-center tw-mt-8 sm:tw-flex-row sm:tw-justify-between">
         <div>
-          <Typography className="tw-font-medium tw-text-sm tw-text-black">
+          <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Emails Sent
           </Typography>
-          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
+          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.emails_sent || "0"}
           </Typography>
         </div>
         <div>
-          <Typography className="tw-font-medium tw-text-sm tw-text-black">
+          <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Opened
           </Typography>
-          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
+          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.opened || "0"}
           </Typography>
         </div>
         <div>
-          <Typography className="tw-font-medium tw-text-sm tw-text-black">
+          <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Clicked
           </Typography>
-          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
+          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.clicked || "0"}
           </Typography>
         </div>
         <div>
-          <Typography className="tw-font-medium tw-text-sm tw-text-black">
+          <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Replied
           </Typography>
-          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
+          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.replied || "0"}
           </Typography>
         </div>
         <div>
-          <Typography className="tw-font-medium tw-text-sm tw-text-black">
+          <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Pageviews
           </Typography>
-          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-lg tw-text-black">
+          <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.pageviews || "0"}
           </Typography>
         </div>

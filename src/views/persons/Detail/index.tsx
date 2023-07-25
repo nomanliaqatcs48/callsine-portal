@@ -62,7 +62,7 @@ const PersonDetailPage = () => {
         </Grid>
       </Grid>
 
-      <Container className="tw-py-2" />
+      <Box className="tw-py-2" />
 
       {/*<Grid container spacing={4}>
         <Grid item xs={12} lg={4}>
@@ -107,22 +107,22 @@ const PersonDetailPage = () => {
           <Tab
             label="Playbook"
             {...a11yProps(0)}
-            className="tw-text-black tw-tracking-wider"
+            className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
           <Tab
             label="Emails"
             {...a11yProps(1)}
-            className="tw-text-black tw-tracking-wider"
+            className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
           <Tab
             label="Tracking"
             {...a11yProps(2)}
-            className="tw-text-black tw-tracking-wider"
+            className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
           <Tab
             label="Custom Fields"
             {...a11yProps(3)}
-            className="tw-text-black tw-tracking-wider"
+            className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
         </Tabs>
       </Box>

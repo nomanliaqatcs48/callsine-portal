@@ -41,7 +41,7 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
       second: data?.work_email ? (
         <Button
           href={`mailto:${data?.work_email}`}
-          className="tw-p-0 tw-normal-case tw-text-[#0096c7]"
+          className="tw-p-0 tw-normal-case tw-text-callsineLightBlue"
         >
           {data?.work_email}
         </Button>
@@ -72,13 +72,13 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
                   <TableCell
                     component="th"
                     scope="row"
-                    className="tw-font-thin tw-uppercase tw-text-[0.65rem] tw-border-b-0 tw-p-2"
+                    className="tw-font-normal tw-uppercase tw-text-[14px] tw-tracking-[0.28px] tw-text-callsineTextGray tw-border-b-0 tw-p-2"
                   >
                     {item.first}
                   </TableCell>
                   <TableCell
                     align="right"
-                    className="tw-text-left tw-text-black tw-font-medium tw-text-[0.85rem] tw-border-b-0 tw-p-2"
+                    className="tw-text-left tw-text-black tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-border-b-0 tw-p-2"
                   >
                     {item.second}
                   </TableCell>

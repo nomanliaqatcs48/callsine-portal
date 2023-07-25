@@ -73,7 +73,7 @@ const TotalListSmallCard = ({
                         mt: 1.75,
                         mb: 0.75,
                       }}
-                      className="tw-font-medium"
+                      className="tw-font-medium tw-text-[40px] tw-tracking-[0.8px] tw-text-white"
                     >
                       {value}
                     </Typography>
@@ -81,7 +81,7 @@ const TotalListSmallCard = ({
                 </Grid>
               </Grid>
               <Grid item sx={{ mb: 1.25 }} className="tw-z-50">
-                <Typography className="tw-text-sm tw-font-light">
+                <Typography className="tw-text-[18px] tw-tracking-[0.36px] tw-font-light tw-text-white">
                   {text}
                 </Typography>
               </Grid>
