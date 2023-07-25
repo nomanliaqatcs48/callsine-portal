@@ -62,14 +62,14 @@ const PlaybooksPage = () => {
                 </CreateOrEditPlaybook>
               </Box>
             </Box>
-            <div className="search-container tw-py-3 tw-px-2 xl:tw-py-4 xl:tw-px-5">
+            <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
               <input
                 type="search"
                 placeholder="Search"
                 onChange={handleSearchOnBeforeChange}
                 className="tw-bg-[#F8FBFF] tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
               />
-            </div>
+            </Box>
             <Box className="list-container">
               <PlaybookList
                 selectedIndex={selectedIndex}
