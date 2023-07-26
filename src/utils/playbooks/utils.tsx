@@ -8,7 +8,7 @@ export const _styles = {
   labelValueInput:
     "tw-w-full tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
   message:
-    "tw-w-full tw-font-normal tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
+    "tw-w-full tw-font-normal tw-outline-none tw-leading-[25px] tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
 };
 
 export const dummyData = () => {
