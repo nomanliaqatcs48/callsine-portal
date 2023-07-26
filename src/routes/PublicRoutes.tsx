@@ -11,11 +11,7 @@ const HomePage = Loadable(lazy(() => import("../views/home")));
 
 const AuthenticationRoutes = {
   path: "/",
-  element: (
-    <Unauthenticated>
-      <PublicLayout />
-    </Unauthenticated>
-  ),
+  element: <PublicLayout />,
   children: [
     /*{
       path: "/",
