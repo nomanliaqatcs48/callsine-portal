@@ -66,8 +66,10 @@ const DeleteSelectedUserData = ({
           onClick={handleOpen}
           disabled={false}
           className={`${
-            selectedRows?.length > 0 ? "tw-text-[#1a76d2]" : "tw-text-[#778da9]"
-          }`}
+            selectedRows?.length > 0
+              ? "tw-text-primary"
+              : "tw-text-callsineGray"
+          } tw-font-normal tw-text-[16px] tw-tracking-[0.32px]`}
         >
           <DeleteIcon
             sx={{

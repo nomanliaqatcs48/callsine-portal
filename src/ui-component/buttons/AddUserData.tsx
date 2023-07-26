@@ -30,7 +30,7 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
         <Button
           onClick={handleOpen}
           disabled={false}
-          // className="tw-text-[#778da9]"
+          className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-primary"
         >
           <FileUploadOutlinedIcon
             sx={{ color: "#1a76d2", fontSize: 15 }}
