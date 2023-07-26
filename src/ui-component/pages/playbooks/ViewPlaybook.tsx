@@ -49,7 +49,7 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
               onLoadApi={() => null}
               selectedData={selectedData}
             >
-              <Box className="tw-bg-[#1a76d2] tw-px-[15.5px] tw-py-[17px] tw-rounded-md">
+              <Box className="tw-bg-[#1a76d2] tw-px-[17px] tw-py-[15.5px] tw-rounded-md">
                 <EditIcon
                   style={{ color: "#ffffff", fontSize: 21 }}
                   fontSize="small"
