@@ -3,6 +3,7 @@ import {
   Box,
   Checkbox,
   DialogActions,
+  DialogContent,
   FormControlLabel,
   FormGroup,
   Grid,
@@ -72,6 +73,12 @@ const PlaybookV2 = () => {
     getPrompts();
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      setIsOverwrite(false);
+    }
+  }, [open]);
+
   const getPrompts = async () => {
     try {
       let res = await getPlaybooks(filters, searchValue);
@@ -91,15 +98,20 @@ const PlaybookV2 = () => {
     setLoading((prev: any) => ({ ...prev, regeneratePlaybook: true }));
 
     try {
-      let res = await setPlaybookV2Service(Number(promptId), Number(id), {
-        first_name: data?.first_name,
-        last_name: data?.last_name,
-        company_name: data?.org?.name,
-        company_website: data?.org?.domain,
-        company_domain: data?.org?.domain,
-        org_name: "Union Resolute",
-        org_domain: "unionresolute.com",
-      });
+      let res = await setPlaybookV2Service(
+        Number(promptId),
+        Number(id),
+        {
+          first_name: data?.first_name,
+          last_name: data?.last_name,
+          company_name: data?.org?.name,
+          company_website: data?.org?.domain,
+          company_domain: data?.org?.domain,
+          org_name: "Union Resolute",
+          org_domain: "unionresolute.com",
+        },
+        isOverwrite
+      );
       if (res?.data) {
         ToastSuccess("Message successfully generated.");
         setData(res.data);
@@ -192,20 +204,6 @@ const PlaybookV2 = () => {
                 )}
               </Box>
             </Box>
-            <Box className="tw-flex tw-justify-end tw-px-2 tw-py-1">
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={isOverwrite}
-                      onChange={handleChangeIsOverwrite}
-                      name="isOverwrite"
-                    />
-                  }
-                  label="Is Overwrite?"
-                />
-              </FormGroup>
-            </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
               <input
                 type="search"
@@ -285,6 +283,22 @@ const PlaybookV2 = () => {
           describedby="Generate Playbook modal"
           modalSxStyle={{ width: { xs: 400 } }}
         >
+          <DialogContent className="tw-px-[5px] tw-py-0">
+            <Box className="tw-flex">
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isOverwrite}
+                      onChange={handleChangeIsOverwrite}
+                      name="is_overwrite"
+                    />
+                  }
+                  label="Is Overwrite?"
+                />
+              </FormGroup>
+            </Box>
+          </DialogContent>
           <DialogActions>
             <LoadingButton
               variant="contained"

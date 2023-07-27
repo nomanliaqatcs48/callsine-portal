@@ -45,11 +45,13 @@ export const setPlaybook = async (
 export const setPlaybookV2Service = async (
   playbookId: number,
   personId: number,
-  context: any
+  context: any,
+  is_overwrite: boolean = false
 ) => {
   return await http.post(`/api/persons/${personId}/set_playbook_v2/`, {
     playbook_id: playbookId,
     context: context,
+    is_overwrite: is_overwrite,
   });
 };
 
