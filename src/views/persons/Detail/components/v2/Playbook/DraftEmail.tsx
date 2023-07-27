@@ -75,10 +75,6 @@ const DraftEmail = ({
   });
   let countIndexForEmailSubject: number = 0;
 
-  devLog(() => {
-    console.log("selectedSequenceEvent", selectedSequenceEvent);
-  });
-
   useEffect(() => {
     setIsLoading((prev: any) => ({
       ...prev,
