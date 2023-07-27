@@ -75,6 +75,10 @@ const DraftEmail = ({
   });
   let countIndexForEmailSubject: number = 0;
 
+  devLog(() => {
+    console.log("selectedSequenceEvent", selectedSequenceEvent);
+  });
+
   useEffect(() => {
     setIsLoading((prev: any) => ({
       ...prev,
@@ -561,20 +565,22 @@ const DraftEmail = ({
                 </span>
               </LoadingButton>
             )}
-            <LoadingButton
-              type="button"
-              variant="outlined"
-              onClick={() =>
-                regeneratePlaybook(selectedSequenceEvent, onLoadApi)
-              }
-              className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
-              loading={false}
-              disabled={false}
-            >
-              <span className="tw-px-1.5 tw-text-xs tw-font-medium">
-                Regenerate
-              </span>
-            </LoadingButton>
+            {selectedSequenceEvent?.scheduledEmail !== null && (
+              <LoadingButton
+                type="button"
+                variant="outlined"
+                onClick={() =>
+                  regeneratePlaybook(selectedSequenceEvent, onLoadApi)
+                }
+                className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+                loading={false}
+                disabled={false}
+              >
+                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                  Regenerate
+                </span>
+              </LoadingButton>
+            )}
           </div>
         </div>
       </div>
