@@ -2,11 +2,10 @@ export const _styles = {
   containers:
     "tw-px-2 tw-py-2 tw-border-b tw-border-[#f2f3f9] xl:tw-px-10 xl:tw-py-4",
   label:
-    "tw-w-4/12 tw-font-normal tw-text-[#B9B9B9] tw-text-[18px] lg:tw-w-4/12 xl:tw-w-3/12 tw-flex tw-items-center",
-  labelValue:
-    "tw-w-8/12 tw-font-medium tw-text-[18px] tw-text-black tw-truncate lg:tw-w-8/12 xl:tw-w-9/12",
+    "tw-font-normal tw-text-[#B9B9B9] tw-text-[18px] tw-flex tw-items-center",
+  labelValue: "tw-font-medium tw-text-[18px] tw-text-black",
   labelValueInput:
-    "tw-w-full tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
+    "tw-outline-none tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
   message:
     "tw-w-full tw-font-normal tw-outline-none tw-leading-[25px] tw-border-b tw-border-transparent tw-transition-all tw-duration-500 focus:tw-border-b focus:tw-border-[#569ade]",
 };

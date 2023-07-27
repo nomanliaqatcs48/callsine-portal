@@ -76,19 +76,19 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
         </Box>
       </Box>
       <Box className={`name-container ${_styles?.containers} xl:tw-py-7`}>
-        <Box className="tw-flex">
-          <Box className={`${_styles?.label}`}>Prompt Name:</Box>
-          <Box className={`${_styles?.labelValue} tw-text-black`}>
-            {selectedData?.name}
+        <Box className="tw-flex tw-flex-wrap">
+          <Box className={`${_styles?.label} tw-mr-3`}>Prompt Name:</Box>
+          <Box className={`${_styles?.labelValue}`}>
+            {selectedData?.name} asdasdasdsasd
           </Box>
         </Box>
       </Box>
       <Box
         className={`message-container ${_styles?.containers} tw-border-none`}
       >
-        <Box className="tw-flex">
+        <Box className="tw-flex tw-flex-wrap">
           <Box
-            className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5`}
+            className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5 tw-break-words`}
           >
             {selectedData?.message}
           </Box>

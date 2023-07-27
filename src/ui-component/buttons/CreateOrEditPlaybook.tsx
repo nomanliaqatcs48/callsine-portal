@@ -207,18 +207,14 @@ const CreateOrEditPlaybook = ({
                 <Box
                   className={`name-container ${_styles?.containers} tw-px-[24px] xl:tw-px-[24px]`}
                 >
-                  <div className="tw-flex tw-flex-col lg:tw-flex-row">
-                    <div
-                      className={`${_styles?.label} tw-w-full lg:tw-w-2/12 2xl:tw-w-2/12`}
-                    >
+                  <div className="tw-flex tw-flex-col lg:tw-flex-row tw-flex-wrap">
+                    <div className={`${_styles?.label} lg:tw-w-1/6`}>
                       Prompt Name:
                     </div>
-                    <div
-                      className={`${_styles?.labelValue} tw-w-full lg:tw-w-10/12 lg:tw-ml-3`}
-                    >
+                    <div className={`${_styles?.labelValue} lg:tw-w-5/6`}>
                       <input
                         type="text"
-                        className={`${_styles?.labelValueInput}`}
+                        className={`${_styles?.labelValueInput} tw-w-full`}
                         {...register("name", {
                           required: "This is required field.",
                         })}
@@ -250,7 +246,7 @@ const CreateOrEditPlaybook = ({
                       >
                         <textarea
                           rows={9}
-                          className={`${_styles?.labelValueInput} tw-text-[16px] placeholder:tw-text-[#B9B9B9] placeholder:tw-font-normal`}
+                          className={`${_styles?.labelValueInput} tw-w-full tw-text-[16px] placeholder:tw-text-[#B9B9B9] placeholder:tw-font-normal`}
                           defaultValue={selectedData?.message}
                           {...register("message", {
                             required: "This is required field.",
