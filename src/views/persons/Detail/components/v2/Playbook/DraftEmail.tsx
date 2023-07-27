@@ -556,7 +556,7 @@ const DraftEmail = ({
                 loading={false}
                 disabled={false}
               >
-                <span className="tw-px-1.5 tw-text-xs tw-font-normal tw-text-callsineGray">
+                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
                   Save Draft
                 </span>
               </LoadingButton>
