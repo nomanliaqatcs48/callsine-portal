@@ -1,5 +1,13 @@
 import { LoadingButton } from "@mui/lab";
-import { Box, DialogActions, Grid, Paper } from "@mui/material";
+import {
+  Box,
+  Checkbox,
+  DialogActions,
+  FormControlLabel,
+  FormGroup,
+  Grid,
+  Paper,
+} from "@mui/material";
 import _ from "lodash";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -24,7 +32,8 @@ const PlaybookV2 = () => {
   const [selectedSequenceEvent, setSelectedSequenceEvent] = useState<any>(null);
   const [prompts, setPrompts] = useState<any[]>([]);
   const [promptId, setPromptId] = useState<number | null>(null);
-  const [searchValue, setSearchValue] = React.useState<string>("");
+  const [searchValue, setSearchValue] = useState<string>("");
+  const [isOverwrite, setIsOverwrite] = useState<boolean>(false);
   const {
     data: playBookData,
     setData: setPlayBookData,
@@ -130,6 +139,10 @@ const PlaybookV2 = () => {
     void handleSearchOnChange();
   };
 
+  const handleChangeIsOverwrite = (event: any) => {
+    setIsOverwrite(event?.target?.checked);
+  };
+
   return (
     <>
       <Paper
@@ -178,6 +191,20 @@ const PlaybookV2 = () => {
                   />
                 )}
               </Box>
+            </Box>
+            <Box className="tw-flex tw-justify-end tw-px-2 tw-py-1">
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      checked={isOverwrite}
+                      onChange={handleChangeIsOverwrite}
+                      name="isOverwrite"
+                    />
+                  }
+                  label="Is Overwrite?"
+                />
+              </FormGroup>
             </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
               <input
