@@ -73,3 +73,16 @@ export const bulkGenerateService = async (
     playbook_id: playbook_id,
   });
 };
+
+export const createPromptService = async (data: any) => {
+  return await http.post(`${endpoints.PROMPTS}`, data);
+};
+
+export const deletePromptService = async (promptId: number) => {
+  return await http.delete(`${endpoints.PROMPTS}${promptId}`);
+};
+
+export const updatePromptService = async (promptId: number, data: any) => {
+  console.log("ppp", promptId);
+  return await http.patch(`${endpoints.PROMPTS}${promptId}/`, data);
+};

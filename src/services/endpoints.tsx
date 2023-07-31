@@ -13,4 +13,5 @@ export const endpoints = {
   IMPORT_PEOPLE: "/api/bulk-import/",
   SEQUENCE_EVENTS: "/api/sequence-events/",
   USER_DATA: "/api/user-data/",
+  TEAMS: "/api/teams/",
 };

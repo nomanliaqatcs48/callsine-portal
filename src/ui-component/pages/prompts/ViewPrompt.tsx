@@ -14,10 +14,13 @@ import { useForm } from "react-hook-form";
 import CreateOrEditPlaybook from "../../buttons/CreateOrEditPlaybook";
 import CreateOrEditPrompt from "../../buttons/CreateOrEditPrompt";
 import DeletePlaybook from "../../buttons/DeletePlaybook";
+import DeletePrompt from "src/ui-component/buttons/DeletePrompt";
 
 type ViewPlaybookTypes = {
-  selectedData: any;
+  prompts: any;
   onLoadApi: any;
+  setPromptList: any;
+  setPlaybookData: any;
 };
 
 type PromptTypes = {
@@ -27,7 +30,12 @@ type PromptTypes = {
   order: number;
 };
 
-const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
+const ViewPrompt = ({
+  prompts,
+  onLoadApi,
+  setPromptList,
+  setPlaybookData,
+}: ViewPlaybookTypes) => {
   const {
     register,
     unregister,
@@ -39,10 +47,9 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
     setError,
     formState: { errors },
   } = useForm({ mode: "onChange" });
-  console.log(selectedData);
   return (
     <>
-      {selectedData.prompts.map((prompt: PromptTypes, idx: number) => (
+      {prompts.map((prompt: PromptTypes, idx: number) => (
         <div key={idx}>
           <Box
             className={`edit-and-delete-container ${_styles?.containers} xl:tw-py-1.5`}
@@ -56,8 +63,9 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
                   onClick={() => null}
                   className="border tw-min-w-min"
                   id={prompt?.id}
+                  defaultValue={prompt?.text}
+                  setPromptList={setPromptList}
                   onLoadApi={() => null}
-                  selectedData={selectedData}
                 >
                   <Box className="tw-bg-[#1a76d2] tw-px-[15.5px] tw-py-[17px] tw-rounded-md">
                     <EditIcon
@@ -67,10 +75,11 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
                     />
                   </Box>
                 </CreateOrEditPrompt>
-                <DeletePlaybook
+                <DeletePrompt
                   id={prompt?.id}
                   className="border tw-min-w-min"
                   onLoadApi={() => null}
+                  setPromptList={setPromptList}
                 >
                   <Box className="tw-bg-[#d00200] tw-p-[17.5px] tw-rounded-md">
                     <IconTrash
@@ -81,17 +90,15 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
                       }}
                     />
                   </Box>
-                </DeletePlaybook>
+                </DeletePrompt>
               </Box>
             </Box>
           </Box>
           <Box className={`name-container ${_styles?.containers} xl:tw-py-7`}>
             <Box className="tw-flex">
-              <Box className={`${_styles?.label}`}>
-                Prompt Name (id for now):
-              </Box>
+              <Box className={`${_styles?.label}`}>Order:</Box>
               <Box className={`${_styles?.labelValue} tw-text-black`}>
-                {prompt?.id}
+                {prompt?.order}
               </Box>
             </Box>
           </Box>
@@ -114,4 +121,4 @@ const ViewPlaybook = ({ selectedData, onLoadApi }: ViewPlaybookTypes) => {
 
 const containers = "tw-px-2 xl:tw-px-10";
 
-export default ViewPlaybook;
+export default ViewPrompt;

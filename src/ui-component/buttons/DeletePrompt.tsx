@@ -5,50 +5,54 @@ import { devLog, devLogError } from "../../helpers/logs";
 import { deleteMailAccountService } from "../../services/mail-accounts.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { deletePromptService } from "src/services/prompts.service";
+import { Prompt } from "../../utils/types/prompt";
 
 type DeletePlaybookTypes = {
   id: number;
   children: any;
   onLoadApi?: any;
+  setPromptList?: any;
+  setPlaybookData?: any;
   [x: string]: any;
 };
 
-const DeletePlaybook = ({
+const DeletePrompt = ({
   id,
   children,
   onLoadApi,
+  setPromptList,
+  setPlaybookData,
   ...props
 }: DeletePlaybookTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
   });
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
   const handleDelete = async () => {
-    ToastSuccess("This functionality is in progress.");
-
+    ToastSuccess("Deleting prompt is in progress.");
+    console.log(id);
     handleClose();
-    return;
-    setIsLoading((prev: any) => ({ ...prev, submit: true }));
-    insertBodyLoader();
+
     try {
-      let res = await deleteMailAccountService(id);
+      let res = await deletePromptService(id);
       if (res?.status === 204) {
-        ToastSuccess("Mail account successfully deleted.");
+        ToastSuccess("Prompty successfully deleted.");
         onLoadApi();
-        handleClose();
-        setIsLoading((prev: any) => ({ ...prev, submit: false }));
-        removeBodyLoader();
+
+        setPromptList((prevPromptList: Prompt[]) =>
+          prevPromptList.filter((prompt: Prompt) => prompt.id !== id)
+        );
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
       devLogError(() => {
         console.error(e?.response);
       });
-      setIsLoading((prev: any) => ({ ...prev, submit: false }));
-      removeBodyLoader();
     }
   };
 
@@ -80,7 +84,7 @@ const DeletePlaybook = ({
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
-              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+              className="tw-bg-red-600 hover:tw-bg-red-500 tw-normal-case"
             >
               Yes, delete it!
             </Button>
@@ -94,4 +98,4 @@ const DeletePlaybook = ({
   );
 };
 
-export default DeletePlaybook;
+export default DeletePrompt;

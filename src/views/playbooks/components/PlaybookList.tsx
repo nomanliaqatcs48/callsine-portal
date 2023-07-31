@@ -12,6 +12,13 @@ type PlaybookListProps = {
   selectedIndex: number | null;
   setSelectedIndex: any;
   setSelectedData: any;
+  setPromptList: any;
+};
+
+type PlaybookTypes = {
+  name: string;
+  subtext: string;
+  prompts: any[];
 };
 
 const PlaybookList = ({
@@ -19,6 +26,7 @@ const PlaybookList = ({
   selectedIndex,
   setSelectedIndex,
   setSelectedData,
+  setPromptList,
 }: PlaybookListProps) => {
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
@@ -52,7 +60,7 @@ const PlaybookList = ({
         className="tw-py-0 tw-border-t tw-border-[#e8ecf5]"
       >
         {data?.length > 0 &&
-          data.map((item: any, idx: any) => {
+          data.map((playbook: PlaybookTypes, idx: any) => {
             return (
               <ListItemButton
                 key={idx}
@@ -60,7 +68,8 @@ const PlaybookList = ({
                 selected={selectedIndex === idx}
                 onClick={(event) => {
                   handleListItemClick(event, idx);
-                  setSelectedData(item);
+                  setSelectedData(playbook);
+                  setPromptList(playbook.prompts);
                 }}
                 sx={{
                   borderBottom: "1px solid #e8ecf5",
@@ -82,7 +91,7 @@ const PlaybookList = ({
                   },
                 }}
               >
-                <Tooltip title={item?.name || ""}>
+                <Tooltip title={playbook?.name || ""}>
                   <ListItemText
                     primary={
                       <>
@@ -94,12 +103,15 @@ const PlaybookList = ({
                             component={"span"}
                             className="tw-text-black tw-font-medium tw-text-[18px] tw-leading-[27px] tw-truncate tw-mb-1"
                           >
-                            {item?.name || ""}
+                            {playbook?.name || ""}
                           </Box>
                         </Box>
                       </>
                     }
-                    secondary={subtext(item)}
+                    // secondary={subtext(item)}
+                    secondary={subtext({
+                      message: "This is a sample sub text",
+                    })}
                   />
                 </Tooltip>
               </ListItemButton>
