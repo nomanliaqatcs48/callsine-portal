@@ -100,5 +100,9 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.4",
     "sass": "^1.58.3"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "postcss.config.js",
+  "author": "",
+  "license": "ISC"
 }

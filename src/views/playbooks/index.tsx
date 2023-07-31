@@ -5,7 +5,9 @@ import _ from "lodash";
 import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
+import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
 import { usePlaybook } from "../../hooks/playbook/usePlaybook";
+import ViewPrompt from "src/ui-component/pages/prompts/ViewPrompt";
 
 const PlaybooksPage = () => {
   let {
@@ -25,13 +27,15 @@ const PlaybooksPage = () => {
     setSelectedIndex,
     selectedData,
     setSelectedData,
+    promptList,
+    setPromptList,
     isLoading,
     setIsLoading,
     getAllPlaybook,
     handleSearchOnChange,
     handleSearchOnBeforeChange,
   } = usePlaybook(true);
-
+  console.log("playbookData", playbookData);
   return (
     <>
       <Paper
@@ -50,16 +54,20 @@ const PlaybooksPage = () => {
               <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
                 Playbook
               </Box>
-              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end">
-                <CreateOrEditPlaybook
+
+              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
+                <CreateOrEditPrompt
                   onClick={() => null}
                   onLoadApi={() => null}
+                  selectedData={selectedData}
                   variant="contained"
                   color="primary"
                   className="tw-bg-primary tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
+                  disabled={!selectedData}
+                  setPromptList={setPromptList}
                 >
                   Add Prompt
-                </CreateOrEditPlaybook>
+                </CreateOrEditPrompt>
               </Box>
             </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
@@ -80,15 +88,18 @@ const PlaybooksPage = () => {
                     : []
                 }
                 setSelectedData={setSelectedData}
+                setPromptList={setPromptList}
               />
             </Box>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                <ViewPlaybook
-                  selectedData={selectedData}
+                <ViewPrompt
+                  prompts={promptList}
                   onLoadApi={() => null}
+                  setPromptList={setPromptList}
+                  setPlaybookData={setPlaybookData}
                 />
               </>
             )}

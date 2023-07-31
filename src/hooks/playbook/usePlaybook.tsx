@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useAsyncDebounce } from "react-table";
 import { devLog, devLogError } from "../../helpers/logs";
+import { getTeamPlaybooks } from "../../services/playbooks.service";
 import { dummyData } from "../../utils/playbooks/utils";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { loadString } from "../../utils/storage";
+import { useAuth } from "../../contexts/auth";
 
 export const usePlaybook = (
   load: boolean = true,
@@ -11,7 +14,10 @@ export const usePlaybook = (
     offset: 0,
   }
 ) => {
+  const auth: any = useAuth();
+
   const [playbookData, setPlaybookData] = useState<any[]>([]);
+  const [promptList, setPromptList] = useState<any[]>([]);
   const [filters, setFilters] = useState<any>(filtersParam);
   const [total, setTotal] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -25,16 +31,25 @@ export const usePlaybook = (
     search: false,
   });
 
+  const getToken = async () => {
+    let _token = await loadString("token");
+    devLog(async () => {
+      console.log("_token", _token);
+      console.log("refresh_token", await loadString("refresh"));
+    });
+  };
   useEffect(() => {
     if (load) {
       getAllPlaybook();
+      getToken();
     }
   }, [load, filters, sortedId, isOrderDesc]);
 
   const getAllPlaybook = async () => {
     insertBodyLoader();
     try {
-      let res = await dummyData();
+      // let res = await dummyData();
+      let res = await getTeamPlaybooks(auth["team"]);
       if (res?.data) {
         devLog(() => {
           console.log("res.data", res.data);
@@ -85,5 +100,7 @@ export const usePlaybook = (
     getAllPlaybook,
     handleSearchOnChange,
     handleSearchOnBeforeChange,
+    promptList,
+    setPromptList,
   };
 };
