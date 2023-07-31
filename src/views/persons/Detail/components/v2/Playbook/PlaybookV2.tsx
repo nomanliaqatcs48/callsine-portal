@@ -25,6 +25,7 @@ import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { getPlaybooks } from "../../../../../../services/prompts.service";
 import { useAsyncDebounce } from "react-table";
 import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
+import { load } from "../../../../../../utils/storage";
 
 const PlaybookV2 = () => {
   const { id } = useParams();
@@ -35,6 +36,7 @@ const PlaybookV2 = () => {
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isOverwrite, setIsOverwrite] = useState<boolean>(false);
+  const [profile, setProfile] = useState<any>(null);
   const {
     data: playBookData,
     setData: setPlayBookData,
@@ -70,6 +72,7 @@ const PlaybookV2 = () => {
   // } = usePlaybook();
 
   useEffect(() => {
+    getProfile();
     getPrompts();
   }, []);
 
@@ -79,11 +82,29 @@ const PlaybookV2 = () => {
     }
   }, [open]);
 
+  const getProfile = async () => {
+    try {
+      let _profile: any = await load("profile");
+      if (_profile) {
+        setProfile(_profile);
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
+    }
+  };
+
   const getPrompts = async () => {
     try {
       let res = await getPlaybooks(filters, searchValue);
       if (res?.data) {
-        setPrompts(res.data?.results);
+        devLog(() => {
+          console.log("res.data?.results", res.data?.results);
+        });
+        setPrompts(
+          _.filter(res.data?.results, (o: any) => o?.team === profile?.team)
+        );
         setLoading((prev: any) => ({ ...prev, onPage: false }));
       }
     } catch (e: any) {
