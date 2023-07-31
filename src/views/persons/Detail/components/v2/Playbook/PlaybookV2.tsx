@@ -36,7 +36,6 @@ const PlaybookV2 = () => {
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isOverwrite, setIsOverwrite] = useState<boolean>(false);
-  const [profile, setProfile] = useState<any>(null);
   const {
     data: playBookData,
     setData: setPlayBookData,
@@ -72,7 +71,6 @@ const PlaybookV2 = () => {
   // } = usePlaybook();
 
   useEffect(() => {
-    getProfile();
     getPrompts();
   }, []);
 
@@ -82,28 +80,16 @@ const PlaybookV2 = () => {
     }
   }, [open]);
 
-  const getProfile = async () => {
-    try {
-      let _profile: any = await load("profile");
-      if (_profile) {
-        setProfile(_profile);
-      }
-    } catch (e: any) {
-      devLogError(() => {
-        console.error(e?.response);
-      });
-    }
-  };
-
   const getPrompts = async () => {
     try {
+      let _profile: any = await load("profile");
       let res = await getPlaybooks(filters, searchValue);
       if (res?.data) {
         devLog(() => {
           console.log("res.data?.results", res.data?.results);
         });
         setPrompts(
-          _.filter(res.data?.results, (o: any) => o?.team === profile?.team)
+          _.filter(res.data?.results, (o: any) => o?.team === _profile?.team)
         );
         setLoading((prev: any) => ({ ...prev, onPage: false }));
       }
