@@ -109,9 +109,9 @@ const PlaybookList = ({
                       </>
                     }
                     // secondary={subtext(item)}
-                    secondary={subtext({
-                      message: "This is a sample sub text",
-                    })}
+                    // secondary={subtext({
+                    //   message: "This is a sample sub text",
+                    // })}
                   />
                 </Tooltip>
               </ListItemButton>

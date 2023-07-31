@@ -1,20 +1,10 @@
-import { Box, Button, Divider, FormHelperText } from "@mui/material";
-import { _styles } from "../../../utils/playbooks/utils";
-import { LoadingButton } from "@mui/lab";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import SendLater from "../../buttons/SendLater";
-import React from "react";
-import { IconTrash } from "@tabler/icons-react";
 import EditIcon from "@mui/icons-material/Edit";
-import ReactSelect from "../../dropdowns/ReactSelect";
-import { selectBlueStyles } from "../../../utils/people/utils";
-import { ErrorMessage } from "@hookform/error-message";
-import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import { Box } from "@mui/material";
+import { IconTrash } from "@tabler/icons-react";
 import { useForm } from "react-hook-form";
-import CreateOrEditPlaybook from "../../buttons/CreateOrEditPlaybook";
-import CreateOrEditPrompt from "../../buttons/CreateOrEditPrompt";
-import DeletePlaybook from "../../buttons/DeletePlaybook";
 import DeletePrompt from "src/ui-component/buttons/DeletePrompt";
+import { _styles } from "../../../utils/playbooks/utils";
+import CreateOrEditPrompt from "../../buttons/CreateOrEditPrompt";
 
 type ViewPlaybookTypes = {
   prompts: any;
@@ -96,9 +86,9 @@ const ViewPrompt = ({
           </Box>
           <Box className={`name-container ${_styles?.containers} xl:tw-py-7`}>
             <Box className="tw-flex">
-              <Box className={`${_styles?.label}`}>Order:</Box>
+              <Box className={`${_styles?.label}`}>Position:</Box>
               <Box className={`${_styles?.labelValue} tw-text-black`}>
-                {prompt?.order}
+                {idx + 1}
               </Box>
             </Box>
           </Box>

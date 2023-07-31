@@ -1,4 +1,5 @@
-import React, { ChangeEvent, useState } from "react";
+import { ErrorMessage } from "@hookform/error-message";
+import CloseIcon from "@mui/icons-material/Close";
 import {
   Box,
   Button,
@@ -9,12 +10,11 @@ import {
   FormHelperText,
   Grid,
 } from "@mui/material";
-import { ErrorMessage } from "@hookform/error-message";
+import React, { ChangeEvent, useState } from "react";
 import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { _styles } from "../../utils/playbooks/utils";
-import CloseIcon from "@mui/icons-material/Close";
 import { Prompt } from "../../utils/types/prompt";
 
 import {
@@ -161,28 +161,32 @@ const CreateOrEditPlaybook = ({
               </Box>
             </Box>
           </DialogTitle>
-          <DialogContent className="tw-p-0">
-            <Grid container spacing={0}>
-              <Grid item xs={12}>
+          <DialogContent className="tw-p-0" style={{ width: "100%" }}>
+            <Grid container spacing={0} style={{ width: "100%" }}>
+              <Grid item xs={12} style={{ width: "100%" }}>
                 <Box
                   className={`message-container ${_styles?.containers} tw-border-b-0 tw-px-[24px] xl:tw-px-[24px]`}
+                  style={{ width: "100%" }}
                 >
-                  <Box className="tw-flex">
+                  <Box className="tw-flex" style={{ width: "100%" }}>
                     <Box
                       className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5`}
+                      style={{ width: "100%" }}
                     >
                       <Box
                         className={`tw-text-[18px] tw-text-black tw-truncate tw-font-normal tw-w-full lg:tw-w-full xl:tw-w-full 2xl:tw-w-full 2xl:tw-pl-0`}
+                        style={{ width: "100%" }}
                       >
                         <textarea
                           rows={9}
                           className={`${_styles?.labelValueInput} tw-text-[16px] placeholder:tw-text-[#B9B9B9] placeholder:tw-font-normal`}
                           defaultValue={defaultValue}
                           {...register("message", {
-                            required: "This is required field.",
+                            required: "This is a required field.",
                             onChange: handleChange,
                           })}
                           placeholder="Add prompt here..."
+                          style={{ width: "100%" }}
                         />
                         <ErrorMessage
                           errors={errors}
