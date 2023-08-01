@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@hookform/error-message";
 import AutoModeIcon from "@mui/icons-material/AutoMode";
 import {
   Button,
@@ -6,20 +7,15 @@ import {
   DialogContent,
   FormHelperText,
   Tooltip,
-  Typography,
 } from "@mui/material";
+import React, { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { getTeamPlaybooks } from "src/services/playbooks.service";
+import { useAuth } from "../../contexts/auth";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess, ToastWarning } from "../../helpers/toast";
-import {
-  bulkGenerateService,
-  getPlaybooks,
-} from "../../services/prompts.service";
-import React, { useEffect, useState } from "react";
-import MyModal from "../modal/MyModal";
+import { bulkGenerateService } from "../../services/prompts.service";
 import ReactSelect from "../dropdowns/ReactSelect";
-import { useForm } from "react-hook-form";
-import moment from "moment";
-import { ErrorMessage } from "@hookform/error-message";
 
 type GenerateSelectedPeopleProps = {
   selectedRows: any[];
@@ -30,6 +26,7 @@ const GenerateSelectedPeople = ({
   selectedRows,
   onLoadApi,
 }: GenerateSelectedPeopleProps) => {
+  const auth: any = useAuth();
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
@@ -66,7 +63,7 @@ const GenerateSelectedPeople = ({
 
   const getPrompts = async () => {
     try {
-      let res = await getPlaybooks(filters, searchValue);
+      let res = await getTeamPlaybooks(auth["team"], filters, searchValue);
       if (res?.data) {
         setPrompts(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
