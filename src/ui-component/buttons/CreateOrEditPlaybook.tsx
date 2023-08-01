@@ -22,6 +22,7 @@ import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { _styles } from "../../utils/playbooks/utils";
 import CloseIcon from "@mui/icons-material/Close";
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -69,6 +70,7 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisAddSubmit = async () => {
+    insertBodyLoader();
     ToastSuccess("Adding playbook is in progress.");
     handleClose();
 
@@ -80,6 +82,7 @@ const CreateOrEditPlaybook = ({
         ToastSuccess("Successfully added playbook.");
         onLoadApi();
         handleClose();
+        removeBodyLoader();
       }
       return;
     } catch (e: any) {
@@ -87,6 +90,7 @@ const CreateOrEditPlaybook = ({
       devLogError(() => {
         console.error(e);
       });
+      removeBodyLoader();
       return;
     }
   };

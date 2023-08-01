@@ -38,6 +38,7 @@ const DeletePrompt = ({
   const handleClose = () => setOpen(false);
 
   const handleDelete = async () => {
+    insertBodyLoader();
     ToastSuccess("Deleting prompt is in progress.");
     console.log(id);
     handleClose();
@@ -50,9 +51,11 @@ const DeletePrompt = ({
         setPromptList((prevPromptList: Prompt[]) =>
           prevPromptList.filter((prompt: Prompt) => prompt.id !== id)
         );
+        removeBodyLoader();
         ToastSuccess("Prompty successfully deleted.");
       }
     } catch (e: any) {
+      removeBodyLoader();
       ToastError("Something went wrong!");
       devLogError(() => {
         console.error(e);

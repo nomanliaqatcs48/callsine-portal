@@ -22,6 +22,7 @@ import {
   updatePromptService,
 } from "src/services/prompts.service";
 import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -96,6 +97,7 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisAddSubmit = async () => {
+    insertBodyLoader();
     ToastSuccess("Adding new prompt");
     handleClose();
     const payload = { text: promptValue, playbook: selectedData.id };
@@ -109,6 +111,7 @@ const CreateOrEditPlaybook = ({
         onLoadApi();
         handleClose();
         setPromptList((prevPromptList: any) => [...prevPromptList, res.data]);
+        removeBodyLoader();
         ToastSuccess("New prompt successfully created.");
         devLog(() => {
           console.log(res.data);
@@ -120,6 +123,7 @@ const CreateOrEditPlaybook = ({
       devLogError(() => {
         console.error(e);
       });
+      removeBodyLoader();
       return;
     }
   };
