@@ -1,15 +1,9 @@
-import React, { useState } from "react";
-import {
-  Button,
-  DialogActions,
-  Grid,
-  Tooltip,
-  Typography,
-} from "@mui/material";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import { Button, Grid, Tooltip } from "@mui/material";
+import { saveAs } from "file-saver";
+import React, { useState } from "react";
 import MyModal from "../modal/MyModal";
 import PeopleFileUpload from "../uploads/PeopleFileUpload";
-import { devLog } from "../../helpers/logs";
 
 type ImportPeopleProps = {
   onLoadApi: any;
@@ -21,6 +15,16 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
   });
+
+  // Define the CSV template
+  const csvData =
+    "First Name,Last Name,Job Title, Email Address, LinkedIn Contact Profile URL, Company Name, Website\n"; // Customize this line to match the template
+
+  // Function to handle the download
+  const downloadTemplate = () => {
+    const blob = new Blob([csvData], { type: "text/csv;charset=utf-8;" });
+    saveAs(blob, "template.csv");
+  };
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -60,7 +64,7 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
               <PeopleFileUpload instance={importData} refresh={refresh} />
             </Grid>
             <Grid item xs={12} className="tw-flex tw-justify-center">
-              <Button onClick={() => null} variant="text">
+              <Button onClick={() => downloadTemplate()} variant="text">
                 Download template
               </Button>
             </Grid>
