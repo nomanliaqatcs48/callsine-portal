@@ -40,9 +40,9 @@ const ViewPrompt = ({
   return (
     <>
       {prompts.map((prompt: PromptTypes, idx: number) => (
-        <div key={idx}>
+        <Box key={idx} className="tw-border-b tw-border-[#f2f3f9] tw-mb-6">
           <Box
-            className={`edit-and-delete-container ${_styles?.containers} xl:tw-py-1.5`}
+            className={`edit-and-delete-container ${_styles?.containers} tw-border-none xl:tw-py-1.5`}
           >
             <Box className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
               {/*left*/}
@@ -84,9 +84,11 @@ const ViewPrompt = ({
               </Box>
             </Box>
           </Box>
-          <Box className={`name-container ${_styles?.containers} xl:tw-py-7`}>
+          <Box
+            className={`name-container ${_styles?.containers} tw-border-none`}
+          >
             <Box className="tw-flex">
-              <Box className={`${_styles?.label}`}>Position:</Box>
+              <Box className={`${_styles?.label}`}>Position:&nbsp;</Box>
               <Box className={`${_styles?.labelValue} tw-text-black`}>
                 {idx + 1}
               </Box>
@@ -103,7 +105,7 @@ const ViewPrompt = ({
               </Box>
             </Box>
           </Box>
-        </div>
+        </Box>
       ))}
     </>
   );
