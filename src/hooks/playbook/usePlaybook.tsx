@@ -6,6 +6,8 @@ import { dummyData } from "../../utils/playbooks/utils";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { loadString } from "../../utils/storage";
 import { useAuth } from "../../contexts/auth";
+import { useDispatch } from "react-redux";
+import { setPlaybookData } from "../../store/playbooks/actions";
 
 export const usePlaybook = (
   load: boolean = true,
@@ -15,8 +17,8 @@ export const usePlaybook = (
   }
 ) => {
   const auth: any = useAuth();
-
-  const [playbookData, setPlaybookData] = useState<any[]>([]);
+  const dispatch = useDispatch();
+  const [playbookDataFromState, setPlaybookDataFromState] = useState<any[]>([]);
   const [promptList, setPromptList] = useState<any[]>([]);
   const [filters, setFilters] = useState<any>(filtersParam);
   const [total, setTotal] = useState<number>(0);
@@ -47,6 +49,7 @@ export const usePlaybook = (
 
   const getAllPlaybook = async () => {
     insertBodyLoader();
+
     try {
       // let res = await dummyData();
       let res = await getTeamPlaybooks(auth["team"]);
@@ -55,7 +58,11 @@ export const usePlaybook = (
           console.log("res.data", res.data);
         });
         setTotal(res.data?.count);
-        setPlaybookData(res.data?.results);
+        setPlaybookDataFromState(res.data?.results);
+
+        if (playbookDataFromState) {
+          dispatch(setPlaybookData(res.data?.results));
+        }
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
         removeBodyLoader();
       }
@@ -79,8 +86,8 @@ export const usePlaybook = (
   };
 
   return {
-    playbookData,
-    setPlaybookData,
+    playbookDataFromState,
+    setPlaybookDataFromState,
     filters,
     setFilters,
     total,

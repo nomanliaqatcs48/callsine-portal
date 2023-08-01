@@ -21,6 +21,7 @@ import {
   createPromptService,
   updatePromptService,
 } from "src/services/prompts.service";
+import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -44,11 +45,9 @@ const CreateOrEditPlaybook = ({
   setPromptList,
   ...props
 }: CreateOrEditPlaybookTypes) => {
+  const reloadPlaybooks = useReloadPlaybooks();
   const [open, setOpen] = React.useState(false);
   const [promptValue, setPromptValue] = useState<any>("");
-  devLog(() => {
-    console.log("promptId", id);
-  });
 
   const {
     register,
@@ -70,23 +69,21 @@ const CreateOrEditPlaybook = ({
   const onThisEditSubmit = async (id: number) => {
     ToastSuccess("Update on this prompt is in progress.");
     handleClose();
-
-    console.log(promptValue);
-
     const data = { text: promptValue };
     try {
       let res = await updatePromptService(id, data);
       if (res?.data) {
-        console.log(res.data);
-        ToastSuccess("Successfully updated prompt.");
+        await reloadPlaybooks();
         onLoadApi();
         handleClose();
-        console.log("response edit", res.data["text"]);
+
         setPromptList((prevPromptList: Prompt[]) =>
           prevPromptList.map((prompt: Prompt) =>
             prompt.id === id ? res.data : prompt
           )
         );
+
+        ToastSuccess("Successfully updated prompt.");
       }
       return;
     } catch (e: any) {
@@ -101,23 +98,27 @@ const CreateOrEditPlaybook = ({
   const onThisAddSubmit = async () => {
     ToastSuccess("Adding new prompt");
     handleClose();
-    console.log(promptValue);
-
-    const data = { text: promptValue, playbook: selectedData.id };
+    const payload = { text: promptValue, playbook: selectedData.id };
+    devLog(() => {
+      console.log(payload);
+    });
     try {
-      let res = await createPromptService(data);
+      let res = await createPromptService(payload);
       if (res?.data) {
-        ToastSuccess("New prompt successfully created.");
+        await reloadPlaybooks();
         onLoadApi();
         handleClose();
         setPromptList((prevPromptList: any) => [...prevPromptList, res.data]);
+        ToastSuccess("New prompt successfully created.");
+        devLog(() => {
+          console.log(res.data);
+        });
         reset();
       }
-      return;
     } catch (e: any) {
       ToastError("Something went wrong!");
       devLogError(() => {
-        console.error(e?.response);
+        console.error(e);
       });
       return;
     }

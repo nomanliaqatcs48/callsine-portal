@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+
+import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
+
 import { Button, DialogActions, Typography } from "@mui/material";
 import MyModal from "../modal/MyModal";
 import { devLog, devLogError } from "../../helpers/logs";
@@ -25,6 +28,7 @@ const DeletePrompt = ({
   setPlaybookData,
   ...props
 }: DeletePlaybookTypes) => {
+  const reloadPlaybooks = useReloadPlaybooks();
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
@@ -41,17 +45,17 @@ const DeletePrompt = ({
     try {
       let res = await deletePromptService(id);
       if (res?.status === 204) {
-        ToastSuccess("Prompty successfully deleted.");
+        await reloadPlaybooks();
         onLoadApi();
-
         setPromptList((prevPromptList: Prompt[]) =>
           prevPromptList.filter((prompt: Prompt) => prompt.id !== id)
         );
+        ToastSuccess("Prompty successfully deleted.");
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
       devLogError(() => {
-        console.error(e?.response);
+        console.error(e);
       });
     }
   };

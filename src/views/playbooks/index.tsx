@@ -1,41 +1,31 @@
-import React from "react";
+import { useSelector } from "react-redux";
+import { selectPlaybookData } from "src/store/reducer";
 import { Box, Grid, Paper } from "@mui/material";
 import PlaybookList from "./components/PlaybookList";
 import _ from "lodash";
-import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
-import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
+import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 import { usePlaybook } from "../../hooks/playbook/usePlaybook";
 import ViewPrompt from "src/ui-component/pages/prompts/ViewPrompt";
+import { devLog } from "src/helpers/logs";
+
+// import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
+// import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 
 const PlaybooksPage = () => {
   let {
-    playbookData,
-    setPlaybookData,
-    filters,
-    setFilters,
-    total,
-    setTotal,
-    searchValue,
-    setSearchValue,
-    sortedId,
-    setSortedId,
-    isOrderDesc,
-    setIsOrderDesc,
     selectedIndex,
     setSelectedIndex,
     selectedData,
     setSelectedData,
     promptList,
     setPromptList,
-    isLoading,
-    setIsLoading,
-    getAllPlaybook,
-    handleSearchOnChange,
     handleSearchOnBeforeChange,
   } = usePlaybook(true);
-  console.log("playbookData", playbookData);
+
+  let playbookData = useSelector(selectPlaybookData);
+
   return (
     <>
       <Paper
@@ -56,18 +46,16 @@ const PlaybooksPage = () => {
               </Box>
 
               <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
-                <CreateOrEditPrompt
+                <CreateOrEditPlaybook
                   onClick={() => null}
                   onLoadApi={() => null}
                   selectedData={selectedData}
                   variant="contained"
                   color="primary"
-                  className="tw-bg-primary tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
-                  disabled={!selectedData}
-                  setPromptList={setPromptList}
+                  className="tw-bg-green-600 hover:tw-bg-green-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
                 >
-                  Add Prompt
-                </CreateOrEditPrompt>
+                  Add Playbook
+                </CreateOrEditPlaybook>
               </Box>
             </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
@@ -93,13 +81,26 @@ const PlaybooksPage = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
+            <Box className="tw-mt-6 tw-pr-6 tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
+              <CreateOrEditPrompt
+                onClick={() => null}
+                onLoadApi={() => null}
+                selectedData={selectedData}
+                setPromptList={setPromptList}
+                variant="contained"
+                color="primary"
+                className="tw-bg-gray-600 hover:tw-bg-gray-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
+                disabled={!selectedData}
+              >
+                Add Prompt
+              </CreateOrEditPrompt>
+            </Box>
             {selectedIndex !== null && (
               <>
                 <ViewPrompt
                   prompts={promptList}
-                  onLoadApi={() => null}
                   setPromptList={setPromptList}
-                  setPlaybookData={setPlaybookData}
+                  onLoadApi={() => null}
                 />
               </>
             )}
