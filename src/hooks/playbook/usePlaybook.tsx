@@ -10,7 +10,7 @@ import { useAuth } from "../../contexts/auth";
 export const usePlaybook = (
   load: boolean = true,
   filtersParam: any = {
-    limit: 10,
+    limit: 99999,
     offset: 0,
   }
 ) => {
@@ -49,7 +49,7 @@ export const usePlaybook = (
     insertBodyLoader();
     try {
       // let res = await dummyData();
-      let res = await getTeamPlaybooks(auth["team"]);
+      let res = await getTeamPlaybooks(auth["team"], filters, searchValue);
       if (res?.data) {
         devLog(() => {
           console.log("res.data", res.data);
