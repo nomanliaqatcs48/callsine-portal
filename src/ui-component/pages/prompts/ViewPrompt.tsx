@@ -9,8 +9,7 @@ import CreateOrEditPrompt from "../../buttons/CreateOrEditPrompt";
 type ViewPlaybookTypes = {
   prompts: any;
   onLoadApi: any;
-  setPromptList: any;
-  setPlaybookData: any;
+  setPromptList?: any;
 };
 
 type PromptTypes = {
@@ -24,7 +23,6 @@ const ViewPrompt = ({
   prompts,
   onLoadApi,
   setPromptList,
-  setPlaybookData,
 }: ViewPlaybookTypes) => {
   const {
     register,
@@ -54,8 +52,8 @@ const ViewPrompt = ({
                   className="border tw-min-w-min"
                   id={prompt?.id}
                   defaultValue={prompt?.text}
-                  setPromptList={setPromptList}
                   onLoadApi={() => null}
+                  setPromptList={setPromptList}
                 >
                   <Box className="tw-bg-[#1a76d2] tw-px-[15.5px] tw-py-[17px] tw-rounded-md">
                     <EditIcon

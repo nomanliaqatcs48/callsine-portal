@@ -1,4 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
+
+import { createPlaybooks } from "src/services/playbooks.service";
+import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
+
+import { useAuth } from "../../contexts/auth";
+
 import {
   Box,
   Button,
@@ -6,34 +12,17 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  FormControl,
   FormHelperText,
   Grid,
-  IconButton,
-  InputLabel,
-  MenuItem,
-  Select,
-  SelectChangeEvent,
-  TextField,
-  Tooltip,
 } from "@mui/material";
-import { gridSpacing } from "../../store/constant";
+
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
-import {
-  createMailAccountService,
-  testMailAccountService,
-  updateMailAccountService,
-} from "../../services/mail-accounts.service";
-import MyEditor from "../editor/MyEditor";
-import { emailAddressPattern } from "../../helpers/forms";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { _styles } from "../../utils/playbooks/utils";
-import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import CloseIcon from "@mui/icons-material/Close";
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -54,21 +43,20 @@ const CreateOrEditPlaybook = ({
   selectedData,
   ...props
 }: CreateOrEditPlaybookTypes) => {
+  const auth: any = useAuth();
+  const reloadPlaybooks = useReloadPlaybooks();
+  const [nameValue, setNameValue] = useState<any>("");
   const [open, setOpen] = React.useState(false);
   const [mailAccountLoading, setMailAccountLoading] = useState<any>({
     onPage: true,
     form: false,
     signature: false,
   });
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
-    setValue,
     handleSubmit,
     reset,
-    trigger,
-    getValues,
     formState: { errors },
   } = useForm();
 
@@ -77,90 +65,34 @@ const CreateOrEditPlaybook = ({
     setOpen(false);
     reset();
   };
+  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+    setNameValue(event.target.value);
+  };
 
-  const onThisEditSubmit = async (data: any) => {
-    ToastSuccess("This functionality is in progress.");
+  const onThisAddSubmit = async () => {
+    insertBodyLoader();
+    ToastSuccess("Adding playbook is in progress.");
     handleClose();
-    return;
-    setMailAccountLoading((beforeVal: any) => ({ ...beforeVal, form: true }));
-    try {
-      const res = await updateMailAccountService(defaultValue?.id, data);
-      if (res?.data) {
-        ToastSuccess("Prompt successfully updated.");
 
+    const data = { name: nameValue, team: auth["team"] };
+    try {
+      let res = await createPlaybooks(data);
+      if (res?.data) {
+        await reloadPlaybooks();
+        ToastSuccess("Successfully added playbook.");
         onLoadApi();
         handleClose();
-        setMailAccountLoading((beforeVal: any) => ({
-          ...beforeVal,
-          form: false,
-        }));
+        removeBodyLoader();
       }
       return;
     } catch (e: any) {
       ToastError("Something went wrong!");
       devLogError(() => {
-        console.error(e?.response);
+        console.error(e);
       });
-      setMailAccountLoading((beforeVal: any) => ({
-        ...beforeVal,
-        form: false,
-      }));
+      removeBodyLoader();
       return;
     }
-  };
-
-  const onThisAddSubmit = async (data: any) => {
-    ToastSuccess("This functionality is in progress.");
-    handleClose();
-    return;
-    setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
-    try {
-      let res = await createMailAccountService(data);
-      if (res?.data) {
-        ToastSuccess("New prompt successfully created.");
-
-        onLoadApi();
-        handleClose();
-        reset();
-        setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
-      }
-      return;
-    } catch (e: any) {
-      ToastError("Something went wrong!");
-      devLogError(() => {
-        console.error(e?.response);
-      });
-      setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
-      return;
-    }
-  };
-
-  const testMailAccount = async () => {
-    setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
-    try {
-      let response = await testMailAccountService(Number(id));
-      if (response) {
-        devLog(() => {
-          console.log("testMailAccount() response", response);
-        });
-        ToastSuccess("Successfully tested.");
-        setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
-      }
-    } catch (e: any) {
-      ToastError("Failed!");
-      devLogError(() => {
-        console.error(e?.response);
-      });
-      setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
-    }
-  };
-
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event: any) => {
-    event.preventDefault();
   };
 
   return (
@@ -182,8 +114,8 @@ const CreateOrEditPlaybook = ({
           scroll="body"
           fullWidth={true}
           maxWidth="lg"
-          aria-labelledby={`${id ? "Edit" : "New"} Prompt`}
-          aria-describedby={`${id ? "edit" : "add"} prompt modal`}
+          aria-labelledby={`${id ? "Edit" : "New"} Playbook`}
+          aria-describedby={`${id ? "edit" : "add"} Playbook modal`}
           disableEnforceFocus={true}
         >
           <DialogTitle
@@ -192,7 +124,7 @@ const CreateOrEditPlaybook = ({
           >
             <Box className="tw-flex tw-justify-between">
               <Box className="tw-text-[18px] tw-flex tw-flex-col tw-justify-center tw-align-middle">
-                {id ? "Edit" : "New"} Prompt
+                {id ? "Edit" : "New"} Playbook
               </Box>
               <Box>
                 <Button className="tw-min-w-min" onClick={handleClose}>
@@ -209,7 +141,7 @@ const CreateOrEditPlaybook = ({
                 >
                   <div className="tw-flex tw-flex-col lg:tw-flex-row tw-flex-wrap">
                     <div className={`${_styles?.label} lg:tw-w-1/6`}>
-                      Prompt Name:
+                      Playbook Name:
                     </div>
                     <div className={`${_styles?.labelValue} lg:tw-w-5/6`}>
                       <input
@@ -217,8 +149,9 @@ const CreateOrEditPlaybook = ({
                         className={`${_styles?.labelValueInput} tw-w-full`}
                         {...register("name", {
                           required: "This is required field.",
+                          onChange: handleChange,
                         })}
-                        defaultValue={selectedData?.name}
+                        defaultValue=""
                       />
                       <ErrorMessage
                         errors={errors}
@@ -233,7 +166,7 @@ const CreateOrEditPlaybook = ({
                   </div>
                 </Box>
               </Grid>
-              <Grid item xs={12}>
+              {/* <Grid item xs={12}>
                 <Box
                   className={`message-container ${_styles?.containers} tw-border-b-0 tw-px-[24px] xl:tw-px-[24px]`}
                 >
@@ -251,7 +184,7 @@ const CreateOrEditPlaybook = ({
                           {...register("message", {
                             required: "This is required field.",
                           })}
-                          placeholder="Add prompt here..."
+                          placeholder="Playbook"
                         />
                         <ErrorMessage
                           errors={errors}
@@ -266,22 +199,20 @@ const CreateOrEditPlaybook = ({
                     </Box>
                   </Box>
                 </Box>
-              </Grid>
+              </Grid> */}
             </Grid>
           </DialogContent>
 
           <DialogActions className="tw-flex tw-justify-end tw-px-6 tw-pb-5">
             <Box>
               <Button
-                onClick={handleSubmit((data) =>
-                  id ? onThisEditSubmit(data) : onThisAddSubmit(data)
-                )}
+                onClick={handleSubmit(() => onThisAddSubmit())}
                 disabled={mailAccountLoading?.form}
                 variant="contained"
                 color="primary"
                 className="tw-bg-primary tw-font-medium hover:tw-bg-primaryDark tw-text-[16px] tw-px-[26px] tw-py-[13px] tw-uppercase"
               >
-                Save Prompt
+                Save Playbook
               </Button>
             </Box>
           </DialogActions>

@@ -10,3 +10,7 @@ export const getTeamPlaybooks = async (
     `${endpoints.TEAMS}${teamId}/playbooks/?limit=${filters.limit}&offset=${filters.offset}&search=${searchValue}`
   );
 };
+
+export const createPlaybooks = async (data: any) => {
+  return await http.post(`${endpoints.PLAYBOOKS}`, data);
+};

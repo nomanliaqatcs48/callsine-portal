@@ -12,7 +12,7 @@ type PlaybookListProps = {
   selectedIndex: number | null;
   setSelectedIndex: any;
   setSelectedData: any;
-  setPromptList: any;
+  setPromptList?: any;
 };
 
 type PlaybookTypes = {
