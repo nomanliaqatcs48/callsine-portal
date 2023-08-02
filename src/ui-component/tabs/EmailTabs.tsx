@@ -4,7 +4,7 @@ import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
 import Box from "@mui/material/Box";
 import { Grid, Tooltip, useMediaQuery, useTheme } from "@mui/material";
-import moment from "moment/moment";
+import moment from "moment-timezone";
 import SendEmailNow from "../buttons/SendEmailNow";
 import DeletePersonEmail from "../buttons/DeletePersonEmail";
 import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
@@ -52,6 +52,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
   const [value, setValue] = useState<number>(0);
   let countIndexForEmailSubjectAtSidebar: number = 0;
   let countIndexForEmailSubject: number = 0;
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   let { id: personId, getEmails, showStatus } = useEmailsTab(false);
 
@@ -182,7 +183,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               <div>
                 <Tooltip title="Date Created">
                   <Typography variant="subtitle2">
-                    {moment.utc(item?.created_date).format("LLLL")}
+                    {moment(item?.created_date).tz(timezone).format("LLLL")}
                   </Typography>
                 </Tooltip>
               </div>
@@ -242,7 +243,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
                 >
                   <strong>Scheduled Date:&nbsp;</strong>{" "}
                   {item?.scheduled_time ? (
-                    moment.utc(item?.scheduled_time).format("LLLL")
+                    moment(item?.scheduled_time).tz(timezone).format("LLLL")
                   ) : (
                     <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
                   )}
