@@ -71,8 +71,10 @@ const PlaybookList = ({
       const result = strippedString.trim();
 
       let isSent: boolean = false;
-      let _now = moment.utc();
-      let _scheduledTime = moment.utc(item?.scheduledEmail?.scheduled_time);
+      let _now = moment.tz(timezone);
+      let _scheduledTime = moment(item?.scheduledEmail?.scheduled_time).tz(
+        timezone
+      );
       let _diff = _now.diff(_scheduledTime);
       if (_diff > 0) isSent = true;
 
