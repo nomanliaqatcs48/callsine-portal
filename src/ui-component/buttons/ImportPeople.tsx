@@ -64,7 +64,7 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
               <PeopleFileUpload instance={importData} refresh={refresh} />
             </Grid>
             <Grid item xs={12} className="tw-flex tw-justify-center">
-              <Button onClick={() => downloadTemplate()} variant="text">
+              <Button onClick={downloadTemplate} variant="text">
                 Download template
               </Button>
             </Grid>
