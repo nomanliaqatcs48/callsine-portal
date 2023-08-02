@@ -62,7 +62,8 @@ const Find = () => {
                 fontWeight: 200,
               }}
             >
-              Find contact
+              Load Contacts
+              {/*Find contact*/}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -75,9 +76,11 @@ const Find = () => {
                 opacity: 0.7,
               }}
             >
-              Find, contact, and close your ideal buyers with over 265M <br />{" "}
+              CallSine effortlessly imports and manages your contacts for
+              seamless outreach.
+              {/*Find, contact, and close your ideal buyers with over 265M <br />{" "}
               contacts and streamlined engagement
-              <br /> workflows powered by AI.
+              <br /> workflows powered by AI.*/}
             </Typography>
           </Part>
         </Grid>
@@ -101,7 +104,8 @@ const Find = () => {
                 fontWeight: 200,
               }}
             >
-              Find contact
+              Train AI
+              {/*Find contact*/}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -114,9 +118,11 @@ const Find = () => {
                 opacity: 0.7,
               }}
             >
-              Find, contact, and close your ideal buyers with over 265M <br />{" "}
+              Empower your sales with our AI, honed to perfection for
+              personalized emails.
+              {/*Find, contact, and close your ideal buyers with over 265M <br />{" "}
               contacts and streamlined engagement
-              <br /> workflows powered by AI.
+              <br /> workflows powered by AI.*/}
             </Typography>
           </Part>
         </Grid>
@@ -140,7 +146,8 @@ const Find = () => {
                 fontWeight: 200,
               }}
             >
-              Find contact
+              Send Emails
+              {/*Find contact*/}
             </Typography>
             <Typography
               variant="subtitle1"
@@ -153,9 +160,11 @@ const Find = () => {
                 opacity: 0.7,
               }}
             >
-              Find, contact, and close your ideal buyers with over 265M <br />{" "}
+              Experience efficient and targeted email campaigns with CallSine's
+              user-friendly platform.
+              {/*Find, contact, and close your ideal buyers with over 265M <br />{" "}
               contacts and streamlined engagement
-              <br /> workflows powered by AI.
+              <br /> workflows powered by AI.*/}
             </Typography>
           </Part>
         </Grid>

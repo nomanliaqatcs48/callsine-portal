@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { IconBrandFacebookFilled, IconSend } from "@tabler/icons-react";
 import icon from "../../assets/images/icons/logo-color-2x.png";
@@ -104,6 +104,15 @@ const Footer: React.FC = () => {
               <Logo src={icon} alt="Logo" />
             </LogoContainer>
             <SmallText sx={{ color: "#B5B5B5" }}>
+              CallSine's AI uses a large language model (LLM) and leverager an
+            </SmallText>
+            <SmallText sx={{ color: "#B5B5B5" }}>
+              algorithm that goes deep in massively large data sets to
+            </SmallText>
+            <SmallText sx={{ color: "#B5B5B5" }}>
+              understand, summarize, generate, and predict new email content.
+            </SmallText>
+            {/*<SmallText sx={{ color: "#B5B5B5" }}>
               Find, contact, and close your ideal buyers with over
             </SmallText>
             <SmallText sx={{ color: "#B5B5B5" }}>
@@ -111,19 +120,20 @@ const Footer: React.FC = () => {
             </SmallText>
             <SmallText sx={{ color: "#B5B5B5" }}>
               workflows powered by AI.
-            </SmallText>
-            <SocialIconsContainer>
+            </SmallText>*/}
+            {/*<SocialIconsContainer>
               <IconBrandFacebookFilled />
               <IconBrandFacebookFilled />
               <IconBrandFacebookFilled />
-            </SocialIconsContainer>
+            </SocialIconsContainer>*/}
           </LeftContent>
           <ContactInfo>
             <Typography variant="h3" sx={{ color: "#fff" }}>
               Contact Us
             </Typography>
             <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
-              callsine@gmail.com
+              info@callsine.com
+              {/*callsine@gmail.com*/}
             </Typography>
             <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
               132, My Street, Kingston, New York 12401
@@ -158,10 +168,19 @@ const Footer: React.FC = () => {
       </FooterContainer>
       <BottomBar className="tw-d-flex">
         <Typography variant="subtitle2" align="right" sx={{ color: "#fff" }}>
-          © 2023 Company Name. All rights reserved.
+          © 2023 CallSine. All Rights Reserved.
+          {/*© 2023 Company Name. All rights reserved.*/}
         </Typography>
         <Typography variant="subtitle2" align="left" sx={{ color: "#fff" }}>
-          Privacy | Terms & Conditions
+          <Button
+            variant="text"
+            href="https://www.unionresolute.com/privacy-policy/"
+            rel="noreferrer noopener"
+            className="tw-text-white tw-text-[12px] tw-p-0"
+          >
+            Privacy
+          </Button>{" "}
+          | Terms & Conditions
         </Typography>
       </BottomBar>
     </div>

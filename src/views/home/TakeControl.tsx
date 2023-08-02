@@ -84,7 +84,8 @@ const TakeControl = () => {
                     variant="h4"
                     sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
                   >
-                    Advanced Search
+                    AI-Driven Personalization
+                    {/*Advanced Search*/}
                   </Typography>
                 </Grid>
               </Grid>
@@ -98,9 +99,11 @@ const TakeControl = () => {
                   fontWeight: 400,
                 }}
               >
-                Find, contact, and close your ideal buyers with over 265M
+                Tailored, personalized emails for each recipient, increasing
+                engagement and conversion rates.
+                {/*Find, contact, and close your ideal buyers with over 265M
                 contacts and
-                <br /> streamlined engagement workflows powered by AI.
+                <br /> streamlined engagement workflows powered by AI.*/}
               </Typography>
             </div>
 
@@ -126,7 +129,8 @@ const TakeControl = () => {
                     variant="h4"
                     sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
                   >
-                    Browser Extension
+                    Streamlined Outreach Workflows
+                    {/*Browser Extension*/}
                   </Typography>
                 </Grid>
               </Grid>
@@ -140,8 +144,10 @@ const TakeControl = () => {
                   fontWeight: 400,
                 }}
               >
-                Prospect on popular social media sites and discover company
-                <br /> connections from any website.
+                Efficiently reach ideal customers with automated engagement
+                workflows powered by AI.
+                {/*Prospect on popular social media sites and discover company
+                <br /> connections from any website.*/}
               </Typography>
             </div>
 
@@ -167,7 +173,8 @@ const TakeControl = () => {
                     variant="h4"
                     sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
                   >
-                    Bulk Lookups
+                    Data-Driven Learning
+                    {/*Bulk Lookups*/}
                   </Typography>
                 </Grid>
               </Grid>
@@ -181,9 +188,11 @@ const TakeControl = () => {
                   fontWeight: 400,
                 }}
               >
-                Download thousands of prospects meeting your specific target
+                Our AI evolves with each interaction, crafting personalized
+                emails connected to each salesperson and recipient.
+                {/*Download thousands of prospects meeting your specific target
                 criteria
-                <br /> instantly.
+                <br /> instantly.*/}
               </Typography>
             </div>
           </div>
