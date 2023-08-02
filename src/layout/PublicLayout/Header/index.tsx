@@ -76,9 +76,11 @@ const Header = (props: any) => {
 
   // const container = window !== undefined ? () => window().document.body : undefined;
 
-  const useStyles = makeStyles((theme) => ({
+  const useStyles = makeStyles((theme: any) => ({
     appBar: {
-      backgroundColor: "transparent",
+      [theme.breakpoints.up("sm")]: {
+        backgroundColor: "transparent",
+      },
       minHeight: "66px",
       padding: "10px 0px",
     },

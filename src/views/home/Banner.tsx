@@ -36,21 +36,28 @@ const Banner = () => {
         }}
       >
         <img
-          className="h-auto max-w-full"
+          className="tw-h-auto tw-max-w-full"
           src={imageBgcTop}
           alt="description"
           style={{
             position: "absolute",
             zIndex: "999",
-            minHeight: "100vh",
+            // minHeight: "100vh",
+            minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
             width: "100%",
           }}
         />
         <img
-          className="h-auto max-w-full"
+          className="tw-h-auto tw-max-w-full"
           src={imageBgc}
           alt="description"
-          style={{ position: "absolute", minHeight: "100vh", width: "100%" }}
+          style={{
+            position: "absolute",
+            /*minHeight: "100vh",*/ minHeight: downMd
+              ? "calc(100vh + 92px)"
+              : "100vh",
+            width: "100%",
+          }}
         />
         <Grid
           item
@@ -63,7 +70,7 @@ const Banner = () => {
             alignItems: "center",
             zIndex: "9",
             "@media (max-width: 600px)": {
-              paddingTop: "75px",
+              paddingTop: "80px", //"75px",
             },
           }}
         >
@@ -73,7 +80,7 @@ const Banner = () => {
               sx={{
                 fontSize: 60,
                 p: { md: 3 },
-                pb: { xs: 5 },
+                // pb: { xs: 5 },
                 fontWeight: 200,
                 color: "#fff",
                 fontFamily: "Poppins",
