@@ -15,14 +15,10 @@ import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
-import { useAuth } from "../../contexts/auth";
-import moment from "moment-timezone";
-import { useNavigate } from "react-router-dom";
+import { usePermissions } from "src/hooks/usePermissions";
 
 const MailAccountsPage = () => {
-  const auth: any = useAuth();
-  const navigate = useNavigate();
-  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
+  const { isNotPremium } = usePermissions();
   const {
     mailAccountsData,
     setMailAccountsData,
@@ -44,16 +40,7 @@ const MailAccountsPage = () => {
   } = useMailAccounts();
 
   useEffect(() => {
-    let _now = moment.tz(timezone);
-    let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
-    let _diff = _now.diff(_termEnd);
-    if (!auth?.subscription?.status) {
-      if (_diff > 0) {
-        navigate("/");
-      }
-    } else if (auth?.subscription?.status === "inactive") {
-      navigate("/");
-    }
+    isNotPremium();
   }, []);
 
   const handleSearchOnBeforeChange = (e: any) => {
