@@ -33,6 +33,7 @@ const pages = {
       url: "/dashboard",
       icon: icons.IconDashboard,
       breadcrumbs: false,
+      isPremium: false,
     },
     {
       id: "people",
@@ -41,6 +42,7 @@ const pages = {
       url: "/people",
       icon: icons.IconUsers,
       breadcrumbs: false,
+      isPremium: false,
     },
     {
       id: "mail-accounts",
@@ -49,6 +51,7 @@ const pages = {
       url: "/mail-accounts",
       icon: icons.IconMail,
       breadcrumbs: false,
+      isPremium: true,
     },
     {
       id: "playbooks",
@@ -57,6 +60,7 @@ const pages = {
       url: "/playbooks",
       icon: icons.IconBook2,
       breadcrumbs: false,
+      isPremium: false,
     },
     {
       id: "data",
@@ -65,6 +69,7 @@ const pages = {
       url: "/data",
       icon: icons.IconFileDatabase,
       breadcrumbs: false,
+      isPremium: false,
     },
     /*{
       id: "profile",
