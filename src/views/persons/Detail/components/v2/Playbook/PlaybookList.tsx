@@ -4,7 +4,7 @@ import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
 import xss from "xss";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
-import moment from "moment";
+import moment from "moment-timezone";
 import _ from "lodash";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 
@@ -27,6 +27,7 @@ const PlaybookList = ({
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
   };
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   const subtext = (item: any) => {
     if (item.status === "generated_email" && item?.promptResponse) {
@@ -179,9 +180,9 @@ const PlaybookList = ({
                             [0, 1, 2, 3],
                             item?.scheduledEmail?.status
                           ) ? (
-                            moment(item?.scheduledEmail?.scheduled_time).format(
-                              "lll"
-                            )
+                            moment(item?.scheduledEmail?.scheduled_time)
+                              .tz(timezone)
+                              .format("lll")
                           ) : (
                             <span className="tw-invisible">This is hidden</span>
                           )}
