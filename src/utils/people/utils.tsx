@@ -328,7 +328,7 @@ export const _columns: any = () => {
         minWidth: 90,
         Cell: (cell: any) => {
           return cell?.value ? (
-            moment(cell.value).format("YYYY/MM/DD")
+            moment.utc(cell.value).format("YYYY/MM/DD")
           ) : (
             <hr className="tw-w-3 tw-border-black" />
           );
