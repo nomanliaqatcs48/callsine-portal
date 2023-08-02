@@ -79,7 +79,8 @@ const Banner = () => {
                 fontFamily: "Poppins",
               }}
             >
-              Reach every buyer <br /> on earth
+              CallSine unleashes the power of AI for sales
+              {/*Reach every buyer <br /> on earth*/}
             </Typography>
 
             <div>
@@ -92,11 +93,14 @@ const Banner = () => {
                   color: "#fff",
                 }}
               >
-                Find, contact, and close your ideal buyers with over 265M
+                CallSine™ was developed for salespeople and teams that are
+                looking for a platform that does email outreach, at scale, and
+                with individualized emails to each prospect.
+                {/*Find, contact, and close your ideal buyers with over 265M
                 <br />
                 contacts and streamlined engagement workflows
                 <br />
-                powered by AI.
+                powered by AI.*/}
               </Typography>
             </div>
             <div style={{ paddingLeft: "22px", marginTop: "15px" }}>
@@ -110,7 +114,8 @@ const Banner = () => {
                 }}
                 size="large"
               >
-                Sign up for free
+                Free Trial
+                {/*Sign up for free*/}
               </Button>
               <Button
                 sx={{
@@ -125,7 +130,8 @@ const Banner = () => {
                 }}
                 size="large"
               >
-                Request for a demo
+                Schedule a Demo
+                {/*Request for a demo*/}
               </Button>
             </div>
           </div>
