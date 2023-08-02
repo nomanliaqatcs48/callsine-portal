@@ -1,5 +1,5 @@
 import PropTypes, { InferProps } from "prop-types";
-import { forwardRef, useEffect } from "react";
+import { forwardRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -7,10 +7,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
+  Box,
   Chip,
   ListItemButton,
   ListItemIcon,
   ListItemText,
+  Tooltip,
   Typography,
   useMediaQuery,
 } from "@mui/material";
@@ -20,6 +22,9 @@ import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
 
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
+import { useAuth } from "../../../../../contexts/auth";
+import { devLog } from "../../../../../helpers/logs";
+import moment from "moment-timezone";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -32,9 +37,11 @@ type NavItemTypes = InferProps<typeof NavItemPropTypes>;
 
 const NavItem = ({ item, level }: NavItemTypes) => {
   const theme: any = useTheme();
+  const auth: any = useAuth();
   const dispatch = useDispatch();
   const customization = useSelector((state: any) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   const Icon = item?.icon;
   const itemIcon = item?.icon ? (
@@ -61,9 +68,43 @@ const NavItem = ({ item, level }: NavItemTypes) => {
   }
 
   let listItemProps: any = {
-    component: forwardRef((props, ref: any) => (
-      <Link ref={ref} {...props} to={item.url} target={itemTarget} />
-    )),
+    component: forwardRef((props, ref: any) => {
+      let _to = item.url;
+      let _now = moment.tz(timezone);
+      let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
+      let _diff = _now.diff(_termEnd);
+
+      if (item?.isPremium) {
+        if (!auth?.subscription?.status) {
+          if (_diff > 0) {
+            return (
+              <>
+                <Tooltip title="Upgrade your account to access this feature.">
+                  <Box
+                    ref={ref}
+                    {...props}
+                    sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
+                  />
+                </Tooltip>
+              </>
+            );
+          }
+        } else if (auth?.subscription?.status === "inactive") {
+          return (
+            <>
+              <Tooltip title="Upgrade your account to access this feature.">
+                <Box
+                  ref={ref}
+                  {...props}
+                  sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
+                />
+              </Tooltip>
+            </>
+          );
+        }
+      }
+      return <Link ref={ref} {...props} to={_to} target={itemTarget} />;
+    }),
   };
   if (item?.external) {
     listItemProps = { component: "a", href: item.url, target: itemTarget };
