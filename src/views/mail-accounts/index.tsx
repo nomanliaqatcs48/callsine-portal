@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
@@ -15,8 +15,14 @@ import ExportPeople from "../../ui-component/buttons/ExportPeople";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
+import { useAuth } from "../../contexts/auth";
+import moment from "moment-timezone";
+import { useNavigate } from "react-router-dom";
 
 const MailAccountsPage = () => {
+  const auth: any = useAuth();
+  const navigate = useNavigate();
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const {
     mailAccountsData,
     setMailAccountsData,
@@ -36,6 +42,19 @@ const MailAccountsPage = () => {
     isOrderDesc,
     setIsOrderDesc,
   } = useMailAccounts();
+
+  useEffect(() => {
+    let _now = moment.tz(timezone);
+    let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
+    let _diff = _now.diff(_termEnd);
+    if (!auth?.subscription?.status) {
+      if (_diff > 0) {
+        navigate("/");
+      }
+    } else if (auth?.subscription?.status === "inactive") {
+      navigate("/");
+    }
+  }, []);
 
   const handleSearchOnBeforeChange = (e: any) => {
     setIsLoading((prev: any) => ({ ...prev, search: true }));
