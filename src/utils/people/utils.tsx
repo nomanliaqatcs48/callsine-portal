@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
@@ -20,10 +20,11 @@ import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlin
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
 import DeletePerson from "../../ui-component/buttons/DeletePerson";
-import moment from "moment/moment";
+import moment from "moment-timezone";
 
 export const _columns: any = () => {
   const theme: any = useTheme();
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
@@ -331,7 +332,7 @@ export const _columns: any = () => {
           return cell?.value ? (
             <>
               <Tooltip title={cell?.value}>
-                <Box>{moment.utc(cell.value).format("lll")}</Box>
+                <Box>{moment(cell?.value).tz(timezone).format("lll")}</Box>
               </Tooltip>
             </>
           ) : (
@@ -346,7 +347,11 @@ export const _columns: any = () => {
         minWidth: 90,
         Cell: (cell: any) => {
           return cell?.value ? (
-            moment(cell.value).format("YYYY/MM/DD")
+            <>
+              <Tooltip title={cell?.value}>
+                <Box>{moment(cell?.value).tz(timezone).format("lll")}</Box>
+              </Tooltip>
+            </>
           ) : (
             <hr className="tw-w-3 tw-border-black" />
           );

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import _ from "lodash";
 import { IconTrash } from "@tabler/icons-react";
 import DeleteScheduledEmail from "../../ui-component/buttons/DeleteScheduledEmail";
@@ -7,7 +7,7 @@ import { Box, Tooltip } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import CreateOrEditScheduledEmail from "../../ui-component/buttons/CreateOrEditScheduledEmail";
-import moment from "moment/moment";
+import moment from "moment-timezone";
 
 export const _columns = (
   getScheduledEmails: any,
@@ -15,6 +15,7 @@ export const _columns = (
   mailAccountsData: any
 ): any[] => {
   const theme: any = useTheme();
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   return [
     {
@@ -71,7 +72,7 @@ export const _columns = (
         return cell?.value ? (
           <>
             <Tooltip title={cell?.value}>
-              <Box>{moment.utc(cell?.value).format("lll")}</Box>
+              <Box>{moment(cell?.value).tz(timezone).format("lll")}</Box>
             </Tooltip>
           </>
         ) : (
