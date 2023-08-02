@@ -3,7 +3,7 @@ import _ from "lodash";
 import { IconTrash } from "@tabler/icons-react";
 import DeleteScheduledEmail from "../../ui-component/buttons/DeleteScheduledEmail";
 import { useTheme } from "@mui/material/styles";
-import { Tooltip } from "@mui/material";
+import { Box, Tooltip } from "@mui/material";
 import EditIcon from "@mui/icons-material/Edit";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 import CreateOrEditScheduledEmail from "../../ui-component/buttons/CreateOrEditScheduledEmail";
@@ -69,7 +69,11 @@ export const _columns = (
       disableSortBy: true,
       Cell: (cell: any) => {
         return cell?.value ? (
-          <>{moment(cell?.value).format("lll")}</>
+          <>
+            <Tooltip title={cell?.value}>
+              <Box>{moment.utc(cell?.value).format("lll")}</Box>
+            </Tooltip>
+          </>
         ) : (
           <hr className="tw-w-3 tw-border-black" />
         );

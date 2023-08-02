@@ -2,6 +2,7 @@ import React, { useMemo } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
+  Box,
   Button,
   Divider,
   List,
@@ -328,7 +329,11 @@ export const _columns: any = () => {
         minWidth: 90,
         Cell: (cell: any) => {
           return cell?.value ? (
-            moment.utc(cell.value).format("YYYY/MM/DD")
+            <>
+              <Tooltip title={cell?.value}>
+                <Box>{moment.utc(cell.value).format("lll")}</Box>
+              </Tooltip>
+            </>
           ) : (
             <hr className="tw-w-3 tw-border-black" />
           );
