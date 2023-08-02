@@ -15,13 +15,13 @@ import {
   ListItemText,
   Toolbar,
   Typography,
-  useMediaQuery
+  useMediaQuery,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import icon from "../../../assets/images/icons/logo-2x.png";
 import { Link } from "react-router-dom";
-import { makeStyles } from '@mui/styles';
+import { makeStyles } from "@mui/styles";
 
 interface HeaderProps {
   /**
@@ -33,12 +33,11 @@ interface HeaderProps {
 
 const drawerWidth = 240;
 const navItems = [
-  { name: "Home", url: 'home' },
-  { name: "About Us", url: 'about-us' },
-  { name: "Services", url: 'services' },
-  { name: "Contact", url: 'contact' },
-]
-
+  { name: "Home", url: "home" },
+  { name: "About Us", url: "about-us" },
+  { name: "Services", url: "services" },
+  { name: "Contact", url: "contact" },
+];
 
 const Header = (props: any) => {
   const theme: any = useTheme();
@@ -79,34 +78,37 @@ const Header = (props: any) => {
 
   const useStyles = makeStyles((theme) => ({
     appBar: {
-      backgroundColor: 'transparent',
-      minHeight: '66px',
-      padding: '10px 0px'
+      backgroundColor: "transparent",
+      minHeight: "66px",
+      padding: "10px 0px",
     },
     scrolledAppBar: {
-      backgroundColor: '#1976D2',
-      color: '#000',
-      minHeight: '66px',
-      padding: '0px 0px',
-      boxShadow: '0px 1px 1px 1px #22222245'
+      backgroundColor: "#1976D2",
+      color: "#000",
+      minHeight: "66px",
+      padding: "0px 0px",
+      boxShadow: "0px 1px 1px 1px #22222245",
     },
     loginBtn: {
-      border: '1px solid #fff',
-      padding: '12px 24px',
-      borderRadius: '8px'
+      border: "1px solid #fff",
+      padding: "12px 24px",
+      borderRadius: "8px",
     },
   }));
   const classes = useStyles();
-
-
-
 
   return (
     <Grid container>
       <Box sx={{ display: "flex" }}>
         <CssBaseline />
-        <AppBar className={`${classes.appBar} ${props.scrolled ? classes.scrolledAppBar : ''}`} component="nav" elevation={0}>
-          <Toolbar sx={{ minHeight: '0px !important', px: { lg: 12, xl: 30 } }} >
+        <AppBar
+          className={`${classes.appBar} ${
+            props.scrolled ? classes.scrolledAppBar : ""
+          }`}
+          component="nav"
+          elevation={0}
+        >
+          <Toolbar sx={{ minHeight: "0px !important", px: { lg: 12, xl: 30 } }}>
             {/* sx={{ px: { lg: 15, xl: 30 } }} */}
             <IconButton
               color="inherit"
@@ -131,7 +133,6 @@ const Header = (props: any) => {
               />
             </Typography>
 
-
             <Box sx={{ display: { xs: "none", sm: "block" } }}>
               {navItems.map((item) => (
                 <Typography
@@ -139,20 +140,30 @@ const Header = (props: any) => {
                   component={Link}
                   to={"/" + item.url}
                   variant="subtitle1"
-                  sx={{ fontSize: 16, margin: '0px 15px', textDecoration: "none", color: '#fff' }}
+                  sx={{
+                    fontSize: 16,
+                    margin: "0px 15px",
+                    textDecoration: "none",
+                    color: "#fff",
+                  }}
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
               <Typography
-                  className={classes.loginBtn}
-                  component={Link}
-                  to={"/login"}
-                  variant="subtitle1"
-                  sx={{ fontSize: 16, margin: '0px 5px', textDecoration: "none", color: '#fff' }}
-                >
-                  LOGIN
-                </Typography>
+                className={classes.loginBtn}
+                component={Link}
+                to={"/login"}
+                variant="subtitle1"
+                sx={{
+                  fontSize: 16,
+                  margin: "0px 5px",
+                  textDecoration: "none",
+                  color: "#fff",
+                }}
+              >
+                LOGIN
+              </Typography>
             </Box>
           </Toolbar>
         </AppBar>
