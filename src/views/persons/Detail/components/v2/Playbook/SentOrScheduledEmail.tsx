@@ -1,7 +1,7 @@
 import { useLayoutEffect, useState } from "react";
 import { Tooltip } from "@mui/material";
 import { IconTrash } from "@tabler/icons-react";
-import moment from "moment";
+import moment from "moment-timezone";
 import xss from "xss";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
 import { devLogError } from "../../../../../../helpers/logs";
@@ -22,6 +22,7 @@ const SentOrScheduledEmail = ({
 }: SentOrScheduledEmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
+  const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   useLayoutEffect(() => {
     GetFromEmailDetail();
@@ -117,7 +118,9 @@ const SentOrScheduledEmail = ({
       <div className={`date-container ${containers} tw-pt-6`}>
         <span className="tw-text-xs tw-text-[#99a9be] tw-tracking-[-0.5px]">
           <Tooltip title="Scheduled Time">
-            <span>{moment(selectedData?.scheduled_time).format("lll")}</span>
+            <span>
+              {moment(selectedData?.scheduled_time).tz(timezone).format("lll")}
+            </span>
           </Tooltip>
         </span>
       </div>
