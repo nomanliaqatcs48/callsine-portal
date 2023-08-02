@@ -68,6 +68,7 @@ const CreateOrEditPlaybook = ({
   };
 
   const onThisEditSubmit = async (id: number) => {
+    insertBodyLoader();
     ToastSuccess("Update on this prompt is in progress.");
     handleClose();
     const data = { text: promptValue };
@@ -83,6 +84,7 @@ const CreateOrEditPlaybook = ({
             prompt.id === id ? res.data : prompt
           )
         );
+        removeBodyLoader();
 
         ToastSuccess("Successfully updated prompt.");
       }
@@ -92,6 +94,7 @@ const CreateOrEditPlaybook = ({
       devLogError(() => {
         console.error(e);
       });
+      removeBodyLoader();
       return;
     }
   };
