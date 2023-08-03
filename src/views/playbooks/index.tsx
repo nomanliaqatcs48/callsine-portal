@@ -81,7 +81,7 @@ const PlaybooksPage = () => {
             </Box>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
-            <Box className="tw-mt-6 tw-pr-6 tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
+            <Box className="tw-border-b tw-border-[#f2f3f9] tw-pb-4 tw-mt-6 tw-pr-6 tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
               <CreateOrEditPrompt
                 onClick={() => null}
                 onLoadApi={() => null}
