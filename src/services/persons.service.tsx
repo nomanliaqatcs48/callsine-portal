@@ -22,16 +22,16 @@ export const getPeopleService = async (
   );
 };
 
-export const createPeopleService = async (data: any) => {
-  return await http.post(`${endpoints.PERSON}`, data);
+export const createPeopleService = async (payload: any) => {
+  return await http.post(`${endpoints.PERSON}`, payload);
 };
 
 export const getPersonDetailService = async (id: number) => {
   return await http.get(`${endpoints.PERSON}${id}/`);
 };
 
-export const updatePersonDetailService = async (id: number, data: any) => {
-  return await http.put(`${endpoints.PERSON}${id}/`, data);
+export const updatePersonDetailService = async (id: number, payload: any) => {
+  return await http.put(`${endpoints.PERSON}${id}/`, payload);
 };
 
 export const deletePersonDetailService = async (id: number) => {
@@ -48,4 +48,8 @@ export const getPersonDetailTrackingService = async (id: number) => {
 
 export const regeneratePlaybookService = async (id: number) => {
   return await http.post(`${endpoints.PERSON}${id}/create_playbook/`);
+};
+
+export const sendNewPrompt = async (payload: any) => {
+  return await http.post(`${endpoints.NEWPROMPT}`, payload);
 };

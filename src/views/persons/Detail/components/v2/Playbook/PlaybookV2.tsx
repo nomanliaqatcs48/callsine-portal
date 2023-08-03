@@ -27,7 +27,10 @@ import { useAsyncDebounce } from "react-table";
 import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
 import { load } from "../../../../../../utils/storage";
 
-const PlaybookV2 = () => {
+type PersonProps = {
+  personData: any;
+};
+const PlaybookV2 = ({ personData }: PersonProps) => {
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedData, setSelectedData] = useState<any>(null);
@@ -257,6 +260,7 @@ const PlaybookV2 = () => {
                     playBookData={playBookData}
                     selectedData={selectedData}
                     selectedSequenceEvent={selectedSequenceEvent}
+                    personData={personData}
                   />
                 )}
               </>

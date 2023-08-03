@@ -1,5 +1,5 @@
 import { Box, Container, Divider, Grid, Paper, Tab, Tabs } from "@mui/material";
-import React from "react";
+import React, { useEffect } from "react";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 import GoBack from "../../../ui-component/buttons/GoBack";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
@@ -128,7 +128,7 @@ const PersonDetailPage = () => {
       </Box>
       <TabPanel value={value} index={0}>
         {/*{value === 0 && <PlaybookV2 />}*/}
-        {value === 0 && <PlaybookV2 />}
+        {value === 0 && <PlaybookV2 personData={data} />}
       </TabPanel>
       <TabPanel value={value} index={1}>
         {value === 1 && <Emails />}
