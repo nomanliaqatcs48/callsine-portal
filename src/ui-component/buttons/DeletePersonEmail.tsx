@@ -80,7 +80,7 @@ const DeletePersonEmail = ({
               color="primary"
               onClick={handleDelete}
               disabled={isLoading?.submit}
-              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+              className="tw-bg-red-600 hover:tw-bg-red-500 tw-normal-case"
             >
               Yes, delete it!
             </Button>

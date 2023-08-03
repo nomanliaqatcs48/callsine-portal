@@ -74,34 +74,18 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
       let _diff = _now.diff(_termEnd);
 
-      if (item?.isPremium) {
-        if (!auth?.subscription?.status) {
-          if (_diff > 0) {
-            return (
-              <>
-                <Tooltip title="Upgrade your account to access this feature.">
-                  <Box
-                    ref={ref}
-                    {...props}
-                    sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
-                  />
-                </Tooltip>
-              </>
-            );
-          }
-        } else if (auth?.subscription?.status === "inactive") {
-          return (
-            <>
-              <Tooltip title="Upgrade your account to access this feature.">
-                <Box
-                  ref={ref}
-                  {...props}
-                  sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
-                />
-              </Tooltip>
-            </>
-          );
-        }
+      if (item?.isPremium && auth?.subscription?.status !== "active") {
+        return (
+          <>
+            <Tooltip title="Upgrade your account to access this feature.">
+              <Box
+                ref={ref}
+                {...props}
+                sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
+              />
+            </Tooltip>
+          </>
+        );
       }
       return <Link ref={ref} {...props} to={_to} target={itemTarget} />;
     }),
@@ -140,9 +124,15 @@ const NavItem = ({ item, level }: NavItemTypes) => {
         pl: `${level * 24}px`,
         "&.Mui-selected": {
           color: "white",
-          backgroundColor: "#3dabd9",
+          backgroundColor:
+            item?.isPremium && auth?.subscription?.status !== "active"
+              ? "transparent"
+              : "#3dabd9",
           "&:hover": {
-            backgroundColor: "#3dabd9",
+            backgroundColor:
+              item?.isPremium && auth?.subscription?.status !== "active"
+                ? "transparent"
+                : "#3dabd9",
           },
           "& .MuiListItemIcon-root": {
             color: theme.menuSelected,

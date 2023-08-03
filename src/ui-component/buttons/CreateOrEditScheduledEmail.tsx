@@ -177,10 +177,10 @@ const CreateOrEditScheduledEmail = ({
   return (
     <>
       <Button
-        onClick={() => {
+        /*onClick={() => {
           handleOpen();
           onClick();
-        }}
+        }}*/
         {...props}
       >
         {children}
