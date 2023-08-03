@@ -17,12 +17,12 @@ import {
 } from "@mui/material";
 
 import { ErrorMessage } from "@hookform/error-message";
+import CloseIcon from "@mui/icons-material/Close";
 import { useForm } from "react-hook-form";
-import { devLog, devLogError } from "../../helpers/logs";
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
+import { devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { _styles } from "../../utils/playbooks/utils";
-import CloseIcon from "@mui/icons-material/Close";
-import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 
 type CreateOrEditPlaybookTypes = {
   children: any;
@@ -44,6 +44,7 @@ const CreateOrEditPlaybook = ({
   ...props
 }: CreateOrEditPlaybookTypes) => {
   const auth: any = useAuth();
+
   const reloadPlaybooks = useReloadPlaybooks();
   const [nameValue, setNameValue] = useState<any>("");
   const [open, setOpen] = React.useState(false);

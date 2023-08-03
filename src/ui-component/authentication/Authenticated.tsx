@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from "react";
-import { checkIfAuthenticated } from "../../utils/auth";
-import { devLog, devLogError } from "../../helpers/logs";
 import { AuthContext } from "../../contexts/auth";
-import { load, save } from "../../utils/storage";
+import { devLog, devLogError } from "../../helpers/logs";
 import { profileService } from "../../services/profile.service";
+import { checkIfAuthenticated } from "../../utils/auth";
+import { load, save } from "../../utils/storage";
 
 type AuthenticatedTypes = {
   children: React.ReactNode;
 };
 
 const Authenticated = ({ children }: AuthenticatedTypes) => {
+  console.log("in the authenticated");
   const [profile, setProfile] = useState<any>(null);
   const [isOnPageLoading, setIsOnPageLoading] = useState<boolean>(true);
 

@@ -17,12 +17,12 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { _styles } from "../../utils/playbooks/utils";
 import { Prompt } from "../../utils/types/prompt";
 
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 import {
   createPromptService,
   updatePromptService,
 } from "src/services/prompts.service";
 import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
-import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 
 type CreateOrEditPlaybookTypes = {
   children: any;

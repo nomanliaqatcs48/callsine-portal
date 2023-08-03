@@ -1,24 +1,20 @@
 import { ChangeEvent, useState } from "react";
-import { SmallSpinner } from "../../helpers/loaders";
-import { sendNewPrompt } from "src/services/persons.service";
-import { ToastError, ToastSuccess } from "src/helpers/toast";
 import { devLog, devLogError } from "src/helpers/logs";
-
-import SendIcon from "@mui/icons-material/Send";
+import { ToastError, ToastSuccess } from "src/helpers/toast";
+import { sendNewPrompt } from "src/services/persons.service";
+import { SmallSpinner } from "../../helpers/loaders";
 
 import {
   Button,
   Dialog,
-  DialogTitle,
-  DialogContent,
   DialogActions,
-  IconButton,
+  DialogContent,
+  DialogTitle,
+  FormControl,
   Stack,
   TextField,
-  InputAdornment,
-  FormControl,
-  ToggleButtonGroup,
   ToggleButton,
+  ToggleButtonGroup,
 } from "@mui/material";
 
 type EditorPayloadTypes = {
@@ -31,6 +27,7 @@ const actionHelpers = [
   "Make it longer",
   "User more detail",
   "Be friendlier",
+  "Be more authoritative",
 ];
 
 const HelpEditor = ({
@@ -94,7 +91,7 @@ const HelpEditor = ({
   return (
     <>
       <div
-        className={`tw-right-5 tw-top-[100px] tw-absolute tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
+        className={`tw-right-5 tw-bottom-[100px] tw-absolute tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
           !loading && "hover:tw-bg-slate-100"
         } tw-transition-all  tw-border-black tw-border`}
       >
@@ -104,7 +101,7 @@ const HelpEditor = ({
           disabled={loading}
         >
           {loading && <SmallSpinner />}
-          <span>Help</span>
+          <span>Content Assistant</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="tw-w-4 tw-h-4"
