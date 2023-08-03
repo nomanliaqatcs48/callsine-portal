@@ -68,6 +68,7 @@
   },
   "scripts": {
     "start": "dotenv -e src/.env.local react-scripts start",
+    "start-marc-dev": "dotenv -e src/.env.marc-local react-scripts start",
     "start-production": "dotenv -e src/.env.production react-scripts start",
     "start-staging": "dotenv -e src/.env.staging react-scripts start",
     "build": "dotenv -e src/.env.local react-scripts build",

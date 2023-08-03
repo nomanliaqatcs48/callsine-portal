@@ -121,7 +121,7 @@ const PersonDetailPage = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        {value === 0 && <PlaybookV2 />}
+        {value === 0 && <PlaybookV2 personData={data} />}
         {/*{value === 0 && <Playbook />}*/}
       </TabPanel>
       <TabPanel value={value} index={1}>
