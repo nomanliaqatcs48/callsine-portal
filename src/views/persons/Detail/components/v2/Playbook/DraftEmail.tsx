@@ -29,6 +29,7 @@ import {
   _styles,
 } from "../../../../../../utils/people/utils";
 import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+import HelpEditor from "src/ui-component/buttons/HelpEditor";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -36,6 +37,7 @@ type DraftEmailTypes = {
   selectedData: any;
   position: any;
   selectedSequenceEvent: any;
+  personData: any;
 };
 
 const DraftEmail = ({
@@ -44,6 +46,7 @@ const DraftEmail = ({
   selectedData,
   position,
   selectedSequenceEvent,
+  personData,
 }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
@@ -722,7 +725,7 @@ const DraftEmail = ({
         </div>
       </div>
       <div className={`message-container tw-p-0 xl:tw-p-0`}>
-        <div className="">
+        <div className="tw-relative">
           <MyEditor
             initialValue={getValues("html_message")}
             onEditorChange={(value: string, editor: any) => {
@@ -731,17 +734,21 @@ const DraftEmail = ({
             // isPreformatted={true}
             onFocus={(e: any) => null}
           />
-
-          <ErrorMessage
-            errors={errors}
-            name="html_message"
-            render={({ message }) => (
-              <FormHelperText sx={{ color: "error.main" }}>
-                {message}
-              </FormHelperText>
-            )}
+          <HelpEditor
+            draftText={getValues("html_message")}
+            // emailInformation="Sample"
+            personInformation={personData}
           />
         </div>
+        <ErrorMessage
+          errors={errors}
+          name="html_message"
+          render={({ message }) => (
+            <FormHelperText sx={{ color: "error.main" }}>
+              {message}
+            </FormHelperText>
+          )}
+        />
       </div>
       <div className={`signature-container tw-px-3 tw-py-4`}>
         <Box

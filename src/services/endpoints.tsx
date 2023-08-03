@@ -14,4 +14,5 @@ export const endpoints = {
   SEQUENCE_EVENTS: "/api/sequence-events/",
   USER_DATA: "/api/user-data/",
   TEAMS: "/api/teams/",
+  NEWPROMPT: "/api/new-prompt/",
 };
