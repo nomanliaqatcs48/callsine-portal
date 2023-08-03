@@ -75,21 +75,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       let _diff = _now.diff(_termEnd);
 
       if (item?.isPremium) {
-        if (!auth?.subscription?.status) {
-          if (_diff > 0) {
-            return (
-              <>
-                <Tooltip title="Upgrade your account to access this feature.">
-                  <Box
-                    ref={ref}
-                    {...props}
-                    sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
-                  />
-                </Tooltip>
-              </>
-            );
-          }
-        } else if (auth?.subscription?.status === "inactive") {
+        if (auth?.subscription?.status !== "active") {
           return (
             <>
               <Tooltip title="Upgrade your account to access this feature.">
