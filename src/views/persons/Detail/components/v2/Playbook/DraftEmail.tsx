@@ -1,35 +1,34 @@
-import { Box, Divider, FormHelperText } from "@mui/material";
-import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
-import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
-import MyEditor from "../../../../../../ui-component/editor/MyEditor";
-import React, { useEffect, useState } from "react";
-import { useForm } from "react-hook-form";
-import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAccounts";
+import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import { ErrorMessage } from "@hookform/error-message";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
+import { LoadingButton } from "@mui/lab";
+import { Box, Divider, FormHelperText } from "@mui/material";
+import _ from "lodash";
+import moment from "moment";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
 import { emailAddressPattern } from "../../../../../../helpers/forms";
-import { devLog, devLogError } from "../../../../../../helpers/logs";
-import {
-  createAsEmailService,
-  sendEmailService,
-} from "../../../../../../services/emails.service";
-import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
-import SendLater from "../../../../../../ui-component/buttons/SendLater";
-import { LoadingButton } from "@mui/lab";
-import moment from "moment";
-import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import {
   insertBodyLoader,
   removeBodyLoader,
 } from "../../../../../../helpers/loaders";
+import { devLog, devLogError } from "../../../../../../helpers/logs";
+import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
+import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAccounts";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
-import _ from "lodash";
+import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import {
-  selectBlueStyles,
+  createAsEmailService,
+  sendEmailService,
+} from "../../../../../../services/emails.service";
+import SendLater from "../../../../../../ui-component/buttons/SendLater";
+import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
+import MyEditor from "../../../../../../ui-component/editor/MyEditor";
+import {
   _styles,
+  selectBlueStyles,
 } from "../../../../../../utils/people/utils";
-import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
-import HelpEditor from "src/ui-component/buttons/HelpEditor";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -734,11 +733,11 @@ const DraftEmail = ({
             // isPreformatted={true}
             onFocus={(e: any) => null}
           />
-          <HelpEditor
+          {/* <HelpEditor
             draftText={getValues("html_message")}
             // emailInformation="Sample"
             personInformation={personData}
-          />
+          /> */}
         </div>
         <ErrorMessage
           errors={errors}
