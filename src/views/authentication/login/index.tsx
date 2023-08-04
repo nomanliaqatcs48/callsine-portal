@@ -8,12 +8,12 @@ const LoginMain = () => {
           <div className="tw-hidden lg:tw-flex lg:tw-items-center lg:tw-p-2 lg:tw-w-2/3 lg:tw-bg-[#4d4bc0]">
             <div className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52">
               <div className="tw-text-[68px] tw-leading-[80px] tw-tracking-[3.4px] tw-text-6xl tw-font-bold">
-                B2B Contact Data at Your Fingertips
+                CallSine Unleashes the power of AI for Sales
               </div>
               <p className="tw-text-[25px] tw-leading-[38px]">
-                Get access to your prospect's phone number and email via our
-                Google Chrome extension, instantly. Convert leads with real data
-                and save time.
+                CallSine™ was developed for salespeople and teams that are
+                looking for a platform that does email outreach, at scale, and
+                with individualized emails to each prospect.
               </p>
             </div>
           </div>
