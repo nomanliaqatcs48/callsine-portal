@@ -46,6 +46,8 @@ const Banner = () => {
             // minHeight: "100vh",
             minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
             width: "100%",
+            mixBlendMode: "overlay",
+            opacity: "0.4",
           }}
         />
         <img
