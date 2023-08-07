@@ -25,13 +25,15 @@ export const _columns = (onLoadApi: any) => {
         accessor: "file",
         Cell: (cell: any) => {
           return (
-            <Button
-              variant="text"
+            <a
               className="tw-normal-case"
-              onClick={() => downloadFile(cell?.value, "file")}
+              href={cell?.value}
+              download
+              target="_blank"
+              rel="noopener noreferrer"
             >
               {cell?.value || ""}
-            </Button>
+            </a>
           );
         },
       },
