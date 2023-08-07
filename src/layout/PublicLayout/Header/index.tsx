@@ -110,7 +110,10 @@ const Header = (props: any) => {
           component="nav"
           elevation={0}
         >
-          <Toolbar sx={{ minHeight: "0px !important", px: { lg: 12, xl: 30 } }}>
+          <Toolbar
+            className="2xl:tw-px-[240px]"
+            sx={{ minHeight: "0px !important", px: { lg: 12 } }}
+          >
             {/* sx={{ px: { lg: 15, xl: 30 } }} */}
             <IconButton
               color="inherit"
@@ -148,12 +151,13 @@ const Header = (props: any) => {
                     textDecoration: "none",
                     color: "#fff",
                   }}
+                  className="tw-font-comfortaa tw-font-normal hover:tw-text-white lg:tw-text-[18px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
               <Typography
-                className={classes.loginBtn}
+                className="tw-font-semibold hover:tw-text-white lg:tw-py-[15px] lg:tw-px-[57px]"
                 component={Link}
                 to={"/login"}
                 variant="subtitle1"
@@ -162,6 +166,10 @@ const Header = (props: any) => {
                   margin: "0px 5px",
                   textDecoration: "none",
                   color: "#fff",
+                  //
+                  border: "1px solid #fff",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
                 }}
               >
                 LOGIN
