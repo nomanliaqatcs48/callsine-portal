@@ -12,6 +12,7 @@ const Container = styled("div")(({ theme }) => ({
   backgroundSize: "cover",
   backgroundPosition: "center",
   backgroundColor: "#3874CB",
+  backgroundBlendMode: "overlay",
 }));
 
 const Part = styled("div")(({ theme }) => ({
