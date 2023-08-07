@@ -1,5 +1,5 @@
 import React from "react";
-import { Button, Typography } from "@mui/material";
+import { Box, Button, Typography } from "@mui/material";
 import { styled } from "@mui/system";
 import { IconBrandFacebookFilled, IconSend } from "@tabler/icons-react";
 import icon from "../../assets/images/icons/logo-color-2x.png";
@@ -8,9 +8,9 @@ const FooterContainer = styled("footer")(({ theme }) => ({
   backgroundColor: "#2C2C2C",
   padding: "46px 24px",
   color: "#FFFFFF",
-  [theme.breakpoints.up("md")]: {
+  /*[theme.breakpoints.up("md")]: {
     padding: "46px 182px",
-  },
+  },*/
 }));
 
 const FooterContent = styled("div")({
@@ -98,12 +98,33 @@ const Footer: React.FC = () => {
   return (
     <div>
       <FooterContainer>
-        <FooterContent>
-          <LeftContent>
+        <Box
+          className="tw-gap-[50px] xl:tw-gap-[40px] xl:tw-my-[46px] xl:tw-mx-[140px] 4xl:tw-flex-nowrap 4xl:tw-gap-[230px]"
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            // gap: "24px",
+            // gap: 0,
+            flexWrap: "wrap",
+          }}
+        >
+          <Box
+            className="md:tw-w-full lg:tw-w-3/12"
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "flex-start",
+            }}
+          >
             <LogoContainer>
               <Logo src={icon} alt="Logo" />
             </LogoContainer>
             <SmallText sx={{ color: "#B5B5B5" }}>
+              CallSine's AI uses a large language model (LLM) and leverages an
+              algorithm that goes deep in massively large data sets to
+              understand, summarize, generate, and predict new email content.
+            </SmallText>
+            {/*<SmallText sx={{ color: "#B5B5B5" }}>
               CallSine's AI uses a large language model (LLM) and leverages an
             </SmallText>
             <SmallText sx={{ color: "#B5B5B5" }}>
@@ -111,7 +132,7 @@ const Footer: React.FC = () => {
             </SmallText>
             <SmallText sx={{ color: "#B5B5B5" }}>
               understand, summarize, generate, and predict new email content.
-            </SmallText>
+            </SmallText>*/}
             {/*<SmallText sx={{ color: "#B5B5B5" }}>
               Find, contact, and close your ideal buyers with over
             </SmallText>
@@ -126,8 +147,8 @@ const Footer: React.FC = () => {
               <IconBrandFacebookFilled />
               <IconBrandFacebookFilled />
             </SocialIconsContainer>*/}
-          </LeftContent>
-          <ContactInfo>
+          </Box>
+          <Box className="md:tw-w-5/12 lg:tw-w-3/12" sx={{ marginBottom: 0 }}>
             <Typography variant="h3" sx={{ color: "#fff" }}>
               Contact Us
             </Typography>
@@ -141,8 +162,8 @@ const Footer: React.FC = () => {
             <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
               (555) 555-1234
             </Typography>
-          </ContactInfo>
-          <ContactInfo>
+          </Box>
+          <Box className="md:tw-w-6/12 lg:tw-w-4/12" sx={{ marginBottom: 0 }}>
             <TextContainer>
               <Typography
                 variant="h3"
@@ -163,8 +184,8 @@ const Footer: React.FC = () => {
                 <IconSend color="#fff" />
               </ButtonSend>
             </SubscribeContainer>
-          </ContactInfo>
-        </FooterContent>
+          </Box>
+        </Box>
       </FooterContainer>
       <BottomBar className="tw-d-flex">
         <Typography variant="subtitle2" align="right" sx={{ color: "#fff" }}>
