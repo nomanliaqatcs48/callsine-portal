@@ -83,11 +83,12 @@ const Banner = () => {
           <div>
             <Typography
               variant="h2"
+              className="tw-text-[40px] md:tw-text-[53px] lg:tw-text-[60px] tw-font-normal xl:tw-text-[80px] xl:tw-leading-[100px] xl:tw-mb-[20px]"
               sx={{
-                fontSize: 60,
+                // fontSize: 60,
                 p: { md: 3 },
                 // pb: { xs: 5 },
-                fontWeight: 200,
+                // fontWeight: 200,
                 color: "#fff",
                 fontFamily: "Poppins",
                 [theme.breakpoints.down("md")]: {
@@ -103,6 +104,7 @@ const Banner = () => {
             <div>
               <Typography
                 variant="h4"
+                className="tw-text-[20px] md:tw-text-[26px] xl:tw-text-[30px] xl:tw-leading-[46px]"
                 sx={{
                   fontSize: 26,
                   paddingLeft: 3,
@@ -125,8 +127,9 @@ const Banner = () => {
               </Typography>
             </div>
             <Box
+              className="md:tw-pl-[22px]"
               sx={{
-                paddingLeft: "22px",
+                // paddingLeft: "22px",
                 marginTop: "15px",
                 [theme.breakpoints.down("md")]: {
                   display: "flex",
@@ -137,6 +140,7 @@ const Banner = () => {
               }}
             >
               <Button
+                className="lg:tw-text-[25px]"
                 sx={{
                   backgroundColor: "#fff !important",
                   color: "#1976D2",
@@ -150,6 +154,7 @@ const Banner = () => {
                 {/*Sign up for free*/}
               </Button>
               <Button
+                className="lg:tw-text-[25px]"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",
