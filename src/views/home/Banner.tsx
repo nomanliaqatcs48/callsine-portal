@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import {
+  Box,
   Button,
   Grid,
   Paper,
@@ -69,7 +70,10 @@ const Banner = () => {
             justifyContent: "center",
             alignItems: "center",
             zIndex: "9",
-            "@media (max-width: 600px)": {
+            /*"@media (max-width: 600px)": {
+              paddingTop: "80px", //"75px",
+            },*/
+            [theme.breakpoints.down("md")]: {
               paddingTop: "80px", //"75px",
             },
           }}
@@ -84,6 +88,10 @@ const Banner = () => {
                 fontWeight: 200,
                 color: "#fff",
                 fontFamily: "Poppins",
+                [theme.breakpoints.down("md")]: {
+                  p: 3,
+                  textAlign: "center",
+                },
               }}
             >
               CallSine unleashes the power of AI for sales
@@ -98,6 +106,10 @@ const Banner = () => {
                   paddingLeft: 3,
                   fontWeight: 400,
                   color: "#fff",
+                  [theme.breakpoints.down("md")]: {
+                    p: 3,
+                    textAlign: "center",
+                  },
                 }}
               >
                 CallSine™ was developed for salespeople and teams that are
@@ -110,7 +122,18 @@ const Banner = () => {
                 powered by AI.*/}
               </Typography>
             </div>
-            <div style={{ paddingLeft: "22px", marginTop: "15px" }}>
+            <Box
+              sx={{
+                paddingLeft: "22px",
+                marginTop: "15px",
+                [theme.breakpoints.down("md")]: {
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "center",
+                  alignItems: "center",
+                },
+              }}
+            >
               <Button
                 sx={{
                   backgroundColor: "#fff !important",
@@ -134,13 +157,17 @@ const Banner = () => {
                   fontSize: "16px",
                   fontWeight: "400",
                   cursor: "pointer",
+                  [theme.breakpoints.down("md")]: {
+                    marginY: 1,
+                    marginLeft: 0,
+                  },
                 }}
                 size="large"
               >
                 Schedule a Demo
                 {/*Request for a demo*/}
               </Button>
-            </div>
+            </Box>
           </div>
         </Grid>
 

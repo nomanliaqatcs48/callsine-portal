@@ -104,7 +104,7 @@ const Footer: React.FC = () => {
               <Logo src={icon} alt="Logo" />
             </LogoContainer>
             <SmallText sx={{ color: "#B5B5B5" }}>
-              CallSine's AI uses a large language model (LLM) and leverager an
+              CallSine's AI uses a large language model (LLM) and leverages an
             </SmallText>
             <SmallText sx={{ color: "#B5B5B5" }}>
               algorithm that goes deep in massively large data sets to

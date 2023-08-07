@@ -6,6 +6,7 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
+  Box,
 } from "@mui/material";
 import { styled } from "@mui/system";
 import OwlCarousel from "react-owl-carousel";
@@ -43,12 +44,12 @@ const Reviews = () => {
 
   return (
     <div style={{ marginTop: "60px", marginBottom: "40px" }}>
-      <div style={{ marginBottom: "20px" }}>
+      <Box sx={{ marginBottom: "20px" }}>
         <ReviewHeading>
           <p style={{ color: "#1976D2" }}>Happy customers</p>
           <p style={{ color: "#000" }}>us for better</p>
         </ReviewHeading>
-      </div>
+      </Box>
       <OwlCarousel
         className="owl-theme customNav"
         loop

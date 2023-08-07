@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Grid, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import bg from "../../assets/images/svg/number-bg.svg";
 
@@ -21,12 +21,14 @@ const Part = styled("div")(({ theme }) => ({
   flexDirection: "column",
   padding: "24px",
   borderRight: "1px solid #fff",
-  [theme.breakpoints.down("sm")]: {
+  [theme.breakpoints.down("lg")]: {
     borderRight: "none",
   },
 }));
 
 const Numbers: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <Container>
       <Grid item xs={12} sm={12} alignItems={"center"}>
@@ -45,7 +47,7 @@ const Numbers: React.FC = () => {
         </Typography>
       </Grid>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part>
             <Typography
               variant="h1"
@@ -65,13 +67,16 @@ const Numbers: React.FC = () => {
                 color: "#fff",
                 fontWeight: 400,
                 fontSize: "28px",
+                [theme.breakpoints.down("md")]: {
+                  textAlign: "center",
+                },
               }}
             >
               Million Profiles
             </Typography>
           </Part>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part>
             <Typography
               variant="h1"
@@ -91,13 +96,16 @@ const Numbers: React.FC = () => {
                 color: "#fff",
                 fontWeight: 400,
                 fontSize: "28px",
+                [theme.breakpoints.down("md")]: {
+                  textAlign: "center",
+                },
               }}
             >
               Million Companies
             </Typography>
           </Part>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part sx={{ border: "none" }}>
             <Typography
               variant="h1"
@@ -117,6 +125,9 @@ const Numbers: React.FC = () => {
                 color: "#fff",
                 fontWeight: 400,
                 fontSize: "28px",
+                [theme.breakpoints.down("md")]: {
+                  textAlign: "center",
+                },
               }}
             >
               Million Searches Run

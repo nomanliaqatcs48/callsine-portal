@@ -78,7 +78,7 @@ const Header = (props: any) => {
 
   const useStyles = makeStyles((theme: any) => ({
     appBar: {
-      [theme.breakpoints.up("sm")]: {
+      [theme.breakpoints.up("md")]: {
         backgroundColor: "transparent",
       },
       minHeight: "66px",
@@ -117,14 +117,14 @@ const Header = (props: any) => {
               aria-label="open drawer"
               edge="start"
               onClick={handleDrawerToggle}
-              sx={{ mr: 2, display: { sm: "none" } }}
+              sx={{ mr: 2, display: { md: "none" } }}
             >
               <MenuIcon />
             </IconButton>
             <Typography
               variant="h6"
               component="div"
-              sx={{ flexGrow: 1, display: { xs: "none", sm: "block" } }}
+              sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}
             >
               <img
                 src={icon}
@@ -135,7 +135,7 @@ const Header = (props: any) => {
               />
             </Typography>
 
-            <Box sx={{ display: { xs: "none", sm: "block" } }}>
+            <Box sx={{ display: { xs: "none", md: "block" } }}>
               {navItems.map((item) => (
                 <Typography
                   key={item.name}

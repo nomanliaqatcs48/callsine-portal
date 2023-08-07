@@ -36,7 +36,7 @@ const Find = () => {
   return (
     <Container style={{ backgroundColor: "#2C2C2C" }}>
       <Grid container spacing={2}>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part
             style={{
               display: "flex",
@@ -84,7 +84,7 @@ const Find = () => {
             </Typography>
           </Part>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part>
             <Circle>
               <IconThumbUpFilled
@@ -126,7 +126,7 @@ const Find = () => {
             </Typography>
           </Part>
         </Grid>
-        <Grid item xs={12} sm={4}>
+        <Grid item xs={12} lg={4}>
           <Part>
             <Circle>
               <IconUsers

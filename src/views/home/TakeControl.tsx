@@ -23,11 +23,12 @@ const TakeControl = () => {
           p: { xs: 1, md: 3 },
           pt: { xs: 10, md: 10 },
           pb: { xs: 10, md: 10 },
-          px: { md: 1, lg: 10, xl: 30 },
+          px: { md: 1, lg: 10, xl: 5 },
           background: "#fafafa",
         }}
+        className="2xl:tw-px-[180px] 3xl:tw-px-[240px]"
       >
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} xl={6}>
           <Image
             src={imageMobileHand}
             width={downMd ? "100%" : 593}
@@ -40,7 +41,7 @@ const TakeControl = () => {
         <Grid
           item
           xs={12}
-          md={6}
+          xl={6}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -93,7 +94,7 @@ const TakeControl = () => {
                 variant="h4"
                 sx={{
                   fontSize: 16,
-                  p: { md: 3 },
+                  p: { sm: 3 },
                   ml: 3,
                   mt: 0,
                   fontWeight: 400,
@@ -138,7 +139,7 @@ const TakeControl = () => {
                 variant="h4"
                 sx={{
                   fontSize: 16,
-                  p: { md: 3 },
+                  p: { sm: 3 },
                   ml: 3,
                   mt: 0,
                   fontWeight: 400,
@@ -182,7 +183,7 @@ const TakeControl = () => {
                 variant="h4"
                 sx={{
                   fontSize: 16,
-                  p: { md: 3 },
+                  p: { sm: 3 },
                   ml: 3,
                   mt: 0,
                   fontWeight: 400,
