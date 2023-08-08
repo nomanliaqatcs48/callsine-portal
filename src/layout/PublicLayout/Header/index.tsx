@@ -58,13 +58,9 @@ const Header = (props: any) => {
       >
         CALLSINE
       </Typography>*/}
-      <Typography
-        variant="h6"
-        component="div"
-        className="tw-py-[15px] tw-px-[15px]"
-      >
+      <Typography variant="h6" component={Link} to={"/home"}>
         <img
-          className="tw-w-full"
+          className="tw-w-full tw-py-[15px] tw-px-[15px]"
           src={icon}
           alt="CALLSINE ICON"
           width={150}
@@ -175,7 +171,8 @@ const Header = (props: any) => {
             </IconButton>
             <Typography
               variant="h6"
-              component="div"
+              component={Link}
+              to={"/home"}
               sx={{ flexGrow: 1, display: { xs: "none", md: "block" } }}
             >
               <img
