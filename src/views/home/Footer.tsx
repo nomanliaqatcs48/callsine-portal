@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button, Typography } from "@mui/material";
+import { Box, Button, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { IconBrandFacebookFilled, IconSend } from "@tabler/icons-react";
 import icon from "../../assets/images/icons/logo-color-2x.png";
@@ -8,9 +8,9 @@ const FooterContainer = styled("footer")(({ theme }) => ({
   backgroundColor: "#2C2C2C",
   padding: "46px 24px",
   color: "#FFFFFF",
-  /*[theme.breakpoints.up("md")]: {
-    padding: "46px 182px",
-  },*/
+  [theme.breakpoints.up("lg")]: {
+    padding: "46px 96px",
+  },
 }));
 
 const FooterContent = styled("div")({
@@ -96,11 +96,13 @@ const MailInput = styled("input")({
 });
 
 const Footer: React.FC = () => {
+  const theme = useTheme();
+
   return (
     <div>
-      <FooterContainer>
+      <FooterContainer className="2xl:tw-px-[240px]">
         <Box
-          className="tw-gap-[50px] xl:tw-gap-[40px] xl:tw-my-[46px] xl:tw-mx-[140px] 4xl:tw-flex-nowrap 4xl:tw-gap-[230px]"
+          className="tw-gap-[50px] xl:tw-gap-[40px] xl:tw-my-[46px] 4xl:tw-flex-nowrap 4xl:tw-gap-[230px]"
           sx={{
             display: "flex",
             justifyContent: "space-between",
@@ -166,31 +168,60 @@ const Footer: React.FC = () => {
             </Typography>
           </Box>
           <Box
-            className="tw-pt-3 md:tw-w-6/12 lg:tw-w-4/12"
+            className="tw-pt-3 tw-w-full lg:tw-w-4/12 lg:tw-flex lg:tw-flex-col lg:tw-justify-center"
             sx={{ marginBottom: 0 }}
           >
             <TextContainer>
-              <Typography
+              <Button
+                className="tw-rounded-[5px] tw-text-center lg:tw-text-[20px]"
+                sx={{
+                  backgroundColor: "transparent !important",
+                  color: "#fff",
+                  padding: "12px 24px",
+                  [theme.breakpoints.up("xl")]: {
+                    padding: "15px 47px",
+                  },
+                  marginLeft: 3,
+                  border: "1px solid #fff",
+                  fontSize: "16px",
+                  fontWeight: "400",
+                  cursor: "pointer",
+                  [theme.breakpoints.down("md")]: {
+                    marginY: 1,
+                    marginLeft: 0,
+                  },
+                }}
+                size="large"
+                onClick={() => {
+                  window.open(
+                    "https://calendly.com/unionresolute/union-s-callsine-demo"
+                  );
+                }}
+              >
+                Book a Demo
+                {/*Request for a demo*/}
+              </Button>
+              {/*<Typography
                 className="tw-font-semibold tw-text-[23px]"
                 variant="h3"
                 sx={{ color: "#fff", marginBottom: "15px" }}
               >
                 Book A Demo
-              </Typography>
-              <Typography
+              </Typography>*/}
+              {/*<Typography
                 className="tw-font-normal tw-text-[18px] tw-mb-4"
                 variant="h5"
                 sx={{ color: "#B5B5B5", marginBottom: "5px" }}
               >
                 Sign up if you want to get notifications
-              </Typography>
+              </Typography>*/}
             </TextContainer>
-            <SubscribeContainer>
+            {/*<SubscribeContainer>
               <MailInput type="email" placeholder="Enter your email" />
               <ButtonSend>
                 <IconSend color="#fff" />
               </ButtonSend>
-            </SubscribeContainer>
+            </SubscribeContainer>*/}
           </Box>
         </Box>
       </FooterContainer>
