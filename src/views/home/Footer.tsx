@@ -110,7 +110,7 @@ const Footer: React.FC = () => {
           }}
         >
           <Box
-            className="md:tw-w-full lg:tw-w-3/12"
+            className="md:tw-w-full lg:tw-w-5/12"
             sx={{
               display: "flex",
               flexDirection: "column",
