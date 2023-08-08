@@ -38,6 +38,7 @@ const TakeControl = () => {
             height={downMd ? "auto" : 531}
             showLoading
             alt="callsine"
+            wrapperClassName="tw-mx-auto xl:tw-mx-0"
           />
           <Grid sx={{ height: 20 }} />
         </Grid>
@@ -53,7 +54,7 @@ const TakeControl = () => {
         >
           <div>
             <Typography
-              className="tw-text-[45px] tw-text-center tw-font-bold tw-pl-0 lg:tw-text-left lg:tw-text-[70px]"
+              className="tw-text-[45px] tw-text-center tw-font-bold tw-pl-0 xl:tw-text-left lg:tw-text-[70px]"
               variant="h2"
               align="left"
               sx={{
