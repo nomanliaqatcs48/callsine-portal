@@ -73,7 +73,7 @@ const Banner = () => {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            zIndex: "9",
+            zIndex: "999",
             /*"@media (max-width: 600px)": {
               paddingTop: "80px", //"75px",
             },*/
@@ -182,8 +182,13 @@ const Banner = () => {
                   },
                 }}
                 size="large"
+                onClick={() => {
+                  window.open(
+                    "https://calendly.com/unionresolute/union-s-callsine-demo"
+                  );
+                }}
               >
-                Schedule a Demo
+                Book a Demo
                 {/*Request for a demo*/}
               </Button>
             </Box>
