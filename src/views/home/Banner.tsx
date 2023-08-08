@@ -99,7 +99,8 @@ const Banner = () => {
                 },
               }}
             >
-              CallSine unleashes the power of AI for sales
+              Unleash the power of AI for sales
+              {/*CallSine unleashes the power of AI for sales*/}
               {/*Reach every buyer <br /> on earth*/}
             </Typography>
 
@@ -118,9 +119,12 @@ const Banner = () => {
                   },
                 }}
               >
-                CallSine™ was developed for salespeople and teams that are
+                CallSine™ is for salespeople and teams looking for an at scale
+                email outreach platform sending individualized emails to each
+                prospect.
+                {/*CallSine™ was developed for salespeople and teams that are
                 looking for a platform that does email outreach, at scale, and
-                with individualized emails to each prospect.
+                with individualized emails to each prospect.*/}
                 {/*Find, contact, and close your ideal buyers with over 265M
                 <br />
                 contacts and streamlined engagement workflows
