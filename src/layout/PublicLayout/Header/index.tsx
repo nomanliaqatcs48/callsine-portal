@@ -51,12 +51,61 @@ const Header = (props: any) => {
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
-      <Typography variant="h6" sx={{ my: 2 }}>
+      {/*<Typography
+        className="tw-text-[40px]"
+        variant="h6"
+        sx={{ my: 2, fontFamily: "Poppins" }}
+      >
         CALLSINE
+      </Typography>*/}
+      <Typography
+        variant="h6"
+        component="div"
+        className="tw-py-[15px] tw-px-[15px]"
+      >
+        <img
+          className="tw-w-full"
+          src={icon}
+          alt="CALLSINE ICON"
+          width={150}
+          height={50}
+          style={{ marginRight: matchDownSM ? 8 : 16 }}
+        />
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item: any) => (
+        <ListItem disablePadding>
+          <ListItemButton className="hover:tw-bg-transparent">
+            {/*<Typography
+              component={Link}
+              to={"/login"}
+              variant="subtitle1"
+              sx={{ textDecoration: "none", textAlign: "center" }}
+            >
+              LOGIN
+            </Typography>*/}
+            <Typography
+              className="tw-bg-[#1976d2] tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px] tw-mx-auto"
+              component={Link}
+              to={"/login"}
+              variant="subtitle1"
+              sx={{
+                fontSize: 16,
+                margin: "0px 5px",
+                textDecoration: "none",
+                color: "#fff",
+                fontFamily: "'Poppins', sans-serif",
+                //
+                border: "1px solid #fff",
+                padding: "12px 24px",
+                borderRadius: "8px",
+              }}
+            >
+              LOGIN
+            </Typography>
+          </ListItemButton>
+        </ListItem>
+        {/*{navItems.map((item: any) => (
           <ListItem key={item} disablePadding>
             <ListItemButton>
               <Typography
@@ -69,7 +118,7 @@ const Header = (props: any) => {
               </Typography>
             </ListItemButton>
           </ListItem>
-        ))}
+        ))}*/}
       </List>
     </Box>
   );
@@ -139,7 +188,7 @@ const Header = (props: any) => {
             </Typography>
 
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              {navItems.map((item) => (
+              {/*{navItems.map((item) => (
                 <Typography
                   key={item.name}
                   component={Link}
@@ -155,9 +204,9 @@ const Header = (props: any) => {
                 >
                   {item.name.toUpperCase()}
                 </Typography>
-              ))}
+              ))}*/}
               <Typography
-                className="tw-font-semibold hover:tw-text-white lg:tw-py-[15px] lg:tw-px-[57px]"
+                className="tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
                 component={Link}
                 to={"/login"}
                 variant="subtitle1"
@@ -189,8 +238,9 @@ const Header = (props: any) => {
               keepMounted: true, // Better open performance on mobile.
             }}
             sx={{
-              display: { xs: "block", sm: "none" },
+              display: { xs: "block", md: "none" },
               "& .MuiDrawer-paper": {
+                backgroundColor: "#1976d2",
                 boxSizing: "border-box",
                 width: drawerWidth,
               },

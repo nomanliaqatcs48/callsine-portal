@@ -92,7 +92,7 @@ const Banner = () => {
                 // pb: { xs: 5 },
                 // fontWeight: 200,
                 color: "#fff",
-                fontFamily: "Poppins",
+                fontFamily: "'Poppins', sans-serif",
                 [theme.breakpoints.down("md")]: {
                   p: 3,
                   textAlign: "center",
