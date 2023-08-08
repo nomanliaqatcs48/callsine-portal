@@ -168,12 +168,12 @@ const Footer: React.FC = () => {
             </Typography>
           </Box>
           <Box
-            className="tw-pt-3 tw-w-full lg:tw-w-4/12 lg:tw-flex lg:tw-flex-col lg:tw-justify-center"
+            className="tw-pt-3 tw-w-full lg:tw-w-4/12 lg:tw-flex lg:tw-flex-col lg:tw-justify-center lg:tw-items-end"
             sx={{ marginBottom: 0 }}
           >
             <TextContainer>
               <Button
-                className="tw-rounded-[5px] tw-text-center lg:tw-text-[20px]"
+                className="tw-rounded-[5px] tw-text-center lg:tw-text-[25px] lg:tw-w-[262px]"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",
