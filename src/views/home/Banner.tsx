@@ -66,7 +66,8 @@ const Banner = () => {
           item
           // className={classes.leftSide}
           xs={12}
-          md={6}
+          md={7}
+          lg={6}
           sx={{
             display: "flex",
             justifyContent: "center",
@@ -80,7 +81,7 @@ const Banner = () => {
             },
           }}
         >
-          <div>
+          <Box className="xl:tw-ml-[40px] 2xl:tw-ml-[190px]">
             <Typography
               variant="h2"
               className="tw-text-[40px] md:tw-text-[53px] lg:tw-text-[60px] tw-font-normal xl:tw-text-[80px] xl:tw-leading-[100px] xl:tw-mb-[20px]"
@@ -181,10 +182,10 @@ const Banner = () => {
                 {/*Request for a demo*/}
               </Button>
             </Box>
-          </div>
+          </Box>
         </Grid>
 
-        <Grid item xs={12} md={6}>
+        <Grid item xs={12} md={5} lg={6}>
           <Image
             src={dashboard}
             width={downMd ? "100%" : "100%"}

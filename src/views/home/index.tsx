@@ -12,8 +12,8 @@ const Home = () => {
       <Banner />
       <Find />
       <TakeControl />
-      <Numbers />
-      <Reviews />
+      {/*<Numbers />*/}
+      {/*<Reviews />*/}
       <Footer />
     </>
   );

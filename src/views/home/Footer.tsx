@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
           </Box>
           <Box
             className="tw-pt-3 md:tw-w-5/12 lg:tw-w-3/12"
-            sx={{ marginBottom: 0 }}
+            sx={{ marginBottom: 0, display: "none" }}
           >
             <Typography
               className="tw-font-semibold tw-text-[23px]"
@@ -175,7 +175,7 @@ const Footer: React.FC = () => {
                 variant="h3"
                 sx={{ color: "#fff", marginBottom: "15px" }}
               >
-                Subscribe Now
+                Book A Demo
               </Typography>
               <Typography
                 className="tw-font-normal tw-text-[18px] tw-mb-4"
