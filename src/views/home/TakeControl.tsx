@@ -61,8 +61,8 @@ const TakeControl = () => {
                 pb: { xs: 5 },
               }}
             >
-              <span style={{ color: "#1976D2" }}>Take control</span> of <br />
-              us for better
+              <span style={{ color: "#1976D2" }}>CallSine</span> does the heavy
+              lifting
             </Typography>
 
             <Box className="tw-mb-4">
