@@ -232,7 +232,7 @@ const Footer: React.FC = () => {
           align="right"
           sx={{ color: "#F2F4F8" }}
         >
-          © 2023 CallSine. All Rights Reserved.
+          © 2023 CallSine LLC. All Rights Reserved.
           {/*© 2023 Company Name. All rights reserved.*/}
         </Typography>
         <Typography
@@ -245,8 +245,12 @@ const Footer: React.FC = () => {
             variant="text"
             href="https://www.unionresolute.com/privacy-policy/"
             rel="noreferrer noopener"
-            className="tw-text-[#F2F4F8] tw-font-light hover:tw-text-[#F2F4F8] tw-text-[13px] tw-p-0"
+            className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
             target="_blank"
+            sx={{
+              color: "#F2F4F8!important",
+              textDecoration: "none!important",
+            }}
           >
             Privacy
           </Button>{" "}
@@ -254,8 +258,12 @@ const Footer: React.FC = () => {
             variant="text"
             href="#"
             rel="noreferrer noopener"
-            className="tw-text-[#F2F4F8] tw-font-light hover:tw-text-[#F2F4F8] tw-text-[13px] tw-p-0"
-            target="_blank"
+            className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
+            // target="_blank"
+            sx={{
+              color: "#F2F4F8!important",
+              textDecoration: "none!important",
+            }}
           >
             Terms & Conditions
           </Button>
