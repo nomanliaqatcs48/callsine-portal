@@ -53,7 +53,7 @@ const Find = () => {
               />
             </Circle>
             <Typography
-              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px] tw-text-center"
               variant="h2"
               sx={{
                 textDecoration: "none",
@@ -94,7 +94,7 @@ const Find = () => {
               />
             </Circle>
             <Typography
-              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px] tw-text-center"
               variant="h2"
               sx={{
                 textDecoration: "none",
@@ -135,7 +135,7 @@ const Find = () => {
               />
             </Circle>
             <Typography
-              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px] tw-text-center"
               variant="h2"
               sx={{
                 textDecoration: "none",

@@ -63,11 +63,11 @@ const BottomBar = styled("div")(({ theme }) => ({
   display: "flex",
   justifyContent: "space-between",
   backgroundColor: "#1976D2",
-  padding: "26px 182px",
+  // padding: "26px 182px",
   [theme.breakpoints.down("sm")]: {
-    padding: "46px 12px",
-    justifyContent: "center",
-    flexWrap: "wrap",
+    // padding: "46px 12px",
+    // justifyContent: "center",
+    // flexWrap: "wrap",
   },
 }));
 
@@ -194,21 +194,40 @@ const Footer: React.FC = () => {
           </Box>
         </Box>
       </FooterContainer>
-      <BottomBar className="tw-d-flex">
-        <Typography variant="subtitle2" align="right" sx={{ color: "#fff" }}>
+      <BottomBar className="tw-flex tw-flex-col tw-justify-center tw-py-[29px] tw-px-[20px] tw-items-center sm:tw-flex-row sm:tw-justify-between xl:tw-px-[182px]">
+        <Typography
+          className="tw-font-light tw-text-[13px]"
+          variant="subtitle2"
+          align="right"
+          sx={{ color: "#F2F4F8" }}
+        >
           © 2023 CallSine. All Rights Reserved.
           {/*© 2023 Company Name. All rights reserved.*/}
         </Typography>
-        <Typography variant="subtitle2" align="left" sx={{ color: "#fff" }}>
+        <Typography
+          className="tw-flex tw-gap-7 tw-font-light tw-text-[13px]"
+          variant="subtitle2"
+          align="left"
+          sx={{ color: "#F2F4F8" }}
+        >
           <Button
             variant="text"
             href="https://www.unionresolute.com/privacy-policy/"
             rel="noreferrer noopener"
-            className="tw-text-white tw-text-[12px] tw-p-0"
+            className="tw-text-[#F2F4F8] tw-font-light hover:tw-text-[#F2F4F8] tw-text-[13px] tw-p-0"
+            target="_blank"
           >
             Privacy
           </Button>{" "}
-          | Terms & Conditions
+          <Button
+            variant="text"
+            href="#"
+            rel="noreferrer noopener"
+            className="tw-text-[#F2F4F8] tw-font-light hover:tw-text-[#F2F4F8] tw-text-[13px] tw-p-0"
+            target="_blank"
+          >
+            Terms & Conditions
+          </Button>
         </Typography>
       </BottomBar>
     </div>

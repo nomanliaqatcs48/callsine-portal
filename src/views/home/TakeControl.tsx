@@ -53,7 +53,7 @@ const TakeControl = () => {
         >
           <div>
             <Typography
-              className="tw-text-[70px] tw-font-bold tw-pl-0"
+              className="tw-text-[45px] tw-text-center tw-font-bold tw-pl-0 lg:tw-text-left lg:tw-text-[70px]"
               variant="h2"
               align="left"
               sx={{
@@ -67,6 +67,7 @@ const TakeControl = () => {
 
             <Box className="tw-mb-4">
               <Grid
+                className="tw-flex-nowrap"
                 container
                 sx={{
                   display: "flex",
@@ -77,7 +78,15 @@ const TakeControl = () => {
                 <Grid item>
                   <Checkbox
                     defaultChecked
-                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    sx={{
+                      p: 0,
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 30,
+                        [theme.breakpoints.up("sm")]: {
+                          fontSize: 40,
+                        },
+                      },
+                    }}
                     className="tw-pointer-events-none"
                   />
                   {/*<IconSquareRoundedCheckFilled
@@ -89,8 +98,9 @@ const TakeControl = () => {
                 </Grid>
                 <Grid item>
                   <Typography
+                    className="tw-text-[20px] sm:tw-text-[30px]"
                     variant="h4"
-                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
+                    sx={{ fontWeight: 400, ml: 2 }}
                   >
                     AI-Driven Personalization
                     {/*Advanced Search*/}
@@ -98,10 +108,9 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 18,
                   p: { sm: 3 },
                   ml: 4,
                   mt: 0,
@@ -118,6 +127,7 @@ const TakeControl = () => {
 
             <Box className="tw-mb-4">
               <Grid
+                className="tw-flex-nowrap"
                 container
                 sx={{
                   display: "flex",
@@ -128,7 +138,15 @@ const TakeControl = () => {
                 <Grid item>
                   <Checkbox
                     defaultChecked
-                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    sx={{
+                      p: 0,
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 30,
+                        [theme.breakpoints.up("sm")]: {
+                          fontSize: 40,
+                        },
+                      },
+                    }}
                     className="tw-pointer-events-none"
                   />
                   {/*<IconSquareRoundedCheckFilled
@@ -140,8 +158,9 @@ const TakeControl = () => {
                 </Grid>
                 <Grid item>
                   <Typography
+                    className="tw-text-[20px] sm:tw-text-[30px]"
                     variant="h4"
-                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
+                    sx={{ fontWeight: 400, ml: 2 }}
                   >
                     Streamlined Outreach Workflows
                     {/*Browser Extension*/}
@@ -149,10 +168,9 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 18,
                   p: { sm: 3 },
                   ml: 4,
                   mt: 0,
@@ -168,6 +186,7 @@ const TakeControl = () => {
 
             <Box className="tw-mb-4">
               <Grid
+                className="tw-flex-nowrap"
                 container
                 sx={{
                   display: "flex",
@@ -178,7 +197,15 @@ const TakeControl = () => {
                 <Grid item>
                   <Checkbox
                     defaultChecked
-                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    sx={{
+                      p: 0,
+                      "& .MuiSvgIcon-root": {
+                        fontSize: 30,
+                        [theme.breakpoints.up("sm")]: {
+                          fontSize: 40,
+                        },
+                      },
+                    }}
                     className="tw-pointer-events-none"
                   />
                   {/*<IconSquareRoundedCheckFilled
@@ -190,8 +217,9 @@ const TakeControl = () => {
                 </Grid>
                 <Grid item>
                   <Typography
+                    className="tw-text-[20px] sm:tw-text-[30px]"
                     variant="h4"
-                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
+                    sx={{ fontWeight: 400, ml: 2 }}
                   >
                     Data-Driven Learning
                     {/*Bulk Lookups*/}
@@ -199,10 +227,9 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 18,
                   p: { sm: 3 },
                   ml: 4,
                   mt: 0,

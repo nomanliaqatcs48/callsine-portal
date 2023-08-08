@@ -15,8 +15,6 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import userIcon from "../../assets/images/users/user-round.svg";
 
 const ReviewHeading = styled("div")(({ theme }) => ({
-  fontSize: "70px",
-  lineHeight: "106px",
   fontWeight: "700",
   margin: "46px 182px !important",
   [theme.breakpoints.down("md")]: {
@@ -45,7 +43,7 @@ const Reviews = () => {
   return (
     <div style={{ marginTop: "60px", marginBottom: "40px" }}>
       <Box sx={{ marginBottom: "20px" }}>
-        <ReviewHeading>
+        <ReviewHeading className="tw-text-[40px] lg:tw-text-[70px] tw-leading-snug lg:tw-leading-[106px]">
           <p style={{ color: "#1976D2" }}>Happy customers</p>
           <p style={{ color: "#000" }}>us for better</p>
         </ReviewHeading>
