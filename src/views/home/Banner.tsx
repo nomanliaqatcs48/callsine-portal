@@ -21,6 +21,7 @@ const Banner = () => {
   return (
     <>
       <Grid
+        className="xl:tw-min-h-[120vh]"
         container
         sx={{
           paddingRight: "0px",
@@ -33,7 +34,7 @@ const Banner = () => {
           alignItems: "center",
           zIndex: "9",
           position: "relative",
-          minHeight: "100vh",
+          minHeight: "110vh",
         }}
       >
         <img
@@ -44,7 +45,7 @@ const Banner = () => {
             position: "absolute",
             zIndex: "999",
             // minHeight: "100vh",
-            minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
+            minHeight: downMd ? "calc(110vh + 92px)" : "100vh",
             width: "100%",
             mixBlendMode: "overlay",
             opacity: "0.4",
@@ -57,7 +58,7 @@ const Banner = () => {
           style={{
             position: "absolute",
             /*minHeight: "100vh",*/ minHeight: downMd
-              ? "calc(100vh + 92px)"
+              ? "calc(110vh + 92px)"
               : "100vh",
             width: "100%",
           }}
@@ -81,10 +82,10 @@ const Banner = () => {
             },
           }}
         >
-          <Box className="xl:tw-ml-[40px] 2xl:tw-ml-[190px]">
+          <Box className="lg:tw-ml-[30px] xl:tw-ml-[40px] 2xl:tw-ml-[190px]">
             <Typography
               variant="h2"
-              className="tw-text-[40px] md:tw-text-[53px] lg:tw-text-[60px] tw-font-normal xl:tw-text-[80px] xl:tw-leading-[100px] xl:tw-mb-[20px]"
+              className="tw-text-[40px] md:tw-text-[53px] lg:tw-text-[60px] tw-font-normal xl:tw-text-[80px] xl:tw-leading-[100px]"
               sx={{
                 // fontSize: 60,
                 p: { md: 3 },
