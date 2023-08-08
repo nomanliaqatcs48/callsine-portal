@@ -173,7 +173,7 @@ const Footer: React.FC = () => {
           >
             <TextContainer>
               <Button
-                className="tw-rounded-[5px] tw-text-center lg:tw-text-[25px] lg:tw-w-[262px]"
+                className="tw-rounded-[5px] tw-text-center lg:tw-text-[25px] lg:tw-w-[262px] tw-normal-case"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",

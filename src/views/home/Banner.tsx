@@ -163,7 +163,7 @@ const Banner = () => {
                 {/*Sign up for free*/}
               </Button>
               <Button
-                className="lg:tw-text-[25px] tw-rounded-[5px]"
+                className="lg:tw-text-[25px] tw-rounded-[5px] tw-normal-case"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",
