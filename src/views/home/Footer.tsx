@@ -225,7 +225,7 @@ const Footer: React.FC = () => {
           </Box>
         </Box>
       </FooterContainer>
-      <BottomBar className="tw-flex tw-flex-col tw-justify-center tw-py-[29px] tw-px-[20px] tw-items-center sm:tw-flex-row sm:tw-justify-between xl:tw-px-[182px]">
+      <BottomBar className="tw-flex tw-flex-col tw-justify-center tw-py-[29px] tw-px-[20px] tw-items-center sm:tw-flex-row sm:tw-justify-between lg:tw-px-[96px] 2xl:tw-px-[240px]">
         <Typography
           className="tw-font-light tw-text-[13px]"
           variant="subtitle2"
