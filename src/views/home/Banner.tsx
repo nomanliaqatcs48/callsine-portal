@@ -21,7 +21,7 @@ const Banner = () => {
   return (
     <>
       <Grid
-        className="xl:tw-min-h-[120vh]"
+        // className="xl:tw-min-h-[120vh]"
         container
         sx={{
           paddingRight: "0px",
@@ -34,7 +34,7 @@ const Banner = () => {
           alignItems: "center",
           zIndex: "9",
           position: "relative",
-          minHeight: "110vh",
+          minHeight: "100vh",
         }}
       >
         <img
@@ -45,7 +45,7 @@ const Banner = () => {
             position: "absolute",
             zIndex: "999",
             // minHeight: "100vh",
-            minHeight: downMd ? "calc(110vh + 92px)" : "100vh",
+            minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
             width: "100%",
             mixBlendMode: "overlay",
             opacity: "0.4",
@@ -58,7 +58,7 @@ const Banner = () => {
           style={{
             position: "absolute",
             /*minHeight: "100vh",*/ minHeight: downMd
-              ? "calc(110vh + 92px)"
+              ? "calc(100vh + 92px)"
               : "100vh",
             width: "100%",
           }}
