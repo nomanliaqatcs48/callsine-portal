@@ -10,6 +10,8 @@ const config = {
     BASE_URL: env.REACT_APP_SERVICE_BASE_URL,
   },
   node_env: env.NODE_ENV,
+  googleClientId: env.REACT_APP_GOOGLE_CLIENT_ID,
+  googleClientSecret: env.REACT_APP_GOOGLE_CLIENT_SECRET,
 };
 
 export default config;
