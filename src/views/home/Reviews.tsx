@@ -15,9 +15,9 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 import userIcon from "../../assets/images/users/user-round.svg";
 
 const ReviewHeading = styled("div")(({ theme }) => ({
-  fontSize: "42px",
-  lineHeight: "48px",
-  fontWeight: "1000",
+  fontSize: "70px",
+  lineHeight: "106px",
+  fontWeight: "700",
   margin: "46px 182px !important",
   [theme.breakpoints.down("md")]: {
     margin: "46px 10px !important",
@@ -71,8 +71,9 @@ const Reviews = () => {
           >
             <CardContent>
               <Typography
+                className="tw-leading-[27px]"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   letterSpacing: "0px",
                   fontWeight: "normal",
                   fontStyle: "normal",
@@ -89,16 +90,16 @@ const Reviews = () => {
                     src={userIcon}
                     alt="YourImage"
                     style={{
-                      height: "75px",
-                      width: "75px",
+                      height: "100px",
+                      width: "100px",
                       borderRadius: "50%",
                     }}
                   />
                   <div>
                     <Typography
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: "600",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         color: "#000",
                         marginLeft: "10px",
                         marginBottom: "5px",
@@ -108,7 +109,7 @@ const Reviews = () => {
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: "16px",
+                        fontSize: "20px",
                         color: "#8B8B8B",
                         marginLeft: "10px",
                       }}
@@ -134,8 +135,9 @@ const Reviews = () => {
           >
             <CardContent>
               <Typography
+                className="tw-leading-[27px]"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   letterSpacing: "0px",
                   fontWeight: "normal",
                   fontStyle: "normal",
@@ -152,16 +154,16 @@ const Reviews = () => {
                     src={userIcon}
                     alt="YourImage"
                     style={{
-                      height: "75px",
-                      width: "75px",
+                      height: "100px",
+                      width: "100px",
                       borderRadius: "50%",
                     }}
                   />
                   <div>
                     <Typography
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: "600",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         color: "#000",
                         marginLeft: "10px",
                         marginBottom: "5px",
@@ -171,7 +173,7 @@ const Reviews = () => {
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: "16px",
+                        fontSize: "20px",
                         color: "#8B8B8B",
                         marginLeft: "10px",
                       }}
@@ -197,8 +199,9 @@ const Reviews = () => {
           >
             <CardContent>
               <Typography
+                className="tw-leading-[27px]"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   letterSpacing: "0px",
                   fontWeight: "normal",
                   fontStyle: "normal",
@@ -215,16 +218,16 @@ const Reviews = () => {
                     src={userIcon}
                     alt="YourImage"
                     style={{
-                      height: "75px",
-                      width: "75px",
+                      height: "100px",
+                      width: "100px",
                       borderRadius: "50%",
                     }}
                   />
                   <div>
                     <Typography
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: "600",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         color: "#000",
                         marginLeft: "10px",
                         marginBottom: "5px",
@@ -234,7 +237,7 @@ const Reviews = () => {
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: "16px",
+                        fontSize: "20px",
                         color: "#8B8B8B",
                         marginLeft: "10px",
                       }}
@@ -260,8 +263,9 @@ const Reviews = () => {
           >
             <CardContent>
               <Typography
+                className="tw-leading-[27px]"
                 sx={{
-                  fontSize: "16px",
+                  fontSize: "18px",
                   letterSpacing: "0px",
                   fontWeight: "normal",
                   fontStyle: "normal",
@@ -278,16 +282,16 @@ const Reviews = () => {
                     src={userIcon}
                     alt="YourImage"
                     style={{
-                      height: "75px",
-                      width: "75px",
+                      height: "100px",
+                      width: "100px",
                       borderRadius: "50%",
                     }}
                   />
                   <div>
                     <Typography
                       sx={{
-                        fontSize: "18px",
-                        fontWeight: "600",
+                        fontSize: "20px",
+                        fontWeight: "700",
                         color: "#000",
                         marginLeft: "10px",
                         marginBottom: "5px",
@@ -297,7 +301,7 @@ const Reviews = () => {
                     </Typography>
                     <Typography
                       sx={{
-                        fontSize: "16px",
+                        fontSize: "20px",
                         color: "#8B8B8B",
                         marginLeft: "10px",
                       }}

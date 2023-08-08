@@ -1,6 +1,8 @@
 import React from "react";
 import {
+  Box,
   Button,
+  Checkbox,
   Grid,
   Paper,
   Typography,
@@ -10,6 +12,7 @@ import {
 import { Image } from "mui-image";
 import imageMobileHand from "../../assets/images/users/image-mobile-hand.png";
 import { IconSquareRoundedCheckFilled } from "@tabler/icons-react";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
 
 const TakeControl = () => {
   const theme = useTheme();
@@ -50,20 +53,19 @@ const TakeControl = () => {
         >
           <div>
             <Typography
+              className="tw-text-[70px] tw-font-bold tw-pl-0"
               variant="h2"
-              align="center"
+              align="left"
               sx={{
-                fontSize: 42,
                 p: { xs: 3, md: 3 },
                 pb: { xs: 5 },
-                fontWeight: 1000,
               }}
             >
               <span style={{ color: "#1976D2" }}>Take control</span> of <br />
               us for better
             </Typography>
 
-            <div>
+            <Box className="tw-mb-4">
               <Grid
                 container
                 sx={{
@@ -73,17 +75,22 @@ const TakeControl = () => {
                 }}
               >
                 <Grid item>
-                  <IconSquareRoundedCheckFilled
+                  <Checkbox
+                    defaultChecked
+                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    className="tw-pointer-events-none"
+                  />
+                  {/*<IconSquareRoundedCheckFilled
                     size={28}
                     strokeWidth={2}
                     color="red"
                     fill="#1976D2"
-                  />
+                  />*/}
                 </Grid>
                 <Grid item>
                   <Typography
                     variant="h4"
-                    sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
+                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
                   >
                     AI-Driven Personalization
                     {/*Advanced Search*/}
@@ -91,11 +98,12 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
+                className="tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 16,
+                  fontSize: 18,
                   p: { sm: 3 },
-                  ml: 3,
+                  ml: 4,
                   mt: 0,
                   fontWeight: 400,
                 }}
@@ -106,9 +114,9 @@ const TakeControl = () => {
                 contacts and
                 <br /> streamlined engagement workflows powered by AI.*/}
               </Typography>
-            </div>
+            </Box>
 
-            <div>
+            <Box className="tw-mb-4">
               <Grid
                 container
                 sx={{
@@ -118,17 +126,22 @@ const TakeControl = () => {
                 }}
               >
                 <Grid item>
-                  <IconSquareRoundedCheckFilled
+                  <Checkbox
+                    defaultChecked
+                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    className="tw-pointer-events-none"
+                  />
+                  {/*<IconSquareRoundedCheckFilled
                     size={28}
                     strokeWidth={2}
                     color="red"
                     fill="#1976D2"
-                  />
+                  />*/}
                 </Grid>
                 <Grid item>
                   <Typography
                     variant="h4"
-                    sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
+                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
                   >
                     Streamlined Outreach Workflows
                     {/*Browser Extension*/}
@@ -136,11 +149,12 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
+                className="tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 16,
+                  fontSize: 18,
                   p: { sm: 3 },
-                  ml: 3,
+                  ml: 4,
                   mt: 0,
                   fontWeight: 400,
                 }}
@@ -150,9 +164,9 @@ const TakeControl = () => {
                 {/*Prospect on popular social media sites and discover company
                 <br /> connections from any website.*/}
               </Typography>
-            </div>
+            </Box>
 
-            <div>
+            <Box className="tw-mb-4">
               <Grid
                 container
                 sx={{
@@ -162,17 +176,22 @@ const TakeControl = () => {
                 }}
               >
                 <Grid item>
-                  <IconSquareRoundedCheckFilled
+                  <Checkbox
+                    defaultChecked
+                    sx={{ p: 0, "& .MuiSvgIcon-root": { fontSize: 40 } }}
+                    className="tw-pointer-events-none"
+                  />
+                  {/*<IconSquareRoundedCheckFilled
                     size={28}
                     strokeWidth={2}
                     color="#fff"
                     fill="#0077b5"
-                  />
+                  />*/}
                 </Grid>
                 <Grid item>
                   <Typography
                     variant="h4"
-                    sx={{ fontSize: 22, fontWeight: 400, ml: 2 }}
+                    sx={{ fontSize: 30, fontWeight: 400, ml: 2 }}
                   >
                     Data-Driven Learning
                     {/*Bulk Lookups*/}
@@ -180,11 +199,12 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
+                className="tw-pt-3"
                 variant="h4"
                 sx={{
-                  fontSize: 16,
+                  fontSize: 18,
                   p: { sm: 3 },
-                  ml: 3,
+                  ml: 4,
                   mt: 0,
                   fontWeight: 400,
                 }}
@@ -195,7 +215,7 @@ const TakeControl = () => {
                 criteria
                 <br /> instantly.*/}
               </Typography>
-            </div>
+            </Box>
           </div>
         </Grid>
       </Grid>

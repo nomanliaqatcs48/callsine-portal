@@ -4,8 +4,8 @@ import { styled } from "@mui/system";
 import bg from "../../assets/images/svg/number-bg.svg";
 
 const Container = styled("div")(({ theme }) => ({
-  padding: "126px 182px",
-  [theme.breakpoints.down("sm")]: {
+  padding: "126px 90px",
+  [theme.breakpoints.down("xl")]: {
     padding: "40px 16px",
   },
   backgroundImage: `url(${bg})`,
@@ -34,6 +34,7 @@ const Numbers: React.FC = () => {
     <Container>
       <Grid item xs={12} sm={12} alignItems={"center"}>
         <Typography
+          className="tw-font-normal tw-leading-[60px]"
           variant="h1"
           align="center"
           sx={{
@@ -41,7 +42,6 @@ const Numbers: React.FC = () => {
             color: "#fff",
             marginBottom: "45px",
             fontSize: "40px",
-            fontWeight: 200,
           }}
         >
           RocketReach, connecting made simple
@@ -51,6 +51,7 @@ const Numbers: React.FC = () => {
         <Grid item xs={12} lg={4}>
           <Part>
             <Typography
+              className="tw-font-semibold tw-leading-[106px]"
               variant="h1"
               sx={{
                 textDecoration: "none",
@@ -67,10 +68,8 @@ const Numbers: React.FC = () => {
                 textDecoration: "none",
                 color: "#fff",
                 fontWeight: 400,
-                fontSize: "28px",
-                [theme.breakpoints.down("md")]: {
-                  textAlign: "center",
-                },
+                fontSize: "30px",
+                textAlign: "center",
               }}
             >
               Million Profiles
@@ -80,6 +79,7 @@ const Numbers: React.FC = () => {
         <Grid item xs={12} lg={4}>
           <Part>
             <Typography
+              className="tw-font-semibold tw-leading-[106px]"
               variant="h1"
               sx={{
                 textDecoration: "none",
@@ -96,10 +96,8 @@ const Numbers: React.FC = () => {
                 textDecoration: "none",
                 color: "#fff",
                 fontWeight: 400,
-                fontSize: "28px",
-                [theme.breakpoints.down("md")]: {
-                  textAlign: "center",
-                },
+                fontSize: "30px",
+                textAlign: "center",
               }}
             >
               Million Companies
@@ -109,6 +107,7 @@ const Numbers: React.FC = () => {
         <Grid item xs={12} lg={4}>
           <Part sx={{ border: "none" }}>
             <Typography
+              className="tw-font-semibold tw-leading-[106px]"
               variant="h1"
               sx={{
                 textDecoration: "none",
@@ -125,10 +124,8 @@ const Numbers: React.FC = () => {
                 textDecoration: "none",
                 color: "#fff",
                 fontWeight: 400,
-                fontSize: "28px",
-                [theme.breakpoints.down("md")]: {
-                  textAlign: "center",
-                },
+                fontSize: "30px",
+                textAlign: "center",
               }}
             >
               Million Searches Run

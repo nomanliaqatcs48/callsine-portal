@@ -39,8 +39,9 @@ const Logo = styled("img")({
 });
 
 const SmallText = styled("p")({
-  fontSize: "12px",
+  fontSize: "16px",
   marginBottom: "4px",
+  lineHeight: "26px",
 });
 
 const SocialIconsContainer = styled("div")({
@@ -124,56 +125,62 @@ const Footer: React.FC = () => {
               algorithm that goes deep in massively large data sets to
               understand, summarize, generate, and predict new email content.
             </SmallText>
-            {/*<SmallText sx={{ color: "#B5B5B5" }}>
-              CallSine's AI uses a large language model (LLM) and leverages an
-            </SmallText>
-            <SmallText sx={{ color: "#B5B5B5" }}>
-              algorithm that goes deep in massively large data sets to
-            </SmallText>
-            <SmallText sx={{ color: "#B5B5B5" }}>
-              understand, summarize, generate, and predict new email content.
-            </SmallText>*/}
-            {/*<SmallText sx={{ color: "#B5B5B5" }}>
-              Find, contact, and close your ideal buyers with over
-            </SmallText>
-            <SmallText sx={{ color: "#B5B5B5" }}>
-              265M contacts and streamlined engagement
-            </SmallText>
-            <SmallText sx={{ color: "#B5B5B5" }}>
-              workflows powered by AI.
-            </SmallText>*/}
             {/*<SocialIconsContainer>
               <IconBrandFacebookFilled />
               <IconBrandFacebookFilled />
               <IconBrandFacebookFilled />
             </SocialIconsContainer>*/}
           </Box>
-          <Box className="md:tw-w-5/12 lg:tw-w-3/12" sx={{ marginBottom: 0 }}>
-            <Typography variant="h3" sx={{ color: "#fff" }}>
+          <Box
+            className="tw-pt-3 md:tw-w-5/12 lg:tw-w-3/12"
+            sx={{ marginBottom: 0 }}
+          >
+            <Typography
+              className="tw-font-semibold tw-text-[23px]"
+              variant="h3"
+              sx={{ color: "#fff", marginBottom: "15px" }}
+            >
               Contact Us
             </Typography>
-            <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
+            <Typography
+              className="tw-font-normal tw-text-[18px] tw-mb-1"
+              variant="subtitle1"
+              sx={{ color: "#B5B5B5" }}
+            >
               info@callsine.com
               {/*callsine@gmail.com*/}
             </Typography>
-            <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
+            <Typography
+              className="tw-font-normal tw-text-[18px] tw-mb-1 tw-leading-[27px]"
+              variant="subtitle1"
+              sx={{ color: "#B5B5B5" }}
+            >
               132, My Street, Kingston, New York 12401
             </Typography>
-            <Typography variant="subtitle1" sx={{ color: "#B5B5B5" }}>
+            <Typography
+              className="tw-font-normal tw-text-[18px]"
+              variant="subtitle1"
+              sx={{ color: "#B5B5B5" }}
+            >
               (555) 555-1234
             </Typography>
           </Box>
-          <Box className="md:tw-w-6/12 lg:tw-w-4/12" sx={{ marginBottom: 0 }}>
+          <Box
+            className="tw-pt-3 md:tw-w-6/12 lg:tw-w-4/12"
+            sx={{ marginBottom: 0 }}
+          >
             <TextContainer>
               <Typography
+                className="tw-font-semibold tw-text-[23px]"
                 variant="h3"
-                sx={{ color: "#fff", marginBottom: "3px" }}
+                sx={{ color: "#fff", marginBottom: "15px" }}
               >
                 Subscribe Now
               </Typography>
               <Typography
+                className="tw-font-normal tw-text-[18px] tw-mb-4"
                 variant="h5"
-                sx={{ color: "#B5B5B5", fontWeight: 400, marginBottom: "5px" }}
+                sx={{ color: "#B5B5B5", marginBottom: "5px" }}
               >
                 Sign up if you want to get notifications
               </Typography>

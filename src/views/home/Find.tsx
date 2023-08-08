@@ -25,11 +25,11 @@ const Circle = styled("div")({
   display: "flex",
   alignItems: "center",
   justifyContent: "center",
-  width: "60px",
-  height: "60px",
+  width: "80px",
+  height: "80px",
   borderRadius: "50%",
   backgroundColor: "#FFFFFF",
-  marginBottom: "10px",
+  marginBottom: "15px",
 });
 
 const Find = () => {
@@ -46,34 +46,33 @@ const Find = () => {
           >
             <Circle>
               <IconSearch
-                size={25}
+                size={36}
                 strokeWidth={2}
-                color="#0077b5"
-                fill="#0077b5"
+                color="#2C2C2C"
+                // fill="#0077b5"
               />
             </Circle>
             <Typography
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
               variant="h2"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
                 marginBottom: "5px",
                 fontSize: "30px",
-                fontWeight: 200,
               }}
             >
               Load Contacts
               {/*Find contact*/}
             </Typography>
             <Typography
+              className="tw-font-light tw-text-[18px]"
               variant="subtitle1"
               align="center"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
-                fontSize: "14px",
-                fontWeight: 100,
-                opacity: 0.7,
+                opacity: 1,
               }}
             >
               CallSine effortlessly imports and manages your contacts for
@@ -88,34 +87,33 @@ const Find = () => {
           <Part>
             <Circle>
               <IconThumbUpFilled
-                size={25}
+                size={40}
                 strokeWidth={2}
-                color="#fff"
-                fill="#0077b5"
+                color="#2C2C2C"
+                // fill="#0077b5"
               />
             </Circle>
             <Typography
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
               variant="h2"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
                 marginBottom: "5px",
                 fontSize: "30px",
-                fontWeight: 200,
               }}
             >
               Train AI
               {/*Find contact*/}
             </Typography>
             <Typography
+              className="tw-font-light tw-text-[18px]"
               variant="subtitle1"
               align="center"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
-                fontSize: "14px",
-                fontWeight: 100,
-                opacity: 0.7,
+                opacity: 1,
               }}
             >
               Empower your sales with our AI, honed to perfection for
@@ -130,34 +128,33 @@ const Find = () => {
           <Part>
             <Circle>
               <IconUsers
-                size={25}
+                size={36}
                 strokeWidth={2}
-                color="#0077b5"
-                fill="#0077b5"
+                color="#2C2C2C"
+                fill="#2C2C2C"
               />
             </Circle>
             <Typography
+              className="tw-font-normal tw-leading-[46px] tw-mb-[10px]"
               variant="h2"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
                 marginBottom: "5px",
                 fontSize: "30px",
-                fontWeight: 200,
               }}
             >
               Send Emails
               {/*Find contact*/}
             </Typography>
             <Typography
+              className="tw-font-light tw-text-[18px]"
               variant="subtitle1"
               align="center"
               sx={{
                 textDecoration: "none",
                 color: "#fff",
-                fontSize: "14px",
-                fontWeight: 100,
-                opacity: 0.7,
+                opacity: 1,
               }}
             >
               Experience efficient and targeted email campaigns with CallSine's

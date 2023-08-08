@@ -101,7 +101,7 @@ const Banner = () => {
               {/*Reach every buyer <br /> on earth*/}
             </Typography>
 
-            <div>
+            <Box className="tw-mb-10">
               <Typography
                 variant="h4"
                 className="tw-text-[20px] md:tw-text-[26px] xl:tw-text-[30px] xl:tw-leading-[46px]"
@@ -125,7 +125,7 @@ const Banner = () => {
                 <br />
                 powered by AI.*/}
               </Typography>
-            </div>
+            </Box>
             <Box
               className="md:tw-pl-[22px]"
               sx={{
@@ -140,11 +140,14 @@ const Banner = () => {
               }}
             >
               <Button
-                className="lg:tw-text-[25px]"
+                className="lg:tw-text-[25px] tw-rounded-[5px]"
                 sx={{
                   backgroundColor: "#fff !important",
                   color: "#1976D2",
                   padding: "12px 24px",
+                  [theme.breakpoints.up("xl")]: {
+                    padding: "16px 45px",
+                  },
                   fontSize: "16px",
                   fontWeight: "400",
                 }}
@@ -154,11 +157,14 @@ const Banner = () => {
                 {/*Sign up for free*/}
               </Button>
               <Button
-                className="lg:tw-text-[25px]"
+                className="lg:tw-text-[25px] tw-rounded-[5px]"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",
                   padding: "12px 24px",
+                  [theme.breakpoints.up("xl")]: {
+                    padding: "15px 47px",
+                  },
                   marginLeft: 3,
                   border: "1px solid #fff",
                   fontSize: "16px",
