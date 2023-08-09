@@ -90,7 +90,7 @@ const PricingBox = () => {
             <CustomCard>
               <CustomHeader>Monthly Plan</CustomHeader>
               <CustomDesc>
-                Basic writing suggestions and tone detection.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </CustomDesc>
               <CustomButton>Get Started</CustomButton>
             </CustomCard>
@@ -99,7 +99,7 @@ const PricingBox = () => {
             <CustomCard>
               <CustomHeader>Yearly Plan</CustomHeader>
               <CustomDesc>
-                Basic writing suggestions and tone detection.
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit
               </CustomDesc>
               <CustomButton>Get Started</CustomButton>
             </CustomCard>
