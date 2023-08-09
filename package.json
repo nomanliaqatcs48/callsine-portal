@@ -71,10 +71,10 @@
   "scripts": {
     "start": "dotenv -e .env.local react-scripts start",
     "start-marc-dev": "dotenv -e .env.marc-local react-scripts start",
-    "start-production": "dotenv -e .env react-scripts start",
+    "start-production": "dotenv -e .env.production -c production react-scripts start",
     "start-staging": "dotenv -e .env.staging react-scripts start",
     "build": "dotenv -e .env.local react-scripts build",
-    "build:production": "dotenv -e .env react-scripts build",
+    "build:production": "dotenv -e .env.production -c production react-scripts build",
     "build:staging": "dotenv -e .env.staging react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
