@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Divider, Grid, Stack, Typography, useMediaQuery } from "@mui/material";
+import { Grid, useMediaQuery } from "@mui/material";
 
 // project imports
 import AuthWrapper from "../AuthWrapper";
@@ -10,12 +10,26 @@ import AuthCardWrapper from "../AuthCardWrapper";
 import AuthLogin from "../auth-forms/AuthLogin";
 import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
-
+import GoogleLoginBtn from "../auth-forms/GoogleLoginBtn";
+import { useEffect } from "react";
+import { gapi } from "gapi-script";
+import config from "src/config";
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
   const theme = useTheme();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
+
+  useEffect(() => {
+    function start() {
+      gapi.client.init({
+        clientId: config.googleClientId,
+        scope: "",
+      });
+    }
+
+    gapi.load("client:auth2", start);
+  });
 
   return (
     <AuthWrapper>
@@ -45,6 +59,7 @@ const Login = () => {
                       <Logo />
                     </Link>
                   </Grid>
+
                   <Grid item xs={12}>
                     <Grid
                       container
@@ -75,6 +90,10 @@ const Login = () => {
                         </Stack>
                       </Grid>*/}
                     </Grid>
+                  </Grid>
+
+                  <Grid item xs={12}>
+                    <GoogleLoginBtn />
                   </Grid>
                   <Grid item xs={12}>
                     <AuthLogin />

@@ -15,4 +15,5 @@ export const endpoints = {
   USER_DATA: "/api/user-data/",
   TEAMS: "/api/teams/",
   NEWPROMPT: "/api/new-prompt/",
+  GOOGLEAUTH: "/google-auth/",
 };
