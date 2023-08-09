@@ -8,6 +8,7 @@ import Unauthenticated from "../ui-component/authentication/Unauthenticated";
 
 const Home = Loadable(lazy(() => import("../views/home/index")));
 const HomePage = Loadable(lazy(() => import("../views/home")));
+const PricingPage = Loadable(lazy(() => import("../views/pricing")));
 
 const AuthenticationRoutes = {
   path: "/",
@@ -24,6 +25,10 @@ const AuthenticationRoutes = {
     {
       path: "/asdasdleadresolution07202023!$",
       element: <HomePage />,
+    },
+    {
+      path: "/pricing",
+      element: <PricingPage />,
     },
   ],
 };
