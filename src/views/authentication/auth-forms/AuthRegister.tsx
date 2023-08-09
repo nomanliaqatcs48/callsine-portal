@@ -50,6 +50,7 @@ const AuthRegister = ({ ...others }) => {
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state: any) => state.customization);
   const [showPassword1, setShowPassword1] = useState<boolean>(false);
+  const [showPassword2, setShowPassword2] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(true);
 
   const [strength, setStrength] = useState(0);
@@ -65,7 +66,15 @@ const AuthRegister = ({ ...others }) => {
     setShowPassword1(!showPassword1);
   };
 
+  const handleClickShowPassword2 = () => {
+    setShowPassword2(!showPassword2);
+  };
+
   const handleMouseDownPassword1 = (event: any) => {
+    event.preventDefault();
+  };
+
+  const handleMouseDownPassword2 = (event: any) => {
     event.preventDefault();
   };
 
@@ -79,6 +88,10 @@ const AuthRegister = ({ ...others }) => {
     changePassword("123456");
   }, []);
 
+  const checkPasswords = (values: any) => {
+    return values?.password1 === values?.password2;
+  };
+
   const onSubmit = async (
     values: any,
     { setErrors, setStatus, setSubmitting }: any
@@ -86,6 +99,13 @@ const AuthRegister = ({ ...others }) => {
     devLog(() => {
       console.log("onSubmit() values", values);
     });
+
+    if (!checkPasswords(values)) {
+      setStatus({ success: false });
+      setErrors({ submit: "Passwords don't match." });
+      setSubmitting(false);
+      return;
+    }
 
     try {
       devLog(() => {
@@ -116,6 +136,10 @@ const AuthRegister = ({ ...others }) => {
           setErrors({ submit: err?.response?.data?.email[0] });
         } else if (err?.response?.data?.password1?.length > 0) {
           setErrors({ submit: err?.response?.data?.password1[0] });
+        } else if (err?.response?.data?.password2?.length > 0) {
+          setErrors({ submit: err?.response?.data?.password2[0] });
+        } else if (err?.response?.data?.username?.length > 0) {
+          setErrors({ submit: err?.response?.data?.username[0] });
         } else {
           setErrors({ submit: "There's something wrong." });
         }
@@ -132,7 +156,9 @@ const AuthRegister = ({ ...others }) => {
           first_name: "",
           last_name: "",
           email: "",
+          username: "",
           password1: "",
+          password2: "",
           submit: null,
         }}
         validationSchema={Yup.object().shape({
@@ -142,7 +168,11 @@ const AuthRegister = ({ ...others }) => {
             .email("Must be a valid email")
             .max(255)
             .required("Email is required"),
+          username: Yup.string().max(255).required("Username is required"),
           password1: Yup.string().max(255).required("Password is required"),
+          password2: Yup.string()
+            .max(255)
+            .required("Confirm password is required"),
         })}
         onSubmit={onSubmit}
       >
@@ -328,12 +358,55 @@ const AuthRegister = ({ ...others }) => {
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
                 <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
+                  Username
+                </div>
+                <TextField
+                  required
+                  fullWidth
+                  type="text"
+                  value={values.username}
+                  name="username"
+                  onBlur={handleBlur}
+                  onChange={handleChange}
+                  inputProps={{}}
+                  sx={{
+                    "& input.MuiOutlinedInput-input": {
+                      backgroundColor: "#FFF",
+                      borderRadius: "10px",
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        border: "1px solid #ECEFFF",
+                        marginTop: "0px",
+                        boxShadow: "0px 1px 3px #0000001A",
+                      },
+                      "&:hover fieldset": {
+                        border: "1px solid #222",
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: "1px solid #222",
+                      },
+                    },
+                  }}
+                />
+
+                {touched.username && errors.username && (
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-username-register"
+                  >
+                    {errors.username}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+                <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                   Password
                 </div>
                 <TextField
                   required
                   fullWidth
-                  type="password"
+                  type={showPassword1 ? "text" : "password"}
                   value={values.password1}
                   name="password1"
                   onBlur={handleBlur}
@@ -368,6 +441,50 @@ const AuthRegister = ({ ...others }) => {
                     id="standard-weight-helper-text-password1-register"
                   >
                     {errors.password1}
+                  </FormHelperText>
+                )}
+              </Grid>
+              <Grid item xs={12} sx={{ mt: 2 }}>
+                <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
+                  Confirm Password
+                </div>
+                <TextField
+                  required
+                  fullWidth
+                  type={showPassword2 ? "text" : "password"}
+                  value={values.password2}
+                  name="password2"
+                  onBlur={handleBlur}
+                  onChange={(e) => {
+                    handleChange(e);
+                  }}
+                  inputProps={{}}
+                  sx={{
+                    "& input.MuiOutlinedInput-input": {
+                      backgroundColor: "#FFF",
+                      borderRadius: "10px",
+                    },
+                    "& .MuiOutlinedInput-root": {
+                      "& fieldset": {
+                        border: "1px solid #ECEFFF",
+                        marginTop: "0px",
+                        boxShadow: "0px 1px 3px #0000001A",
+                      },
+                      "&:hover fieldset": {
+                        border: "1px solid #222",
+                      },
+                      "&.Mui-focused fieldset": {
+                        border: "1px solid #222",
+                      },
+                    },
+                  }}
+                />
+                {touched.password2 && errors.password2 && (
+                  <FormHelperText
+                    error
+                    id="standard-weight-helper-text-password2-register"
+                  >
+                    {errors.password2}
                   </FormHelperText>
                 )}
               </Grid>
