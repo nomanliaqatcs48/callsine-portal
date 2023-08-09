@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 // material-ui
@@ -41,12 +41,14 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { devLog, devLogError } from "../../../helpers/logs";
 import { loginService, signupService } from "../../../services/auth.service";
 import { save, saveString } from "../../../utils/storage";
+import { toast } from "react-toastify";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
 const AuthRegister = ({ ...others }) => {
   const theme: any = useTheme();
   const scriptedRef = useScriptRef();
+  const navigate = useNavigate();
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
   const customization = useSelector((state: any) => state.customization);
   const [showPassword1, setShowPassword1] = useState<boolean>(false);
@@ -116,11 +118,25 @@ const AuthRegister = ({ ...others }) => {
         console.log("res", res);
       });
       if (res?.data) {
-        await saveString("isAuthenticated", "yes");
-        await saveString("token", res.data.access_token);
-        await saveString("refresh", res.data.refresh_token);
-        await save("profile", res.data.user);
-        window.location.href = "/dashboard";
+        // await saveString("isAuthenticated", "yes");
+        // await saveString("token", res.data.access_token);
+        // await saveString("refresh", res.data.refresh_token);
+        // await save("profile", res.data.user);
+        // window.location.href = "/dashboard";
+        navigate("/login");
+        toast.success(
+          "Your account has been registered successfully. You can now login.",
+          {
+            position: "top-right",
+            autoClose: false,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "light",
+          }
+        );
         if (scriptedRef.current) {
           setStatus({ success: true });
           setSubmitting(false);
