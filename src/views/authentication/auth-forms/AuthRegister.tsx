@@ -65,13 +65,9 @@ const AuthRegister = ({ ...others }) => {
     setShowPassword1(!showPassword1);
   };
 
-
-
   const handleMouseDownPassword1 = (event: any) => {
     event.preventDefault();
   };
-
-
 
   const changePassword = (value: any) => {
     const temp = strengthIndicator(value);
@@ -82,8 +78,6 @@ const AuthRegister = ({ ...others }) => {
   useEffect(() => {
     changePassword("123456");
   }, []);
-
-
 
   const onSubmit = async (
     values: any,
@@ -133,7 +127,6 @@ const AuthRegister = ({ ...others }) => {
 
   return (
     <>
-
       <Formik
         initialValues={{
           first_name: "",
@@ -150,7 +143,6 @@ const AuthRegister = ({ ...others }) => {
             .max(255)
             .required("Email is required"),
           password1: Yup.string().max(255).required("Password is required"),
-
         })}
         onSubmit={onSubmit}
       >
@@ -166,32 +158,38 @@ const AuthRegister = ({ ...others }) => {
           <form noValidate onSubmit={handleSubmit} {...others}>
             <Grid>
               <Typography
+                className="tw-text-[40px] tw-font-semibold"
                 sx={{
-                  font: 'normal normal 600 40px/80px',
+                  // font: 'normal normal 600 40px/80px',
                   letterSpacing: "2px",
-                  color: '#000',
-                  fontSize: '40px',
-                  fontWeight: '600'
-                }}>
+                  color: "#000",
+                }}
+              >
                 Create An Account
               </Typography>
               <Typography
+                className="tw-text-[18px] tw-font-normal tw-tracking-[0.9px]"
                 sx={{
-                  font: 'normal normal normal 18px/80px',
-                  letterSpacing: "0.9px",
-                  color: '#000',
-                  display: 'flex'
-                }}>
+                  // font: "normal normal normal 18px/80px",
+                  // letterSpacing: "0.9px",
+                  color: "#000",
+                  display: "flex",
+                }}
+              >
                 Already an user?
-
-                <Link to="/login" className="tw-text-xs tw-no-underline hover:tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary">
+                <Link
+                  to="/login"
+                  className="tw-no-underline hover:tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary"
+                >
                   <Typography
+                    className="tw-text-[18px] tw-font-normal tw-tracking-[0.9px]"
                     sx={{
-                      font: 'normal normal normal 18px/80px',
-                      letterSpacing: "0.9px",
-                      color: '#1976D2',
-                      marginLeft: '5px'
-                    }}>
+                      // font: "normal normal normal 18px/80px",
+                      // letterSpacing: "0.9px",
+                      color: "#1976D2",
+                      marginLeft: "5px",
+                    }}
+                  >
                     Sign In
                   </Typography>
                 </Link>
@@ -201,14 +199,16 @@ const AuthRegister = ({ ...others }) => {
             <Box sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <div className="tw-text-xs tw-py-3 tw-font-medium">First Name</div>
+                  <div className="tw-text-xs tw-py-3 tw-font-medium">
+                    First Name
+                  </div>
                   <TextField
                     required
                     fullWidth
                     sx={{
-                      '& input.MuiOutlinedInput-input': {
-                        backgroundColor: '#FFF',
-                        borderRadius: '10px'
+                      "& input.MuiOutlinedInput-input": {
+                        backgroundColor: "#FFF",
+                        borderRadius: "10px",
                       },
                       "& .MuiOutlinedInput-root": {
                         "& fieldset": {
@@ -239,10 +239,11 @@ const AuthRegister = ({ ...others }) => {
                       {errors.first_name}
                     </FormHelperText>
                   )}
-
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                <div className="tw-text-xs tw-py-3 tw-font-medium">Last Name</div>
+                  <div className="tw-text-xs tw-py-3 tw-font-medium">
+                    Last Name
+                  </div>
                   <TextField
                     required
                     fullWidth
@@ -253,9 +254,9 @@ const AuthRegister = ({ ...others }) => {
                     onChange={handleChange}
                     inputProps={{}}
                     sx={{
-                      '& input.MuiOutlinedInput-input': {
-                        backgroundColor: '#FFF',
-                        borderRadius: '10px'
+                      "& input.MuiOutlinedInput-input": {
+                        backgroundColor: "#FFF",
+                        borderRadius: "10px",
                       },
                       "& .MuiOutlinedInput-root": {
                         "& fieldset": {
@@ -284,7 +285,7 @@ const AuthRegister = ({ ...others }) => {
                 </Grid>
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
-              <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
+                <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
                 <TextField
                   required
                   fullWidth
@@ -295,9 +296,9 @@ const AuthRegister = ({ ...others }) => {
                   onChange={handleChange}
                   inputProps={{}}
                   sx={{
-                    '& input.MuiOutlinedInput-input': {
-                      backgroundColor: '#FFF',
-                      borderRadius: '10px'
+                    "& input.MuiOutlinedInput-input": {
+                      backgroundColor: "#FFF",
+                      borderRadius: "10px",
                     },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
@@ -324,7 +325,9 @@ const AuthRegister = ({ ...others }) => {
                 )}
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
-              <div className="tw-text-xs tw-py-3 tw-font-medium">Password</div>
+                <div className="tw-text-xs tw-py-3 tw-font-medium">
+                  Password
+                </div>
                 <TextField
                   required
                   fullWidth
@@ -336,12 +339,11 @@ const AuthRegister = ({ ...others }) => {
                     handleChange(e);
                     changePassword(e.target.value);
                   }}
-
                   inputProps={{}}
                   sx={{
-                    '& input.MuiOutlinedInput-input': {
-                      backgroundColor: '#FFF',
-                      borderRadius: '10px'
+                    "& input.MuiOutlinedInput-input": {
+                      backgroundColor: "#FFF",
+                      borderRadius: "10px",
                     },
                     "& .MuiOutlinedInput-root": {
                       "& fieldset": {
@@ -369,8 +371,6 @@ const AuthRegister = ({ ...others }) => {
               </Grid>
             </Box>
 
-
-
             {strength !== 0 && (
               <FormControl fullWidth>
                 <Box sx={{ mb: 2 }}>
@@ -390,7 +390,6 @@ const AuthRegister = ({ ...others }) => {
                 </Box>
               </FormControl>
             )}
-
 
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
