@@ -123,7 +123,7 @@ const AuthRegister = ({ ...others }) => {
         // await saveString("refresh", res.data.refresh_token);
         // await save("profile", res.data.user);
         // window.location.href = "/dashboard";
-        navigate("/login");
+        navigate("/pricing");
         toast.success(
           "Your account has been registered successfully. You can now login.",
           {
