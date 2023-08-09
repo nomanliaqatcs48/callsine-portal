@@ -10,7 +10,9 @@ type AuthenticatedTypes = {
 };
 
 const Authenticated = ({ children }: AuthenticatedTypes) => {
-  console.log("in the authenticated");
+  devLog(() => {
+    console.log("in the authenticated");
+  });
   const [profile, setProfile] = useState<any>(null);
   const [isOnPageLoading, setIsOnPageLoading] = useState<boolean>(true);
 
