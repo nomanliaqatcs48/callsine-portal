@@ -70,6 +70,7 @@
   },
   "scripts": {
     "start": "dotenv -e .env.local -c local react-scripts start",
+    "start-ken-dev": "dotenv -e .env.production react-scripts start",
     "start-marc-dev": "dotenv -e .env.marc-local react-scripts start",
     "start-production": "dotenv -e .env.production -c production react-scripts start",
     "start-staging": "dotenv -e .env.staging -c staging react-scripts start",
