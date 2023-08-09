@@ -9,7 +9,7 @@ const config = {
   service: {
     BASE_URL: env.REACT_APP_SERVICE_BASE_URL,
   },
-  node_env: env.REACT_APP_NODE_ENV,
+  node_env: env.NODE_ENV,
 };
 
 export default config;
