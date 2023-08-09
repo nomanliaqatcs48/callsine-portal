@@ -33,10 +33,12 @@ interface HeaderProps {
 
 const drawerWidth = 240;
 const navItems = [
-  { name: "Home", url: "home" },
-  { name: "About Us", url: "about-us" },
-  { name: "Services", url: "services" },
-  { name: "Contact", url: "contact" },
+  // { name: "Home", url: "home" },
+  // { name: "About Us", url: "about-us" },
+  // { name: "Services", url: "services" },
+  // { name: "Contact", url: "contact" },
+  { name: "Pricing", url: "pricing" },
+  { name: "Blog", url: "blog" },
 ];
 
 const Header = (props: any) => {
@@ -101,10 +103,11 @@ const Header = (props: any) => {
             </Typography>
           </ListItemButton>
         </ListItem>
-        {/*{navItems.map((item: any) => (
+        {navItems.map((item: any) => (
           <ListItem key={item} disablePadding>
             <ListItemButton>
               <Typography
+                className="tw-text-white"
                 component={Link}
                 to={"/" + item.url}
                 variant="subtitle1"
@@ -114,7 +117,7 @@ const Header = (props: any) => {
               </Typography>
             </ListItemButton>
           </ListItem>
-        ))}*/}
+        ))}
       </List>
     </Box>
   );
@@ -185,7 +188,7 @@ const Header = (props: any) => {
             </Typography>
 
             <Box sx={{ display: { xs: "none", md: "block" } }}>
-              {/*{navItems.map((item) => (
+              {navItems.map((item) => (
                 <Typography
                   key={item.name}
                   component={Link}
@@ -201,7 +204,7 @@ const Header = (props: any) => {
                 >
                   {item.name.toUpperCase()}
                 </Typography>
-              ))}*/}
+              ))}
               <Typography
                 className="tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
                 component={Link}
