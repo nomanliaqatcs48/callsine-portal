@@ -20,10 +20,10 @@ const AuthenticationRoutes = {
       path: "/login",
       element: <AuthLogin />,
     },
-    // {
-    //   path: "/signup",
-    //   element: <AuthRegister />,
-    // },
+    {
+      path: "/signup",
+      element: <AuthRegister />,
+    },
   ],
 };
 
