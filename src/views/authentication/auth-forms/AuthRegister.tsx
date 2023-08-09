@@ -199,7 +199,7 @@ const AuthRegister = ({ ...others }) => {
             <Box sx={{ mt: 3 }}>
               <Grid container spacing={2}>
                 <Grid item xs={12} sm={6}>
-                  <div className="tw-text-xs tw-py-3 tw-font-medium">
+                  <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                     First Name
                   </div>
                   <TextField
@@ -241,7 +241,7 @@ const AuthRegister = ({ ...others }) => {
                   )}
                 </Grid>
                 <Grid item xs={12} sm={6}>
-                  <div className="tw-text-xs tw-py-3 tw-font-medium">
+                  <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                     Last Name
                   </div>
                   <TextField
@@ -285,7 +285,9 @@ const AuthRegister = ({ ...others }) => {
                 </Grid>
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
-                <div className="tw-text-xs tw-py-3 tw-font-medium">Email</div>
+                <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
+                  Email
+                </div>
                 <TextField
                   required
                   fullWidth
@@ -325,7 +327,7 @@ const AuthRegister = ({ ...others }) => {
                 )}
               </Grid>
               <Grid item xs={12} sx={{ mt: 2 }}>
-                <div className="tw-text-xs tw-py-3 tw-font-medium">
+                <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                   Password
                 </div>
                 <TextField
@@ -407,7 +409,7 @@ const AuthRegister = ({ ...others }) => {
                   variant="contained"
                   color="secondary"
                   sx={{ color: "#fff" }}
-                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-white tw-uppercase tw-font-bold tw-rounded-lg tw-py-3"
+                  className="tw-bg-primary hover:tw-bg-primaryDark tw-text-white tw-uppercase tw-font-bold tw-rounded-[10px] tw-py-3.5 tw-text-[20px] tw-tracking-[0.4px]"
                 >
                   Sign up
                 </Button>

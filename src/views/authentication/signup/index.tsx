@@ -21,6 +21,7 @@ const index = () => {
                 zIndex: "999",
                 height: "100vh",
                 width: "100%",
+                mixBlendMode: "overlay",
               }}
             />
             <img
@@ -33,10 +34,10 @@ const index = () => {
               className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52"
               style={{ position: "relative", zIndex: "999999" }}
             >
-              <div className="tw-text-6xl tw-font-bold">
+              <div className="tw-text-[68px] tw-font-bold tw-tracking-[3.4px] tw-leading-[80px]">
                 B2B Contact Data at Your Fingertips
               </div>
-              <p className="tw-text-lg">
+              <p className="tw-text-[25px] tw-leading-[38px]">
                 Get access to your prospects’ phone number and email via our
                 Google Chrome extension, instantly. Convert leads with real data
                 and save time.
