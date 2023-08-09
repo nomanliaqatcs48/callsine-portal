@@ -13,9 +13,11 @@ import dashboard from "../../assets/images/users/Web 1920 – 79@2x.png";
 import { IconSquareRoundedCheckFilled } from "@tabler/icons-react";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 import imageBgcTop from "../../assets/images/users/Group3.png";
+import { useNavigate } from "react-router-dom";
 
 const Banner = () => {
   const theme = useTheme();
+  let navigate = useNavigate();
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
 
   return (
@@ -158,8 +160,9 @@ const Banner = () => {
                   fontWeight: "400",
                 }}
                 size="large"
+                onClick={() => navigate("/signup")}
               >
-                Free Trial
+                Start Free
                 {/*Sign up for free*/}
               </Button>
               <Button
