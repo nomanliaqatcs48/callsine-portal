@@ -55,7 +55,7 @@ const Login = () => {
                   alignItems="center"
                   justifyContent="center"
                 >
-                  <Grid item className="-tw-mb-4">
+                  <Grid item className="tw-mb-4">
                     <Link to="#">
                       <Logo />
                     </Link>
