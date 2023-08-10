@@ -37,7 +37,7 @@ const PricingBox = () => {
 
   const CustomDesc = ({ children, ...props }: any) => {
     return (
-      <Typography className="tw-text-[14px] tw-text-[#0e101a] tw-font-normal tw-leading-[22px] tw-mb-3">
+      <Typography className="tw-text-[14px] tw-text-[#0e101a] tw-font-normal tw-leading-[22px] tw-mb-3 tw-text-center md:tw-text-left">
         {children}
       </Typography>
     );
@@ -48,10 +48,21 @@ const PricingBox = () => {
       <Button
         variant="contained"
         color="primary"
-        className="tw-text-[14px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[20px] tw-bg-primary hover:tw-bg-primaryDark "
+        className="tw-text-[14px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[20px] tw-bg-primary hover:tw-bg-primaryDark"
       >
         {children}
       </Button>
+    );
+  };
+
+  const CustomPrice = ({ children, ...props }: any) => {
+    return (
+      <Typography
+        variant="body2"
+        className="tw-text-center tw-text-[15px] tw-font-semibold tw-py-[10px]"
+      >
+        {children}
+      </Typography>
     );
   };
 
@@ -90,11 +101,11 @@ const PricingBox = () => {
               <CustomCard>
                 <CustomHeader>Monthly Freedom</CustomHeader>
                 <CustomDesc>
-                  $99 per seat per month: Ideal for those who prefer flexibility
-                  and wish to adapt to changing needs. This option lets you
-                  enjoy all the premium features, support, and seamless
-                  experience of CallSine, billed on a convenient monthly basis.
-                  No strings attached!
+                  <CustomPrice>$99 per seat per month</CustomPrice>
+                  Ideal for those who prefer flexibility and wish to adapt to
+                  changing needs. This option lets you enjoy all the premium
+                  features, support, and seamless experience of CallSine, billed
+                  on a convenient monthly basis. No strings attached!
                 </CustomDesc>
                 <CustomButton>Get Started</CustomButton>
               </CustomCard>
@@ -103,11 +114,11 @@ const PricingBox = () => {
               <CustomCard>
                 <CustomHeader>Annual Savings</CustomHeader>
                 <CustomDesc>
-                  $999 per seat per year: Ready to commit to excellence? Opt for
-                  our yearly subscription and save big. With a one-time payment,
-                  you'll get the full suite of CallSine features for an entire
-                  year. That's like getting two months FREE compared to the
-                  monthly plan.
+                  <CustomPrice>$999 per seat per year</CustomPrice>
+                  Ready to commit to excellence? Opt for our yearly subscription
+                  and save big. With a one-time payment, you'll get the full
+                  suite of CallSine features for an entire year. That's like
+                  getting two months FREE compared to the monthly plan.
                 </CustomDesc>
                 <CustomButton>Get Started</CustomButton>
               </CustomCard>
