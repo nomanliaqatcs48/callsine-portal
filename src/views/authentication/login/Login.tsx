@@ -94,7 +94,10 @@ const Login = () => {
                   </Grid>
 
                   <Grid item xs={12}>
-                    <GoogleLoginBtn />
+                    <Grid>
+                      <GoogleLoginBtn />
+                    </Grid>
+                    {/* < /> */}
                   </Grid>
                   <Grid item xs={12}>
                     <MicrosoftLoginBtn />
