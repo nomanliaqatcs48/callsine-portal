@@ -771,7 +771,7 @@ const DraftEmail = ({
               toolbar: false,
               statusbar: false,
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
+                "body { font-family:Poppins,Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Poppins,Helvetica,Arial,sans-serif;}",
             }}
           />
         </div>
@@ -799,7 +799,7 @@ const DraftEmail = ({
               toolbar: false,
               statusbar: false,
               content_style:
-                "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
+                "body { font-family:Poppins,Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Poppins,Helvetica,Arial,sans-serif;}",
             }}
           />
         </div>

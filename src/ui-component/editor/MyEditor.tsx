@@ -70,7 +70,7 @@ const MyEditor = ({
             "alignright alignjustify | bullist numlist outdent indent | " +
             "removeformat | help",
           content_style:
-            "body { font-family:Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Helvetica,Arial,sans-serif;}",
+            "body { font-family:Poppins,Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Poppins,Helvetica,Arial,sans-serif;}",
           branding: false,
         }}
         onEditorChange={(value: string, editor: any) => {
