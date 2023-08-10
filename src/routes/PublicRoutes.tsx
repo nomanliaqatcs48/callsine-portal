@@ -9,6 +9,7 @@ import Unauthenticated from "../ui-component/authentication/Unauthenticated";
 const Home = Loadable(lazy(() => import("../views/home/index")));
 const HomePage = Loadable(lazy(() => import("../views/home")));
 const PricingPage = Loadable(lazy(() => import("../views/pricing")));
+const PrivacyPage = Loadable(lazy(() => import("../views/privacy")));
 
 const AuthenticationRoutes = {
   path: "/",
@@ -29,6 +30,10 @@ const AuthenticationRoutes = {
     {
       path: "/pricing",
       element: <PricingPage />,
+    },
+    {
+      path: "/privacy-policy",
+      element: <PrivacyPage />,
     },
   ],
 };
