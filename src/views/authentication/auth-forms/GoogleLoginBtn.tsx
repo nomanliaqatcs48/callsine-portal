@@ -1,8 +1,6 @@
 import { GoogleLogin } from "react-google-login";
 import GoogleButton from "react-google-button";
 import config from "src/config";
-import { useCallback, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { googleAuthService } from "src/services/auth.service";
 import { devLog, devLogError } from "src/helpers/logs";
 import { save, saveString } from "src/utils/storage";

@@ -14,6 +14,7 @@ import GoogleLoginBtn from "../auth-forms/GoogleLoginBtn";
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
 import config from "src/config";
+import MicrosoftLoginBtn from "../auth-forms/microsoft/MicrosoftLoginBtn";
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {
@@ -95,6 +96,10 @@ const Login = () => {
                   <Grid item xs={12}>
                     <GoogleLoginBtn />
                   </Grid>
+                  <Grid item xs={12}>
+                    <MicrosoftLoginBtn />
+                  </Grid>
+
                   <Grid item xs={12}>
                     <AuthLogin />
                   </Grid>

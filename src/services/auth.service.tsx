@@ -26,3 +26,7 @@ export const googleAuthService = async (
 ): Promise<GoogleEndpointResponse> => {
   return await http.post(`${endpoints.GOOGLEAUTH}`, payload);
 };
+
+export const microsoftAuthService = async (payload: any): Promise<any> => {
+  return await http.post(`${endpoints.MICROSOFTAUTH}`, payload);
+};
