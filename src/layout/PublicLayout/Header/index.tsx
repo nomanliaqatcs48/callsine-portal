@@ -105,9 +105,9 @@ const Header = (props: any) => {
         </ListItem>
         {navItems.map((item: any) => (
           <ListItem key={item} disablePadding>
-            <ListItemButton>
+            <ListItemButton className="tw-group">
               <Typography
-                className="tw-text-white"
+                className="tw-text-white group-hover:tw-text-black hover:tw-no-underline"
                 component={Link}
                 to={"/" + item.url}
                 variant="subtitle1"
