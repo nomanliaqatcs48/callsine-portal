@@ -197,10 +197,10 @@ const Header = (props: any) => {
                   sx={{
                     fontSize: 16,
                     margin: "0px 20px",
-                    textDecoration: "none",
-                    color: "#fff",
+                    textDecoration: "none!important",
+                    color: "#fff!important",
                   }}
-                  className="tw-font-comfortaa tw-font-normal hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px]"
+                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
