@@ -104,6 +104,10 @@ const Login = () => {
                   </Grid>
 
                   <Grid item xs={12}>
+                    <hr className="divider sign-in" />
+                  </Grid>
+
+                  <Grid item xs={12}>
                     <AuthLogin />
                   </Grid>
                   {/*<Grid item xs={12}>

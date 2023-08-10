@@ -37,12 +37,12 @@ const MicrosoftLoginBtn = () => {
     }
   };
   return (
-    <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-white hover:tw-shadow-md tw-border tw-border-gray-300">
+    <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-white">
       <button
-        className=" tw-bg-white tw-w-full tw-flex tw-justify-between tw-items-center"
+        className=" tw-bg-white tw-w-full tw-flex tw-justify-center tw-items-center tw-border tw-border-[#e7e7e9] tw-rounded-[8px] tw-shadow-none tw-pl-[1px]"
         onClick={handleLogin}
       >
-        <div className="tw-flex tw-items-center">
+        <div className="tw-flex tw-items-center tw-p-[0px] tw-scale-75">
           <MicrosoftSignInIcon />
         </div>
         <span className="text-center tw-text-[16px] lg:tw-text-[18px] tw-leading-[48px] tw-text-black tw-font-normal">
