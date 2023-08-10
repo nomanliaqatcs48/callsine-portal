@@ -196,17 +196,17 @@ const Header = (props: any) => {
                   variant="subtitle1"
                   sx={{
                     fontSize: 16,
-                    margin: "0px 15px",
+                    margin: "0px 20px",
                     textDecoration: "none",
                     color: "#fff",
                   }}
-                  className="tw-font-comfortaa tw-font-normal hover:tw-text-white lg:tw-text-[18px]"
+                  className="tw-font-comfortaa tw-font-normal hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
               <Typography
-                className="tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
+                className="tw-font-semibold tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-black hover:tw-text-black hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
                 component={Link}
                 to={"/login"}
                 variant="subtitle1"
@@ -216,7 +216,7 @@ const Header = (props: any) => {
                   textDecoration: "none",
                   color: "#fff",
                   //
-                  border: "1px solid #fff",
+                  // border: "1px solid #fff",
                   padding: "12px 24px",
                   borderRadius: "8px",
                 }}
