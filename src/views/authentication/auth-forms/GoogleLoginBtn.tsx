@@ -46,10 +46,22 @@ const GoogleLoginBtn = () => {
             {...renderProps}
             style={
               isSmallScreen
-                ? { width: "366px", fontSize: "18px" }
+                ? {
+                    width: "366px",
+                    fontSize: "18px",
+                    fontFamily: "'Poppins', sans-serif",
+                  }
                 : isMedium
-                ? { width: "350px", fontSize: "18px" }
-                : { width: "395px", fontSize: "18px" }
+                ? {
+                    width: "350px",
+                    fontSize: "18px",
+                    fontFamily: "'Poppins', sans-serif",
+                  }
+                : {
+                    width: "395px",
+                    fontSize: "18px",
+                    fontFamily: "'Poppins', sans-serif",
+                  }
             }
           />
         )}

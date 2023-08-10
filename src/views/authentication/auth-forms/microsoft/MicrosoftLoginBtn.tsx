@@ -45,7 +45,9 @@ const MicrosoftLoginBtn = () => {
         <div className="tw-flex tw-items-center">
           <MicrosoftSignInIcon />
         </div>
-        <span className="text-center tw-text-lg">Sign in with Microsoft</span>
+        <span className="text-center tw-text-lg tw-leading-[48px]">
+          Sign in with Microsoft
+        </span>
         <div style={{ width: "10px" }}></div>
       </button>
     </div>
