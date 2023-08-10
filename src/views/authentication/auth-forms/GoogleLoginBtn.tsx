@@ -44,7 +44,12 @@ const GoogleLoginBtn = () => {
         render={(renderProps) => (
           <GoogleButton
             {...renderProps}
-            style={
+            className="tw-text-[16px] tw-w-full tw-font-normal"
+            style={{
+              fontFamily: "'  Poppins', sans-serif",
+              width: "100%",
+            }}
+            /*style={
               isSmallScreen
                 ? {
                     width: "366px",
@@ -62,7 +67,7 @@ const GoogleLoginBtn = () => {
                     fontSize: "18px",
                     fontFamily: "'Poppins', sans-serif",
                   }
-            }
+            }*/
           />
         )}
         clientId={config.googleClientId as string}
