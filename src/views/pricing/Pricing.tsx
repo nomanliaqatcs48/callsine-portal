@@ -29,7 +29,10 @@ const PricingBox = () => {
 
   const CustomHeader = ({ children, ...props }: any) => {
     return (
-      <Typography className="tw-text-[24px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-3 tw-text-center">
+      <Typography
+        className="tw-text-[24px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-3 tw-text-center"
+        {...props}
+      >
         {children}
       </Typography>
     );
@@ -37,7 +40,10 @@ const PricingBox = () => {
 
   const CustomDesc = ({ children, ...props }: any) => {
     return (
-      <Typography className="tw-text-[14px] tw-text-[#0e101a] tw-font-normal tw-leading-[22px] tw-mb-3 tw-text-center md:tw-text-left">
+      <Typography
+        className="tw-text-[14px] tw-text-[#0e101a] tw-font-normal tw-leading-[22px] tw-mb-3 tw-text-center md:tw-text-left"
+        {...props}
+      >
         {children}
       </Typography>
     );
@@ -49,6 +55,7 @@ const PricingBox = () => {
         variant="contained"
         color="primary"
         className="tw-text-[14px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[20px] tw-bg-primary hover:tw-bg-primaryDark"
+        {...props}
       >
         {children}
       </Button>
@@ -60,6 +67,7 @@ const PricingBox = () => {
       <Typography
         variant="body2"
         className="tw-text-center tw-text-[15px] tw-font-semibold tw-py-[10px]"
+        {...props}
       >
         {children}
       </Typography>
@@ -107,7 +115,15 @@ const PricingBox = () => {
                   features, support, and seamless experience of CallSine, billed
                   on a convenient monthly basis. No strings attached!
                 </CustomDesc>
-                <CustomButton>Get Started</CustomButton>
+                <CustomButton
+                  onClick={() => {
+                    window.open(
+                      "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&utm_source=cb-app-copy"
+                    );
+                  }}
+                >
+                  Get Started
+                </CustomButton>
               </CustomCard>
             </CustomGrid>
             <CustomGrid>
@@ -120,7 +136,15 @@ const PricingBox = () => {
                   suite of CallSine features for an entire year. That's like
                   getting two months FREE compared to the monthly plan.
                 </CustomDesc>
-                <CustomButton>Get Started</CustomButton>
+                <CustomButton
+                  onClick={() => {
+                    window.open(
+                      "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
+                    );
+                  }}
+                >
+                  Get Started
+                </CustomButton>
               </CustomCard>
             </CustomGrid>
           </Box>
