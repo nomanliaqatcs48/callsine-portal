@@ -40,8 +40,10 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { devLog, devLogError } from "../../../helpers/logs";
 import { loginService, signupService } from "../../../services/auth.service";
-import { save, saveString } from "../../../utils/storage";
+import { load, save, saveString } from "../../../utils/storage";
 import { toast } from "react-toastify";
+import { insertBodyLoader, removeBodyLoader } from "../../../helpers/loaders";
+import { profileService } from "../../../services/profile.service";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -54,6 +56,7 @@ const AuthRegister = ({ ...others }) => {
   const [showPassword1, setShowPassword1] = useState<boolean>(false);
   const [showPassword2, setShowPassword2] = useState<boolean>(false);
   const [checked, setChecked] = useState<boolean>(true);
+  const [profile, setProfile] = useState<any>(null);
 
   const [strength, setStrength] = useState(0);
   const [level, setLevel] = useState<any>();
@@ -109,6 +112,8 @@ const AuthRegister = ({ ...others }) => {
       return;
     }
 
+    insertBodyLoader();
+
     try {
       devLog(() => {
         console.log("values", values);
@@ -123,8 +128,8 @@ const AuthRegister = ({ ...others }) => {
         // await saveString("refresh", res.data.refresh_token);
         // await save("profile", res.data.user);
         // window.location.href = "/dashboard";
-        navigate("/pricing");
-        toast.success(
+        // navigate("/pricing");
+        /*toast.success(
           "Your account has been registered successfully. You can now login.",
           {
             position: "top-right",
@@ -136,11 +141,14 @@ const AuthRegister = ({ ...others }) => {
             progress: undefined,
             theme: "light",
           }
-        );
-        if (scriptedRef.current) {
+        );*/
+        /*if (scriptedRef.current) {
           setStatus({ success: true });
           setSubmitting(false);
-        }
+        }*/
+        setTimeout(() => {
+          login(values, { setErrors, setStatus, setSubmitting });
+        }, 1000);
       }
     } catch (err: any) {
       devLogError(() => {
@@ -162,6 +170,75 @@ const AuthRegister = ({ ...others }) => {
 
         setSubmitting(false);
       }
+    }
+  };
+
+  const login = async (
+    values: any,
+    { setErrors, setStatus, setSubmitting }: any
+  ) => {
+    try {
+      devLog(() => {
+        console.log("values", values);
+      });
+      values.username = values.email;
+      const requestData = {
+        username: values.email,
+        password: values.password1,
+      };
+      let res = await loginService(requestData);
+      devLog(() => {
+        console.log("res", res);
+      });
+      if (res?.data) {
+        await saveString("isAuthenticated", "yes");
+        await saveString("token", res.data.access);
+        await saveString("refresh", res.data.refresh);
+        if (scriptedRef.current) {
+          setStatus({ success: true });
+          setSubmitting(false);
+        }
+        navigate("/pricing");
+        getProfile();
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      if (scriptedRef.current) {
+        setStatus({ success: false });
+        setErrors({ submit: "Incorrect username or password." });
+        setSubmitting(false);
+      }
+      removeBodyLoader();
+    }
+  };
+
+  const getProfile = async () => {
+    try {
+      let _profile = await load("profile");
+      if (_profile) {
+        setProfile(_profile);
+
+        removeBodyLoader();
+      } else {
+        let res = await profileService();
+        if (res?.data) {
+          await save("profile", res.data);
+          setProfile(res.data);
+        }
+        devLog(() => {
+          console.log("res", res);
+        });
+
+        removeBodyLoader();
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e);
+      });
+
+      removeBodyLoader();
     }
   };
 
