@@ -17,7 +17,9 @@ const MicrosoftLoginBtn = () => {
     });
     try {
       const payload = { access_token: data.accessToken };
-      console.log({ payload });
+      devLog(() => {
+        console.log({ payload });
+      });
 
       let res = await microsoftAuthService(payload);
 
