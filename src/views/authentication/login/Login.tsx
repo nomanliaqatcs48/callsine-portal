@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 // material-ui
 import { useTheme } from "@mui/material/styles";
-import { Grid, useMediaQuery } from "@mui/material";
+import { Divider, Grid, Typography, useMediaQuery } from "@mui/material";
 
 // project imports
 import AuthWrapper from "../AuthWrapper";
@@ -122,12 +122,19 @@ const Login = () => {
                       xs={12}
                     >
                       <Typography
-                        component={Link}
-                        to="/signup"
                         variant="subtitle1"
+                        className="tw-font-normal"
                         sx={{ textDecoration: "none" }}
                       >
-                        Don&apos;t have an account?
+                        Don&apos;t have an account?&nbsp;&nbsp;
+                        <Typography
+                          component={Link}
+                          to="/signup"
+                          variant="subtitle1"
+                          className="tw-font-normal tw-underline"
+                        >
+                          Sign up
+                        </Typography>
                       </Typography>
                     </Grid>
                   </Grid>*/}
