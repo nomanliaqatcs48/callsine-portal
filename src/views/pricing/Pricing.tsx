@@ -64,7 +64,7 @@ const PricingBox = () => {
   const CustomHeader = ({ children, ...props }: any) => {
     return (
       <Typography
-        className="tw-text-[24px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-3 tw-text-center"
+        className="tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-3 tw-text-center"
         {...props}
       >
         {children}
@@ -75,7 +75,7 @@ const PricingBox = () => {
   const CustomDesc = ({ children, ...props }: any) => {
     return (
       <Typography
-        className="tw-text-[14px] tw-text-[#0e101a] tw-font-normal tw-leading-[22px] tw-mb-3 tw-text-center md:tw-text-left"
+        className="tw-text-[18px] tw-text-[#0e101a] tw-font-normal tw-leading-[28px] tw-mb-3 tw-text-center md:tw-text-left"
         {...props}
       >
         {children}
@@ -88,7 +88,7 @@ const PricingBox = () => {
       <Button
         variant="contained"
         color="primary"
-        className="tw-text-[14px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[20px] tw-bg-primary hover:tw-bg-primaryDark"
+        className="tw-text-[18px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[30px] tw-bg-primary hover:tw-bg-primaryDark"
         {...props}
       >
         {children}
@@ -100,7 +100,7 @@ const PricingBox = () => {
     return (
       <Typography
         variant="body2"
-        className="tw-text-center tw-text-[15px] tw-font-semibold tw-py-[10px]"
+        className="tw-text-center tw-text-[18px] tw-font-semibold tw-py-[10px]"
         {...props}
       >
         {children}
@@ -123,13 +123,13 @@ const PricingBox = () => {
           <Box className="content">
             <Typography
               variant="h1"
-              className="tw-text-white tw-text-[40px] tw-leading-[48px] tw-text-center tw-mb-[40px]"
+              className="tw-text-white tw-text-[40px] tw-leading-[48px] tw-text-center tw-mb-[40px] xl:tw-text-[80px] xl:tw-leading-[100px]"
             >
               🎉 Introducing CallSine's Flexible Subscription Plans!
             </Typography>
             <Typography
               variant="body2"
-              className="tw-text-white tw-text-center tw-text-[20px] tw-font-normal tw-leading-[24px] tw-mb-[40px]"
+              className="tw-text-white tw-text-center tw-text-[20px] tw-font-normal tw-leading-[24px] tw-mb-[40px] xl:tw-text-[30px] xl:tw-leading-[46px]"
             >
               At CallSine, we believe in empowering your marketing and sales
               teams like never before. We've crafted two subscription options
@@ -157,7 +157,7 @@ const PricingBox = () => {
             })}
           </Box>
 
-          <Box className="footer-content tw-text-white tw-text-[15px] tw-font-normal tw-leading-[18px] tw-pt-[40px] tw-pb-[80px] tw-text-center">
+          <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-pt-[40px] tw-pb-[80px] tw-text-center">
             Whatever your preference, both plans guarantee CallSine's
             unparalleled quality, innovation, and customer support. Sign up
             today, and let's transform the way you connect!
