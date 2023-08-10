@@ -155,48 +155,6 @@ const PricingBox = () => {
                 </CustomGrid>
               );
             })}
-            {/*<CustomGrid>
-              <CustomCard>
-                <CustomHeader>Monthly Freedom</CustomHeader>
-                <CustomDesc>
-                  <CustomPrice>$99 per seat per month</CustomPrice>
-                  Ideal for those who prefer flexibility and wish to adapt to
-                  changing needs. This option lets you enjoy all the premium
-                  features, support, and seamless experience of CallSine, billed
-                  on a convenient monthly basis. No strings attached!
-                </CustomDesc>
-                <CustomButton
-                  onClick={() => {
-                    window.open(
-                      "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&utm_source=cb-app-copy"
-                    );
-                  }}
-                >
-                  Get Started
-                </CustomButton>
-              </CustomCard>
-            </CustomGrid>*/}
-            {/*<CustomGrid>
-              <CustomCard>
-                <CustomHeader>Annual Savings</CustomHeader>
-                <CustomDesc>
-                  <CustomPrice>$999 per seat per year</CustomPrice>
-                  Ready to commit to excellence? Opt for our yearly subscription
-                  and save big. With a one-time payment, you'll get the full
-                  suite of CallSine features for an entire year. That's like
-                  getting two months FREE compared to the monthly plan.
-                </CustomDesc>
-                <CustomButton
-                  onClick={() => {
-                    window.open(
-                      "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
-                    );
-                  }}
-                >
-                  Get Started
-                </CustomButton>
-              </CustomCard>
-            </CustomGrid>*/}
           </Box>
 
           <Box className="footer-content tw-text-white tw-text-[15px] tw-font-normal tw-leading-[18px] tw-pt-[40px] tw-pb-[80px] tw-text-center">
