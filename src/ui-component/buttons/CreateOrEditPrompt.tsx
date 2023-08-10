@@ -9,8 +9,11 @@ import {
   DialogTitle,
   FormHelperText,
   Grid,
+  MenuItem,
+  Stack,
+  TextField,
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
@@ -47,8 +50,14 @@ const CreateOrEditPlaybook = ({
   ...props
 }: CreateOrEditPlaybookTypes) => {
   const reloadPlaybooks = useReloadPlaybooks();
-  const [open, setOpen] = React.useState(false);
-  const [promptValue, setPromptValue] = useState<any>("");
+  const [open, setOpen] = useState(false);
+  const [promptValue, setPromptValue] = useState<string>("");
+  const [cursorPos, setCursorPos] = useState<number>(-1);
+  const [tagValue, setTagValue] = useState("");
+
+  const handleCursorPosition = (e: any) => {
+    setCursorPos(e.target.selectionStart);
+  };
 
   const {
     register,
@@ -60,11 +69,31 @@ const CreateOrEditPlaybook = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
+    setPromptValue(defaultValue);
     reset();
   };
+  useEffect(() => {
+    setPromptValue(defaultValue);
+  }, [defaultValue]);
 
-  const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setPromptValue(event.target.value);
+  // const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setPromptValue(event.target.value);
+  // };
+
+  const handleAddTag = (event: any) => {
+    const selectedTag = event.target.value;
+    setTagValue(selectedTag);
+
+    const formatTag = "{{" + selectedTag + "}}";
+    let newFieldValue =
+      promptValue.slice(0, cursorPos) +
+      formatTag +
+      promptValue.slice(cursorPos);
+
+    setPromptValue(newFieldValue);
+
+    setTagValue("");
+    setCursorPos(-1);
   };
 
   const onThisEditSubmit = async (id: number) => {
@@ -159,9 +188,36 @@ const CreateOrEditPlaybook = ({
             className="tw-text-black tw-bg-[#EAEAEA] tw-tracking-[0.36px] tw-font-normal tw-py-6"
           >
             <Box className="tw-flex tw-justify-between">
-              <Box className="tw-text-[18px] tw-flex tw-flex-col tw-justify-center tw-align-middle">
-                {id ? "Edit" : "Add New"} Prompt
-              </Box>
+              <Stack direction="row" spacing={4}>
+                <Box className="tw-text-[18px] tw-flex tw-flex-col tw-justify-center tw-align-middle">
+                  {id ? "Edit" : "Add New"} Prompt
+                </Box>
+
+                <Box width="500px">
+                  <TextField
+                    error={cursorPos > -1 ? false : true}
+                    label="Add Tag"
+                    select
+                    size="small"
+                    color="secondary"
+                    value={tagValue}
+                    onChange={(e) => {
+                      handleAddTag(e);
+                    }}
+                    helperText={
+                      cursorPos > -1
+                        ? "Choose Tag"
+                        : "Click in the text field where do you want to insert tags"
+                    }
+                    fullWidth
+                    disabled={cursorPos > -1 ? false : true}
+                  >
+                    <MenuItem value="first_name">first_name</MenuItem>
+                    <MenuItem value="last_name">last_name</MenuItem>
+                    <MenuItem value="company_name">company_name</MenuItem>
+                  </TextField>
+                </Box>
+              </Stack>
               <Box>
                 <Button className="tw-min-w-min" onClick={handleClose}>
                   <CloseIcon sx={{ color: "#A5A5A5", fontSize: 26 }} />
@@ -187,12 +243,15 @@ const CreateOrEditPlaybook = ({
                       >
                         <textarea
                           rows={9}
+                          onKeyUp={handleCursorPosition}
+                          onClick={handleCursorPosition}
+                          onInput={handleCursorPosition}
                           className={`${_styles?.labelValueInput} tw-text-[16px] placeholder:tw-text-[#B9B9B9] placeholder:tw-font-normal`}
-                          defaultValue={defaultValue}
+                          value={promptValue}
                           {...register("message", {
                             required: "This is a required field.",
-                            onChange: handleChange,
                           })}
+                          onChange={(e) => setPromptValue(e.target.value)}
                           placeholder="Add prompt here..."
                           style={{ width: "100%" }}
                         />
