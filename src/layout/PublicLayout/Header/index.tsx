@@ -38,7 +38,7 @@ const navItems = [
   // { name: "Services", url: "services" },
   // { name: "Contact", url: "contact" },
   { name: "Pricing", url: "pricing" },
-  { name: "Blog", url: "blog" },
+  { name: "Blog", url: "/#" },
 ];
 
 const Header = (props: any) => {
