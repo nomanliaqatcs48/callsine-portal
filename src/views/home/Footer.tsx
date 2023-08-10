@@ -243,10 +243,8 @@ const Footer: React.FC = () => {
         >
           <Button
             variant="text"
-            href="https://www.unionresolute.com/privacy-policy/"
-            rel="noreferrer noopener"
+            href="/privacy-policy"
             className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
-            target="_blank"
             sx={{
               color: "#F2F4F8!important",
               textDecoration: "none!important",
