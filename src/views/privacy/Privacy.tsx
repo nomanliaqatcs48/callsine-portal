@@ -1,4 +1,4 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Link, Typography } from "@mui/material";
 import React from "react";
 
 const Privacy = () => {
@@ -27,7 +27,7 @@ const Privacy = () => {
   const CustomParagraph = ({ children, ...props }: any) => {
     return (
       <Typography
-        className="tw-text-[15px] tw-py-[10px] tw-leading-normal"
+        className="tw-text-[15px] tw-py-[10px] tw-leading-loose"
         {...props}
       >
         {children}
@@ -47,14 +47,15 @@ const Privacy = () => {
         This is the Privacy Policy (“Privacy Policy”) of CallSine (“CallSine” or
         “us” or “we,” or “our” when possessive). This Privacy Policy explains
         how CallSine collects, uses and stores the information we obtain from or
-        about you when you use our website, www.callsine.com (“Website”), our
-        technical software (“Software”), related services (“Services”) and any
-        related data, information and materials (“Content”) (collectively the
-        Website, the Software, the Services and the Content are the “Platform”).
-        By using the Platform, or any part thereof, you accept this Privacy
-        Policy and you expressly consent to our collection, storage, use and
-        disclosure of your information as described in this Privacy Policy. You
-        (the “Customer,” or “End User,” or “you” or “your” when possessive)
+        about you when you use our website,{" "}
+        <Link href="https://callsine.com/">www.callsine.com</Link> (“Website”),
+        our technical software (“Software”), related services (“Services”) and
+        any related data, information and materials (“Content”) (collectively
+        the Website, the Software, the Services and the Content are the
+        “Platform”). By using the Platform, or any part thereof, you accept this
+        Privacy Policy and you expressly consent to our collection, storage, use
+        and disclosure of your information as described in this Privacy Policy.
+        You (the “Customer,” or “End User,” or “you” or “your” when possessive)
         represent, warrant, and covenant that you have the power and authority
         and the legal right to agree to this Privacy Policy. This Privacy
         Policy, as may be amended from time to time in our sole discretion,
