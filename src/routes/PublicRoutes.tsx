@@ -32,7 +32,7 @@ const AuthenticationRoutes = {
       element: <PricingPage />,
     },
     {
-      path: "/privacy-policy",
+      path: "/privacy",
       element: <PrivacyPage />,
     },
   ],

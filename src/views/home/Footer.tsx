@@ -243,7 +243,7 @@ const Footer: React.FC = () => {
         >
           <Button
             variant="text"
-            href="/privacy-policy"
+            href="/privacy"
             className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
             sx={{
               color: "#F2F4F8!important",
