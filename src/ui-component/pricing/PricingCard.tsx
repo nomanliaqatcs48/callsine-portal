@@ -6,6 +6,7 @@ import "./index.css";
 
 const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
   const [isMostPopular, setIsMostPopular] = useState<boolean>(isPopular);
+  const _features = item?.features || props?.features;
 
   return (
     <>
@@ -32,36 +33,37 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
                   variant="h3"
                   className="tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-0"
                 >
-                  {item?.name || "Lorem ipsum"}
+                  {item?.name || props?.name || "Lorem ipsum"}
                 </Typography>
                 <Box className="price-per">
-                  {item?.price || (
+                  {item?.price || props?.price || (
                     <>
                       <strong>$0</strong> <small> /month</small>
                     </>
                   )}
                 </Box>
-                <Typography className="tw-text-[#36313D] tw-text-[16px] tw-font-normal tw-leading-[21px] tw-py-[45px] lg:tw-text-[18px]">
+                <Typography className="tw-text-[#36313D] tw-text-[16px] tw-font-normal tw-leading-[28px] tw-py-[45px] lg:tw-text-[18px]">
                   {item?.description ||
+                    props?.description ||
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit"}
                 </Typography>
                 <Button
                   variant="contained"
                   color="primary"
-                  className={`tw-text-[18px] tw-font-normal tw-w-full tw-py-[12px] tw-shadow-none ${
+                  className={`tw-text-[18px] tw-font-normal tw-w-full tw-py-[12px] tw-my-[20px] tw-shadow-none ${
                     isMostPopular
                       ? "tw-text-white tw-border tw-border-solid tw-border-primary tw-bg-primary hover:tw-bg-primaryDark"
                       : "tw-text-primary tw-border tw-border-solid tw-border-primary tw-bg-transparent hover:tw-bg-primaryDark hover:tw-text-white"
                   }`}
-                  onClick={item?.onClick || null}
+                  onClick={item?.onClick || props?.onClick || null}
                 >
-                  {item?.buttonText || "Get Started"}
+                  {item?.buttonText || props?.buttonText || "Get Started"}
                 </Button>
               </CardContent>
-              {item?.features ? (
+              {_features ? (
                 <Box className="list-container tw-py-10 tw-px-10 tw-bg-[#F5F5F5]">
                   <ul className="tw-flex tw-flex-col tw-gap-6">
-                    {item?.features?.map((i: any, idx: number) => {
+                    {_features?.map((i: any, idx: number) => {
                       return (
                         <li key={idx} className="tw-flex tw-leading-[21px]">
                           <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
@@ -74,18 +76,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
                   </ul>
                 </Box>
               ) : (
-                <Box className="list-container tw-py-10 tw-px-10 tw-bg-[#F5F5F5]">
-                  <ul className="tw-flex tw-flex-col tw-gap-6">
-                    <li className="tw-flex tw-leading-[21px]">
-                      <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
-                        <CheckIcon />
-                      </Box>
-                      <span>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit
-                      </span>
-                    </li>
-                  </ul>
-                </Box>
+                ""
               )}
             </Card>
           </>

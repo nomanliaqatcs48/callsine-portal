@@ -14,35 +14,58 @@ import PricingCard from "../../ui-component/pricing/PricingCard";
 const PricingBox = () => {
   const pricingItems = [
     {
-      header: "Monthly Freedom",
-      price: "$99 per seat per month",
-      desc: "Ideal for those who prefer flexibility and wish to adapt to changing needs. This option lets you enjoy all the premium features, support, and seamless experience of CallSine, billed on a convenient monthly basis. No strings attached!",
+      name: "Monthly Freedom",
+      price: (
+        <>
+          <Box>$99 per seat per month</Box>
+        </>
+      ),
+      description:
+        "Ideal for those who prefer flexibility and wish to adapt to changing needs. This option lets you enjoy all the premium features, support, and seamless experience of CallSine, billed on a convenient monthly basis. No strings attached!",
       onClick: () => {
         window.open(
           "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&utm_source=cb-app-copy"
         );
       },
       buttonText: "Get Started",
+      /*features: [
+        {
+          name: "Lorem ipsum dolor",
+        },
+      ],*/
+      isPopular: false,
     },
     {
-      header: "Annual Savings",
-      price: "$999 per seat per year",
-      desc: "Ready to commit to excellence? Opt for our yearly subscription and save big. With a one-time payment, you'll get the full suite of CallSine features for an entire year. That's like getting two months FREE compared to the monthly plan.",
+      name: "Annual Savings",
+      price: (
+        <>
+          <Box>$999 per seat per year</Box>
+        </>
+      ),
+      description:
+        "Ready to commit to excellence? Opt for our yearly subscription and save big. With a one-time payment, you'll get the full suite of CallSine features for an entire year. That's like getting two months FREE compared to the monthly plan.",
       onClick: () => {
         window.open(
           "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
         );
       },
       buttonText: "Get Started",
+      isPopular: true,
     },
     {
-      header: "Enterprise Elevation",
-      price: "Custom Pricing",
-      desc: "For organizations requiring bespoke solutions, our Enterprise Elevation plan offers custom-tailored features to meet your unique needs. Contact us to discuss your specific requirements, and we'll design a package that fits just right.",
+      name: "Enterprise Elevation",
+      price: (
+        <>
+          <Box>Custom Pricing</Box>
+        </>
+      ),
+      description:
+        "For organizations requiring bespoke solutions, our Enterprise Elevation plan offers custom-tailored features to meet your unique needs. Contact us to discuss your specific requirements, and we'll design a package that fits just right.",
       onClick: () => {
         //
       },
       buttonText: "Contact Sales",
+      isPopular: false,
     },
   ];
 
@@ -140,9 +163,16 @@ const PricingBox = () => {
           </Box>
 
           <Box className="pricing-boxes tw-flex tw-flex-col tw-justify-center tw-gap-5 tw-w-full lg:tw-flex-row">
-            <PricingCard className="lg:tw-w-1/3" />
+            {pricingItems?.map((i: any, idx: number) => {
+              return (
+                <>
+                  <PricingCard key={idx} {...i} className="lg:tw-w-1/3" />
+                </>
+              );
+            })}
+            {/*<PricingCard isPopular={false} className="lg:tw-w-1/3" />
             <PricingCard isPopular={true} className="lg:tw-w-1/3" />
-            <PricingCard className="lg:tw-w-1/3" />
+            <PricingCard isPopular={true} className="lg:tw-w-1/3" />*/}
             {/*{pricingItems.map((i: any, idx: number) => {
               return (
                 <CustomGrid key={idx}>
