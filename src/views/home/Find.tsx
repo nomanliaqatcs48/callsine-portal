@@ -66,7 +66,7 @@ const Find = () => {
               {/*Find contact*/}
             </Typography>
             <Typography
-              className="tw-font-light tw-text-[18px]"
+              className="tw-font-light tw-text-[18px] tw-leading-[27px]"
               variant="subtitle1"
               align="center"
               sx={{
@@ -107,7 +107,7 @@ const Find = () => {
               {/*Find contact*/}
             </Typography>
             <Typography
-              className="tw-font-light tw-text-[18px]"
+              className="tw-font-light tw-text-[18px] tw-leading-[27px]"
               variant="subtitle1"
               align="center"
               sx={{
@@ -148,7 +148,7 @@ const Find = () => {
               {/*Find contact*/}
             </Typography>
             <Typography
-              className="tw-font-light tw-text-[18px]"
+              className="tw-font-light tw-text-[18px] tw-leading-[27px]"
               variant="subtitle1"
               align="center"
               sx={{

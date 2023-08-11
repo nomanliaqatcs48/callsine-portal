@@ -62,8 +62,13 @@ const TakeControl = () => {
                 pb: { xs: 5 },
               }}
             >
-              <span style={{ color: "#1976D2" }}>CallSine</span> does the heavy
-              lifting
+              <span
+                className="tw-font-bold tw-text-[70px]"
+                style={{ color: "#1976D2" }}
+              >
+                CallSine
+              </span>{" "}
+              does the heavy lifting
             </Typography>
 
             <Box className="tw-mb-4">
@@ -109,7 +114,7 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3 tw-leading-[27px]"
                 variant="h4"
                 sx={{
                   p: { sm: 3 },
@@ -169,7 +174,7 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3 tw-leading-[27px]"
                 variant="h4"
                 sx={{
                   p: { sm: 3 },
@@ -228,7 +233,7 @@ const TakeControl = () => {
                 </Grid>
               </Grid>
               <Typography
-                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3"
+                className="tw-text-[15px] sm:tw-text-[18px] tw-pt-3 tw-leading-[27px]"
                 variant="h4"
                 sx={{
                   p: { sm: 3 },

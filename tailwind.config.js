@@ -11,7 +11,7 @@ module.exports = {
       "2xl": "1536px",
     },
     fontFamily: {
-      comfortaa: ["Comfortaa", "sans-serif"],
+      comfortaa: ["Comfortaa", "sans-serif!important"],
     },
     extend: {
       screens: {

@@ -148,7 +148,7 @@ const Banner = () => {
               }}
             >
               <Button
-                className="lg:tw-text-[25px] tw-rounded-[5px]"
+                className="lg:tw-text-[25px] tw-rounded-[5px] tw-leading-[38px]"
                 sx={{
                   backgroundColor: "#fff !important",
                   color: "#1976D2",
@@ -166,7 +166,7 @@ const Banner = () => {
                 {/*Sign up for free*/}
               </Button>
               <Button
-                className="lg:tw-text-[25px] tw-rounded-[5px] tw-normal-case"
+                className="lg:tw-text-[25px] tw-rounded-[5px] tw-normal-case tw-leading-[38px]"
                 sx={{
                   backgroundColor: "transparent !important",
                   color: "#fff",

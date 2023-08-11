@@ -200,13 +200,13 @@ const Header = (props: any) => {
                     textDecoration: "none!important",
                     color: "#fff!important",
                   }}
-                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px]"
+                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] tw-leading-[20px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
               <Typography
-                className="tw-font-semibold tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-black hover:tw-text-black hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
+                className="tw-font-semibold tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-black hover:tw-text-black hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
                 component={Link}
                 to={"/login"}
                 variant="subtitle1"
