@@ -22,6 +22,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import icon from "../../../assets/images/icons/logo-2x.png";
 import { Link } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { useAuthentication } from "../../../hooks/useAuthentication";
 
 interface HeaderProps {
   /**
@@ -43,6 +44,7 @@ const navItems = [
 
 const Header = (props: any) => {
   const theme: any = useTheme();
+  const { isAuthenticated } = useAuthentication();
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -82,25 +84,48 @@ const Header = (props: any) => {
             >
               LOGIN
             </Typography>*/}
-            <Typography
-              className="tw-bg-[#1976d2] tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px] tw-mx-auto"
-              component={Link}
-              to={"/login"}
-              variant="subtitle1"
-              sx={{
-                fontSize: 16,
-                margin: "0px 5px",
-                textDecoration: "none",
-                color: "#fff",
-                fontFamily: "'Poppins', sans-serif",
-                //
-                border: "1px solid #fff",
-                padding: "12px 24px",
-                borderRadius: "8px",
-              }}
-            >
-              LOGIN
-            </Typography>
+
+            {isAuthenticated ? (
+              <Typography
+                className="tw-bg-[#1976d2] tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px] tw-mx-auto"
+                component={Link}
+                to={"/dashboard"}
+                variant="subtitle1"
+                sx={{
+                  fontSize: 16,
+                  margin: "0px 5px",
+                  textDecoration: "none",
+                  color: "#fff",
+                  fontFamily: "'Poppins', sans-serif",
+                  //
+                  border: "1px solid #fff",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                }}
+              >
+                DASHBOARD
+              </Typography>
+            ) : (
+              <Typography
+                className="tw-bg-[#1976d2] tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px] tw-mx-auto"
+                component={Link}
+                to={"/login"}
+                variant="subtitle1"
+                sx={{
+                  fontSize: 16,
+                  margin: "0px 5px",
+                  textDecoration: "none",
+                  color: "#fff",
+                  fontFamily: "'Poppins', sans-serif",
+                  //
+                  border: "1px solid #fff",
+                  padding: "12px 24px",
+                  borderRadius: "8px",
+                }}
+              >
+                LOGIN
+              </Typography>
+            )}
           </ListItemButton>
         </ListItem>
         {navItems.map((item: any) => (
@@ -204,24 +229,46 @@ const Header = (props: any) => {
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
-              <Typography
-                className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
-                component={Link}
-                to={"/login"}
-                variant="subtitle1"
-                sx={{
-                  fontSize: 16,
-                  margin: "0px 5px",
-                  textDecoration: "none",
-                  color: "#fff",
-                  //
-                  // border: "1px solid #fff",
-                  padding: "12px 24px",
-                  borderRadius: "5px",
-                }}
-              >
-                LOGIN
-              </Typography>
+
+              {isAuthenticated ? (
+                <Typography
+                  className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
+                  component={Link}
+                  to={"/dashboard"}
+                  variant="subtitle1"
+                  sx={{
+                    fontSize: 16,
+                    margin: "0px 5px",
+                    textDecoration: "none",
+                    color: "#fff",
+                    //
+                    // border: "1px solid #fff",
+                    padding: "12px 24px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  DASHBOARD
+                </Typography>
+              ) : (
+                <Typography
+                  className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
+                  component={Link}
+                  to={"/login"}
+                  variant="subtitle1"
+                  sx={{
+                    fontSize: 16,
+                    margin: "0px 5px",
+                    textDecoration: "none",
+                    color: "#fff",
+                    //
+                    // border: "1px solid #fff",
+                    padding: "12px 24px",
+                    borderRadius: "5px",
+                  }}
+                >
+                  LOGIN
+                </Typography>
+              )}
             </Box>
           </Toolbar>
         </AppBar>
