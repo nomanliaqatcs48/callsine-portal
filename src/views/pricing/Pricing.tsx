@@ -1,13 +1,5 @@
 import React from "react";
-import {
-  Box,
-  Button,
-  Card,
-  Grid,
-  Typography,
-  useMediaQuery,
-} from "@mui/material";
-import imageBgcTop from "../../assets/images/users/Group3.png";
+import { Box, Grid, Typography } from "@mui/material";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 import PricingCard from "../../ui-component/pricing/PricingCard";
 
@@ -69,69 +61,6 @@ const PricingBox = () => {
     },
   ];
 
-  const CustomGrid = ({ children, ...props }: any) => {
-    return (
-      <Box className="" sx={{ zIndex: "999" }} {...props}>
-        {children}
-      </Box>
-    );
-  };
-
-  const CustomCard = ({ children, ...props }: any) => {
-    return (
-      <Card variant="outlined" className="tw-py-10 tw-px-10" {...props}>
-        {children}
-      </Card>
-    );
-  };
-
-  const CustomHeader = ({ children, ...props }: any) => {
-    return (
-      <Typography
-        className="tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-3 tw-text-center"
-        {...props}
-      >
-        {children}
-      </Typography>
-    );
-  };
-
-  const CustomDesc = ({ children, ...props }: any) => {
-    return (
-      <Typography
-        className="tw-text-[18px] tw-text-[#0e101a] tw-font-normal tw-leading-[28px] tw-mb-3 tw-text-center md:tw-text-left"
-        {...props}
-      >
-        {children}
-      </Typography>
-    );
-  };
-
-  const CustomButton = ({ children, ...props }: any) => {
-    return (
-      <Button
-        variant="contained"
-        color="primary"
-        className="tw-text-[18px] tw-font-bold tw-w-full tw-py-[12px] tw-my-[30px] tw-bg-primary hover:tw-bg-primaryDark"
-        {...props}
-      >
-        {children}
-      </Button>
-    );
-  };
-
-  const CustomPrice = ({ children, ...props }: any) => {
-    return (
-      <Typography
-        variant="body2"
-        className="tw-text-center tw-text-[18px] tw-font-semibold tw-py-[10px]"
-        {...props}
-      >
-        {children}
-      </Typography>
-    );
-  };
-
   return (
     <>
       <Grid
@@ -166,25 +95,6 @@ const PricingBox = () => {
             {pricingItems?.map((i: any, idx: number) => {
               return <PricingCard key={idx} {...i} className="lg:tw-w-1/3" />;
             })}
-            {/*<PricingCard isPopular={false} className="lg:tw-w-1/3" />
-            <PricingCard isPopular={true} className="lg:tw-w-1/3" />
-            <PricingCard isPopular={true} className="lg:tw-w-1/3" />*/}
-            {/*{pricingItems.map((i: any, idx: number) => {
-              return (
-                <CustomGrid key={idx}>
-                  <CustomCard>
-                    <CustomHeader>{i?.header}</CustomHeader>
-                    <CustomDesc>
-                      <CustomPrice>{i?.price}</CustomPrice>
-                      {i?.desc}
-                    </CustomDesc>
-                    <CustomButton onClick={i?.onClick}>
-                      {i?.buttontext}
-                    </CustomButton>
-                  </CustomCard>
-                </CustomGrid>
-              );
-            })}*/}
           </Box>
 
           <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-py-[100px] tw-text-center">
