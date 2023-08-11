@@ -86,7 +86,7 @@ const PricingBox = () => {
                   <PricingCard
                     key={idx}
                     {...i}
-                    className="lg:tw-w-full tw-h-full"
+                    className="tw-h-full lg:tw-w-full"
                   />
                 </Box>
               );
