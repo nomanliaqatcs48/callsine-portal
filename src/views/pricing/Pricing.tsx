@@ -9,6 +9,7 @@ import {
 } from "@mui/material";
 import imageBgcTop from "../../assets/images/users/Group3.png";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
+import PricingCard from "../../ui-component/pricing/PricingCard";
 
 const PricingBox = () => {
   const pricingItems = [
@@ -139,7 +140,8 @@ const PricingBox = () => {
           </Box>
 
           <Box className="pricing-boxes tw-flex tw-flex-col tw-gap-5 tw-w-full md:tw-flex-row">
-            {pricingItems.map((i: any, idx: number) => {
+            <PricingCard />
+            {/*{pricingItems.map((i: any, idx: number) => {
               return (
                 <CustomGrid key={idx}>
                   <CustomCard>
@@ -154,7 +156,7 @@ const PricingBox = () => {
                   </CustomCard>
                 </CustomGrid>
               );
-            })}
+            })}*/}
           </Box>
 
           <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-pt-[40px] tw-pb-[80px] tw-text-center">

@@ -1,0 +1,12 @@
+.price-per strong {
+  font-size: 20px;
+  font-weight: bold;
+  line-height: 30px;
+  color: #232129;
+}
+.price-per small {
+  font-size: 13px;
+  font-weight: normal;
+  line-height: 18px;
+  color: #635e69;
+}
