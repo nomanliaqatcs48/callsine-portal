@@ -223,8 +223,9 @@ const Header = (props: any) => {
                     fontSize: 16,
                     margin: "0px 20px",
                     textDecoration: "none!important",
+                    color: "#fff",
                   }}
-                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#c3c3c3] hover:tw-no-underline lg:tw-text-[18px] tw-leading-[20px]"
+                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#c3c3c3] hover:tw-no-underline focus:tw-text-white lg:tw-text-[18px] tw-leading-[20px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
