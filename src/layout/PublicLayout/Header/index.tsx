@@ -198,15 +198,14 @@ const Header = (props: any) => {
                     fontSize: 16,
                     margin: "0px 20px",
                     textDecoration: "none!important",
-                    color: "#fff!important",
                   }}
-                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] tw-leading-[20px]"
+                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#c3c3c3] hover:tw-no-underline lg:tw-text-[18px] tw-leading-[20px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
               <Typography
-                className="tw-font-semibold tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-black hover:tw-text-black hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px]"
+                className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
                 component={Link}
                 to={"/login"}
                 variant="subtitle1"
@@ -218,7 +217,7 @@ const Header = (props: any) => {
                   //
                   // border: "1px solid #fff",
                   padding: "12px 24px",
-                  borderRadius: "8px",
+                  borderRadius: "5px",
                 }}
               >
                 LOGIN
