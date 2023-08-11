@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 import PricingCard from "../../ui-component/pricing/PricingCard";
+import PageHeader from "./PageHeader";
 
 const PricingBox = () => {
   const pricingItems = [
@@ -73,23 +74,9 @@ const PricingBox = () => {
         }}
       >
         <Box className="tw-pt-[150px] tw-px-3 sm:tw-px-20">
-          <Box className="content">
-            <Typography
-              variant="h1"
-              className="tw-text-white tw-text-[40px] tw-leading-[48px] tw-text-center tw-mb-[40px] xl:tw-text-[80px] xl:tw-leading-[100px]"
-            >
-              🎉 Introducing CallSine's Flexible Subscription Plans!
-            </Typography>
-            <Typography
-              variant="body2"
-              className="tw-text-white tw-text-center tw-text-[20px] tw-font-normal tw-leading-[24px] tw-mb-[40px] xl:tw-text-[30px] xl:tw-leading-[46px]"
-            >
-              At CallSine, we believe in empowering your marketing and sales
-              teams like never before. We've crafted two subscription options
-              tailored to your needs and budget, ensuring that you get the best
-              value and functionality, without compromise.
-            </Typography>
-          </Box>
+          <PageHeader />
+
+          <Box className="tw-py-[15px]" />
 
           <Box className="pricing-boxes tw-flex tw-flex-col tw-justify-center tw-gap-5 tw-w-full lg:tw-flex-row">
             {pricingItems?.map((i: any, idx: number) => {
@@ -97,7 +84,7 @@ const PricingBox = () => {
             })}
           </Box>
 
-          <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-py-[100px] tw-text-center">
+          <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-py-[100px] tw-text-center xl:tw-px-[100px]">
             Whatever your preference, both plans guarantee CallSine's
             unparalleled quality, innovation, and customer support. Sign up
             today, and let's transform the way you connect!
