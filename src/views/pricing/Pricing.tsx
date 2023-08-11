@@ -187,7 +187,7 @@ const PricingBox = () => {
             })}*/}
           </Box>
 
-          <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-pt-[40px] tw-pb-[80px] tw-text-center">
+          <Box className="footer-content tw-text-white tw-text-[18px] tw-font-normal tw-leading-[31px] tw-py-[100px] tw-text-center">
             Whatever your preference, both plans guarantee CallSine's
             unparalleled quality, innovation, and customer support. Sign up
             today, and let's transform the way you connect!
