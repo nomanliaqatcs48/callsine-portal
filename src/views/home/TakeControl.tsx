@@ -63,7 +63,7 @@ const TakeControl = () => {
               }}
             >
               <span
-                className="tw-font-bold tw-text-[70px]"
+                className="tw-font-bold tw-text-[45px] lg:tw-text-[70px]"
                 style={{ color: "#1976D2" }}
               >
                 CallSine
