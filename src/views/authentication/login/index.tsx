@@ -1,8 +1,13 @@
 import Login from "./Login";
+import { Helmet } from "react-helmet-async";
+import React from "react";
 
 const LoginMain = () => {
   return (
     <>
+      <Helmet>
+        <title>Login | CallSine</title>
+      </Helmet>
       <div className="">
         <div className="tw-flex tw-flex-col lg:tw-flex-row">
           <div className="tw-hidden lg:tw-flex lg:tw-items-center lg:tw-p-2 lg:tw-w-2/3 lg:tw-bg-[#4d4bc0]">

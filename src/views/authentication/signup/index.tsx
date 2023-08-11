@@ -5,10 +5,14 @@ import imageBgcTop from "../../../assets/images/users/Rectangle1.png";
 import { Box } from "@mui/material";
 import Footer from "../../home/Footer";
 import FooterBlueBar from "../../home/FooterBlueBar";
+import { Helmet } from "react-helmet-async";
 
 const index = () => {
   return (
     <>
+      <Helmet>
+        <title>Signup | CallSine</title>
+      </Helmet>
       <Box className="signup-page">
         <Box className="">
           <Box className="tw-flex tw-flex-col lg:tw-flex-row">
