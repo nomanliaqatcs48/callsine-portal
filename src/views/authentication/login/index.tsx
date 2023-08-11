@@ -29,6 +29,7 @@ const LoginMain = () => {
                   height: "100vh",
                   width: "100%",
                   mixBlendMode: "overlay",
+                  opacity: "0.4",
                 }}
               />
               <img
