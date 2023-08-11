@@ -164,11 +164,7 @@ const PricingBox = () => {
 
           <Box className="pricing-boxes tw-flex tw-flex-col tw-justify-center tw-gap-5 tw-w-full lg:tw-flex-row">
             {pricingItems?.map((i: any, idx: number) => {
-              return (
-                <>
-                  <PricingCard key={idx} {...i} className="lg:tw-w-1/3" />
-                </>
-              );
+              return <PricingCard key={idx} {...i} className="lg:tw-w-1/3" />;
             })}
             {/*<PricingCard isPopular={false} className="lg:tw-w-1/3" />
             <PricingCard isPopular={true} className="lg:tw-w-1/3" />
