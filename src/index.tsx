@@ -27,20 +27,23 @@ import "react-toastify/dist/ReactToastify.css";
 import { PublicClientApplication } from "@azure/msal-browser";
 import { MsalProvider } from "@azure/msal-react";
 import { msalConfig } from "src/views/authentication/auth-forms/microsoft/authConfig";
+import { HelmetProvider } from "react-helmet-async";
 
 const msalInstance = new PublicClientApplication(msalConfig as any);
 
 const container: any = document.getElementById("root");
 const root = createRoot(container); // createRoot(container!) if you use TypeScript
 root.render(
-  <Provider store={store}>
-    <MsalProvider instance={msalInstance}>
-      <BrowserRouter basename={config.basename}>
-        <App />
-        <ToastContainer />
-      </BrowserRouter>
-    </MsalProvider>
-  </Provider>
+  <HelmetProvider>
+    <Provider store={store}>
+      <MsalProvider instance={msalInstance}>
+        <BrowserRouter basename={config.basename}>
+          <App />
+          <ToastContainer />
+        </BrowserRouter>
+      </MsalProvider>
+    </Provider>
+  </HelmetProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function
