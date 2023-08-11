@@ -82,7 +82,7 @@ const PricingBox = () => {
           <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-flex-row">
             {pricingItems?.map((i: any, idx: number) => {
               return (
-                <Box className="">
+                <Box className="tw-flex-1">
                   <PricingCard
                     key={idx}
                     {...i}
