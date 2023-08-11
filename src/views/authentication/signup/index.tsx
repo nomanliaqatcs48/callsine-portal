@@ -42,10 +42,10 @@ const index = () => {
                 className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52"
                 style={{ position: "relative", zIndex: "999999" }}
               >
-                <Box className="tw-text-[68px] tw-font-bold tw-tracking-[3.4px] tw-leading-[80px]">
+                <Box className="tw-font-normal tw-text-[80px] tw-leading-[100px]">
                   Unleash the power of AI for sales
                 </Box>
-                <p className="tw-text-[25px] tw-leading-[38px]">
+                <p className="tw-font-normal tw-text-[30px] tw-leading-[46px]">
                   CallSine™ is for salespeople and teams looking for an at scale
                   email outreach platform sending individualized emails to each
                   prospect.
