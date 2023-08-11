@@ -139,8 +139,10 @@ const PricingBox = () => {
             </Typography>
           </Box>
 
-          <Box className="pricing-boxes tw-flex tw-flex-col tw-gap-5 tw-w-full md:tw-flex-row">
-            <PricingCard />
+          <Box className="pricing-boxes tw-flex tw-flex-col tw-justify-center tw-gap-5 tw-w-full lg:tw-flex-row">
+            <PricingCard className="lg:tw-w-1/3" />
+            <PricingCard isPopular={true} className="lg:tw-w-1/3" />
+            <PricingCard className="lg:tw-w-1/3" />
             {/*{pricingItems.map((i: any, idx: number) => {
               return (
                 <CustomGrid key={idx}>
