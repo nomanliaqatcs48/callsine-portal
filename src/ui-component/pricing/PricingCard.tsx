@@ -1,13 +1,30 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Button, Card, CardContent, Typography } from "@mui/material";
 import { ReactComponent as CheckIcon } from "../../assets/images/svg/check.svg";
+import { ReactComponent as StarsIcon } from "../../assets/images/svg/stars.svg";
 import "./index.css";
 
-const PricingCard = ({ item, ...props }: any) => {
+const PricingCard = ({ item, isPopular = false, ...props }: any) => {
+  const [isMostPopular, setIsMostPopular] = useState<boolean>(true);
+
   return (
     <>
       <Box className="" sx={{ zIndex: "999" }}>
-        <Card variant="outlined">
+        <Box
+          className={`tw-flex tw-justify-center tw-items-center tw-gap-3 tw-text-[14px] tw-font-normal tw-leading-[17px] tw-text-black tw-p-[12px] ${
+            isMostPopular ? "tw-rounded-t-[12px]" : "tw-invisible"
+          }`}
+          sx={{
+            backgroundImage: "linear-gradient(90deg,#4ac5fa,#2fcd70)",
+          }}
+        >
+          <StarsIcon />
+          <span>Most Popular</span>
+        </Box>
+        <Card
+          variant="outlined"
+          className={`${isMostPopular ? "tw-rounded-t-[0px]" : ""}`}
+        >
           <CardContent className="tw-py-10 tw-px-10">
             <Typography
               variant="h3"
@@ -24,7 +41,11 @@ const PricingCard = ({ item, ...props }: any) => {
             <Button
               variant="contained"
               color="primary"
-              className="tw-text-[18px] tw-text-primary tw-font-normal tw-w-full tw-py-[12px] tw-shadow-none tw-border tw-border-solid tw-border-primary tw-bg-transparent hover:tw-bg-primaryDark hover:tw-text-white"
+              className={`tw-text-[18px] tw-font-normal tw-w-full tw-py-[12px] tw-shadow-none ${
+                isMostPopular
+                  ? "tw-text-white tw-border tw-border-solid tw-border-primary tw-bg-primary hover:tw-bg-primaryDark"
+                  : "tw-text-primary tw-border tw-border-solid tw-border-primary tw-bg-transparent hover:tw-bg-primaryDark hover:tw-text-white"
+              }`}
             >
               Get Started
             </Button>
