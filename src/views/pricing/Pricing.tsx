@@ -79,9 +79,17 @@ const PricingBox = () => {
 
           <Box className="tw-py-[15px]" />
 
-          <Box className="pricing-boxes tw-flex tw-flex-col tw-justify-center tw-gap-5 tw-w-full lg:tw-flex-row">
+          <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-flex-row">
             {pricingItems?.map((i: any, idx: number) => {
-              return <PricingCard key={idx} {...i} className="lg:tw-w-1/3" />;
+              return (
+                <Box className="">
+                  <PricingCard
+                    key={idx}
+                    {...i}
+                    className="lg:tw-w-full tw-h-full"
+                  />
+                </Box>
+              );
             })}
           </Box>
 

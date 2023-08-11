@@ -9,7 +9,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
   const _features = item?.features || props?.features;
 
   return (
-    <Box className="" sx={{ zIndex: "999" }}>
+    <Box className={props?.className} sx={{ zIndex: "999" }}>
       {children || (
         <>
           <Box
@@ -25,9 +25,16 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
           </Box>
           <Card
             variant="outlined"
-            className={`${isMostPopular ? "tw-rounded-t-[0px]" : ""}`}
+            className={`tw-h-full ${isMostPopular ? "tw-rounded-t-[0px]" : ""}`}
           >
-            <CardContent className="tw-py-10 tw-px-10">
+            <CardContent
+              className="tw-py-10 tw-px-10"
+              sx={{
+                "&:last-child": {
+                  paddingBottom: { lg: 0 },
+                },
+              }}
+            >
               <Typography
                 variant="h3"
                 className="tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-0"
