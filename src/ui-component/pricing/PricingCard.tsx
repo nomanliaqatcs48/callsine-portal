@@ -57,7 +57,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
                   }`}
                   onClick={item?.onClick || props?.onClick || null}
                 >
-                  {item?.buttonText || props?.buttonText || "Get Started"}
+                  {item?.buttontext || props?.buttontext || "Get Started"}
                 </Button>
               </CardContent>
               {_features ? (

@@ -27,7 +27,7 @@ const PricingBox = () => {
           "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&utm_source=cb-app-copy"
         );
       },
-      buttonText: "Get Started",
+      buttontext: "Get Started",
       /*features: [
         {
           name: "Lorem ipsum dolor",
@@ -49,7 +49,7 @@ const PricingBox = () => {
           "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
         );
       },
-      buttonText: "Get Started",
+      buttontext: "Get Started",
       isPopular: true,
     },
     {
@@ -64,7 +64,7 @@ const PricingBox = () => {
       onClick: () => {
         //
       },
-      buttonText: "Contact Sales",
+      buttontext: "Contact Sales",
       isPopular: false,
     },
   ];
@@ -183,7 +183,7 @@ const PricingBox = () => {
                       {i?.desc}
                     </CustomDesc>
                     <CustomButton onClick={i?.onClick}>
-                      {i?.buttonText}
+                      {i?.buttontext}
                     </CustomButton>
                   </CustomCard>
                 </CustomGrid>
