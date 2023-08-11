@@ -20,9 +20,10 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import icon from "../../../assets/images/icons/logo-2x.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
 import { useAuthentication } from "../../../hooks/useAuthentication";
+import ButtonV1 from "../../../ui-component/buttons/ButtonV1";
 
 interface HeaderProps {
   /**
@@ -44,6 +45,7 @@ const navItems = [
 
 const Header = (props: any) => {
   const theme: any = useTheme();
+  const navigate = useNavigate();
   const { isAuthenticated } = useAuthentication();
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -209,7 +211,22 @@ const Header = (props: any) => {
                 </Typography>
               ))}
 
-              <Typography
+              <ButtonV1
+                variant="transparent"
+                addClassname="tw-font-comfortaa"
+                style={{
+                  fontSize: 18,
+                  padding: "4px 26px",
+                  marginLeft: 10,
+                  borderRadius: 8,
+                }}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                LOGIN
+              </ButtonV1>
+              {/*<Typography
                 className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
                 component={Link}
                 to={"/login"}
@@ -226,7 +243,7 @@ const Header = (props: any) => {
                 }}
               >
                 LOGIN
-              </Typography>
+              </Typography>*/}
             </Box>
           </Toolbar>
         </AppBar>

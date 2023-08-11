@@ -14,6 +14,7 @@ import { IconSquareRoundedCheckFilled } from "@tabler/icons-react";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 import imageBgcTop from "../../assets/images/users/Group3.png";
 import { useNavigate } from "react-router-dom";
+import ButtonV1 from "../../ui-component/buttons/ButtonV1";
 
 const Banner = () => {
   const theme = useTheme();
@@ -147,7 +148,22 @@ const Banner = () => {
                 },
               }}
             >
-              <Button
+              <Box className="tw-flex tw-flex-col tw-gap-2 lg:tw-flex-row lg:tw-gap-5">
+                <ButtonV1 variant="white" onClick={() => navigate("/signup")}>
+                  Start Free
+                </ButtonV1>
+                <ButtonV1
+                  variant="transparent"
+                  onClick={() => {
+                    window.open(
+                      "https://calendly.com/unionresolute/union-s-callsine-demo"
+                    );
+                  }}
+                >
+                  Book a Demo
+                </ButtonV1>
+              </Box>
+              {/*<Button
                 className="lg:tw-text-[25px] tw-rounded-[5px] tw-leading-[38px]"
                 sx={{
                   backgroundColor: "#fff !important",
@@ -163,9 +179,8 @@ const Banner = () => {
                 onClick={() => navigate("/signup")}
               >
                 Start Free
-                {/*Sign up for free*/}
-              </Button>
-              <Button
+              </Button>*/}
+              {/*<Button
                 className="lg:tw-text-[25px] tw-rounded-[5px] tw-normal-case tw-leading-[38px]"
                 sx={{
                   backgroundColor: "transparent !important",
@@ -192,8 +207,7 @@ const Banner = () => {
                 }}
               >
                 Book a Demo
-                {/*Request for a demo*/}
-              </Button>
+              </Button>*/}
             </Box>
           </Box>
         </Grid>
