@@ -6,6 +6,7 @@ import Footer from "./Footer";
 import TakeControl from "./TakeControl";
 import Reviews from "./Reviews";
 import { Helmet } from "react-helmet-async";
+import FooterBlueBar from "./FooterBlueBar";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       {/*<Numbers />*/}
       {/*<Reviews />*/}
       <Footer />
+      <FooterBlueBar />
     </>
   );
 };
