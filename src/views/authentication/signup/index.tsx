@@ -4,7 +4,7 @@ import imageBgc from "../../../assets/images/users/Group3.png";
 import imageBgcTop from "../../../assets/images/users/Rectangle1.png";
 import { Box } from "@mui/material";
 import Footer from "../../home/Footer";
-import "./index.css";
+import FooterBlueBar from "../../home/FooterBlueBar";
 
 const index = () => {
   return (
@@ -54,7 +54,7 @@ const index = () => {
           </Box>
         </Box>
 
-        <Footer />
+        <FooterBlueBar />
       </Box>
     </>
   );

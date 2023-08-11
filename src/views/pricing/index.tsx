@@ -2,6 +2,7 @@ import React from "react";
 import PricingBox from "./Pricing";
 import Footer from "../home/Footer";
 import { Helmet } from "react-helmet-async";
+import FooterBlueBar from "../home/FooterBlueBar";
 
 const PricingPage = () => {
   return (
@@ -11,6 +12,7 @@ const PricingPage = () => {
       </Helmet>
       <PricingBox />
       <Footer />
+      <FooterBlueBar />
     </>
   );
 };

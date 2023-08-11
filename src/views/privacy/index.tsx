@@ -4,6 +4,7 @@ import Footer from "../home/Footer";
 import React from "react";
 import Privacy from "./Privacy";
 import { Helmet } from "react-helmet-async";
+import FooterBlueBar from "../home/FooterBlueBar";
 
 const PrivacyPage = () => {
   return (
@@ -13,6 +14,7 @@ const PrivacyPage = () => {
       </Helmet>
       <Privacy />
       <Footer />
+      <FooterBlueBar />
     </>
   );
 };
