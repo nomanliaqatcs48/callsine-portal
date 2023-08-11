@@ -5,7 +5,7 @@ import { ReactComponent as StarsIcon } from "../../assets/images/svg/stars.svg";
 import "./index.css";
 
 const PricingCard = ({ item, isPopular = false, ...props }: any) => {
-  const [isMostPopular, setIsMostPopular] = useState<boolean>(true);
+  const [isMostPopular, setIsMostPopular] = useState<boolean>(isPopular);
 
   return (
     <>
@@ -30,13 +30,18 @@ const PricingCard = ({ item, isPopular = false, ...props }: any) => {
               variant="h3"
               className="tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-0"
             >
-              Free
+              {item?.name || "Lorem ipsum"}
             </Typography>
             <Box className="price-per">
-              <strong>$0</strong> <small> /month</small>
+              {item?.price || (
+                <>
+                  <strong>$0</strong> <small> /month</small>
+                </>
+              )}
             </Box>
-            <Typography className="tw-text-[#36313D] tw-text-[14px] tw-font-normal tw-leading-[21px] tw-py-[45px]">
-              Best for launching your personal projects.
+            <Typography className="tw-text-[#36313D] tw-text-[16px] tw-font-normal tw-leading-[21px] tw-py-[45px] lg:tw-text-[18px]">
+              {item?.description ||
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit"}
             </Typography>
             <Button
               variant="contained"
@@ -46,29 +51,40 @@ const PricingCard = ({ item, isPopular = false, ...props }: any) => {
                   ? "tw-text-white tw-border tw-border-solid tw-border-primary tw-bg-primary hover:tw-bg-primaryDark"
                   : "tw-text-primary tw-border tw-border-solid tw-border-primary tw-bg-transparent hover:tw-bg-primaryDark hover:tw-text-white"
               }`}
+              onClick={item?.onClick || null}
             >
-              Get Started
+              {item?.buttonText || "Get Started"}
             </Button>
           </CardContent>
-          <Box className="list-container tw-py-10 tw-px-10 tw-bg-[#F5F5F5]">
-            <ul className="tw-flex tw-flex-col tw-gap-6">
-              <li className="tw-flex tw-leading-[21px]">
-                <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
-                  <CheckIcon />
-                </Box>
-                <span>
-                  Fast CallSine builds, Bring your own domain and host for no
-                  charge
-                </span>
-              </li>
-              <li className="tw-flex tw-leading-[21px]">
-                <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
-                  <CheckIcon />
-                </Box>
-                <span>Bring your own domain and host for no charge</span>
-              </li>
-            </ul>
-          </Box>
+          {item?.features ? (
+            <Box className="list-container tw-py-10 tw-px-10 tw-bg-[#F5F5F5]">
+              <ul className="tw-flex tw-flex-col tw-gap-6">
+                {item?.features?.map((i: any, idx: number) => {
+                  return (
+                    <li key={idx} className="tw-flex tw-leading-[21px]">
+                      <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
+                        <CheckIcon />
+                      </Box>
+                      <span>{i?.name}</span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </Box>
+          ) : (
+            <Box className="list-container tw-py-10 tw-px-10 tw-bg-[#F5F5F5]">
+              <ul className="tw-flex tw-flex-col tw-gap-6">
+                <li className="tw-flex tw-leading-[21px]">
+                  <Box className="tw-translate-x-[-20%] tw-translate-y-[-5%]">
+                    <CheckIcon />
+                  </Box>
+                  <span>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit
+                  </span>
+                </li>
+              </ul>
+            </Box>
+          )}
         </Card>
       </Box>
     </>
