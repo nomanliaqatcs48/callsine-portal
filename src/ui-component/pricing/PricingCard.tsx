@@ -10,7 +10,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
 
   return (
     <>
-      <Box className="" sx={{ zIndex: "999" }} {...props}>
+      <Box className="" sx={{ zIndex: "999" }}>
         {children || (
           <>
             <Box
