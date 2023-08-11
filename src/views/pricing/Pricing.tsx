@@ -30,14 +30,14 @@ const PricingBox = () => {
       isPopular: false,
     },
     {
-      name: "Annual Savings",
+      name: "Volume Discount",
       price: (
         <>
-          <Box>$999 per seat per year</Box>
+          <Box>$79 per seat per month</Box>
         </>
       ),
       description:
-        "Ready to commit to excellence? Opt for our yearly subscription and save big. With a one-time payment, you'll get the full suite of CallSine features for an entire year. That's like getting two months FREE compared to the monthly plan.",
+        "Opt for our multi-seat subscription and save. if you have a need for 5 to 20 seats, you will get a $20 per month discount for all seats. That's a $240 savings per peat per year.  And it’s still month to month, no contract.",
       onClick: () => {
         window.open(
           "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
@@ -54,7 +54,7 @@ const PricingBox = () => {
         </>
       ),
       description:
-        "For organizations requiring bespoke solutions, our Enterprise Elevation plan offers custom-tailored features to meet your unique needs. Contact us to discuss your specific requirements, and we'll design a package that fits just right.",
+        "For organizations requiring over 20 seats, our Enterprise Elevation plan offers custom-tailored features to meet your unique needs. Contact us to discuss your specific requirements, and we'll design a package that fits just right.",
       onClick: () => {
         //
       },
