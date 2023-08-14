@@ -11,6 +11,8 @@ import IndustrialOffice from "./.././../assets/images/blog/industrial-office.jpg
 import Monitors from "./.././../assets/images/blog/monitors.jpeg";
 import TimePrecious from "./.././../assets/images/blog/time-is-precious.jpeg";
 import UnionImage from "./.././../assets/images/blog/union_images.jpg";
+import Footer from "../home/Footer";
+import FooterBlueBar from "../home/FooterBlueBar";
 
 const BlogPage = () => {
   const blogItems = [
@@ -158,6 +160,9 @@ const BlogPage = () => {
           })}
         </Box>
       </Box>
+
+      <Footer />
+      <FooterBlueBar />
     </>
   );
 };

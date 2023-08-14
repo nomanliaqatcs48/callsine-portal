@@ -1,5 +1,8 @@
 import { Box } from "@mui/material";
 import "./index.css";
+import Footer from "../../views/home/Footer";
+import FooterBlueBar from "../../views/home/FooterBlueBar";
+import React from "react";
 
 const BlogPostItem = ({ children, ...props }: any) => {
   return (
@@ -12,6 +15,9 @@ const BlogPostItem = ({ children, ...props }: any) => {
 
         <Box className="tw-py-[30px]" />
       </Box>
+
+      <Footer />
+      <FooterBlueBar />
     </>
   );
 };
