@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import { Helmet } from "react-helmet-async";
 import "./index.css";
+import { Link } from "react-router-dom";
 
 const BlogPage = () => {
   const blogItems = [
@@ -96,13 +97,19 @@ const BlogPage = () => {
                 </Typography>
 
                 <Typography
+                  component={Link}
+                  to={"/blog"}
                   variant="h2"
                   className="tw-text-[24px] tw-text-black tw-font-medium tw-leading-[1.2] lg:tw-ml-[230px]"
                 >
                   {i?.title}
                 </Typography>
 
-                <Box className="lg:tw-absolute lg:tw-left-0 lg:tw-top-0 lg:tw-w-[200px]">
+                <Box
+                  className="lg:tw-absolute lg:tw-left-0 lg:tw-top-0 lg:tw-w-[200px]"
+                  component={Link}
+                  to={"/blog"}
+                >
                   <img
                     src="https://picsum.photos/id/7/800/600"
                     alt="featured-img"
