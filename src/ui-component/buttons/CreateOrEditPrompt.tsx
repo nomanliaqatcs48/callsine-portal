@@ -13,7 +13,7 @@ import {
   Stack,
   TextField,
 } from "@mui/material";
-import React, { ChangeEvent, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
@@ -37,6 +37,23 @@ type CreateOrEditPlaybookTypes = {
   setPromptList?: any;
   [x: string]: any;
 };
+
+const MERGE_FIELDS = [
+  { label: "Prospect First Name", value: "first_name" },
+  { label: "Prospect Last Name", value: "last_name" },
+  { label: "Prospect Company Name", value: "company_name" },
+  { label: "Prospect Company Website", value: "company_domain" },
+  { label: "Prospect City", value: "person_city" },
+  { label: "Prospect State", value: "person_state" },
+  { label: "Prospect Job Title", value: "job_title" },
+  { label: "Prospect Cares About", value: "cares_about" },
+  { label: "Company Mission", value: "company_mission" },
+  { label: "Company Specialty", value: "company_specialty" },
+  { label: "Company Region", value: "company_region" },
+  { label: "Company Value Proposition", value: "company_value_proposition" },
+  { label: "Company Why Someone Cares", value: "company_why_someone_cares" },
+  { label: "Company Special to Mention", value: "company_special_to_mention" },
+];
 
 const CreateOrEditPlaybook = ({
   children,
@@ -81,6 +98,8 @@ const CreateOrEditPlaybook = ({
   // };
 
   const handleAddTag = (event: any) => {
+    console.log(event.target.value);
+    console.log(promptValue);
     const selectedTag = event.target.value;
     setTagValue(selectedTag);
 
@@ -160,6 +179,12 @@ const CreateOrEditPlaybook = ({
     }
   };
 
+  const menuItemLoop = () => {
+    return MERGE_FIELDS.map((field) => {
+      return <MenuItem value={field.value}>{field.label}</MenuItem>;
+    });
+  };
+
   return (
     <>
       <Button
@@ -212,9 +237,7 @@ const CreateOrEditPlaybook = ({
                     fullWidth
                     disabled={cursorPos > -1 ? false : true}
                   >
-                    <MenuItem value="first_name">first_name</MenuItem>
-                    <MenuItem value="last_name">last_name</MenuItem>
-                    <MenuItem value="company_name">company_name</MenuItem>
+                    {menuItemLoop()}
                   </TextField>
                 </Box>
               </Stack>
@@ -259,7 +282,7 @@ const CreateOrEditPlaybook = ({
                           errors={errors}
                           name="message"
                           render={({ message }) => (
-                            <FormHelperText sx={{ color: "error.main" }}>
+                            <FormHelperText sx={{ color: "success.main" }}>
                               {message}
                             </FormHelperText>
                           )}
