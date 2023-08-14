@@ -25,7 +25,7 @@ const ElevateYourEmailGameWithCallsine = () => {
             the way you engage with potential customers.
           </p>
 
-          <h2>Why Use CallSine for Your Email Outreach?</h2>
+          <h3>Why Use CallSine for Your Email Outreach?</h3>
           <strong>1. Intelligent Personalization</strong>
           <p>
             CallSine's AI-powered tools analyze prospect behavior, preferences,
@@ -66,7 +66,7 @@ const ElevateYourEmailGameWithCallsine = () => {
             outreach campaigns.
           </p>
 
-          <h2>Conclusion</h2>
+          <h3>Conclusion</h3>
           <p>
             In the fast-paced world of business, having the right tools to
             communicate effectively with prospects is essential. Emails are more

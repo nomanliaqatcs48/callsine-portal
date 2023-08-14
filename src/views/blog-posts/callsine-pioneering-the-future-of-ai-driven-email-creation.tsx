@@ -23,7 +23,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             approach email outreach.
           </p>
 
-          <h2>1. Understanding Through Artificial Intelligence</h2>
+          <h3>1. Understanding Through Artificial Intelligence</h3>
           <p>
             CallSine doesn't merely send emails; it understands them. Through
             sophisticated AI algorithms, CallSine analyzes the behavior,
@@ -32,7 +32,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             tailored to the reader.
           </p>
 
-          <h2>Why it matters:</h2>
+          <h3>Why it matters:</h3>
           <p>
             Enhanced Engagement: Emails that speak directly to the recipient's
             needs and interests are more likely to be opened, read, and
@@ -44,7 +44,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             instrument.
           </p>
 
-          <h2>2. Innovation in Large Language Modeling</h2>
+          <h3>2. Innovation in Large Language Modeling</h3>
           <p>
             CallSine employs advanced Large Language Models to craft human-like
             content that resonates. Unlike traditional automated email tools
@@ -52,7 +52,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             nuanced and engaging.
           </p>
 
-          <h2>The impact:</h2>
+          <h3>The impact:</h3>
           <p>
             Human Touch at Scale: CallSine's language models enable businesses
             to maintain a personalized touch even when reaching out to thousands
@@ -64,7 +64,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             rates.
           </p>
 
-          <h2>3. Seamless Workflow Integration</h2>
+          <h3>3. Seamless Workflow Integration</h3>
           <p>
             CallSine's AI-driven email creation isn't a standalone feature; it's
             part of a cohesive, integrated workflow. The platform connects
@@ -72,7 +72,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             providing a unified, efficient workspace for email outreach.
           </p>
 
-          <h2>The benefits:</h2>
+          <h3>The benefits:</h3>
           <p>
             Streamlined Processes: With everything under one roof, sales and
             marketing teams can work more cohesively and efficiently.
@@ -83,7 +83,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             harmonized and effective campaigns.
           </p>
 
-          <h2>4. Adaptation and Continuous Learning</h2>
+          <h3>4. Adaptation and Continuous Learning</h3>
           <p>
             CallSine's system is not static; it learns and adapts. By
             continuously analyzing responses and engagement, it refines and
@@ -91,7 +91,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             the insights of the previous ones.
           </p>
 
-          <h2>The result:</h2>
+          <h3>The result:</h3>
           <p>
             Ever-Improving Performance: With each email sent, CallSine's AI
             learns more about what works, leading to progressively more
@@ -103,7 +103,7 @@ const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
             customer behavior.
           </p>
 
-          <h2>Conclusion: The CallSine Advantage</h2>
+          <h3>Conclusion: The CallSine Advantage</h3>
           <p>
             CallSine's leadership in AI-driven email creation is more than a
             technological feat; it's a transformative approach to one of the

@@ -25,7 +25,7 @@ const CallsineVsTheCompetition = () => {
             explore.
           </p>
 
-          <h2>Intelligent Individualization: Crafting Emails That Resonate</h2>
+          <h3>Intelligent Individualization: Crafting Emails That Resonate</h3>
           <p>
             CallSine's AI-powered email platform takes personalization to the
             next level, ensuring that every email sent feels like a one-on-one
@@ -35,7 +35,7 @@ const CallsineVsTheCompetition = () => {
             messages that truly resonate.
           </p>
 
-          <h2>What does this mean for your business?</h2>
+          <h3>What does this mean for your business?</h3>
           <p>
             Enhanced Engagement: Emails that feel personal are more likely to be
             opened, read, and responded to. With CallSine, you're not just
@@ -56,7 +56,7 @@ const CallsineVsTheCompetition = () => {
             algorithms work behind the scenes to optimize deliverability.
           </p>
 
-          <h2>How does this set CallSine apart?</h2>
+          <h3>How does this set CallSine apart?</h3>
           <p>
             Reach the Right People: Your messages don't just end up in any
             inbox; they reach the right inbox. This increases the chances of
@@ -69,7 +69,7 @@ const CallsineVsTheCompetition = () => {
             being marked as spam.
           </p>
 
-          <h2>Flexibility and Integration: A Seamless Experience</h2>
+          <h3>Flexibility and Integration: A Seamless Experience</h3>
 
           <p>
             CallSine's platform isn't just about sending emails; it's about
@@ -78,7 +78,7 @@ const CallsineVsTheCompetition = () => {
             with your existing tools and workflows.
           </p>
 
-          <h2>The advantages?</h2>
+          <h3>The advantages?</h3>
           <p>
             Unified Workflow: CallSine's integration capabilities mean that your
             sales and marketing teams can work from one unified platform,
@@ -91,7 +91,7 @@ const CallsineVsTheCompetition = () => {
             solution that enhances your existing processes.
           </p>
 
-          <h2>Conclusion: The CallSine Difference</h2>
+          <h3>Conclusion: The CallSine Difference</h3>
           <p>
             In a crowded marketplace, CallSine distinguishes itself through a
             commitment to intelligent, individualized outreach, superior

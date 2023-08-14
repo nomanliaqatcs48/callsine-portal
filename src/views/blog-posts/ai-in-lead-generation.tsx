@@ -25,7 +25,7 @@ const AiInLeadGeneration = () => {
             leveraging the potential of AI in lead generation is CallSine.
           </p>
 
-          <h2>How AI is Transforming Lead Generation</h2>
+          <h3>How AI is Transforming Lead Generation</h3>
           <p>
             Traditional lead generation strategies often rely on manual
             processes and gut instincts, making it challenging to scale efforts
@@ -55,7 +55,7 @@ const AiInLeadGeneration = () => {
             leads more effectively, freeing up valuable time and resources.
           </p>
 
-          <h2>CallSine's Role in AI-driven Lead Generation</h2>
+          <h3>CallSine's Role in AI-driven Lead Generation</h3>
           <p>
             CallSine has emerged as a trailblazer in incorporating AI into lead
             generation efforts. With their cutting-edge tools, they've helped
@@ -63,7 +63,7 @@ const AiInLeadGeneration = () => {
             processes.
           </p>
 
-          <h2>Here's a closer look at what CallSine offers:</h2>
+          <h3>Here's a closer look at what CallSine offers:</h3>
 
           <p>
             Intelligent Engagement: CallSine ensures meaningful engagement by
@@ -90,7 +90,7 @@ const AiInLeadGeneration = () => {
             leads, and maximizing the return on investment.
           </p>
 
-          <h2>Conclusion</h2>
+          <h3>Conclusion</h3>
           <p>
             In the current competitive landscape, a sophisticated approach to
             lead generation is paramount. AI has proven to be a game-changer in

@@ -25,16 +25,16 @@ const CallsinesUniquenessInSalesAutomation = () => {
             redefine sales automation:
           </p>
 
-          <h2>
+          <h3>
             1. Large Language Modeling (LLM): Creating Human-Like Interactions
-          </h2>
+          </h3>
           <p>
             Large Language Models have revolutionized the way we interact with
             text-based information. By understanding and generating human-like
             text, they facilitate more meaningful and natural communication.
           </p>
 
-          <h2>CallSine's Approach:</h2>
+          <h3>CallSine's Approach:</h3>
           <p>
             Personalized Outreach: CallSine's use of LLM enables the creation of
             emails and messages that read as though a human wrote them,
@@ -46,7 +46,7 @@ const CallsinesUniquenessInSalesAutomation = () => {
             to highly relevant communications.
           </p>
 
-          <h2>2. Machine Learning (ML): Adapting and Learning Over Time</h2>
+          <h3>2. Machine Learning (ML): Adapting and Learning Over Time</h3>
 
           <p>
             Machine Learning algorithms learn from data and improve their
@@ -54,7 +54,7 @@ const CallsinesUniquenessInSalesAutomation = () => {
             predictions, leading to more intelligent decision-making.
           </p>
 
-          <h2>CallSine's Approach:</h2>
+          <h3>CallSine's Approach:</h3>
           <p>
             Predictive Lead Scoring: CallSine's ML algorithms analyze past
             interactions and behavior to prioritize leads more likely to
@@ -65,17 +65,17 @@ const CallsinesUniquenessInSalesAutomation = () => {
             previous interactions to adapt and enhance future outreach, ensuring
             continuous improvement in response rates.
           </p>
-          <h2>
+          <h3>
             3. Artificial Intelligence (AI): Automating and Enhancing Sales
             Workflows
-          </h2>
+          </h3>
           <p>
             AI encompasses various technologies, including LLM and ML, and
             applies them to automate and augment human tasks. It's about making
             machines work intelligently alongside humans.
           </p>
 
-          <h2>CallSine's Approach:</h2>
+          <h3>CallSine's Approach:</h3>
           <p>
             Intelligent Automation: From scheduling meetings to managing leads,
             CallSine's AI-driven tools automate routine tasks, allowing sales
@@ -87,7 +87,7 @@ const CallsinesUniquenessInSalesAutomation = () => {
             market trends, enabling data-driven decisions.
           </p>
 
-          <h2>The Intersection of LLM, ML, and AI: A Unified Platform</h2>
+          <h3>The Intersection of LLM, ML, and AI: A Unified Platform</h3>
           <p>
             What sets CallSine apart is its harmonious integration of LLM, ML,
             and AI. These technologies don't work in isolation but are
@@ -95,7 +95,7 @@ const CallsinesUniquenessInSalesAutomation = () => {
             automation platform.
           </p>
 
-          <h2>Conclusion: The CallSine Edge</h2>
+          <h3>Conclusion: The CallSine Edge</h3>
           <p>
             In an increasingly competitive and complex sales landscape,
             CallSine's unique approach to sales automation provides a distinct

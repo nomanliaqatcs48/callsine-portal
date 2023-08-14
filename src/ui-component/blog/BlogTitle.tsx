@@ -5,7 +5,7 @@ const BlogTitle = ({ children, ...props }: any) => {
   return (
     <Typography
       variant="h1"
-      className="tw-text-[24px] tw-text-black tw-font-medium tw-leading-[1.2] lg:tw-ml-[230px]"
+      className="tw-text-[24px] tw-text-black tw-font-medium tw-leading-[1.2] tw-mb-[20px] lg:tw-text-[42px]"
       {...props}
     >
       {children || "Lorem Ipsum"}

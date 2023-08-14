@@ -25,7 +25,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             solution.
           </p>
 
-          <h2>1. AI-Enhanced Personalization</h2>
+          <h3>1. AI-Enhanced Personalization</h3>
           <p>
             Traditional methods of outreach often suffer from a lack of
             personalization, treating leads as mere numbers. AI has turned this
@@ -33,7 +33,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             individual preferences and behaviors.
           </p>
 
-          <h2>Impact:</h2>
+          <h3>Impact:</h3>
           <p>
             Deeper Connections: Personalized outreach builds trust and rapport,
             transforming cold leads into warm relationships.
@@ -44,7 +44,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             will convert.
           </p>
 
-          <h2>2. Predictive Analytics and Lead Scoring</h2>
+          <h3>2. Predictive Analytics and Lead Scoring</h3>
           <p>
             AI's ability to sift through massive amounts of data allows it to
             recognize patterns and predict behaviors. This has led to a
@@ -52,7 +52,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             prospects with incredible accuracy.
           </p>
 
-          <h2>Effect:</h2>
+          <h3>Effect:</h3>
           <p>
             Focused Efforts: Sales teams can target their efforts on leads that
             are most likely to convert, maximizing efficiency.
@@ -63,14 +63,14 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             shifting market dynamics.
           </p>
 
-          <h2>3. Automated Engagement at Scale</h2>
+          <h3>3. Automated Engagement at Scale</h3>
           <p>
             Automation powered by AI allows for consistent and meaningful
             engagement with leads, even as the volume scales up. Whether it's
             automated emails or chatbots, AI ensures that no lead is neglected.
           </p>
 
-          <h2>Benefits:</h2>
+          <h3>Benefits:</h3>
           <p>
             24/7 Engagement: AI doesn't sleep, allowing businesses to engage
             with leads around the clock.
@@ -81,7 +81,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             volumes.
           </p>
 
-          <h2>4. Enhanced Insights and Decision-Making</h2>
+          <h3>4. Enhanced Insights and Decision-Making</h3>
           <p>
             AI's ability to analyze complex data sets provides insights that
             were previously unattainable. This has revolutionized
@@ -89,7 +89,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             works and why.
           </p>
 
-          <h2>Advantages:</h2>
+          <h3>Advantages:</h3>
           <p>
             Data-Driven Strategies: With AI's insights, sales strategies become
             more grounded in facts and observable trends, leading to more
@@ -101,7 +101,7 @@ const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
             changing needs of the market.
           </p>
 
-          <h2>Conclusion: The CallSine Solution</h2>
+          <h3>Conclusion: The CallSine Solution</h3>
           <p>
             While AI's disruption of sales engagement and lead generation has
             created remarkable opportunities, it also necessitates a thoughtful

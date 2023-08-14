@@ -26,7 +26,7 @@ const UnleashingAiForBusinessDevelopmentRepresentatives = () => {
             effectiveness for BDRs.
           </p>
 
-          <h2>The Power of AI in Business Development</h2>
+          <h3>The Power of AI in Business Development</h3>
           <p>
             The integration of AI into business development has brought about
             several transformational changes:
@@ -56,7 +56,7 @@ const UnleashingAiForBusinessDevelopmentRepresentatives = () => {
             enabling quicker, informed decisions.
           </p>
 
-          <h2>CallSine: The Game Changer for BDRs</h2>
+          <h3>CallSine: The Game Changer for BDRs</h3>
           <p>
             CallSine's innovative solutions leverage AI to elevate business
             development to new heights. Here's how CallSine can save time for
@@ -93,7 +93,7 @@ const UnleashingAiForBusinessDevelopmentRepresentatives = () => {
             data, all in one place.
           </p>
 
-          <h2>Conclusion</h2>
+          <h3>Conclusion</h3>
           <p>
             In the age of digital transformation, time is a precious commodity,
             especially for Business Development Representatives. The integration
