@@ -104,7 +104,7 @@ const BlogPage = () => {
       <Box className="tw-px-[20px] tw-pt-[150px] lg:tw-px-[96px] 2xl:tw-px-[240px]">
         <Typography
           variant="h1"
-          className="tw-font-normal lg:tw-text-[80px] lg:tw-leading-[100px]"
+          className="tw-text-[40px] tw-leading-[48px] tw-font-normal lg:tw-text-[80px] lg:tw-leading-[100px] lg:tw-py-[50px]"
         >
           The CallSine Blog
         </Typography>
