@@ -14,7 +14,7 @@ export const usePermissions = () => {
     let _diff = _now.diff(_termEnd);
 
     if (auth?.subscription?.status !== "active") {
-      navigate("/");
+      navigate("/dashboard");
     }
 
     /*if (!auth?.subscription?.status) {

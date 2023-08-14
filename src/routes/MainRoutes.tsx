@@ -36,7 +36,7 @@ const MainRoutes = {
   children: [
     {
       path: "/",
-      element: <PersonsPage />,
+      element: <DashboardDefault />,
     },
     {
       path: "dashboard",
