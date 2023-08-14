@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import Hustle from "../../assets/images/blog/hustle.jpeg";
 
 const TransformingSalesInTheEnterprise = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={Hustle} />
         <BlogTitle>
           Transforming Sales in the Enterprise: Why Big Companies Should Choose
           CallSine

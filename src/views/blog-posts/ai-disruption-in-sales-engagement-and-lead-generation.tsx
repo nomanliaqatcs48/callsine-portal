@@ -3,12 +3,13 @@ import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
 import BlogPostItem from "../../ui-component/blog/BlogPostItem";
+import Monitors from "../../assets/images/blog/monitors.jpeg";
 
 const AiDisruptionInSalesEngagementAndLeadGeneration = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={Monitors} />
         <BlogTitle>
           AI Disruption in Sales Engagement and Lead Generation: The Rise of
           CallSine

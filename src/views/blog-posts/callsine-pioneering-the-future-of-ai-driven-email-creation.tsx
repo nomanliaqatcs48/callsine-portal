@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import Headphone from "../../assets/images/blog/headphone.jpeg";
 
 const CallsinePioneeringTheFutureOfAiDrivenEmailCreation = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={Headphone} />
         <BlogTitle>
           CallSine: Pioneering the Future of AI-Driven Email Creation
         </BlogTitle>

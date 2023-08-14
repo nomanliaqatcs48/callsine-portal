@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import Signage from "../../assets/images/blog/signage.jpg";
 
 const UnleashingAiForBusinessDevelopmentRepresentatives = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={Signage} />
         <BlogTitle>
           Unleashing AI for Business Development Representatives: How CallSine
           Saves Time

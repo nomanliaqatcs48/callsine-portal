@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import ChutterSnap from "../../assets/images/blog/chuttersnap.jpg";
 
 const AiInLeadGeneration = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={ChutterSnap} />
         <BlogTitle>
           AI in Lead Generation: A New Era of Engagement with CallSine
         </BlogTitle>

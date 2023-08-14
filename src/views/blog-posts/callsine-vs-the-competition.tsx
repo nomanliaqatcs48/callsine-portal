@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import TimePrecious from "./../../assets/images/blog/time-is-precious.jpeg";
 
 const CallsineVsTheCompetition = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={TimePrecious} />
         <BlogTitle>
           CallSine vs. The Competition: A New Standard in AI-Driven Emails for
           Superior Engagement

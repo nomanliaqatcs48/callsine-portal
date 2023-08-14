@@ -3,12 +3,13 @@ import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import IndustrialOffice from "../../assets/images/blog/industrial-office.jpg";
 
 const CallsinesUniquenessInSalesAutomation = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={IndustrialOffice} />
         <BlogTitle>
           CallSine's Uniqueness in Sales Automation: Harnessing Large Language
           Modeling, Machine Learning, and AI

@@ -3,12 +3,13 @@ import BlogImage from "../../ui-component/blog/BlogImage";
 import BlogTitle from "../../ui-component/blog/BlogTitle";
 import BlogDate from "../../ui-component/blog/BlogDate";
 import BlogContent from "../../ui-component/blog/BlogContent";
+import UnionImage from "../../assets/images/blog/union_images.jpg";
 
 const ElevateYourEmailGameWithCallsine = () => {
   return (
     <>
       <BlogPostItem>
-        <BlogImage />
+        <BlogImage src={UnionImage} />
         <BlogTitle>
           Elevate Your Email Game with CallSine: Better and More Productive
           Outreach to Prospects
