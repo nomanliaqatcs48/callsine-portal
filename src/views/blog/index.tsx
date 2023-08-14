@@ -21,7 +21,7 @@ const BlogPage = () => {
         "CallSine vs. The Competition: A New Standard in AI-Driven Emails for Superior Engagement",
       excerpt:
         "In today's digital marketplace, the effectiveness of your email outreach can make or break your sales strategy.",
-      link: "/callsine-vs-the-competition",
+      link: "/blog/callsine-vs-the-competition",
     },
     {
       id: 3,
@@ -30,7 +30,7 @@ const BlogPage = () => {
         "CallSine's Uniqueness in Sales Automation: Harnessing Large Language Modeling, Machine Learning, and AI",
       excerpt:
         "Sales automation has become a cornerstone for modern sales organizations, but not all platforms are created equal.",
-      link: "/callsines-uniqueness-in-sales-automation",
+      link: "/blog/callsines-uniqueness-in-sales-automation",
     },
     {
       id: 4,
@@ -39,7 +39,7 @@ const BlogPage = () => {
         "Unleashing AI for Business Development Representatives: How CallSine Saves Time",
       excerpt:
         "Business Development Representatives (BDRs) are the engines that fuel an organization's growth.",
-      link: "/unleashing-ai-for-business-development-representatives",
+      link: "/blog/unleashing-ai-for-business-development-representatives",
     },
     {
       id: 5,
@@ -48,7 +48,7 @@ const BlogPage = () => {
         "Elevate Your Email Game with CallSine: Better and More Productive Outreach to Prospects",
       excerpt:
         "In the competitive world of sales and marketing, emails remain a powerful tool for connecting with prospects.",
-      link: "/elevate-your-email-game-with-callsine",
+      link: "/blog/elevate-your-email-game-with-callsine",
     },
     {
       id: 6,
@@ -57,7 +57,7 @@ const BlogPage = () => {
         "AI Disruption in Sales Engagement and Lead Generation: The Rise of CallSine",
       excerpt:
         "Sales engagement and lead generation have long been critical components of any successful business strategy.",
-      link: "/ai-disruption-in-sales-engagement-and-lead-generation",
+      link: "/blog/ai-disruption-in-sales-engagement-and-lead-generation",
     },
     {
       id: 7,
@@ -65,7 +65,7 @@ const BlogPage = () => {
       title: "AI in Lead Generation: A New Era of Engagement with CallSine",
       excerpt:
         "In the fast-paced digital age, businesses are constantly searching for innovative ways to enhance their...",
-      link: "/ai-in-lead-generation",
+      link: "/blog/ai-in-lead-generation",
     },
     {
       id: 8,
@@ -73,7 +73,7 @@ const BlogPage = () => {
       title: "CallSine: Pioneering the Future of AI-Driven Email Creation",
       excerpt:
         "Email has long been a vital tool in the arsenal of sales and marketing professionals. But in a world...",
-      link: "/callsine-pioneering-the-future-of-ai-driven-email-creation",
+      link: "/blog/callsine-pioneering-the-future-of-ai-driven-email-creation",
     },
   ];
 
