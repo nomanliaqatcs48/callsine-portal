@@ -1,11 +1,12 @@
 import { Box, Link, Typography } from "@mui/material";
 import React from "react";
+import "./index.css";
 
 const Privacy = () => {
   const CustomHeader = ({ children, ...props }: any) => {
     return (
       <Typography
-        className="tw-text-[18px] tw-pt-[25px] tw-pb-[10px] tw-font-bold"
+        className="tw-text-[18px] tw-pt-[25px] tw-pb-[10px] tw-font-bold tw-mt-[50px]"
         {...props}
       >
         {children}
@@ -44,21 +45,88 @@ const Privacy = () => {
       <i>Effective Date: August 14, 2023</i>
       <CustomHeader>Contents</CustomHeader>
       <ul className="tw-list-decimal tw-ml-6">
-        <li>Scope</li>
-        <li>Personal Information We Collect</li>
-        <li>Why We Collect Your Personal Information</li>
-        <li>Sharing Personal Information</li>
-        <li>Security of Personal Information</li>
-        <li>International Transfers of Personal Information</li>
-        <li>Accessing or Updating Your Personal Information</li>
-        <li>Retention of Personal Information</li>
-        <li>Children</li>
-        <li>Special Notice for Individuals in certain States in the US</li>
-        <li>Special Notice for Individuals in the EEA, UK and Switzerland</li>
-        <li>Updates</li>
-        <li>How to Contact Us</li>
+        <li>
+          <a href="#scope" className="tw-underline">
+            Scope
+          </a>
+        </li>
+        <li>
+          <a href="#personal-information-we-collect" className="tw-underline">
+            Personal Information We Collect
+          </a>
+        </li>
+        <li>
+          <a
+            href="#why-we-collect-your-personal-information"
+            className="tw-underline"
+          >
+            Why We Collect Your Personal Information
+          </a>
+        </li>
+        <li>
+          <a href="#sharing-personal-information" className="tw-underline">
+            Sharing Personal Information
+          </a>
+        </li>
+        <li>
+          <a href="#security-of-personal-information" className="tw-underline">
+            Security of Personal Information
+          </a>
+        </li>
+        <li>
+          <a
+            href="#international-transfers-of-personal-information"
+            className="tw-underline"
+          >
+            International Transfers of Personal Information
+          </a>
+        </li>
+        <li>
+          <a
+            href="#accessing-or-updating-your-personal-information"
+            className="tw-underline"
+          >
+            Accessing or Updating Your Personal Information
+          </a>
+        </li>
+        <li>
+          <a href="#retention-of-personal-information" className="tw-underline">
+            Retention of Personal Information
+          </a>
+        </li>
+        <li>
+          <a href="#children" className="tw-underline">
+            Children
+          </a>
+        </li>
+        <li>
+          <a
+            href="#special-notice-for-individuals-in-certain-states-in-the-us"
+            className="tw-underline"
+          >
+            Special Notice for Individuals in certain States in the US
+          </a>
+        </li>
+        <li>
+          <a
+            href="#special-notice-for-individuals-in-the-eea-uk-and-switzerland"
+            className="tw-underline"
+          >
+            Special Notice for Individuals in the EEA, UK and Switzerland
+          </a>
+        </li>
+        <li>
+          <a href="#updates" className="tw-underline">
+            Updates
+          </a>
+        </li>
+        <li>
+          <a href="#how-to-contact-us" className="tw-underline">
+            How to Contact Us
+          </a>
+        </li>
       </ul>
-      <CustomHeader>1. Scope</CustomHeader>
+      <CustomHeader id="scope">1. Scope</CustomHeader>
       <p>
         CallSine LLC and its affiliate companies (“CallSine,” “we,” “us,” or
         “our”) are committed to protecting your privacy.
@@ -80,7 +148,9 @@ const Privacy = () => {
         please immediately cease using our Websites and do not engage in
         Interactions with us.
       </strong>
-      <CustomHeader>2. Personal Information We Collect</CustomHeader>
+      <CustomHeader id="personal-information-we-collect">
+        2. Personal Information We Collect
+      </CustomHeader>
       <p>
         Except as described in this Privacy Notice, CallSine will not give,
         sell, rent, or loan to any third party any of the personal information
@@ -184,7 +254,9 @@ const Privacy = () => {
         or all of our services, programs, or events may not be available to you,
         and we may not be able to respond to your requests.
       </p>
-      <CustomHeader>3. Why We Collect Your Personal Information</CustomHeader>
+      <CustomHeader id="why-we-collect-your-personal-information">
+        3. Why We Collect Your Personal Information
+      </CustomHeader>
       <p>
         In general, we use personal information to create, develop, operate,
         deliver, and improve our Websites and be able to offer our services and
@@ -262,7 +334,9 @@ const Privacy = () => {
         described in this Privacy Notice, we will provide notice. Notice may be
         provided in accordance with Section 12 (Updates).
       </p>
-      <CustomHeader>4. Sharing Personal Information</CustomHeader>
+      <CustomHeader id="sharing-personal-information">
+        4. Sharing Personal Information
+      </CustomHeader>
       <p>
         We share your personal information only with third parties who have a
         legitimate purpose for accessing it. We will only share your information
@@ -307,7 +381,9 @@ const Privacy = () => {
         websites or services, service your account, or troubleshoot concerns or
         support other legitimate business operations.
       </p>
-      <CustomHeader>5. Security of Personal Information</CustomHeader>
+      <CustomHeader id="security-of-personal-information">
+        5. Security of Personal Information
+      </CustomHeader>
       <p>
         We will take reasonable precautions to prevent the loss, misuse or
         alteration of your personal information. Data transmission over the
@@ -329,7 +405,7 @@ const Privacy = () => {
         </a>
         .
       </p>
-      <CustomHeader>
+      <CustomHeader id="international-transfers-of-personal-information">
         6. International Transfers of Personal Information
       </CustomHeader>
       <p>
@@ -349,7 +425,7 @@ const Privacy = () => {
         Section 11 (Special Notice for Individuals in the EEA, UK, and
         Switzerland).
       </p>
-      <CustomHeader>
+      <CustomHeader id="accessing-or-updating-your-personal-information">
         7. Accessing or Updating Your Personal Information
       </CustomHeader>
       <p>
@@ -365,7 +441,9 @@ const Privacy = () => {
         we receive your privacy rights request to ensure the security of your
         personal information.
       </p>
-      <CustomHeader>8. Retention</CustomHeader>
+      <CustomHeader id="retention-of-personal-information">
+        8. Retention
+      </CustomHeader>
       <p>
         We retain your personal information for as long as is necessary to
         fulfill the purposes for which it was collected, including for the
@@ -374,7 +452,7 @@ const Privacy = () => {
         requirements, we will look to delete your personal information within
         the time limits imposed by applicable law, if any, upon request
       </p>
-      <CustomHeader>9. Children</CustomHeader>
+      <CustomHeader id="children">9. Children</CustomHeader>
       <p>
         Our Websites and Interactions are not directed to persons under 18, and
         we do not knowingly collect personal information from children under 18.
@@ -387,7 +465,7 @@ const Privacy = () => {
         . If we become aware that a child under 18 has provided us with personal
         information, we will take steps to delete from our files.
       </p>
-      <CustomHeader>
+      <CustomHeader id="special-notice-for-individuals-in-certain-states-in-the-us">
         10. Special Notice for Individuals in certain States within the US
       </CustomHeader>
       <p>
@@ -641,7 +719,7 @@ const Privacy = () => {
         request to exercise your rights. Please submit an appeal using the
         contact information in Section 13 (How to Contact Us).
       </p>
-      <CustomHeader>
+      <CustomHeader id="special-notice-for-individuals-in-the-eea-uk-and-switzerland">
         11. Special Notice for Individuals in the EEA, UK, and Switzerland
       </CustomHeader>
       <p>
@@ -784,7 +862,7 @@ const Privacy = () => {
         purposes of CallSine’s or another party’s legitimate interests, such
         processing will be made in accordance with Article 6(1) lit. (f) GDPR.
       </p>
-      <CustomHeader>12. Updates</CustomHeader>
+      <CustomHeader id="updates">12. Updates</CustomHeader>
       <p>
         We may update this Privacy Notice from time to time. If we make material
         changes to the way we collect, use, share or process the personal
@@ -793,7 +871,7 @@ const Privacy = () => {
         most recent email address we have on file for you, or via another
         communication channel where permitted by law.
       </p>
-      <CustomHeader>13. How to Contact Us</CustomHeader>
+      <CustomHeader id="how-to-contact-us">13. How to Contact Us</CustomHeader>
       <p>
         To exercise your rights, or if you have any questions about this Notice
         or our treatment of your personal information, please send us an email
