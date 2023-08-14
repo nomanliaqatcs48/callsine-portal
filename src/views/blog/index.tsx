@@ -9,10 +9,11 @@ const BlogPage = () => {
     {
       id: 1,
       date: "Aug 1, 2023",
-      title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
+      title:
+        "Transforming Sales in the Enterprise: Why Big Companies Should Choose CallSine",
       excerpt:
-        "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et...",
-      link: "/blog",
+        "In the modern and complex landscape of enterprise sales, traditional methods can often fall short in...",
+      link: "/blog/transforming-sales-in-the-enterprise",
     },
     {
       id: 2,
