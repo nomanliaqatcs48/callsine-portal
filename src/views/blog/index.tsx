@@ -12,6 +12,7 @@ const BlogPage = () => {
       title: "Lorem ipsum dolor sit amet, consectetur adipiscing elit",
       excerpt:
         "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et...",
+      link: "/blog",
     },
     {
       id: 2,
@@ -20,6 +21,7 @@ const BlogPage = () => {
         "CallSine vs. The Competition: A New Standard in AI-Driven Emails for Superior Engagement",
       excerpt:
         "In today's digital marketplace, the effectiveness of your email outreach can make or break your sales strategy.",
+      link: "/blog",
     },
     {
       id: 3,
@@ -28,6 +30,7 @@ const BlogPage = () => {
         "CallSine's Uniqueness in Sales Automation: Harnessing Large Language Modeling, Machine Learning, and AI",
       excerpt:
         "Sales automation has become a cornerstone for modern sales organizations, but not all platforms are created equal.",
+      link: "/blog",
     },
     {
       id: 4,
@@ -36,6 +39,7 @@ const BlogPage = () => {
         "Unleashing AI for Business Development Representatives: How CallSine Saves Time",
       excerpt:
         "Business Development Representatives (BDRs) are the engines that fuel an organization's growth.",
+      link: "/blog",
     },
     {
       id: 5,
@@ -44,6 +48,7 @@ const BlogPage = () => {
         "Elevate Your Email Game with CallSine: Better and More Productive Outreach to Prospects",
       excerpt:
         "In the competitive world of sales and marketing, emails remain a powerful tool for connecting with prospects.",
+      link: "/blog",
     },
     {
       id: 6,
@@ -52,6 +57,7 @@ const BlogPage = () => {
         "AI Disruption in Sales Engagement and Lead Generation: The Rise of CallSine",
       excerpt:
         "Sales engagement and lead generation have long been critical components of any successful business strategy.",
+      link: "/blog",
     },
     {
       id: 7,
@@ -59,6 +65,7 @@ const BlogPage = () => {
       title: "AI in Lead Generation: A New Era of Engagement with CallSine",
       excerpt:
         "In the fast-paced digital age, businesses are constantly searching for innovative ways to enhance their...",
+      link: "/blog",
     },
     {
       id: 8,
@@ -66,6 +73,7 @@ const BlogPage = () => {
       title: "CallSine: Pioneering the Future of AI-Driven Email Creation",
       excerpt:
         "Email has long been a vital tool in the arsenal of sales and marketing professionals. But in a world...",
+      link: "/blog",
     },
   ];
 
@@ -98,7 +106,7 @@ const BlogPage = () => {
 
                 <Typography
                   component={Link}
-                  to={"/blog"}
+                  to={i?.link}
                   variant="h2"
                   className="tw-text-[24px] tw-text-black tw-font-medium tw-leading-[1.2] lg:tw-ml-[230px]"
                 >
@@ -108,7 +116,7 @@ const BlogPage = () => {
                 <Box
                   className="lg:tw-absolute lg:tw-left-0 lg:tw-top-0 lg:tw-w-[200px]"
                   component={Link}
-                  to={"/blog"}
+                  to={i?.link}
                 >
                   <img
                     src="https://picsum.photos/id/7/800/600"
