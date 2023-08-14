@@ -1,0 +1,12 @@
+p {
+  line-height: 2;
+  font-size: 15px;
+  @apply tw-py-[10px];
+  @apply tw-font-normal;
+}
+
+@media (min-width: 768px) {
+  nav {
+    background-color: #1976d2 !important;
+  }
+}

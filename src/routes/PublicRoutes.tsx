@@ -10,6 +10,7 @@ const Home = Loadable(lazy(() => import("../views/home/index")));
 const HomePage = Loadable(lazy(() => import("../views/home")));
 const PricingPage = Loadable(lazy(() => import("../views/pricing")));
 const PrivacyPage = Loadable(lazy(() => import("../views/privacy")));
+const TermsPage = Loadable(lazy(() => import("../views/terms-and-conditions")));
 const BlogPage = Loadable(lazy(() => import("../views/blog")));
 const TransformingSalesInTheEnterprise = Loadable(
   lazy(() => import("../views/blog-posts/transforming-sales-in-the-enterprise"))
@@ -78,6 +79,10 @@ const AuthenticationRoutes = {
     {
       path: "/privacy",
       element: <PrivacyPage />,
+    },
+    {
+      path: "/terms-and-conditions",
+      element: <TermsPage />,
     },
     {
       path: "/blog",
