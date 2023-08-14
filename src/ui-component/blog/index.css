@@ -7,15 +7,18 @@ div.post p {
   color: #6e6d7a;
 }
 
+div.post h1 {
+  line-height: 48px !important;
+}
+
 div.post h1,
 div.post h2 {
-  font-size: 32px;
+  font-size: 40px;
 }
 
 div.post h1,
 div.post h2 {
   margin: 0 20px 10px 0;
-  font-weight: 500;
   letter-spacing: -0.03em;
   line-height: 1;
 }
@@ -72,9 +75,13 @@ div.post a {
 
 @media (min-width: 1024px) {
   div.post p {
-    font-size: 16px;
+    font-size: 18px;
+    line-height: 28px;
   }
-  div.post h1,
+  div.post h1 {
+    font-size: 80px;
+    line-height: 100px !important;
+  }
   div.post h2 {
     font-size: 40px;
   }

@@ -1,8 +1,8 @@
+import React from "react";
 import { Box } from "@mui/material";
-import "./index.css";
 import Footer from "../../views/home/Footer";
 import FooterBlueBar from "../../views/home/FooterBlueBar";
-import React from "react";
+import "./index.css";
 
 const BlogPostItem = ({ children, ...props }: any) => {
   return (
