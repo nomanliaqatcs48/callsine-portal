@@ -40,7 +40,7 @@ const navItems = [
   // { name: "Services", url: "services" },
   // { name: "Contact", url: "contact" },
   { name: "Pricing", url: "pricing" },
-  { name: "Blog", url: "/#" },
+  { name: "Blog", url: "blog" },
 ];
 
 const Header = (props: any) => {
