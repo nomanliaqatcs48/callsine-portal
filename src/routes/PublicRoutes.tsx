@@ -10,6 +10,7 @@ const Home = Loadable(lazy(() => import("../views/home/index")));
 const HomePage = Loadable(lazy(() => import("../views/home")));
 const PricingPage = Loadable(lazy(() => import("../views/pricing")));
 const PrivacyPage = Loadable(lazy(() => import("../views/privacy")));
+const BlogPage = Loadable(lazy(() => import("../views/blog")));
 
 const AuthenticationRoutes = {
   path: "/",
@@ -34,6 +35,10 @@ const AuthenticationRoutes = {
     {
       path: "/privacy",
       element: <PrivacyPage />,
+    },
+    {
+      path: "/blog",
+      element: <BlogPage />,
     },
   ],
 };
