@@ -112,14 +112,14 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             {personStatData?.replied || "0"}
           </Typography>
         </div>
-        <div>
+        {/*<div>
           <Typography className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-leading-[25px] tw-text-black">
             Pageviews
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
             {personStatData?.pageviews || "0"}
           </Typography>
-        </div>
+        </div>*/}
       </div>
     </>
   );
