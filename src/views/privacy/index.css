@@ -1,3 +1,17 @@
+strong,
+ul li {
+  font-size: 15px;
+}
+
+ul li {
+  line-height: 2;
+  margin-bottom: 10px;
+}
+
+p {
+  @apply tw-py-[10px];
+}
+
 @media (min-width: 768px) {
   nav {
     background-color: #1976d2 !important;
