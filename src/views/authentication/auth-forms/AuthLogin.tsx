@@ -84,7 +84,7 @@ const AuthLogin = ({ ...others }) => {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access);
         await saveString("refresh", res.data.refresh);
-        window.location.href = "/dashboard";
+        window.location.href = "/people";
         if (scriptedRef.current) {
           setStatus({ success: true });
           setSubmitting(false);

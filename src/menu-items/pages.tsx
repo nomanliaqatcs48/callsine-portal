@@ -26,7 +26,7 @@ const pages = {
   // caption: "Pages Caption",
   type: "group",
   children: [
-    {
+    /*{
       id: "default",
       title: "Dashboard",
       type: "item",
@@ -34,7 +34,7 @@ const pages = {
       icon: icons.IconDashboard,
       breadcrumbs: false,
       isPremium: false,
-    },
+    },*/
     {
       id: "people",
       title: "People",
