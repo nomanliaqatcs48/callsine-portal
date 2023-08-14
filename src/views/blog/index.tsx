@@ -16,7 +16,7 @@ const BlogPage = () => {
     },
     {
       id: 2,
-      date: "June 28, 2023",
+      date: "Jun 28, 2023",
       title:
         "CallSine vs. The Competition: A New Standard in AI-Driven Emails for Superior Engagement",
       excerpt:
