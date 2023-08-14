@@ -50,10 +50,10 @@ const FooterBlueBar = () => {
         </Button>{" "}
         <Button
           variant="text"
-          href="#"
-          rel="noreferrer noopener"
+          onClick={() => {
+            navigate("/terms-and-conditions");
+          }}
           className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
-          // target="_blank"
           sx={{
             color: "#F2F4F8!important",
             textDecoration: "none!important",
