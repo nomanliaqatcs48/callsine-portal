@@ -4,8 +4,12 @@ import imageBgc from "../../assets/images/users/Rectangle1.png";
 import PricingCard from "../../ui-component/pricing/PricingCard";
 import PageHeader from "./PageHeader";
 import PricingBottomContent from "./PricingBottomContent";
+import { useAuthentication } from "../../hooks/useAuthentication";
+// import { ChargeBee, _hosted_page } from "chargebee-typescript";
 
 const PricingBox = () => {
+  let { isAuthenticated, authProfile } = useAuthentication();
+
   const pricingItems = [
     {
       name: "Monthly Freedom",
@@ -18,7 +22,7 @@ const PricingBox = () => {
         "Ideal for those who prefer flexibility and wish to adapt to changing needs. This option lets you enjoy all the premium features, support, and seamless experience of CallSine, billed on a convenient monthly basis. No strings attached!",
       onClick: () => {
         window.open(
-          "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&utm_source=cb-app-copy"
+          `https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Monthly&customer[email]=${authProfile?.email}&utm_source=cb-app-copy`
         );
       },
       buttontext: "Get Started",
@@ -40,7 +44,7 @@ const PricingBox = () => {
         "Opt for our multi-seat subscription and save. if you have a need for 5 to 20 seats, you will get a $20 per month discount for all seats. That's a $240 savings per peat per year.  And it’s still month to month, no contract.",
       onClick: () => {
         window.open(
-          "https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&utm_source=cb-app-copy"
+          `https://kvilar-unionresolute.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Premium-Plan-USD-Yearly&customer[email]=${authProfile?.email}&utm_source=cb-app-copy`
         );
       },
       buttontext: "Get Started",
