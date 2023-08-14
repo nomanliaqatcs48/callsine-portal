@@ -78,7 +78,7 @@ const SendLater = ({
   const handleChangeCheckbox = (event: React.ChangeEvent<HTMLInputElement>) => {
     setChecked(event.target.checked);
     if (!event.target.checked) {
-      useForm?.unregister("daysInterval");
+      useForm?.unregister("days_interval");
     }
   };
 
@@ -114,6 +114,8 @@ const SendLater = ({
     try {
       let res = await createAsEmailService({
         ...data,
+        is_auto_schedule: data?.is_auto_schedule,
+        days_interval: data?.days_interval,
         in_reply_to: data?.id,
         from_email: data?.from_email?.id,
         position: position,
@@ -190,16 +192,16 @@ const SendLater = ({
                   </Grid>
                   <Grid item xs={12} className="tw-py-2">
                     <FormGroup>
-                      {/*<FormControlLabel
+                      <FormControlLabel
                         control={
                           <Checkbox
-                            {...useForm?.register("isAutoSchedule")}
+                            {...useForm?.register("is_auto_schedule")}
                             checked={checked}
                             onChange={handleChangeCheckbox}
                           />
                         }
                         label="Auto schedule other emails"
-                      />*/}
+                      />
                     </FormGroup>
                   </Grid>
                 </Box>
@@ -210,14 +212,14 @@ const SendLater = ({
                         type="number"
                         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
                         label="Enter number of days interval"
-                        {...useForm?.register("daysInterval", {
+                        {...useForm?.register("days_interval", {
                           required: "This is required field.",
                         })}
                         onChange={handleChangeDaysInterval}
                       />
                       <ErrorMessage
                         errors={useForm?.errors}
-                        name="daysInterval"
+                        name="days_interval"
                         render={({ message }) => (
                           <FormHelperText sx={{ color: "error.main" }}>
                             {message}
