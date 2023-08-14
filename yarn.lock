@@ -3514,6 +3514,13 @@ char-regex@^2.0.0:
   resolved "https://registry.npmjs.org/char-regex/-/char-regex-2.0.1.tgz"
   integrity sha512-oSvEeo6ZUD7NepqAat3RqoucZ5SeqLJgOvVIwkafu6IP3V0pO38s/ypdVUmDDK6qIIHNlYHJAKX9E7R7HoKElw==
 
+chargebee-typescript@^2.23.0:
+  version "2.23.0"
+  resolved "https://registry.yarnpkg.com/chargebee-typescript/-/chargebee-typescript-2.23.0.tgz#786d4336a020fccb34664b0015790b4ec56a2be6"
+  integrity sha512-2TrCvB3k7BNxTehbIe8GyHfbOex+2wKrLgqUXazCmrHyDwsLLQP6x7Fi2JMRFQyxNSnZCiYtPUsGpG0Bv4xCmw==
+  dependencies:
+    q ">=1.0.1"
+
 check-types@^11.1.1:
   version "11.2.2"
   resolved "https://registry.npmjs.org/check-types/-/check-types-11.2.2.tgz"
@@ -8201,7 +8208,7 @@ punycode@^2.1.0, punycode@^2.1.1:
   resolved "https://registry.npmjs.org/punycode/-/punycode-2.3.0.tgz"
   integrity sha512-rRV+zQD8tVFys26lAGR9WUuS4iUAngJScM+ZRSKtvl5tKeZ2t5bvdNFdNHBW9FWR4guGHlgmsZ1G7BSm2wTbuA==
 
-q@^1.1.2:
+q@>=1.0.1, q@^1.1.2:
   version "1.5.1"
   resolved "https://registry.npmjs.org/q/-/q-1.5.1.tgz"
   integrity sha512-kV/CThkXo6xyFEZUugw/+pIOywXcDbFYgSct5cT3gqlbkBE1SJdwy6UQoZvodiWF/ckQLZyDE/Bu1M6gVu5lVw==
