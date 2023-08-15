@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 
 import { gridSpacing } from "../../store/constant";
@@ -17,9 +17,12 @@ import MyTable from "../../ui-component/tables/MyTable";
 import { usePersons } from "../../hooks/persons/usePersons";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import TotalScheduledEmailsCard from "../../ui-component/cards/TotalScheduledEmails";
+import { useAuthentication } from "../../hooks/useAuthentication";
+import { useNavigate } from "react-router-dom";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
+  let navigate = useNavigate();
   let {
     isLoading,
     setIsLoading,
@@ -39,10 +42,17 @@ const DashboardPage = () => {
     limit: 99999,
     offset: 0,
   });
+  const { authProfile } = useAuthentication();
   const { mailAccountsData } = useMailAccounts(true, {
     limit: 99999,
     offset: 0,
   });
+
+  useEffect(() => {
+    if (authProfile && authProfile?.team !== 24) {
+      navigate("/people");
+    }
+  }, [authProfile]);
 
   return (
     <Grid container spacing={gridSpacing}>

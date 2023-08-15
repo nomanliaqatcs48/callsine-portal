@@ -20,8 +20,10 @@ import {
 import { useTheme } from "@mui/material/styles";
 import MenuIcon from "@mui/icons-material/Menu";
 import icon from "../../../assets/images/icons/logo-2x.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { makeStyles } from "@mui/styles";
+import { useAuthentication } from "../../../hooks/useAuthentication";
+import ButtonV1 from "../../../ui-component/buttons/ButtonV1";
 
 interface HeaderProps {
   /**
@@ -38,11 +40,13 @@ const navItems = [
   // { name: "Services", url: "services" },
   // { name: "Contact", url: "contact" },
   { name: "Pricing", url: "pricing" },
-  { name: "Blog", url: "/#" },
+  { name: "Blog", url: "blog" },
 ];
 
 const Header = (props: any) => {
   const theme: any = useTheme();
+  const navigate = useNavigate();
+  const { isAuthenticated } = useAuthentication();
   // const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
@@ -82,6 +86,7 @@ const Header = (props: any) => {
             >
               LOGIN
             </Typography>*/}
+
             <Typography
               className="tw-bg-[#1976d2] tw-font-semibold hover:tw-text-white hover:tw-no-underline lg:tw-py-[15px] lg:tw-px-[57px] tw-mx-auto"
               component={Link}
@@ -198,13 +203,30 @@ const Header = (props: any) => {
                     fontSize: 16,
                     margin: "0px 20px",
                     textDecoration: "none!important",
+                    color: "#fff",
                   }}
-                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#c3c3c3] hover:tw-no-underline lg:tw-text-[18px] tw-leading-[20px]"
+                  className="tw-font-comfortaa tw-text-white tw-font-normal tw-no-underline hover:tw-text-[#c3c3c3] hover:tw-no-underline focus:tw-text-white lg:tw-text-[18px] tw-leading-[20px]"
                 >
                   {item.name.toUpperCase()}
                 </Typography>
               ))}
-              <Typography
+
+              <ButtonV1
+                variant="transparent"
+                addClassname="tw-font-comfortaa"
+                style={{
+                  fontSize: 18,
+                  padding: "4px 26px",
+                  marginLeft: 10,
+                  borderRadius: 8,
+                }}
+                onClick={() => {
+                  navigate("/login");
+                }}
+              >
+                LOGIN
+              </ButtonV1>
+              {/*<Typography
                 className="tw-font-semibold tw-font-comfortaa tw-tracking-[0.32px] tw-transition-all tw-border tw-border-transparent tw-bg-white tw-text-[#1976D2] hover:tw-text-[#1976D2] hover:tw-bg-[#f2f2f2] hover:tw-no-underline lg:tw-text-[18px] lg:tw-py-[15px] lg:tw-px-[42px]"
                 component={Link}
                 to={"/login"}
@@ -221,7 +243,7 @@ const Header = (props: any) => {
                 }}
               >
                 LOGIN
-              </Typography>
+              </Typography>*/}
             </Box>
           </Toolbar>
         </AppBar>

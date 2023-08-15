@@ -1,6 +1,7 @@
 import { Button, Typography } from "@mui/material";
 import React from "react";
 import { styled } from "@mui/system";
+import { useNavigate } from "react-router-dom";
 
 const FooterBlueBar = () => {
   const BottomBar = styled("div")(({ theme }) => ({
@@ -14,6 +15,8 @@ const FooterBlueBar = () => {
       // flexWrap: "wrap",
     },
   }));
+
+  const navigate = useNavigate();
 
   return (
     <BottomBar className="tw-flex tw-flex-col tw-justify-center tw-py-[29px] tw-px-[20px] tw-items-center sm:tw-flex-row sm:tw-justify-between lg:tw-px-[96px] 2xl:tw-px-[240px]">
@@ -34,7 +37,9 @@ const FooterBlueBar = () => {
       >
         <Button
           variant="text"
-          href="/privacy"
+          onClick={() => {
+            navigate("/privacy");
+          }}
           className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
           sx={{
             color: "#F2F4F8!important",
@@ -45,10 +50,10 @@ const FooterBlueBar = () => {
         </Button>{" "}
         <Button
           variant="text"
-          href="#"
-          rel="noreferrer noopener"
+          onClick={() => {
+            navigate("/terms-and-conditions");
+          }}
           className="tw-text-[#F2F4F8] tw-font-light tw-text-[13px] tw-p-0"
-          // target="_blank"
           sx={{
             color: "#F2F4F8!important",
             textDecoration: "none!important",

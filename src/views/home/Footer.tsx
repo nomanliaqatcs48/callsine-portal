@@ -3,6 +3,7 @@ import { Box, Button, Typography, useTheme } from "@mui/material";
 import { styled } from "@mui/system";
 import { IconBrandFacebookFilled, IconSend } from "@tabler/icons-react";
 import icon from "../../assets/images/icons/logo-color-2x.png";
+import ButtonV1 from "../../ui-component/buttons/ButtonV1";
 
 const FooterContainer = styled("footer")(({ theme }) => ({
   backgroundColor: "#2C2C2C",
@@ -108,11 +109,11 @@ const Footer: React.FC = () => {
             }}
           >
             <LogoContainer>
-              <Logo src={icon} alt="Logo" />
+              <Logo src={icon} alt="Logo" className="tw-ml-[-7px]" />
             </LogoContainer>
             <SmallText sx={{ color: "#B5B5B5" }}>
-              CallSine's AI uses a large language model (LLM) and leverages an
-              algorithm that goes deep in massively large data sets to
+              CallSine’s Beta AI uses a large language model (LLM) and leverages
+              an algorithm that goes deep in massively large data sets to
               understand, summarize, generate, and predict new email content.
             </SmallText>
             {/*<SocialIconsContainer>
@@ -160,7 +161,17 @@ const Footer: React.FC = () => {
             sx={{ marginBottom: 0 }}
           >
             <TextContainer>
-              <Button
+              <ButtonV1
+                variant="transparent"
+                onClick={() => {
+                  window.open(
+                    "https://calendly.com/unionresolute/union-s-callsine-demo"
+                  );
+                }}
+              >
+                Book a Demo
+              </ButtonV1>
+              {/*<Button
                 className="tw-rounded-[5px] tw-text-center lg:tw-text-[25px] lg:tw-w-[262px] tw-normal-case"
                 sx={{
                   backgroundColor: "transparent !important",
@@ -187,8 +198,7 @@ const Footer: React.FC = () => {
                 }}
               >
                 Book a Demo
-                {/*Request for a demo*/}
-              </Button>
+              </Button>*/}
               {/*<Typography
                 className="tw-font-semibold tw-text-[23px]"
                 variant="h3"

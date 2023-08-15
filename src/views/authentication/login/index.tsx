@@ -1,31 +1,65 @@
 import Login from "./Login";
+import { Helmet } from "react-helmet-async";
+import React from "react";
+import { Box } from "@mui/material";
+import FooterBlueBar from "../../home/FooterBlueBar";
+import imageBgc from "../../../assets/images/users/Group3.png";
+import imageBgcTop from "../../../assets/images/users/Rectangle1.png";
 
 const LoginMain = () => {
   return (
     <>
-      <div className="">
-        <div className="tw-flex tw-flex-col lg:tw-flex-row">
-          <div className="tw-hidden lg:tw-flex lg:tw-items-center lg:tw-p-2 lg:tw-w-2/3 lg:tw-bg-[#4d4bc0]">
-            <div className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52">
-              <div className="tw-text-[68px] tw-leading-[80px] tw-tracking-[3.4px] tw-text-6xl tw-font-bold">
-                Unleash the power of AI for sales
-                {/*CallSine Unleashes the power of AI for Sales*/}
-              </div>
-              <p className="tw-text-[25px] tw-leading-[38px]">
-                CallSine™ is for salespeople and teams looking for an at scale
-                email outreach platform sending individualized emails to each
-                prospect.
-                {/*CallSine™ was developed for salespeople and teams that are
-                looking for a platform that does email outreach, at scale, and
-                with individualized emails to each prospect.*/}
-              </p>
+      <Helmet>
+        <title>Login | CallSine</title>
+      </Helmet>
+      <Box className="login-page">
+        <Box className="">
+          <Box className="tw-flex tw-flex-col lg:tw-flex-row">
+            <Box
+              className="tw-hidden tw-relative lg:tw-flex lg:tw-items-center lg:tw-w-2/3"
+              style={{ position: "relative", height: "100vh" }}
+            >
+              <img
+                className="h-auto max-w-full"
+                src={imageBgc}
+                alt="description"
+                style={{
+                  position: "absolute",
+                  zIndex: "999",
+                  height: "100vh",
+                  width: "100%",
+                  mixBlendMode: "overlay",
+                  opacity: "0.4",
+                }}
+              />
+              <img
+                className="h-auto max-w-full"
+                src={imageBgcTop}
+                alt="description"
+                style={{ position: "absolute", height: "100vh", width: "100%" }}
+              />
+              <Box
+                className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52"
+                style={{ position: "relative", zIndex: "999999" }}
+              >
+                <div className="tw-font-normal tw-text-[80px] tw-leading-[100px]">
+                  Unleash the power of AI for sales
+                </div>
+                <p className="tw-font-normal tw-text-[30px] tw-leading-[46px]">
+                  CallSine™ is for salespeople and teams looking for an at scale
+                  email outreach platform sending individualized emails to each
+                  prospect.
+                </p>
+              </Box>
+            </Box>
+            <div className="lg:tw-w-1/2">
+              <Login />
             </div>
-          </div>
-          <div className="lg:tw-w-1/2">
-            <Login />
-          </div>
-        </div>
-      </div>
+          </Box>
+        </Box>
+
+        <FooterBlueBar />
+      </Box>
     </>
   );
 };

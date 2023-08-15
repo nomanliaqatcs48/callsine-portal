@@ -9,7 +9,7 @@ hr.divider.sign-in {
   text-align: center;
 
   &:after {
-    content: "or sign in with email";
+    content: "or sign in with username";
     display: inline-block;
     position: relative;
     top: -7px;
@@ -17,4 +17,8 @@ hr.divider.sign-in {
     background: #fff;
     font-size: 14px;
   }
+}
+
+.google-button-wrapper div {
+  height: auto !important;
 }

@@ -170,6 +170,8 @@ const AuthRegister = ({ ...others }) => {
 
         setSubmitting(false);
       }
+
+      removeBodyLoader();
     }
   };
 
