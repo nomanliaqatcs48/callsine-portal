@@ -164,8 +164,13 @@ const SendLater = ({
           aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">Send Later</DialogTitle>
-          <DialogContent>
+          <DialogTitle
+            variant="h4"
+            className="tw-text-[18px] tw-text-black tw-bg-[#EAEAEA] tw-font-normal tw-tracking-[0.36px]"
+          >
+            Send Later
+          </DialogTitle>
+          <DialogContent className="tw-my-[20px]">
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
@@ -235,7 +240,7 @@ const SendLater = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
+          <DialogActions className="tw-pb-[30px] lg:tw-px-[24px]">
             <LoadingButton
               onClick={useForm?.handleSubmit((data: any, event: any) =>
                 onSubmit(data, event)
@@ -249,6 +254,7 @@ const SendLater = ({
               Send Later
             </LoadingButton>
             <LoadingButton
+              variant="outlined"
               onClick={(event: any) => handleClose(event, "")}
               disabled={isLoading?.form}
               loading={isLoading?.form}

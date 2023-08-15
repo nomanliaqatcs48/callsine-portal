@@ -185,7 +185,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                 Email
               </Box>
               {/*dropdown*/}
-              <Box className="tw-w-full xl:tw-w-[185px]">
+              <Box className="tw-w-full xl:tw-w-[200px]">
                 {!loading?.regeneratePlaybook && (
                   <ReactSelect
                     name="generate-playbook"
@@ -292,9 +292,17 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
               : "Generate Playbook?"
           }
           describedby="Generate Playbook modal"
-          modalSxStyle={{ width: { xs: 400 } }}
+          modalSxStyle={{
+            width: { xs: 400 },
+            padding: 0,
+            "& h4": {
+              backgroundColor: "#EAEAEA",
+              padding: "20px 30px",
+              fontSize: { xs: 14, lg: 16 },
+            },
+          }}
         >
-          <DialogContent className="tw-px-[5px] tw-py-0">
+          <DialogContent className="tw-px-[30px]">
             <Box className="tw-flex">
               <FormGroup>
                 <FormControlLabel
@@ -310,7 +318,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
               </FormGroup>
             </Box>
           </DialogContent>
-          <DialogActions>
+          <DialogActions className="tw-px-[30px] tw-pb-[30px]">
             <LoadingButton
               variant="contained"
               color="primary"
@@ -322,6 +330,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
               Yes, please!
             </LoadingButton>
             <LoadingButton
+              variant="outlined"
               onClick={(event: any) => {
                 handleClose(event, "");
                 setLoading((prev: any) => ({

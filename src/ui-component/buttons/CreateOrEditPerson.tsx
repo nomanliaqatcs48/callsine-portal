@@ -219,8 +219,8 @@ const CreateOrEditPerson = ({
           >
             {id ? "Edit" : "Add"} Person
           </DialogTitle>
-          <DialogContent>
-            <Grid container spacing={gridSpacing} className="tw-py-[20px]">
+          <DialogContent className="tw-my-[20px]">
+            <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
                   <Grid container columnSpacing={1}>

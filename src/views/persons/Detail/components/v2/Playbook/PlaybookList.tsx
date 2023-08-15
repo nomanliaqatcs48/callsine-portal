@@ -1,4 +1,10 @@
-import { List, ListItemButton, ListItemText, Tooltip } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItemButton,
+  ListItemText,
+  Tooltip,
+} from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
@@ -182,9 +188,11 @@ const PlaybookList = ({
                             [0, 1, 2, 3],
                             item?.scheduledEmail?.status
                           ) ? (
-                            moment(item?.scheduledEmail?.scheduled_time)
-                              .tz(timezone)
-                              .format("lll")
+                            <Box className="tw-mb-[10px]">
+                              {moment(item?.scheduledEmail?.scheduled_time)
+                                .tz(timezone)
+                                .format("lll")}
+                            </Box>
                           ) : (
                             <span className="tw-invisible">This is hidden</span>
                           )}
