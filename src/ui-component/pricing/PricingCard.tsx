@@ -21,7 +21,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
               >
                 <Typography
                   variant="h3"
-                  className={`tw-text-[24px] lg:tw-text-[30px] tw-text-[#0e101a] tw-font-bold tw-leading-[32px] tw-mb-0 ${
+                  className={`tw-text-[24px] lg:tw-text-[30px] tw-text-[#0e101a] tw-text-center tw-font-bold tw-leading-[32px] tw-mb-0 ${
                     item?.hide || props?.hide ? "tw-invisible" : ""
                   }`}
                 >
