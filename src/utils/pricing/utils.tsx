@@ -112,4 +112,59 @@ export const compareFeaturesItems = [
       },
     ],
   },
+  {
+    title: "Capacity management",
+    items: [
+      {
+        plan: "Monthly Freedom",
+        desc: "",
+      },
+      {
+        plan: "Volume Discount",
+        desc: (
+          <span
+            className="tw-flex tw-justify-center tw-items-center"
+            style={{
+              backgroundColor: "#00875a",
+              display: "flex",
+              width: 24,
+              height: 24,
+              lineHeight: 24,
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "50%",
+              flexShrink: 0,
+              margin: 4,
+            }}
+          >
+            {" "}
+            ✓{" "}
+          </span>
+        ),
+      },
+      {
+        plan: "Enterprise Elevation",
+        desc: (
+          <span
+            className="tw-flex tw-justify-center tw-items-center"
+            style={{
+              backgroundColor: "#00875a",
+              display: "flex",
+              width: 24,
+              height: 24,
+              lineHeight: 24,
+              color: "#fff",
+              fontWeight: "bold",
+              borderRadius: "50%",
+              flexShrink: 0,
+              margin: 4,
+            }}
+          >
+            {" "}
+            ✓{" "}
+          </span>
+        ),
+      },
+    ],
+  },
 ];
