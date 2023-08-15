@@ -15,7 +15,10 @@ const PricingBox = () => {
       name: "Monthly Freedom",
       price: (
         <>
-          <Box>$99 per seat per month</Box>
+          <Box className="tw-text-center">
+            <strong className="tw-text-[30px]">$99</strong> <br />
+            per seat per month
+          </Box>
         </>
       ),
       description:
@@ -26,18 +29,17 @@ const PricingBox = () => {
         );
       },
       buttontext: "Get Started",
-      /*features: [
-        {
-          name: "Lorem ipsum dolor",
-        },
-      ],*/
+      bottomContent: "For growing teams focused on building more together",
       isPopular: false,
     },
     {
       name: "Volume Discount",
       price: (
         <>
-          <Box>$79 per seat per month</Box>
+          <Box className="tw-text-center">
+            <strong className="tw-text-[30px]">$79</strong> <br />
+            per seat per month
+          </Box>
         </>
       ),
       description:
@@ -48,13 +50,17 @@ const PricingBox = () => {
         );
       },
       buttontext: "Get Started",
+      bottomContent:
+        "For organization that need to scale how they collaborate and track work",
       isPopular: true,
     },
     {
       name: "Enterprise Elevation",
       price: (
         <>
-          <Box>Custom Pricing</Box>
+          <Box className="tw-text-center">
+            <strong className="tw-text-[30px]">Custom Pricing</strong>
+          </Box>
         </>
       ),
       description:
@@ -63,6 +69,8 @@ const PricingBox = () => {
         //
       },
       buttontext: "Contact Sales",
+      bottomContent:
+        "For enterprises with global scale, security, and governance needs",
       isPopular: false,
     },
   ];
@@ -83,7 +91,7 @@ const PricingBox = () => {
 
           <Box className="tw-py-[15px]" />
 
-          <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-flex-row">
+          <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-gap-0 lg:tw-flex-row">
             {pricingItems?.map((i: any, idx: number) => {
               return (
                 <Box className="tw-flex-1">
