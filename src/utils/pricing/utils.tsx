@@ -4,22 +4,12 @@ import { useAuthentication } from "../../hooks/useAuthentication";
 
 export const pricingItems = ({ authProfile }: any) => [
   {
-    hide: true,
-    name: "",
-    price: "",
-    description: "",
-    onClick: () => null,
-    buttontext: "",
-    bottomContent: "",
-    isPopular: false,
-  },
-  {
     name: "Monthly Freedom",
     price: (
       <>
         <Box className="tw-text-center">
           <strong className="tw-text-[30px]">$99</strong> <br />
-          per seat per month
+          <strong className="tw-text-[16px]">per seat per month</strong>
         </Box>
       </>
     ),
@@ -40,7 +30,7 @@ export const pricingItems = ({ authProfile }: any) => [
       <>
         <Box className="tw-text-center">
           <strong className="tw-text-[30px]">$79</strong> <br />
-          per seat per month
+          <strong className="tw-text-[16px]">per seat per month</strong>
         </Box>
       </>
     ),

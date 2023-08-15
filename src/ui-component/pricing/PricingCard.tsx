@@ -12,10 +12,10 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
     <Box className={props?.className} sx={{ zIndex: "999" }}>
       {children || (
         <>
-          <Card variant="outlined" className="tw-h-full lg:tw-rounded-none">
+          <Card variant="outlined" className={`tw-h-full lg:tw-rounded-none`}>
             <Box className="tw-h-full lg:tw-flex lg:tw-flex-col lg:tw-justify-between">
               <Box
-                className={`plan-title-container tw-py-[10px] tw-px-[20px] tw-border-b tw-border-[#dfe1e6] lg:tw-px-[30px] ${
+                className={`plan-title-container tw-py-[10px] tw-px-[20px] tw-border-b tw-border-[#dfe1e6] lg:tw-px-[30px] 2xl:tw-px-[35px] 3xl:tw-px-[50px] ${
                   item?.hide || props?.hide ? "tw-border-b-0" : ""
                 }`}
               >

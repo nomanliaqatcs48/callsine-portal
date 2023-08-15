@@ -23,7 +23,7 @@ const PricingBox = () => {
           backgroundSize: "cover",
         }}
       >
-        <Box className="tw-pt-[150px] tw-px-3 sm:tw-px-20">
+        <Box className="tw-pt-[150px] tw-px-3 sm:tw-px-20 2xl:tw-px-0">
           <PageHeader />
 
           <Box className="tw-py-[15px]" />
@@ -31,7 +31,7 @@ const PricingBox = () => {
           <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-gap-0 lg:tw-flex-row">
             {pricingItems({ authProfile })?.map((i: any, idx: number) => {
               return (
-                <Box className="tw-flex-1">
+                <Box className={`tw-flex-1 ${i?.hide ? "tw-hidden" : ""}`}>
                   <PricingCard
                     key={idx}
                     {...i}
