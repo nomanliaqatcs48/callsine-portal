@@ -5,7 +5,7 @@ import PricingCard from "../../ui-component/pricing/PricingCard";
 import PageHeader from "./PageHeader";
 import PricingBottomContent from "./PricingBottomContent";
 import { useAuthentication } from "../../hooks/useAuthentication";
-import { pricingItems } from "../../utils/pricing/utils";
+import { compareFeaturesItems, pricingItems } from "../../utils/pricing/utils";
 // import { ChargeBee, _hosted_page } from "chargebee-typescript";
 
 const PricingBox = () => {
@@ -46,6 +46,32 @@ const PricingBox = () => {
             <Typography className=" tw-font-semibold tw-text-[18px]">
               Features
             </Typography>
+          </Box>
+
+          <Box className="tw-flex tw-flex-col tw-gap-y-8 lg:tw-gap-y-0">
+            {compareFeaturesItems.map((i: any, idx: number) => {
+              return (
+                <Box
+                  key={idx}
+                  className="tw-bg-white tw-flex tw-flex-col tw-items-stretch tw-border tw-border-[#dfe1e5] lg:tw-flex-row"
+                >
+                  <Box className="title tw-bg-[#f4f5f7] tw-px-[14px] tw-py-[12px] tw-flex-1">
+                    {i?.title}
+                  </Box>
+                  {i?.items.map((i: any, idx: number) => {
+                    return (
+                      <Box
+                        key={idx}
+                        className="list-item tw-flex tw-justify-between tw-px-[14px] tw-py-[12px] tw-flex-1 tw-border tw-border-[#dfe1e5] "
+                      >
+                        <Box className="lg:tw-hidden">{i?.plan}</Box>
+                        <Box>{i?.desc}</Box>
+                      </Box>
+                    );
+                  })}
+                </Box>
+              );
+            })}
           </Box>
 
           <PricingBottomContent />
