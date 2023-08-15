@@ -57,14 +57,30 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
           modalTitle="Bulk Import"
           labelledby="Bulk Import"
           describedby="bulk import modal"
-          modalSxStyle={{ width: { xs: 400 } }}
+          modalSxStyle={{
+            width: { xs: 400 },
+            padding: 0,
+            "& h4": {
+              backgroundColor: "#EAEAEA",
+              padding: "20px 30px",
+              fontSize: { xs: 14, lg: 16 },
+            },
+          }}
         >
-          <Grid container spacing={2} className="tw-p-3">
+          <Grid container spacing={2} className="tw-p-3 tw-px-[30px]">
             <Grid item xs={12}>
               <PeopleFileUpload instance={importData} refresh={refresh} />
             </Grid>
-            <Grid item xs={12} className="tw-flex tw-justify-center">
-              <Button onClick={downloadTemplate} variant="text">
+            <Grid
+              item
+              xs={12}
+              className="tw-flex tw-justify-center lg:tw-mb-[20px]"
+            >
+              <Button
+                onClick={downloadTemplate}
+                variant="outlined"
+                className="tw-text-[14px] lg:tw-text-[16px] tw-font-medium tw-py-[13px] tw-px-[25px]"
+              >
                 Download template
               </Button>
             </Grid>
