@@ -148,7 +148,9 @@ const SendLater = ({
         {...props}
       >
         <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
-        <span className="tw-text-[#778da9] tw-text-xs tw-px-2">Send Later</span>
+        <span className="tw-text-[#778da9] tw-text-xs tw-px-2 lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
+          Send Later
+        </span>
       </LoadingButton>
 
       {open && (

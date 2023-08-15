@@ -41,7 +41,7 @@ const ProfileSecondCol = ({ data }: ProfileSecondColTypes) => {
       second: data?.work_email ? (
         <Button
           href={`mailto:${data?.work_email}`}
-          className="tw-p-0 tw-normal-case tw-text-callsineLightBlue"
+          className="tw-p-0 tw-normal-case tw-font-normal tw-text-callsineLightBlue tw-text-[16px]"
         >
           {data?.work_email}
         </Button>

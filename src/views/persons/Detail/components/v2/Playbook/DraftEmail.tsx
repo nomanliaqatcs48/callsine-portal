@@ -511,7 +511,7 @@ const DraftEmail = ({
               loading={isLoading?.form}
               disabled={isLoading?.form}
             >
-              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
+              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
                 Send
               </span>{" "}
               <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
@@ -558,7 +558,7 @@ const DraftEmail = ({
                 loading={false}
                 disabled={false}
               >
-                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
                   Save Draft
                 </span>
               </LoadingButton>
@@ -574,7 +574,7 @@ const DraftEmail = ({
                 loading={false}
                 disabled={false}
               >
-                <span className="tw-px-1.5 tw-text-xs tw-font-medium">
+                <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
                   Regenerate
                 </span>
               </LoadingButton>

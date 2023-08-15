@@ -41,7 +41,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light tw-tracking-[0.32px]">
               {item?.promptResponse?.text &&
               item?.promptResponse?.text?.toLowerCase() !== "none"
                 ? result
@@ -81,7 +81,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light tw-tracking-[0.32px]">
               {item?.scheduledEmail?.text || ""}
               {
                 item?.scheduledEmail?.html_message &&
