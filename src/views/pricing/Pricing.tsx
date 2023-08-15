@@ -12,6 +12,16 @@ const PricingBox = () => {
 
   const pricingItems = [
     {
+      hide: true,
+      name: "",
+      price: "",
+      description: "",
+      onClick: () => null,
+      buttontext: "",
+      bottomContent: "",
+      isPopular: false,
+    },
+    {
       name: "Monthly Freedom",
       price: (
         <>
@@ -98,6 +108,7 @@ const PricingBox = () => {
                   <PricingCard
                     key={idx}
                     {...i}
+                    item={i}
                     className="tw-h-full lg:tw-w-full"
                   />
                 </Box>
