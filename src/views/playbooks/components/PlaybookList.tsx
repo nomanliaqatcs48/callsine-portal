@@ -101,7 +101,7 @@ const PlaybookList = ({
                         >
                           <Box
                             component={"span"}
-                            className="tw-text-black tw-font-medium tw-text-[18px] tw-leading-[27px] tw-truncate tw-mb-1"
+                            className="tw-text-black tw-font-medium tw-text-[18px] tw-leading-[27px] tw-truncate tw-tracking-[0.36px] tw-mb-1"
                           >
                             {playbook?.name || ""}
                           </Box>
