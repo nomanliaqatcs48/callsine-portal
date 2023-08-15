@@ -4,9 +4,10 @@ import { Box, Grid, Typography } from "@mui/material";
 
 import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonTotalListSmall from "../../ui-component/cards/Skeleton/TotalListSmallCard";
+import SmallWhiteBlue from "../../assets/images/bg/small-white-blue.jpg";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
-  backgroundColor: theme.palette.primary.main,
+  // backgroundColor: theme.palette.primary.main,
   color: "#fff",
   overflow: "hidden",
   position: "relative",
@@ -15,7 +16,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: "absolute",
     width: 210,
     height: 210,
-    background: theme.palette.primary[800],
+    // background: theme.palette.primary[800],
     borderRadius: "50%",
     top: -85,
     right: -95,
@@ -29,11 +30,11 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     position: "absolute",
     width: 210,
     height: 210,
-    background: theme.palette.primary[800],
+    // background: theme.palette.primary[800],
     borderRadius: "50%",
     top: -125,
     right: -15,
-    opacity: 0.5,
+    // opacity: 0.5,
     [theme.breakpoints.down("sm")]: {
       top: -155,
       right: -70,
@@ -60,7 +61,15 @@ const TotalListSmallCard = ({
       {isLoading ? (
         <SkeletonTotalListSmall />
       ) : (
-        <CardWrapper border={false} content={false}>
+        <CardWrapper
+          border={false}
+          content={false}
+          sx={{
+            backgroundImage: `url(${SmallWhiteBlue})`,
+            backgroundRepeat: "no-repeat",
+            backgroundSize: "cover",
+          }}
+        >
           <Box sx={{ p: 2.25 }}>
             <Grid container direction="column" alignItems="center">
               <Grid item>
