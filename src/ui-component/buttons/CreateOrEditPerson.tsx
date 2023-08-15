@@ -197,7 +197,7 @@ const CreateOrEditPerson = ({
           onClick();
         }}
         style={btnStyle}
-        className="tw-text-[16px] tw-tracking-[0.32px]"
+        className="tw-text-[16px] tw-tracking-[0.32px] tw-font-normal"
         {...other}
       >
         {btnText}

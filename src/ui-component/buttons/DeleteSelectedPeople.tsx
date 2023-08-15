@@ -69,7 +69,7 @@ const DeleteSelectedPeople = ({
             selectedRows?.length > 0
               ? "tw-text-primary"
               : "tw-text-callsineGray"
-          } tw-text-[16px] tw-tracking-[0.32px]`}
+          } tw-text-[16px] tw-tracking-[0.32px] tw-font-normal`}
         >
           <DeleteIcon
             sx={{
