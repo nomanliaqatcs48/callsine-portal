@@ -28,7 +28,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
                   {item?.name || props?.name || "Lorem ipsum"}
                 </Typography>
               </Box>
-              <Box className="price-container lg:tw-px-[30px]">
+              <Box className="price-container tw-pt-[20px] lg:tw-px-[30px]">
                 <Box
                   className={`price-per tw-py-5 ${
                     item?.hide || props?.hide ? "tw-border-b-0" : ""
@@ -57,7 +57,7 @@ const PricingCard = ({ item, isPopular = false, children, ...props }: any) => {
                 )}
               </Box>
               <Box className="bottom-content-container tw-p-[20px] lg:tw-px-[30px]">
-                <Typography>
+                <Typography className="lg:tw-text-[16px]">
                   {item?.bottomContent || props?.bottomContent}
                 </Typography>
               </Box>
