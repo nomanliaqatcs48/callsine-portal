@@ -116,6 +116,12 @@ const PricingBox = () => {
             })}
           </Box>
 
+          <Box className="feature-header tw-flex tw-justify-center tw-bg-[#eceaed] tw-my-5 tw-py-[15px] lg:tw-my-0">
+            <Typography className=" tw-font-semibold tw-text-[18px]">
+              Features
+            </Typography>
+          </Box>
+
           <PricingBottomContent />
         </Box>
       </Grid>
