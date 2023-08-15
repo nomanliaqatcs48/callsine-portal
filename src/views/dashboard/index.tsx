@@ -49,9 +49,9 @@ const DashboardPage = () => {
   });
 
   useEffect(() => {
-    if (authProfile && authProfile?.team !== 24) {
+    /*if (authProfile && authProfile?.team !== 24) {
       navigate("/people");
-    }
+    }*/
   }, [authProfile]);
 
   return (

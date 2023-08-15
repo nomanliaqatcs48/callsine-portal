@@ -144,7 +144,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       }
       onClick={() => itemHandler(item.id)}
       className={`hover:tw-bg-transparent ${
-        item?.title === "Dashboard" && auth?.team !== 24 ? "tw-hidden" : ""
+        item?.title === "Dashboard" && auth?.team !== 24 ? "" : ""
       }`}
     >
       <ListItemIcon sx={{ my: "auto", minWidth: !item?.icon ? 18 : 36 }}>
