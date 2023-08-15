@@ -4,7 +4,6 @@ import config from "src/config";
 import { googleAuthService } from "src/services/auth.service";
 import { devLog, devLogError } from "src/helpers/logs";
 import { save, saveString } from "src/utils/storage";
-import { useEffect } from "react";
 
 const GoogleLoginBtn = () => {
   const handleOnSuccess = async (response: any) => {
@@ -32,11 +31,6 @@ const GoogleLoginBtn = () => {
       });
     }
   };
-  const isSmallScreen = window.innerWidth <= 600;
-  const isMedium =
-    window.innerWidth <= 1024 &&
-    window.innerWidth >= 600 &&
-    window.innerWidth <= 1660;
 
   return (
     <div id="signInButton">
