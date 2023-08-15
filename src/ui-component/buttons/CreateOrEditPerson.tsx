@@ -213,9 +213,14 @@ const CreateOrEditPerson = ({
           aria-describedby={`${id ? "edit" : "add"} person modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">{id ? "Edit" : "Add"} Person</DialogTitle>
+          <DialogTitle
+            variant="h4"
+            className="tw-text-[18px] tw-text-black tw-bg-[#EAEAEA] tw-font-normal tw-tracking-[0.36px]"
+          >
+            {id ? "Edit" : "Add"} Person
+          </DialogTitle>
           <DialogContent>
-            <Grid container spacing={gridSpacing}>
+            <Grid container spacing={gridSpacing} className="tw-py-[20px]">
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
                   <Grid container columnSpacing={1}>
@@ -403,7 +408,7 @@ const CreateOrEditPerson = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
+          <DialogActions className="tw-pt-0 tw-pb-[30px] lg:tw-px-[24px]">
             <Button
               onClick={handleSubmit((data) =>
                 id ? onThisEditSubmit(data) : onThisAddSubmit(data)
@@ -415,7 +420,11 @@ const CreateOrEditPerson = ({
             >
               {id ? "Edit" : "Add"}
             </Button>
-            <Button onClick={handleClose} disabled={personLoading?.form}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              disabled={personLoading?.form}
+            >
               Cancel
             </Button>
           </DialogActions>
