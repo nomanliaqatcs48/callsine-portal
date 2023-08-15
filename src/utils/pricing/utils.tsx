@@ -8,7 +8,7 @@ export const pricingItems = ({ authProfile }: any) => [
     price: (
       <>
         <Box className="tw-text-center">
-          <strong className="tw-text-[30px]">$99</strong> <br />
+          <strong className="tw-text-[40px]">$99</strong> <br />
           <strong className="tw-text-[16px]">per seat per month</strong>
         </Box>
       </>
@@ -29,7 +29,7 @@ export const pricingItems = ({ authProfile }: any) => [
     price: (
       <>
         <Box className="tw-text-center">
-          <strong className="tw-text-[30px]">$79</strong> <br />
+          <strong className="tw-text-[40px]">$79</strong> <br />
           <strong className="tw-text-[16px]">per seat per month</strong>
         </Box>
       </>
