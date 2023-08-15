@@ -44,7 +44,7 @@ const GoogleLoginBtn = () => {
         render={(renderProps) => (
           <GoogleButton
             {...renderProps}
-            className="google-button-wrapper tw-text-[16px] tw-w-full tw-font-normal tw-justify-center"
+            className="google-button-wrapper tw-text-[16px] lg:tw-text-[18px] tw-w-full tw-font-normal tw-justify-center"
             style={{
               fontFamily: "'Poppins', sans-serif",
               width: "100%",
