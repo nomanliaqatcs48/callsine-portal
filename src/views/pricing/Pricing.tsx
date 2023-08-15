@@ -5,8 +5,13 @@ import PricingCard from "../../ui-component/pricing/PricingCard";
 import PageHeader from "./PageHeader";
 import PricingBottomContent from "./PricingBottomContent";
 import { useAuthentication } from "../../hooks/useAuthentication";
-import { compareFeaturesItems, pricingItems } from "../../utils/pricing/utils";
+import {
+  compareFeaturesHeader,
+  compareFeaturesItems,
+  pricingItems,
+} from "../../utils/pricing/utils";
 import PricingFeatures from "../../ui-component/pricing/PricingFeatures";
+import PricingFeaturesHeader from "../../ui-component/pricing/PricingFeaturesHeader";
 // import { ChargeBee, _hosted_page } from "chargebee-typescript";
 
 const PricingBox = () => {
@@ -50,6 +55,9 @@ const PricingBox = () => {
           </Box>
 
           <Box className="tw-flex tw-flex-col tw-gap-y-8 lg:tw-gap-y-0">
+            {compareFeaturesHeader.map((i: any, idx: number) => {
+              return <PricingFeaturesHeader key={idx} item={i} />;
+            })}
             {compareFeaturesItems.map((i: any, idx: number) => {
               return <PricingFeatures key={idx} item={i} />;
             })}

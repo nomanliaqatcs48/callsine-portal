@@ -67,6 +67,26 @@ export const pricingItems = ({ authProfile }: any) => [
   },
 ];
 
+export const compareFeaturesHeader = [
+  {
+    title: "FEATURE",
+    items: [
+      {
+        plan: "",
+        desc: "Monthly Freedom",
+      },
+      {
+        plan: "",
+        desc: "Volume Discount",
+      },
+      {
+        plan: "",
+        desc: "Enterprise Elevation",
+      },
+    ],
+  },
+];
+
 export const compareFeaturesItems = [
   {
     title: "User limit per site",
