@@ -1,3 +1,4 @@
+import { EmailDraftTypes } from "src/utils/types/mail";
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
@@ -37,4 +38,8 @@ export const createAsEmailService = async (data: any) => {
 
 export const sendEmailService = async (emailId: number, position: number) => {
   return await http.post(`${endpoints.EMAILS}${emailId}/send/`);
+};
+
+export const sendMailService = async (data: EmailDraftTypes) => {
+  return await http.post(`${endpoints.SENDMAIL}`, data);
 };

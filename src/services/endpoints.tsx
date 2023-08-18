@@ -17,4 +17,5 @@ export const endpoints = {
   NEWPROMPT: "/api/new-prompt/",
   GOOGLEAUTH: "/google-auth/",
   MICROSOFTAUTH: "/microsoft-auth/",
+  SENDMAIL: "/api/send-mail/",
 };

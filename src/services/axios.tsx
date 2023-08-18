@@ -2,13 +2,15 @@ import axios from "axios";
 import config from "../config";
 import { devLog, devLogError } from "../helpers/logs";
 
+let token = localStorage.getItem("token");
+
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
+axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 
 axios.interceptors.request.use(
   (config: any) => {
-    let token = localStorage.getItem("token");
     if (token) {
       config.headers["Authorization"] = `Bearer ${token}`;
     }
@@ -28,10 +30,10 @@ axios.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
-    /*devLog(() => {
-      console.log("test err", err);
-      console.log("test originalConfig", originalConfig);
-    });*/
+    // devLog(() => {
+    //   console.log("test err", err);
+    //   console.log("test originalConfig", originalConfig);
+    // });
 
     if (
       !originalConfig.url.includes("/login") &&

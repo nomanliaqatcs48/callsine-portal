@@ -12,7 +12,7 @@ const GoogleLoginBtn = () => {
     });
 
     try {
-      const payload = { google_token: response.tokenId };
+      const payload = { access_token: response.tokenId };
 
       let res = await googleAuthService(payload);
       devLog(() => {
@@ -51,25 +51,6 @@ const GoogleLoginBtn = () => {
               height: 51,
               borderRadius: 8,
             }}
-            /*style={
-              isSmallScreen
-                ? {
-                    width: "366px",
-                    fontSize: "18px",
-                    fontFamily: "'Poppins', sans-serif",
-                  }
-                : isMedium
-                ? {
-                    width: "350px",
-                    fontSize: "18px",
-                    fontFamily: "'Poppins', sans-serif",
-                  }
-                : {
-                    width: "395px",
-                    fontSize: "18px",
-                    fontFamily: "'Poppins', sans-serif",
-                  }
-            }*/
           />
         )}
         clientId={config.googleClientId as string}
@@ -77,7 +58,6 @@ const GoogleLoginBtn = () => {
         onSuccess={handleOnSuccess}
         onFailure={({ details }) => {
           console.log(details);
-          // notifyError(details);
         }}
       />
     </div>

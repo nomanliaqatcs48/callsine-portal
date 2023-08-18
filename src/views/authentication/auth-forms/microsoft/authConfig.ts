@@ -11,7 +11,7 @@ export const msalConfig = {
   auth: {
     clientId: config.microsoftClientId,
     authority: "https://login.microsoftonline.com/common",
-    redirectUri: config.microsoftRedirectUri,
+    redirectUri: config.microsoftRedirectUriLogin,
   },
   cache: {
     cacheLocation: "sessionStorage", // This configures where your cache will be stored
@@ -69,5 +69,5 @@ export const loginRequest = {
  * https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-browser/docs/resources-and-scopes.md
  */
 export const graphConfig = {
-  graphMeEndpoint: "https://graph.microsoft.com/v1.0/me", //e.g. https://graph.microsoft.com/v1.0/me
+  graphMeEndpoint: "https://graph.microsoft.com/v1.0/me",
 };

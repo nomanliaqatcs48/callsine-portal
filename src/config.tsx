@@ -12,8 +12,12 @@ const config = {
   node_env: env.NODE_ENV,
   googleClientId: env.REACT_APP_GOOGLE_CLIENT_ID,
   googleClientSecret: env.REACT_APP_GOOGLE_CLIENT_SECRET,
+  googleCallback: env.REACT_APP_GOOGLE_CALLBACK,
+
   microsoftClientId: env.REACT_APP_MICROSOFT_CLIENT_ID,
   microsoftRedirectUri: env.REACT_APP_MICROSOFT_REDIRECTURI,
+  microsofCallback: env.REACT_APP_MICROSOFT_CALLBACK,
+  microsoftRedirectUriLogin: env.REACT_APP_MICROSOFT_REDIRECTURI_LOGIN,
 };
 
 export default config;

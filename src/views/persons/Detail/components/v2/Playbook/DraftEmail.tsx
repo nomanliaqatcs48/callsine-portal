@@ -21,6 +21,7 @@ import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import {
   createAsEmailService,
   sendEmailService,
+  sendMailService,
 } from "../../../../../../services/emails.service";
 import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
@@ -29,6 +30,7 @@ import {
   _styles,
   selectBlueStyles,
 } from "../../../../../../utils/people/utils";
+import { EmailDraftTypes } from "src/utils/types/mail";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -260,41 +262,52 @@ const DraftEmail = ({
     }
   };
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = async (data: EmailDraftTypes) => {
     devLog(() => {
       console.log("onSubmit data", data);
     });
-    setIsLoading((prev: any) => ({ ...prev, form: true }));
-    insertBodyLoader();
-
     try {
-      let res = await createAsEmailService({
-        ...data,
-        in_reply_to: data?.in_reply_to?.id,
-        from_email: data?.from_email?.id,
-        position: position,
-        html_message: `<html><body>${
-          data?.html_message +
-          data?.signature.replace(/\n/g, "") +
-          data?.parent_email_html_message.replace(/\n/g, "")
-        }</body></html>`,
+      let res = await sendMailService(data);
+      devLog(() => {
+        console.log({ res });
       });
-      if (res?.data?.id) {
-        handleSendNow(res?.data?.id);
-      } else {
-        ToastError("Something went wrong!");
-        setIsLoading((prev: any) => ({ ...prev, form: false }));
-        removeBodyLoader();
-        onLoadApi();
-      }
     } catch (e: any) {
       ToastError("Something went wrong!");
       devLogError(() => {
         console.error(e?.response);
       });
-      setIsLoading((prev: any) => ({ ...prev, form: false }));
-      removeBodyLoader();
     }
+    // setIsLoading((prev: any) => ({ ...prev, form: true }));
+    // insertBodyLoader();
+
+    // try {
+    //   let res = await createAsEmailService({
+    //     ...data,
+    //     in_reply_to: data?.in_reply_to?.id,
+    //     from_email: data?.from_email?.id,
+    //     position: position,
+    //     html_message: `<html><body>${
+    //       data?.html_message +
+    //       data?.signature.replace(/\n/g, "") +
+    //       data?.parent_email_html_message.replace(/\n/g, "")
+    //     }</body></html>`,
+    //   });
+    //   if (res?.data?.id) {
+    //     handleSendNow(res?.data?.id);
+    //   } else {
+    //     ToastError("Something went wrong!");
+    //     setIsLoading((prev: any) => ({ ...prev, form: false }));
+    //     removeBodyLoader();
+    //     onLoadApi();
+    //   }
+    // } catch (e: any) {
+    //   ToastError("Something went wrong!");
+    //   devLogError(() => {
+    //     console.error(e?.response);
+    //   });
+    //   setIsLoading((prev: any) => ({ ...prev, form: false }));
+    //   removeBodyLoader();
+    // }
   };
 
   const handleMyEditorOnChange = (value: string, editor: any) => {
@@ -506,7 +519,9 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
-              onClick={handleSubmit((data) => onSubmit(data))}
+              onClick={handleSubmit((data) =>
+                onSubmit(data as EmailDraftTypes)
+              )}
               className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
               loading={isLoading?.form}
               disabled={isLoading?.form}

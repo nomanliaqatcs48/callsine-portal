@@ -10,11 +10,12 @@ import AuthCardWrapper from "../AuthCardWrapper";
 import AuthLogin from "../auth-forms/AuthLogin";
 import Logo from "../../../ui-component/Logo";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
-import GoogleLoginBtn from "../auth-forms/GoogleLoginBtn";
+
 import { useEffect } from "react";
 import { gapi } from "gapi-script";
 import config from "src/config";
 import MicrosoftLoginBtn from "../auth-forms/microsoft/MicrosoftLoginBtn";
+import GoogleLoginBtn from "../auth-forms/google/GoogleLoginBtn";
 // ================================|| AUTH3 - LOGIN ||================================ //
 
 const Login = () => {

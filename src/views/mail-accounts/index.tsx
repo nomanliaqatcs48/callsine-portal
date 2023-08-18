@@ -1,30 +1,27 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import { useAsyncDebounce } from "react-table";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
-import MainCard from "../../ui-component/cards/MainCard";
-import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
-import SearchField from "../../ui-component/forms/SearchField";
+
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/mail-accounts/utils";
-import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
+
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import ImportPeople from "../../ui-component/buttons/ImportPeople";
-import ExportPeople from "../../ui-component/buttons/ExportPeople";
-import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
+
 import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
 import { usePermissions } from "src/hooks/usePermissions";
+import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
+import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
 
 const MailAccountsPage = () => {
   const { isNotPremium } = usePermissions();
+  useHandleCallback();
+
   const {
     mailAccountsData,
-    setMailAccountsData,
     total,
-    setTotal,
-    searchValue,
     setSearchValue,
     filters,
     setFilters,
@@ -123,6 +120,14 @@ const MailAccountsPage = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
+            <CreateMailAccount disableElevation onClick={() => null}>
+              <PersonAddAlt1Icon
+                color="primary"
+                sx={{ fontSize: 15 }}
+                className="tw-mr-2"
+              />
+              Add Mail Account
+            </CreateMailAccount>
             <CreateOrEditMailAccount
               disableElevation
               onLoadApi={getMailAccounts}
