@@ -1,52 +1,38 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // material-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
   Chip,
   ClickAwayListener,
-  Divider,
-  Grid,
-  InputAdornment,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  OutlinedInput,
   Paper,
   Popper,
   Stack,
-  Switch,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MainCard from "../../../../ui-component/cards/MainCard";
 import Transitions from "../../../../ui-component/extended/Transitions";
-import UpgradePlanCard from "./UpgradePlanCard";
-import User1 from "../../../../assets/images/users/user-round.svg";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 // assets
-import {
-  IconLogout,
-  IconSearch,
-  IconSettings,
-  IconUser,
-} from "@tabler/icons-react";
-import { clear } from "../../../../utils/storage";
-import { devLog } from "../../../../helpers/logs";
+import { IconLogout } from "@tabler/icons-react";
 import { useAuth } from "../../../../contexts/auth";
+import { devLog } from "../../../../helpers/logs";
+import { clear } from "../../../../utils/storage";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -423,6 +409,22 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>*/}
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 3}
+                          onClick={handleLogout}
+                        >
+                          <ListItemIcon>
+                            <IconLogout stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Logout</Typography>
+                            }
+                          />
+                        </ListItemButton>
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

@@ -2,7 +2,6 @@ import PropTypes, { InferProps } from "prop-types";
 import { forwardRef } from "react";
 
 // material-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Card,
   CardContent,
@@ -10,6 +9,7 @@ import {
   Divider,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // ==============================|| CUSTOM SUB CARD ||============================== //
 
@@ -34,7 +34,7 @@ const SubCardPropTypes = {
 
 type SubCardTypes = InferProps<typeof SubCardPropTypes>;
 
-const SubCard = forwardRef(
+const SubCard = forwardRef<HTMLDivElement, SubCardTypes>(
   (
     {
       children,
@@ -46,7 +46,7 @@ const SubCard = forwardRef(
       contentSX = {},
       title,
       ...others
-    }: SubCardTypes,
+    },
     ref
   ) => {
     const theme = useTheme();

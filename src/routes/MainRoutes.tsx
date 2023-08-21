@@ -23,6 +23,7 @@ const ProfilePage = Loadable(lazy(() => import("../views/profile")));
 const DataPage = Loadable(lazy(() => import("../views/data")));
 const PlaybooksPage = Loadable(lazy(() => import("../views/playbooks")));
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
+const TeamPage = Loadable(lazy(() => import("../views/team")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -41,6 +42,10 @@ const MainRoutes = {
     {
       path: "dashboard",
       element: <DashboardDefault />,
+    },
+    {
+      path: "team",
+      element: <TeamPage />,
     },
     {
       path: "people",
