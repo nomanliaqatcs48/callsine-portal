@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getPeopleService } from "../../services/persons.service";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { useQuery } from "@tanstack/react-query";
 
 export const usePersons = (
   load: boolean = true,
@@ -32,14 +33,7 @@ export const usePersons = (
     console.log("sortedId", sortedId);
   });
 
-  useEffect(() => {
-    if (load) {
-      getPeople();
-    }
-  }, [load, filters, sortedId, isOrderDesc]);
-
   const getPeople = async () => {
-    insertBodyLoader();
     try {
       let res = await getPeopleService(
         filters,
@@ -52,21 +46,52 @@ export const usePersons = (
         devLog(() => {
           console.log("res?.data", res?.data);
         });
-        setTotal(res.data?.count);
-        setPersonsData(res.data?.results);
+        // setTotal(res.data?.count);
+        // setPersonsData(res.data?.results);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-        removeBodyLoader();
+        // removeBodyLoader();
+        return res.data;
       }
     } catch (e: any) {
       devLogError(() => {
         console.error(e?.response);
       });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-      removeBodyLoader();
+      return [];
     }
   };
 
+  const {
+    data: _personsData,
+    isLoading: isFetchingPersons,
+    refetch: refetchPersons,
+  } = useQuery({
+    queryKey: ["persons"],
+    queryFn: getPeople,
+    staleTime: 30000,
+  });
+
+  useEffect(() => {
+    if (_personsData) {
+      setPersonsData(_personsData?.results);
+      setTotal(_personsData?.count);
+    }
+  }, [_personsData, _personsData?.count, _personsData?.results]);
+
+  useEffect(() => {
+    if (isFetchingPersons) {
+      insertBodyLoader();
+    } else {
+      removeBodyLoader();
+    }
+  }, [isFetchingPersons]);
+
+  useEffect(() => {
+    refetchPersons();
+  }, [filters, sortedId, isOrderDesc, refetchPersons]);
+
   return {
+    isFetchingPersons,
     personsData,
     setPersonsData,
     total,
