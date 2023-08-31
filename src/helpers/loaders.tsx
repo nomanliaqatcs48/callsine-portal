@@ -21,7 +21,9 @@ export const removeBodyLoader = () => {
   let _body_loader: any = document.querySelector("#body-loader");
   if (_body) {
     _body.classList.toggle("tw-overflow-hidden");
-    _body_loader.remove();
+    if (_body_loader) {
+      _body_loader.remove();
+    }
   }
 };
 
