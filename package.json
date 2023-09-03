@@ -13,6 +13,7 @@
     "@fontsource/roboto": "^5.0.5",
     "@grammarly/editor-sdk-react": "^2.5.1",
     "@hookform/error-message": "^2.0.1",
+    "@mendable/search": "^0.0.156",
     "@mui/icons-material": "^5.11.9",
     "@mui/lab": "^5.0.0-alpha.120",
     "@mui/material": "^5.11.9",
