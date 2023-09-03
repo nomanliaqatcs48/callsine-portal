@@ -1,14 +1,14 @@
+import { Box, Grid, Paper } from "@mui/material";
+import _ from "lodash";
 import { useSelector } from "react-redux";
 import { selectPlaybookData } from "src/store/reducer";
-import { Box, Grid, Paper } from "@mui/material";
-import PlaybookList from "./components/PlaybookList";
-import _ from "lodash";
-import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
-import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
-import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
-import { usePlaybook } from "../../hooks/playbook/usePlaybook";
+import TemplateCenter from "src/ui-component/buttons/TemplateCenter";
 import ViewPrompt from "src/ui-component/pages/prompts/ViewPrompt";
-import { devLog } from "src/helpers/logs";
+import { usePlaybook } from "../../hooks/playbook/usePlaybook";
+import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
+import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
+import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
+import PlaybookList from "./components/PlaybookList";
 
 // import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
 // import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
@@ -82,6 +82,7 @@ const PlaybooksPage = () => {
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>
             <Box className="tw-border-b tw-border-[#f2f3f9] tw-pb-4 tw-mt-6 tw-pr-6 tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
+              <TemplateCenter disabled={!selectedData} />
               <CreateOrEditPrompt
                 onClick={() => null}
                 onLoadApi={() => null}
