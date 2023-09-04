@@ -20,6 +20,7 @@ import {
 type EditorPayloadTypes = {
   personInformation: any;
   draftText: string;
+  sequenceEvent: string;
 };
 
 const actionHelpers = [
@@ -31,6 +32,7 @@ const actionHelpers = [
 ];
 
 const HelpEditor = ({
+  sequenceEvent,
   personInformation,
   draftText,
 }: EditorPayloadTypes): any => {
@@ -68,6 +70,7 @@ const HelpEditor = ({
       draftText,
       personInformation,
       helpAction,
+      sequenceEvent,
     };
 
     try {
