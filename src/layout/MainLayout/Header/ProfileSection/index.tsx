@@ -29,7 +29,12 @@ import MainCard from "../../../../ui-component/cards/MainCard";
 import Transitions from "../../../../ui-component/extended/Transitions";
 
 // assets
-import { IconLogout } from "@tabler/icons-react";
+import {
+  IconCreditCard,
+  IconLogout,
+  IconSettings,
+  IconUsers,
+} from "@tabler/icons-react";
 import { useAuth } from "../../../../contexts/auth";
 import { devLog } from "../../../../helpers/logs";
 import { clear } from "../../../../utils/storage";
@@ -214,6 +219,7 @@ const ProfileSection = () => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
+                  height={400}
                   border={false}
                   elevation={16}
                   content={false}
@@ -258,12 +264,14 @@ const ProfileSection = () => {
                     {/*<Divider />*/}
                   </Box>
                   <PerfectScrollbar
-                    style={{
-                      // height: "100%",
-                      // maxHeight: "calc(100vh - 250px)",
-                      height: "65px",
-                      // overflowX: "hidden",
-                    }}
+                    style={
+                      {
+                        // height: "100%",
+                        // maxHeight: "calc(100vh - 250px)",
+                        // height: "200px",
+                        // overflowX: "hidden",
+                      }
+                    }
                   >
                     <Box sx={{ p: 2, pt: 0, pb: 0 }}>
                       {/*<UpgradePlanCard />*/}
@@ -331,6 +339,7 @@ const ProfileSection = () => {
                         component="nav"
                         sx={{
                           width: "100%",
+                          maxHeight: 150,
                           maxWidth: 250, //maxWidth: 350,
                           minWidth: 200, //minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
@@ -343,17 +352,13 @@ const ProfileSection = () => {
                           },
                         }}
                       >
-                        {/*<ListItemButton
+                        <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
                           selected={selectedIndex === 0}
                           onClick={(event) =>
-                            handleListItemClick(
-                              event,
-                              0,
-                              "/user/account-profile/profile1"
-                            )
+                            handleListItemClick(event, 0, "/settings")
                           }
                         >
                           <ListItemIcon>
@@ -361,13 +366,47 @@ const ProfileSection = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">
-                                Account Settings
-                              </Typography>
+                              <Typography variant="body2">Settings</Typography>
                             }
                           />
-                        </ListItemButton>*/}
-                        {/*<ListItemButton
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 1}
+                          onClick={(event) =>
+                            handleListItemClick(event, 1, "/team")
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconUsers stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Team</Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 2}
+                          onClick={(event) =>
+                            handleListItemClick(event, 2, "/billing")
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconCreditCard stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Billing</Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        {/* <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -408,8 +447,8 @@ const ProfileSection = () => {
                               </Grid>
                             }
                           />
-                        </ListItemButton>*/}
-                        <ListItemButton
+                        </ListItemButton> */}
+                        {/* <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -424,7 +463,7 @@ const ProfileSection = () => {
                               <Typography variant="body2">Logout</Typography>
                             }
                           />
-                        </ListItemButton>
+                        </ListItemButton> */}
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 // project imports
+import SettingsPage from "src/views/settings";
 import MainLayout from "../layout/MainLayout";
 import Loadable from "../ui-component/Loadable";
 import Authenticated from "../ui-component/authentication/Authenticated";
@@ -46,6 +47,10 @@ const MainRoutes = {
     {
       path: "team",
       element: <TeamPage />,
+    },
+    {
+      path: "settings",
+      element: <SettingsPage />,
     },
     {
       path: "people",
