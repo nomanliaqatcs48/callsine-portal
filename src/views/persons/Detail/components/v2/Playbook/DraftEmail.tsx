@@ -8,6 +8,7 @@ import moment from "moment";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useParams } from "react-router-dom";
+import HelpEditor from "src/ui-component/buttons/HelpEditor";
 import { emailAddressPattern } from "../../../../../../helpers/forms";
 import {
   insertBodyLoader,
@@ -733,11 +734,12 @@ const DraftEmail = ({
             // isPreformatted={true}
             onFocus={(e: any) => null}
           />
-          {/* <HelpEditor
+          <HelpEditor
+            sequenceEvent={selectedSequenceEvent}
             draftText={getValues("html_message")}
             // emailInformation="Sample"
             personInformation={personData}
-          /> */}
+          />
         </div>
         <ErrorMessage
           errors={errors}
