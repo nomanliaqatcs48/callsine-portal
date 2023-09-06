@@ -25,10 +25,6 @@ const PlaybooksPage = Loadable(lazy(() => import("../views/playbooks")));
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
 const TeamPage = Loadable(lazy(() => import("../views/team")));
 
-const WizardPage = Loadable(lazy(() => import("../views/wizard")));
-
-const WizardPageOld = Loadable(lazy(() => import("../views/wizard/old")));
-
 // ==============================|| MAIN ROUTING ||============================== //
 
 const MainRoutes = {
@@ -90,14 +86,6 @@ const MainRoutes = {
     {
       path: "sample-page",
       element: <SamplePage />,
-    },
-    {
-      path: "wizard",
-      element: <WizardPage />,
-    },
-    {
-      path: "wizard/old",
-      element: <WizardPageOld />,
     },
   ],
 };
