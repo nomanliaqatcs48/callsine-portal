@@ -54,9 +54,8 @@ const useWizard = () => {
         return (
           <div className="tw-my-2">
             <TextField
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
-              fullWidth
               placeholder="What is your company website URL?"
               onChange={(e) => setCompanyUrl(e.target.value)}
             />
@@ -80,8 +79,7 @@ const useWizard = () => {
       content: () => {
         return (
           <TextField
-            fullWidth
-            className="tw-my-2"
+            className="tw-my-2 tw-w-[380px]"
             variant="outlined"
             placeholder="Enter Target Url"
           />
@@ -95,13 +93,13 @@ const useWizard = () => {
         return (
           <div>
             <TextField
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
               placeholder="Enter your name"
               type="file"
             />
             <TextField
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
               placeholder="Enter your name"
               type="file"
@@ -117,20 +115,17 @@ const useWizard = () => {
         return (
           <div className="tw-my-2">
             <TextField
-              fullWidth
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
               placeholder="Name: "
             />
             <TextField
-              fullWidth
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
               placeholder="Email: "
             />
             <TextField
-              fullWidth
-              className="tw-my-2"
+              className="tw-my-2 tw-w-[380px]"
               variant="outlined"
               placeholder="Company Website URL"
             />
@@ -144,8 +139,7 @@ const useWizard = () => {
       content: () => {
         return (
           <TextField
-            fullWidth
-            className="tw-my-2"
+            className="tw-my-2 tw-w-[380px]"
             variant="outlined"
             placeholder="Enter Playbook Number (WIP)" // Work in Progress or ToDo
           />

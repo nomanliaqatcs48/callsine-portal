@@ -6,8 +6,6 @@ import { Outlet } from "react-router-dom";
 
 const WizardPage = Loadable(lazy(() => import("../views/wizard")));
 
-const WizardPageOld = Loadable(lazy(() => import("../views/wizard/old")));
-
 const AuthenticatedPublicRoutes = {
   path: "/wizard/",
   element: (
@@ -19,10 +17,6 @@ const AuthenticatedPublicRoutes = {
     {
       path: "campaign",
       element: <WizardPage />,
-    },
-    {
-      path: "wizard/old",
-      element: <WizardPageOld />,
     },
   ],
 };
