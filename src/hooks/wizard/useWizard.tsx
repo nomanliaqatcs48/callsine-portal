@@ -1,5 +1,6 @@
 import { Input, TextField, TextareaAutosize } from "@mui/material";
 import { useState } from "react";
+import WizardPlaybooksOptionsGroup from "src/views/wizard/components/PlaybooksList";
 
 const useWizard = () => {
   const [companyUrl, setCompanyUrl] = useState("");
@@ -137,13 +138,7 @@ const useWizard = () => {
       label: "Step 6: Select Playbook",
       description: `Choosing a playbook type gives us a framework within which to customize your strategies and tactics. Different playbooks focus on different outcomes, and selecting the most relevant one ensures that we're on the same page regarding your campaign goals.`,
       content: () => {
-        return (
-          <TextField
-            className="tw-my-2 tw-w-[380px]"
-            variant="outlined"
-            placeholder="Enter Playbook Number (WIP)" // Work in Progress or ToDo
-          />
-        );
+        return <WizardPlaybooksOptionsGroup />;
       },
     },
   ];

@@ -10,6 +10,10 @@ import Typography from "@mui/material/Typography";
 import { useWizard } from "src/hooks/wizard/useWizard";
 import { useMediaQuery, useTheme } from "@mui/material";
 import icon from "../../assets/images/icons/logo-color-2x.png";
+import { useSelector } from "react-redux";
+import { selectPlaybookData } from "src/store/reducer";
+import _ from "lodash";
+import { usePlaybook } from "src/hooks/playbook/usePlaybook";
 
 export default function VerticalLinearStepper() {
   const theme = useTheme();
@@ -17,6 +21,19 @@ export default function VerticalLinearStepper() {
 
   const { steps, activeStep, handleNext, handleBack, handleReset } =
     useWizard();
+
+  usePlaybook(true);
+
+  const playbooks = useSelector(selectPlaybookData);
+
+  React.useEffect(() => {
+    console.log(
+      "playbooks",
+      _.orderBy(playbooks, ["position"], ["asc"])
+        ? [..._.orderBy(playbooks, ["position"], ["asc"])]
+        : []
+    );
+  }, [playbooks]);
 
   return (
     <Box
