@@ -1,11 +1,12 @@
 // assets
 import {
-  IconDashboard,
-  IconKey,
-  IconUsers,
-  IconMail,
-  IconFileDatabase,
   IconBook2,
+  IconDashboard,
+  IconFileDatabase,
+  IconKey,
+  IconMail,
+  IconPlugConnected,
+  IconUsers,
 } from "@tabler/icons-react";
 
 // constant
@@ -16,6 +17,7 @@ const icons = {
   IconMail,
   IconFileDatabase,
   IconBook2,
+  IconPlugConnected,
 };
 
 // ==============================|| EXTRA PAGES MENU ITEMS ||============================== //
@@ -70,6 +72,16 @@ const pages = {
       icon: icons.IconFileDatabase,
       breadcrumbs: false,
       isPremium: false,
+    },
+    {
+      id: "integrations",
+      title: "Integrations",
+      type: "item",
+      url: "",
+      icon: icons.IconPlugConnected,
+      breadcrumbs: false,
+      isPremium: false,
+      isDisabled: true,
     },
     /*{
       id: "profile",

@@ -6,6 +6,7 @@ import {
   createStripeCustomer,
   createSubscriptionService,
 } from "src/services/payments.service";
+import SuccessModal from "./SuccessModal";
 import { IPlan } from "./interfaces";
 interface CheckoutFormProps {
   planData: IPlan;
@@ -60,6 +61,9 @@ const getPriceDetails = (planData: IPlan): PriceDetails => {
 };
 
 const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalMessage, setModalMessage] = useState("");
+  const [isSuccess, setIsSuccess] = useState(true);
   // collect data from the user
   const [name, setName] = useState("");
   const [companyName, setCompanyName] = useState("");
@@ -134,15 +138,14 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
         selectedCycle: planData?.billingCycle,
       });
 
-      const confirmPayment = await stripe?.confirmCardPayment(
-        response.data.clientSecret
-      );
-
-      if (confirmPayment?.error) {
-        alert(confirmPayment.error.message);
-      } else {
-        alert("Success! Check your email for the invoice.");
+      if (response.data.message) {
+        setModalMessage(response.data.message);
+        setIsSuccess(true);
+      } else if (response.data.error) {
+        setModalMessage(response.data.error);
+        setIsSuccess(false);
       }
+      setModalOpen(true);
     } catch (error) {
       console.log(error);
       alert((error as Error).message || "An error occurred!");
@@ -280,6 +283,12 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
         >
           Subscribe
         </button>
+        <SuccessModal
+          isSuccess={isSuccess}
+          isOpen={isModalOpen}
+          onClose={() => setModalOpen(false)}
+          message={modalMessage}
+        />
       </div>
     </div>
   );
