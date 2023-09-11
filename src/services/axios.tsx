@@ -1,6 +1,6 @@
 import axios from "axios";
 import config from "../config";
-import { devLog, devLogError } from "../helpers/logs";
+import { devLogError } from "../helpers/logs";
 
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
@@ -58,8 +58,16 @@ axios.interceptors.response.use(
           Object.keys(localStorage).forEach(function (key) {
             localStorage.removeItem(key);
           });
-          window.location.href = "/login";
-          return Promise.reject(_error);
+          const currentRoute = window.location.pathname;
+          console.log("current route", currentRoute);
+          // Check if the current route is one you want to exclude:
+          if (currentRoute.startsWith("/pricing")) {
+            console.log("CURRENT ROUE", currentRoute);
+            return Promise.reject(err); // Skip the rest of the interceptor logic for this route.
+          } else {
+            window.location.href = "/login";
+            return Promise.reject(_error);
+          }
         }
       }
     }

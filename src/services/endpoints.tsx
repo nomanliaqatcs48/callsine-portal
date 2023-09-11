@@ -19,4 +19,5 @@ export const endpoints = {
   MICROSOFTAUTH: "/microsoft-auth/",
   TEAM_MEMBERS: "/api/team-users/",
   API_GENERAL: "/api/",
+  PAYMENTS: "/payments/",
 };

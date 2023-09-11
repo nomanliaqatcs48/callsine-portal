@@ -1,19 +1,9 @@
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Grid,
-  Paper,
-  Typography,
-  useMediaQuery,
-  useTheme,
-} from "@mui/material";
+import { Box, Grid, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Image } from "mui-image";
-import dashboard from "../../assets/images/users/Web 1920 – 79@2x.png";
-import { IconSquareRoundedCheckFilled } from "@tabler/icons-react";
-import imageBgc from "../../assets/images/users/Rectangle1.png";
-import imageBgcTop from "../../assets/images/users/Group3.png";
 import { useNavigate } from "react-router-dom";
+import imageBgcTop from "../../assets/images/users/Group3.png";
+import imageBgc from "../../assets/images/users/Rectangle1.png";
+import dashboard from "../../assets/images/users/Web 1920 – 79@2x.png";
 import ButtonV1 from "../../ui-component/buttons/ButtonV1";
 
 const Banner = () => {
