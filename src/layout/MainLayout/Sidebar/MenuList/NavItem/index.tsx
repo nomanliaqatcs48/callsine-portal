@@ -76,8 +76,8 @@ const NavItem = ({ item, level }: NavItemTypes) => {
 
       if (
         item?.isPremium &&
-        auth?.subscription?.status !== "active" &&
-        auth?.subscription?.status !== "canceled"
+        // auth?.subscription?.status !== "active" &&
+        // auth?.subscription?.status !== "canceled"
       ) {
         return (
           <>
