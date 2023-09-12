@@ -150,7 +150,7 @@ const GenerateSelectedPeople = ({
         <Button
           onClick={handleOpen}
           disabled={false}
-          className="tw-text-[#778da9] tw-text-[16px] tw-tracking-[0.32px]"
+          className="tw-text-[#778da9] tw-text-[16px] tw-tracking-[0.32px] tw-font-normal"
           style={{ color: selectedRows.length > 0 ? "#1976d2" : "#778da9" }}
         >
           <AutoModeIcon

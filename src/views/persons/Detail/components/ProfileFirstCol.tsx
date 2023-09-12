@@ -23,7 +23,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
     <>
       {/*image, name, email, and icons*/}
       <div className="tw-flex tw-flex-col tw-items-center tw-space-y-3 lg:tw-flex-row lg:tw-justify-start lg:tw-space-x-9">
-        <Avatar sx={{ bgcolor: "#bdbdbd", width: 117, height: 117 }}>
+        <Avatar sx={{ bgcolor: "#bdbdbd", width: 150, height: 150 }}>
           <PersonIcon
             className="tw-opacity-80 tw-w-16 tw-h-16"
             fontSize="large"
@@ -38,7 +38,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
           {/*email*/}
           {data?.work_email && (
             <Button
-              className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-callsineLightBlue tw-normal-case tw-pl-0 hover:tw-bg-transparent"
+              className="tw-font-normal tw-text-[16px] tw-text-[#0096C7] tw-tracking-[0.32px] tw-text-callsineLightBlue tw-normal-case tw-pl-0 hover:tw-bg-transparent"
               href={`mailto:${data?.work_email}`}
               target="_blank"
               rel="noopener noreferrer"

@@ -148,7 +148,9 @@ const SendLater = ({
         {...props}
       >
         <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
-        <span className="tw-text-[#778da9] tw-text-xs tw-px-2">Send Later</span>
+        <span className="tw-text-[#778da9] tw-text-xs tw-px-2 lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
+          Send Later
+        </span>
       </LoadingButton>
 
       {open && (
@@ -162,8 +164,13 @@ const SendLater = ({
           aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">Send Later</DialogTitle>
-          <DialogContent>
+          <DialogTitle
+            variant="h4"
+            className="tw-text-[18px] tw-text-black tw-bg-[#EAEAEA] tw-font-normal tw-tracking-[0.36px]"
+          >
+            Send Later
+          </DialogTitle>
+          <DialogContent className="tw-my-[20px]">
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
@@ -233,7 +240,7 @@ const SendLater = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
+          <DialogActions className="tw-pb-[30px] lg:tw-px-[24px]">
             <LoadingButton
               onClick={useForm?.handleSubmit((data: any, event: any) =>
                 onSubmit(data, event)
@@ -247,6 +254,7 @@ const SendLater = ({
               Send Later
             </LoadingButton>
             <LoadingButton
+              variant="outlined"
               onClick={(event: any) => handleClose(event, "")}
               disabled={isLoading?.form}
               loading={isLoading?.form}

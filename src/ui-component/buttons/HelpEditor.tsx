@@ -20,6 +20,7 @@ import {
 type EditorPayloadTypes = {
   personInformation: any;
   draftText: string;
+  sequenceEvent: string;
 };
 
 const actionHelpers = [
@@ -31,6 +32,7 @@ const actionHelpers = [
 ];
 
 const HelpEditor = ({
+  sequenceEvent,
   personInformation,
   draftText,
 }: EditorPayloadTypes): any => {
@@ -68,6 +70,7 @@ const HelpEditor = ({
       draftText,
       personInformation,
       helpAction,
+      sequenceEvent,
     };
 
     try {
@@ -91,7 +94,7 @@ const HelpEditor = ({
   return (
     <>
       <div
-        className={`tw-right-5 tw-bottom-[100px] tw-absolute tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
+        className={`tw-left-5 tw-bottom-[50px] tw-absolute tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
           !loading && "hover:tw-bg-slate-100"
         } tw-transition-all  tw-border-black tw-border`}
       >

@@ -55,7 +55,7 @@ const ViewPrompt = ({
                   onLoadApi={() => null}
                   setPromptList={setPromptList}
                 >
-                  <Box className="tw-bg-[#1a76d2] tw-px-[15.5px] tw-py-[17px] tw-rounded-md">
+                  <Box className="tw-bg-[#1976d2] tw-px-[17px] tw-py-[15.5px] tw-rounded-md">
                     <EditIcon
                       style={{ color: "#ffffff", fontSize: 21 }}
                       fontSize="small"
@@ -69,7 +69,7 @@ const ViewPrompt = ({
                   onLoadApi={() => null}
                   setPromptList={setPromptList}
                 >
-                  <Box className="tw-bg-[#d00200] tw-p-[17.5px] tw-rounded-md">
+                  <Box className="tw-bg-[#D00000] tw-p-[17.5px] tw-rounded-md">
                     <IconTrash
                       strokeWidth={3}
                       size={20}
@@ -86,8 +86,12 @@ const ViewPrompt = ({
             className={`name-container ${_styles?.containers} tw-border-none`}
           >
             <Box className="tw-flex">
-              <Box className={`${_styles?.label}`}>Position:&nbsp;</Box>
-              <Box className={`${_styles?.labelValue} tw-text-black`}>
+              <Box className={`${_styles?.label} tw-tracking-[0.36px]`}>
+                Position:&nbsp;
+              </Box>
+              <Box
+                className={`${_styles?.labelValue} tw-text-black tw-tracking-[0.36px]`}
+              >
                 {idx + 1}
               </Box>
             </Box>
@@ -97,7 +101,7 @@ const ViewPrompt = ({
           >
             <Box className="tw-flex">
               <Box
-                className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5`}
+                className={`${_styles?.message} tw-text-[16px] tw-text-black tw-py-3.5 tw-tracking-[0.32px]`}
               >
                 {prompt?.text}
               </Box>

@@ -1,52 +1,43 @@
-import { useState, useRef, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 
-import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 // material-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
-  Card,
-  CardContent,
   Chip,
   ClickAwayListener,
-  Divider,
-  Grid,
-  InputAdornment,
   List,
   ListItemButton,
   ListItemIcon,
   ListItemText,
-  OutlinedInput,
   Paper,
   Popper,
   Stack,
-  Switch,
   Typography,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // third-party
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
+import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import MainCard from "../../../../ui-component/cards/MainCard";
 import Transitions from "../../../../ui-component/extended/Transitions";
-import UpgradePlanCard from "./UpgradePlanCard";
-import User1 from "../../../../assets/images/users/user-round.svg";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 
 // assets
 import {
+  IconCreditCard,
   IconLogout,
-  IconSearch,
   IconSettings,
-  IconUser,
+  IconUsers,
 } from "@tabler/icons-react";
-import { clear } from "../../../../utils/storage";
-import { devLog } from "../../../../helpers/logs";
 import { useAuth } from "../../../../contexts/auth";
+import { devLog } from "../../../../helpers/logs";
+import { clear } from "../../../../utils/storage";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -228,6 +219,7 @@ const ProfileSection = () => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
+                  height={400}
                   border={false}
                   elevation={16}
                   content={false}
@@ -272,12 +264,14 @@ const ProfileSection = () => {
                     {/*<Divider />*/}
                   </Box>
                   <PerfectScrollbar
-                    style={{
-                      // height: "100%",
-                      // maxHeight: "calc(100vh - 250px)",
-                      height: "65px",
-                      // overflowX: "hidden",
-                    }}
+                    style={
+                      {
+                        // height: "100%",
+                        // maxHeight: "calc(100vh - 250px)",
+                        // height: "200px",
+                        // overflowX: "hidden",
+                      }
+                    }
                   >
                     <Box sx={{ p: 2, pt: 0, pb: 0 }}>
                       {/*<UpgradePlanCard />*/}
@@ -345,6 +339,7 @@ const ProfileSection = () => {
                         component="nav"
                         sx={{
                           width: "100%",
+                          maxHeight: 150,
                           maxWidth: 250, //maxWidth: 350,
                           minWidth: 200, //minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
@@ -357,17 +352,13 @@ const ProfileSection = () => {
                           },
                         }}
                       >
-                        {/*<ListItemButton
+                        <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
                           selected={selectedIndex === 0}
                           onClick={(event) =>
-                            handleListItemClick(
-                              event,
-                              0,
-                              "/user/account-profile/profile1"
-                            )
+                            handleListItemClick(event, 0, "/settings")
                           }
                         >
                           <ListItemIcon>
@@ -375,13 +366,47 @@ const ProfileSection = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">
-                                Account Settings
-                              </Typography>
+                              <Typography variant="body2">Settings</Typography>
                             }
                           />
-                        </ListItemButton>*/}
-                        {/*<ListItemButton
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 1}
+                          onClick={(event) =>
+                            handleListItemClick(event, 1, "/team")
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconUsers stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Team</Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 2}
+                          onClick={(event) =>
+                            handleListItemClick(event, 2, "/billing")
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconCreditCard stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Billing</Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        {/* <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
@@ -422,7 +447,23 @@ const ProfileSection = () => {
                               </Grid>
                             }
                           />
-                        </ListItemButton>*/}
+                        </ListItemButton> */}
+                        {/* <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
+                          selected={selectedIndex === 3}
+                          onClick={handleLogout}
+                        >
+                          <ListItemIcon>
+                            <IconLogout stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">Logout</Typography>
+                            }
+                          />
+                        </ListItemButton> */}
                         <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

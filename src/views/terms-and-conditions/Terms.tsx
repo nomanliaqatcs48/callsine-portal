@@ -11,38 +11,36 @@ const Terms = () => {
       <Box className="tw-py-3" />
 
       <p>
-        THESE TERMS AND CONDITIONS ("TERMS") GOVERN YOUR USE OF ALL WEBSITES,
-        APPLICATIONS, TOOLS, ARTIFICIAL INTELLIGENCE ("AI") AND DIGITAL PRODUCTS
-        AND SERVICES MADE AVAILABLE TO YOU BY CALLSINECALLSINE ("CALLSINE,"
-        "US," "WE," OR "OUR"), INCLUDING ANY FUNCTIONALITY, CONTENT, DATA OR
-        SERVICE INCLUDED THEREIN AND MADE AVAILABLE TO YOU BY CALLSINE
-        (COLLECTIVELY, THE "SERVICES"). PLEASE REVIEW THESE TERMS CAREFULLY. BY
-        ACCESSING OR USING ANY PART OF THE SERVICES OR OTHERWISE ACCEPTING THESE
-        TERMS, YOU AGREE THAT THESE TERMS SHALL APPLY AND BECOME BINDING ON YOU
-        AND THE COMPANY THAT EMPLOYS YOU OR THAT YOU REPRESENT (COLLECTIVELY,{" "}
-        <strong>"YOU"</strong>) ON THE FIRST DATE YOU ACCESS OR USE ANY PART OF
-        THE SERVICES OR OTHERWISE ACCEPT THESE TERMS, BY CLICKING A BOX
-        INDICATING ACCEPTANCE OF THIS AGREEMENT OR OTHERWISE USING THE SERVICES.
-        IF YOU DO NOT AGREE, YOU ARE NOT AUTHORIZED TO USE THE SERVICES.
+        THESE TERMS OF USE (“TERMS”) GOVERN YOUR USE OF ALL WEBSITES,
+        APPLICATIONS, TOOLS AND DIGITAL PRODUCTS AND SERVICES MADE AVAILABLE TO
+        YOU BY CALLSINECALLSINE (“CALLSINE,” “US,” “WE,” OR “OUR”), INCLUDING
+        ANY FUNCTIONALITY, CONTENT, DATA OR SERVICE INCLUDED THEREIN AND MADE
+        AVAILABLE TO YOU BY CALLSINE (COLLECTIVELY, THE “SERVICES”). PLEASE
+        REVIEW THESE TERMS CAREFULLY. BY ACCESSING OR USING ANY PART OF THE
+        SERVICES OR OTHERWISE ACCEPTING THESE TERMS, YOU AGREE THAT THESE TERMS
+        SHALL APPLY AND BECOME BINDING ON YOU AND THE COMPANY THAT EMPLOYS YOU
+        OR THAT YOU REPRESENT (COLLECTIVELY, “YOU”) ON THE FIRST DATE YOU ACCESS
+        OR USE ANY PART OF THE SERVICES OR OTHERWISE ACCEPT THESE TERMS, BY
+        CLICKING A BOX INDICATING ACCEPTANCE OF THIS AGREEMENT OR OTHERWISE
+        USING THE SERVICES. IF YOU DO NOT AGREE, YOU ARE NOT AUTHORIZED TO USE
+        THE SERVICES.
       </p>
 
       <p>
         IF YOU ARE AN INDIVIDUAL ACCEPTING THIS AGREEMENT ON BEHALF OF A COMPANY
         OR OTHER LEGAL ENTITY, YOU REPRESENT THAT YOU HAVE THE AUTHORITY TO BIND
         SUCH ENTITY AND ITS AFFILIATES TO THIS AGREEMENT, IN WHICH CASE THE TERM
-        "YOU" SHALL REFER TO SUCH ENTITY AND ITS AFFILIATES. IF YOU DO NOT HAVE
+        “YOU” SHALL REFER TO SUCH ENTITY AND ITS AFFILIATES. IF YOU DO NOT HAVE
         SUCH AUTHORITY, YOU MUST NOT ACCEPT THIS AGREEMENT AND MAY NOT USE THE
         SERVICES.
       </p>
 
       <p>
-        <strong>
-          NOTICE OF NON-BINDING MEDIATION AND WAIVER OF CLASS ACTION:
-        </strong>{" "}
-        THESE TERMS INCLUDE A MANDATORY NON-BINDING MEDIATION PROVISION AND
-        CLASS ACTION WAIVER, WHICH LIMIT YOUR RIGHTS IN THE EVENT OF A DISPUTE
-        RELATED TO THE SERVICES. PLEASE REFER TO THE "MEDIATION AGREEMENT AND
-        CLASS ACTION WAIVER" SECTION BELOW FOR MORE INFORMATION.
+        NOTICE OF NON-BINDING MEDIATION AND WAIVER OF CLASS ACTION: THESE TERMS
+        INCLUDE A MANDATORY NON-BINDING MEDIATION PROVISION AND CLASS ACTION
+        WAIVER, WHICH LIMIT YOUR RIGHTS IN THE EVENT OF A DISPUTE RELATED TO THE
+        SERVICES. PLEASE REFER TO THE “MEDIATION AGREEMENT AND CLASS ACTION
+        WAIVER” SECTION BELOW FOR MORE INFORMATION.
       </p>
 
       <p>
@@ -64,24 +62,27 @@ const Terms = () => {
         feature offered through the Services, temporarily or permanently, for
         any reason, with or without notice to you.
       </p>
+
       <p>
         <strong>2. Privacy Policy -</strong> Our Privacy Policy applies to
         personal information collected from you through the Services. You may
         read the current version of the Privacy Policy by clicking
-        www.callsine.com/privacy
+        https://callsine.com/privacy
       </p>
+
       <p>
         <strong>3. Minimum Age -</strong> You represent that you are at least 18
         years of age (or the age of majority in the State in which you reside).
-        The Services are not intended for minors, and you may not use the
+        The Services are not intended for minors and you may not use the
         Services if you are under 18 years of age (or the age of majority in the
         State in which you reside).
       </p>
+
       <p>
         <strong>4. CallSine Data -</strong> CallSine makes available certain
         data and information to users or the public through the Services,
         including, but not limited to, information about professional contacts
-        and businesses (collectively, "CallSine Data"). As between you and
+        and businesses (collectively, “CallSine Data”). As between you and
         CallSine, all CallSine Data is the property of CallSine. CallSine
         retains all right, title and interest in CallSine Data.
       </p>
@@ -89,10 +90,9 @@ const Terms = () => {
       <p>
         You agree to access, use, disclose, retain and otherwise process
         CallSine Data only for the purpose of supporting business-to-business
-        ("B2B"), business-to-consumer ("B2C") and/or business-to-government
-        ("B2G") development opportunities, including for identifying and
-        researching prospective or existing sales, marketing or recruiting
-        opportunities for your business (collectively, the "Permitted Purposes")
+        (“B2B”) development opportunities, including for identifying and
+        researching prospective or existing B2B sales, marketing or recruiting
+        opportunities for your business (collectively, the “Permitted Purposes”)
         and only as otherwise permitted by these Terms. Unless required by
         applicable law, you agree not to access, use, disclose, retain or
         otherwise process CallSine Data for any other purpose. You are strictly
@@ -106,28 +106,22 @@ const Terms = () => {
         transfer, or otherwise make available, in whole or in part, any CallSine
         Data to a third party for monetary or other valuable consideration, or
         otherwise incorporate any portion of CallSine Data into your own or
-        others' products or services.
-      </p>
-      <p>
-        You acknowledge and agree that CallSine is not a consumer reporting
-        agency, and you will not use any CallSine Data or the Services for any
-        purpose regulated under the Fair Credit Reporting Act ("FCRA"), 15
-        U.S.C. § 1681b, including, without limitation, as a factor in (i)
-        establishing an individual's eligibility for credit or insurance or
-        assessing risks associated with existing credit obligations, (ii)
-        evaluating an individual for employment purposes, (iii) determining an
-        individual's eligibility for a license or other benefit that depends on
-        an applicant's financial responsibility or status, or (iv) for any other
-        purposes subject to the FCRA.
+        others’ products or services.
       </p>
 
       <p>
         You shall take reasonable steps to protect CallSine Data from misuse,
         theft, unauthorized access, misappropriation or other compromise. You
-        shall immediately notify CallSine in writing at info@callsine.com upon
-        becoming aware of any actual or suspected unauthorized access to or
+        shall immediately notify CallSine in writing at{" "}
+        <a
+          href="mailto:info@callsine.com"
+          className="tw-text-callsineLightBlue"
+        >
+          info@callsine.com
+        </a>{" "}
+        upon becoming aware of any actual or suspected unauthorized access to or
         misuse, theft, misappropriation or other compromise of CallSine Data
-        ("Data Incident"). In the event of a Data Incident, you agree to
+        (“Data Incident”). In the event of a Data Incident, you agree to
         promptly investigate the incident, take all necessary and advisable
         corrective actions, and cooperate fully with CallSine in all reasonable
         and lawful efforts to prevent, mitigate or rectify the incident. You
@@ -140,11 +134,13 @@ const Terms = () => {
         professionally, ethically and lawfully. You may not use the Services in
         any manner that: (i) Is defamatory, unlawful, harassing, abusive,
         threatening, obscene, hateful, sexist, or racially or ethnically
-        offensive; (ii) Constitutes a breach of any person's privacy or
+        offensive; (ii) Constitutes a breach of any person’s privacy or
         publicity rights; (iii) Violates any statute, regulation, or ordinance;
-        (iv) Promotes, encourages, or facilitates terrorism or other activities
-        that risk national security.
+        (iv) Promotes software or services that deliver unsolicited mail; or (v)
+        Promotes, encourages, or facilitates terrorism or other activities that
+        risk national security.
       </p>
+
       <p>
         You may not upload, post, communicate, or otherwise transmit any
         information or other materials on or through the Services that: (i)
@@ -172,7 +168,7 @@ const Terms = () => {
         connection with surveys, contests, pyramid schemes, chain letters, junk
         email, spam, or any duplicative or unsolicited messages; (ix) Use any
         automated procedure to gather information or data from the Services by
-        means of what is commonly called a "bot" or otherwise; (x) Interfere
+        means of what is commonly called a “bot” or otherwise; (x) Interfere
         with or disrupt the Services, servers, or networks connected to the
         Services; (xi) Integrate CallSine Data into any customer relationship
         management, marketing automation, or sales enablement platform to allow
@@ -189,22 +185,23 @@ const Terms = () => {
       </p>
 
       <p>
-        <strong>6. Subscription Fees -</strong> You agree to pay the applicable
-        subscription fees for your use of the Services, (the "Subscription
-        Fees"). All subscriptions for the Services are monthly billing cycles.
-        Payment is due in advance at the start of each billing cycle. Except as
-        expressly provided in these Terms, all sales are final once you elect to
-        purchase a subscription to the Services.
+        <strong>6. Subscription Fees -</strong> You agree to pay all applicable
+        subscription fees for your use of the Services, (the “Subscription
+        Fees”). CallSine offers subscriptions for its Services with monthly or
+        annual billing cycles. Payment is due in advance at the start of each
+        billing cycle. Except as expressly provided in these Terms, all sales
+        are final once you elect to purchase a subscription to the Services.
       </p>
 
       <p>
-        You are responsible for keeping your billing information current. Your
-        credit or debit card will be charged by CallSine on the first day of
-        each billing cycle. You authorize CallSine to charge the Subscription
-        Fees to the credit or debit card (or other payment method accepted by
-        CallSine) provided by you in connection with your Account, plus any
-        sales, use or similar taxes. You represent that you have the legal right
-        to use any credit or debit card you provide us.
+        You are responsible for maintaining the accuracy of your billing
+        information on file with CallSine. Your credit or debit card will be
+        charged by CallSine on the first day of each billing cycle. You
+        authorize CallSine to charge the Subscription Fees to the credit or
+        debit card (or other payment method accepted by CallSine on its website)
+        provided by you in connection with your Account, plus any sales, use or
+        similar taxes. You represent that you have the legal right to use any
+        credit or debit card you provide us.
       </p>
 
       <p>
@@ -224,7 +221,7 @@ const Terms = () => {
         limiting any other right or remedy available to CallSine, CallSine may
         charge a late fee of 2% of the amount due, report unpaid amounts to
         business credit bureaus, or engage in collections activities to recover
-        amounts due from you. We shall be entitled to recover attorneys' fees,
+        amounts due from you. We shall be entitled to recover attorneys’ fees,
         court costs and/or all other collections fees relating to your unpaid or
         late fees or relating to these activities.
       </p>
@@ -234,9 +231,9 @@ const Terms = () => {
         collect data from you and your device through various sources, such as
         when you use our websites, Google Chrome Extension or features we offer
         to integrate our Services with your accounts and data on third-party
-        platforms and services (collectively, "Submitted Data"). If you engage
-        us for paid integration features in the Services, you authorize us to
-        collect Submitted Data from your professional networking and customer
+        platforms and services (collectively, “Submitted Data”). If you enable
+        our integration features in the Services, you authorize us to collect
+        Submitted Data from your professional networking and customer
         relationship management platforms, email accounts, social media accounts
         and other online accounts that you choose to integrate into our
         Services. We may use the Submitted Data to provide our Services or in
@@ -252,7 +249,7 @@ const Terms = () => {
         warrant that you or your licensors have the right to share all Submitted
         Data with CallSine in accordance with these Terms, and that the
         Submitted Data does not violate or infringe upon our or any third
-        party's intellectual property rights (including copyrights, trademarks,
+        party’s intellectual property rights (including copyrights, trademarks,
         trade secrets, patents, and publicity rights). You also represent and
         warrant that the Submitted Data is accurate and complete to the best of
         your knowledge. You agree that you are solely liable for any losses you
@@ -269,12 +266,12 @@ const Terms = () => {
         information or other personal information related to your contacts
         described in our Privacy Policy. You agree that by using the Services,
         you are granting CallSine an irrevocable, perpetual, non-exclusive,
-        transferrable, sublicensable, royalty free, worldwide license to use,
-        modify, reproduce, adapt, sell, distribute, perform, publish, create
-        derivative works based on, publicly display, and otherwise exploit all
-        or any portion of Submitted Data for any purpose whatsoever, without
-        restriction, compensation to you or attributing the Submitted Data to
-        you.
+        transferrable, sublicensable and/or assignable royalty free, worldwide
+        license to use, modify, reproduce, adapt, sell, distribute, perform,
+        publish, create derivative works based on, publicly display, and
+        otherwise exploit all or any portion of Submitted Data for any purpose
+        whatsoever, without restriction, compensation to you or attributing the
+        Submitted Data to you.
       </p>
 
       <p>
@@ -285,31 +282,34 @@ const Terms = () => {
         (whether or not we are, in fact, correct in our assessment). If you
         believe that we have acted mistakenly with respect to certain Submitted
         Data, you may contact us, in which case we may investigate the matter
-        further. We nevertheless shall, at our sole option, have the right to
-        take no further action.
+        further. We nevertheless shall, at our sole discretion have the right to
+        take any or no further action.
       </p>
 
       <p>
         <strong>8. Intellectual Property -</strong> All content made available
         to you by CallSine in connection with the Services, including, without
-        limitation, CallSine Data, software, text, graphics and images,
-        trademarks, service marks, logos and any other intellectual property,
-        but excluding your Submitted Data (collectively "CallSine Content") is
-        the property of CallSine and its licensors. Subject to payment of
-        applicable Subscription Fees, we grant you a personal,
-        non-sublicensable, non-transferable, non-exclusive, and revocable
-        license to use the Services solely for the Permitted Purposes in
-        accordance with these Terms. We may revoke this license at any time for
-        any or no reason by terminating your subscription to the Services. You
-        may not sell or publicly display or distribute any CallSine Content or
-        otherwise use the CallSine Content in a manner not expressly permitted
-        in these Terms without CallSine's prior written consent.
+        limitation to, any and all CallSine Data, software, text, graphics and
+        imaging, trademarks, service marks, copyrights, logos and any and all
+        other intellectual property, whether registered, unregistered, pending,
+        granted or otherwise, including any and all Submitted Data to CallSine
+        (collectively “CallSine Content”) is the sole property of CallSine and
+        its licensors. Subject to payment of applicable Subscription Fees, we
+        grant you a personal, non-sublicensable, non-assignable or transferable,
+        non-exclusive, and revocable license to use the Services solely for the
+        Permitted Purposes in accordance with these Terms. We may revoke this
+        license at any time for any or no reason by terminating your
+        subscription to the Services. You may not sell or publicly display,
+        distribute or diseminate in any way any CallSine Content or otherwise
+        utilize the CallSine Content in any manner not expressly authorized by
+        CallSine and/or permitted within these Terms absent CallSine’s prior
+        written consent.
       </p>
 
       <p>
         Without limitation of the foregoing, the Services may contain certain
         content from third parties which may be subject to its own additional
-        license terms and policies ("Third Party Content"). You should refer to
+        license terms and policies (“Third Party Content”). You should refer to
         the terms and policies posted on third party websites prior to using any
         such Services. CallSine does not endorse, oppose or edit any opinion,
         claim, or analysis expressed by any third party. You agree that CallSine
@@ -356,18 +356,23 @@ const Terms = () => {
         If you believe that the Services contain content that infringes on your
         copyright, please forward the following information to CallSine LLC, 44
         Lafayette Rd., PO Box 263, North Hampton, NH 03862, or by email to
-        info@callsine.com with the following information: (i) Your postal
-        address, telephone number, and email address; (ii) A description of the
-        copyrighted work that you claim has been infringed; (iii) A description
-        of the location of an original or an authorized copy of the copyrighted
-        work, such as a URL; (iv) A statement by you that you have a good faith
-        belief that the disputed use is not authorized by you, the copyright
-        owner, its agent, or the law; (v) An electronic or physical signature of
-        the person authorized to act on behalf of the owner of the copyright
-        interest; and (vi) A statement by you, made under penalty of perjury,
-        that the above information in your notice is accurate and that you are
-        the copyright owner or authorized to act on the copyright owner's
-        behalf.
+        <a
+          href="mailto:info@callsine.com"
+          className="tw-text-callsineLightBlue"
+        >
+          info@callsine.com
+        </a>{" "}
+        with the following information: (i) Your postal address, telephone
+        number, and email address; (ii) A description of the copyrighted work
+        that you claim has been infringed; (iii) A description of the location
+        of an original or an authorized copy of the copyrighted work, such as a
+        URL; (iv) A statement by you that you have a good faith belief that the
+        disputed use is not authorized by you, the copyright owner, its agent,
+        or the law; (v) An electronic or physical signature of the person
+        authorized to act on behalf of the owner of the copyright interest; and
+        (vi) A statement by you, made under penalty of perjury, that the above
+        information in your notice is accurate and that you are the copyright
+        owner or authorized to act on the copyright owner’s behalf.
       </p>
 
       <p>
@@ -421,14 +426,17 @@ const Terms = () => {
         not interfere or attempt to interfere with such monitoring. Upon request
         from CallSine, you agree to make available to CallSine all information
         and materials reasonably necessary to demonstrate compliance with these
-        Terms and allow for and contribute to audits and inspections conducted
+        Terms, and allow for and contribute to audits and inspections conducted
         by or on behalf of CallSine relating in any way to your compliance. You
         shall reasonably cooperate with any such request, monitoring or
         inspection initiated by CallSine. CallSine may ask you to validate or
         certify your continued compliance with these Terms. Failure to validate
         or self-certify your compliance upon request from CallSine may result in
-        CallSine revoking your access to the Services or requiring you to
-        promptly delete CallSine Data in your possession, custody or control.
+        CallSine immediately terminating your access to the Services, or
+        requiring you to promptly delete any and all CallSine Data in your
+        possession, custody or control, including any such CallSine data in the
+        possession, custody or control of any of your authorized agents,
+        employees, representatives, contractors and/or sub-contractors.
       </p>
 
       <p>
@@ -440,63 +448,73 @@ const Terms = () => {
       </p>
 
       <p>
-        <strong>11. Third-Party Services, Links, and Features -</strong> We may
-        provide third-party services, links, or features through our Services as
-        a convenience to you. We have no control over the content or service
-        made available on these third-party services, websites, or through these
-        features and make no representations about their availability, content,
-        quality, or security. Third-party services, links, and features are not
-        intended to imply sponsorship, affiliation, responsibility, or
-        endorsement. We provide no warranty as to the accuracy, availability,
-        completeness, quality, or legality of any information made available on
-        these third-party sites, services, or from these features. We make no
-        warranties, express or implied, that these third-party sites, services,
-        and features are virus free and will not otherwise harm your device,
-        computer, network, or system. We are not liable for those third parties'
-        actions or their failure to act. These third parties may have their own
-        privacy policies and terms of use for their websites and services, and
-        you may be bound by them. You agree to be responsible to review those
-        documents. If you decide to access any third-party services, links, or
-        features, you do so at your own risk. We are not liable for damages or
-        losses that you incur as a result of accessing third-party links,
-        services, or features. We do not represent that any AI-generated content
-        was wholly generated by a human or an AI.
+        <strong>11. Third-Party Services, Links, and Features -</strong>{" "}
+        CallSine may provide third-party services, links, or features through
+        our Services as a convenience to you. We have no control over the
+        content or service made available on these third-party services,
+        websites, or through these features and make no representations about
+        their availability, content, quality, or security. Third-party services,
+        links, and features are not intended to imply sponsorship, affiliation,
+        responsibility, or endorsement. We provide no warranty as to the
+        accuracy, availability, completeness, quality, or legality of any
+        information made available on these third-party sites, services, or from
+        these features. We make no warranties, express or implied, that these
+        third-party sites, services, and features are virus free and will not
+        otherwise harm your device, computer, network, or system. We are not
+        liable for those third parties’ actions or their failure to act. These
+        third parties may have their own privacy policies and terms of use for
+        their websites and services, and you may be bound by them. You agree to
+        be responsible for reviewing those documents. If you decide to access
+        any third-party services, links, or features, you do so at your own
+        risk. CallSine shall not be liable for any damages or losses that you
+        incur or claim to incur as a result of accessing third-party links,
+        services, or features.  We do not and will not represent that any
+        AI-generated content is or was wholly generated by a human or an AI.
       </p>
 
       <p>
-        <strong>12. Your Account -</strong> In order to access certain features
-        and functionality of the Services, you must establish an account with us
-        (an "Account"). You are not permitted to share, sell, distribute or
-        otherwise transfer your Account or allow your login credentials to be
-        used by any other individual. You shall maintain the security and
-        confidentiality of your login credentials used to access your Account.
-        You shall choose a strong and secure password that you shall keep secure
-        and confidential. You shall promptly notify CallSine in the event you
-        believe your login credentials have been compromised or there has been
-        unauthorized use of your Account. You are solely responsible for any
-        activities or actions taken under your Account, including as a result of
-        the unauthorized use of your Account. CallSine is not liable for any
-        loss you incur as a result of your failure to comply with this section.
+        <strong>12. Your Account -</strong> It is understood that in order to
+        access certain features and functionality of the Services, you must
+        first establish a CallSine account (an “Account”). You are not permitted
+        to share, sell, distribute or otherwise transfer your Account or allow
+        your login credentials to be used by any other individual or entity. You
+        shall always maintain the security and confidentiality of your login
+        credentials used to access your Account. You shall select and at all
+        times keep confidential a strong and secure password. In the event of
+        any suspected security breach, you shall promptly notify CallSine and
+        alert us to the fact that you suspect your login credentials have been
+        compromised or there has been unauthorized access to and/or use of your
+        Account. You are solely responsible for any activities or actions taken
+        under your Account, including as a result of the unauthorized use of
+        your Account. CallSine is not liable for any loss you incur as a result
+        of your failure to comply with this section.
       </p>
 
       <p>
         <strong>13. Suspension and Termination -</strong> CallSine may, in its
-        discretion, terminate or suspend your access to all or part of the
+        sole discretion, terminate or suspend your access to all or part of the
         Services, temporarily or permanently, for any reason, with or without
-        notice to your access or use the Services in any way will terminate, you
-        shall immediately cease use, and you shall immediately securely destroy
-        any and all CallSine Content and CallSine Data, whether in electronic
-        form or hard copy. Upon request, and within 5 days of that request, you
-        shall certify such destruction to CallSine's reasonable satisfaction
-        using the form provided by CallSine. CallSine may audit your compliance
-        with these obligations and CallSine's intellectual property license upon
-        5 days' prior written notice.
+        notice to you. However, should CallSine at any time terminate your
+        access to all or part of the Services for any reason other than your
+        direct or indirect misconduct, intentional or otherwise, including the
+        breach of any of CallSine’s Terms and Conditions, direct, indirect,
+        intentional or otherwise, and you have prepaid for services, CallSine
+        will provide you with a pro rata refund for any pre-paid amounts. Upon
+        termination of these Terms for any reason, your license to access or use
+        the Services in any way will terminate, you shall immediately cease use,
+        and you shall immediately securely destroy any and all CallSine Content
+        and CallSine Data, whether in electronic form or hard copy. Upon
+        request, and within 5 days of that request, you shall certify such
+        destruction to CallSine’s reasonable satisfaction using the form
+        provided by CallSine. CallSine may audit your compliance with these
+        obligations and CallSine’s intellectual property license upon 5 days’
+        prior written notice.
       </p>
 
       <p>
         <strong>14. Warranty Disclaimer -</strong> YOUR USE OF THE SERVICES ARE
         AT YOUR OWN RISK. THE SERVICES, INCLUDING ALL SERVICES AND CONTENT, ARE
-        PROVIDED "AS IS" AND "AS AVAILABLE." WE MAKE NO WARRANTIES OR
+        PROVIDED “AS IS” AND “AS AVAILABLE.” WE MAKE NO WARRANTIES OR
         REPRESENTATIONS OF ANY KIND, EITHER EXPRESS OR IMPLIED, ABOUT THE
         SERVICES, INCLUDING ALL CALLSINE DATA, SERVICES, CONTENT, INFORMATION,
         SOFTWARE, FUNCTIONS, PROCESSES, OR OTHER CONTENT PROVIDED OR REFERENCED
@@ -545,14 +563,14 @@ const Terms = () => {
 
       <p>
         <strong>16. Indemnification -</strong> You shall defend, indemnify and
-        hold CallSine harmless from any and all loss, cost and expenses
-        (including without limitations costs and expenses of litigation and
-        reasonable attorney fees) which may be incurred, suffered or sustained
-        by CallSine as a result of any actions, suit, claims, proceedings or
-        investigation arising out of or related to (a) any act or omission by
-        You in any way related to this agreement; or (b) content alleged to be
-        offensive, obscene, indecent or profane, where such content was provided
-        by You or used by CallSine in a manner directed by You.
+        hold Union harmless from any and all loss, cost and expenses (including
+        without limitations costs and expenses of litigation and reasonable
+        attorney fees) which may be incurred, suffered or sustained by Union as
+        a result of any actions, suit, claims, proceedings or investigation
+        arising out of or related to (a) any act or omission by You in any way
+        related to this agreement; or (b) content alleged to be offensive,
+        obscene, indecent or profane, where such content was provided by You or
+        used by Union in a manner directed by You.
       </p>
 
       <p>
@@ -566,7 +584,7 @@ const Terms = () => {
         OR SERVICES PROVIDED FOR ON OR BY THE SERVICES, WHETHER BASED ON
         WARRANTY, CONTRACT, TORT (INCLUDING NEGLIGENCE), OR ANY OTHER LEGAL
         THEORY, EVEN IF YOU HAVE NOTIFIED US ABOUT SUCH DAMAGES, OR FOR ANY
-        CLAIMS BY ANY THIRD-PARTIES. IN NO EVENT WILL CALLSINE'S AGGREGATE
+        CLAIMS BY ANY THIRD-PARTIES. IN NO EVENT SHALL CALLSINE’S AGGREGATE
         LIABILITY TO YOU, DIRECT OR OTHERWISE, EXCEED ONE HUNDRED DOLLARS
         ($100).
       </p>
@@ -580,131 +598,132 @@ const Terms = () => {
 
       <p>
         Some states may not allow certain limitations and exclusions of
-        liability, so the above limitations or exclusions may not apply to you.
-        In such states, our liability to you shall be limited to the greatest
-        extent permitted by law.
+        liability, therefore the above limitations or exclusions may not apply
+        to you. In such states, our liability to you shall be limited to the
+        greatest extent permitted by law.
       </p>
 
       <p>
         <strong>18. Mediation Agreement and Class Action Waiver</strong>
       </p>
 
-      <p>
-        A. Mandatory Mediation. YOU AND CALLSINE AGREE TO SUBMIT ANY AND ALL
-        DISPUTES ARISING OUT OF OR RELATED TO YOUR USE OF THE SERVICES (each, a
-        "Dispute") to Mediation Non-Binding Mediation pursuant to the Federal
-        Mediation Act (Title 9 of the United States Code), which shall govern
-        the interpretation and enforcement of this Mediation agreement
-        ("Mediation Agreement"). You and CallSine waive the right to a trial by
-        jury and any right to have a Dispute heard in court. Notwithstanding the
-        foregoing, both you and CallSine retain the right to bring an individual
-        action in small claims court (if your claims qualify and so long as the
-        matter remains in such court and advances only on an individual
-        (non-class, non-representative) basis) and the right to seek injunctive
-        or other equitable relief in a court of competent jurisdiction to
-        prevent the actual or threatened infringement, misappropriation, or
-        violation of either party's copyrights, trademarks, trade secrets,
-        patents, or other intellectual property rights.
-      </p>
+      <Box className="tw-ml-[10px]">
+        <p>
+          <strong>A. Mandatory Mediation.</strong> IN THE EVENT ANY DISPUTES
+          SHOULD ARISE OUT OF OR RELATED TO YOUR USE OF THE SERVICES (each, a
+          “Dispute”) YOU AND CALLSINE AGREE, IN THE FIRST INSTANCE, TO RESOLVE
+          SUCH DISPUTES BY WAY OF Non-Binding Mediation pursuant to the laws and
+          procedure of the State of New Hampshire which shall govern the
+          interpretation and enforcement of any Mediation agreement (“Mediation
+          Agreement”). You acknowledge and understand that you and CallSine
+          waive the right to a trial by jury and any right to have a Dispute
+          heard in court in the first instance. Notwithstanding the foregoing,
+          both you and CallSine retain the right to bring an individual action
+          in small claims court (if your claims qualify and so long as the
+          matter remains in such court and advances only on an individual
+          (non-class, non-representative) basis) and the right to seek
+          injunctive or other equitable relief in a court of competent
+          jurisdiction to prevent the actual or threatened infringement,
+          misappropriation, or violation of either party’s copyrights,
+          trademarks, trade secrets, patents, or other intellectual property
+          rights, whether registered, unregistered, pending or granted.
+        </p>
 
-      <p>
-        In Mediation, Disputes are resolved by a neutral arbitrator instead of a
-        judge or jury, discovery is more limited than in court, and the
-        arbitrator's decision is subject to limited review by courts. The
-        arbitrator can award on an individual basis the same damages and relief
-        as a court, including monetary damages, injunctive relief, and
-        declaratory relief. Judgment on the arbitrator's award may be entered in
-        any court having jurisdiction thereof. A single arbitrator with the
-        American Mediation Association ("AAA") will conduct the Mediation, and
-        the award may not exceed the relief allowed by applicable law. The
-        Mediation will be conducted in the county of your residence or another
-        mutually agreed location, provided that if the value of the relief
-        sought is $10,000 or less, you or CallSine may elect to have the
-        Mediation conducted by telephone or based solely on written submissions,
-        which election will be binding on you and CallSine, subject to the
-        arbitrator's discretion to require an in-person hearing, if the
-        circumstances warrant. In cases where an in-person hearing is held, you
-        or CallSine may attend by telephone, unless the arbitrator requires
-        otherwise. The AAA's Consumer Mediation Rules will apply. If AAA will
-        not apply those rules, then AAA's Commercial Mediation Rules will apply.
-        The AAA's rules and a form that can be used to initiate Mediation
-        proceedings are available at{" "}
-        <a href="https://www.adr.org/">https://www.adr.org/</a>. You and
-        CallSine agree that if for any reason AAA will not conduct or becomes
-        unavailable to conduct the Mediation, then a court may appoint a
-        substitute arbitrator, and further agree that the choice of AAA as a
-        forum is not integral to the Mediation Agreement.
-      </p>
+        <p>
+          In Mediation, Disputes are resolved with the assistance of a single
+          and neutral mediator agreed upon by the parties instead of a judge or
+          jury, discovery may be more limited than in court, and the mediator's
+          recommendation may be subject to limited review by courts. The
+          mediator can recommend on an individual basis the payment of similar
+          damages and relief as a court. Judgment on the mediated agreement
+          between parties may be entered in any court having jurisdiction
+          thereof. The Mediation shall be conducted in Rockingham County, State
+          of New Hampshire or any other mutually agreed upon location, provided
+          that if the value of the relief sought is $10,000 or less, you or
+          CallSine may elect to have the Mediation conducted by telephone, video
+          conferencing such as WebEx or Zoom, or based solely on written
+          submissions, with said election being binding on you and CallSine,
+          subject to the mediator’s discretion to require an in-person mediation
+          , if the circumstances warrant. In cases where an in-person mediation
+          is held, you or CallSine may attend by telephone or video
+          conferencing, unless the mediator requires otherwise.
+        </p>
 
-      <p>
-        The arbitrator will decide all issues relating to the enforceability,
-        interpretation, scope, and application of this Mediation Agreement
-        (including "gateway" issues of arbitrability, whether the Mediation
-        Agreement is unconscionable or illusory and any defense to Mediation),
-        and these Terms, except that a court will resolve any question regarding
-        the validity or enforceability of the class action waiver set forth in
-        Section B of this Mediation Agreement. The term "Dispute" and the
-        requirement to arbitrate will be broadly interpreted.
-      </p>
+        <p>
+          <strong>B. Mediation Class Action Waiver.</strong> You and CallSine
+          agree that the Mediation will be conducted solely on an individual
+          basis and not on a class, representative, consolidated, or private
+          attorney general basis. A Dispute may not be consolidated with a claim
+          brought or discovery by any person or entity that is not a party to
+          the Mediation proceeding. The mediator may not recommend relief to any
+          person or entity other than a party to the Mediation proceeding and
+          may only recommend such relief as is necessary to provide relief to a
+          party to the Mediation proceeding. If a court deems any portion of
+          this Section B invalid or unenforceable, then Sections A and C of this
+          Mediation Agreement shall be null and void.
+        </p>
 
-      <p>
-        B. Mediation Class Action Waiver. You and CallSine agree that the
-        Mediation will be conducted solely on an individual basis and not on a
-        class, representative, consolidated, or private attorney general basis.
-        A Dispute may not be consolidated with a claim brought or discovery by
-        any person or entity that is not a party to the Mediation proceeding.
-        The arbitrator may not award relief to any person or entity other than a
-        party to the Mediation proceeding and may only award such relief as is
-        necessary to provide relief to a party to the Mediation proceeding. If a
-        court deems any portion of this Section B invalid or unenforceable, then
-        Sections A and C of this Mediation Agreement will be null and void.
-      </p>
+        <p>
+          <strong>C. Fees and Costs in Mediation.</strong> The parties agree
+          that they shall share equally in the costs of Mediation. However, in
+          the event the neutral Mediator should find bad faith on the part of
+          either party, that party shall be responsible for the payment of all
+          Mediation costs. Payment of all filing, administration and mediator
+          fees will be governed by the relevant procedure and laws of the State
+          of New Hampshire.
+        </p>
 
-      <p>
-        C. Fees and Costs in Mediation. Payment of all filing, administration
-        and arbitrator fees will be governed by the AAA's rules.
-      </p>
+        <p>
+          <strong>D. Non-Mediation Class Action and Jury Waiver.</strong> You
+          and CallSine agree that if for any reason a Dispute proceeds in court
+          rather than Mediation: (1) you and CallSine waive any right to a jury
+          trial; (2) the Dispute will proceed solely on an individual,
+          non-class, non-representative basis; and (3) neither you nor CallSine
+          may be a class representative or class member or otherwise participate
+          in any class, representative, consolidated, or private attorney
+          general proceeding.
+        </p>
 
-      <p>
-        D. Non-Mediation Class Action and Jury Waiver. You and CallSine agree
-        that if for any reason a Dispute proceeds in court rather than
-        Mediation: (1) you and CallSine waive any right to a jury trial; (2) the
-        Dispute will proceed solely on an individual, non-class,
-        non-representative basis; and (3) neither you nor CallSine may be a
-        class representative or class member or otherwise participate in any
-        class, representative, consolidated, or private attorney general
-        proceeding.
-      </p>
-
-      <p>
-        E. NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS SECTION, YOU MAY
-        CHOOSE TO PURSUE YOUR CLAIM IN COURT AND NOT BY MEDIATION IF YOU OPT OUT
-        OF THIS MEDIATION AGREEMENT WITHIN 30 DAYS FROM THE EARLIER OF: (1) THE
-        DATE YOU ACCEPT THESE TERMS, OR (2) THE DATE YOU FIRST AGREED OR
-        ASSENTED TO AN AGREEMENT WITH CALLSINE THAT CONTAINED AN MEDIATION
-        PROVISION. The opt-out notice must be postmarked no later than the
-        applicable deadline and mailed to: CallSine LLC, 44 Lafayette Rd., PO
-        Box 263, North Hampton, NH 03862. The opt-out notice must state that you
-        do not agree to this Mediation Agreement and must include your name,
-        address, phone number and email address. This procedure is the only way
-        you can opt out of this Mediation Agreement, and failure to comply
-        strictly with this procedure and the applicable deadline automatically
-        will render the opt-out notice null and void. If you opt out of the
-        Mediation provision, all other parts of this Mediation Agreement will
-        continue to apply.
-      </p>
+        <p>
+          <strong>
+            E. NOTWITHSTANDING ANYTHING TO THE CONTRARY IN THIS SECTION, YOU MAY
+            CHOOSE TO PURSUE YOUR CLAIM IN COURT AND NOT BY MEDIATION IF YOU OPT
+            OUT OF THIS MEDIATION AGREEMENT WITHIN 30 DAYS FROM THE EARLIER OF:
+            (1) THE DATE YOU ACCEPT THESE TERMS, OR (2) THE DATE YOU FIRST
+            AGREED OR ASSENTED TO AN AGREEMENT WITH CALLSINE THAT CONTAINED AN
+            MEDIATION PROVISION.
+          </strong>{" "}
+          The opt-out notice must be postmarked no later than the applicable
+          deadline and mailed to: CallSine LLC, 44 Lafayette Rd., PO Box 263,
+          North Hampton, NH 03862. The opt-out notice must state that you do not
+          agree to this Mediation Agreement and must include your name, address,
+          phone number and email address. This procedure is the only way you can
+          opt out of this Mediation Agreement, and failure to comply strictly
+          with this procedure and the applicable deadline automatically will
+          render the opt-out notice null and void. If you opt out of the
+          Mediation provision, all other parts of this Mediation Agreement will
+          continue to apply.
+        </p>
+      </Box>
 
       <p>
         <strong>19. Notice -</strong> All notices in connection with these Terms
         will be given by regular mail (postage prepaid, return receipt
-        requested), courier or overnight delivery service or email.
+        requested), courier or overnight delivery service or email. You may
+        provide notice to CallSine at: CallSine LLC, 44 Lafayette Rd., PO Box
+        263, North Hampton, NH 03862
       </p>
 
-      <p>You may provide notice to CallSine at:</p>
-
-      <p>CallSine LLC, 44 Lafayette Rd., PO Box 263, North Hampton, NH 03862</p>
-
-      <p>You may ask questions or contact us by email at info@callsine.com</p>
+      <p>
+        You may ask questions or contact us by email at{" "}
+        <a
+          href="mailto:info@callsine.com"
+          className="tw-text-callsineLightBlue"
+        >
+          info@callsine.com
+        </a>
+        .
+      </p>
 
       <p>
         CallSine may provide notice to you using the contact information
@@ -715,87 +734,98 @@ const Terms = () => {
         <strong>20. Other Terms</strong>
       </p>
 
-      <p>
-        <strong>A. Injunctive Relief -</strong> You agree and acknowledge that
-        any access, use, disclosure, retention or other processing of CallSine
-        Data in violation of these Terms may cause immediate and irreparable
-        harm to CallSine for which money damages may not constitute an adequate
-        remedy. Therefore, you agree that CallSine may obtain specific
-        performance and injunctive or other equitable relief, in addition to its
-        remedies at law. CallSine shall be entitled to such equitable relief in
-        addition to all other remedies at law or in equity.
-      </p>
+      <Box className="tw-ml-[10px]">
+        <p>
+          <strong>A. Injunctive Relief -</strong> You agree and acknowledge that
+          any access, use, disclosure, retention or other processing of CallSine
+          Data in violation of these Terms may cause immediate and irreparable
+          harm to CallSine for which money damages may not constitute an
+          adequate remedy. Therefore, you agree that CallSine may obtain
+          specific performance and injunctive or other equitable relief, in
+          addition to its remedies at law. CallSine shall be entitled to such
+          equitable relief in addition to all other remedies at law or in
+          equity.
+        </p>
 
-      <p>
-        <strong>B. Choice of Law and Venue -</strong> This Agreement, the right
-        of the parties and all claims, actions, causes of action, suits,
-        litigation, controversies, hearings, charges, complaints or proceedings
-        arising in whole or in part under or in connection herewith, will be
-        governed by and construed in accordance with the procedural and
-        substantive laws of the State of New Hampshire, without giving effect to
-        any choice or conflict of law provision or rule that would cause the
-        application of the laws of any other jurisdiction. The parties agree
-        that any action to enforce the provisions of this Agreement will take
-        place in New Hampshire, and the parties expressly agree to submit to the
-        jurisdiction of the state and federal courts in New Hampshire for this
-        purpose.
-      </p>
+        <p>
+          <strong>B. Choice of Law and Venue -</strong> This Agreement, the
+          right of the parties and all claims, actions, causes of action,
+          mediation, litigation, controversies, hearings, charges, complaints or
+          proceedings arising in whole or in part under or in connection
+          herewith, will be governed by and construed in accordance with the
+          procedural and substantive laws of the State of New Hampshire, without
+          giving effect to any choice or conflict of law provision or rule that
+          would cause the application of the laws of any other jurisdiction. The
+          parties agree that any action to enforce the provisions of this
+          Agreement will take place in New Hampshire, and the parties expressly
+          agree to submit to the jurisdiction of the state and federal courts in
+          New Hampshire for this purpose.
+        </p>
 
-      <p>
-        <strong>C. Severability -</strong> If one or more provisions of this
-        Agreement are held to be unenforceable under applicable law, the parties
-        agree to renegotiate such provision in good faith. In the event that the
-        parties cannot reach a mutually agreeable and enforceable replacement
-        for such provision, then (i) such provision shall be excluded from this
-        Agreement, (ii) the balance of the Agreement shall be interpreted as if
-        such provision were so excluded and (iii) the balance of the Agreement
-        shall be enforceable in accordance with its terms.
-      </p>
+        <p>
+          <strong>C. Severability -</strong> If one or more provisions of this
+          Agreement are held to be unenforceable under applicable law, the
+          parties agree to renegotiate such provision in good faith. In the
+          event that the parties cannot reach a mutually agreeable and
+          enforceable replacement for such provision, then (i) such provision
+          shall be excluded from this Agreement, (ii) the balance of the
+          Agreement shall be interpreted as if such provision were so excluded
+          and (iii) the balance of the Agreement shall be enforceable in
+          accordance with its terms.
+        </p>
 
-      <p>
-        <strong>D. No Waiver -</strong> Failure by us to act on or enforce any
-        provision of these Terms shall not be construed as a waiver of that
-        provision or any other provision in these Terms. No waiver shall be
-        effective against us unless made in writing, and no such waiver shall be
-        construed as a waiver in any other or subsequent instance.
-      </p>
+        <p>
+          <strong>D. No Waiver -</strong> Failure by us to act on or enforce any
+          provision of these Terms shall not be construed as a waiver of that
+          provision or any other provision in these Terms. No waiver shall be
+          effective against CallSine unless made in writing, and no such waiver
+          shall be construed as a waiver in any other or subsequent instance.
+        </p>
 
-      <p>
-        <strong>E. Entire Agreement -</strong> Except as expressly agreed to in
-        writing by us, these Terms constitute the entire agreement between the
-        parties with respect to the subject matter, and supersede all previous
-        or contemporaneous agreements, whether written or oral, between the
-        parties with respect to the subject matter.
-      </p>
+        <p>
+          <strong>E. Entire Agreement -</strong> Except as expressly agreed to
+          in writing by CallSine, these Terms constitute the entire agreement
+          between the parties with respect to the subject matter, and supersede
+          all previous or contemporaneous agreements, whether written or oral,
+          between the parties with respect to the subject matter.
+        </p>
 
-      <p>
-        <strong>F. Headings -</strong> The section headings are provided merely
-        for convenience and must not be given any legal import. References to
-        CallSine includes references to its affiliates, subsidiaries, officers,
-        directors, employees, agents, suppliers, and licensors.
-      </p>
+        <p>
+          <strong>F. Headings -</strong> The section headings are provided
+          merely for convenience and must not be given any legal import.
+          References to CallSine includes references to its affiliates,
+          subsidiaries, officers, directors, employees, agents, suppliers, and
+          licensors.
+        </p>
 
-      <p>
-        <strong>G. Assignment -</strong> These Terms will inure to the benefit
-        of our successors, assigns, licensees, and sublicensees. We may assign
-        our rights or obligations without your consent. You may not assign or
-        transfer any rights or obligations under these Terms (or your account)
-        to anyone without our consent and any assignment or transfer in
-        violation of this section is void.
-      </p>
+        <p>
+          <strong>G. Assignment -</strong> These Terms will inure to the benefit
+          of CallSine’s successors, assigns, licensees, and sublicensees. We may
+          assign our rights or obligations without your consent. You may not
+          assign or transfer any rights or obligations under these Terms (or
+          your account) to anyone without CallSine’s written consent and any
+          assignment or transfer in violation of this section is void.
+        </p>
 
-      <p>
-        <strong>H. No Third-Party Beneficiary -</strong> These Terms do not
-        create any third-party beneficiary rights to any person who is not a
-        party.
-      </p>
+        <p>
+          <strong>H. No Third-Party Beneficiary -</strong> These Terms do not
+          create any third-party beneficiary rights to any person who is not a
+          party.
+        </p>
 
-      <p>
-        <strong>I. Survival -</strong> Provisions of the Terms relating to
-        limitation of liability, indemnification, venue, choice of law, and any
-        other provisions that by their nature should survive, will survive the
-        termination of these Terms.
-      </p>
+        <p>
+          <strong>I. Survival -</strong> Provisions of the Terms relating to
+          limitation of liability, indemnification, venue, choice of law, and
+          any other provisions that by their nature should survive, will survive
+          the termination of these Terms.
+        </p>
+
+        <p>
+          <strong>J. Logos -</strong> Unless you notify us otherwise in writing,
+          you hereby authorize us to use your company’s logo, name, or trademark
+          on our website or in marketing
+        </p>
+      </Box>
 
       <Box className="tw-py-[100px]" />
     </Box>

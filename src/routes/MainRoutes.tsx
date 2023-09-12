@@ -1,6 +1,7 @@
 import { lazy } from "react";
 
 // project imports
+import SettingsPage from "src/views/settings";
 import MainLayout from "../layout/MainLayout";
 import Loadable from "../ui-component/Loadable";
 import Authenticated from "../ui-component/authentication/Authenticated";
@@ -23,6 +24,7 @@ const ProfilePage = Loadable(lazy(() => import("../views/profile")));
 const DataPage = Loadable(lazy(() => import("../views/data")));
 const PlaybooksPage = Loadable(lazy(() => import("../views/playbooks")));
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
+const TeamPage = Loadable(lazy(() => import("../views/team")));
 const InboxPage = Loadable(lazy(() => import("../views/inbox")));
 
 // ==============================|| MAIN ROUTING ||============================== //
@@ -42,6 +44,14 @@ const MainRoutes = {
     {
       path: "dashboard",
       element: <DashboardDefault />,
+    },
+    {
+      path: "team",
+      element: <TeamPage />,
+    },
+    {
+      path: "settings",
+      element: <SettingsPage />,
     },
     {
       path: "people",

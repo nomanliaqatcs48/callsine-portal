@@ -1,4 +1,10 @@
-import { List, ListItemButton, ListItemText, Tooltip } from "@mui/material";
+import {
+  Box,
+  List,
+  ListItemButton,
+  ListItemText,
+  Tooltip,
+} from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
@@ -41,7 +47,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light tw-tracking-[0.32px]">
               {item?.promptResponse?.text &&
               item?.promptResponse?.text?.toLowerCase() !== "none"
                 ? result
@@ -81,7 +87,7 @@ const PlaybookList = ({
       return (
         <>
           <span className="tw-flex">
-            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light">
+            <span className="tw-w-11/12 tw-truncate tw-text-[16px] tw-text-callsineGray tw-font-light tw-tracking-[0.32px]">
               {item?.scheduledEmail?.text || ""}
               {
                 item?.scheduledEmail?.html_message &&
@@ -182,9 +188,11 @@ const PlaybookList = ({
                             [0, 1, 2, 3],
                             item?.scheduledEmail?.status
                           ) ? (
-                            moment(item?.scheduledEmail?.scheduled_time)
-                              .tz(timezone)
-                              .format("lll")
+                            <Box className="tw-mb-[10px]">
+                              {moment(item?.scheduledEmail?.scheduled_time)
+                                .tz(timezone)
+                                .format("lll")}
+                            </Box>
                           ) : (
                             <span className="tw-invisible">This is hidden</span>
                           )}

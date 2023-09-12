@@ -45,7 +45,7 @@ const ExportPeople = () => {
           <Button
             className={`${
               personsData?.length > 0 ? "" : "tw-cursor-not-allowed"
-            } tw-text-[16px] tw-tracking-[0.32px]`}
+            } tw-text-[16px] tw-tracking-[0.32px] tw-font-normal`}
           >
             <FileDownloadOutlinedIcon
               sx={{ color: "#1a76d2", fontSize: 15 }}

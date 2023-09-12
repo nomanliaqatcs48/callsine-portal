@@ -47,9 +47,17 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
           modalTitle="Add Data"
           labelledby="Add Data"
           describedby="add user data modal"
-          modalSxStyle={{ width: { xs: 400 } }}
+          modalSxStyle={{
+            width: { xs: 400 },
+            padding: 0,
+            "& h4": {
+              backgroundColor: "#EAEAEA",
+              padding: "20px 30px",
+              fontSize: { xs: 14, lg: 16 },
+            },
+          }}
         >
-          <Grid container spacing={2} className="tw-p-3">
+          <Grid container spacing={2} className="tw-p-3 tw-px-[30px]">
             <Grid item xs={12}>
               <AddUserDataUpload instance={userData} refresh={refresh} />
             </Grid>

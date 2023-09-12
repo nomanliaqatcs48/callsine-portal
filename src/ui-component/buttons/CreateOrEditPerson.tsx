@@ -197,7 +197,7 @@ const CreateOrEditPerson = ({
           onClick();
         }}
         style={btnStyle}
-        className="tw-text-[16px] tw-tracking-[0.32px]"
+        className="tw-text-[16px] tw-tracking-[0.32px] tw-font-normal"
         {...other}
       >
         {btnText}
@@ -213,8 +213,13 @@ const CreateOrEditPerson = ({
           aria-describedby={`${id ? "edit" : "add"} person modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">{id ? "Edit" : "Add"} Person</DialogTitle>
-          <DialogContent>
+          <DialogTitle
+            variant="h4"
+            className="tw-text-[18px] tw-text-black tw-bg-[#EAEAEA] tw-font-normal tw-tracking-[0.36px]"
+          >
+            {id ? "Edit" : "Add"} Person
+          </DialogTitle>
+          <DialogContent className="tw-my-[20px]">
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
@@ -403,7 +408,7 @@ const CreateOrEditPerson = ({
             </Grid>
           </DialogContent>
 
-          <DialogActions>
+          <DialogActions className="tw-pt-0 tw-pb-[30px] lg:tw-px-[24px]">
             <Button
               onClick={handleSubmit((data) =>
                 id ? onThisEditSubmit(data) : onThisAddSubmit(data)
@@ -415,7 +420,11 @@ const CreateOrEditPerson = ({
             >
               {id ? "Edit" : "Add"}
             </Button>
-            <Button onClick={handleClose} disabled={personLoading?.form}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              disabled={personLoading?.form}
+            >
               Cancel
             </Button>
           </DialogActions>

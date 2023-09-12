@@ -22,3 +22,9 @@ hr.divider.sign-in {
 .google-button-wrapper div {
   height: auto !important;
 }
+
+@media (min-width: 1024px) {
+  .google-button-wrapper span {
+    font-size: 18px;
+  }
+}

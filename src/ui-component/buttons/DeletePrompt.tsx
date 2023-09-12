@@ -80,12 +80,20 @@ const DeletePrompt = ({
           modalTitle="Are you sure?"
           labelledby="Are you sure?"
           describedby="delete playbook modal"
-          modalSxStyle={{ width: { xs: 400 } }}
+          modalSxStyle={{
+            width: { xs: 400 },
+            padding: 0,
+            "& h4": {
+              backgroundColor: "#EAEAEA",
+              padding: "20px 30px",
+              fontSize: { xs: 14, lg: 16 },
+            },
+          }}
         >
-          <Typography variant="subtitle1">
+          <Typography variant="subtitle1" className="tw-px-[30px] tw-py-[20px]">
             You won't be able to revert this!
           </Typography>
-          <DialogActions>
+          <DialogActions className="tw-px-[30px]">
             <Button
               variant="contained"
               color="primary"
@@ -95,7 +103,11 @@ const DeletePrompt = ({
             >
               Yes, delete it!
             </Button>
-            <Button onClick={handleClose} disabled={isLoading?.submit}>
+            <Button
+              variant="outlined"
+              onClick={handleClose}
+              disabled={isLoading?.submit}
+            >
               Cancel
             </Button>
           </DialogActions>

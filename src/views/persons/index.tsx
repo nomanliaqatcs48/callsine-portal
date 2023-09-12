@@ -82,7 +82,7 @@ const PersonsPage = () => {
         variant="middle"
         flexItem
         className="tw-hidden lg:tw-block"
-        sx={{ borderColor: "#bbc6d4", borderRightWidth: 2 }}
+        sx={{ borderColor: "#778DA9", borderRightWidth: 1 }}
       />
     );
   };

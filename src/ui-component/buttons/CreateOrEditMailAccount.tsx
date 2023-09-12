@@ -208,10 +208,13 @@ const CreateOrEditMailAccount = ({
           aria-describedby={`${id ? "edit" : "add"} mail account modal`}
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4" className="tw-pt-10">
+          <DialogTitle
+            variant="h4"
+            className="tw-text-[18px] tw-text-black tw-bg-[#EAEAEA] tw-font-normal tw-tracking-[0.36px]"
+          >
             {id ? "Edit" : "Add"} Mail Account
           </DialogTitle>
-          <DialogContent>
+          <DialogContent className="tw-my-[20px]">
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
                 <Box component="form" noValidate autoComplete="off">
@@ -391,7 +394,7 @@ const CreateOrEditMailAccount = ({
           <DialogActions
             className={`tw-flex ${
               id ? "tw-justify-between" : "tw-justify-end"
-            } tw-px-6 tw-pb-10`}
+            } tw-pt-0 tw-pb-[30px] lg:tw-px-[24px]`}
           >
             <div>
               <Button
@@ -401,11 +404,15 @@ const CreateOrEditMailAccount = ({
                 disabled={mailAccountLoading?.form}
                 variant="contained"
                 color="primary"
-                className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+                className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case tw-mr-[5px]"
               >
                 {id ? "Edit" : "Add"}
               </Button>
-              <Button onClick={handleClose} disabled={mailAccountLoading?.form}>
+              <Button
+                variant="outlined"
+                onClick={handleClose}
+                disabled={mailAccountLoading?.form}
+              >
                 Cancel
               </Button>
             </div>
