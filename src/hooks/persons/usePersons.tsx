@@ -1,13 +1,13 @@
+import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getPeopleService } from "../../services/persons.service";
-import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
-import { useQuery } from "@tanstack/react-query";
 
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
-    limit: 10,
+    limit: 60,
     offset: 0,
   }
 ) => {
