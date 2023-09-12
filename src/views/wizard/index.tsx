@@ -58,10 +58,9 @@ export default function VerticalLinearStepper() {
         className="tw-h-auto tw-w-full"
         style={{
           display: "flex",
-          alignItems: "center",
           justifyContent: "center",
           overflow: "auto",
-          height: "100vh",
+          minHeight: "calc(100vh + 92px)",
         }}
       >
         <Box
