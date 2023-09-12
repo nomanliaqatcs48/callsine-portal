@@ -17,8 +17,6 @@ import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
 
 const MailAccountsPage = () => {
   const { isNotPremium } = usePermissions();
-  useHandleCallback();
-
   const {
     mailAccountsData,
     total,
@@ -36,6 +34,7 @@ const MailAccountsPage = () => {
     setIsOrderDesc,
   } = useMailAccounts();
 
+  useHandleCallback(getMailAccounts);
   useEffect(() => {
     isNotPremium();
   }, []);

@@ -21,7 +21,10 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { devLog, devLogError } from "../../helpers/logs";
-import { createAsEmailService } from "../../services/emails.service";
+import {
+  createAsEmailService,
+  sendMailOauthService,
+} from "../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { LoadingButton } from "@mui/lab";
 
@@ -32,7 +35,7 @@ type SendLaterTypes = {
   [x: string]: any;
 };
 
-const SendLater = ({
+const SendLaterOauth = ({
   position,
   onLoadApi,
   useForm,
@@ -87,18 +90,6 @@ const SendLater = ({
   };
 
   const handleChangeScheduledTime = (value: any) => {
-    // let _parentDate = moment.utc(parentEmailData?.scheduled_time);
-    // let _thisScheduledDate = moment.utc(value);
-    // let _diff = _parentDate.diff(_thisScheduledDate);
-
-    /*if (_diff >= 0) {
-      setError("scheduled_time", {
-        type: "custom",
-        message: "Scheduled time should be AFTER parent email’s scheduled time",
-      });
-      return;
-    }*/
-
     useForm?.setValue(
       "scheduled_time",
       moment.utc(value).format("YYYY-MM-DD HH:mm:ss")
@@ -112,12 +103,13 @@ const SendLater = ({
     });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
-      let res = await createAsEmailService({
+      let res = await sendMailOauthService({
         ...data,
+        send_later: true,
         is_auto_schedule: data?.is_auto_schedule,
         days_interval: data?.days_interval,
         in_reply_to: data?.id,
-        from_email: data?.from_email?.id,
+        from_email: data?.from_email,
         position: position,
         html_message: `<html><body>${
           data?.html_message +
@@ -129,7 +121,7 @@ const SendLater = ({
         ToastSuccess("Email successfully scheduled.");
         handleClose(event, "");
         setIsLoading((prev: any) => ({ ...prev, form: false }));
-        // onLoadApi();
+        onLoadApi();
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
@@ -148,7 +140,9 @@ const SendLater = ({
         {...props}
       >
         <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
-        <span className="tw-text-[#778da9] tw-text-xs tw-px-2">Send Later</span>
+        <span className="tw-text-[#778da9] tw-text-xs tw-px-2">
+          Send Later Via Mail Account
+        </span>
       </LoadingButton>
 
       {open && (
@@ -162,7 +156,7 @@ const SendLater = ({
           aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">Send Later</DialogTitle>
+          <DialogTitle variant="h4">Send Later Via Mail Account</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
@@ -244,7 +238,7 @@ const SendLater = ({
               color="primary"
               className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
-              Send Later
+              Send
             </LoadingButton>
             <LoadingButton
               onClick={(event: any) => handleClose(event, "")}
@@ -260,4 +254,4 @@ const SendLater = ({
   );
 };
 
-export default SendLater;
+export default SendLaterOauth;

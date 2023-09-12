@@ -22,3 +22,9 @@ export type EmailDraftTypes = {
   scheduled_time?: string;
   signature?: string;
 };
+
+export type ThreadReplyTypes = {
+  mail_object: any;
+  html_message: string;
+  thread_id: number;
+};

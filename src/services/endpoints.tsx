@@ -15,7 +15,10 @@ export const endpoints = {
   USER_DATA: "/api/user-data/",
   TEAMS: "/api/teams/",
   NEWPROMPT: "/api/new-prompt/",
-  GOOGLEAUTH: "/google-auth/",
-  MICROSOFTAUTH: "/microsoft-auth/",
+  GOOGLEAUTH: "/api/google-auth/",
+  MICROSOFTAUTH: "/api/microsoft-auth/",
   SENDMAIL: "/api/send-mail/",
+  EMAILS_THREAD: "/api/email-thread/",
+  GMAIL_THREAD: "/api/gmail-thread/",
+  OUTLOOK_THREAD: "/api/outlook-thread/",
 };

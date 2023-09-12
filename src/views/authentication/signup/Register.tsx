@@ -11,7 +11,7 @@ import Logo from "../../../ui-component/Logo";
 import AuthRegister from "../auth-forms/AuthRegister";
 import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import imageOne from "../../../assets/images/register/Group3.png";
-import imageTwo from "../../../assets/images/register/Rectangle1.png"
+import imageTwo from "../../../assets/images/register/Rectangle1.png";
 // ===============================|| AUTH3 - REGISTER ||=============================== //
 
 const Register = () => {
@@ -26,31 +26,33 @@ const Register = () => {
         justifyContent="flex-end"
         sx={{ minHeight: "100vh" }}
       >
-        <Grid container
+        <Grid
+          container
           display="flex"
           justifyContent="center"
           alignItems="center"
-          sx={{ minHeight: "100vh" }}>
-
+          sx={{ minHeight: "100vh" }}
+        >
           <Grid
             container
             spacing={0}
             alignItems="center"
             justifyContent="center"
           >
-            
-            <Grid item xs={12}
+            <Grid
+              item
+              xs={12}
               sx={{
-                display: 'flex',
-                flexDirection: 'column',
-                alignItems: 'center',
-                justifyContent: 'center',
-                paddingLeft: '50px',
-                paddingRight: '50px'
-              }}>
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                justifyContent: "center",
+                paddingLeft: "50px",
+                paddingRight: "50px",
+              }}
+            >
               <AuthRegister />
             </Grid>
-
           </Grid>
         </Grid>
         {/* <Grid item xs={12} sx={{ m: 3, mt: 1 }}>

@@ -1,4 +1,4 @@
-import { EmailDraftTypes } from "src/utils/types/mail";
+import { EmailDraftTypes, ThreadReplyTypes } from "src/utils/types/mail";
 import http from "./axios";
 import { endpoints } from "./endpoints";
 
@@ -40,6 +40,39 @@ export const sendEmailService = async (emailId: number, position: number) => {
   return await http.post(`${endpoints.EMAILS}${emailId}/send/`);
 };
 
-export const sendMailService = async (data: EmailDraftTypes) => {
+export const sendMailOauthService = async (data: EmailDraftTypes) => {
   return await http.post(`${endpoints.SENDMAIL}`, data);
+};
+
+export const emailThreadsService = async (person_id?: number) => {
+  let url = endpoints.EMAILS_THREAD;
+  if (person_id !== undefined) {
+    url += `?person_id=${person_id}`;
+  }
+  return await http.get(url);
+};
+
+export const gmailThreadService = async (
+  threadId: number,
+  mailAccountId: number
+) => {
+  return await http.get(
+    `${endpoints.GMAIL_THREAD}?thread_id=${threadId}&mail_account_id=${mailAccountId}`
+  );
+};
+export const outlookThreadService = async (
+  threadId: number,
+  mailAccountId: number
+) => {
+  return await http.get(
+    `${endpoints.OUTLOOK_THREAD}?thread_id=${threadId}&mail_account_id=${mailAccountId}`
+  );
+};
+
+export const gmailThreadReplyService = async (data: ThreadReplyTypes) => {
+  return await http.post(`${endpoints.GMAIL_THREAD}`, data);
+};
+
+export const outLookThreadReplyService = async (data: ThreadReplyTypes) => {
+  return await http.post(`${endpoints.OUTLOOK_THREAD}`, data);
 };

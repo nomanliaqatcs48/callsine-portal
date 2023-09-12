@@ -9,6 +9,7 @@ import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import PlaybookV2 from "./components/v2/Playbook/PlaybookV2";
 import CustomFieldsTab from "../../../ui-component/tabs/CustomFieldsTab";
+import EmailThread from "./components/EmailThread";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -124,6 +125,11 @@ const PersonDetailPage = () => {
             {...a11yProps(3)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
+          <Tab
+            label="Email Threads"
+            {...a11yProps(4)}
+            className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
+          />
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -133,11 +139,15 @@ const PersonDetailPage = () => {
       <TabPanel value={value} index={1}>
         {value === 1 && <Emails />}
       </TabPanel>
+
       <TabPanel value={value} index={2}>
         {value === 2 && <TrackingTab />}
       </TabPanel>
       <TabPanel value={value} index={3}>
         {value === 3 && <CustomFieldsTab data={data} />}
+      </TabPanel>
+      <TabPanel value={value} index={4}>
+        {value === 4 && <EmailThread />}
       </TabPanel>
     </>
   );

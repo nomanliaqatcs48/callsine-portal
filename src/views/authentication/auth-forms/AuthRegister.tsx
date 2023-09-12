@@ -44,6 +44,8 @@ import { load, save, saveString } from "../../../utils/storage";
 import { toast } from "react-toastify";
 import { insertBodyLoader, removeBodyLoader } from "../../../helpers/loaders";
 import { profileService } from "../../../services/profile.service";
+import GoogleLoginBtn from "./google/GoogleLoginBtn";
+import MicrosoftLoginBtn from "./microsoft/MicrosoftLoginBtn";
 
 // ===========================|| FIREBASE - REGISTER ||=========================== //
 
@@ -292,6 +294,14 @@ const AuthRegister = ({ ...others }) => {
               >
                 Create An Account
               </Typography>
+              <Grid className="tw-my-3" item xs={12}>
+                <Grid>
+                  <GoogleLoginBtn />
+                </Grid>
+              </Grid>
+              <Grid className="tw-my-3" item xs={12}>
+                <MicrosoftLoginBtn />
+              </Grid>
               <Typography
                 className="tw-text-[18px] tw-font-normal tw-tracking-[0.9px]"
                 sx={{

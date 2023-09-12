@@ -61,6 +61,7 @@ export const loginRequest = {
     "Contacts.Read",
     "Contacts.ReadWrite",
     "Mail.Send",
+    "Mail.ReadWrite.Shared",
   ],
 };
 

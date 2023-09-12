@@ -42,19 +42,21 @@ const CreateMailAccount = ({
           open={open}
           onClose={handleClose}
           scroll="body"
-          fullWidth={true}
-          maxWidth="xl"
+          maxWidth="lg"
           aria-labelledby="Add Mail account"
           aria-describedby="Add Mail account modal"
           disableEnforceFocus={true}
+          fullWidth={false}
         >
-          <DialogTitle variant="h4" className="tw-pt-10">
-            Add Mail Account
-          </DialogTitle>
-          <DialogContent className="flex flex-tw-space-y-5">
-            <MicrosoftAddEmailAccount />
-            <GoogleAddEmailAccount />
-          </DialogContent>
+          <div className="tw-w-96">
+            <DialogTitle variant="h4" className="tw-text-center tw-pt-10">
+              Add Mail Account
+            </DialogTitle>
+            <DialogContent className="tw-flex tw-space-x-11 tw-items-center">
+              <MicrosoftAddEmailAccount />
+              <GoogleAddEmailAccount />
+            </DialogContent>
+          </div>
         </Dialog>
       )}
     </>

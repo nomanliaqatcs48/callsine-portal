@@ -4,12 +4,10 @@ import { useAuth } from "src/contexts/auth";
 
 import config from "src/config";
 import { ToastSuccess } from "src/helpers/toast";
-import { useMailAccounts } from "./useMailAccounts";
+// import { useMailAccounts } from "./useMailAccounts";
 
-function useHandleCallback() {
+function useHandleCallback(getMailAccounts: any) {
   const auth: any = useAuth();
-  const { getMailAccounts } = useMailAccounts();
-
   useEffect(() => {
     const callbackService = async () => {
       const urlParams = new URLSearchParams(window.location.search);

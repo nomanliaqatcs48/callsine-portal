@@ -59,7 +59,7 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };
-
+  console.log("EMAIL", data);
   const displayFromEmail = (data: any) => {
     let _headers = data?.headers || [];
     let _from = { name: "From", value: "" };
@@ -211,6 +211,9 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
             </Typography>
             <Typography variant="subtitle2">
               <strong>Clicks:&nbsp;</strong> {item?.clicks}
+            </Typography>
+            <Typography variant="subtitle2">
+              <strong>Thread ID:&nbsp;</strong> {item?.thread_id}
             </Typography>
 
             <div style={{ height: 10 }} />

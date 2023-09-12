@@ -13,8 +13,10 @@ const GoogleLoginBtn = () => {
 
     try {
       const payload = { access_token: response.tokenId };
-
+      console.log("Token ID", response.tokenId);
       let res = await googleAuthService(payload);
+
+      debugger;
       devLog(() => {
         console.log("res", res);
       });
@@ -29,6 +31,8 @@ const GoogleLoginBtn = () => {
       devLogError(() => {
         console.error(err?.response);
       });
+
+      setTimeout(() => console.log("This will run after 1 second"), 60);
     }
   };
 

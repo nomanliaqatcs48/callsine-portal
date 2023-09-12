@@ -23,6 +23,7 @@ const ProfilePage = Loadable(lazy(() => import("../views/profile")));
 const DataPage = Loadable(lazy(() => import("../views/data")));
 const PlaybooksPage = Loadable(lazy(() => import("../views/playbooks")));
 const SamplePage = Loadable(lazy(() => import("../views/sample-page")));
+const InboxPage = Loadable(lazy(() => import("../views/inbox")));
 
 // ==============================|| MAIN ROUTING ||============================== //
 
@@ -81,6 +82,10 @@ const MainRoutes = {
     {
       path: "sample-page",
       element: <SamplePage />,
+    },
+    {
+      path: "inbox",
+      element: <InboxPage />,
     },
   ],
 };
