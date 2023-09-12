@@ -1,10 +1,10 @@
-import React from "react";
-import { Button, Grid, Paper, Typography } from "@mui/material";
-import MyTable from "../../ui-component/tables/MyTable";
-import { _columns } from "../../utils/user-data/utils";
+import { Button, Grid, Paper, Tooltip, Typography } from "@mui/material";
+import { IconPlug } from "@tabler/icons-react";
 import { useUserData } from "../../hooks/user-data/useUserData";
 import AddUserData from "../../ui-component/buttons/AddUserData";
 import DeleteSelectedUserData from "../../ui-component/buttons/DeleteSelectedUserData";
+import MyTable from "../../ui-component/tables/MyTable";
+import { _columns } from "../../utils/user-data/utils";
 
 const Data = () => {
   const {
@@ -78,6 +78,21 @@ const Data = () => {
             lg={10}
             className="tw-flex tw-flex-col lg:tw-flex-row lg:tw-gap-x-1 lg:tw-items-center lg:tw-justify-end lg:tw-px-3"
           >
+            <Tooltip title="Coming soon!">
+              <div>
+                <Button
+                  disabled={true}
+                  className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-primary"
+                >
+                  <IconPlug
+                    // sx={{ color: "#1a76d2", fontSize: 15 }}
+                    className="tw-mr-2"
+                  />
+                  Connect Data
+                </Button>
+              </div>
+            </Tooltip>
+            <MyDivider />
             <AddUserData onLoadApi={getUsers} />
 
             <MyDivider />

@@ -23,4 +23,5 @@ export const endpoints = {
   EMAILS_THREAD: "/api/email-thread/",
   GMAIL_THREAD: "/api/gmail-thread/",
   OUTLOOK_THREAD: "/api/outlook-thread/",
+  PAYMENTS: "/payments/",
 };

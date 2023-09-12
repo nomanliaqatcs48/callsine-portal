@@ -1,10 +1,9 @@
 import PropTypes, { InferProps } from "prop-types";
 import { forwardRef, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 // material-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
@@ -16,15 +15,15 @@ import {
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // project imports
 import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
 
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
-import { useAuth } from "../../../../../contexts/auth";
-import { devLog } from "../../../../../helpers/logs";
 import moment from "moment-timezone";
+import { useAuth } from "../../../../../contexts/auth";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -38,6 +37,7 @@ type NavItemTypes = InferProps<typeof NavItemPropTypes>;
 const NavItem = ({ item, level }: NavItemTypes) => {
   const theme: any = useTheme();
   const auth: any = useAuth();
+  console.log(auth);
   const dispatch = useDispatch();
   const customization = useSelector((state: any) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
@@ -74,10 +74,28 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
       let _diff = _now.diff(_termEnd);
 
-      if (item?.isPremium && auth?.subscription?.status !== "active") {
+      if (
+        item?.isPremium &&
+        auth?.subscription?.status !== "active" &&
+        auth?.subscription?.status !== "canceled"
+      ) {
         return (
           <>
             <Tooltip title="Upgrade your account to access this feature.">
+              <Box
+                ref={ref}
+                {...props}
+                sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
+              />
+            </Tooltip>
+          </>
+        );
+      }
+
+      if (item?.isDisabled) {
+        return (
+          <>
+            <Tooltip title="Check back soon!">
               <Box
                 ref={ref}
                 {...props}
@@ -109,6 +127,13 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       dispatch({ type: MENU_OPEN, id: item.id });
     }
     // eslint-disable-next-line
+  }, []);
+
+  useEffect(() => {
+    const endDate = new Date(auth.subscription.current_term_end);
+    if (auth?.subscription.status === "canceled" && endDate < new Date()) {
+      window.location.href = "/wizard/checkout";
+    }
   }, []);
 
   return (

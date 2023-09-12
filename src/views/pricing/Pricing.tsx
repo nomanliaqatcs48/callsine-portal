@@ -1,21 +1,21 @@
-import React from "react";
 import { Box, Grid, Typography } from "@mui/material";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
-import PricingCard from "../../ui-component/pricing/PricingCard";
-import PageHeader from "./PageHeader";
-import PricingBottomContent from "./PricingBottomContent";
 import { useAuthentication } from "../../hooks/useAuthentication";
+import PricingCard from "../../ui-component/pricing/PricingCard";
+import PricingFeatures from "../../ui-component/pricing/PricingFeatures";
+import PricingFeaturesHeader from "../../ui-component/pricing/PricingFeaturesHeader";
 import {
   compareFeaturesHeader,
   compareFeaturesItems,
   pricingItems,
 } from "../../utils/pricing/utils";
-import PricingFeatures from "../../ui-component/pricing/PricingFeatures";
-import PricingFeaturesHeader from "../../ui-component/pricing/PricingFeaturesHeader";
+import PageHeader from "./PageHeader";
+import PricingBottomContent from "./PricingBottomContent";
 // import { ChargeBee, _hosted_page } from "chargebee-typescript";
 
 const PricingBox = () => {
   let { isAuthenticated, authProfile } = useAuthentication();
+  console.log(authProfile);
 
   return (
     <>
@@ -34,7 +34,7 @@ const PricingBox = () => {
           <Box className="tw-py-[15px]" />
 
           <Box className="pricing-boxes tw-flex tw-flex-col tw-items-stretch tw-gap-5 lg:tw-gap-0 lg:tw-flex-row">
-            {pricingItems({ authProfile })?.map((i: any, idx: number) => {
+            {pricingItems()?.map((i: any, idx: number) => {
               return (
                 <Box className={`tw-flex-1 ${i?.hide ? "tw-hidden" : ""}`}>
                   <PricingCard

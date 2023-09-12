@@ -4,6 +4,7 @@ import { useRoutes } from "react-router-dom";
 import MainRoutes from "./MainRoutes";
 import AuthenticationRoutes from "./AuthenticationRoutes";
 import PublicRoute from "./PublicRoutes";
+import AuthenticatedPublicRoutes from "./AuthenticatedPublicRoutes";
 
 // ==============================|| ROUTING RENDER ||============================== //
 
@@ -12,6 +13,6 @@ export default function ThemeRoutes() {
     MainRoutes,
     PublicRoute,
     AuthenticationRoutes,
-    //
+    AuthenticatedPublicRoutes,
   ]);
 }
