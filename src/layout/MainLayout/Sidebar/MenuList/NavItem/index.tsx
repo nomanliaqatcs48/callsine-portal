@@ -73,12 +73,9 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       let _now = moment.tz(timezone);
       let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
       let _diff = _now.diff(_termEnd);
-
-      if (
-        item?.isPremium &&
-        // auth?.subscription?.status !== "active" &&
-        // auth?.subscription?.status !== "canceled"
-      ) {
+      // auth?.subscription?.status !== "active" &&
+      // auth?.subscription?.status !== "canceled"
+      if (item?.isPremium) {
         return (
           <>
             <Tooltip title="Upgrade your account to access this feature.">
