@@ -73,21 +73,23 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       let _now = moment.tz(timezone);
       let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
       let _diff = _now.diff(_termEnd);
-      // auth?.subscription?.status !== "active" &&
-      // auth?.subscription?.status !== "canceled"
-      if (item?.isPremium) {
-        return (
-          <>
-            <Tooltip title="Upgrade your account to access this feature.">
-              <Box
-                ref={ref}
-                {...props}
-                sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
-              />
-            </Tooltip>
-          </>
-        );
-      }
+
+      // if (
+      //   (item?.isPremium && auth?.subscription?.status !== "active") ||
+      //   auth?.subscription?.status !== "canceled"
+      // ) {
+      //   return (
+      //     <>
+      //       <Tooltip title="Upgrade your account to access this feature.">
+      //         <Box
+      //           ref={ref}
+      //           {...props}
+      //           sx={{ opacity: 0.6, cursor: "not-allowed!important" }}
+      //         />
+      //       </Tooltip>
+      //     </>
+      //   );
+      // }
 
       if (item?.isDisabled) {
         return (
