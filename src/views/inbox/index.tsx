@@ -49,7 +49,7 @@ const InboxPage: React.FC = () => {
     } else if (item.provider === "outlook") {
       res = await outlookThreadService(item.thread_id, item.from_email);
     } else {
-      return console.error("There is no valid provider given.");
+      return console.error("There is no valid provider given..");
     }
 
     if (res?.data) {
