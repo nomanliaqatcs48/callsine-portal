@@ -71,41 +71,9 @@ const MailAccountsPage = () => {
         Mail Accounts
       </Typography>
       <Grid className="tw-my-5" />
-      {/*<Grid
-        container
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
-      >
-        <CreateOrEditMailAccount
-          btnText="Add Mail Account"
-          onSubmit={getMailAccounts}
-          onClick={() => null}
-          btnVariant="outlined"
-        />
-      </Grid>*/}
-      {/*<div style={{ height: 3 }} />*/}
-      {/*<Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <TotalListSmallCard
-            isLoading={isLoading?.onPage}
-            value={total}
-            text="Total"
-          />
-        </Grid>
-      </Grid>*/}
+
       <div style={{ height: 20 }} />
-      {/*<Grid
-        container
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
-      >
-        <SearchField
-          searchValue={searchValue}
-          onChange={handleSearchOnBeforeChange}
-        />
-      </Grid>*/}
+
       <Paper elevation={0} className="tw-pt-4">
         <Grid container>
           <Grid item xs={12} lg={2}>

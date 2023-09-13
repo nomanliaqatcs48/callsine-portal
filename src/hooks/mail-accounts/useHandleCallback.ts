@@ -15,6 +15,7 @@ function useHandleCallback(getMailAccounts: any) {
       const state = urlParams.get("state") || "";
 
       if (code) {
+        const redirect_uri = config.microsoftRedirectUri!;
         const urlWithoutParams =
           window.location.origin + window.location.pathname;
         window.history.pushState({}, "", urlWithoutParams);
@@ -32,7 +33,7 @@ function useHandleCallback(getMailAccounts: any) {
               "Content-Type": "application/json",
               code,
             },
-            body: JSON.stringify({ code: code }),
+            body: JSON.stringify({ code: code, redirect_uri: redirect_uri }),
           });
 
           if (!response.ok) {
