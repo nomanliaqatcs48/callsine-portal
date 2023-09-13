@@ -37,8 +37,8 @@ const MicrosoftLoginBtn = () => {
     }
   };
   return (
-    <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-white">
-      <button
+    <div className="tw-flex tw-flex-col tw-items-center tw-justify-center tw-bg-white hover:tw-cursor-pointer">
+      <div
         className=" tw-bg-white tw-w-full tw-flex tw-justify-center tw-items-center tw-border tw-border-[#e7e7e9] tw-rounded-[8px] tw-shadow-none tw-pl-[1px]"
         onClick={handleLogin}
       >
@@ -49,7 +49,7 @@ const MicrosoftLoginBtn = () => {
           Sign in with Microsoft
         </span>
         <div style={{ width: "10px" }}></div>
-      </button>
+      </div>
     </div>
   );
 };
