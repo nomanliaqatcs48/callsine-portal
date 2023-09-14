@@ -2,7 +2,7 @@ import config from "src/config";
 import OutlookIcon from "./OutlookIcon";
 
 const MicrosoftAddEmailAccount = () => {
-  const CLIENT_ID = "80eb06f6-b235-4b45-9831-b7a3032157f8";
+  const CLIENT_ID = config.microsoftClientId;
   const state = "54321";
   const REDIRECT_URI = config.microsoftRedirectUri;
   const SCOPE =
