@@ -1,12 +1,14 @@
-import { Grid, Paper, useMediaQuery, useTheme } from "@mui/material";
+import { Box, CssBaseline, Drawer, useTheme } from "@mui/material";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
-import imageBgcTop from "../../assets/images/users/Group3.png";
-import imageBgc from "../../assets/images/users/Rectangle1.png";
 import CheckoutForm from "./components/Checkout";
 import ChoosePlan from "./components/Plan";
 import { IPlan } from "./components/interfaces";
+import { Main } from "./components/Main";
+import { drawerWidth } from "./constants";
+import { Background } from "src/ui-component/background/Background";
+import logo from "src/assets/images/logos/CALLSINE-Web-Logo-White.png";
 
 const stripePromise = loadStripe(
   "pk_test_51L3IDyGKOS0SXyxuuqkVIsUDlWyFOxqALFAmVNGRm2ywp3UaOF5EgZ204udj4Mx7UM92wwFCAeu4c4rHg0ebwWbN008onxddM7"
@@ -14,72 +16,71 @@ const stripePromise = loadStripe(
 
 const CheckoutPage = () => {
   const theme = useTheme();
-  const [selectedPlan, setSelectedPlan] = useState<IPlan | null>(null);
-  const handleSubmit = async (data: any) => {
-    console.log(data);
+
+  const [selectedPlan, setSelectedPlan] = useState<IPlan | null>({
+    billingCycle: "monthly",
+    selectedPlan: null,
+    teamMembers: 0,
+  });
+
+  const [open, setOpen] = useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
   };
-  const downMd = useMediaQuery(theme.breakpoints.down("md"));
+
+  const handleDrawerClose = () => {
+    setSelectedPlan(null);
+    setOpen(false);
+  };
+
+  const handleSubmit = async (data: any) => {
+    // console.log(data);
+  };
 
   const handlePlanSelection = (plan: IPlan) => {
     setSelectedPlan(plan);
+    handleDrawerOpen();
   };
 
   return (
-    <Elements stripe={stripePromise}>
-      <Paper
-        elevation={0}
-        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-h-screen"
-      >
-        <Grid container className="tw-p-0 tw-h-full">
-          {/* Checkout Form Side with blue background */}
-          <Grid
-            item
-            xs={12}
-            md={6}
-            className="tw-p-5 tw-flex tw-flex-col tw-justify-center tw-bg-blue-500 tw-relative"
-          >
-            {/* Background Images */}
-            <div className="tw-absolute tw-inset-0 tw-z-0">
-              <img
-                className="tw-h-auto tw-max-w-full"
-                src={imageBgcTop}
-                alt="description"
-                style={{
-                  position: "absolute",
-                  zIndex: -1,
-                  minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
-                  width: "100%",
-                  mixBlendMode: "overlay",
-                  opacity: "0.4",
-                }}
-              />
-              <img
-                className="tw-h-auto tw-max-w-full"
-                src={imageBgc}
-                alt="description"
-                style={{
-                  position: "absolute",
-                  zIndex: -2,
-                  minHeight: downMd ? "calc(100vh + 92px)" : "100vh",
-                  width: "100%",
-                }}
-              />
-            </div>
-            <ChoosePlan onPlanSelected={handlePlanSelection} />
-          </Grid>
+    <Box sx={{ display: "flex" }}>
+      <Elements stripe={stripePromise}>
+        <CssBaseline />
 
-          {/* Price Options Side with white background */}
-          <Grid
-            item
-            xs={12}
-            md={6}
-            className="md:tw-border-l tw-border-[#f0f1f3] tw-p-5 tw-flex tw-flex-col tw-justify-center"
+        <Main theme={theme} open={open}>
+          <div
+            className={`tw-mt-[20px] tw-ml-[${
+              open ? 20 : 80
+            }px] tw-transition-all tw-delay-200`}
           >
-            {selectedPlan && <CheckoutForm planData={selectedPlan} />}
-          </Grid>
-        </Grid>
-      </Paper>
-    </Elements>
+            <img src={logo} alt="CallSine" width="250" className="tw-pr-5" />
+          </div>
+          <Background />
+          <ChoosePlan
+            selectedPlan={selectedPlan}
+            onPlanSelected={handlePlanSelection}
+          />
+        </Main>
+
+        <Drawer
+          sx={{
+            width: drawerWidth,
+            flexShrink: 0,
+            "& .MuiDrawer-paper": {
+              width: drawerWidth,
+            },
+          }}
+          variant="persistent"
+          anchor="right"
+          open={open}
+        >
+          {selectedPlan?.selectedPlan && (
+            <CheckoutForm planData={selectedPlan} />
+          )}
+        </Drawer>
+      </Elements>
+    </Box>
   );
 };
 
