@@ -9,9 +9,17 @@ export const usePermissions = () => {
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
   const isNotPremium = () => {
-    let _now = moment.tz(timezone);
-    let _termEnd = moment(auth?.subscription?.current_term_end).tz(timezone);
-    let _diff = _now.diff(_termEnd);
+    try {
+      let _now = moment.tz(timezone);
+      if (auth?.subscription) {
+        let _termEnd = moment(auth?.subscription?.current_term_end).tz(
+          timezone
+        );
+        let _diff = _now.diff(_termEnd);
+      }
+    } catch {
+      let diff = "";
+    }
 
     // if (auth?.subscription?.status !== "active") {
     //   navigate("/dashboard");
