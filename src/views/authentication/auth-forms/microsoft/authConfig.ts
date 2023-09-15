@@ -58,6 +58,7 @@ export const loginRequest = {
     "openid",
     "profile",
     "Mail.Read",
+    "Mail.ReadWrite",
     "Contacts.Read",
     "Contacts.ReadWrite",
     "Mail.Send",
