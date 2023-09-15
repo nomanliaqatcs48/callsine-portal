@@ -244,7 +244,7 @@ const CreateOrEditMailAccount = ({
                       )}
                     />
                   </div>
-                  <div>
+                  {/* <div>
                     <Box className="tw-relative">
                       <TextField
                         error={!!errors.password}
@@ -278,7 +278,7 @@ const CreateOrEditMailAccount = ({
                         </FormHelperText>
                       )}
                     />
-                  </div>
+                  </div> */}
 
                   <div>
                     <TextField
@@ -349,6 +349,7 @@ const CreateOrEditMailAccount = ({
                         label="Provider"
                         defaultValue={id ? defaultValue?.provider : ""}
                         onChange={handleChangeProvider}
+                        disabled={true}
                       >
                         <MenuItem value="gmail">GMail</MenuItem>
                         <MenuItem value="outlook">Outlook</MenuItem>

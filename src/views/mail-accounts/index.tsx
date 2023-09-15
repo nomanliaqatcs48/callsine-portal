@@ -95,7 +95,7 @@ const MailAccountsPage = () => {
               />
               Add Mail Account
             </CreateMailAccount>
-            <CreateOrEditMailAccount
+            {/* <CreateOrEditMailAccount
               disableElevation
               onLoadApi={getMailAccounts}
               onClick={() => null}
@@ -110,7 +110,7 @@ const MailAccountsPage = () => {
 
             <MyDivider />
 
-            <ExportMailAccounts />
+            <ExportMailAccounts /> */}
 
             <MyDivider />
 
