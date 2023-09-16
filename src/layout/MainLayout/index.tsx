@@ -55,7 +55,7 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         easing: theme.transitions.easing.easeOut,
         duration: theme.transitions.duration.enteringScreen,
       }),
-      marginLeft: "20px",
+      marginLeft: 0,
       borderBottomLeftRadius: 0,
       borderBottomRightRadius: 0,
       width: `calc(100% - ${drawerWidth}px)`,
@@ -66,6 +66,10 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         marginLeft: "10px",
       },
     }),
+    // Overrides
+    marginLeft: 0,
+    marginRight: 0,
+    borderRadius: 0,
   })
 );
 
