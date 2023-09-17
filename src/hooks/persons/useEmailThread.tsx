@@ -3,6 +3,7 @@ import { devLogError, devLog } from "../../helpers/logs";
 import { emailThreadsService } from "../../services/emails.service";
 import { useParams } from "react-router-dom";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { EmailThread } from "src/types/inbox";
 
 export const useEmailThread = (
   load: boolean = true,
@@ -12,7 +13,7 @@ export const useEmailThread = (
   }
 ) => {
   const { id } = useParams();
-  const [emailThreads, setEmailThreads] = useState<any[]>([]);
+  const [emailThreads, setEmailThreads] = useState<EmailThread[]>([]);
   const [total, setTotal] = useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
   const [filters, setFilters] = useState<any>(_filters);
@@ -34,6 +35,9 @@ export const useEmailThread = (
       }
 
       if (res?.data) {
+        devLog(() => {
+          console.log(res.data);
+        });
         setEmailThreads(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
         removeBodyLoader();
