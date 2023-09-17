@@ -8,7 +8,7 @@ import {
   Reply,
   MoreVert,
 } from "@mui/icons-material";
-import { Box, IconButton, Typography } from "@mui/material";
+import { Box, IconButton, Stack, Typography } from "@mui/material";
 
 interface MailHeaderProps {
   onPressBack?: () => void;
@@ -34,8 +34,16 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
   totalPages = 0,
 }) => {
   return (
-    <Box className="tw-flex tw-flex-row tw-justify-between tw-items-center tw-py-4 tw-px-6 tw-border-b-[1px] tw-border-b-[#f0f1f3]">
-      <Box className="tw-flex tw-flex-row tw-space-x-1 tw-items-center">
+    <Stack
+      direction="row"
+      justifyItems="center"
+      justifyContent="space-between"
+      borderBottom={1}
+      borderColor="#f0f1f3"
+      paddingX={3}
+      paddingY={2}
+    >
+      <Stack spacing={1} direction="row" justifyItems="center">
         <IconButton onClick={onPressBack}>
           <ArrowBack fontSize="small" />
         </IconButton>
@@ -45,8 +53,13 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
         <IconButton onClick={onPressWatchLater}>
           <WatchLaterOutlined fontSize="small" />
         </IconButton>
-      </Box>
-      <Box className="tw-flex tw-flex-row tw-space-x-1 tw-items-center">
+      </Stack>
+      <Stack
+        spacing={1}
+        direction="row"
+        justifyItems="center"
+        alignItems="center"
+      >
         <IconButton onClick={onPressPrev}>
           <ChevronLeft fontSize="small" />
         </IconButton>
@@ -56,15 +69,15 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
         <IconButton onClick={onPressNext}>
           <ChevronRight fontSize="small" />
         </IconButton>
-      </Box>
-      <Box className="tw-flex tw-flex-row tw-space-x-1 tw-items-center">
+      </Stack>
+      <Stack spacing={1} direction="row" justifyItems="center">
         <IconButton onClick={onPressReply}>
           <Reply fontSize="small" />
         </IconButton>
         <IconButton onClick={onPressMore}>
           <MoreVert fontSize="small" />
         </IconButton>
-      </Box>
-    </Box>
+      </Stack>
+    </Stack>
   );
 };
