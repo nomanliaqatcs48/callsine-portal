@@ -1,4 +1,4 @@
-import { Box, CssBaseline, Drawer, useTheme } from "@mui/material";
+import { Box, CssBaseline, Drawer, IconButton, useTheme } from "@mui/material";
 import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 import { useState } from "react";
@@ -9,6 +9,8 @@ import { Main } from "./components/Main";
 import { drawerWidth } from "./constants";
 import { Background } from "src/ui-component/background/Background";
 import logo from "src/assets/images/logos/CALLSINE-Web-Logo-White.png";
+import { DrawerHeader } from "./components/DrawerHeader";
+import CloseIcon from "@mui/icons-material/Close";
 
 const stripePromise = loadStripe(
   "pk_test_51L3IDyGKOS0SXyxuuqkVIsUDlWyFOxqALFAmVNGRm2ywp3UaOF5EgZ204udj4Mx7UM92wwFCAeu4c4rHg0ebwWbN008onxddM7"
@@ -75,6 +77,11 @@ const CheckoutPage = () => {
           anchor="right"
           open={open}
         >
+          <DrawerHeader>
+            <IconButton onClick={handleDrawerClose}>
+              <CloseIcon />
+            </IconButton>
+          </DrawerHeader>
           {selectedPlan?.selectedPlan && (
             <CheckoutForm planData={selectedPlan} />
           )}
