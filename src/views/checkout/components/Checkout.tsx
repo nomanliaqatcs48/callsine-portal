@@ -8,6 +8,7 @@ import {
 } from "src/services/payments.service";
 import SuccessModal from "./SuccessModal";
 import { IPlan } from "./interfaces";
+import styled from "@emotion/styled";
 interface CheckoutFormProps {
   planData: IPlan;
 }
@@ -15,6 +16,13 @@ interface PriceDetails {
   description: string;
   priceId: string;
 }
+
+const Line = styled.div`
+  background-color: #e5e5e5;
+  height: 1.4px;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+`;
 
 const getPriceDetails = (planData: IPlan): PriceDetails => {
   if (planData.selectedPlan === "solo") {
@@ -152,15 +160,15 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
     }
   };
 
-  return (
-    <div className="tw-bg-[#F8FBFF] tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-p-5">
-      <h2 className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-mb-5 tw-text-center">
-        Subscribe Now
-      </h2>
+  if (planData.selectedPlan === null) {
+    return null;
+  }
 
+  return (
+    <div className="tw-bg-white tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-p-[40px] tw-pt-[100px]">
       {/* Order Details */}
-      <div className="tw-bg-white tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
-        <div className="tw-bg-white tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
+      <div className="tw-bg-gray-100 tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
+        <div className="tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
           <h3 className="tw-text-[18px] tw-text-black tw-font-medium tw-mb-4">
             Your Order Details
           </h3>
@@ -172,6 +180,9 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
               Plan
             </span>
           </p>
+
+          <Line />
+
           <p className="tw-flex tw-justify-between">
             <strong>Billing Cycle:</strong>
             <span>
@@ -179,89 +190,116 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
                 planData.billingCycle.slice(1)}
             </span>
           </p>
+
           {planData.selectedPlan === "team" && (
-            <p className="tw-flex tw-justify-between">
-              <strong>Team Members:</strong>
-              <span>{planData.teamMembers}</span>
-            </p>
+            <>
+              <Line />
+
+              <p className="tw-flex tw-justify-between">
+                <strong>Team Members:</strong>
+                <span>{planData.teamMembers}</span>
+              </p>
+            </>
           )}
+
+          <Line />
+
           <p className="tw-flex tw-justify-between">
-            <strong>Price:</strong>
-            <span>{getPriceDetails(planData).description}</span>
+            <span className="tw-text-[16px]">
+              <strong>Order Total:</strong>
+            </span>
+            <span className="tw-font-bold tw-text-[16px]">
+              {getPriceDetails(planData).description}
+            </span>
           </p>
         </div>
       </div>
 
       <div className="tw-grid tw-gap-4">
-        <input
-          placeholder="Company Name"
-          type="text"
-          value={companyName}
-          onChange={(e) => setCompanyName(e.target.value)}
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
-        <input
-          placeholder="Name"
-          type="text"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
+        <label>
+          Company Name
+          <input
+            type="text"
+            value={companyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
+        <label>
+          Name
+          <input
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
+        <label>
+          E-mail
+          <input
+            type="text"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
+        <label>
+          Street
+          <input
+            type="text"
+            value={userAddress.street}
+            onChange={(e) =>
+              setAddress((prev) => ({ ...prev, street: e.target.value }))
+            }
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
 
-        <input
-          placeholder="Email"
-          type="text"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
-        <input
-          placeholder="Street"
-          type="text"
-          value={userAddress.street}
-          onChange={(e) =>
-            setAddress((prev) => ({ ...prev, street: e.target.value }))
-          }
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
+        <label>
+          City
+          <input
+            type="text"
+            value={userAddress.city}
+            onChange={(e) =>
+              setAddress((prev) => ({ ...prev, city: e.target.value }))
+            }
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
 
-        <input
-          placeholder="City"
-          type="text"
-          value={userAddress.city}
-          onChange={(e) =>
-            setAddress((prev) => ({ ...prev, city: e.target.value }))
-          }
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
+        <label>
+          State
+          <input
+            type="text"
+            value={userAddress.state}
+            onChange={(e) =>
+              setAddress((prev) => ({ ...prev, state: e.target.value }))
+            }
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
 
-        <input
-          placeholder="State"
-          type="text"
-          value={userAddress.state}
-          onChange={(e) =>
-            setAddress((prev) => ({ ...prev, state: e.target.value }))
-          }
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
+        <label>
+          Zip
+          <input
+            type="text"
+            value={userAddress.zip}
+            onChange={(e) =>
+              setAddress((prev) => ({ ...prev, zip: e.target.value }))
+            }
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
 
-        <input
-          placeholder="ZIP Code"
-          type="text"
-          value={userAddress.zip}
-          onChange={(e) =>
-            setAddress((prev) => ({ ...prev, zip: e.target.value }))
-          }
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
-
-        <input
-          placeholder="Contact Number"
-          type="tel"
-          value={contactNumber}
-          onChange={(e) => setContactNumber(e.target.value)}
-          className="tw-bg-white tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-        />
+        <label>
+          Contact Number (Telephone)
+          <input
+            type="tel"
+            value={contactNumber}
+            onChange={(e) => setContactNumber(e.target.value)}
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
 
         <div className="tw-flex tw-justify-between tw-items-center">
           <label>Get Updates via Text Message:</label>
@@ -281,7 +319,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
           disabled={!stripe}
           className="tw-bg-blue-600 hover:tw-bg-blue-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase tw-w-full"
         >
-          Subscribe
+          Checkout
         </button>
         <SuccessModal
           isSuccess={isSuccess}
