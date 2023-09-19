@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getPeopleService } from "../../services/persons.service";
+import { cacheTime } from "src/store/constant";
 
 export const usePersons = (
   load: boolean = true,
@@ -68,7 +69,7 @@ export const usePersons = (
   } = useQuery({
     queryKey: ["persons"],
     queryFn: getPeople,
-    staleTime: 30000,
+    staleTime: cacheTime,
   });
 
   useEffect(() => {
@@ -76,7 +77,6 @@ export const usePersons = (
       if (_personsData?.results?.length > 1) {
         setPersonsData(_personsData?.results);
       }
-
       setTotal(_personsData?.count);
     }
   }, [_personsData, _personsData?.count, _personsData?.results]);
