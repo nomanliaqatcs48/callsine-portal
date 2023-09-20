@@ -1,15 +1,13 @@
 import React, { useEffect } from "react";
 import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
-import { useAsyncDebounce } from "react-table";
+
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
-import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/mail-accounts/utils";
 
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
-import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
 import { usePermissions } from "src/hooks/usePermissions";
 import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
@@ -20,11 +18,11 @@ const MailAccountsPage = () => {
   const {
     mailAccountsData,
     total,
-    setSearchValue,
+
     filters,
     setFilters,
     isLoading,
-    setIsLoading,
+
     selectedFlatRows,
     setSelectedFlatRows,
     getMailAccounts,
@@ -37,21 +35,7 @@ const MailAccountsPage = () => {
   useHandleCallback(getMailAccounts);
   useEffect(() => {
     isNotPremium();
-  }, []);
-
-  const handleSearchOnBeforeChange = (e: any) => {
-    setIsLoading((prev: any) => ({ ...prev, search: true }));
-    setSearchValue(e.target.value);
-    void handleSearchOnChange();
-  };
-
-  const handleSearchOnChange = useAsyncDebounce(async () => {
-    await setFilters({
-      limit: 10,
-      offset: 0,
-      currentPage: 1,
-    });
-  }, 1000);
+  });
 
   const MyDivider = () => {
     return (
