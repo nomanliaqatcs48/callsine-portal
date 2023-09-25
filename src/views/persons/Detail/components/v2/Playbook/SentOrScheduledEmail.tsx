@@ -8,17 +8,20 @@ import { devLogError } from "../../../../../../helpers/logs";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import { getMailAccountDetailService } from "../../../../../../services/mail-accounts.service";
 import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
+import DeleteProspectSequence from "src/ui-component/buttons/DeleteProspectSequence";
 
 type SentOrScheduledEmailTypes = {
   onLoadApi: any;
   selectedData: any;
   position: any;
+  selectedSequenceEvent: any;
 };
 
 const SentOrScheduledEmail = ({
   position,
   onLoadApi,
   selectedData,
+  selectedSequenceEvent,
 }: SentOrScheduledEmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
@@ -98,8 +101,8 @@ const SentOrScheduledEmail = ({
           </div>
           {/*right*/}
           <div>
-            <DeletePersonEmail
-              id={selectedData?.id}
+            <DeleteProspectSequence
+              id={selectedSequenceEvent?.id}
               personId={Number(personId)}
               onLoadApi={onLoadApi}
               variant="text"
@@ -111,7 +114,7 @@ const SentOrScheduledEmail = ({
                 size={18}
                 style={{ color: "#778da9" }}
               />
-            </DeletePersonEmail>
+            </DeleteProspectSequence>
           </div>
         </div>
       </div>

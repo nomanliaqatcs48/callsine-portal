@@ -248,6 +248,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                     }}
                     selectedData={selectedData}
                     position={selectedIndex + 1}
+                    selectedSequenceEvent={selectedSequenceEvent}
                   />
                 ) : (
                   <DraftEmail
