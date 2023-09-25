@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
 import {
   Button,
   Paper,
@@ -8,7 +8,6 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
-import { devLog } from "src/helpers/logs";
 import { EditableProperty } from "./EditableProperty";
 
 type ProfileSecondColTypes = {
@@ -78,19 +77,20 @@ const ProfileSecondCol = ({
 
   return (
     <>
-      <TableContainer component={Paper}>
+      <TableContainer component={Paper} className="tw-rounded-[0px]">
         <Table>
           <TableBody>
             {items.map((item, idx) => {
               let itemKey = `${item.first}-${item.second}`;
               let isActive = itemKey === active;
+
               return (
                 <TableRow
                   key={idx}
                   sx={{
                     "&:last-child td, &:last-child th": { border: 0 },
                   }}
-                  className={`hover:tw-bg-[#0000000a] ${
+                  className={`hover:tw-bg-[#0000000a] tw-rounded-[0px] ${
                     isActive ? "tw-bg-[#0000000a]" : ""
                   }`}
                 >

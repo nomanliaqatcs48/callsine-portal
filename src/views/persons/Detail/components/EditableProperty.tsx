@@ -15,10 +15,14 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
   isActive = false,
   onClick,
 }) => {
+  const [city, setCity] = React.useState("");
+
+  const [state, setState] = React.useState("");
+
   const [newValue, setNewValue] = React.useState(null);
 
   const value = React.useMemo(() => {
-    return newValue !== null ? newValue : item.value;
+    return newValue !== null ? newValue : item.value || "";
   }, [item.value, newValue]);
 
   const handleChange = (e: any) => {
@@ -26,22 +30,20 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
   };
 
   const handleChangeCity = (e: any) => {
-    setNewValue((prev: any) => ({
-      ...prev,
-      city: e.target.value,
-    }));
+    setCity(e.target.value);
   };
 
   const handleChangeState = (e: any) => {
-    setNewValue((prev: any) => ({
-      ...prev,
-      state: e.target.value,
-    }));
+    setState(e.target.value);
   };
 
-  const handleSave = (key: string) => {
+  const handleSave = (key: string, isAddress: boolean) => {
     devLog(() => {
-      console.log(key, "value:", value);
+      if (isAddress) {
+        console.log("address", city, state);
+      } else {
+        console.log(key, ":", value);
+      }
     });
   };
 
@@ -57,7 +59,9 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
             <input
               type="text"
               name={item.key}
-              className="tw-px-[10px] tw-py-[5px] tw-mb-[10px] tw-bg-[#F5F5F5]"
+              className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] tw-mb-[10px] ${
+                isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+              }`}
               placeholder="City"
               value={value.city}
               onChange={handleChangeCity}
@@ -66,18 +70,17 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
             <input
               type="text"
               name={item.key}
-              className="tw-px-[10px] tw-py-[5px] tw-bg-[#F5F5F5]"
+              className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] ${
+                isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+              }`}
               placeholder="State"
               value={value.state}
-              onCanPlay={handleChangeState}
+              onChange={handleChangeState}
             />
           </TableCell>
           {isActive && (
-            <TableCell
-              align="right"
-              className="tw-w-[40px] tw-border-0 hover:tw-bg-transparent"
-            >
-              <Button onProgress={() => handleSave(item.first)}>Save</Button>
+            <TableCell align="right" className="tw-w-[40px] tw-border-0">
+              <Button onClick={() => handleSave(item.key, true)}>Save</Button>
             </TableCell>
           )}
         </>
@@ -93,7 +96,9 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
           <input
             type="text"
             name={item.key}
-            className="tw-px-[10px] tw-py-[5px] tw-bg-[#F5F5F5]"
+            className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] ${
+              isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+            } `}
             placeholder={item.key
               .split(/[_.]/)
               .map(
@@ -106,11 +111,8 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
           />
         </TableCell>
         {isActive && (
-          <TableCell
-            align="right"
-            className="tw-w-[40px] tw-border-0 hover:tw-bg-transparent"
-          >
-            <Button onProgress={() => handleSave(item.first)}>Save</Button>
+          <TableCell align="right" className="tw-w-[40px] tw-border-0">
+            <Button onClick={() => handleSave(item.key, false)}>Save</Button>
           </TableCell>
         )}
       </>
