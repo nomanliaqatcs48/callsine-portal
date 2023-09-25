@@ -117,9 +117,11 @@ const SendLaterOauth = ({
           data?.parent_email_html_message.replace(/\n/g, "")
         }</body></html>`,
       });
-      if (res?.data) {
+      console.log({ res });
+      if (res?.status === 200) {
         ToastSuccess("Email successfully scheduled.");
         handleClose(event, "");
+        setOpen(false);
         setIsLoading((prev: any) => ({ ...prev, form: false }));
         onLoadApi();
       }
