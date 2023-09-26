@@ -207,7 +207,7 @@ const CreateOrEditMailAccount = ({
                   <div>
                     <TextField
                       error={!!errors.email}
-                      disabled={mailAccountLoading?.form}
+                      disabled={true}
                       required
                       margin="dense"
                       id="email"
@@ -403,7 +403,7 @@ const CreateOrEditMailAccount = ({
                 Cancel
               </Button>
             </div>
-            {id && (
+            {/* {id && (
               <Button
                 onClick={testMailAccount}
                 disabled={mailAccountLoading?.form}
@@ -412,7 +412,7 @@ const CreateOrEditMailAccount = ({
               >
                 Test
               </Button>
-            )}
+            )} */}
           </DialogActions>
         </Dialog>
       )}
