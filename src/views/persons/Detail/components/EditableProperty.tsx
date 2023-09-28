@@ -1,8 +1,12 @@
-import { Button, TableCell } from "@mui/material";
+import { LoadingButton } from "@mui/lab";
+import { TableCell } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
 import React from "react";
-import { devLog } from "src/helpers/logs";
+import SaveIcon from "@mui/icons-material/Save";
+import { patchPersonDetailService } from "src/services/persons.service";
 
 interface EditablePropertyProps {
+  personId: number;
   item: any;
   editMode: boolean;
   isActive: boolean;
@@ -10,11 +14,24 @@ interface EditablePropertyProps {
 }
 
 export const EditableProperty: React.FC<EditablePropertyProps> = ({
+  personId,
   item,
   editMode = false,
   isActive = false,
   onClick,
 }) => {
+  const { mutate, isLoading } = useMutation({
+    mutationFn: (data: { personId: number; payload: any }) => {
+      return patchPersonDetailService(data.personId, data.payload);
+    },
+  });
+
+  const [activeField, setActiveField] = React.useState(false);
+
+  React.useEffect(() => {
+    setActiveField(isActive);
+  }, [isActive]);
+
   const [city, setCity] = React.useState("");
 
   const [state, setState] = React.useState("");
@@ -37,14 +54,27 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     setState(e.target.value);
   };
 
-  const handleSave = (key: string, isAddress: boolean) => {
-    devLog(() => {
-      if (isAddress) {
-        console.log("address", city, state);
+  const handleSave = async (key: string, isAddress: boolean) => {
+    if (isAddress) {
+      const payload = { city, state };
+      mutate({ personId, payload });
+    } else if (newValue) {
+      let payload = {};
+
+      if (key.includes("org")) {
+        payload = {
+          org: {
+            [key.split(".")[1]]: newValue,
+          },
+        };
       } else {
-        console.log(key, ":", value);
+        payload = {
+          [key]: newValue,
+        };
       }
-    });
+
+      mutate({ personId, payload });
+    }
   };
 
   if (editMode) {
@@ -60,7 +90,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
               type="text"
               name={item.key}
               className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] tw-mb-[10px] ${
-                isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+                activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
               }`}
               placeholder="City"
               value={value.city}
@@ -71,16 +101,25 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
               type="text"
               name={item.key}
               className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] ${
-                isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+                activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
               }`}
               placeholder="State"
               value={value.state}
               onChange={handleChangeState}
             />
           </TableCell>
-          {isActive && (
+          {activeField && (
             <TableCell align="right" className="tw-w-[40px] tw-border-0">
-              <Button onClick={() => handleSave(item.key, true)}>Save</Button>
+              <LoadingButton
+                loading={isLoading}
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleSave(item.key, true);
+                }}
+                startIcon={<SaveIcon />}
+              >
+                Save
+              </LoadingButton>
             </TableCell>
           )}
         </>
@@ -97,7 +136,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
             type="text"
             name={item.key}
             className={`tw-rounded-[10px] tw-px-[10px] tw-py-[5px] ${
-              isActive ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
+              activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
             } `}
             placeholder={item.key
               .split(/[_.]/)
@@ -110,9 +149,18 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
             onChange={handleChange}
           />
         </TableCell>
-        {isActive && (
+        {activeField && (
           <TableCell align="right" className="tw-w-[40px] tw-border-0">
-            <Button onClick={() => handleSave(item.key, false)}>Save</Button>
+            <LoadingButton
+              loading={isLoading}
+              startIcon={<SaveIcon />}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSave(item.key, false);
+              }}
+            >
+              Save
+            </LoadingButton>
           </TableCell>
         )}
       </>

@@ -50,21 +50,21 @@ const ProfileSecondCol = ({
       second: data?.org?.industry || "n/a",
       value: data?.org?.industry,
     },
-    {
-      key: "work_email",
-      first: "Email",
-      second: data?.work_email ? (
-        <Button
-          href={`mailto:${data?.work_email}`}
-          className="tw-p-0 tw-normal-case tw-font-normal tw-text-callsineLightBlue tw-text-[16px]"
-        >
-          {data?.work_email}
-        </Button>
-      ) : (
-        "n/a"
-      ),
-      value: data?.work_email,
-    },
+    // {
+    //   key: "work_email",
+    //   first: "Email",
+    //   second: data?.work_email ? (
+    //     <Button
+    //       href={`mailto:${data?.work_email}`}
+    //       className="tw-p-0 tw-normal-case tw-font-normal tw-text-callsineLightBlue tw-text-[16px]"
+    //     >
+    //       {data?.work_email}
+    //     </Button>
+    //   ) : (
+    //     "n/a"
+    //   ),
+    //   value: data?.work_email,
+    // },
     {
       key: "phone",
       first: "Phone",
@@ -103,6 +103,7 @@ const ProfileSecondCol = ({
                   </TableCell>
 
                   <EditableProperty
+                    personId={data?.id}
                     editMode={editMode}
                     item={item}
                     isActive={isActive}

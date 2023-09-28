@@ -30,8 +30,16 @@ export const getPersonDetailService = async (id: number) => {
   return await http.get(`${endpoints.PERSON}${id}/`);
 };
 
-export const updatePersonDetailService = async (id: number, payload: any) => {
+export const updatePersonDetailService = async (
+  id: number,
+  payload: any
+): Promise<any> => {
   return await http.put(`${endpoints.PERSON}${id}/`, payload);
+};
+
+export const patchPersonDetailService = async (id: number, payload: any) => {
+  const response = await http.patch(`${endpoints.PERSON}${id}/`, payload);
+  return response.data;
 };
 
 export const deletePersonDetailService = async (id: number) => {

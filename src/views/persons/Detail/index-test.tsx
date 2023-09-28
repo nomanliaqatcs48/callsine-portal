@@ -43,7 +43,7 @@ const PersonDetailPage = () => {
                 xl={"auto"}
                 className="lg:tw-px-10 xl:tw-flex-col xl:tw-items-center xl:tw-justify-center xl:tw-border-r xl:tw-w-1/2 xl:tw-p-10 2xl:tw-px-16 3xl:tw-w-2/5"
               >
-                <ProfileFirstCol data={data} />
+                <ProfileFirstCol data={data} editMode={false} />
               </Grid>
               <Grid item xs={12} className="tw-w-full tw-py-4 xl:tw-hidden">
                 <Divider variant="middle" />
