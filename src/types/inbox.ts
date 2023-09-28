@@ -23,6 +23,7 @@ export interface Thread {
   thread_id: string;
   to: string;
   avatar: string;
+  body?: string;
 }
 
 export interface EmailThread {

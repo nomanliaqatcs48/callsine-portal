@@ -17,6 +17,7 @@ import { Box, Grid, Typography } from "@mui/material";
 import { MailHeader } from "./components/MailHeader";
 import { InboxSidebar } from "./components/InboxSidebar";
 import { EmailThread, Thread } from "src/types/inbox";
+import { devLog } from "src/helpers/logs";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -136,7 +137,9 @@ const InboxPage: React.FC = () => {
                     <p
                       className="tw-font-thin hover:tw-bg-slate-200 tw-py-2"
                       dangerouslySetInnerHTML={{
-                        __html: xss(cleanBody(thread.html_message)),
+                        __html: xss(
+                          cleanBody(thread.html_message || thread.body)
+                        ),
                       }}
                     />
                   </div>
