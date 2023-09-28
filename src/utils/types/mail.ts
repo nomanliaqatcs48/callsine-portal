@@ -27,5 +27,5 @@ export type EmailDraftTypes = {
 export type ThreadReplyTypes = {
   mail_object: any;
   html_message: string;
-  thread_id: number;
+  thread_id: string | number;
 };
