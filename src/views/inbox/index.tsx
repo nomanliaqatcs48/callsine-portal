@@ -13,7 +13,7 @@ import xss from "xss";
 import ReplyIcon from "./icons/ReplyIcon";
 import Spinner from "./ui/miniLoader";
 import SendIcon from "./icons/SendIcon";
-import { Box, Grid, Typography } from "@mui/material";
+import { Box, Grid, Stack, Typography } from "@mui/material";
 import { MailHeader } from "./components/MailHeader";
 import { InboxSidebar } from "./components/InboxSidebar";
 import { EmailThread, Thread } from "src/types/inbox";
@@ -25,7 +25,7 @@ const InboxPage: React.FC = () => {
   const [replyMsg, setReplyMsg] = useState("");
   const [selectedEmail, setSelectedEmail] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [emailItem, setEmailitem] = useState<any>({});
+  const [emailItem, setEmailitem] = useState<any>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleSelectThread = async (item: Thread) => {
@@ -109,7 +109,9 @@ const InboxPage: React.FC = () => {
       />
       {/* Right Column */}
       <Grid item xs={12} sm={7} lg={8}>
-        <MailHeader />
+        {selectedThread.length > 0 && (
+          <MailHeader totalPages={emailItem?.length} />
+        )}
         <Box className="tw-p-10">
           {isLoading ? (
             <Spinner />
@@ -156,7 +158,7 @@ const InboxPage: React.FC = () => {
               ))}
             </>
           ) : (
-            <p className="tw-pt-4">Select a subject to see the details</p>
+            <p className="tw-pt-4">...</p>
           )}
 
           {showEditor && (
