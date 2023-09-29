@@ -73,7 +73,7 @@ export const usePersons = (
   });
 
   useEffect(() => {
-    if (_personsData && _personsData?.results.length > 0) {
+    if (_personsData && _personsData?.results?.length > 0) {
       setPersonsData(_personsData?.results);
       setTotal(_personsData?.count);
     }
