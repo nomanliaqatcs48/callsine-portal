@@ -10,6 +10,8 @@ import { getMailAccountDetailService } from "../../../../../../services/mail-acc
 import DeletePersonEmail from "../../../../../../ui-component/buttons/DeletePersonEmail";
 import DeleteProspectSequence from "src/ui-component/buttons/DeleteProspectSequence";
 
+import { ClickTrackDataTypes } from "src/types/person";
+
 type SentOrScheduledEmailTypes = {
   onLoadApi: any;
   selectedData: any;
@@ -66,7 +68,7 @@ const SentOrScheduledEmail = ({
       });
     }
   };
-
+  console.log({ selectedData });
   return (
     <>
       <div
@@ -88,11 +90,23 @@ const SentOrScheduledEmail = ({
                   To: {selectedData?.to}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
-                  Opens: {selectedData?.opens}
+                  Opened: {selectedData?.trackings?.opened ? "Yes" : "No"}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
-                  Clicks: {selectedData?.clicks}
+                  Link Clicks Stats
                 </div>
+                {selectedData?.click_tracking?.map(
+                  (data: ClickTrackDataTypes, index: number) => (
+                    <div className="tw-ml-2" key={index}>
+                      <span>Clicks: {data.click_count} &nbsp;</span>
+
+                      <a href="{data.url}" target="__blank">
+                        Link: {data.url}
+                      </a>
+                    </div>
+                  )
+                )}
+
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
                   Position: {selectedData?.position}
                 </div>

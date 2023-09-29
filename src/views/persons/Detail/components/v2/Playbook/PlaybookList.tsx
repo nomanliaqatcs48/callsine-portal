@@ -34,15 +34,15 @@ const PlaybookList = ({
     setSelectedIndex(index);
   };
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
-
+  console.log({ data });
   const subtext = (item: any) => {
     if (item.status === "generated_email" && item?.promptResponse) {
-      let strippedString = item?.promptResponse?.text.replace(
+      let strippedString = item?.promptResponse?.text?.replace(
         /<[^>]*>?/gm,
         " "
       );
-      strippedString = strippedString.replace(/&nbsp;/gm, "");
-      const result = strippedString.trim();
+      strippedString = strippedString?.replace(/&nbsp;/gm, "");
+      const result = strippedString?.trim();
 
       return (
         <>
@@ -69,12 +69,12 @@ const PlaybookList = ({
         </>
       );
     } else if (item.status === "scheduled" && item?.scheduledEmail) {
-      let strippedString = item?.scheduledEmail?.html_message.replace(
+      let strippedString = item?.scheduledEmail?.html_message?.replace(
         /<[^>]*>?/gm,
         " "
       );
-      strippedString = strippedString.replace(/&nbsp;/gm, "");
-      const result = strippedString.trim();
+      strippedString = strippedString?.replace(/&nbsp;/gm, "");
+      const result = strippedString?.trim();
 
       let isSent: boolean = false;
       let _now = moment.tz(timezone);

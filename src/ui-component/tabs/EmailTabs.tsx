@@ -11,6 +11,8 @@ import { useEmailsTab } from "../../hooks/persons/useEmailsTab";
 import xss from "xss";
 import _ from "lodash";
 
+import { ClickTrackDataTypes } from "src/types/person";
+
 interface TabPanelProps {
   children?: React.ReactNode;
   index: number;
@@ -207,10 +209,22 @@ export default function VerticalTabs({ data, onLoadApi }: VerticalTabsProps) {
               )}
             </Typography>
             <Typography variant="subtitle2">
-              <strong>Opens:&nbsp;</strong> {item?.opens}
+              <strong>Opened:&nbsp;</strong>
+              {item?.trackings?.opened ? "Yes" : "No"}
             </Typography>
             <Typography variant="subtitle2">
-              <strong>Clicks:&nbsp;</strong> {item?.clicks}
+              <strong>Click Stats:&nbsp;</strong>{" "}
+              {item?.click_tracking?.map(
+                (data: ClickTrackDataTypes, index: number) => (
+                  <div className="tw-ml-2" key={index}>
+                    <span>Clicks: {data.click_count} &nbsp;</span>
+
+                    <a href="{data.url}" target="__blank">
+                      Link: {data.url}
+                    </a>
+                  </div>
+                )
+              )}
             </Typography>
             <Typography variant="subtitle2">
               <strong>Thread ID:&nbsp;</strong> {item?.thread_id}

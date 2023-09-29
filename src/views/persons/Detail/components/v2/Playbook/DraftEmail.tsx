@@ -266,6 +266,7 @@ const DraftEmail = ({
       devLogError(() => {
         console.error(e);
       });
+      removeBodyLoader();
     }
   };
 
@@ -651,6 +652,7 @@ const DraftEmail = ({
             {!isLoading?.onPage && (
               <input
                 type="text"
+                disabled={true}
                 defaultValue={playBookData?.work_email}
                 className={`${_styles?.labelValueInput}`}
                 {...register("to", {
