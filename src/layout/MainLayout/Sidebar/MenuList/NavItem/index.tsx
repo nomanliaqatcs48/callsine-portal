@@ -129,7 +129,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
   }, []);
 
   useEffect(() => {
-    const endDate = new Date(auth.subscription?.current_term_end);
+    const endDate = new Date(auth?.subscription?.current_term_end);
     if (auth?.subscription?.status === "canceled" && endDate < new Date()) {
       window.location.href = "/wizard/checkout";
     }
