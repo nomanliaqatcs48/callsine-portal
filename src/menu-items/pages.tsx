@@ -30,15 +30,15 @@ const pages = {
   // caption: "Pages Caption",
   type: "group",
   children: [
-    {
-      id: "inbox",
-      title: "Inbox",
-      type: "item",
-      url: "/inbox",
-      icon: icons.IconInbox,
-      breadcrumbs: false,
-      isPremium: true,
-    },
+    // {
+    //   id: "inbox",
+    //   title: "Inbox",
+    //   type: "item",
+    //   url: "/inbox",
+    //   icon: icons.IconInbox,
+    //   breadcrumbs: false,
+    //   isPremium: true,
+    // },
     {
       id: "default",
       title: "Dashboard",
