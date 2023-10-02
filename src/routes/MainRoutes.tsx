@@ -39,12 +39,12 @@ const MainRoutes = {
   ),
   children: [
     {
-      path: "/",
-      element: <DashboardDefault />,
+      path: "people",
+      element: <PersonsPage />,
     },
     {
-      path: "dashboard",
-      element: <DashboardDefault />,
+      path: "people/:id",
+      element: <PersonDetailPage />,
     },
     {
       path: "team",
@@ -53,14 +53,6 @@ const MainRoutes = {
     {
       path: "settings",
       element: <SettingsPage />,
-    },
-    {
-      path: "people",
-      element: <PersonsPage />,
-    },
-    {
-      path: "people/:id",
-      element: <PersonDetailPage />,
     },
     {
       path: "people-test/:id",

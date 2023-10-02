@@ -25,7 +25,7 @@ const GoogleLoginBtn = () => {
         await saveString("token", res.data.access_token);
         await saveString("refresh", res.data.refresh_token);
         await save("profile", res.data.user);
-        window.location.href = "/dashboard";
+        window.location.href = "/people";
       }
     } catch (err: any) {
       devLogError(() => {
