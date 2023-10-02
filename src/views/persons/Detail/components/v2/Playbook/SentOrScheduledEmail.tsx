@@ -111,17 +111,6 @@ const SentOrScheduledEmail = ({
                     )
                   )}
                 </div>
-                {selectedData?.click_tracking?.map(
-                  (data: ClickTrackDataTypes, index: number) => (
-                    <div className="tw-ml-2" key={index}>
-                      <span>Clicks: {data.click_count} &nbsp;</span>
-
-                      <a href="{data.url}" target="__blank">
-                        Link: {data.url}
-                      </a>
-                    </div>
-                  )
-                )}
 
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
                   Position: {selectedData?.position}
