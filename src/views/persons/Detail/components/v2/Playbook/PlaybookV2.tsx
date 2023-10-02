@@ -165,6 +165,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
     setIsOverwrite(event?.target?.checked);
   };
 
+  console.log({ data });
+
   return (
     <>
       <Paper
