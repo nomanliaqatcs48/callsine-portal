@@ -1,5 +1,5 @@
 import SearchIcon from "@mui/icons-material/Search";
-import { Grid } from "@mui/material";
+import { Grid, Stack } from "@mui/material";
 
 type SearchFieldV2Types = {
   onChange: any;
@@ -7,12 +7,12 @@ type SearchFieldV2Types = {
 
 const SearchFieldV2 = ({ onChange }: SearchFieldV2Types) => {
   return (
-    <>
+    <Stack direction="column" spacing={2}>
       <label
         htmlFor="search-people"
         className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-start"
       >
-        What are you looking for?
+        Who are you looking for?
       </label>
       <Grid>
         <div className="tw-relative">
@@ -30,7 +30,7 @@ const SearchFieldV2 = ({ onChange }: SearchFieldV2Types) => {
           />
         </div>
       </Grid>
-    </>
+    </Stack>
   );
 };
 
