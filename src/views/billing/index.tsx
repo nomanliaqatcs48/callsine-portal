@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { Download } from "@mui/icons-material";
 import {
   Box,
@@ -13,13 +14,15 @@ import {
   Typography,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
-import { useEffect, useState } from "react";
+
 import {
   cancelStripeSubscription,
   fetchUserInvoices,
   getStripeSubscription,
 } from "src/services/payments.service";
 import CurrentCards from "./components/currentCards";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 interface SubscriptionInfo {
   plan?: string;
@@ -114,6 +117,17 @@ const Billing = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Billing & Subscription
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography color="inherit">
+                  Manage your billing and subscription
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
 

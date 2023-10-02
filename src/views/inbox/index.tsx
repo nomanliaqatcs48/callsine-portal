@@ -18,6 +18,8 @@ import { MailHeader } from "./components/MailHeader";
 import { InboxSidebar } from "./components/InboxSidebar";
 import { EmailThread, Thread } from "src/types/inbox";
 import { devLog } from "src/helpers/logs";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -103,6 +105,18 @@ const InboxPage: React.FC = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Inbox
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Inbox is the default view in your mailbox. It contains all the
+                  emails you’ve received, read, and haven’t deleted.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
       <Paper

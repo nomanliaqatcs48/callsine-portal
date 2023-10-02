@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Box, Button, Grid, Paper, Tooltip, Typography } from "@mui/material";
 import { IconPlug } from "@tabler/icons-react";
 import { useUserData } from "../../hooks/user-data/useUserData";
@@ -5,6 +6,8 @@ import AddUserData from "../../ui-component/buttons/AddUserData";
 import DeleteSelectedUserData from "../../ui-component/buttons/DeleteSelectedUserData";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const Data = () => {
   const {
@@ -29,6 +32,19 @@ const Data = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Data
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Data is where you see all the data you’ve uploaded to the
+                  system and can be used to create personalized emails with
+                  attachments.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
       <Paper

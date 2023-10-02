@@ -26,6 +26,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "src/contexts/auth";
 import http from "src/services/axios";
 import { endpoints } from "src/services/endpoints";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 type Member = {
   first_name: string;
@@ -154,6 +156,18 @@ const TeamPage: React.FC = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Team
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Team members are the people you work with. You can add as many
+                  team members as you want.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
       <Paper

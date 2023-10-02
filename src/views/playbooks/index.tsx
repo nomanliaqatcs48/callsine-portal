@@ -1,3 +1,4 @@
+import * as React from "react";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import _ from "lodash";
 import { useSelector } from "react-redux";
@@ -9,9 +10,8 @@ import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlayboo
 import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import PlaybookList from "./components/PlaybookList";
-
-// import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
-// import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const PlaybooksPage = () => {
   let {
@@ -31,6 +31,20 @@ const PlaybooksPage = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Playbooks
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Playbooks are a series of prompts that you can use to
+                  streamline your outreach. You can create a playbook for
+                  different types of outreach, like cold outreach, follow-ups,
+                  etc.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
       <Paper

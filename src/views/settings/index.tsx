@@ -16,6 +16,8 @@ import useGetUserMe from "src/hooks/settings/useGetUser";
 import usePatchUsersMe from "src/hooks/settings/usePatchUser";
 import useUpdateTeam from "src/hooks/settings/useUpdateTeam";
 import US_STATES from "src/utils/form-variables";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 interface TeamState {
   domain: string;
@@ -248,13 +250,22 @@ const SettingsPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
   return (
     <>
       <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
         Settings
+        <HtmlTooltip
+          title={
+            <React.Fragment>
+              <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                This is where you can edit your account information and company
+                information.
+              </Typography>
+            </React.Fragment>
+          }
+        >
+          <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+        </HtmlTooltip>
       </Typography>
       <Grid className="tw-my-5" />
       <div className="tw-m-4">

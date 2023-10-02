@@ -13,6 +13,9 @@ import { usePermissions } from "src/hooks/usePermissions";
 import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
 import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
 
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+
 const MailAccountsPage = () => {
   const { isNotPremium } = usePermissions();
   const {
@@ -54,6 +57,18 @@ const MailAccountsPage = () => {
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Mail Accounts
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Mail Accounts are the email addresses you’ve added to your
+                  mailbox. You can add as many email addresses as you want.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
         </Typography>
       </Box>
 
