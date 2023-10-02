@@ -1,5 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
+  Box,
   Dialog,
   DialogActions,
   DialogContent,
@@ -149,11 +150,17 @@ const TeamPage: React.FC = () => {
           {errorMessage}
         </Alert>
       </Snackbar>
-      <Typography variant="h4" gutterBottom>
-        Team Members
-      </Typography>
-      <Paper>
-        <Grid container spacing={2}>
+
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Team
+        </Typography>
+      </Box>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
+      >
+        <Grid container spacing={2} className="tw-p-5">
           <Grid item xs={12}>
             <Typography variant="h6">
               You will be charged within 72 hours of when new team members

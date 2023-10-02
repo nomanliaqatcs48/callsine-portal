@@ -32,9 +32,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
       className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-6 xl:tw-py-6 tw-min-h-[50vh] tw-max-h-[85vh]"
     >
       <div className="tw-px-5 tw-border-b-[1px] tw-border-[#f0f1f3] tw-relative tw-h-[100px]">
-        <Typography variant="h3" fontWeight="bold">
-          Inbox
-        </Typography>
+        <div />
         <input
           placeholder="Search"
           type="text"

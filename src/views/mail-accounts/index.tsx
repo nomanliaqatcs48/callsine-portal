@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
 
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 
@@ -51,20 +51,18 @@ const MailAccountsPage = () => {
 
   return (
     <>
-      <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
-        Mail Accounts
-      </Typography>
-      <Grid className="tw-my-5" />
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Mail Accounts
+        </Typography>
+      </Box>
 
-      <div style={{ height: 20 }} />
-
-      <Paper elevation={0} className="tw-pt-4">
-        <Grid container>
-          <Grid item xs={12} lg={2}>
-            <Typography className="tw-font-normal tw-text-[24px] tw-tracking-[0.48px] tw-text-black tw-pl-3">
-              Accounts
-            </Typography>
-          </Grid>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={2} />
           <Grid
             item
             xs={12}

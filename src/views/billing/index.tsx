@@ -1,5 +1,6 @@
 import { Download } from "@mui/icons-material";
 import {
+  Box,
   Button,
   Grid,
   IconButton,
@@ -110,12 +111,14 @@ const Billing = () => {
         </Alert>
       </Snackbar>
 
-      <Typography variant="h4" gutterBottom>
-        Billing & Subscription
-      </Typography>
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Billing & Subscription
+        </Typography>
+      </Box>
 
-      <Paper>
-        <Grid container spacing={2}>
+      <Paper elevation={0} className="tw-rounded tw-border tw-border-[#f0f1f3]">
+        <Grid container spacing={2} className="tw-p-5">
           <Grid item xs={12}>
             <Typography variant="h6">Subscription Information</Typography>
           </Grid>
