@@ -16,6 +16,8 @@ import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedP
 import { useAsyncDebounce } from "react-table";
 import { usePersons } from "../../hooks/persons/usePersons";
 import SearchFilter from "../../ui-component/forms/SearchFilter";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -91,6 +93,20 @@ const PersonsPage = () => {
     <>
       <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
         People
+        <HtmlTooltip
+          title={
+            <React.Fragment>
+              <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                This is the list of people you have added to your account. You
+                can add people manually, import them from a CSV file, or
+                generate them from a list of companies. You can also view or
+                edit each item by clicking person's name.
+              </Typography>
+            </React.Fragment>
+          }
+        >
+          <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+        </HtmlTooltip>
       </Typography>
       <Grid className="tw-my-5" />
       <Paper elevation={0} className="tw-mb-10 tw-bg-transparent">
