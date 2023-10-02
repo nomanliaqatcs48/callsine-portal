@@ -17,7 +17,7 @@ const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
     try {
       let check = await checkIfAuthenticated();
       if (check) {
-        window.location.href = "/dashboard";
+        window.location.href = "/people";
       }
       setTimeout(() => setIsOnPageLoading(false), 500);
     } catch (e: any) {

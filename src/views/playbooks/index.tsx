@@ -1,4 +1,5 @@
-import { Box, Grid, Paper } from "@mui/material";
+import * as React from "react";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import _ from "lodash";
 import { useSelector } from "react-redux";
 import { selectPlaybookData } from "src/store/reducer";
@@ -9,9 +10,8 @@ import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlayboo
 import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import PlaybookList from "./components/PlaybookList";
-
-// import ViewPlaybook from "../../ui-component/pages/playbooks/ViewPlaybook";
-// import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const PlaybooksPage = () => {
   let {
@@ -28,11 +28,30 @@ const PlaybooksPage = () => {
 
   return (
     <>
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Playbooks
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Playbooks are a series of prompts that you can use to
+                  streamline your outreach. You can create a playbook for
+                  different types of outreach, like cold outreach, follow-ups,
+                  etc.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
+        </Typography>
+      </Box>
       <Paper
         elevation={0}
         className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
       >
-        <Grid container className="tw-p-0">
+        <Grid container spacing={2} className="tw-p-0">
           <Grid
             item
             xs={12}
@@ -41,9 +60,7 @@ const PlaybooksPage = () => {
             className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
           >
             <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
-              <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
-                Playbook
-              </Box>
+              <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2" />
 
               <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
                 <CreateOrEditPlaybook

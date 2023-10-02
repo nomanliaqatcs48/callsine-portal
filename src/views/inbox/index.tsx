@@ -13,11 +13,13 @@ import xss from "xss";
 import ReplyIcon from "./icons/ReplyIcon";
 import Spinner from "./ui/miniLoader";
 import SendIcon from "./icons/SendIcon";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
 import { MailHeader } from "./components/MailHeader";
 import { InboxSidebar } from "./components/InboxSidebar";
 import { EmailThread, Thread } from "src/types/inbox";
 import { devLog } from "src/helpers/logs";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -99,88 +101,109 @@ const InboxPage: React.FC = () => {
   };
 
   return (
-    <Grid
-      container
-      className="tw-p-0 tw-bg-white tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
-    >
-      <InboxSidebar
-        emailThreads={emailThreads}
-        onSelectThread={handleSelectThread}
-      />
-      {/* Right Column */}
-      <Grid item xs={12} sm={7} lg={8}>
-        {selectedThread.length > 0 && (
-          <MailHeader totalPages={emailItem?.length} />
-        )}
-        <Box className="tw-p-10">
-          {isLoading ? (
-            <Spinner />
-          ) : selectedThread.length > 0 ? (
-            <>
-              {selectedThread.map((thread, index) => (
-                <div key={index}>
-                  <div className="tw-border tw-mb-2 tw-rounded tw-p-3">
-                    {/* assuming thread has an 'id' field */}
-                    <div className="tw-flex tw-justify-between">
-                      <div className="">{thread.from_email}</div>
+    <>
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Inbox
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Inbox is the default view in your mailbox. It contains all the
+                  emails you’ve received, read, and haven’t deleted.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
+        </Typography>
+      </Box>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
+      >
+        <Grid container spacing={2}>
+          <InboxSidebar
+            emailThreads={emailThreads}
+            onSelectThread={handleSelectThread}
+          />
+          {/* Right Column */}
+          <Grid item xs={12} sm={7} lg={8}>
+            {selectedThread.length > 0 && (
+              <MailHeader totalPages={emailItem?.length} />
+            )}
+            <Box className="tw-p-10">
+              {isLoading ? (
+                <Spinner />
+              ) : selectedThread.length > 0 ? (
+                <>
+                  {selectedThread.map((thread, index) => (
+                    <div key={index}>
+                      <div className="tw-border tw-mb-2 tw-rounded tw-p-3">
+                        {/* assuming thread has an 'id' field */}
+                        <div className="tw-flex tw-justify-between">
+                          <div className="">{thread.from_email}</div>
 
-                      {/* <div className="tw-text-xs tw-text-gray-500 tw-italic">
+                          {/* <div className="tw-text-xs tw-text-gray-500 tw-italic">
                       {formatDateWithTime(thread.date)}
                     </div> */}
-                    </div>
-                    <div className="tw-flex tw-justify-between">
-                      <div className="">To: {thread.to}</div>
+                        </div>
+                        <div className="tw-flex tw-justify-between">
+                          <div className="">To: {thread.to}</div>
 
-                      <div className="tw-text-xs tw-text-gray-500 tw-italic">
-                        {formatDateWithTime(thread.created_date)}
+                          <div className="tw-text-xs tw-text-gray-500 tw-italic">
+                            {formatDateWithTime(thread.created_date)}
+                          </div>
+                        </div>
+
+                        <p
+                          className="tw-font-thin hover:tw-bg-slate-200 tw-py-2"
+                          dangerouslySetInnerHTML={{
+                            __html: xss(
+                              cleanBody(thread.html_message || thread.body)
+                            ),
+                          }}
+                        />
                       </div>
+                      {index === selectedThread.length - 1 && !showEditor && (
+                        <div
+                          className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
+                          onClick={handleReply}
+                        >
+                          <ReplyIcon color="tw-text-blue-500" />
+                          <span className="tw-text-black">Reply</span>
+                        </div>
+                      )}
                     </div>
+                  ))}
+                </>
+              ) : (
+                <p className="tw-pt-4">...</p>
+              )}
 
-                    <p
-                      className="tw-font-thin hover:tw-bg-slate-200 tw-py-2"
-                      dangerouslySetInnerHTML={{
-                        __html: xss(
-                          cleanBody(thread.html_message || thread.body)
-                        ),
-                      }}
-                    />
+              {showEditor && (
+                <>
+                  <MyEditor
+                    initialValue={""}
+                    onEditorChange={(value: string, editor: any) => {
+                      handleMyEditorOnChange(value);
+                    }}
+                  />
+                  <div
+                    onClick={handleSend}
+                    className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
+                  >
+                    <SendIcon color="tw-text-blue-500" />
+                    <span className="tw-text-black">Send</span>
                   </div>
-                  {index === selectedThread.length - 1 && !showEditor && (
-                    <div
-                      className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
-                      onClick={handleReply}
-                    >
-                      <ReplyIcon color="tw-text-blue-500" />
-                      <span className="tw-text-black">Reply</span>
-                    </div>
-                  )}
-                </div>
-              ))}
-            </>
-          ) : (
-            <p className="tw-pt-4">...</p>
-          )}
-
-          {showEditor && (
-            <>
-              <MyEditor
-                initialValue={""}
-                onEditorChange={(value: string, editor: any) => {
-                  handleMyEditorOnChange(value);
-                }}
-              />
-              <div
-                onClick={handleSend}
-                className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
-              >
-                <SendIcon color="tw-text-blue-500" />
-                <span className="tw-text-black">Send</span>
-              </div>
-            </>
-          )}
-        </Box>
-      </Grid>
-    </Grid>
+                </>
+              )}
+            </Box>
+          </Grid>
+        </Grid>
+      </Paper>
+    </>
   );
 };
 

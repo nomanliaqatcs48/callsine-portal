@@ -1,5 +1,6 @@
 import DeleteIcon from "@mui/icons-material/Delete";
 import {
+  Box,
   Dialog,
   DialogActions,
   DialogContent,
@@ -25,6 +26,8 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "src/contexts/auth";
 import http from "src/services/axios";
 import { endpoints } from "src/services/endpoints";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 type Member = {
   first_name: string;
@@ -149,11 +152,29 @@ const TeamPage: React.FC = () => {
           {errorMessage}
         </Alert>
       </Snackbar>
-      <Typography variant="h4" gutterBottom>
-        Team Members
-      </Typography>
-      <Paper>
-        <Grid container spacing={2}>
+
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Team
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Team members are the people you work with. You can add as many
+                  team members as you want.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
+        </Typography>
+      </Box>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
+      >
+        <Grid container spacing={2} className="tw-p-5">
           <Grid item xs={12}>
             <Typography variant="h6">
               You will be charged within 72 hours of when new team members

@@ -5,6 +5,8 @@ import DialogContent from "@mui/material/DialogContent";
 import DialogContentText from "@mui/material/DialogContentText";
 import DialogTitle from "@mui/material/DialogTitle";
 import React, { useState } from "react";
+import ContentCopyIcon from "@mui/icons-material/ContentCopy";
+import { Stack, Typography } from "@mui/material";
 
 interface TemplateCenterProps {
   disabled: boolean;
@@ -45,27 +47,40 @@ const TemplateCard: React.FC<{ template: Template }> = ({ template }) => {
 
   return (
     <div
-      className={`tw-border tw-p-4 tw-mb-4 tw-flex tw-flex-col tw-justify-between `}
+      className={`tw-border tw-mb-4 tw-flex tw-flex-col tw-justify-between `}
     >
       <div>
         <h2 className="tw-text-md tw-font-bold tw-border-b tw-pb-2 tw-mb-2">
-          {template.title}
+          {template.title}{" "}
         </h2>
-        <div className="tw-relative">
-          <p
-            onClick={handleCopy}
-            className={`tw-cursor-pointer tw-border-b tw-pb-2 tw-mb-2 tw-pt-2 `}
+        <div className="tw-relative tw-rounded-lg tw-border tw-border-[#f0f1f3] tw-mb-2">
+          <Stack
+            direction="row"
+            alignItems="center"
+            justifyContent="space-between"
           >
-            {template.prompt}
-          </p>
-          {/* add this to the prompt content className ${isCopied ? "tw-bg-yellow-200" : ""} */}
-          {isCopied && (
-            <div
-              className={`tw-tooltip tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-py-1 tw-px-4 tw-absolute tw-right-0 tw-top-full `}
+            <p
+              onClick={handleCopy}
+              className="tw-cursor-pointer tw-border-b tw-pb-2 tw-mb-2 tw-pt-2 tw-px-4"
             >
-              Copied
+              {template.prompt}
+              {isCopied && (
+                <div
+                  className={`tw-tooltip tw-bg-gray-800 tw-text-white tw-text-xs tw-rounded tw-py-1 tw-px-4 tw-absolute tw-right-[55px] tw-w-[100px] tw-justify-center tw-top-[12px]`}
+                >
+                  <Typography textAlign="center">Copied</Typography>
+                </div>
+              )}
+            </p>
+
+            <div className="tw-relative tw-rounded-r-lg  tw-h-[50px] tw-w-[50px] tw-bg-[#f0f1f3] tw-grid tw-items-center tw-justify-center">
+              <ContentCopyIcon
+                onClick={handleCopy}
+                fontSize="small"
+                className="tw-text-gray-500 tw-cursor-pointer"
+              />
             </div>
-          )}
+          </Stack>
         </div>
       </div>
       <div className="tw-flex tw-justify-end">
