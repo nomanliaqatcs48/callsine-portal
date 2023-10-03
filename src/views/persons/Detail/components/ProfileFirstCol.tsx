@@ -91,7 +91,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
             Opened
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.opened || "0"}
+            {data?.total_opened || "0"}
           </Typography>
         </div>
         <div>
@@ -99,7 +99,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
             Clicked
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.clicked || "0"}
+            {data?.total_click_count || "0"}
           </Typography>
         </div>
         <div>

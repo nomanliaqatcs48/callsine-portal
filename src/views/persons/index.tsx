@@ -88,7 +88,7 @@ const PersonsPage = () => {
       />
     );
   };
-
+  console.log({ personsData });
   return (
     <>
       <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
