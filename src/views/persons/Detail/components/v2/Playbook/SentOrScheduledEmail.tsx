@@ -28,6 +28,7 @@ const SentOrScheduledEmail = ({
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
+  let { showStatus } = useEmailsTab(false);
 
   useLayoutEffect(() => {
     GetFromEmailDetail();
@@ -82,9 +83,13 @@ const SentOrScheduledEmail = ({
                 <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
               </div>
               <div className="tw-pl-1.5">
-                <div className="tw-text-black tw-text-[0.9rem] tw-font-medium">
-                  From: {fromEmailDetail?.first_name}{" "}
-                  {fromEmailDetail?.last_name}
+                <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
+                  <strong>Status:&nbsp;</strong>{" "}
+                  {selectedData?.status !== null ? (
+                    showStatus(selectedData?.status)
+                  ) : (
+                    <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+                  )}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
                   To: {selectedData?.to}
@@ -93,19 +98,19 @@ const SentOrScheduledEmail = ({
                   Opened: {selectedData?.trackings?.opened ? "Yes" : "No"}
                 </div>
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
-                  Link Clicks Stats
-                </div>
-                {selectedData?.click_tracking?.map(
-                  (data: ClickTrackDataTypes, index: number) => (
-                    <div className="tw-ml-2" key={index}>
-                      <span>Clicks: {data.click_count} &nbsp;</span>
+                  <strong>Click Stats:&nbsp;</strong>{" "}
+                  {selectedData?.click_tracking?.map(
+                    (data: ClickTrackDataTypes, index: number) => (
+                      <div className="tw-ml-2" key={index}>
+                        <span>Clicks: {data.click_count} &nbsp;</span>
 
-                      <a href="{data.url}" target="__blank">
-                        Link: {data.url}
-                      </a>
-                    </div>
-                  )
-                )}
+                        <a href="{data.url}" target="__blank">
+                          Link: {data.url}
+                        </a>
+                      </div>
+                    )
+                  )}
+                </div>
 
                 <div className="tw-text-xs tw-text-[#99a9be] tw-font-medium">
                   Position: {selectedData?.position}
