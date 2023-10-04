@@ -69,6 +69,10 @@ const SentOrScheduledEmail = ({
       });
     }
   };
+
+  const handlEditClick = () => {
+    alert("adad");
+  };
   console.log({ selectedData });
   return (
     <>
@@ -76,7 +80,7 @@ const SentOrScheduledEmail = ({
         className={`name-email-container tw-py-2 tw-border-b tw-border-[#f2f3f9] ${containers} xl:tw-py-5`}
       >
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
-          {/*left*/}
+          {/*right*/}
           <div className="tw-flex tw-justify-center tw-items-center">
             <div className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text">
               <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
@@ -118,7 +122,7 @@ const SentOrScheduledEmail = ({
               </div>
             </div>
           </div>
-          {/*right*/}
+          {/*left*/}
           <div>
             <DeleteProspectSequence
               id={selectedSequenceEvent?.id}
@@ -146,7 +150,16 @@ const SentOrScheduledEmail = ({
           </Tooltip>
         </span>
       </div>
+
       <div className={`subject-container ${containers}`}>
+        <div className="">
+          <button
+            onClick={handlEditClick}
+            className="tw-bg-primary tw-px-3 tw-py-1 tw-rounded tw-text-white"
+          >
+            Edit
+          </button>
+        </div>
         <h3 className="tw-text-black tw-text-lg tw-font-semibold tw-pb-5 xl:tw-text-[1.4rem]">
           {selectedData?.subject}
         </h3>
