@@ -1,4 +1,4 @@
-import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
+// import { GrammarlyEditorPlugin } from "@grammarly/editor-sdk-react";
 import { ErrorMessage } from "@hookform/error-message";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 import { LoadingButton } from "@mui/lab";
@@ -677,7 +677,7 @@ const DraftEmail = ({
         <div className="tw-flex">
           <div className={`${_styles?.label}`}>Subject</div>
           <div className={`${_styles?.labelValue}`}>
-            {!isLoading?.subject && (
+            {/* {!isLoading?.subject && (
               <GrammarlyEditorPlugin clientId="client_XceQ4Hc6Jw4SS4kSvkSWVx">
                 <input
                   type="text"
@@ -688,7 +688,7 @@ const DraftEmail = ({
                   disabled={isSubjectDisabled}
                 />
               </GrammarlyEditorPlugin>
-            )}
+            )} */}
             <ErrorMessage
               errors={errors}
               name="subject"
