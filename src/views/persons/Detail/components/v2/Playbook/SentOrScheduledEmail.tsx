@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
-import { Tooltip } from "@mui/material";
-import { IconTrash } from "@tabler/icons-react";
+import { Button, Tooltip } from "@mui/material";
+import { IconEdit, IconTrash } from "@tabler/icons-react";
 import moment from "moment-timezone";
 import xss from "xss";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
@@ -17,6 +17,7 @@ type SentOrScheduledEmailTypes = {
   selectedData: any;
   position: any;
   selectedSequenceEvent: any;
+  showDraftFn: any;
 };
 
 const SentOrScheduledEmail = ({
@@ -24,6 +25,7 @@ const SentOrScheduledEmail = ({
   onLoadApi,
   selectedData,
   selectedSequenceEvent,
+  showDraftFn,
 }: SentOrScheduledEmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
@@ -70,17 +72,13 @@ const SentOrScheduledEmail = ({
     }
   };
 
-  const handlEditClick = () => {
-    alert("adad");
-  };
-  console.log({ selectedData });
   return (
     <>
       <div
         className={`name-email-container tw-py-2 tw-border-b tw-border-[#f2f3f9] ${containers} xl:tw-py-5`}
       >
         <div className="tw-flex tw-flex-col tw-items-center sm:tw-flex-row sm:tw-justify-between">
-          {/*right*/}
+          {/*left*/}
           <div className="tw-flex tw-justify-center tw-items-center">
             <div className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent text">
               <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
@@ -122,8 +120,25 @@ const SentOrScheduledEmail = ({
               </div>
             </div>
           </div>
-          {/*left*/}
+          {/*right*/}
           <div>
+            <Tooltip title="Edit">
+              <Button
+                disableElevation
+                type="button"
+                variant="text"
+                color="inherit"
+                onClick={showDraftFn}
+                // {...props}
+              >
+                <IconEdit
+                  strokeWidth={3}
+                  size={18}
+                  className="tw-text-green-600"
+                />
+              </Button>
+            </Tooltip>
+
             <DeleteProspectSequence
               id={selectedSequenceEvent?.id}
               personId={Number(personId)}
@@ -135,7 +150,7 @@ const SentOrScheduledEmail = ({
               <IconTrash
                 strokeWidth={3}
                 size={18}
-                style={{ color: "#778da9" }}
+                className="tw-text-red-600"
               />
             </DeleteProspectSequence>
           </div>
@@ -152,14 +167,6 @@ const SentOrScheduledEmail = ({
       </div>
 
       <div className={`subject-container ${containers}`}>
-        <div className="">
-          <button
-            onClick={handlEditClick}
-            className="tw-bg-primary tw-px-3 tw-py-1 tw-rounded tw-text-white"
-          >
-            Edit
-          </button>
-        </div>
         <h3 className="tw-text-black tw-text-lg tw-font-semibold tw-pb-5 xl:tw-text-[1.4rem]">
           {selectedData?.subject}
         </h3>
