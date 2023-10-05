@@ -19,8 +19,12 @@ import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
 import { useMailAccounts } from "../../../../../../hooks/mail-accounts/useMailAccounts";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
-import { sendMailOauthService } from "../../../../../../services/emails.service";
-
+import {
+  createAsEmailService,
+  sendEmailService,
+  sendMailOauthService,
+} from "../../../../../../services/emails.service";
+import SendLater from "../../../../../../ui-component/buttons/SendLater";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyEditor from "../../../../../../ui-component/editor/MyEditor";
 import {
@@ -129,7 +133,7 @@ const DraftEmail = ({
         in_reply_to: false,
       }));
     });
-  }, [personId, playBookData?.work_email, register, selectedData, setValue]);
+  }, [selectedData]);
 
   useEffect(() => {
     setIsLoading((prev: any) => ({
@@ -186,7 +190,7 @@ const DraftEmail = ({
         in_reply_to: false,
       }));
     }, 1000);
-  }, [selectedData, selectedSequenceEvent, emails, setValue, mailAccountsData]);
+  }, [selectedData, selectedSequenceEvent, emails]);
 
   useEffect(() => {
     setIsLoading((prev: any) => ({
@@ -221,7 +225,7 @@ const DraftEmail = ({
         from_email: false,
       }));
     }, 1000);
-  }, [selectedData, selectedSequenceEvent, mailAccountsData, setValue]);
+  }, [selectedData, selectedSequenceEvent, mailAccountsData]);
 
   useEffect(() => {
     if (errors && Object.keys(errors)?.length > 0) {
@@ -239,13 +243,32 @@ const DraftEmail = ({
     setValue("signature", event?.signature || "");
   };
 
+  const handleSendNow = async (id: any) => {
+    try {
+      let res = await sendEmailService(id, position);
+      if (res?.data) {
+        devLog(() => {
+          console.log("res?.data", res?.data);
+        });
+        ToastSuccess("Email successfully sent.");
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+        removeBodyLoader();
+        onLoadApi();
+      }
+    } catch (e: any) {
+      ToastError("Something went wrong!");
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
+      removeBodyLoader();
+    }
+  };
+
   const onSubmitSendViaOauth = async (data: EmailDraftTypes) => {
-    data["position"] = position;
     devLog(() => {
       console.log("onSubmit data", data);
-      console.log("onSubmit data", position);
     });
-
     insertBodyLoader();
     try {
       let res = await sendMailOauthService(data);
@@ -266,6 +289,42 @@ const DraftEmail = ({
       devLogError(() => {
         console.error(e);
       });
+    }
+  };
+
+  const onSubmit = async (data: any) => {
+    devLog(() => {
+      console.log("onSubmit data", data);
+    });
+    setIsLoading((prev: any) => ({ ...prev, form: true }));
+    insertBodyLoader();
+
+    try {
+      let res = await createAsEmailService({
+        ...data,
+        in_reply_to: data?.in_reply_to?.id,
+        from_email: data?.from_email?.id,
+        position: position,
+        html_message: `<html><body>${
+          data?.html_message +
+          data?.signature.replace(/\n/g, "") +
+          data?.parent_email_html_message.replace(/\n/g, "")
+        }</body></html>`,
+      });
+      if (res?.data?.id) {
+        handleSendNow(res?.data?.id);
+      } else {
+        ToastError("Something went wrong!");
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+        removeBodyLoader();
+        onLoadApi();
+      }
+    } catch (e: any) {
+      ToastError("Something went wrong!");
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
       removeBodyLoader();
     }
   };
@@ -479,6 +538,25 @@ const DraftEmail = ({
             <LoadingButton
               type="button"
               variant="outlined"
+              onClick={handleSubmit((data) => onSubmit(data))}
+              className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+              loading={isLoading?.form}
+              disabled={isLoading?.form}
+            >
+              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
+                Send
+              </span>{" "}
+              <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
+            </LoadingButton>
+            <Divider
+              orientation="vertical"
+              variant="middle"
+              flexItem
+              className="tw-mx-4"
+            />
+            <LoadingButton
+              type="button"
+              variant="outlined"
               onClick={handleSubmit((data) =>
                 onSubmitSendViaOauth(data as EmailDraftTypes)
               )}
@@ -500,6 +578,24 @@ const DraftEmail = ({
             />
 
             <SendLaterOauth
+              useForm={{
+                register,
+                unregister,
+                setValue,
+                handleSubmit,
+                reset,
+                getValues,
+                trigger,
+                setError,
+                errors,
+              }}
+              onLoadApi={onLoadApi}
+              loading={isLoading?.form}
+              disabled={isLoading?.form}
+              position={position}
+            />
+
+            <SendLater
               useForm={{
                 register,
                 unregister,
@@ -652,7 +748,6 @@ const DraftEmail = ({
             {!isLoading?.onPage && (
               <input
                 type="text"
-                disabled={true}
                 defaultValue={playBookData?.work_email}
                 className={`${_styles?.labelValueInput}`}
                 {...register("to", {

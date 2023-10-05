@@ -20,11 +20,12 @@ export type EmailDraftTypes = {
   in_reply_to?: string;
   parent_email_html_message?: string;
   scheduled_time?: string;
+  position: number;
   signature?: string;
 };
 
 export type ThreadReplyTypes = {
   mail_object: any;
   html_message: string;
-  thread_id: number;
+  thread_id: string | number;
 };

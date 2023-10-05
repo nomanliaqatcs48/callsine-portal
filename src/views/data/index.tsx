@@ -1,10 +1,13 @@
-import { Button, Grid, Paper, Tooltip, Typography } from "@mui/material";
+import * as React from "react";
+import { Box, Button, Grid, Paper, Tooltip, Typography } from "@mui/material";
 import { IconPlug } from "@tabler/icons-react";
 import { useUserData } from "../../hooks/user-data/useUserData";
 import AddUserData from "../../ui-component/buttons/AddUserData";
 import DeleteSelectedUserData from "../../ui-component/buttons/DeleteSelectedUserData";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const Data = () => {
   const {
@@ -26,52 +29,30 @@ const Data = () => {
 
   return (
     <>
-      <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
-        Data
-      </Typography>
-      <Grid className="tw-my-5" />
-      {/*<Grid
-        container
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Data
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Data is where you see all the data you’ve uploaded to the
+                  system and can be used to create personalized emails with
+                  attachments.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
+        </Typography>
+      </Box>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
       >
-        <CreateOrEditMailAccount
-          btnText="Add Mail Account"
-          onSubmit={getMailAccounts}
-          onClick={() => null}
-          btnVariant="outlined"
-        />
-      </Grid>*/}
-      {/*<div style={{ height: 3 }} />*/}
-      {/*<Grid container spacing={2}>
-        <Grid item xs={12} sm={6} md={4} lg={3}>
-          <TotalListSmallCard
-            isLoading={isLoading?.onPage}
-            value={total}
-            text="Total"
-          />
-        </Grid>
-      </Grid>*/}
-      <div style={{ height: 20 }} />
-      {/*<Grid
-        container
-        direction="row"
-        justifyContent="flex-end"
-        alignItems="center"
-      >
-        <SearchField
-          searchValue={searchValue}
-          onChange={handleSearchOnBeforeChange}
-        />
-      </Grid>*/}
-      <Paper elevation={0} className="tw-pt-4">
-        <Grid container>
-          <Grid item xs={12} lg={2}>
-            <Typography className="tw-font-normal tw-text-[24px] tw-tracking-[0.48px] tw-text-black tw-pl-3">
-              Data
-            </Typography>
-          </Grid>
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={2} />
           <Grid
             item
             xs={12}

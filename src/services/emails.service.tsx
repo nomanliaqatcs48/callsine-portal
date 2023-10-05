@@ -53,7 +53,7 @@ export const emailThreadsService = async (person_id?: number) => {
 };
 
 export const gmailThreadService = async (
-  threadId: number,
+  threadId: string | number,
   mailAccountId: number
 ) => {
   return await http.get(
@@ -61,7 +61,7 @@ export const gmailThreadService = async (
   );
 };
 export const outlookThreadService = async (
-  threadId: number,
+  threadId: string | number,
   mailAccountId: number
 ) => {
   return await http.get(

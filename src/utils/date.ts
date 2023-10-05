@@ -37,3 +37,17 @@ export function formatDateWithTime(input: string) {
     .toString()
     .padStart(2, "0")}/${year} ${time}`;
 }
+
+export function formatTime(input: string) {
+  // Parse the date
+  const date = new Date(input);
+
+  // Get the time in HH:MM AM/PM format
+  const time = date.toLocaleString("en-US", {
+    hour: "numeric",
+    minute: "numeric",
+    hour12: true,
+  });
+
+  return `${time}`;
+}

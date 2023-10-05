@@ -1,5 +1,17 @@
-import { Box, Container, Divider, Grid, Paper, Tab, Tabs } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import {
+  Box,
+  Button,
+  Container,
+  Divider,
+  Grid,
+  Paper,
+  Tab,
+  Tabs,
+  Typography,
+} from "@mui/material";
+import EditIcon from "@mui/icons-material/Edit";
+import CancelIcon from "@mui/icons-material/Cancel";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 import GoBack from "../../../ui-component/buttons/GoBack";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
@@ -13,6 +25,8 @@ import EmailThread from "./components/EmailThread";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
+
+  const [editMode, setEditMode] = useState(false);
 
   let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
     usePersonDetail();
@@ -28,11 +42,39 @@ const PersonDetailPage = () => {
     };
   };
 
+  const handleOnCancel = () => {
+    getPersonDetail();
+    setEditMode((p) => !p);
+  };
+
   return (
     <>
       <Grid container>
-        <Grid item xs={12} className="tw-py-3">
+        <Grid item xs={10} className="tw-py-3">
           <GoBack />
+        </Grid>
+        <Grid item xs={2} className="tw-py-3 tw-flex tw-justify-end">
+          {!editMode ? (
+            <Button
+              variant="text"
+              startIcon={<EditIcon fontSize="medium" />}
+              onClick={() => setEditMode((prev) => !prev)}
+            >
+              Edit Profile
+            </Button>
+          ) : (
+            <Button
+              variant="text"
+              startIcon={<CancelIcon fontSize="medium" />}
+              onClick={(e) => {
+                e.preventDefault();
+                handleOnCancel();
+              }}
+              className="tw-text-callsineRed"
+            >
+              Cancel Edit Profile
+            </Button>
+          )}
         </Grid>
       </Grid>
       <Grid container>
@@ -45,7 +87,7 @@ const PersonDetailPage = () => {
                 xl={"auto"}
                 className="lg:tw-px-10 xl:tw-flex-col xl:tw-items-center xl:tw-justify-center xl:tw-border-r xl:tw-w-1/2 xl:tw-p-10 2xl:tw-px-16 3xl:tw-w-2/5"
               >
-                <ProfileFirstCol data={data} />
+                <ProfileFirstCol data={data} editMode={editMode} />
               </Grid>
               <Grid item xs={12} className="tw-w-full tw-py-4 xl:tw-hidden">
                 <Divider variant="middle" />
@@ -56,7 +98,7 @@ const PersonDetailPage = () => {
                 xl={"auto"}
                 className="xl:tw-p-9 xl:tw-w-1/2 3xl:tw-w-3/5"
               >
-                <ProfileSecondCol data={data} />
+                <ProfileSecondCol data={data} editMode={editMode} />
               </Grid>
             </Grid>
           </Paper>

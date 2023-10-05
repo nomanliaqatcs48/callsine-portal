@@ -38,6 +38,10 @@ export const getSequenceEventScheduledEmailService = async (
   );
 };
 
+export const clearProspecEventService = async (id: number) => {
+  return await http.patch(`${endpoints.SEQUENCE_EVENTS}${id}/`);
+};
+
 export const deleteSequenceEventService = async (
   id: any,
   is_dashboard: string = "false"

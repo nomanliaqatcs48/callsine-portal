@@ -199,11 +199,11 @@ const CreateEmail = ({
         setIsLoading((prev: any) => ({ ...prev, form: false }));
       }
     } catch (e: any) {
+      setIsLoading((prev: any) => ({ ...prev, form: false }));
       ToastError("Something went wrong!");
       devLogError(() => {
         console.error(e?.response);
       });
-      setIsLoading((prev: any) => ({ ...prev, form: false }));
     }
   };
 

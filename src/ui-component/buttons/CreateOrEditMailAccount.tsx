@@ -9,13 +9,11 @@ import {
   FormControl,
   FormHelperText,
   Grid,
-  IconButton,
   InputLabel,
   MenuItem,
   Select,
   SelectChangeEvent,
   TextField,
-  Tooltip,
 } from "@mui/material";
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
@@ -29,8 +27,6 @@ import {
 import MyEditor from "../editor/MyEditor";
 import { emailAddressPattern } from "../../helpers/forms";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 type CreateOrEditMailAccountTypes = {
   id?: number;
@@ -55,7 +51,6 @@ const CreateOrEditMailAccount = ({
     form: false,
     signature: false,
   });
-  const [showPassword, setShowPassword] = useState(false);
 
   const {
     register,
@@ -73,8 +68,7 @@ const CreateOrEditMailAccount = ({
     });
     register("signature");
     setValue("provider", id ? defaultValue?.provider : null);
-    setShowPassword(false);
-  }, [open]);
+  }, [register, setValue, id, defaultValue.provider]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -162,14 +156,6 @@ const CreateOrEditMailAccount = ({
     }
   };
 
-  const handleClickShowPassword = () => {
-    setShowPassword(!showPassword);
-  };
-
-  const handleMouseDownPassword = (event: any) => {
-    event.preventDefault();
-  };
-
   return (
     <>
       {/*<Button
@@ -221,7 +207,7 @@ const CreateOrEditMailAccount = ({
                   <div>
                     <TextField
                       error={!!errors.email}
-                      disabled={mailAccountLoading?.form}
+                      disabled={true}
                       required
                       margin="dense"
                       id="email"
@@ -417,7 +403,7 @@ const CreateOrEditMailAccount = ({
                 Cancel
               </Button>
             </div>
-            {id && (
+            {/* {id && (
               <Button
                 onClick={testMailAccount}
                 disabled={mailAccountLoading?.form}
@@ -426,7 +412,7 @@ const CreateOrEditMailAccount = ({
               >
                 Test
               </Button>
-            )}
+            )} */}
           </DialogActions>
         </Dialog>
       )}

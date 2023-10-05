@@ -325,6 +325,18 @@ export const _columns: any = () => {
         minWidth: 90,
       },
       {
+        Header: "Opened",
+        accessor: "total_opened",
+        width: 90,
+        minWidth: 90,
+      },
+      {
+        Header: "Clicks",
+        accessor: "total_click_count",
+        width: 90,
+        minWidth: 90,
+      },
+      {
         Header: "Last Contacted",
         accessor: "last_contacted",
         width: 90,

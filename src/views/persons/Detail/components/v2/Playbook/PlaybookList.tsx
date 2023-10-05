@@ -6,13 +6,15 @@ import {
   Tooltip,
 } from "@mui/material";
 import WatchLaterIcon from "@mui/icons-material/WatchLater";
+import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
+import ErrorIcon from "@mui/icons-material/ErrorOutline";
+
 import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
 import xss from "xss";
 import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
 import moment from "moment-timezone";
 import _ from "lodash";
-import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 
 type PlaybookListProps = {
   data: any[];
@@ -35,14 +37,15 @@ const PlaybookList = ({
   };
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 
+  console.log({ data });
   const subtext = (item: any) => {
     if (item.status === "generated_email" && item?.promptResponse) {
-      let strippedString = item?.promptResponse?.text.replace(
+      let strippedString = item?.promptResponse?.text?.replace(
         /<[^>]*>?/gm,
         " "
       );
-      strippedString = strippedString.replace(/&nbsp;/gm, "");
-      const result = strippedString.trim();
+      strippedString = strippedString?.replace(/&nbsp;/gm, "");
+      const result = strippedString?.trim();
 
       return (
         <>
@@ -69,20 +72,21 @@ const PlaybookList = ({
         </>
       );
     } else if (item.status === "scheduled" && item?.scheduledEmail) {
-      let strippedString = item?.scheduledEmail?.html_message.replace(
+      let strippedString = item?.scheduledEmail?.html_message?.replace(
         /<[^>]*>?/gm,
         " "
       );
-      strippedString = strippedString.replace(/&nbsp;/gm, "");
-      const result = strippedString.trim();
+      strippedString = strippedString?.replace(/&nbsp;/gm, "");
+      const result = strippedString?.trim();
 
       let isSent: boolean = false;
-      let _now = moment.tz(timezone);
-      let _scheduledTime = moment(item?.scheduledEmail?.scheduled_time).tz(
-        timezone
-      );
-      let _diff = _now.diff(_scheduledTime);
-      if (_diff > 0) isSent = true;
+      let isFailed: boolean = false;
+
+      if (item?.scheduledEmail?.status === 0) {
+        isSent = true;
+      } else if (item?.scheduledEmail?.status === 1) {
+        isFailed = true;
+      }
 
       return (
         <>
@@ -107,6 +111,10 @@ const PlaybookList = ({
                       <MarkEmailReadOutlinedIcon
                         sx={{ fontSize: 15, color: "#1a76d2" }}
                       />
+                    </Tooltip>
+                  ) : isFailed ? (
+                    <Tooltip title="Failed">
+                      <ErrorIcon sx={{ fontSize: 15, color: "red" }} />
                     </Tooltip>
                   ) : (
                     <Tooltip title="Scheduled">

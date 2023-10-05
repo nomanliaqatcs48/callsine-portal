@@ -66,6 +66,10 @@ const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
         marginLeft: "10px",
       },
     }),
+    // Overrides
+    marginLeft: 0,
+    marginRight: 0,
+    borderRadius: 0,
   })
 );
 

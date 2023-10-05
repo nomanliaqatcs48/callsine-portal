@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
 import {
   Box,
-  Button,
   Checkbox,
   Dialog,
   DialogActions,
@@ -21,10 +20,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { devLog, devLogError } from "../../helpers/logs";
-import {
-  createAsEmailService,
-  sendMailOauthService,
-} from "../../services/emails.service";
+import { sendMailOauthService } from "../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { LoadingButton } from "@mui/lab";
 
@@ -117,9 +113,11 @@ const SendLaterOauth = ({
           data?.parent_email_html_message.replace(/\n/g, "")
         }</body></html>`,
       });
-      if (res?.data) {
+      console.log({ res });
+      if (res?.status === 200) {
         ToastSuccess("Email successfully scheduled.");
         handleClose(event, "");
+        setOpen(false);
         setIsLoading((prev: any) => ({ ...prev, form: false }));
         onLoadApi();
       }

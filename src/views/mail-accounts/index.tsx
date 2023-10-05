@@ -1,30 +1,31 @@
 import React, { useEffect } from "react";
-import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
-import { useAsyncDebounce } from "react-table";
+import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
+
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
-import CreateOrEditMailAccount from "../../ui-component/buttons/CreateOrEditMailAccount";
 
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/mail-accounts/utils";
 
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
-import ExportMailAccounts from "../../ui-component/buttons/ExportMailAccounts";
 import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
 import { usePermissions } from "src/hooks/usePermissions";
 import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
 import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
+
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const MailAccountsPage = () => {
   const { isNotPremium } = usePermissions();
   const {
     mailAccountsData,
     total,
-    setSearchValue,
+
     filters,
     setFilters,
     isLoading,
-    setIsLoading,
+
     selectedFlatRows,
     setSelectedFlatRows,
     getMailAccounts,
@@ -37,21 +38,7 @@ const MailAccountsPage = () => {
   useHandleCallback(getMailAccounts);
   useEffect(() => {
     isNotPremium();
-  }, []);
-
-  const handleSearchOnBeforeChange = (e: any) => {
-    setIsLoading((prev: any) => ({ ...prev, search: true }));
-    setSearchValue(e.target.value);
-    void handleSearchOnChange();
-  };
-
-  const handleSearchOnChange = useAsyncDebounce(async () => {
-    await setFilters({
-      limit: 10,
-      offset: 0,
-      currentPage: 1,
-    });
-  }, 1000);
+  });
 
   const MyDivider = () => {
     return (
@@ -67,20 +54,30 @@ const MailAccountsPage = () => {
 
   return (
     <>
-      <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
-        Mail Accounts
-      </Typography>
-      <Grid className="tw-my-5" />
+      <Box className="tw-mb-10">
+        <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
+          Mail Accounts
+          <HtmlTooltip
+            title={
+              <React.Fragment>
+                <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                  Mail Accounts are the email addresses you’ve added to your
+                  mailbox. You can add as many email addresses as you want.
+                </Typography>
+              </React.Fragment>
+            }
+          >
+            <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+          </HtmlTooltip>
+        </Typography>
+      </Box>
 
-      <div style={{ height: 20 }} />
-
-      <Paper elevation={0} className="tw-pt-4">
-        <Grid container>
-          <Grid item xs={12} lg={2}>
-            <Typography className="tw-font-normal tw-text-[24px] tw-tracking-[0.48px] tw-text-black tw-pl-3">
-              Accounts
-            </Typography>
-          </Grid>
+      <Paper
+        elevation={0}
+        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
+      >
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={2} />
           <Grid
             item
             xs={12}

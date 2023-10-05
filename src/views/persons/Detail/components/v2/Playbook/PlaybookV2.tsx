@@ -165,6 +165,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
     setIsOverwrite(event?.target?.checked);
   };
 
+  console.log({ data });
+
   return (
     <>
       <Paper
@@ -248,6 +250,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                     }}
                     selectedData={selectedData}
                     position={selectedIndex + 1}
+                    selectedSequenceEvent={selectedSequenceEvent}
                   />
                 ) : (
                   <DraftEmail

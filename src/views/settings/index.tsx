@@ -16,6 +16,8 @@ import useGetUserMe from "src/hooks/settings/useGetUser";
 import usePatchUsersMe from "src/hooks/settings/usePatchUser";
 import useUpdateTeam from "src/hooks/settings/useUpdateTeam";
 import US_STATES from "src/utils/form-variables";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 interface TeamState {
   domain: string;
@@ -35,7 +37,7 @@ interface UserState {
 }
 
 // Define the types for the fields
-interface TextField {
+interface TextFieldProps {
   label: string;
   name: string;
   type: "text" | "textarea";
@@ -48,7 +50,7 @@ interface SelectField {
   options: any;
 }
 
-type Field = TextField | SelectField;
+type Field = TextFieldProps | SelectField;
 
 const companyFields: Field[] = [
   { label: "Company URL", name: "domain", type: "text" },
@@ -248,71 +250,86 @@ const SettingsPage: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    console.log(userData);
-  }, [userData]);
   return (
-    <div className="tw-m-4">
-      <Typography variant="h4" className="tw-mb-4 tw-text-black tw-font-normal">
+    <>
+      <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
         Settings
+        <HtmlTooltip
+          title={
+            <React.Fragment>
+              <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
+                This is where you can edit your account information and company
+                information.
+              </Typography>
+            </React.Fragment>
+          }
+        >
+          <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
+        </HtmlTooltip>
       </Typography>
-      <Paper elevation={1} className="tw-p-4 tw-mb-4 tw-rounded-lg tw-bg-white">
-        <Typography
-          variant="h5"
-          className="tw-mb-4 tw-text-black tw-font-normal"
+      <Grid className="tw-my-5" />
+      <div className="tw-m-4">
+        <Paper
+          elevation={1}
+          className="tw-p-4 tw-mb-4 tw-rounded-lg tw-bg-white"
         >
-          Company
-        </Typography>
-        <Grid container spacing={3}>
-          {companyFields.map((field, index) => (
-            <Grid item xs={6} key={index}>
-              {renderField(field, "team")}
+          <Typography
+            variant="h5"
+            className="tw-mb-4 tw-text-black tw-font-normal"
+          >
+            Company
+          </Typography>
+          <Grid container spacing={3}>
+            {companyFields.map((field, index) => (
+              <Grid item xs={6} key={index}>
+                {renderField(field, "team")}
+              </Grid>
+            ))}
+            <Grid item xs={12} className="tw-flex tw-justify-end">
+              <Button
+                variant="contained"
+                className="tw-bg-primary tw-mt-2"
+                onClick={handleSaveTeamInfo}
+              >
+                Save Company Info
+              </Button>
             </Grid>
-          ))}
-          <Grid item xs={12} className="tw-flex tw-justify-end">
-            <Button
-              variant="contained"
-              className="tw-bg-primary tw-mt-2"
-              onClick={handleSaveTeamInfo}
-            >
-              Save Company Info
-            </Button>
           </Grid>
-        </Grid>
-      </Paper>
-      <Paper elevation={2} className="tw-p-4 tw-rounded-lg tw-bg-white">
-        <Typography
-          variant="h5"
-          className="tw-mb-4 tw-text-black tw-font-normal"
-        >
-          Your Info
-        </Typography>
-        <Grid container spacing={3}>
-          {userFields.map((field, index) => (
-            <Grid item xs={6} key={index}>
-              {renderField(field, "user")}
-            </Grid>
-          ))}
-          <Grid item xs={12} className="tw-flex tw-justify-end">
-            {/* <Button
+        </Paper>
+        <Paper elevation={2} className="tw-p-4 tw-rounded-lg tw-bg-white">
+          <Typography
+            variant="h5"
+            className="tw-mb-4 tw-text-black tw-font-normal"
+          >
+            Your Info
+          </Typography>
+          <Grid container spacing={3}>
+            {userFields.map((field, index) => (
+              <Grid item xs={6} key={index}>
+                {renderField(field, "user")}
+              </Grid>
+            ))}
+            <Grid item xs={12} className="tw-flex tw-justify-end">
+              {/* <Button
               variant="contained"
               className="tw-bg-blue-400"
               color="primary"
             >
               Reset Password
             </Button> */}
-            <Button
-              variant="contained"
-              color="primary"
-              className="tw-mr-2 tw-bg-primary"
-              onClick={handleSaveUserInfo}
-            >
-              Save Your Info
-            </Button>
+              <Button
+                variant="contained"
+                color="primary"
+                className="tw-mr-2 tw-bg-primary"
+                onClick={handleSaveUserInfo}
+              >
+                Save Your Info
+              </Button>
+            </Grid>
           </Grid>
-        </Grid>
-      </Paper>
-    </div>
+        </Paper>
+      </div>
+    </>
   );
 };
 

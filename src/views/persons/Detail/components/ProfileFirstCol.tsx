@@ -1,23 +1,17 @@
-import React from "react";
 import { Avatar, Button, Tooltip, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
 import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
 import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
 import { usePersonStats } from "../../../../hooks/persons/usePersonStats";
+import EditableName from "./EditableName";
 
 type ProfileFirstColTypes = {
   data: any;
+  editMode: boolean;
 };
 
-const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
-  let {
-    id,
-    personStatData,
-    setPersonStatData,
-    isLoading,
-    setIsLoading,
-    getPersonDetailStat,
-  } = usePersonStats();
+const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
+  let { personStatData } = usePersonStats();
 
   return (
     <>
@@ -33,7 +27,11 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
         <div className="tw-flex tw-flex-col tw-items-start">
           {/*name*/}
           <Typography className="tw-text-[25px] tw-font-semibold tw-text-black tw-tracking-[0.5px]">
-            {`${data?.first_name || ""} ${data?.last_name || ""}`}
+            {editMode ? (
+              <EditableName data={data} editMode={editMode} />
+            ) : (
+              `${data?.first_name || ""} ${data?.last_name || ""}`
+            )}
           </Typography>
           {/*email*/}
           {data?.work_email && (
@@ -93,7 +91,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Opened
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.opened || "0"}
+            {data?.total_opened || "0"}
           </Typography>
         </div>
         <div>
@@ -101,7 +99,7 @@ const ProfileFirstCol = ({ data }: ProfileFirstColTypes) => {
             Clicked
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.clicked || "0"}
+            {data?.total_click_count || "0"}
           </Typography>
         </div>
         <div>
