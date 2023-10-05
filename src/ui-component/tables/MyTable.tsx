@@ -196,6 +196,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
               <IndeterminateCheckbox
                 // @ts-ignore
                 {...row.getToggleRowSelectedProps()}
+                disabled={row.original.got_data ? undefined : true}
               />
             </>
           ),
@@ -274,7 +275,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
 
   const IndeterminateCheckbox = forwardRef(
     // @ts-ignore
-    ({ indeterminate, ...rest }, ref) => {
+    ({ indeterminate, disabled, ...rest }, ref) => {
       const defaultRef = useRef();
       const resolvedRef: any = ref || defaultRef;
 
@@ -288,6 +289,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
             type="checkbox"
             className="tw-h-3.5 tw-h-3.5 tw-text-blue-600 tw-bg-gray-100 tw-border-gray-100 tw-rounded tw-border-opacity-50 tw-opacity-80 focus:tw-ring-blue-200 focus:tw-ring-1"
             ref={resolvedRef}
+            disabled={disabled}
             {...rest}
           />
         </>
