@@ -44,21 +44,18 @@ export const usePersons = (
         searchFilterValue
       );
       if (res?.data) {
-        devLog(() => {
-          console.log("res?.data", res?.data);
-        });
-        // setTotal(res.data?.count);
-        // setPersonsData(res.data?.results);
-        setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-        // removeBodyLoader();
+        // Update state variables here
+        setPersonsData(res.data.results);
+        setTotal(res.data.count);
+        setIsLoading((prev) => ({ ...prev, onPage: false }));
         return res.data;
       }
-    } catch (e: any) {
-      devLogError(() => {
-        console.error(e?.response);
-      });
-      setIsLoading((prev: any) => ({ ...prev, onPage: false }));
-      return [];
+    } catch (e) {
+      // Handle errors gracefully and provide feedback to the user
+      setIsLoading((prev) => ({ ...prev, onPage: false }));
+      // You can set an error state here if needed
+      // setError(e);
+      return null;
     }
   };
 
@@ -73,9 +70,11 @@ export const usePersons = (
   });
 
   useEffect(() => {
-    if (_personsData && _personsData?.results?.length > 0) {
-      setPersonsData(_personsData?.results);
-      setTotal(_personsData?.count);
+    if (_personsData) {
+      if (_personsData?.results?.length > 1) {
+        setPersonsData(_personsData?.results);
+        setTotal(_personsData?.count);
+      }
     }
   }, [_personsData, _personsData?.count, _personsData?.results]);
 
