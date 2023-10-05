@@ -15,6 +15,7 @@ export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
   const [open, setOpen] = useState<boolean>(false);
   const [data, setData] = useState<any>(null);
+  const [showDraft, setShowDraft] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     regeneratePlaybook: false,
@@ -131,6 +132,8 @@ export const usePlaybook = (load: boolean = true) => {
     handleOpen,
     handleClose,
     regeneratePlaybook,
+    showDraft,
+    setShowDraft,
     updateProspectSequenceEvent,
   };
 };

@@ -469,6 +469,7 @@ const DraftEmail = ({
       }
     }
   };
+  console.log({ selectedData });
 
   return (
     <>
@@ -540,7 +541,7 @@ const DraftEmail = ({
                 </span>
               </LoadingButton>
             )}
-            {selectedSequenceEvent?.scheduledEmail !== null && (
+            {/* {selectedSequenceEvent?.scheduledEmail !== null && (
               <LoadingButton
                 type="button"
                 variant="outlined"
@@ -555,7 +556,7 @@ const DraftEmail = ({
                   Regenerate
                 </span>
               </LoadingButton>
-            )}
+            )} */}
           </div>
         </div>
       </div>
