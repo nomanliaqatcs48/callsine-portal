@@ -9,6 +9,10 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import ErrorIcon from "@mui/icons-material/ErrorOutline";
 
+import { useDispatch, useSelector } from "react-redux";
+import { setShowDraft } from "src/store/playbooks/showDraftSlice";
+import { RootState } from "src/store";
+
 import { MouseEvent, useState } from "react";
 import { devLog } from "../../../../../../helpers/logs";
 import xss from "xss";
@@ -30,14 +34,14 @@ const PlaybookList = ({
   setSelectedIndex,
   setSelectedData,
   setSelectedSequenceEvent,
-}: any) => {
+}: PlaybookListProps) => {
   let countIndexForEmailSubject: number = 0;
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
   };
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
+  const dispatch = useDispatch();
 
-  console.log({ data });
   const subtext = (item: any) => {
     if (item.status === "generated_email" && item?.promptResponse) {
       let strippedString = item?.promptResponse?.text?.replace(
@@ -150,6 +154,7 @@ const PlaybookList = ({
                 className="tw-transition-all tw-duration-700 tw-ease-linear"
                 selected={selectedIndex === idx}
                 onClick={(event) => {
+                  dispatch(setShowDraft(false));
                   handleListItemClick(event, idx);
                   if (item?.status === "generated_email") {
                     setSelectedData(item?.promptResponse);

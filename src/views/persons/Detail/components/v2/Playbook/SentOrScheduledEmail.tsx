@@ -1,6 +1,6 @@
 import { useLayoutEffect, useState } from "react";
-import { Tooltip } from "@mui/material";
-import { IconTrash } from "@tabler/icons-react";
+import { Button, Tooltip } from "@mui/material";
+import { IconEdit, IconTrash } from "@tabler/icons-react";
 import moment from "moment-timezone";
 import xss from "xss";
 import { ReactComponent as UserIcon } from "../../../../../../assets/images/svg/user.svg";
@@ -17,6 +17,7 @@ type SentOrScheduledEmailTypes = {
   selectedData: any;
   position: any;
   selectedSequenceEvent: any;
+  showDraftFn: any;
 };
 
 const SentOrScheduledEmail = ({
@@ -24,6 +25,7 @@ const SentOrScheduledEmail = ({
   onLoadApi,
   selectedData,
   selectedSequenceEvent,
+  showDraftFn,
 }: SentOrScheduledEmailTypes) => {
   const [fromEmailDetail, setFromEmailDetail] = useState<any>(null);
   let { id: personId } = useEmailsTab(false);
@@ -69,7 +71,7 @@ const SentOrScheduledEmail = ({
       });
     }
   };
-  console.log({ selectedData });
+
   return (
     <>
       <div
@@ -120,6 +122,23 @@ const SentOrScheduledEmail = ({
           </div>
           {/*right*/}
           <div>
+            <Tooltip title="Edit">
+              <Button
+                disableElevation
+                type="button"
+                variant="text"
+                color="inherit"
+                onClick={showDraftFn}
+                // {...props}
+              >
+                <IconEdit
+                  strokeWidth={3}
+                  size={18}
+                  className="tw-text-green-600"
+                />
+              </Button>
+            </Tooltip>
+
             <DeleteProspectSequence
               id={selectedSequenceEvent?.id}
               personId={Number(personId)}
@@ -131,7 +150,7 @@ const SentOrScheduledEmail = ({
               <IconTrash
                 strokeWidth={3}
                 size={18}
-                style={{ color: "#778da9" }}
+                className="tw-text-red-600"
               />
             </DeleteProspectSequence>
           </div>
@@ -146,6 +165,7 @@ const SentOrScheduledEmail = ({
           </Tooltip>
         </span>
       </div>
+
       <div className={`subject-container ${containers}`}>
         <h3 className="tw-text-black tw-text-lg tw-font-semibold tw-pb-5 xl:tw-text-[1.4rem]">
           {selectedData?.subject}
