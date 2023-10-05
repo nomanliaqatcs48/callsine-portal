@@ -1,44 +1,38 @@
-import { useEffect, createContext, ReactNode, useMemo } from "react";
+import { useEffect, createContext, ReactNode, useMemo, useState } from "react";
 import ReconnectingWebSocket from "reconnecting-websocket";
 
 interface WebsocketContextType {
-  // Define any context properties you need here
   socket: ReconnectingWebSocket;
+  responsePayload: any; // Include responsePayload
 }
 
 const WebsocketContext = createContext<WebsocketContextType | null>(null);
 
 interface WebsocketProviderProps {
   children: ReactNode;
-  userId: string; // Add a userId prop
+  userId: string;
 }
 
 const useWebsocket = (id: string) => {
-  // Create a WebSocket connection with a dynamic URL
   const socketUrl = `ws://staging-api.callsine.com/ws/users/${id}/`;
   const socket = useMemo(() => {
     return new ReconnectingWebSocket(socketUrl);
   }, [socketUrl]);
 
-  // Initialize any WebSocket-related logic here
-  // For example, handle WebSocket events and manage state
+  const [responsePayload, setResponsePayload] = useState<any>(null);
 
   useEffect(() => {
-    // Connect to the WebSocket server when the component mounts
     socket.addEventListener("open", () => {
-      console.log("WebSocket connected"); 
-    });
- 
-    // Add a message event listener to handle incoming messages
-    socket.addEventListener("message", (event) => {
-      console.log("test from receiving socket msg");
-      const messageData = JSON.parse(event.data); // Assuming your server sends JSON messages
-      console.log("Received message from server:", messageData);
-      // alert(messageData)
-      // You can handle the incoming message data here, update state, etc.
+      console.log("WebSocket connected");
     });
 
-    // Clean up the WebSocket connection when the component unmounts
+    socket.addEventListener("message", (event) => {
+      console.log("test from receiving socket msg");
+      const messageData = JSON.parse(event.data);
+      // console.log("Received message from server context:", messageData);
+      setResponsePayload(messageData); // Update the response payload state with the received data
+    });
+
     return () => {
       socket.close();
     };
@@ -46,6 +40,7 @@ const useWebsocket = (id: string) => {
 
   const contextValue: WebsocketContextType = {
     socket,
+    responsePayload, // Include the response payload in the context value
   };
 
   return contextValue;

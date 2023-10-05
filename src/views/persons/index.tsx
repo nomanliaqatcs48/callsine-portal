@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { Button, Divider, Grid, Paper, Typography } from "@mui/material";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/people/utils";
@@ -92,8 +92,16 @@ const PersonsPage = () => {
 
   return (
     <>
-      {console.log(personsData)}
+      {console.log(auth.id)}
       <WebsocketProvider userId={auth.id}>
+        <WebsocketContext.Consumer>
+          {(value: any) => {
+            if (value.responsePayload) {
+              console.log(value.responsePayload);
+            }
+            return null; 
+          }}
+        </WebsocketContext.Consumer>
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           People
         </Typography>
