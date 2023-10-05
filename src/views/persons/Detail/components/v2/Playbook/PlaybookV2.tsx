@@ -18,14 +18,13 @@ import { useFetchProspectSequenceEvent } from "../../../../../../hooks/persons/u
 import { setPlaybookV2Service } from "../../../../../../services/prompts.service";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
-import DraftEmail from "./DraftEmail";
-import SentOrScheduledEmail from "./SentOrScheduledEmail";
 import PlaybookList from "./PlaybookList";
 import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { getPlaybooks } from "../../../../../../services/prompts.service";
 import { useAsyncDebounce } from "react-table";
 import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
 import { load } from "../../../../../../utils/storage";
+import EditTypeHandler from "./EditTypeHandler";
 
 type PersonProps = {
   personData: any;
@@ -39,6 +38,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isOverwrite, setIsOverwrite] = useState<boolean>(false);
+
   const {
     data: playBookData,
     setData: setPlayBookData,
@@ -241,31 +241,14 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
           <Grid item xs={12} sm={7} lg={8}>
             {selectedIndex !== null && (
               <>
-                {_.includes([0, 1, 2, 3], selectedData?.status) ? (
-                  <SentOrScheduledEmail
-                    onLoadApi={() => {
-                      getPersonDetail();
-                      setSelectedData(null);
-                      setSelectedIndex(null);
-                    }}
-                    selectedData={selectedData}
-                    position={selectedIndex + 1}
-                    selectedSequenceEvent={selectedSequenceEvent}
-                  />
-                ) : (
-                  <DraftEmail
-                    position={selectedIndex + 1}
-                    onLoadApi={() => {
-                      getPersonDetail();
-                      setSelectedData(null);
-                      setSelectedIndex(null);
-                    }}
-                    playBookData={playBookData}
-                    selectedData={selectedData}
-                    selectedSequenceEvent={selectedSequenceEvent}
-                    personData={personData}
-                  />
-                )}
+                <EditTypeHandler
+                  selectedData={selectedData}
+                  selectedIndex={selectedIndex}
+                  selectedSequenceEvent={selectedSequenceEvent}
+                  playBookData={playBookData}
+                  personData={personData}
+                  getPersonDetail={getPersonDetail}
+                />
               </>
             )}
 
