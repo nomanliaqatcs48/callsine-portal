@@ -10,7 +10,8 @@ import {
   ListItemAvatar,
   Tooltip,
 } from "@mui/material";
-import { IconTrash } from "@tabler/icons-react";
+import { IconTrash, IconCircleX, IconCircleCheck } from "@tabler/icons-react";
+// import { IconTrash, IconCircleX, IconCircleCheck } from "@tabler/icons-react";
 import { ReactComponent as UserIcon } from "../../assets/images/svg/user.svg";
 import { ReactComponent as FacebookIcon } from "../../assets/images/svg/facebook.svg";
 import { ReactComponent as LinkedinIcon } from "../../assets/images/svg/linkedin.svg";
@@ -381,6 +382,34 @@ export const _columns: any = () => {
             res = cell?.value.map((item: any) => item.name).join(", ");
           }
           return res;
+        },
+      },
+      {
+        Header: "Data Available",
+        disableSortBy: true,
+        accessor: "data_availability",
+        width: 50,
+        minWidth: 50,
+        Cell: (cell: any) => {
+          return (
+            <>
+              {cell?.row?.original?.got_data ? (
+                <IconCircleCheck
+                  style={{ color: theme.palette.success.main }}
+                  size="20"
+                  strokeWidth={3}
+                  className=""
+                />
+              ) : (
+                <IconCircleX
+                  style={{ color: theme.palette.error.main }}
+                  size="20"
+                  strokeWidth={3}
+                  className=""
+                />
+              )}
+            </>
+          );
         },
       },
       {
