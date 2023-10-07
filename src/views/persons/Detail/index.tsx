@@ -179,7 +179,7 @@ const PersonDetailPage = () => {
         {value === 0 && <PlaybookV2 personData={data} />}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {value === 1 && <Emails />}
+        {value === 1 && <EmailThread />}
       </TabPanel>
 
       <TabPanel value={value} index={2}>
@@ -189,7 +189,7 @@ const PersonDetailPage = () => {
         {value === 3 && <CustomFieldsTab data={data} />}
       </TabPanel>
       <TabPanel value={value} index={4}>
-        {value === 4 && <EmailThread />}
+        {value === 4 && <Emails />}
       </TabPanel>
     </>
   );

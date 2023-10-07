@@ -1,0 +1,46 @@
+import { useEffect, useRef } from "react";
+
+export interface EmailContainerProps {
+  htmlEmailContent: string;
+}
+
+export const EmailContainer: React.FC<EmailContainerProps> = ({
+  htmlEmailContent,
+}) => {
+  const divRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (divRef.current) {
+      const shadowRoot = divRef.current.attachShadow({ mode: "open" });
+      shadowRoot.innerHTML = `<div >${htmlEmailContent}</div>`;
+    }
+  }, [htmlEmailContent]);
+
+  return <div ref={divRef}></div>;
+};
+
+export const cleanBody = (html_body: any) => {
+  const match = html_body.match(/<body[^>]*>([\w|\W]*)<\/body>/im);
+  let body;
+  if (match && match[1]) {
+    html_body = match[1];
+  }
+  console.log(body);
+
+  body = removeAfterFrom(html_body);
+  body = removeTrackingPixel(body);
+  return body;
+};
+
+const removeTrackingPixel = (html: string) => {
+  const regex =
+    /<img[^>]* src="https:\/\/api\.callsine\.com\/track\/\d+\/"[^>]*>\s*(<\/img>)?/g;
+  return html.replace(regex, "");
+};
+const removeAfterFrom = (str: string) => {
+  const index = str.indexOf("From:");
+  if (index !== -1) {
+    return str.substring(0, index);
+  }
+  return str;
+};
