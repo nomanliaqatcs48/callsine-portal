@@ -29,12 +29,21 @@ export const cleanBody = (html_body: any) => {
 
   body = removeAfterFrom(html_body);
   body = removeTrackingPixel(body);
+  body = removeClickTracking(body);
+  body = removeHR(body);
   return body;
 };
-
+const removeHR = (html: string): string => {
+  const regex = /<hr tabindex="-1" style="display:inline-block; width:98%">/g;
+  return html.replace(regex, "");
+};
 const removeTrackingPixel = (html: string) => {
-  const regex =
-    /<img[^>]* src="https:\/\/api\.callsine\.com\/track\/\d+\/"[^>]*>\s*(<\/img>)?/g;
+  const regex = /src="https:\/\/api\.callsine\.com\/track\/\d+\//g;
+  return html.replace(regex, "");
+};
+
+const removeClickTracking = (html: string) => {
+  const regex = /http.*:\/\/api\.callsine\.com\/track_click\/\d+/g;
   return html.replace(regex, "");
 };
 const removeAfterFrom = (str: string) => {

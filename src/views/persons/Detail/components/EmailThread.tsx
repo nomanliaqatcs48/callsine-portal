@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+import classNames from "classnames";
 
 import { cleanBody, EmailContainer } from "src/utils/people/emailThread";
 
@@ -15,6 +16,12 @@ import { formatDate, formatDateWithTime } from "src/utils/date";
 import Spinner from "src/views/inbox/ui/miniLoader";
 import ReplyIcon from "src/views/inbox/icons/ReplyIcon";
 import SendIcon from "src/views/inbox/icons/SendIcon";
+
+import { ClickTrackDataTypes } from "src/types/person";
+import { useEmailsTab } from "src/hooks/persons/useEmailsTab";
+import { devLog, devLogError } from "src/helpers/logs";
+import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
+import { ToastError, ToastSuccess } from "src/helpers/toast";
 
 interface Thread {
   id: number;
@@ -39,14 +46,19 @@ const EmailThread: React.FC = () => {
 
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
   const [showEditor, setShowEditor] = useState(false);
+  const [showSendButton, setShowSendButton] = useState(true);
   const [replyMsg, setReplyMsg] = useState("");
+  let { showStatus } = useEmailsTab(false);
 
-  let { emailThreads } = useEmailThread(true, {
+  let { emailThreads: originalEmailThreads } = useEmailThread(true, {
     limit: 99999,
     offset: 0,
   });
 
-  console.log({ emailThreads });
+  const emailThreads = useMemo(() => {
+    return originalEmailThreads.filter((email: any) => email.status !== 2); //exclude status 2 "scheduled";
+  }, [originalEmailThreads]);
+
   useEffect(() => {
     console.log("useEffect triggered"); // To ensure the useEffect is being run
     console.log("emailThreads:", emailThreads); // To inspect the emailThreads array
@@ -56,6 +68,22 @@ const EmailThread: React.FC = () => {
       handleSelectThread(emailThreads[0] as any);
     }
   }, [emailThreads]);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout; // Declare timer variable
+
+    if (showEditor) {
+      timer = setTimeout(() => {
+        setShowSendButton(true);
+      }, 3000); // Delay of 1 second
+    } else {
+      setShowSendButton(false); // Optionally reset it if showEditor becomes false
+    }
+
+    return () => {
+      clearTimeout(timer); // Cleanup timer when component unmounts or showEditor changes
+    };
+  }, [showEditor]);
 
   const handleSelectThread = async (item: Thread) => {
     console.log("Selected", item);
@@ -86,6 +114,11 @@ const EmailThread: React.FC = () => {
 
   const handleReply = () => {
     setShowEditor(true);
+    const timer = setTimeout(() => {
+      setShowSendButton(true);
+    }, 1000); // 3000ms = 3 seconds
+
+    clearTimeout(timer);
     console.log("showEditor:", showEditor);
   };
 
@@ -101,15 +134,34 @@ const EmailThread: React.FC = () => {
     };
     console.log(data);
 
-    let res;
-    if (selectedThread[0]["provider"] === "outlook") {
-      res = await outLookThreadReplyService(data);
-    } else {
-      res = await gmailThreadReplyService(data);
-    }
-
-    if (res?.data) {
-      console.log("res?.data", res.data);
+    insertBodyLoader();
+    try {
+      let res: any;
+      if (selectedThread[0]["provider"] === "outlook") {
+        res = await outLookThreadReplyService(data);
+      } else {
+        res = await gmailThreadReplyService(data);
+      }
+      devLog(() => {
+        console.log({ res });
+      });
+      if (res.status === 200) {
+        devLog(() => {
+          console.log("res?.data", res?.data);
+        });
+        ToastSuccess("Email successfully sent.");
+        setIsLoading((prev: any) => ({ ...prev, form: false }));
+        removeBodyLoader();
+        setShowEditor(false);
+        handleSelectThread(emailItem);
+      }
+    } catch (e: any) {
+      setShowEditor(false);
+      ToastError("Something went wrong!");
+      devLogError(() => {
+        console.error(e);
+      });
+      removeBodyLoader();
     }
   };
 
@@ -136,8 +188,10 @@ const EmailThread: React.FC = () => {
               <div
                 key={index}
                 className={`${
-                  selectedEmail === email.id ? " tw-border-blue-500" : ""
-                } tw-border-l-2 hover:tw-border-blue-500 tw-my-2 tw-py-4 tw-px-2 hover:tw-bg-slate-200 hover:tw-cursor-pointer `}
+                  selectedEmail === email.id
+                    ? " tw-border-blue-500 tw-bg-slate-100"
+                    : ""
+                } tw-border-l-8 hover:tw-border-blue-500 tw-my-2 tw-py-4 tw-px-2 hover:tw-bg-slate-200 hover:tw-cursor-pointer `}
                 onClick={() => handleSelectThread(email)}
               >
                 <div className="tw-flex-grow tw-text-xs tw-block">
@@ -169,25 +223,52 @@ const EmailThread: React.FC = () => {
       />
 
       {/* Right Column */}
-      <div className="tw-relative tw-p-4 tw-w-3/4">
+      <div className="tw-relative tw-p-4 tw-w-3/4 ">
         {isLoading ? (
           <Spinner />
         ) : selectedThread.length > 0 ? (
           <>
+            {/* Stats */}
+            <div className="tw-flex tw-flex-col tw-mb-6 tw-border-b-4 tw-border-gray-700 ">
+              <div>
+                <strong>Status:&nbsp;</strong>
+                {emailItem?.status !== null ? (
+                  showStatus(emailItem?.status)
+                ) : (
+                  <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+                )}
+              </div>
+              <div>
+                <strong>Opened:&nbsp;</strong>
+                {emailItem?.trackings?.opened ? "Yes" : "No"}
+              </div>
+
+              {emailItem?.click_tracking?.map(
+                (data: ClickTrackDataTypes, index: number) => (
+                  <div className="tw-ml-2" key={index}>
+                    <span>
+                      {data.url} - {data.click_count} clicks
+                    </span>
+                  </div>
+                )
+              )}
+            </div>
+            {/* Email Messages */}
             {selectedThread.map((thread, index) => (
               <div
                 key={index}
-                className={
-                  emailItem.mail_account === thread.from
-                    ? "tw-bg-green-50"
-                    : "tw-bg-red-50"
-                }
+                className={classNames(
+                  "tw-mb-4 tw-border tw-rounded tw-border-slate-400 tw- tw-shadow-md tw-px-1 tw-py-2",
+                  {
+                    "tw-bg-green-50": emailItem.mail_account === thread.from,
+                    "tw-bg-red-50": emailItem.mail_account !== thread.from,
+                  }
+                )}
               >
-                <div className="tw-border tw-mb-2 tw-rounded tw-p-3">
-                  <div className="tw-text-xs tw-text-gray-500 tw-italic">
+                <div className="tw-border tw-rounded ">
+                  <div className="tw-text-xs tw-mb-1 tw-font-medium">
                     {formatDateWithTime(thread.date)}
                   </div>
-                  {/* assuming thread has an 'id' field */}
                   <div className="tw-flex tw-justify-between">
                     <div className="">
                       From{" "}
@@ -223,24 +304,26 @@ const EmailThread: React.FC = () => {
                     </div>
                   </div>
                 </div>
-                <div className="tw-font-thin hover:tw-bg-slate-200 tw-px-6 tw-py-4 tw-border-t tw-border-slate-200 tw-mb-1">
+                <div className="tw-font-thin hover:tw-bg-slate-200 tw-px-6 tw-py-2 tw-border-t tw-border-slate-200 tw-mb-1">
                   <EmailContainer htmlEmailContent={cleanBody(thread.body)} />
                 </div>
-
-                {index === selectedThread.length - 1 && !showEditor && (
-                  <div
-                    className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
-                    onClick={handleReply}
-                  >
-                    <ReplyIcon color="tw-text-blue-500" />
-                    <span className="tw-text-black">Reply</span>
-                  </div>
-                )}
               </div>
             ))}
           </>
         ) : (
-          <p className="tw-pt-4">Select a subject to see the details</p>
+          <p className="tw-pt-4 tw-text-lg">
+            Select a subject to see another details
+          </p>
+        )}
+
+        {!isLoading && !showEditor && selectedEmail && (
+          <div
+            className="tw-text-white tw-border-primary hover:tw-border-blue-400 tw-p-2 tw-my-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border-2 tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-blue-200 hover:tw-cursor-pointer"
+            onClick={handleReply}
+          >
+            <ReplyIcon color="tw-text-blue-500" />
+            <span className="tw-text-black">Reply</span>
+          </div>
         )}
 
         {showEditor && (
@@ -251,13 +334,15 @@ const EmailThread: React.FC = () => {
                 handleMyEditorOnChange(value);
               }}
             />
-            <div
-              onClick={handleSend}
-              className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
-            >
-              <SendIcon color="tw-text-blue-500" />
-              <span className="tw-text-black">Send</span>
-            </div>
+            {showSendButton && (
+              <div
+                onClick={handleSend}
+                className="tw-text-white tw-border-primary hover:tw-border-blue-400 tw-p-2 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-blue-200 hover:tw-cursor-pointer"
+              >
+                <SendIcon color="tw-text-blue-500" />
+                <span className="tw-text-black">Send</span>
+              </div>
+            )}
           </>
         )}
       </div>

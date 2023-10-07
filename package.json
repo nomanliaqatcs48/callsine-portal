@@ -111,6 +111,7 @@
     ]
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@types/lodash": "^4.14.194",
     "@types/mui-image": "^1.0.1",
     "@types/react-csv": "^1.1.3",
