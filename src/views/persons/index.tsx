@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Divider, Grid, Paper, Typography, Stack } from "@mui/material";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/people/utils";
@@ -25,6 +25,8 @@ import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 const PersonsPage = () => {
   const auth: any = useAuth();
 
+  const [websocketResponse, setWebsocketResponse] = useState<any>({});
+
   const {
     personsData,
     setPersonsData,
@@ -50,6 +52,10 @@ const PersonsPage = () => {
   const successfulUploadCsv = () => {
     getPeople();
     ToastSuccess("File successfully uploaded.");
+  };
+
+  const executeRefreshTable = () => {
+    getPeople();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {
@@ -91,14 +97,20 @@ const PersonsPage = () => {
       />
     );
   };
-  console.log({ personsData });
+
+  useEffect(() => {
+    if (websocketResponse) {      
+      executeRefreshTable();
+    }
+  }, [websocketResponse]);
+
   return (
     <>
       <WebsocketProvider userId={auth.id}>
         <WebsocketContext.Consumer>
           {(value: any) => {
             if (value.responsePayload) {
-              console.log(value.responsePayload);
+              setWebsocketResponse(value.responsePayload);
             }
             return null;
           }}
