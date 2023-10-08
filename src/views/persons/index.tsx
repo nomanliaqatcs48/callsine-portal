@@ -99,7 +99,11 @@ const PersonsPage = () => {
   };
 
   useEffect(() => {
-    if (websocketResponse) {      
+    if (
+      websocketResponse &&
+      websocketResponse.message &&
+      websocketResponse.message.event === "bulk_import"
+    ) {
       executeRefreshTable();
     }
   }, [websocketResponse]);
@@ -110,7 +114,7 @@ const PersonsPage = () => {
         <WebsocketContext.Consumer>
           {(value: any) => {
             if (value.responsePayload) {
-              setWebsocketResponse(value.responsePayload);
+              setWebsocketResponse(value.responsePayload.notification);
             }
             return null;
           }}
