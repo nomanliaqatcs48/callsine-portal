@@ -104,7 +104,7 @@ const SendLaterOauth = ({
         send_later: true,
         is_auto_schedule: data?.is_auto_schedule,
         days_interval: data?.days_interval,
-        in_reply_to: data?.id,
+
         from_email: data?.from_email,
         position: position,
         html_message: `<html><body>${

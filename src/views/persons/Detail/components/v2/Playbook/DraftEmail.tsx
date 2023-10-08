@@ -105,7 +105,7 @@ const DraftEmail = ({
         setValueHtmlMsg();
       }
 
-      // setValue("in_reply_to", "");
+      setValue("in_reply_to", selectedData?.in_reply_to);
       // setValue("from_email", "");
       setValue(
         "to",
