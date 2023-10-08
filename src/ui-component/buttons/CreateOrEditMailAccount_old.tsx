@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Button,
@@ -18,12 +18,15 @@ import {
 import { gridSpacing } from "../../store/constant";
 import { ErrorMessage } from "@hookform/error-message";
 import { useForm } from "react-hook-form";
-
-import { updateMailAccountService } from "../../services/mail-accounts.service";
+import { devLog, devLogError } from "../../helpers/logs";
+import {
+  createMailAccountService,
+  testMailAccountService,
+  updateMailAccountService,
+} from "../../services/mail-accounts.service";
 import MyEditor from "../editor/MyEditor";
-
+import { emailAddressPattern } from "../../helpers/forms";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import { devLogError } from "src/helpers/logs";
 
 type CreateOrEditMailAccountTypes = {
   id?: number;
@@ -59,15 +62,13 @@ const CreateOrEditMailAccount = ({
     formState: { errors },
   } = useForm();
 
-  console.log({ defaultValue });
-
-  // useEffect(() => {
-  //   register("provider", {
-  //     required: "This is required field.",
-  //   });
-  //   register("signature");
-  //   setValue("provider", id ? defaultValue?.provider : null);
-  // }, [register, setValue, id, defaultValue.provider]);
+  useEffect(() => {
+    register("provider", {
+      required: "This is required field.",
+    });
+    register("signature");
+    setValue("provider", id ? defaultValue?.provider : null);
+  }, [register, setValue, id, defaultValue.provider]);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
@@ -86,7 +87,6 @@ const CreateOrEditMailAccount = ({
 
   const onThisEditSubmit = async (data: any) => {
     setMailAccountLoading((beforeVal: any) => ({ ...beforeVal, form: true }));
-    console.log({ data });
     try {
       const res = await updateMailAccountService(defaultValue?.id, data);
       if (res?.data) {
@@ -113,8 +113,65 @@ const CreateOrEditMailAccount = ({
     }
   };
 
+  const onThisAddSubmit = async (data: any) => {
+    setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let res = await createMailAccountService(data);
+      if (res?.data) {
+        ToastSuccess("New mail account successfully created.");
+
+        onLoadApi();
+        handleClose();
+        reset();
+        setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+      }
+      return;
+    } catch (e: any) {
+      ToastError("Something went wrong!");
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+      return;
+    }
+  };
+
+  const testMailAccount = async () => {
+    setMailAccountLoading((prev: any) => ({ ...prev, form: true }));
+    try {
+      let response = await testMailAccountService(Number(id));
+      if (response) {
+        devLog(() => {
+          console.log("testMailAccount() response", response);
+        });
+        ToastSuccess("Successfully tested.");
+        setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+      }
+    } catch (e: any) {
+      ToastError("Failed!");
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      setMailAccountLoading((prev: any) => ({ ...prev, form: false }));
+    }
+  };
+
   return (
     <>
+      {/*<Button
+        disableElevation
+        type="button"
+        variant={btnVariant}
+        color="primary"
+        onClick={() => {
+          handleOpen();
+          onClick();
+        }}
+        style={btnStyle}
+        {...other}
+      >
+        {btnText}
+      </Button>*/}
       <Button
         onClick={() => {
           handleOpen();
@@ -157,9 +214,11 @@ const CreateOrEditMailAccount = ({
                       label="Email Address"
                       type="email"
                       defaultValue={id ? defaultValue?.email : ""}
-                      value={defaultValue?.email}
                       fullWidth
-                      {...register("email")}
+                      {...register("email", {
+                        required: "This is required field.",
+                        pattern: emailAddressPattern,
+                      })}
                     />
                     <ErrorMessage
                       errors={errors}
@@ -171,6 +230,41 @@ const CreateOrEditMailAccount = ({
                       )}
                     />
                   </div>
+                  {/* <div>
+                    <Box className="tw-relative">
+                      <TextField
+                        error={!!errors.password}
+                        disabled={mailAccountLoading?.form}
+                        required
+                        margin="dense"
+                        id="password"
+                        label="Password"
+                        type={showPassword ? "text" : "password"}
+                        defaultValue={id ? defaultValue?.password : ""}
+                        fullWidth
+                        {...register("password", {
+                          required: "This is required field.",
+                        })}
+                      />
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword}
+                        onMouseDown={handleMouseDownPassword}
+                        className="tw-absolute tw-right-0 tw-inset-y-0"
+                      >
+                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </Box>
+                    <ErrorMessage
+                      errors={errors}
+                      name="password"
+                      render={({ message }) => (
+                        <FormHelperText sx={{ color: "error.main" }}>
+                          {message}
+                        </FormHelperText>
+                      )}
+                    />
+                  </div> */}
 
                   <div>
                     <TextField
@@ -210,9 +304,9 @@ const CreateOrEditMailAccount = ({
                         type="text"
                         defaultValue={id ? defaultValue?.last_name : ""}
                         fullWidth
-                        // {...register("last_name", {
-                        //   required: "This is required field.",
-                        // })}
+                        {...register("last_name", {
+                          required: "This is required field.",
+                        })}
                       />
                       <ErrorMessage
                         errors={errors}
@@ -291,7 +385,9 @@ const CreateOrEditMailAccount = ({
           >
             <div>
               <Button
-                onClick={handleSubmit((data) => onThisEditSubmit(data))}
+                onClick={handleSubmit((data) =>
+                  id ? onThisEditSubmit(data) : onThisAddSubmit(data)
+                )}
                 disabled={mailAccountLoading?.form}
                 variant="contained"
                 color="primary"
