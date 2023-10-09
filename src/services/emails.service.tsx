@@ -28,6 +28,13 @@ export const updateEmailService = async (
   return await http.put(`${endpoints.EMAILS}${id}/?person=${personId}`, data);
 };
 
+export const updateScheduleService = async (mailId: number, data: any) => {
+  return await http.patch(
+    `${endpoints.EMAILS}${mailId}/update-scheduled-time/`,
+    data
+  );
+};
+
 export const deleteEmailService = async (personId: number, id: number) => {
   return await http.delete(`${endpoints.EMAILS}${id}/?person=${personId}`);
 };

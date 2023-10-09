@@ -30,6 +30,7 @@ import {
 
 import { EmailDraftTypes } from "src/utils/types/mail";
 import SendLaterOauth from "src/ui-component/buttons/SendLaterOauth";
+import SendLaterOauthEditTime from "src/ui-component/buttons/SendLaterOauthEditTime";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -180,6 +181,7 @@ const DraftEmail = ({
     } else {
       setValue("parent_email_html_message", "");
     }
+    setValue("id", selectedData.id);
     setTimeout(() => {
       setIsLoading((prev: any) => ({
         ...prev,
@@ -476,57 +478,77 @@ const DraftEmail = ({
       <div className={`send-container ${_styles?.containers} xl:tw-py-5`}>
         <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
           {/*left*/}
-          <div className="tw-flex tw-justify-center tw-items-center">
-            <LoadingButton
-              type="button"
-              variant="outlined"
-              onClick={handleSubmit((data) =>
-                onSubmitSendViaOauth(data as EmailDraftTypes)
-              )}
-              className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
-              loading={isLoading?.form}
-              disabled={isLoading?.form}
-            >
-              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
-                Send Via Mail Account
-              </span>{" "}
-              <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
-            </LoadingButton>
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-mx-4"
-            />
+          {/* {only show when not editing} */}
+          {!selectedData?.id && (
+            <>
+              <LoadingButton
+                type="button"
+                variant="outlined"
+                onClick={handleSubmit((data) =>
+                  onSubmitSendViaOauth(data as EmailDraftTypes)
+                )}
+                className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+                loading={isLoading?.form}
+                disabled={isLoading?.form}
+              >
+                <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
+                  Send Via Mail Account
+                </span>{" "}
+                <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
+              </LoadingButton>
 
-            <SendLaterOauth
-              useForm={{
-                register,
-                unregister,
-                setValue,
-                handleSubmit,
-                reset,
-                getValues,
-                trigger,
-                setError,
-                errors,
-              }}
-              onLoadApi={onLoadApi}
-              loading={isLoading?.form}
-              disabled={isLoading?.form}
-              position={position}
-            />
-          </div>
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                className="tw-mx-4"
+              />
+
+              <SendLaterOauth
+                useForm={{
+                  register,
+                  unregister,
+                  setValue,
+                  handleSubmit,
+                  reset,
+                  getValues,
+                  trigger,
+                  setError,
+                  errors,
+                }}
+                onLoadApi={onLoadApi}
+                loading={isLoading?.form}
+                disabled={isLoading?.form}
+                position={position}
+              />
+            </>
+          )}
+
+          {selectedData?.id && selectedData?.status === 2 && (
+            <div className="tw-flex tw-justify-center tw-items-center">
+              <SendLaterOauthEditTime
+                useForm={{
+                  register,
+                  unregister,
+                  setValue,
+                  handleSubmit,
+                  reset,
+                  getValues,
+                  trigger,
+                  setError,
+                  errors,
+                }}
+                onLoadApi={onLoadApi}
+                loading={isLoading?.form}
+                disabled={isLoading?.form}
+                position={position}
+              />
+            </div>
+          )}
+
           {/*right*/}
           <div className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-1">
-            {/*<Button onClick={() => null} className="tw-min-w-min">
-              <IconTrash
-                strokeWidth={3}
-                size={18}
-                style={{ color: "#778da9" }}
-              />
-            </Button>*/}
             {selectedData?.id && (
               <LoadingButton
                 type="button"
@@ -541,22 +563,6 @@ const DraftEmail = ({
                 </span>
               </LoadingButton>
             )}
-            {/* {selectedSequenceEvent?.scheduledEmail !== null && (
-              <LoadingButton
-                type="button"
-                variant="outlined"
-                onClick={() =>
-                  regeneratePlaybook(selectedSequenceEvent, onLoadApi)
-                }
-                className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
-                loading={false}
-                disabled={false}
-              >
-                <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
-                  Regenerate
-                </span>
-              </LoadingButton>
-            )} */}
           </div>
         </div>
       </div>
