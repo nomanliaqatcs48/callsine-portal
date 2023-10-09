@@ -181,7 +181,7 @@ const DraftEmail = ({
     } else {
       setValue("parent_email_html_message", "");
     }
-    setValue("id", selectedData.id);
+    setValue("id", selectedData?.id);
     setTimeout(() => {
       setIsLoading((prev: any) => ({
         ...prev,
@@ -481,7 +481,7 @@ const DraftEmail = ({
 
           {/* {only show when not editing} */}
           {!selectedData?.id && (
-            <>
+            <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
               <LoadingButton
                 type="button"
                 variant="outlined"
@@ -493,7 +493,7 @@ const DraftEmail = ({
                 disabled={isLoading?.form}
               >
                 <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
-                  Send Via Mail Account
+                  Send
                 </span>{" "}
                 <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
               </LoadingButton>
@@ -522,7 +522,7 @@ const DraftEmail = ({
                 disabled={isLoading?.form}
                 position={position}
               />
-            </>
+            </div>
           )}
 
           {selectedData?.id && selectedData?.status === 2 && (

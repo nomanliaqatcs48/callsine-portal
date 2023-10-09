@@ -128,14 +128,14 @@ const SendLaterOauth = ({
   return (
     <>
       <LoadingButton
+        type="button"
+        variant="outlined"
         onClick={useForm?.handleSubmit((data: any) => clickSendLater(data))}
-        className="tw-py-2 tw-px-0 sm:tw-py-3 sm:tw-px-1 sm:tw-min-w-min"
+        className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
         {...props}
       >
-        <ScheduleSendOutlinedIcon sx={{ fontSize: 24, color: "#778da9" }} />
-        <span className="tw-text-[#778da9] tw-text-xs tw-px-2">
-          Send Later Via Mail Account
-        </span>
+        <span className="tw-text-primary tw-text-xs tw-px-2">SEND LATER</span>
+        <ScheduleSendOutlinedIcon sx={{ fontSize: 20, color: "#1976d2" }} />
       </LoadingButton>
 
       {open && (
@@ -149,7 +149,7 @@ const SendLaterOauth = ({
           aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">Send Later Via Mail Account</DialogTitle>
+          <DialogTitle variant="h4">Send Later</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
