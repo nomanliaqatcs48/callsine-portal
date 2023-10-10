@@ -139,9 +139,9 @@ const Banner = () => {
               }}
             >
               <Box className="tw-flex tw-flex-col tw-gap-2 lg:tw-flex-row lg:tw-gap-5">
-                <ButtonV1 variant="white" onClick={() => navigate("/signup")}>
+                {/* <ButtonV1 variant="white" onClick={() => navigate("/signup")}>
                   Start Free
-                </ButtonV1>
+                </ButtonV1> */}
                 <ButtonV1
                   variant="transparent"
                   onClick={() => {
