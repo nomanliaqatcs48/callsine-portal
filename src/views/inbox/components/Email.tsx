@@ -17,13 +17,15 @@ const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
       key={item.recipient}
       direction="row"
       padding={2}
-      justifyItems="center"
+      justifyContent="space-between"
       alignItems="center"
       spacing={2}
+      maxWidth={450}
+      minWidth={450}
       className="tw-cursor-pointer tw-border-b tw-border-[#f0f1f3] hover:tw-bg-gray-100 tw-transition-colors tw-duration"
     >
-      <Avatar {...stringAvatar(item?.recipient_name || item.recipient)} />
-      <Stack direction="column" spacing={1}>
+      <Stack direction="row" spacing={1}>
+        <Avatar {...stringAvatar(item?.recipient_name || item.recipient)} />
         <Stack
           direction="row"
           justifyContent="space-between"
@@ -34,7 +36,7 @@ const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
           </Typography>
         </Stack>
       </Stack>
-      <span className=" tw-px-2 tw-text-left tw-flex tw-justify-between tw-text-sm">
+      <span className="tw-px-2 tw-text-left tw-flex tw-justify-between tw-text-sm">
         <span
           className={`tw-ml-2 tw-text-gray-300 ${
             isSelected ? "tw-rotate-180" : ""

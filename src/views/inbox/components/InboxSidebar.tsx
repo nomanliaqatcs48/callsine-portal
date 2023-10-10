@@ -14,17 +14,17 @@ const COL_WIDTH = 400;
 interface InboxSidebarProps {
   emailThreads: EmailThread[];
   onSelectThread: any;
+  onReset: any;
 }
 
 export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   emailThreads,
   onSelectThread,
+  onReset,
 }) => {
   const [selected, setSelected] = React.useState<number>(-1);
 
   const [selectedEmail, setSelectedEmail] = React.useState<number>(-1);
-
-  const [hiddenIndex, setHiddenIndex] = React.useState<number[]>([]);
 
   const [emails, setEmails] = React.useState<any>([]);
 
@@ -47,6 +47,8 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   const reset = () => {
     setEmails([]);
     setSelected(-1);
+    setSelectedEmail(-1);
+    onReset();
   };
 
   const handleOnPressBack = () => {
@@ -56,7 +58,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   const s = () => (selected >= 0 ? "calc(-100%)" : "0px");
 
   return (
-    <div className="tw-w-[400px]">
+    <div className="tw-w-[450px] tw-max-w-[450px]">
       <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative tw-h-[100px]">
         <div />
         <input
@@ -67,12 +69,11 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
       </div>
       <Stack
         direction="row"
-        divider={<Divider />}
         className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(85vh-130px)] tw-overflow-x-hidden"
       >
         <Stack
           direction="column"
-          className={`tw-w-[400px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
+          className={`tw-w-[450px] tw-max-w-[450px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
         >
           {emailThreads.map((item, index) => (
             <div
@@ -89,7 +90,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         </Stack>
 
         <div
-          className={`tw-flex-row tw-min-w-[400px] tw-max-w-[400px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
+          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
         >
           <Stack
             bgcolor={"#3dabd9"}
