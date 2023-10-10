@@ -36,14 +36,14 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
   return (
     <Stack
       direction="row"
-      justifyItems="center"
-      justifyContent="space-between"
+      justifyContent="flex-end"
       borderBottom={1}
       borderColor="#f0f1f3"
       paddingX={3}
       paddingY={2}
+      className="tw-h-[calc(6vh)]"
     >
-      <Stack spacing={1} direction="row" justifyItems="center">
+      {/* <Stack spacing={1} direction="row" justifyItems="center">
         <IconButton onClick={onPressBack}>
           <ArrowBack fontSize="small" />
         </IconButton>
@@ -69,8 +69,8 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
         <IconButton onClick={onPressNext}>
           <ChevronRight fontSize="small" />
         </IconButton>
-      </Stack>
-      <Stack spacing={1} direction="row" justifyItems="center">
+      </Stack> */}
+      <Stack spacing={1} direction="row">
         <IconButton onClick={onPressReply}>
           <Reply fontSize="small" />
         </IconButton>

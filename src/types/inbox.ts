@@ -2,7 +2,9 @@ export interface Thread {
   clicks: number;
   context: string | null;
   created_by: number;
-  created_date: string;
+  createdDateTime: string;
+  receivedDateTime: string;
+  sentDateTime: string;
   draft_id: string;
   failed_reason: string | null;
   from_email: number;

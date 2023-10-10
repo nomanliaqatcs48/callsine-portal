@@ -27,7 +27,7 @@ export function stringAvatar(name: string) {
   }
   return {
     sx: {
-      bgcolor: stringToColor(name),
+      bgcolor: stringToColor(name) + "6f",
     },
     children: _name.toUpperCase(),
   };

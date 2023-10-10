@@ -63,11 +63,17 @@ const InboxPage: React.FC = () => {
   };
 
   const cleanBody = (html_body: any) => {
-    const body_ = html_body.toString();
-    let regex =
-      /(<html><head>[\s\S]*<body>)([\s\S]*)(<\/body>[\s\S]*<\/html>)/g;
-    let body = body_.replace(regex, "$2");
-    return body;
+    try {
+      const body_ = html_body.toString();
+      let regex =
+        /(<html><head>[\s\S]*<body>)([\s\S]*)(<\/body>[\s\S]*<\/html>)/g;
+      let body = body_.replace(regex, "$2");
+      return body;
+    } catch (error) {
+      devLog(() => {
+        console.log("error", error);
+      });
+    }
   };
 
   const handleSend = async () => {
@@ -100,6 +106,10 @@ const InboxPage: React.FC = () => {
     setIsLoading(false);
   };
 
+  const handleOnReset = () => {
+    setSelectedThread([]);
+    setIsLoading(false);
+  };
   return (
     <>
       <Box className="tw-mb-10">
@@ -123,23 +133,32 @@ const InboxPage: React.FC = () => {
         elevation={0}
         className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
       >
-        <Grid container spacing={2}>
+        <div className="tw-flex tw-flex-row">
           <InboxSidebar
             emailThreads={emailThreads}
             onSelectThread={handleSelectThread}
+            onReset={handleOnReset}
           />
           {/* Right Column */}
-          <Grid item xs={12} sm={7} lg={8}>
+          <div className="tw-w-full tw-h-full">
             {selectedThread.length > 0 && (
-              <MailHeader totalPages={emailItem?.length} />
+              <MailHeader
+                totalPages={selectedThread?.length}
+                onPressReply={handleReply}
+              />
             )}
-            <Box className="tw-p-10">
+            <Box className="tw-p-8 tw-h-[calc(100vh-8vh)] tw-bg-slate-50 tw-overflow-y-scroll">
               {isLoading ? (
-                <Spinner />
+                <div className="tw-w-full">
+                  <Spinner />
+                </div>
               ) : selectedThread.length > 0 ? (
-                <>
+                <Stack spacing={2}>
                   {selectedThread.map((thread, index) => (
-                    <div key={index}>
+                    <div
+                      key={index}
+                      className="tw-bg-white tw-border tw-border-[#f0f1f3] tw-p-[10px] tw-rounded"
+                    >
                       <div className="tw-border tw-mb-2 tw-rounded tw-p-3">
                         {/* assuming thread has an 'id' field */}
                         <div className="tw-flex tw-justify-between">
@@ -153,7 +172,7 @@ const InboxPage: React.FC = () => {
                           <div className="">To: {thread.to}</div>
 
                           <div className="tw-text-xs tw-text-gray-500 tw-italic">
-                            {formatDateWithTime(thread.created_date)}
+                            {formatDateWithTime(thread.createdDateTime)}
                           </div>
                         </div>
 
@@ -177,11 +196,11 @@ const InboxPage: React.FC = () => {
                       )}
                     </div>
                   ))}
-                </>
+                </Stack>
               ) : (
                 <p className="tw-pt-4">...</p>
               )}
-
+              <Box height="20px" />
               {showEditor && (
                 <>
                   <MyEditor
@@ -200,8 +219,8 @@ const InboxPage: React.FC = () => {
                 </>
               )}
             </Box>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Paper>
     </>
   );
