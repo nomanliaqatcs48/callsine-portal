@@ -123,13 +123,13 @@ const InboxPage: React.FC = () => {
         elevation={0}
         className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
       >
-        <Grid container spacing={2}>
+        <div className="tw-flex tw-flex-row">
           <InboxSidebar
             emailThreads={emailThreads}
             onSelectThread={handleSelectThread}
           />
           {/* Right Column */}
-          <Grid item xs={12} sm={7} lg={8}>
+          <div className="tw-w-[calc(100vw-400)]">
             {selectedThread.length > 0 && (
               <MailHeader totalPages={emailItem?.length} />
             )}
@@ -200,8 +200,8 @@ const InboxPage: React.FC = () => {
                 </>
               )}
             </Box>
-          </Grid>
-        </Grid>
+          </div>
+        </div>
       </Paper>
     </>
   );
