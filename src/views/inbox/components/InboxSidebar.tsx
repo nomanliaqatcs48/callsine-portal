@@ -77,6 +77,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         >
           {emailThreads.map((item, index) => (
             <div
+              key={index}
               className="tw-w-full"
               onClick={() => handleOnClickEmail(item.emails, index)}
             >
