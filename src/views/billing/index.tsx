@@ -134,29 +134,31 @@ const Billing = () => {
       <Paper elevation={0} className="tw-rounded tw-border tw-border-[#f0f1f3]">
         <Grid container spacing={2} className="tw-p-5">
           <Grid item xs={12}>
-            <Typography variant="h6">Subscription Information</Typography>
+            <Typography className="tw-text-[18px]">
+              Subscription Information
+            </Typography>
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="body1">
+            <Typography className="tw-text-[18px]">
               Plan:{" "}
               {subscriptionInfo?.plan &&
                 capitalizeFirstLetter(subscriptionInfo?.plan)}
             </Typography>
             {subscriptionInfo?.plan === "team" && (
-              <Typography variant="body1">
+              <Typography className="tw-text-[18px]">
                 Team Members: {subscriptionInfo.team_members}
               </Typography>
             )}
           </Grid>
 
           <Grid item xs={4}>
-            <Typography variant="body1">
+            <Typography className="tw-text-[18px]">
               Cycle:{" "}
               {subscriptionInfo?.cycle &&
                 capitalizeFirstLetter(subscriptionInfo?.cycle)}
             </Typography>
-            <Typography variant="body1">
+            <Typography className="tw-text-[18px]">
               {subscriptionInfo?.status === "active"
                 ? "Next Billing Date:"
                 : "Subscription Ends:"}{" "}
@@ -175,17 +177,20 @@ const Billing = () => {
                 Cancel Subscription
               </Button>
             ) : (
-              <Typography className="tw-text-red-700"> Cancelled</Typography>
+              <Typography className="tw-text-red-700 tw-text-[18px]">
+                {" "}
+                Cancelled
+              </Typography>
             )}
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="h6">Cards On File:</Typography>
+            <Typography className="tw-text-[18px]">Cards On File:</Typography>
             <CurrentCards onUpdateCard={onUpdateCard} />
           </Grid>
 
           <Grid item xs={12}>
-            <Typography variant="h6">Invoices</Typography>
+            <Typography className="tw-text-[18px]">Invoices</Typography>
           </Grid>
 
           <List className="tw-w-full">
