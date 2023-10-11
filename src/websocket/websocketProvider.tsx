@@ -14,7 +14,7 @@ interface WebsocketProviderProps {
 }
 
 const useWebsocket = (id: string) => {
-  const socketUrl = `ws://staging-api.callsine.com/ws/users/${id}/`;
+  const socketUrl = `ws://api.callsine.com/ws/users/${id}/`;
   const socket = useMemo(() => {
     return new ReconnectingWebSocket(socketUrl);
   }, [socketUrl]);
