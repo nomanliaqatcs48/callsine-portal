@@ -1,4 +1,4 @@
-import React, { useMemo } from "react";
+import React from "react";
 import { formatTime } from "src/utils/date";
 import { Stack, Typography } from "@mui/material";
 import { EmailThread } from "src/types/inbox";
@@ -49,7 +49,9 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     reset();
   };
 
-  const pos = useMemo(() => (selected > -1 ? -450 : 0), [selected]);
+  const translateX = () => {
+    return selected > -1 ? "-tw-translate-x-full" : "tw-translate-x-0";
+  };
 
   return (
     <div className="tw-w-[450px] tw-max-w-[450px]">
@@ -64,13 +66,12 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         direction="row"
         className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(100vh-120px)] tw-overflow-x-hidden"
       >
-        <Stack
-          direction="column"
-          className={`tw-w-[450px] tw-max-w-[450px] tw-translate-x-[${pos}px] tw-transition-transform tw-duration-300`}
+        <div
+          className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
           {emailThreads.map((item, index) => (
             <div
-              key={index}
+              key={`${item.recipient}-${index}`}
               className="tw-w-full"
               onClick={() => handleOnClickEmail(item.emails, index)}
             >
@@ -81,23 +82,22 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
               />
             </div>
           ))}
-        </Stack>
+        </div>
 
         <div
-          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] tw-translate-x-[${pos}px] tw-transition-transform tw-duration-300`}
+          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
-          <Stack
-            bgcolor={"#3dabd9"}
-            direction="row"
-            py={2}
-            px={3}
-            alignItems="center"
-            className="tw-border-b tw-border-[#f0f1f3] tw-text-white hover:tw-bg-[#3dabd9af] tw-transition-colors tw-duration-300 tw-cursor-pointer"
-            onClick={handleOnPressBack}
-          >
-            <ArrowBackIosIcon />
-            Back to Contacts
-          </Stack>
+          {emails && emails.length > 0 && (
+            <div
+              className="tw-bg-[#3dabd9] tw-flex tw-flex-row tw-py-5 tw-px-5 tw-items-center tw-border-b tw-border-[#f0f1f3] tw-text-white hover:tw-bg-[#3dabd9af] tw-transition-colors tw-duration-300 tw-cursor-pointer"
+              onClick={handleOnPressBack}
+            >
+              <ArrowBackIosIcon />
+              <Typography className="tw-text-[18px]">
+                Back to Contacts
+              </Typography>
+            </div>
+          )}
           {emails &&
             emails.map((email: any, index: number) => (
               <Stack
@@ -105,9 +105,9 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                 px={3}
                 key={`${email.subject}-${index}`}
                 onClick={() => handleSelectThread(email, index)}
-                className={`tw-w-full tw-border-b tw-border-[#f0f1f3] tw-cursor-pointer hover:tw-bg-gray-100 hover:tw-border-r-[10px] tw-border-r-[#3dabd9af] tw-transition-colors tw-duration-300 ${
+                className={`tw-w-full tw-border-b tw-border-[#f0f1f3] tw-cursor-pointer hover:tw-bg-gray-100 tw-transition-colors tw-duration-300 ${
                   selectedEmail === index &&
-                  "tw-border-r-[10px] tw-border-r-[#3dabd9]"
+                  `tw-border-l-[10px] tw-border-l-primary`
                 }`}
               >
                 <Stack direction="row" justifyContent="space-between">
