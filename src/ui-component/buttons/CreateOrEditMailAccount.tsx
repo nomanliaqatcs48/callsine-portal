@@ -150,13 +150,13 @@ const CreateOrEditMailAccount = ({
                   <div>
                     <TextField
                       error={!!errors.email}
-                      disabled={true}
+                      // disabled={true}
                       required
                       margin="dense"
                       id="email"
                       label="Email Address"
                       type="email"
-                      defaultValue={id ? defaultValue?.email : ""}
+                      defaultValue={defaultValue?.email}
                       value={defaultValue?.email}
                       fullWidth
                       {...register("email")}
