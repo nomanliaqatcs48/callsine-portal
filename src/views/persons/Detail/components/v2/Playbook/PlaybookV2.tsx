@@ -25,11 +25,17 @@ import { useAsyncDebounce } from "react-table";
 import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
 import { load } from "../../../../../../utils/storage";
 import EditTypeHandler from "./EditTypeHandler";
+import WebsocketProvider, {
+  WebsocketContext,
+} from "../../../../../../websocket/websocketProvider";
+import { useAuth } from "../../../../../../contexts/auth";
 
 type PersonProps = {
   personData: any;
 };
 const PlaybookV2 = ({ personData }: PersonProps) => {
+  const auth: any = useAuth();
+  const [websocketResponse, setWebsocketResponse] = useState<any>({});
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
   const [selectedData, setSelectedData] = useState<any>(null);
@@ -167,177 +173,198 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
 
   console.log({ data });
 
+  useEffect(() => {
+    if (
+      websocketResponse &&
+      websocketResponse.message &&
+      websocketResponse.message.event === "set_playbook"
+    ) {
+      console.log(websocketResponse);
+      // executeRefreshTable();
+    }
+  }, [websocketResponse]);
+
   return (
     <>
-      <Paper
-        elevation={0}
-        className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
-      >
-        <Grid container className="tw-p-0">
-          <Grid
-            item
-            xs={12}
-            sm={5}
-            lg={4}
-            className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
-          >
-            <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
-              {/*title*/}
-              <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
-                Email
-              </Box>
-              {/*dropdown*/}
-              <Box className="tw-w-full xl:tw-w-[200px]">
-                {!loading?.regeneratePlaybook && (
-                  <ReactSelect
-                    name="generate-playbook"
-                    className="basic-single tw-cursor-pointer"
-                    variant="blue"
-                    placeholder="GENERATE PLAYBOOK"
-                    isClearable={true}
-                    isSearchable={true}
-                    options={prompts.map((item: any, idx: number) => {
-                      item.value = item?.id;
-                      item.label = item?.name || "";
-
-                      return item;
-                    })}
-                    onChange={(newValue: any, actionMeta: any) => {
-                      devLog(() => {
-                        // console.group("Value Changed");
-                        // console.log(newValue);
-                        // console.log(`action: ${actionMeta.action}`);
-                        // console.groupEnd();
-                      });
-                      handleGenerateOnChange(newValue);
-                      handleOpen();
-                    }}
-                  />
-                )}
-              </Box>
-            </Box>
-            <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
-              <input
-                type="search"
-                placeholder="Search"
-                onChange={handleSearchOnBeforeChange}
-                className="tw-bg-[#f8fbff] tw-text-[16px] tw-text-black tw-font-light tw-tracking-[0.32px] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-              />
-            </Box>
-            <Box className="list-container">
-              <PlaybookList
-                selectedIndex={selectedIndex}
-                setSelectedIndex={setSelectedIndex}
-                data={
-                  _.orderBy(data?.results, ["position"], ["asc"])
-                    ? [..._.orderBy(data?.results, ["position"], ["asc"])]
-                    : []
-                }
-                setSelectedData={setSelectedData}
-                setSelectedSequenceEvent={setSelectedSequenceEvent}
-              />
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={7} lg={8}>
-            {selectedIndex !== null && (
-              <>
-                <EditTypeHandler
-                  selectedData={selectedData}
-                  selectedIndex={selectedIndex}
-                  selectedSequenceEvent={selectedSequenceEvent}
-                  playBookData={playBookData}
-                  personData={personData}
-                  getPersonDetail={getPersonDetail}
-                />
-              </>
-            )}
-
-            {selectedIndex === null && (
-              <SelectItemNull
-                prompts={playBookData?.prompts}
-                stringForEmpty={"Empty data"}
-                stringForNotEmpty={"Select an email"}
-              />
-            )}
-          </Grid>
-        </Grid>
-      </Paper>
-
-      {open && (
-        <MyModal
-          open={open}
-          onClose={handleClose}
-          modalTitle={
-            loading?.regeneratePlaybook || loading?.submit
-              ? "Generating..."
-              : "Generate Playbook?"
-          }
-          labelledby={
-            loading?.regeneratePlaybook || loading?.submit
-              ? "Generating..."
-              : "Generate Playbook?"
-          }
-          describedby="Generate Playbook modal"
-          modalSxStyle={{
-            width: { xs: 400 },
-            padding: 0,
-            "& h4": {
-              backgroundColor: "#EAEAEA",
-              padding: "20px 30px",
-              fontSize: { xs: 14, lg: 16 },
-            },
+      <WebsocketProvider userId={auth.id}>
+        <WebsocketContext.Consumer>
+          {(value: any) => {
+            if (value.responsePayload) {
+              setWebsocketResponse(value.responsePayload.notification);
+            }
+            return null;
           }}
+        </WebsocketContext.Consumer>
+        <Paper
+          elevation={0}
+          className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
         >
-          <DialogContent className="tw-px-[30px]">
-            <Box className="tw-flex">
-              <FormGroup>
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={isOverwrite}
-                      onChange={handleChangeIsOverwrite}
-                      name="is_overwrite"
-                    />
-                  }
-                  label="Is Overwrite?"
-                />
-              </FormGroup>
-            </Box>
-          </DialogContent>
-          <DialogActions className="tw-px-[30px] tw-pb-[30px]">
-            <LoadingButton
-              variant="contained"
-              color="primary"
-              onClick={handleGeneratePlaybook}
-              loading={loading?.regeneratePlaybook || loading?.submit}
-              disabled={loading?.regeneratePlaybook || loading?.submit}
-              className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+          <Grid container className="tw-p-0">
+            <Grid
+              item
+              xs={12}
+              sm={5}
+              lg={4}
+              className="sm:tw-border-r-[1px] sm:tw-border-[#f0f1f3] tw-py-3 xl:tw-py-6"
             >
-              Yes, please!
-            </LoadingButton>
-            <LoadingButton
-              variant="outlined"
-              onClick={(event: any) => {
-                handleClose(event, "");
-                setLoading((prev: any) => ({
-                  ...prev,
-                  regeneratePlaybook: true,
-                }));
-                setTimeout(() =>
+              <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
+                {/*title*/}
+                <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
+                  Email
+                </Box>
+                {/*dropdown*/}
+                <Box className="tw-w-full xl:tw-w-[200px]">
+                  {!loading?.regeneratePlaybook && (
+                    <ReactSelect
+                      name="generate-playbook"
+                      className="basic-single tw-cursor-pointer"
+                      variant="blue"
+                      placeholder="GENERATE PLAYBOOK"
+                      isClearable={true}
+                      isSearchable={true}
+                      options={prompts.map((item: any, idx: number) => {
+                        item.value = item?.id;
+                        item.label = item?.name || "";
+
+                        return item;
+                      })}
+                      onChange={(newValue: any, actionMeta: any) => {
+                        devLog(() => {
+                          // console.group("Value Changed");
+                          // console.log(newValue);
+                          // console.log(`action: ${actionMeta.action}`);
+                          // console.groupEnd();
+                        });
+                        handleGenerateOnChange(newValue);
+                        handleOpen();
+                      }}
+                    />
+                  )}
+                </Box>
+              </Box>
+              <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
+                <input
+                  type="search"
+                  placeholder="Search"
+                  onChange={handleSearchOnBeforeChange}
+                  className="tw-bg-[#f8fbff] tw-text-[16px] tw-text-black tw-font-light tw-tracking-[0.32px] tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+                />
+              </Box>
+              <Box className="list-container">
+                <PlaybookList
+                  selectedIndex={selectedIndex}
+                  setSelectedIndex={setSelectedIndex}
+                  data={
+                    _.orderBy(data?.results, ["position"], ["asc"])
+                      ? [..._.orderBy(data?.results, ["position"], ["asc"])]
+                      : []
+                  }
+                  setSelectedData={setSelectedData}
+                  setSelectedSequenceEvent={setSelectedSequenceEvent}
+                />
+              </Box>
+            </Grid>
+            <Grid item xs={12} sm={7} lg={8}>
+              {selectedIndex !== null && (
+                <>
+                  <EditTypeHandler
+                    selectedData={selectedData}
+                    selectedIndex={selectedIndex}
+                    selectedSequenceEvent={selectedSequenceEvent}
+                    playBookData={playBookData}
+                    personData={personData}
+                    getPersonDetail={getPersonDetail}
+                  />
+                </>
+              )}
+
+              {selectedIndex === null && (
+                <SelectItemNull
+                  prompts={playBookData?.prompts}
+                  stringForEmpty={"Empty data"}
+                  stringForNotEmpty={"Select an email"}
+                />
+              )}
+            </Grid>
+          </Grid>
+        </Paper>
+
+        {open && (
+          <MyModal
+            open={open}
+            onClose={handleClose}
+            modalTitle={
+              loading?.regeneratePlaybook || loading?.submit
+                ? "Generating..."
+                : "Generate Playbook?"
+            }
+            labelledby={
+              loading?.regeneratePlaybook || loading?.submit
+                ? "Generating..."
+                : "Generate Playbook?"
+            }
+            describedby="Generate Playbook modal"
+            modalSxStyle={{
+              width: { xs: 400 },
+              padding: 0,
+              "& h4": {
+                backgroundColor: "#EAEAEA",
+                padding: "20px 30px",
+                fontSize: { xs: 14, lg: 16 },
+              },
+            }}
+          >
+            <DialogContent className="tw-px-[30px]">
+              <Box className="tw-flex">
+                <FormGroup>
+                  <FormControlLabel
+                    control={
+                      <Checkbox
+                        checked={isOverwrite}
+                        onChange={handleChangeIsOverwrite}
+                        name="is_overwrite"
+                      />
+                    }
+                    label="Is Overwrite?"
+                  />
+                </FormGroup>
+              </Box>
+            </DialogContent>
+            <DialogActions className="tw-px-[30px] tw-pb-[30px]">
+              <LoadingButton
+                variant="contained"
+                color="primary"
+                onClick={handleGeneratePlaybook}
+                loading={loading?.regeneratePlaybook || loading?.submit}
+                disabled={loading?.regeneratePlaybook || loading?.submit}
+                className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
+              >
+                Yes, please!
+              </LoadingButton>
+              <LoadingButton
+                variant="outlined"
+                onClick={(event: any) => {
+                  handleClose(event, "");
                   setLoading((prev: any) => ({
                     ...prev,
-                    regeneratePlaybook: false,
-                  }))
-                );
-              }}
-              loading={loading?.regeneratePlaybook || loading?.submit}
-              disabled={loading?.regeneratePlaybook || loading?.submit}
-            >
-              Cancel
-            </LoadingButton>
-          </DialogActions>
-        </MyModal>
-      )}
+                    regeneratePlaybook: true,
+                  }));
+                  setTimeout(() =>
+                    setLoading((prev: any) => ({
+                      ...prev,
+                      regeneratePlaybook: false,
+                    }))
+                  );
+                }}
+                loading={loading?.regeneratePlaybook || loading?.submit}
+                disabled={loading?.regeneratePlaybook || loading?.submit}
+              >
+                Cancel
+              </LoadingButton>
+            </DialogActions>
+          </MyModal>
+        )}
+      </WebsocketProvider>
     </>
   );
 };
