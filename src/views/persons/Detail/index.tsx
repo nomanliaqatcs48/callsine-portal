@@ -153,25 +153,25 @@ const PersonDetailPage = () => {
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
           <Tab
-            label="Emails"
+            label="Email Threads"
             {...a11yProps(1)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
-          <Tab
+          {/* <Tab
             label="Tracking"
             {...a11yProps(2)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
-          />
+          /> */}
           <Tab
             label="Custom Fields"
             {...a11yProps(3)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           />
-          <Tab
+          {/* <Tab
             label="Email Threads"
             {...a11yProps(4)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
-          />
+          /> */}
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
@@ -179,18 +179,18 @@ const PersonDetailPage = () => {
         {value === 0 && <PlaybookV2 personData={data} />}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {value === 1 && <Emails />}
+        {value === 1 && <EmailThread />}
       </TabPanel>
 
-      <TabPanel value={value} index={2}>
+      {/* <TabPanel value={value} index={2}>
         {value === 2 && <TrackingTab />}
-      </TabPanel>
+      </TabPanel> */}
       <TabPanel value={value} index={3}>
         {value === 3 && <CustomFieldsTab data={data} />}
       </TabPanel>
-      <TabPanel value={value} index={4}>
-        {value === 4 && <EmailThread />}
-      </TabPanel>
+      {/* <TabPanel value={value} index={4}>
+        {value === 4 && <Emails />}
+      </TabPanel> */}
     </>
   );
 };

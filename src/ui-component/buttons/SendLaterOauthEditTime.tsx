@@ -20,7 +20,7 @@ import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 import { devLog, devLogError } from "../../helpers/logs";
-import { sendMailOauthService } from "../../services/emails.service";
+import { updateScheduleService } from "../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { LoadingButton } from "@mui/lab";
 
@@ -31,7 +31,7 @@ type SendLaterTypes = {
   [x: string]: any;
 };
 
-const SendLaterOauth = ({
+const SendLaterOauthEditTime = ({
   position,
   onLoadApi,
   useForm,
@@ -99,18 +99,21 @@ const SendLaterOauth = ({
     });
     setIsLoading((prev: any) => ({ ...prev, form: true }));
     try {
-      let res = await sendMailOauthService({
-        ...data,
-        send_later: true,
-        is_auto_schedule: data?.is_auto_schedule,
-        days_interval: data?.days_interval,
-
-        from_email: data?.from_email,
-        position: position,
+      console.log("Here data", data);
+      // {
+      //   ...data,
+      //   send_later: true,
+      //   is_auto_schedule: data?.is_auto_schedule,
+      //   days_interval: data?.days_interval,
+      //   from_email: data?.from_email,
+      //   position: position,
+      // }
+      let res = await updateScheduleService(data.id, {
+        scheduled_time: data.scheduled_time,
       });
       console.log({ res });
       if (res?.status === 200) {
-        ToastSuccess("Email successfully scheduled.");
+        ToastSuccess("Email successfully updated.");
         handleClose(event, "");
         setOpen(false);
         setIsLoading((prev: any) => ({ ...prev, form: false }));
@@ -128,14 +131,14 @@ const SendLaterOauth = ({
   return (
     <>
       <LoadingButton
-        type="button"
-        variant="outlined"
         onClick={useForm?.handleSubmit((data: any) => clickSendLater(data))}
-        className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+        className="tw-py-2 tw-px-0 sm:tw-py-3 sm:tw-px-1 sm:tw-min-w-min"
         {...props}
       >
-        <span className="tw-text-primary tw-text-xs tw-px-2">SEND LATER</span>
-        <ScheduleSendOutlinedIcon sx={{ fontSize: 20, color: "#1976d2" }} />
+        <ScheduleSendOutlinedIcon sx={{ fontSize: 32, color: "#1976d2" }} />
+        <span className="tw-text-primary tw-text-xs tw-px-2">
+          Edit Scheduled Time
+        </span>
       </LoadingButton>
 
       {open && (
@@ -149,7 +152,7 @@ const SendLaterOauth = ({
           aria-describedby="Send Later"
           disableEnforceFocus={true}
         >
-          <DialogTitle variant="h4">Send Later</DialogTitle>
+          <DialogTitle variant="h4">Edit Scheduled Time</DialogTitle>
           <DialogContent>
             <Grid container spacing={gridSpacing}>
               <Grid item xs={12}>
@@ -231,7 +234,7 @@ const SendLaterOauth = ({
               color="primary"
               className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
             >
-              Send
+              Update Time
             </LoadingButton>
             <LoadingButton
               onClick={(event: any) => handleClose(event, "")}
@@ -247,4 +250,4 @@ const SendLaterOauth = ({
   );
 };
 
-export default SendLaterOauth;
+export default SendLaterOauthEditTime;

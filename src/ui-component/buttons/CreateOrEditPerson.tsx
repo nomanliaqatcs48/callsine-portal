@@ -41,6 +41,7 @@ const CreateOrEditPerson = ({
   defaultValue,
   btnStyle,
   btnText,
+  onLoadApi,
   ...other
 }: CreateOrEditPersonTypes) => {
   const [open, setOpen] = React.useState(false);
