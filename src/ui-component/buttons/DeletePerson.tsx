@@ -32,11 +32,12 @@ const DeletePerson = ({
     setIsLoading((prev: any) => ({ ...prev, submit: true }));
     try {
       let res = await deletePersonDetailService(id);
-      if (res?.status === 204) {
-        onLoadApi();
+      console.log({ res });
+      if (res?.status === 200) {
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
         ToastSuccess("Person successfully deleted.");
+        // onLoadApi();
       }
     } catch (e: any) {
       ToastError("Something went wrong!");

@@ -123,16 +123,13 @@ const EmailThread: React.FC = () => {
   };
 
   const handleSend = async () => {
-    console.log("Sending reply", replyMsg);
-    console.log(selectedThread[0]);
-    console.log("Thread ID", selectedThread[0]["thread_id"]);
-
     const data = {
+      in_reply_to: emailItem.id,
       thread_id: selectedThread[0]["thread_id"],
       mail_object: selectedThread[0],
       html_message: replyMsg,
     };
-    console.log(data);
+    console.log("Data to send", data);
 
     insertBodyLoader();
     try {
@@ -230,6 +227,9 @@ const EmailThread: React.FC = () => {
           <>
             {/* Stats */}
             <div className="tw-flex tw-flex-col tw-mb-6 tw-border-b-4 tw-border-gray-700 ">
+              <div>
+                <strong>ID:&nbsp;{emailItem.id}</strong>
+              </div>
               <div>
                 <strong>Status:&nbsp;</strong>
                 {emailItem?.status !== null ? (
