@@ -1,15 +1,9 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { formatTime } from "src/utils/date";
-import xss from "xss";
-import { Avatar, Divider, Grid, Stack, Typography } from "@mui/material";
+import { Stack, Typography } from "@mui/material";
 import { EmailThread } from "src/types/inbox";
-import { stringAvatar } from "src/helpers/strings";
-import { cleanBody } from "src/helpers/mail";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Email } from "./Email";
-
-const COL_WIDTH = 400;
 
 interface InboxSidebarProps {
   emailThreads: EmailThread[];
@@ -55,12 +49,13 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     reset();
   };
 
-  const s = () => (selected >= 0 ? "calc(-100%)" : "0px");
+  const translateX = () => {
+    return selected > -1 ? "-tw-translate-x-full" : "tw-translate-x-0";
+  };
 
   return (
     <div className="tw-w-[450px] tw-max-w-[450px]">
       <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative tw-h-[100px]">
-        <div />
         <input
           placeholder="Search"
           type="text"
@@ -69,15 +64,14 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
       </div>
       <Stack
         direction="row"
-        className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(85vh-130px)] tw-overflow-x-hidden"
+        className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(100vh-120px)] tw-overflow-x-hidden"
       >
-        <Stack
-          direction="column"
-          className={`tw-w-[450px] tw-max-w-[450px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
+        <div
+          className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
           {emailThreads.map((item, index) => (
             <div
-              key={index}
+              key={`${item.recipient}-${index}`}
               className="tw-w-full"
               onClick={() => handleOnClickEmail(item.emails, index)}
             >
@@ -88,23 +82,22 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
               />
             </div>
           ))}
-        </Stack>
+        </div>
 
         <div
-          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] tw-translate-x-[${s()}] tw-transition-transform tw-duration-300`}
+          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
-          <Stack
-            bgcolor={"#3dabd9"}
-            direction="row"
-            py={2}
-            px={3}
-            alignItems="center"
-            className="tw-border-b tw-border-[#f0f1f3] tw-text-white hover:tw-bg-[#3dabd9af] tw-transition-colors tw-duration-300 tw-cursor-pointer"
-            onClick={handleOnPressBack}
-          >
-            <ArrowBackIosIcon />
-            Back to Contacts
-          </Stack>
+          {emails && emails.length > 0 && (
+            <div
+              className="tw-bg-[#3dabd9] tw-flex tw-flex-row tw-py-5 tw-px-5 tw-items-center tw-border-b tw-border-[#f0f1f3] tw-text-white hover:tw-bg-[#3dabd9af] tw-transition-colors tw-duration-300 tw-cursor-pointer"
+              onClick={handleOnPressBack}
+            >
+              <ArrowBackIosIcon />
+              <Typography className="tw-text-[18px]">
+                Back to Contacts
+              </Typography>
+            </div>
+          )}
           {emails &&
             emails.map((email: any, index: number) => (
               <Stack
@@ -112,9 +105,9 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                 px={3}
                 key={`${email.subject}-${index}`}
                 onClick={() => handleSelectThread(email, index)}
-                className={`tw-w-full tw-border-b tw-border-[#f0f1f3] tw-cursor-pointer hover:tw-bg-gray-100 hover:tw-border-r-[10px] tw-border-r-[#3dabd9af] tw-transition-colors tw-duration-300 ${
+                className={`tw-w-full tw-border-b tw-border-[#f0f1f3] tw-cursor-pointer hover:tw-bg-gray-100 tw-transition-colors tw-duration-300 ${
                   selectedEmail === index &&
-                  "tw-border-r-[10px] tw-border-r-[#3dabd9]"
+                  `tw-border-l-[10px] tw-border-l-primary`
                 }`}
               >
                 <Stack direction="row" justifyContent="space-between">
