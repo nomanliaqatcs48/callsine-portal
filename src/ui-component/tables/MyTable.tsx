@@ -196,7 +196,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
               <IndeterminateCheckbox
                 // @ts-ignore
                 {...row.getToggleRowSelectedProps()}
-                disabled={row.original.got_data ? undefined : true}
+                // disabled={row.original.got_data ? undefined : true}
               />
             </>
           ),

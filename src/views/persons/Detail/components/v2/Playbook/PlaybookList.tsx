@@ -35,6 +35,7 @@ const PlaybookList = ({
   setSelectedData,
   setSelectedSequenceEvent,
 }: PlaybookListProps) => {
+  // console.log(data);
   let countIndexForEmailSubject: number = 0;
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
