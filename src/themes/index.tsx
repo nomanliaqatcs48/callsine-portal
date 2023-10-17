@@ -55,6 +55,7 @@ export const theme = (customization: any) => {
         },
       },
     },
+
     typography: themeTypography(themeOption),
   };
 

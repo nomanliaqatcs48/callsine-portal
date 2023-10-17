@@ -73,6 +73,25 @@ export default function componentStyleOverrides(theme: any) {
         },
       },
     },
+    MuiStepLabel: {
+      styleOverrides: {
+        // Applying styles to the root level of the component
+        root: {
+          "& .MuiTypography-root": {
+            // targeting the Typography within StepLabel
+            color: "white", // making the text color white
+          },
+          "&.Mui-active .MuiTypography-root": {
+            // maintaining the color for the active state
+            color: "white",
+          },
+          "&.Mui-completed .MuiTypography-root": {
+            // maintaining the color for the completed state
+            color: "white",
+          },
+        },
+      },
+    },
     MuiListItemIcon: {
       styleOverrides: {
         root: {

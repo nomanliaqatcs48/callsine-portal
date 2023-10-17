@@ -1,4 +1,4 @@
-import { Input, TextField, TextareaAutosize } from "@mui/material";
+import { TextField, TextareaAutosize } from "@mui/material";
 import { useState } from "react";
 import WizardPlaybooksOptionsGroup from "src/views/wizard/components/PlaybooksList";
 
@@ -55,7 +55,7 @@ const useWizard = () => {
         return (
           <div className="tw-my-2">
             <TextField
-              className="tw-my-2 tw-w-[380px]"
+              className="tw-my-2 tw-w-[380px] "
               variant="outlined"
               placeholder="What is your company website URL?"
               onChange={(e) => setCompanyUrl(e.target.value)}
@@ -70,7 +70,11 @@ const useWizard = () => {
         "Your value proposition informs the core of your marketing and sales strategies. Understanding it allows us to tailor your playbook in a way that accentuates your strengths and effectively communicates the unique benefits of your offerings.",
       content: () => {
         return (
-          <TextareaAutosize placeholder="What is your value propisition?" />
+          <TextareaAutosize
+            minRows={2}
+            style={{ width: "80%", marginTop: 8, borderRadius: 5, padding: 5 }}
+            placeholder="What is your value propisition?"
+          />
         );
       },
     },

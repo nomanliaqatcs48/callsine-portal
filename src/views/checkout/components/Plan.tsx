@@ -1,3 +1,5 @@
+import styled from "@emotion/styled";
+import CheckIcon from "@mui/icons-material/Check";
 import {
   Box,
   Button,
@@ -8,8 +10,6 @@ import {
 } from "@mui/material";
 import { FC, useEffect, useState } from "react";
 import { IPlan } from "./interfaces";
-import styled from "@emotion/styled";
-import CheckIcon from "@mui/icons-material/Check";
 
 const Content = styled.div`
   margin-top: 20px;
@@ -37,12 +37,23 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
   };
 
   useEffect(() => {
-    if (selectedPlan && selectedPlan.selectedPlan) {
-      onPlanSelected({
-        ...selectedPlan,
-        billingCycle: billingCycle,
-        teamMembers: selectedPlan?.selectedPlan === "solo" ? 1 : teamMembers,
-      });
+    // Check if 'selectedPlan' exists and has 'selectedPlan' property
+    if (selectedPlan?.selectedPlan) {
+      // Determine the number of team members based on the selected plan
+      const newTeamMembers =
+        selectedPlan.selectedPlan === "solo" ? 1 : teamMembers;
+
+      // Check if there's a change in 'billingCycle' or 'teamMembers' that requires an update
+      if (
+        selectedPlan.billingCycle !== billingCycle ||
+        selectedPlan.teamMembers !== newTeamMembers
+      ) {
+        onPlanSelected({
+          ...selectedPlan,
+          billingCycle: billingCycle,
+          teamMembers: newTeamMembers,
+        });
+      }
     }
   }, [billingCycle, onPlanSelected, selectedPlan, teamMembers]);
 
@@ -96,8 +107,8 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
               </div>
               <Content>
                 <Typography className="tw-text-left">
-                  Cras luctus sodales cursus. In sit amet tempar sapien. In
-                  sodales ex vitae gravida cursus.
+                  Perfect for solopreneurs or sales pros looking to boost
+                  productivity.
                 </Typography>
               </Content>
               <Content>
@@ -105,7 +116,7 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
                   variant="h1"
                   className="tw-text-black tw-font-bold tw-mb-2"
                 >
-                  {billingCycle === "monthly" ? `$50` : `$500`}
+                  {billingCycle === "monthly" ? `$99` : `$950`}
                   <span className="tw-text-[22px] tw-font-normal">
                     {billingCycle === "monthly" ? `/month` : `/year`}
                   </span>
@@ -129,22 +140,20 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
               <Content>
                 <Content>
                   <Typography variant="body1" className="tw-text-black">
-                    <CheckIcon /> Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.
+                    <CheckIcon /> Send up to 50 AI generated emails a day.
                   </Typography>
                 </Content>
 
                 <Content>
                   <Typography variant="body1" className="tw-text-black">
-                    <CheckIcon /> Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.
+                    <CheckIcon /> Full access to our latest AI engine to
+                    generate personalized emails to your entire outreach list.
                   </Typography>
                 </Content>
 
                 <Content>
                   <Typography variant="body1" className="tw-text-black">
-                    <CheckIcon /> Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.
+                    <CheckIcon /> Engagement tracking on all emails sent.
                   </Typography>
                 </Content>
               </Content>
@@ -171,8 +180,8 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
               </div>
               <Content>
                 <Typography className="tw-text-left">
-                  Mauris in erors id leo tincidunt omare. Integer feugiat lorem
-                  augue, et suscipit felis cursus luctus
+                  Perfect for teams of 2 or more looking to accelerate pipeline
+                  growth.
                 </Typography>
               </Content>
               <Content>
@@ -181,8 +190,8 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
                   className="tw-text-black tw-font-bold tw-mb-2"
                 >
                   {billingCycle === "monthly"
-                    ? `$${50 * teamMembers}`
-                    : `$${500 * teamMembers}`}
+                    ? `$${89 * teamMembers}`
+                    : `$${854 * teamMembers}`}
                   <span className="tw-text-[22px] tw-font-normal">
                     {billingCycle === "monthly" ? `/month` : `/year`}
                   </span>
@@ -204,21 +213,21 @@ const ChoosePlan: FC<ChoosePlanProps> = ({ selectedPlan, onPlanSelected }) => {
               <Content>
                 <Content>
                   <Typography variant="body1" className="tw-text-black">
-                    <CheckIcon /> Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.
+                    <CheckIcon /> Increase productivity across your team with
+                    shared playbooks.
                   </Typography>
                 </Content>
 
                 <Content>
                   <Typography variant="body1" className="tw-text-black">
-                    <CheckIcon /> Lorem ipsum dolor sit amet, consectetur
-                    adipiscing elit.
+                    <CheckIcon /> Keep your outreach organized across your team
+                    with lead assignment.
                   </Typography>
                 </Content>
 
                 <Content>
                   <Typography variant="body1" className="tw-text-black tw-mb-1">
-                    <CheckIcon /> Number of Team Members:
+                    Number of Team Members:
                   </Typography>
                   <Box className="tw-mt-2 tw-ml-[25px]">
                     <Select

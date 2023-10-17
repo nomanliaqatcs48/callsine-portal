@@ -1,16 +1,14 @@
+import { useMediaQuery, useTheme } from "@mui/material";
 import Box from "@mui/material/Box";
-import Stepper from "@mui/material/Stepper";
-import Step from "@mui/material/Step";
-import StepLabel from "@mui/material/StepLabel";
-import StepContent from "@mui/material/StepContent";
 import Button from "@mui/material/Button";
 import Paper from "@mui/material/Paper";
+import Step from "@mui/material/Step";
+import StepContent from "@mui/material/StepContent";
+import StepLabel from "@mui/material/StepLabel";
+import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
 import { useWizard } from "src/hooks/wizard/useWizard";
-import { useMediaQuery, useTheme } from "@mui/material";
 import icon from "../../assets/images/icons/logo-color-2x.png";
-import _ from "lodash";
-import { usePlaybook } from "src/hooks/playbook/usePlaybook";
 import imageBgcTop from "../../assets/images/users/Group3.png";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 
@@ -23,7 +21,7 @@ export default function VerticalLinearStepper() {
   const { steps, activeStep, handleNext, handleBack, handleReset } =
     useWizard();
 
-  usePlaybook(true);
+  // usePlaybook(true);
 
   return (
     <>
@@ -55,6 +53,7 @@ export default function VerticalLinearStepper() {
         }}
       />
       <Box
+        pt={2}
         className="tw-h-auto tw-w-full"
         style={{
           display: "flex",
@@ -63,8 +62,19 @@ export default function VerticalLinearStepper() {
           minHeight: "calc(100vh + 92px)",
         }}
       >
+        <img
+          className=" tw-h-[67px] tw-py-[0px] tw-px-[10px]"
+          src={icon}
+          alt="CALLSINE ICON"
+          style={{ marginRight: matchDownSM ? 8 : 16 }}
+        />
         <Box
           sx={{
+            marginTop: 10,
+            paddingBottom: 5,
+            paddingLeft: 10,
+            paddingRight: 10,
+
             position: "absolute",
             maxWidth: 800,
             minWidth: 800,
@@ -72,17 +82,13 @@ export default function VerticalLinearStepper() {
           }}
         >
           <Box className="tw-h-[20px]" />
-          <img
-            className=" tw-h-[67px] tw-py-[10px] tw-px-[10px]"
-            src={icon}
-            alt="CALLSINE ICON"
-            style={{ marginRight: matchDownSM ? 8 : 16 }}
-          />
+
           <Box className="tw-h-[20px]" />
           <Stepper activeStep={activeStep} orientation="vertical">
             {steps.map((step, index) => (
               <Step key={step.label}>
                 <StepLabel
+                  style={{ color: "white" }}
                   optional={
                     index === steps.length - 1 ? (
                       <Typography
@@ -94,10 +100,10 @@ export default function VerticalLinearStepper() {
                     ) : null
                   }
                 >
-                  <Typography color="black">{step.label}</Typography>
+                  <Typography color="white">{step.label}</Typography>
                 </StepLabel>
                 <StepContent>
-                  <Typography color="black">{step.description}</Typography>
+                  <Typography color="white">{step.description}</Typography>
                   {step.content()}
 
                   <Box sx={{ mb: 2 }}>
