@@ -7,12 +7,15 @@ import StepContent from "@mui/material/StepContent";
 import StepLabel from "@mui/material/StepLabel";
 import Stepper from "@mui/material/Stepper";
 import Typography from "@mui/material/Typography";
+import useGetUserMe from "src/hooks/settings/useGetUser";
 import { useWizard } from "src/hooks/wizard/useWizard";
 import icon from "../../assets/images/icons/logo-color-2x.png";
 import imageBgcTop from "../../assets/images/users/Group3.png";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
 
 export default function VerticalLinearStepper() {
+  const { loading, data, error } = useGetUserMe();
+
   const theme = useTheme();
 
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -100,10 +103,14 @@ export default function VerticalLinearStepper() {
                     ) : null
                   }
                 >
-                  <Typography color="white">{step.label}</Typography>
+                  <Typography color="white" fontSize={20}>
+                    {step.label}
+                  </Typography>
                 </StepLabel>
                 <StepContent>
-                  <Typography color="white">{step.description}</Typography>
+                  <Typography color="white" fontSize={15}>
+                    {step.description}
+                  </Typography>
                   {step.content()}
 
                   <Box sx={{ mb: 2 }}>
@@ -122,7 +129,7 @@ export default function VerticalLinearStepper() {
                         sx={{ mt: 1, mr: 1 }}
                         className="tw-text-white"
                       >
-                        Back
+                        <Typography color="white">Back </Typography>
                       </Button>
                     </div>
                   </Box>
@@ -137,9 +144,10 @@ export default function VerticalLinearStepper() {
               sx={{ p: 3 }}
               className="tw-bg-transparent"
             >
-              <Typography>
+              <Typography color="white">
                 All steps completed - you&apos;re finished
               </Typography>
+
               <Button
                 onClick={handleReset}
                 sx={{ mt: 1, mr: 1 }}
