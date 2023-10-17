@@ -480,7 +480,7 @@ const DraftEmail = ({
           {/*left*/}
 
           {/* {only show when not editing} */}
-          {!selectedData?.id && (
+          {selectedData?.id && (
             <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
               <LoadingButton
                 type="button"

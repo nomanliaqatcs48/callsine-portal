@@ -35,7 +35,7 @@ const InboxPage: React.FC = () => {
     setIsLoading(true);
     setShowEditor(false);
     setSelectedEmail(item.id);
-    alert("asdsad");
+
     let res: any;
     if (item.provider === "google") {
       res = await gmailThreadService(item.thread_id, item.from_email);
