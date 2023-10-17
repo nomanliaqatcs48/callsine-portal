@@ -1,40 +1,61 @@
-import { Input, TextField, TextareaAutosize } from "@mui/material";
-import { useState } from "react";
-import WizardPlaybooksOptionsGroup from "src/views/wizard/components/PlaybooksList";
+import { TextField, TextareaAutosize } from "@mui/material";
+import { useEffect, useState } from "react";
+import { updateTeamMeService } from "src/services/profile.service";
+import useGetTeamMe from "../settings/useGetTeam";
 
 const useWizard = () => {
-  const [companyUrl, setCompanyUrl] = useState("");
-  const [valueProposition, setValueProposition] = useState("");
-  const [targetUrls, setTargetUrls] = useState("");
+  const { data: teamData } = useGetTeamMe();
+
+  // State setup for all steps
+  const [domain, setCompanyUrl] = useState("");
+  const [company_value_prop, setValueProposition] = useState("");
+  const [initialContactUrl, setTargetUrl] = useState("");
   const [marketingMaterial, setMarketingMaterial] = useState("");
   const [salesMaterial, setSalesMaterial] = useState("");
-  const [targetContacts, setTargetContacts] = useState("");
-  const [playbook, setPlaybook] = useState("");
-
+  const [initialContactFirst, setFirstName] = useState("");
+  const [initialContactLast, setLastName] = useState("");
+  const [initialContactEmail, setEmail] = useState("");
+  const [initialContactTitle, setTitle] = useState("");
+  const [initialContactCompanyName, setCompanyName] = useState("");
   const [activeStep, setActiveStep] = useState(0);
 
+  // Load team data initially, if available
+  useEffect(() => {
+    if (teamData) {
+      setCompanyUrl(teamData.domain || "");
+    }
+  }, [teamData]);
+
+  // Function to send collected data to the backend
+  const sendDataToBackend = async () => {
+    const payload = {
+      domain,
+      company_value_prop,
+      initialContactFirst,
+      initialContactLast,
+      initialContactCompanyName,
+      initialContactEmail, //
+      initialContactTitle,
+      initialContactUrl,
+    };
+
+    try {
+      // Replace with your actual API endpoint
+      const response = await updateTeamMeService(payload);
+      console.log(response.data);
+      window.location.href = "/people";
+    } catch (error) {
+      console.error(
+        "An error occurred when sending data to the backend: ",
+        error
+      );
+      // Handle your error accordingly
+    }
+  };
+
   const handleNext = () => {
-    switch (activeStep) {
-      case 0:
-        console.log("step 0 - action here");
-        break;
-      case 1:
-        console.log("step 1 - action here");
-        break;
-      case 2:
-        console.log("step 2 - action here");
-        break;
-      case 3:
-        console.log("step 3 - action here");
-        break;
-      case 4:
-        console.log("step 4 - action here");
-        break;
-      case 5:
-        console.log("step 5 - action here");
-        break;
-      default:
-        console.log("default");
+    if (activeStep === steps.length - 1) {
+      sendDataToBackend();
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -47,100 +68,137 @@ const useWizard = () => {
     setActiveStep(0);
   };
 
+  // Steps content setup
   const steps = [
+    // Step 1
     {
       label: "Step 1: Company URL",
-      description: `The company URL is essential for getting relevant data. This information will help us better understand your business, its products or services, and the market positioning, which are crucial for creating a tailored playbook.`,
-      content: () => {
-        return (
-          <div className="tw-my-2">
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="What is your company website URL?"
-              onChange={(e) => setCompanyUrl(e.target.value)}
-            />
-          </div>
-        );
-      },
+      description:
+        "Please provide the URL that is most representative of your business and market position. This will start training the AI on your company.",
+      content: () => (
+        <TextField
+          style={{ marginTop: 10 }}
+          fullWidth
+          variant="outlined"
+          placeholder="What is your company website URL?"
+          value={domain}
+          onChange={(e) => setCompanyUrl(e.target.value)}
+        />
+      ),
     },
+    // Step 2
     {
       label: "Step 2: Value Proposition",
       description:
-        "Your value proposition informs the core of your marketing and sales strategies. Understanding it allows us to tailor your playbook in a way that accentuates your strengths and effectively communicates the unique benefits of your offerings.",
-      content: () => {
-        return (
-          <TextareaAutosize placeholder="What is your value propisition?" />
-        );
-      },
+        "Please provide a 1-2 sentence overview of your value proposition. This helps the AI to refine its understanding.",
+      content: () => (
+        <TextareaAutosize
+          minRows={3}
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginTop: 10,
+            borderRadius: 5,
+          }}
+          placeholder="What is your value proposition?"
+          value={company_value_prop}
+          onChange={(e) => setValueProposition(e.target.value)}
+        />
+      ),
     },
+    // Step 3
     {
-      label: "Step 3: Target URLs",
-      description: `Knowing your target URLs helps us identify the focus areas for your campaign. It enables us to craft strategies that will guide potential customers towards these specific parts of your digital presence, thereby optimizing for conversions.`,
-      content: () => {
-        return (
+      label: "Step 3: Target URL",
+      description:
+        "Please provide a URL from one of your target prospects. This helps the system start gathering relevant data for your outreach.",
+      content: () => (
+        <TextField
+          style={{ marginTop: 10 }}
+          fullWidth
+          variant="outlined"
+          placeholder="Enter target URL"
+          value={initialContactUrl}
+          onChange={(e) => setTargetUrl(e.target.value)}
+        />
+      ),
+    },
+    // Step 4
+    {
+      label: "Step 4: Marketing and Sales Material",
+      description:
+        "Upload your marketing or sales material. This helps the AI understand your company's positioning and offerings better.",
+      content: () => (
+        <>
           <TextField
-            className="tw-my-2 tw-w-[380px]"
+            type="file"
+            margin="normal"
             variant="outlined"
-            placeholder="Enter Target Url"
+            placeholder="Last Name"
+            // value={lastName}
+            // onChange={(e) => setLastName(e.target.value)}
           />
-        );
-      },
+          <TextField
+            type="file"
+            margin="normal"
+            variant="outlined"
+            placeholder="Last Name"
+            // value={lastName}
+            // onChange={(e) => setLastName(e.target.value)}
+          />
+        </>
+      ),
     },
-    {
-      label: "Step 4: Sample Marketing or Sales Material",
-      description: `Understanding your current marketing and sales materials allows us to align the playbook with your existing strategies and branding. It also gives us insights into what has been working for you and what could be improved.`,
-      content: () => {
-        return (
-          <div>
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="Enter your name"
-              type="file"
-            />
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="Enter your name"
-              type="file"
-            />
-          </div>
-        );
-      },
-    },
+    // Step 5
     {
       label: "Step 5: Target Contacts",
-      description: `Knowing your target contact's details will enable us to tailor the playbook to address the specific pain points, needs, and preferences of these individuals. This makes your campaign more effective and increases the chances of engagement.`,
-      content: () => {
-        return (
-          <div className="tw-my-2">
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="Name: "
-            />
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="Email: "
-            />
-            <TextField
-              className="tw-my-2 tw-w-[380px]"
-              variant="outlined"
-              placeholder="Company Website URL"
-            />
-          </div>
-        );
-      },
+      description:
+        "Add a contact at the company you provided in step 3. The system will generate your first emails to this contact.",
+      content: () => (
+        <div>
+          <TextField
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            placeholder="First Name"
+            value={initialContactFirst}
+            onChange={(e) => setFirstName(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            placeholder="Last Name"
+            value={initialContactLast}
+            onChange={(e) => setLastName(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            placeholder="Email Address"
+            value={initialContactEmail}
+            onChange={(e) => setEmail(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            placeholder="Company Name"
+            value={initialContactCompanyName}
+            onChange={(e) => setCompanyName(e.target.value)}
+          />
+          <TextField
+            fullWidth
+            margin="normal"
+            variant="outlined"
+            placeholder="Title"
+            value={initialContactTitle}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+      ),
     },
-    {
-      label: "Step 6: Select Playbook",
-      description: `Choosing a playbook type gives us a framework within which to customize your strategies and tactics. Different playbooks focus on different outcomes, and selecting the most relevant one ensures that we're on the same page regarding your campaign goals.`,
-      content: () => {
-        return <WizardPlaybooksOptionsGroup />;
-      },
-    },
+    // Additional steps, if any...
   ];
 
   return {

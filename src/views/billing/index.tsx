@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { Download } from "@mui/icons-material";
 import {
   Box,
@@ -14,15 +13,16 @@ import {
   Typography,
 } from "@mui/material";
 import Alert from "@mui/material/Alert";
+import React, { useEffect, useState } from "react";
 
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import {
   cancelStripeSubscription,
   fetchUserInvoices,
   getStripeSubscription,
 } from "src/services/payments.service";
-import CurrentCards from "./components/currentCards";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import CurrentCards from "./components/currentCards";
 
 interface SubscriptionInfo {
   plan?: string;
@@ -101,7 +101,7 @@ const Billing = () => {
 
     fetchInvoices();
   }, []);
-
+  console.log("SUB INFO", subscriptionInfo);
   return (
     <>
       <Snackbar
@@ -168,7 +168,8 @@ const Billing = () => {
           </Grid>
 
           <Grid item xs={4}>
-            {subscriptionInfo?.status === "active" ? (
+            {subscriptionInfo?.status === "active" ||
+            subscriptionInfo?.status === "trialing" ? (
               <Button
                 variant="contained"
                 className="tw-bg-red-700"

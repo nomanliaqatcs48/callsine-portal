@@ -1,18 +1,17 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { useAsyncDebounce } from "react-table";
+import { useAuth } from "../../contexts/auth";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getTeamPlaybooks } from "../../services/playbooks.service";
-import { dummyData } from "../../utils/playbooks/utils";
-import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
-import { loadString } from "../../utils/storage";
-import { useAuth } from "../../contexts/auth";
-import { useDispatch } from "react-redux";
 import { setPlaybookData } from "../../store/playbooks/actions";
+import { loadString } from "../../utils/storage";
 
 export const usePlaybook = (
   load: boolean = true,
   filtersParam: any = {
-    limit: 99999,
+    limit: 15,
     offset: 0,
   }
 ) => {

@@ -1,34 +1,26 @@
-import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 
 // material-ui
-import { useTheme } from "@mui/material/styles";
 import {
   Box,
   Button,
-  Checkbox,
-  Divider,
   FormControl,
-  FormControlLabel,
   FormHelperText,
   Grid,
-  IconButton,
-  InputAdornment,
-  InputLabel,
-  OutlinedInput,
   TextField,
   Typography,
   useMediaQuery,
 } from "@mui/material";
+import { useTheme } from "@mui/material/styles";
 
 // third party
-import * as Yup from "yup";
 import { Formik } from "formik";
+import * as Yup from "yup";
 
 // project imports
 import useScriptRef from "../../../hooks/useScriptRef";
-import Google from "../../../assets/images/icons/social-google.svg";
 import AnimateButton from "../../../ui-component/extended/AnimateButton";
 import {
   strengthColor,
@@ -36,14 +28,11 @@ import {
 } from "../../../utils/password-strength";
 
 // assets
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+import { insertBodyLoader, removeBodyLoader } from "../../../helpers/loaders";
 import { devLog, devLogError } from "../../../helpers/logs";
 import { loginService, signupService } from "../../../services/auth.service";
-import { load, save, saveString } from "../../../utils/storage";
-import { toast } from "react-toastify";
-import { insertBodyLoader, removeBodyLoader } from "../../../helpers/loaders";
 import { profileService } from "../../../services/profile.service";
+import { load, save, saveString } from "../../../utils/storage";
 import GoogleLoginBtn from "./google/GoogleLoginBtn";
 import MicrosoftLoginBtn from "./microsoft/MicrosoftLoginBtn";
 
@@ -202,7 +191,7 @@ const AuthRegister = ({ ...others }) => {
           setStatus({ success: true });
           setSubmitting(false);
         }
-        navigate("/pricing");
+        navigate("/wizard/checkout");
         getProfile();
       }
     } catch (e: any) {
@@ -620,7 +609,7 @@ const AuthRegister = ({ ...others }) => {
                 <FormHelperText error>{errors.submit}</FormHelperText>
               </Box>
             )}
-            <Box sx={{ mt: 2 }}>
+            <Box sx={{ mt: 1 }}>
               <AnimateButton>
                 <Button
                   disableElevation
@@ -640,6 +629,10 @@ const AuthRegister = ({ ...others }) => {
           </form>
         )}
       </Formik>
+      <Typography width={"80%"} marginTop={1}>
+        By clicking Sign Up you are agreeing to our Terms of Service and Privacy
+        Policy.
+      </Typography>
     </>
   );
 };

@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
+import { useEffect } from "react";
 
+import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/auth";
+import { useDashboard } from "../../hooks/dashboard/useDashboard";
+import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import { usePersons } from "../../hooks/persons/usePersons";
+import { useAuthentication } from "../../hooks/useAuthentication";
 import { gridSpacing } from "../../store/constant";
 import RemainingClicks from "../../ui-component/cards/RemainingClicks";
-import { useAuth } from "../../contexts/auth";
-import TotalPersonsCard from "../../ui-component/cards/TotalPersons";
 import TotalMailAccounts from "../../ui-component/cards/TotalMailAccounts";
-import CallsineDataGrid from "../../ui-component/tables/CallsineDataGrid";
-import CallsineBarChart from "../../ui-component/charts/CallsineBarChart";
-import CallsineLineChart from "../../ui-component/charts/CallsineLineChart";
-import { devLog, devLogError } from "../../helpers/logs";
-import { getSequenceEventScheduledEmailService } from "../../services/sequences.service";
-import { useDashboard } from "../../hooks/dashboard/useDashboard";
-import { _columns } from "../../utils/dashboard/utils";
-import MyTable from "../../ui-component/tables/MyTable";
-import { usePersons } from "../../hooks/persons/usePersons";
-import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import TotalPersonsCard from "../../ui-component/cards/TotalPersons";
 import TotalScheduledEmailsCard from "../../ui-component/cards/TotalScheduledEmails";
-import { useAuthentication } from "../../hooks/useAuthentication";
-import { useNavigate } from "react-router-dom";
+import MyTable from "../../ui-component/tables/MyTable";
+import { _columns } from "../../utils/dashboard/utils";
 
 const DashboardPage = () => {
   const auth: any = useAuth();
@@ -39,12 +34,12 @@ const DashboardPage = () => {
     setSelectedFlatRows,
   } = useDashboard();
   const { personsData } = usePersons(true, {
-    limit: 99999,
+    limit: 60,
     offset: 0,
   });
   const { authProfile } = useAuthentication();
   const { mailAccountsData } = useMailAccounts(true, {
-    limit: 99999,
+    limit: 60,
     offset: 0,
   });
 

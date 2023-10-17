@@ -1,8 +1,9 @@
 import axios from "axios";
+import { devLogError } from "src/helpers/logs";
 import config from "../config";
-import { devLogError } from "../helpers/logs";
 
 let token = localStorage.getItem("token");
+console.log("TOKEN", token);
 
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
@@ -12,7 +13,10 @@ axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 axios.interceptors.request.use(
   (config: any) => {
     if (token) {
+      console.log("TOKEN");
       config.headers["Authorization"] = `Bearer ${token}`;
+    } else {
+      config.headers["Authorization"] = "";
     }
     return config;
   },
@@ -30,6 +34,7 @@ axios.interceptors.response.use(
   },
   async (err) => {
     const originalConfig = err.config;
+
     // devLog(() => {
     //   console.log("test err", err);
     //   console.log("test originalConfig", originalConfig);
@@ -39,13 +44,13 @@ axios.interceptors.response.use(
       !originalConfig.url.includes("/login") &&
       !originalConfig.url.includes("/refresh") &&
       !originalConfig.url.includes("/token") &&
+      !originalConfig.url.includes("/rest-auth/registration/") &&
       !originalConfig._retry &&
       err.response
     ) {
       // Access Token was expired
       if (err.response.status === 401) {
         originalConfig._retry = true;
-
         try {
           const rs: any = await axios.post("/token/refresh/", {
             refresh: localStorage.getItem("refresh"),
@@ -61,10 +66,8 @@ axios.interceptors.response.use(
             localStorage.removeItem(key);
           });
           const currentRoute = window.location.pathname;
-          console.log("current route", currentRoute);
           // Check if the current route is one you want to exclude:
           if (currentRoute.startsWith("/pricing")) {
-            console.log("CURRENT ROUE", currentRoute);
             return Promise.reject(err); // Skip the rest of the interceptor logic for this route.
           } else {
             window.location.href = "/login";

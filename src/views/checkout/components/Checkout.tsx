@@ -1,16 +1,17 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 
-import { FC, useState } from "react";
+import React, { FC, useEffect, useMemo, useState } from "react";
 
+import styled from "@emotion/styled";
 import {
   createStripeCustomer,
   createSubscriptionService,
 } from "src/services/payments.service";
 import SuccessModal from "./SuccessModal";
 import { IPlan } from "./interfaces";
-import styled from "@emotion/styled";
 interface CheckoutFormProps {
   planData: IPlan;
+  profileData: any;
 }
 interface PriceDetails {
   description: string;
@@ -68,15 +69,22 @@ const getPriceDetails = (planData: IPlan): PriceDetails => {
   };
 };
 
-const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
+const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
+  const [checkingOut, setCheckingOut] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
   // collect data from the user
-  const [name, setName] = useState("");
+  const [name, setName] = useState(
+    profileData?.first_name
+      ? profileData?.first_name + " " + profileData?.last_name
+      : ""
+  );
   const [companyName, setCompanyName] = useState("");
-  const [email, setEmail] = useState("");
-  const priceDetails = getPriceDetails(planData);
+  const [email, setEmail] = useState(
+    profileData?.email ? profileData?.email : ""
+  );
+  const priceDetails = useMemo(() => getPriceDetails(planData), [planData]);
   const [priceId, setPriceId] = useState(priceDetails.priceId);
   const [teamMembers, setTeamMembers] = useState(planData?.teamMembers);
   const [selectedPlan, setSelectedPlan] = useState(planData?.selectedPlan);
@@ -87,17 +95,36 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
     zip: "",
   });
 
-  console.log(userAddress, "user address");
-
   const [contactNumber, setContactNumber] = useState("");
   const [wantsNewsletter, setWantsNewsletter] = useState(false);
+  const [companyWebsite, setCompanyWebsite] = useState("");
+  const [error, setError] = useState("");
+
+  const handleInputChange = (e: any) => {
+    const website = e.target.value;
+    if (isValidURL(website) || website === "") {
+      setError(""); // Clear any previous error if the input is now valid
+    } else {
+      setError(
+        "Please enter a valid URL starting with https:// and a proper domain."
+      );
+    }
+    setCompanyWebsite(website); // Keep this line to ensure the state updates with every keystroke
+  };
 
   // stripe items
   const stripe = useStripe();
   const elements = useElements();
 
+  useEffect(() => {
+    setPriceId(priceDetails.priceId);
+    setTeamMembers(planData?.teamMembers);
+    setSelectedPlan(planData?.selectedPlan);
+  }, [priceDetails, planData]);
+
   // main function
   const createSubscription = async () => {
+    setCheckingOut(true);
     try {
       const address: any = {
         street: userAddress.street, // Replace this with your actual state hook or variable
@@ -129,7 +156,6 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
           phone: contactNumber,
         },
       });
-      console.log("PAYMENT METHOD", paymentMethod);
 
       // Call the backend to create subscription using the service you provided
       const response = await createSubscriptionService({
@@ -144,6 +170,8 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
         teamMembers,
         selectedPlan,
         selectedCycle: planData?.billingCycle,
+        companyName,
+        companyWebsite,
       });
 
       if (response.data.message) {
@@ -153,6 +181,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
         setModalMessage(response.data.error);
         setIsSuccess(false);
       }
+      setCheckingOut(false);
       setModalOpen(true);
     } catch (error) {
       console.log(error);
@@ -163,6 +192,14 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
   if (planData.selectedPlan === null) {
     return null;
   }
+
+  const isValidURL = (url: string) => {
+    const pattern = new RegExp(
+      "^(https://)(www\\.)?([a-zA-Z0-9]+(-?[a-zA-Z0-9])*\\.)+[\\w]{2,}(/\\S*)?$",
+      "i"
+    );
+    return pattern.test(url);
+  };
 
   return (
     <div className="tw-bg-white tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-p-[40px] tw-pt-[100px]">
@@ -226,6 +263,17 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
           />
         </label>
         <label>
+          Company Website
+          <input
+            type="text"
+            value={companyWebsite}
+            onChange={handleInputChange}
+            className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
+          />
+        </label>
+        {error && <p className="error-message">{error}</p>}
+
+        <label>
           Name
           <input
             type="text"
@@ -237,6 +285,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
         <label>
           E-mail
           <input
+            disabled={true}
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -319,7 +368,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
           disabled={!stripe}
           className="tw-bg-blue-600 hover:tw-bg-blue-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase tw-w-full"
         >
-          Checkout
+          {checkingOut ? "Processing..." : "Checkout"}
         </button>
         <SuccessModal
           isSuccess={isSuccess}
@@ -332,4 +381,4 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData }) => {
   );
 };
 
-export default CheckoutForm;
+export default React.memo(CheckoutForm);
