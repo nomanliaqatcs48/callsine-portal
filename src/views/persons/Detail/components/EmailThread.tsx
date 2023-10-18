@@ -184,18 +184,26 @@ const EmailThread: React.FC = () => {
             .map((email: any, index: number) => (
               <div
                 key={index}
-                className={`${
-                  selectedEmail === email.id
-                    ? " tw-border-blue-500 tw-bg-slate-100"
-                    : ""
-                } tw-border-l-8 hover:tw-border-blue-500 tw-my-2 tw-py-4 tw-px-2 hover:tw-bg-slate-200 hover:tw-cursor-pointer `}
+                className={classNames({
+                  "tw-border-blue-500": selectedEmail === email.id,
+                  "tw-bg-slate-100":
+                    selectedEmail === email.id || !email.reply_count.is_viewed,
+                  "tw-font-bold": !email.reply_count.is_viewed,
+                  "tw-border-l-8": true,
+                  "hover:tw-border-blue-500": true,
+                  "tw-my-2": true,
+                  "tw-py-4": true,
+                  "tw-px-2": true,
+                  "hover:tw-bg-slate-200": true,
+                  "hover:tw-cursor-pointer": true,
+                })}
                 onClick={() => handleSelectThread(email)}
               >
                 <div className="tw-flex-grow tw-text-xs tw-block">
                   {email.provider}
                 </div>
                 <div className="tw-flex tw-justify-between">
-                  <div className="tw-block tw-text-xs tw-truncate tw-w-[250px] tw-whitespace-nowrap">
+                  <div className="tw-block tw-text-xs  tw-truncate tw-w-[250px] tw-whitespace-nowrap">
                     {email.subject}
                   </div>
                   <div className="tw-block tw-text-xs">
