@@ -221,7 +221,8 @@ const PersonsPage = () => {
               xl={3}
             >
               <TotalListSmallCard
-                isLoading={isLoading?.onPage}
+                // isLoading={isLoading.onPage}
+                isLoading={false}
                 value={auth?.clicks_remaining || 0}
                 text="Remaining People"
               />
@@ -233,24 +234,6 @@ const PersonsPage = () => {
           elevation={0}
           className="tw-rounded tw-border tw-border-[#eff0f1]"
         >
-          <Grid container spacing={2}>
-            <Grid item xs={12} lg={2} />
-            <Grid
-              item
-              className="tw-flex tw-flex-col tw-justify-center tw-px-20 lg:tw-px-1 xl:tw-pl-5"
-              xs={12}
-              sm={12}
-              md={12}
-              lg={4}
-              xl={3}
-            >
-              <TotalListSmallCard
-                isLoading={isLoading?.onPage}
-                value={auth?.clicks_remaining || 0}
-                text="Remaining People"
-              />
-            </Grid>
-          </Grid>
           <div style={{ height: 20 }} />
           <Paper elevation={2} className="tw-pt-4">
             <Grid container>

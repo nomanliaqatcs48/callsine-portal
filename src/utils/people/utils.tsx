@@ -47,8 +47,6 @@ export const _columns: any = () => {
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
 
-  const selectRef = useRef<HTMLSelectElement | null>(null);
-
   const [selectedValue, setSelectedValue] = useState();
 
   const ListItemCustom = ({ icon, text }: any) => {
@@ -77,12 +75,6 @@ export const _columns: any = () => {
       .catch((error) => {
         console.error("Error updating assignment:", error);
       });
-  };
-
-  const handleSelectChange = () => {
-    // Access the current value of the select element using selectRef.current.value
-    const selectedValue = selectRef.current?.value;
-    console.log("Selected value: ", selectedValue);
   };
 
   useEffect(() => {
