@@ -61,3 +61,8 @@ export const regeneratePlaybookService = async (id: number) => {
 export const sendNewPrompt = async (payload: any) => {
   return await http.post(`${endpoints.NEWPROMPT}`, payload);
 };
+
+export const personUpdateAssign = async (personId: number, userId: number) => {
+  const data = { user_id: userId };
+  return await http.patch(`${endpoints.PERSON}${personId}/assign/`, data);
+}

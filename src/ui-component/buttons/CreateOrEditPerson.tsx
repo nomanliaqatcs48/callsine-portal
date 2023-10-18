@@ -31,6 +31,7 @@ type CreateOrEditPersonTypes = {
   defaultValue?: any;
   btnStyle?: any;
   [x: string]: any;
+  userId: number;
 };
 
 const CreateOrEditPerson = ({
@@ -42,6 +43,7 @@ const CreateOrEditPerson = ({
   btnStyle,
   btnText,
   onLoadApi,
+  userId,
   ...other
 }: CreateOrEditPersonTypes) => {
   const [open, setOpen] = React.useState(false);
@@ -150,6 +152,7 @@ const CreateOrEditPerson = ({
         company_name: data.company_name,
         company_website: data.company_domain,
         org: { name: data.company_name, domain: data.company_domain },
+        assigned_user_id: userId,
       };
       let res = await createPeopleService(data);
       if (res?.data) {

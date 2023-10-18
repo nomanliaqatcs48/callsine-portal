@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect, useRef } from "react";
 import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
@@ -20,12 +20,36 @@ import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
 import DeletePerson from "../../ui-component/buttons/DeletePerson";
 import moment from "moment-timezone";
 
+import { endpoints } from "src/services/endpoints";
+import { personUpdateAssign } from "src/services/persons.service";
+import http from "src/services/axios";
+import { SelectChangeEvent } from "@mui/material/Select";
+import { ToastSuccess } from "../../helpers/toast";
+import { useAuth } from "../../contexts/auth";
+
+type Member = {
+  first_name: string;
+  last_name: string;
+  title: string;
+  email: string;
+  id?: number;
+};
+
 export const _columns: any = () => {
+  const auth: any = useAuth();
+  // console.log(auth)
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
+  const [members, setMembers] = useState<Member[]>([]);
+
+  const selectRef = useRef<HTMLSelectElement | null>(null);
+
+  const [selectedValue, setSelectedValue] = useState();
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
@@ -37,6 +61,40 @@ export const _columns: any = () => {
       </ListItem>
     );
   };
+
+  const handleChangeSelect = (
+    event: SelectChangeEvent<unknown>,
+    cellRowId: number
+  ) => {
+    const selectedValue = event.target.value as number;
+    personUpdateAssign(cellRowId, selectedValue)
+      .then((response) => {
+        // setSelectedValue(selectedValue)
+        // Handle the response as needed
+        ToastSuccess("Successfully assigned.");
+        // console.log("Assignment updated:", response);
+      })
+      .catch((error) => {
+        console.error("Error updating assignment:", error);
+      });
+  };
+
+  const handleSelectChange = () => {
+    // Access the current value of the select element using selectRef.current.value
+    const selectedValue = selectRef.current?.value;
+    console.log("Selected value: ", selectedValue);
+  };
+
+  useEffect(() => {
+    http
+      .get(`${endpoints.TEAM_MEMBERS_ASSIGN}${auth.team}/`)
+      .then((response) => {
+        setMembers(response.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching team members:", error);
+      });
+  }, []);
 
   return useMemo(
     () => [
@@ -284,7 +342,7 @@ export const _columns: any = () => {
                     </div>
                     <span>
                       {cell?.value || ""} {cell?.row?.original?.last_name || ""}
-                      {console.log(cell.row)}
+                      {/* {console.log(cell.row)} */}
                     </span>
                   </Button>
                 </Tooltip>
@@ -387,8 +445,43 @@ export const _columns: any = () => {
         },
       },
       {
-        Header: "Data Available",
+        Header: "Assign",
         disableSortBy: true,
+        accessor: "assign",
+        width: 130,
+        minWidth: 130,
+        Cell: (cell: any) => {
+          return (
+            <>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                value={
+                  cell.row.original.assigned_user == null
+                    ? selectedValue
+                    : cell.row.original.assigned_user
+                }
+                label="Assign"
+                fullWidth
+                onChange={(e) => handleChangeSelect(e, cell?.row?.original?.id)}
+              >
+                {members && members.length !== 0
+                  ? members.map((member: Member, index: number) => {
+                      return (
+                        <MenuItem value={member.id} key={index}>
+                          {member.email}
+                        </MenuItem>
+                      );
+                    })
+                  : null}
+              </Select>
+            </>
+          );
+        },
+      },
+      {
+        Header: "Data Available",
+        // disableSortBy: false,
         accessor: "data_availability",
         width: 50,
         minWidth: 50,
@@ -436,7 +529,7 @@ export const _columns: any = () => {
         },
       },
     ],
-    []
+    [members]
   );
 };
 

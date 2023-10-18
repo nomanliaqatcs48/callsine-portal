@@ -285,6 +285,7 @@ const PersonsPage = () => {
                   }
                   onSubmit={getPeople}
                   onClick={() => null}
+                  userId={auth.id}
                 />
 
                 <MyDivider />

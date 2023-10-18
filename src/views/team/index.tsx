@@ -46,8 +46,6 @@ const TeamPage: React.FC = () => {
   const [memberToRemove, setMemberToRemove] = useState<Member | null>(null);
 
   const [members, setMembers] = useState<Member[]>([]);
-  console.log(members);
-  console.log(members);
   const [newMember, setNewMember] = useState<Member>({
     first_name: "",
     last_name: "",
