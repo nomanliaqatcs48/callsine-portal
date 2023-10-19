@@ -6,7 +6,8 @@ export const getPeopleService = async (
   searchValue: string,
   sortedId: any,
   isOrderDesc: any,
-  searchFilterValue: any
+  searchFilterValue: any,
+  user_id: any
 ) => {
   let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
   let _search = `&search=${searchValue}`;
@@ -16,10 +17,17 @@ export const getPeopleService = async (
   let _titleFilter = `&job_title=${searchFilterValue?.title}`;
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
   let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
+  let _userFilter = user_id !== null ? `&assigned_user_id=${user_id}` : '';
 
-  return await http.get(
-    `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}`
-  );
+  const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`;
+
+  const finalUrl = url.endsWith('&') ? url.slice(0, -1) : url;
+
+  return await http.get(finalUrl);
+
+  // return await http.get(
+  //   `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`
+  // );
 };
 
 export const createPeopleService = async (payload: any) => {
@@ -62,7 +70,7 @@ export const sendNewPrompt = async (payload: any) => {
   return await http.post(`${endpoints.NEWPROMPT}`, payload);
 };
 
-export const personUpdateAssign = async (personId: number, userId: number) => {
+export const personUpdateAssign = async (personId: number, userId: any) => {
   const data = { user_id: userId };
   return await http.patch(`${endpoints.PERSON}${personId}/assign/`, data);
 }

@@ -29,6 +29,7 @@ export const usePersons = (
     company: "",
     industry: "",
   });
+  const [filterUserId, setFilterUserId] = useState<number | null>()
 
   devLog(() => {
     console.log("sortedId", sortedId);
@@ -41,7 +42,8 @@ export const usePersons = (
         searchValue,
         sortedId,
         isOrderDesc,
-        searchFilterValue
+        searchFilterValue,
+        filterUserId,
       );
       if (res?.data) {
         // Update state variables here
@@ -88,7 +90,7 @@ export const usePersons = (
 
   useEffect(() => {
     refetchPersons();
-  }, [filters, sortedId, isOrderDesc, refetchPersons]);
+  }, [filters, sortedId, isOrderDesc, filterUserId, refetchPersons]);
 
   return {
     isFetchingPersons,
@@ -111,5 +113,6 @@ export const usePersons = (
     setIsOrderDesc,
     searchFilterValue,
     setSearchFilterValue,
+    setFilterUserId
   };
 };

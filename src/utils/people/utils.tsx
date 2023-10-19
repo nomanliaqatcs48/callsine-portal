@@ -47,7 +47,9 @@ export const _columns: any = () => {
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
 
-  const [selectedValue, setSelectedValue] = useState();
+  // const [selectedValue, setSelectedValue] = useState<any>();
+
+  // const [updateSelected, setUpdateSelected] = useState(false);
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
@@ -67,10 +69,13 @@ export const _columns: any = () => {
     const selectedValue = event.target.value as number;
     personUpdateAssign(cellRowId, selectedValue)
       .then((response) => {
-        // setSelectedValue(selectedValue)
-        // Handle the response as needed
-        ToastSuccess("Successfully assigned.");
-        // console.log("Assignment updated:", response);
+        if (response.data) {
+          // setSelectedValue(selectedValue)
+          // Handle the response as needed
+          // setSelectedValue(selectedValue);
+          // setUpdateSelected(true);
+          ToastSuccess("Successfully assigned.");
+        }
       })
       .catch((error) => {
         console.error("Error updating assignment:", error);
@@ -443,19 +448,24 @@ export const _columns: any = () => {
         width: 130,
         minWidth: 130,
         Cell: (cell: any) => {
+          const [localSelectedValue, setLocalSelectedValue] = useState(
+            cell.row.original.assigned_user == null
+              ? auth.id
+              : cell.row.original.assigned_user
+          );
+
           return (
             <>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
-                value={
-                  cell.row.original.assigned_user == null
-                    ? selectedValue
-                    : cell.row.original.assigned_user
-                }
+                value={localSelectedValue}
                 label="Assign"
                 fullWidth
-                onChange={(e) => handleChangeSelect(e, cell?.row?.original?.id)}
+                onChange={(e) => {
+                  setLocalSelectedValue(e.target.value);
+                  handleChangeSelect(e, cell.row.original.id);
+                }}
               >
                 {members && members.length !== 0
                   ? members.map((member: Member, index: number) => {

@@ -21,11 +21,15 @@ import WebsocketProvider, {
 } from "../../websocket/websocketProvider";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
 
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
+
+  const [showAssign, setShowAssign] = useState(false);
 
   const {
     personsData,
@@ -47,6 +51,7 @@ const PersonsPage = () => {
     setIsOrderDesc,
     searchFilterValue,
     setSearchFilterValue,
+    setFilterUserId,
   } = usePersons();
 
   const successfulUploadCsv = () => {
@@ -98,6 +103,10 @@ const PersonsPage = () => {
     );
   };
 
+  const handleToggleAssign = () => {
+    setShowAssign(!showAssign); // Toggle the state from true to false and vice versa
+  };
+
   useEffect(() => {
     if (
       websocketResponse &&
@@ -107,6 +116,14 @@ const PersonsPage = () => {
       executeRefreshTable();
     }
   }, [websocketResponse]);
+
+  // useEffect(() => {
+  //   if (showAssign) {
+  //     setFilterUserId(auth.id);
+  //   } else {
+  //     setFilterUserId(null);
+  //   }
+  // }, [showAssign]);
 
   return (
     <>
@@ -252,7 +269,15 @@ const PersonsPage = () => {
                   selectedRows={selectedPersonRows}
                   onLoadApi={getPeople}
                 />
-
+                <MyDivider />
+                <Button
+                  variant="outlined"
+                  startIcon={showAssign ? <VisibilityOff /> : <Visibility />}
+                  className="tw-mx-2"
+                  onClick={handleToggleAssign}
+                >
+                  {showAssign ? "Hide Assign" : "Show Assign"}
+                </Button>
                 <MyDivider />
 
                 <CreateOrEditPerson
