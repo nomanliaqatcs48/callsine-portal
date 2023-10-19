@@ -186,9 +186,9 @@ const EmailThread: React.FC = () => {
                 key={index}
                 className={classNames({
                   "tw-border-blue-500": selectedEmail === email.id,
-                  // "tw-bg-slate-100":
-                  //   selectedEmail === email.id || !email.reply_count.is_viewed,
-                  // "tw-font-bold": !email.reply_count.is_viewed,
+                  "tw-bg-slate-100":
+                    selectedEmail === email.id || !email.reply_count?.is_viewed,
+                  "tw-font-bold": !email.reply_count?.is_viewed,
                   "tw-border-l-8": true,
                   "hover:tw-border-blue-500": true,
                   "tw-my-2": true,
@@ -319,9 +319,7 @@ const EmailThread: React.FC = () => {
             ))}
           </>
         ) : (
-          <p className="tw-pt-4 tw-text-lg">
-            Select a subject to see another details
-          </p>
+          <p className="tw-pt-4 tw-text-lg">No Email Sent Yet</p>
         )}
 
         {!isLoading && !showEditor && selectedEmail && (
