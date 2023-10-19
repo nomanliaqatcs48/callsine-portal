@@ -12,6 +12,7 @@ type ProfileFirstColTypes = {
 
 const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
   let { personStatData } = usePersonStats();
+  console.log("DATAA", data);
 
   return (
     <>
@@ -36,7 +37,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
           {/*email*/}
           {data?.work_email && (
             <Button
-              className="tw-font-normal tw-text-[16px] tw-text-[#0096C7] tw-tracking-[0.32px] tw-text-callsineLightBlue tw-normal-case tw-pl-0 hover:tw-bg-transparent"
+              className="tw-font-normal tw-text-[16px]  tw-tracking-[0.32px] tw-text-callsineLightBlue tw-normal-case tw-pl-0 hover:tw-bg-transparent"
               href={`mailto:${data?.work_email}`}
               target="_blank"
               rel="noopener noreferrer"
@@ -83,7 +84,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
             Emails Sent
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.emails_sent || "0"}
+            {data?.total_email_sent || "0"}
           </Typography>
         </div>
         <div>
@@ -107,7 +108,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
             Replied
           </Typography>
           <Typography className="tw-flex tw-flex-row tw-justify-center tw-font-semibold tw-text-[20px] tw-tracking-[0.4px] tw-text-black">
-            {personStatData?.replied || "0"}
+            {data?.total_reply || "0"}
           </Typography>
         </div>
         {/*<div>

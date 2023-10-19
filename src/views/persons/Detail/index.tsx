@@ -28,8 +28,7 @@ const PersonDetailPage = () => {
 
   const [editMode, setEditMode] = useState(false);
 
-  let { id, data, setData, isLoading, setIsLoading, getPersonDetail } =
-    usePersonDetail();
+  let { data, getPersonDetail } = usePersonDetail(true);
 
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
@@ -46,7 +45,7 @@ const PersonDetailPage = () => {
     getPersonDetail();
     setEditMode((p) => !p);
   };
-
+  console.log("DATA IN INDEX", data);
   return (
     <>
       <Grid container>
@@ -179,7 +178,7 @@ const PersonDetailPage = () => {
         {value === 0 && <PlaybookV2 personData={data} />}
       </TabPanel>
       <TabPanel value={value} index={1}>
-        {value === 1 && <EmailThread />}
+        {value === 1 && <EmailThread getPersonDetail={getPersonDetail} />}
       </TabPanel>
 
       {/* <TabPanel value={value} index={2}>

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import { getPersonDetailService } from "../../services/persons.service";
 import { devLogError } from "../../helpers/logs";
 import { useParams } from "react-router-dom";
@@ -10,15 +10,10 @@ export const usePersonDetail = (load: boolean = true) => {
     onPage: true,
   });
 
-  useEffect(() => {
-    if (load) {
-      getPersonDetail();
-    }
-  }, [load]);
-
-  const getPersonDetail = async () => {
+  // Using useCallback to memorize the function to prevent unnecessary re-renders.
+  const getPersonDetail = useCallback(async () => {
     try {
-      let res = await getPersonDetailService(Number(id));
+      const res = await getPersonDetailService(Number(id));
       if (res?.data) {
         setData(res.data);
         setIsLoading((prev: any) => ({ ...prev, onPage: false }));
@@ -29,7 +24,13 @@ export const usePersonDetail = (load: boolean = true) => {
       });
       setIsLoading((prev: any) => ({ ...prev, onPage: false }));
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    if (load) {
+      getPersonDetail();
+    }
+  }, [load, getPersonDetail]);
 
   return {
     id,

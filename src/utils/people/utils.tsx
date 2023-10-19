@@ -372,7 +372,7 @@ export const _columns: any = () => {
       },
       {
         Header: "Sent Emails",
-        accessor: "sent_emails",
+        accessor: "total_email_sent",
         width: 90,
         minWidth: 90,
       },

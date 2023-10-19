@@ -39,7 +39,11 @@ interface Thread {
   mail_account: string;
 }
 
-const EmailThread: React.FC = () => {
+type EmailThreadProps = {
+  getPersonDetail: () => void;
+};
+
+const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
   const [selectedEmail, setSelectedEmail] = useState<any | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [emailItem, setEmailitem] = useState<any>({});
@@ -75,7 +79,7 @@ const EmailThread: React.FC = () => {
     if (showEditor) {
       timer = setTimeout(() => {
         setShowSendButton(true);
-      }, 3000); // Delay of 1 second
+      }, 3000); // Delay
     } else {
       setShowSendButton(false); // Optionally reset it if showEditor becomes false
     }
@@ -116,7 +120,7 @@ const EmailThread: React.FC = () => {
     setShowEditor(true);
     const timer = setTimeout(() => {
       setShowSendButton(true);
-    }, 1000); // 3000ms = 3 seconds
+    }, 1000);
 
     clearTimeout(timer);
     console.log("showEditor:", showEditor);
@@ -151,6 +155,7 @@ const EmailThread: React.FC = () => {
         removeBodyLoader();
         setShowEditor(false);
         handleSelectThread(emailItem);
+        // getPersonDetail();
       }
     } catch (e: any) {
       setShowEditor(false);

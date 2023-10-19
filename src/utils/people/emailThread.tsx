@@ -24,6 +24,7 @@ export const cleanBody = (html_body: any) => {
   let body;
   if (match && match[1]) {
     html_body = match[1];
+    body = html_body;
   }
   console.log(body);
 
@@ -38,12 +39,12 @@ const removeHR = (html: string): string => {
   return html.replace(regex, "");
 };
 const removeTrackingPixel = (html: string) => {
-  const regex = /src="https:\/\/api\.callsine\.com\/track\/\d+\//g;
+  const regex = /src="https:\/\/api\.callsine\.com\/track\/\d+\/?/g;
   return html.replace(regex, "");
 };
 
 const removeClickTracking = (html: string) => {
-  const regex = /http.*:\/\/api\.callsine\.com\/track_click\/\d+/g;
+  const regex = /https?:\/\/api\.callsine\.com\/track_click\/\d+/g;
   return html.replace(regex, "");
 };
 const removeAfterFrom = (str: string) => {
