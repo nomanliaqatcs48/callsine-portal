@@ -22,7 +22,7 @@ import WebsocketProvider, {
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
+// import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 const PersonsPage = () => {
   const auth: any = useAuth();
@@ -272,11 +272,11 @@ const PersonsPage = () => {
                 <MyDivider />
                 <Button
                   variant="outlined"
-                  startIcon={showAssign ? <VisibilityOff /> : <Visibility />}
+                  startIcon={<Visibility />}
                   className="tw-mx-2"
                   onClick={handleToggleAssign}
                 >
-                  {showAssign ? "Hide Assign" : "Show Assign"}
+                  {showAssign ? "Show All" : "Show Assign"}
                 </Button>
                 <MyDivider />
 
