@@ -3,7 +3,6 @@ import { devLogError } from "src/helpers/logs";
 import config from "../config";
 
 let token = localStorage.getItem("token");
-console.log("TOKEN", token);
 
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
@@ -13,7 +12,6 @@ axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 axios.interceptors.request.use(
   (config: any) => {
     if (token) {
-      console.log("TOKEN");
       config.headers["Authorization"] = `Bearer ${token}`;
     } else {
       config.headers["Authorization"] = "";

@@ -4,14 +4,16 @@ import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
 import { getPeopleService } from "../../services/persons.service";
 import { cacheTime } from "src/store/constant";
+import { filter } from "lodash";
 
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
-    limit: 60,
+    limit: 25,
     offset: 0,
   }
 ) => {
+  // console.log(filtersParam)
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -37,6 +39,7 @@ export const usePersons = (
 
   const getPeople = async () => {
     try {
+      // console.log(filters)
       let res = await getPeopleService(
         filters,
         searchValue,

@@ -42,14 +42,9 @@ type Member = {
 
 export const _columns: any = () => {
   const auth: any = useAuth();
-  // console.log(auth)
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
-
-  // const [selectedValue, setSelectedValue] = useState<any>();
-
-  // const [updateSelected, setUpdateSelected] = useState(false);
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
