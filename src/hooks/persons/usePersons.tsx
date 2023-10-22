@@ -13,7 +13,6 @@ export const usePersons = (
     offset: 0,
   }
 ) => {
-  // console.log(filtersParam)
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -33,9 +32,9 @@ export const usePersons = (
   });
   const [filterUserId, setFilterUserId] = useState<number | null>()
 
-  devLog(() => {
-    console.log("sortedId", sortedId);
-  });
+  // devLog(() => {
+  //   console.log("sortedId", sortedId);
+  // });
 
   const getPeople = async () => {
     try {

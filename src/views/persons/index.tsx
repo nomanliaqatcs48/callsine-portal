@@ -117,13 +117,13 @@ const PersonsPage = () => {
     }
   }, [websocketResponse]);
 
-  // useEffect(() => {
-  //   if (showAssign) {
-  //     setFilterUserId(auth.id);
-  //   } else {
-  //     setFilterUserId(null);
-  //   }
-  // }, [showAssign]);
+  useEffect(() => {
+    if (showAssign) {
+      setFilterUserId(auth.id);
+    } else {
+      setFilterUserId(null);
+    }
+  }, [showAssign]);
 
   return (
     <>
@@ -325,7 +325,7 @@ const PersonsPage = () => {
               </Grid>
             </Grid>
             <MyTable
-              columns={_columns()}
+              columns={_columns(showAssign)}
               data={personsData}
               totalItems={total || 0}
               tableName="PersonsTable"
@@ -344,6 +344,7 @@ const PersonsPage = () => {
               //
               sortedId={sortedId}
               isOrderDesc={isOrderDesc}
+              // setFilterUserId={showAssign ? auth.id : null}
             />
           </Paper>
         </Paper>

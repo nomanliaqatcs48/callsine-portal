@@ -45,6 +45,7 @@ export const _columns: any = () => {
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
+  const [isMembersDataLoaded, setIsMembersDataLoaded] = useState(false);
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
@@ -77,14 +78,27 @@ export const _columns: any = () => {
       });
   };
 
+  // useEffect(() => {
+  //   http
+  //     .get(`${endpoints.TEAM_MEMBERS_ASSIGN}${auth.team}/`)
+  //     .then((response) => {
+  //       setMembers(response.data);
+  //     })
+  //     .catch((error) => {
+  //       console.error("Error fetching team members:", error);
+  //     });
+  // }, []);
+
   useEffect(() => {
     http
       .get(`${endpoints.TEAM_MEMBERS_ASSIGN}${auth.team}/`)
       .then((response) => {
         setMembers(response.data);
+        setIsMembersDataLoaded(true); // Set a flag to indicate data is loaded
       })
       .catch((error) => {
         console.error("Error fetching team members:", error);
+        setIsMembersDataLoaded(true); // Ensure the flag is set even in case of an error
       });
   }, []);
 
@@ -334,7 +348,6 @@ export const _columns: any = () => {
                     </div>
                     <span>
                       {cell?.value || ""} {cell?.row?.original?.last_name || ""}
-                      {/* {console.log(cell.row)} */}
                     </span>
                   </Button>
                 </Tooltip>
@@ -443,11 +456,23 @@ export const _columns: any = () => {
         width: 130,
         minWidth: 130,
         Cell: (cell: any) => {
-          const [localSelectedValue, setLocalSelectedValue] = useState(
-            cell.row.original.assigned_user == null
-              ? auth.id
-              : cell.row.original.assigned_user
-          );
+          // const [localSelectedValue, setLocalSelectedValue] = useState(
+          //   cell.row.original.assigned_user == null
+          //     ? auth.id
+          //     : cell.row.original.assigned_user
+          // );
+
+          const [localSelectedValue, setLocalSelectedValue] = useState<
+            string | null
+          >(null);
+
+          useEffect(() => {
+            setLocalSelectedValue(
+              cell.row.original.assigned_user == null
+                ? auth.id
+                : cell.row.original.assigned_user
+            );
+          }, [cell.row.original.assigned_user, auth.id]);
 
           return (
             <>
@@ -462,7 +487,7 @@ export const _columns: any = () => {
                   handleChangeSelect(e, cell.row.original.id);
                 }}
               >
-                {members && members.length !== 0
+                {members.length !== 0
                   ? members.map((member: Member, index: number) => {
                       return (
                         <MenuItem value={member.id} key={index}>
@@ -526,7 +551,7 @@ export const _columns: any = () => {
         },
       },
     ],
-    [members]
+    [isMembersDataLoaded]
   );
 };
 

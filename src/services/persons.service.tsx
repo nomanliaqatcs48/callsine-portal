@@ -17,11 +17,13 @@ export const getPeopleService = async (
   let _titleFilter = `&job_title=${searchFilterValue?.title}`;
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
   let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
-  let _userFilter = user_id !== null ? `&assigned_user_id=${user_id}` : '';
+  let _userFilter = user_id ? `&assigned_user=${user_id}` : "";  
 
   const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`;
 
-  const finalUrl = url.endsWith('&') ? url.slice(0, -1) : url;
+  // const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}&assigned_user=38`;
+
+  const finalUrl = url.endsWith("&") ? url.slice(0, -1) : url;
 
   return await http.get(finalUrl);
 
@@ -73,4 +75,4 @@ export const sendNewPrompt = async (payload: any) => {
 export const personUpdateAssign = async (personId: number, userId: any) => {
   const data = { user_id: userId };
   return await http.patch(`${endpoints.PERSON}${personId}/assign/`, data);
-}
+};
