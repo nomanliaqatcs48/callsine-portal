@@ -33,7 +33,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 //Redux actions
 import { getUnreadReplies } from "./store/emailReplyCount/actions";
 
-store.dispatch(getUnreadReplies());
+// store.dispatch(getUnreadReplies());
 const msalInstance = new PublicClientApplication(msalConfig as any);
 
 const queryClient = new QueryClient();
