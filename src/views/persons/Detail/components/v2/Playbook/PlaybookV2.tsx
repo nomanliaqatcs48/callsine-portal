@@ -62,8 +62,11 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
       person?.lastEmailPosition === 0
     ) {
       setGenerating(true);
+      setSelectedIndex(null);
     } else {
       if (person) {
+        setLoading((prev: any) => ({ ...prev, onPage: true }));
+        getPrompts();
         ToastSuccess("Messages have completed generating.");
       }
       setGenerating(false);
