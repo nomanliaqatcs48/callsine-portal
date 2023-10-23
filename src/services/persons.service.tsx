@@ -8,7 +8,7 @@ export const getPeopleService = async (
   isOrderDesc: any,
   searchFilterValue: any
 ) => {
-  let _filters = `?limit=${filters.limit}&offset=${filters.offset}`;
+  let _filters = `?limit=60&offset=${filters.offset}`;
   let _search = `&search=${searchValue}`;
   let _ordering = `&ordering=${
     isOrderDesc === undefined ? "" : isOrderDesc ? "-" + sortedId : sortedId
@@ -65,4 +65,4 @@ export const sendNewPrompt = async (payload: any) => {
 export const personUpdateAssign = async (personId: number, userId: number) => {
   const data = { user_id: userId };
   return await http.patch(`${endpoints.PERSON}${personId}/assign/`, data);
-}
+};

@@ -1,18 +1,18 @@
-import React, { useState } from "react";
+import { LoadingButton } from "@mui/lab";
 import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
+import _ from "lodash";
+import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import { devLogError } from "../../../../helpers/logs";
-import { LoadingButton } from "@mui/lab";
-import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
-import Prompts from "../../../../ui-component/dropdowns/Prompts";
+import { ToastError, ToastSuccess } from "../../../../helpers/toast";
 import { usePlaybook } from "../../../../hooks/persons/usePlaybook";
 import {
   generateResponsesService,
   setPlaybook,
 } from "../../../../services/prompts.service";
+import CopyClipboard from "../../../../ui-component/buttons/CopyClipboard";
 import CreateEmail from "../../../../ui-component/buttons/CreateEmail";
-import { ToastError, ToastSuccess } from "../../../../helpers/toast";
-import _ from "lodash";
+import Prompts from "../../../../ui-component/dropdowns/Prompts";
 
 const Playbook = () => {
   const { id } = useParams();
@@ -35,7 +35,7 @@ const Playbook = () => {
         org_domain: "unionresolute.com",
       });
       if (res?.data) {
-        ToastSuccess("Message successfully generated.");
+        ToastSuccess("Messages are generating.");
         setData(res.data);
         getPersonDetail();
         setPromptId(null);
@@ -72,7 +72,7 @@ const Playbook = () => {
       try {
         let res = await generateResponsesService(0);
         if (res?.data) {
-          ToastSuccess("Message successfully regenerated.");
+          ToastSuccess("Messages are generating!");
           let _prompts = data.prompts.map((item: any) => {
             if (item?.id === promptItem?.id) {
               item = res?.data;
