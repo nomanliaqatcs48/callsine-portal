@@ -17,7 +17,7 @@ interface WebsocketProviderProps {
 
 const useWebsocket = (id: string) => {
   // const socketUrl = `wss://api.callsine.com/ws/users/${id}/`;
-  const socketUrl = `ws://api.callsine.com/ws/users/${id}/`;
+  const socketUrl = `wss://api.callsine.com/ws/users/${id}/`;
   const dispatch = useDispatch(); // Initialize useDispatch
 
   const handleAddUpdatePerson = (
