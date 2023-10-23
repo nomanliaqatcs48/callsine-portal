@@ -30,10 +30,6 @@ import { msalConfig } from "src/views/authentication/auth-forms/microsoft/authCo
 import { HelmetProvider } from "react-helmet-async";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-//Redux actions
-import { getUnreadReplies } from "./store/emailReplyCount/actions";
-
-// store.dispatch(getUnreadReplies());
 const msalInstance = new PublicClientApplication(msalConfig as any);
 
 const queryClient = new QueryClient();

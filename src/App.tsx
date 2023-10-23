@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { CssBaseline, StyledEngineProvider } from "@mui/material";
 import { ThemeProvider } from "@mui/material/styles";
 
+import { useAuthentication } from "./hooks/useAuthentication";
 // routing
 import Routes from "./routes";
 
@@ -14,8 +15,17 @@ import { MendableChatBubble } from "@mendable/search";
 import logo from "./assets/images/logos/callsine-logo-white-only.png";
 import NavigationScroll from "./layout/NavigationScroll";
 
+//Redux actions
+import { getUnreadReplies } from "./store/emailReplyCount/actions";
+import { store } from "./store";
+
 const App = () => {
   const customization = useSelector((state: any) => state.customization);
+
+  const { isAuthenticated } = useAuthentication();
+  if (isAuthenticated) {
+    store.dispatch(getUnreadReplies());
+  }
 
   const style = { darkMode: false, accentColor: "#cccc", zIndex: "1000" };
 
