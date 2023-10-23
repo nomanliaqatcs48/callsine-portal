@@ -31,6 +31,7 @@ import http from "src/services/axios";
 import { SelectChangeEvent } from "@mui/material/Select";
 import { ToastSuccess } from "../../helpers/toast";
 import { useAuth } from "../../contexts/auth";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 type Member = {
   first_name: string;
@@ -46,6 +47,16 @@ export const _columns: any = () => {
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
   const [isMembersDataLoaded, setIsMembersDataLoaded] = useState(false);
+
+  const { unreadEmails } = useUnreadCount();
+
+  console.log({ unreadEmails });
+  const countUnreadEmails = (email: string) => {
+    const filteredCount = unreadEmails.filter(
+      (unReadEmail: any) => unReadEmail.to === email
+    ).length;
+    return filteredCount;
+  };
 
   const ListItemCustom = ({ icon, text }: any) => {
     return (
@@ -232,7 +243,7 @@ export const _columns: any = () => {
                         </div>
                         <div>
                           <span className="tw-font-bold tw-text-[0.80rem]">
-                            {cell?.value || ""}{" "}
+                            {cell?.value || ""}
                             {cell?.row?.original?.last_name || ""}
                           </span>
                           <div className="tw-text-[#1ea3ce] tw-text-sm tw-font-normal">
@@ -339,15 +350,35 @@ export const _columns: any = () => {
                 >
                   <Button
                     variant="text"
-                    className="tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent tw-font-normal"
+                    className="tw-relative tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent tw-font-normal"
                     href={`/people/${cell?.row?.original?.id}`}
-                    // disabled={cell?.row?.original?.got_data ? false : true}
                   >
-                    <div className="tw-relative tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
+                    <div className="tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
                       <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
                     </div>
-                    <span>
+                    <span className="">
                       {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                      {countUnreadEmails(cell?.row?.original?.work_email) !==
+                        0 && (
+                        <span
+                          style={{
+                            position: "absolute",
+                            top: 0,
+                            right: 0,
+                            backgroundColor: "red",
+                            color: "white",
+                            borderRadius: "50%",
+                            width: "20px",
+                            height: "20px",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            fontSize: "12px",
+                          }}
+                        >
+                          {countUnreadEmails(cell?.row?.original?.work_email)}
+                        </span>
+                      )}
                     </span>
                   </Button>
                 </Tooltip>

@@ -24,6 +24,7 @@ import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import moment from "moment-timezone";
 import { useAuth } from "../../../../../contexts/auth";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -36,11 +37,13 @@ type NavItemTypes = InferProps<typeof NavItemPropTypes>;
 
 const NavItem = ({ item, level }: NavItemTypes) => {
   const theme: any = useTheme();
-  const auth: any = useAuth();  
+  const auth: any = useAuth();
   const dispatch = useDispatch();
   const customization = useSelector((state: any) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
+
+  const { unreadCount } = useUnreadCount();
 
   const Icon = item?.icon;
   const itemIcon = item?.icon ? (
@@ -185,8 +188,30 @@ const NavItem = ({ item, level }: NavItemTypes) => {
             }
             className="tw-text-white tw-font-medium tw-text-[18px]"
             color="inherit"
+            style={{ position: "relative" }}
           >
             {item.title}
+            {item.title === "People" && unreadCount > 0 && (
+              <span
+                className="unread-count"
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  minWidth: "20px",
+                  minHeight: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "12px",
+                }}
+              >
+                {unreadCount}
+              </span>
+            )}
           </Typography>
         }
         secondary={

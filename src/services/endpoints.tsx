@@ -25,4 +25,5 @@ export const endpoints = {
   OUTLOOK_THREAD: "/api/outlook-thread/",
   PAYMENTS: "/payments/",
   TEAM_MEMBERS_ASSIGN: "/api/team-members/",
+  UNREAD_REPLIES: "/api/unread-replies/",
 };

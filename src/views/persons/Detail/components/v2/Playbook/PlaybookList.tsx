@@ -9,14 +9,11 @@ import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
 import ErrorIcon from "@mui/icons-material/ErrorOutline";
 
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setShowDraft } from "src/store/playbooks/showDraftSlice";
-import { RootState } from "src/store";
 
 import { MouseEvent, useState } from "react";
-import { devLog } from "../../../../../../helpers/logs";
-import xss from "xss";
-import { useEmailsTab } from "../../../../../../hooks/persons/useEmailsTab";
+
 import moment from "moment-timezone";
 import _ from "lodash";
 

@@ -83,3 +83,7 @@ export const gmailThreadReplyService = async (data: ThreadReplyTypes) => {
 export const outLookThreadReplyService = async (data: ThreadReplyTypes) => {
   return await http.post(`${endpoints.OUTLOOK_THREAD}`, data);
 };
+
+export const getUnreadRepliesService = async () => {
+  return await http.get(`${endpoints.UNREAD_REPLIES}`);
+};

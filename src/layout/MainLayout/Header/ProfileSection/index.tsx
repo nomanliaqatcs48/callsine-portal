@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import NotificationsIcon from "@mui/icons-material/Notifications";
 
 // material-ui
 import {
@@ -38,6 +39,7 @@ import {
 import { useAuth } from "../../../../contexts/auth";
 import { devLog } from "../../../../helpers/logs";
 import { clear } from "../../../../utils/storage";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 // ==============================|| PROFILE MENU ||============================== //
 
@@ -45,6 +47,9 @@ const ProfileSection = () => {
   const auth: any = useAuth();
   const theme: any = useTheme();
   const customization = useSelector((state: any) => state.customization);
+  const { unreadCount } = useUnreadCount();
+  console.log({ unreadCount });
+
   const navigate = useNavigate();
 
   const [sdm, setSdm] = useState(true);
@@ -182,11 +187,33 @@ const ProfileSection = () => {
                 sx={{ position: "relative", top: -1, left: -8 }}
               />
             </span>
-            {/*<IconSettings
-              stroke={1.5}
-              size="1.5rem"
-              color={theme.palette.primary.main}
-            />*/}
+            <NotificationsIcon
+              className="tw-text-black"
+              sx={{
+                position: "relative",
+                top: -1,
+              }}
+            />
+            {unreadCount !== 0 && (
+              <span
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  right: 0,
+                  backgroundColor: "red",
+                  color: "white",
+                  borderRadius: "50%",
+                  width: "20px",
+                  height: "20px",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  fontSize: "12px",
+                }}
+              >
+                {unreadCount}
+              </span>
+            )}
           </>
         }
         variant="outlined"
@@ -239,6 +266,11 @@ const ProfileSection = () => {
                           {auth?.last_name}
                         </Typography>
                       </Stack>
+                      <div className="tw-font-thin tw-text-red-600">
+                        You have{" "}
+                        <span className="tw-font-medium">{unreadCount}</span>{" "}
+                        replies.
+                      </div>
                       {/*<Typography variant="subtitle2">Project Admin</Typography>*/}
                     </Stack>
                     {/*<OutlinedInput
