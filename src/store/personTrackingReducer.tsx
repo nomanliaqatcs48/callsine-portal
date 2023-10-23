@@ -4,6 +4,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface Person {
   finalEmailPosition: number | null;
   lastEmailPosition: number | null;
+  completedGeneration: boolean | null;
 }
 
 interface PersonsState {
@@ -24,11 +25,20 @@ const personsSlice = createSlice({
         personId: number;
         finalEmailPosition: number | null;
         lastEmailPosition: number | null;
+        completedGeneration: boolean | null;
       }>
     ) {
-      const { personId, finalEmailPosition, lastEmailPosition } =
-        action.payload;
-      state.persons[personId] = { finalEmailPosition, lastEmailPosition };
+      const {
+        personId,
+        finalEmailPosition,
+        lastEmailPosition,
+        completedGeneration,
+      } = action.payload;
+      state.persons[personId] = {
+        finalEmailPosition,
+        lastEmailPosition,
+        completedGeneration,
+      };
     },
     removePerson(state, action: PayloadAction<number>) {
       delete state.persons[action.payload];

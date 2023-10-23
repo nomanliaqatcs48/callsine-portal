@@ -100,6 +100,12 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
   const [companyWebsite, setCompanyWebsite] = useState("");
   const [error, setError] = useState("");
 
+  useEffect(() => {
+    setEmail(profileData?.email);
+  }, [profileData]);
+
+  console.log("PROFILE DATA", profileData);
+
   const handleInputChange = (e: any) => {
     const website = e.target.value;
     if (isValidURL(website) || website === "") {

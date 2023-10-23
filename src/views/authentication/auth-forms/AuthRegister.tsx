@@ -137,9 +137,7 @@ const AuthRegister = ({ ...others }) => {
           setStatus({ success: true });
           setSubmitting(false);
         }*/
-        setTimeout(() => {
-          login(values, { setErrors, setStatus, setSubmitting });
-        }, 1000);
+        login(values, { setErrors, setStatus, setSubmitting });
       }
     } catch (err: any) {
       devLogError(() => {

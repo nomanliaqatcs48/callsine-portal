@@ -2,18 +2,18 @@ import axios from "axios";
 import { devLogError } from "src/helpers/logs";
 import config from "../config";
 
-let token = localStorage.getItem("token");
-
 axios.defaults.baseURL = config.service.BASE_URL; //BASE URL
 axios.defaults.headers.get["Accept"] = "application/json";
 axios.defaults.headers.post["Accept"] = "application/json";
-axios.defaults.headers["Authorization"] = `Bearer ${token}`;
 
 axios.interceptors.request.use(
   (config: any) => {
+    const token = localStorage.getItem("token");
     if (token) {
+      console.log("HAS BEARER");
       config.headers["Authorization"] = `Bearer ${token}`;
     } else {
+      console.log("NO BEARER");
       config.headers["Authorization"] = "";
     }
     return config;

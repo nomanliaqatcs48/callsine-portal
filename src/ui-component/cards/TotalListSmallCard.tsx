@@ -1,10 +1,9 @@
-import React from "react";
-import { styled, useTheme } from "@mui/material/styles";
 import { Box, Grid, Typography } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
 
+import SmallWhiteBlue from "../../assets/images/bg/small-white-blue.jpg";
 import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonTotalListSmall from "../../ui-component/cards/Skeleton/TotalListSmallCard";
-import SmallWhiteBlue from "../../assets/images/bg/small-white-blue.jpg";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   // backgroundColor: theme.palette.primary.main,
@@ -68,34 +67,60 @@ const TotalListSmallCard = ({
             backgroundImage: `url(${SmallWhiteBlue})`,
             backgroundRepeat: "no-repeat",
             backgroundSize: "cover",
+            border: "2px solid white", // Add a white border around the card
           }}
         >
-          <Box sx={{ p: 2.25 }}>
-            <Grid container direction="column" alignItems="center">
-              <Grid item>
-                <Grid container alignItems="center">
-                  <Grid item className="tw-z-50">
-                    <Typography
-                      sx={{
-                        fontSize: "2.125rem",
-                        mr: 1,
-                        mt: 1.75,
-                        mb: 0.75,
-                      }}
-                      className="tw-font-medium tw-text-[40px] tw-tracking-[0.8px] tw-text-white"
-                    >
-                      {value}
-                    </Typography>
-                  </Grid>
-                </Grid>
-              </Grid>
-              <Grid item sx={{ mb: 1.25 }} className="tw-z-50">
-                <Typography className="tw-text-[18px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  {text}
+          <Grid
+            container
+            style={{
+              height: "100%", // Ensure the container takes up the full height of the card
+              borderLeft: "2px solid white", // Add a vertical white border
+              borderTop: "2px solid white", // Add a horizontal white border
+            }}
+          >
+            <Grid item xs={6} sm={6}>
+              {" "}
+              {/* Adjust grid item for top-left quadrant */}
+              <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
+                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  53
                 </Typography>
-              </Grid>
+                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                  Scheduled Today
+                </Typography>
+              </Box>
             </Grid>
-          </Box>
+            <Grid item xs={6} sm={6}>
+              <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
+                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  22
+                </Typography>
+                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                  Sent Today
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={6}>
+              <Box sx={{ p: 1, px: 2, py: 1 }}>
+                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  530
+                </Typography>
+                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                  Total Scheduled
+                </Typography>
+              </Box>
+            </Grid>
+            <Grid item xs={6} sm={6}>
+              <Box sx={{ p: 1, px: 2, pb: 3 }}>
+                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  210
+                </Typography>
+                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                  Unscheduled
+                </Typography>
+              </Box>
+            </Grid>
+          </Grid>
         </CardWrapper>
       )}
     </>

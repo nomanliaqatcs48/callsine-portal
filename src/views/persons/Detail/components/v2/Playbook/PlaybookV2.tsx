@@ -150,6 +150,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
         personId: Number(id),
         finalEmailPosition: 0,
         lastEmailPosition: 0,
+        completedGeneration: false,
       })
     );
   };
@@ -247,6 +248,13 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
             <Grid className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4">
               <Typography color="white">
                 Messages are currently generating.
+              </Typography>
+            </Grid>
+          )}
+          {person?.completedGeneration && (
+            <Grid className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4">
+              <Typography color="white">
+                Your messages have generated, you may need to refresh your page.
               </Typography>
             </Grid>
           )}

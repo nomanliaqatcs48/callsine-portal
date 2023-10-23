@@ -23,11 +23,17 @@ const useWebsocket = (id: string) => {
   const handleAddUpdatePerson = (
     personId: number,
     finalEmailPosition: number,
-    lastEmailPosition: number
+    lastEmailPosition: number,
+    completedGeneration: boolean
   ) => {
     // Dispatching the addUpdatePerson action to add/update the person in the Redux store
     dispatch(
-      addUpdatePerson({ personId, finalEmailPosition, lastEmailPosition })
+      addUpdatePerson({
+        personId,
+        finalEmailPosition,
+        lastEmailPosition,
+        completedGeneration,
+      })
     );
   };
 
@@ -51,10 +57,13 @@ const useWebsocket = (id: string) => {
       if (messageData?.notification?.message.event === "set_playbook") {
         const message = messageData?.notification?.message;
         console.log("Prompts LENGTH", message.playbook.prompts.length);
+        const completedGeneration =
+          message.playbook.prompts.length === message.data.position;
         handleAddUpdatePerson(
           message.data.person,
           message.playbook.prompts.length,
-          message.data.position
+          message.data.position,
+          completedGeneration
         );
       }
     });

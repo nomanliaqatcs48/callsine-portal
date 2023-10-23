@@ -1,31 +1,70 @@
-import React, { useContext, useEffect, useState } from "react";
-import { Button, Divider, Grid, Paper, Typography, Stack } from "@mui/material";
-import MyTable from "../../ui-component/tables/MyTable";
-import { _columns } from "../../utils/people/utils";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
+import Visibility from "@mui/icons-material/Visibility";
+import React, { FC, useState } from "react";
+
+import {
+  Box,
+  Button,
+  DialogActions,
+  Divider,
+  Grid,
+  Paper,
+  Stack,
+  Typography,
+} from "@mui/material";
+import { useEffect } from "react";
+import { useAsyncDebounce } from "react-table";
+import MyModal from "src/ui-component/modal/MyModal";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import { useAuth } from "../../contexts/auth";
+import { ToastSuccess } from "../../helpers/toast";
+import { usePersons } from "../../hooks/persons/usePersons";
+import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
+import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
+import ExportPeople from "../../ui-component/buttons/ExportPeople";
+import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
+import ImportPeople from "../../ui-component/buttons/ImportPeople";
 import TotalListSmallCard from "../../ui-component/cards/TotalListSmallCard";
 import SearchFieldV2 from "../../ui-component/forms/SearchFieldV2";
-import Filter from "../../ui-component/dropdowns/Filter";
-import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
-import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
-import { useAuth } from "../../contexts/auth";
-import ImportPeople from "../../ui-component/buttons/ImportPeople";
-import { ToastSuccess } from "../../helpers/toast";
-import ExportPeople from "../../ui-component/buttons/ExportPeople";
-import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
-import GenerateSelectedPeople from "../../ui-component/buttons/GenerateSelectedPeople";
-import { useAsyncDebounce } from "react-table";
-import { usePersons } from "../../hooks/persons/usePersons";
 import SearchFilter from "../../ui-component/forms/SearchFilter";
+import MyTable from "../../ui-component/tables/MyTable";
+import { _columns } from "../../utils/people/utils";
 import WebsocketProvider, {
   WebsocketContext,
 } from "../../websocket/websocketProvider";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
-import Visibility from "@mui/icons-material/Visibility";
 // import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+interface ExplainerModalProps {
+  open: boolean;
+  onClose: () => void;
+}
+
+const ExplainerModal: FC<ExplainerModalProps> = ({ open, onClose }) => (
+  <MyModal
+    open={open}
+    onClose={onClose}
+    modalTitle="How we process your contact lists..."
+    labelledby="Are you sure?"
+    describedby="delete person modal"
+    modalSxStyle={{ width: { xs: 400 } }}
+  >
+    <Typography>
+      Right now, we are gathering intel on all of your contacts to help improve
+      the personalization of your emails. Some contacts and their associated
+      companies may take seconds, but some may take longer to track down. You
+      can feel free to start working on the contacts that are currently marked
+      with a green check in the column "Data Available."
+    </Typography>
+    <DialogActions>
+      <Button onClick={onClose}>Awesome, Thanks</Button>
+    </DialogActions>
+  </MyModal>
+);
 
 const PersonsPage = () => {
   const auth: any = useAuth();
+  const [explainerOpen, setExplainerOpen] = useState<boolean>(false);
 
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
 
@@ -125,6 +164,10 @@ const PersonsPage = () => {
     }
   }, [showAssign]);
 
+  const handleModalClose = () => {
+    setExplainerOpen(false);
+  };
+
   return (
     <>
       <WebsocketProvider userId={auth.id}>
@@ -154,7 +197,7 @@ const PersonsPage = () => {
           </HtmlTooltip>
         </Typography>
         <Grid className="tw-my-5" />
-        <Paper elevation={0} className="tw-mb-10 tw-bg-transparent">
+        <Paper elevation={0} className="tw-mb-5 tw-bg-transparent">
           <Grid
             container
             spacing={0}
@@ -246,7 +289,20 @@ const PersonsPage = () => {
             </Grid>
           </Grid>
         </Paper>
-
+        {personsData && personsData.length > 0 && (
+          <Grid
+            className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4"
+            onClick={() => setExplainerOpen(true)}
+          >
+            <Box flexDirection={"row"}>
+              <Typography color="white">
+                Your list is succesfully processing. Proceed with contacts who
+                have the green "Data Available." We are working on the rest!
+                What does this mean?
+              </Typography>
+            </Box>
+          </Grid>
+        )}
         <Paper
           elevation={0}
           className="tw-rounded tw-border tw-border-[#eff0f1]"
@@ -348,6 +404,7 @@ const PersonsPage = () => {
             />
           </Paper>
         </Paper>
+        <ExplainerModal open={explainerOpen} onClose={handleModalClose} />
       </WebsocketProvider>
     </>
   );

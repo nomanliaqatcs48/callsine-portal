@@ -1,27 +1,15 @@
-import React, { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Container,
-  Divider,
-  Grid,
-  Paper,
-  Tab,
-  Tabs,
-  Typography,
-} from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import CancelIcon from "@mui/icons-material/Cancel";
+import EditIcon from "@mui/icons-material/Edit";
+import { Box, Button, Divider, Grid, Paper, Tab, Tabs } from "@mui/material";
+import React, { useState } from "react";
 import { usePersonDetail } from "../../../hooks/persons/usePersonDetail";
 import GoBack from "../../../ui-component/buttons/GoBack";
+import CustomFieldsTab from "../../../ui-component/tabs/CustomFieldsTab";
 import TabPanel from "../../../ui-component/tabs/TabPanel";
-import TrackingTab from "../../../ui-component/tabs/TrackingTab";
-import Emails from "./components/Emails";
+import EmailThread from "./components/EmailThread";
 import ProfileFirstCol from "./components/ProfileFirstCol";
 import ProfileSecondCol from "./components/ProfileSecondCol";
 import PlaybookV2 from "./components/v2/Playbook/PlaybookV2";
-import CustomFieldsTab from "../../../ui-component/tabs/CustomFieldsTab";
-import EmailThread from "./components/EmailThread";
 
 const PersonDetailPage = () => {
   const [value, setValue] = React.useState(0);
@@ -161,11 +149,11 @@ const PersonDetailPage = () => {
             {...a11yProps(2)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
           /> */}
-          <Tab
+          {/* <Tab
             label="Custom Fields"
             {...a11yProps(3)}
             className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-black"
-          />
+          /> */}
           {/* <Tab
             label="Email Threads"
             {...a11yProps(4)}
