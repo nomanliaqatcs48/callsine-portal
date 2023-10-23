@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { checkIfAuthenticated } from "../utils/auth";
 import { devLog, devLogError } from "../helpers/logs";
-import { load, save } from "../utils/storage";
 import { profileService } from "../services/profile.service";
+import { checkIfAuthenticated } from "../utils/auth";
+import { load, save } from "../utils/storage";
 
 export const useAuthentication = () => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
@@ -10,7 +10,9 @@ export const useAuthentication = () => {
 
   useEffect(() => {
     checkAuth();
-    getProfile();
+    if (isAuthenticated) {
+      getProfile();
+    }
   }, []);
 
   const checkAuth = async () => {

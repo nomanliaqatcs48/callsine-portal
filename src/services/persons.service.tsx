@@ -17,7 +17,7 @@ export const getPeopleService = async (
   let _titleFilter = `&job_title=${searchFilterValue?.title}`;
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
   let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
-  let _userFilter = user_id ? `&assigned_user=${user_id}` : "";  
+  let _userFilter = user_id ? `&assigned_user=${user_id}` : "";
 
   const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`;
 

@@ -7,5 +7,5 @@ import reducer from "./reducer";
 const store = createStore(reducer, applyMiddleware(thunk));
 const persister = "Free";
 
-export { store, persister };
+export { persister, store };
 export type RootState = ReturnType<typeof store.getState>;

@@ -16,16 +16,20 @@ import logo from "./assets/images/logos/callsine-logo-white-only.png";
 import NavigationScroll from "./layout/NavigationScroll";
 
 //Redux actions
-import { getUnreadReplies } from "./store/emailReplyCount/actions";
+import { useEffect } from "react";
 import { store } from "./store";
+import { getUnreadReplies } from "./store/emailReplyCount/actions";
 
 const App = () => {
   const customization = useSelector((state: any) => state.customization);
 
   const { isAuthenticated } = useAuthentication();
-  if (isAuthenticated) {
-    store.dispatch(getUnreadReplies());
-  }
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      store.dispatch(getUnreadReplies());
+    }
+  }, [isAuthenticated]);
 
   const style = { darkMode: false, accentColor: "#cccc", zIndex: "1000" };
 

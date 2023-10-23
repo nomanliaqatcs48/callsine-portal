@@ -8,27 +8,35 @@ import {
   FormGroup,
   Grid,
   Paper,
+  Typography,
 } from "@mui/material";
 import _ from "lodash";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux"; // Import useDispatch
 import { useParams } from "react-router-dom";
+import { useAsyncDebounce } from "react-table";
+import {
+  addUpdatePerson,
+  selectPersonById,
+} from "src/store/personTrackingReducer";
+import { useAuth } from "../../../../../../contexts/auth";
 import { devLog, devLogError } from "../../../../../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
+import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
 import { useFetchProspectSequenceEvent } from "../../../../../../hooks/persons/useProspectEvents";
-import { setPlaybookV2Service } from "../../../../../../services/prompts.service";
+import {
+  getPlaybooks,
+  setPlaybookV2Service,
+} from "../../../../../../services/prompts.service";
 import ReactSelect from "../../../../../../ui-component/dropdowns/ReactSelect";
 import MyModal from "../../../../../../ui-component/modal/MyModal";
-import PlaybookList from "./PlaybookList";
-import { usePlaybook } from "../../../../../../hooks/persons/usePlaybook";
-import { getPlaybooks } from "../../../../../../services/prompts.service";
-import { useAsyncDebounce } from "react-table";
 import SelectItemNull from "../../../../../../ui-component/pages/persons/detail/SelectItemNull";
 import { load } from "../../../../../../utils/storage";
-import EditTypeHandler from "./EditTypeHandler";
 import WebsocketProvider, {
   WebsocketContext,
 } from "../../../../../../websocket/websocketProvider";
-import { useAuth } from "../../../../../../contexts/auth";
+import EditTypeHandler from "./EditTypeHandler";
+import PlaybookList from "./PlaybookList";
 
 type PersonProps = {
   personData: any;
@@ -44,6 +52,25 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
   const [promptId, setPromptId] = useState<number | null>(null);
   const [searchValue, setSearchValue] = useState<string>("");
   const [isOverwrite, setIsOverwrite] = useState<boolean>(false);
+  const dispatch = useDispatch(); // Initialize useDispatch
+  const person = useSelector((state) => selectPersonById(state, Number(id)));
+  const [generating, setGenerating] = useState<boolean>(false);
+  console.log(person);
+  useEffect(() => {
+    if (
+      person?.finalEmailPosition !== person?.lastEmailPosition ||
+      person?.lastEmailPosition === 0
+    ) {
+      setGenerating(true);
+    } else {
+      if (person) {
+        ToastSuccess("Messages have completed generating.");
+      }
+      setGenerating(false);
+    }
+  }, [person]);
+
+  console.log("GENERATING", generating);
 
   const {
     data: playBookData,
@@ -78,6 +105,9 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
   //   handleOpen,
   //   handleClose,
   // } = usePlaybook();
+  // store.subscribe(() => {
+  //   console.log(store.getState());
+  // });
 
   useEffect(() => {
     getPrompts();
@@ -94,9 +124,9 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
       let _profile: any = await load("profile");
       let res = await getPlaybooks(filters, searchValue);
       if (res?.data) {
-        devLog(() => {
-          console.log("res.data?.results", res.data?.results);
-        });
+        // devLog(() => {
+        //   console.log("res.data?.results", res.data?.results);
+        // });
         setPrompts(
           _.filter(res.data?.results, (o: any) => o?.team === _profile?.team)
         );
@@ -108,6 +138,17 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
       });
       setLoading((prev: any) => ({ ...prev, onPage: false }));
     }
+  };
+
+  const handleAddUpdatePerson = () => {
+    // Dispatching the addUpdatePerson action to add/update the person in the Redux store
+    dispatch(
+      addUpdatePerson({
+        personId: Number(id),
+        finalEmailPosition: 0,
+        lastEmailPosition: 0,
+      })
+    );
   };
 
   const handleGeneratePlaybook = async (event: any) => {
@@ -129,7 +170,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
         isOverwrite
       );
       if (res?.data) {
-        ToastSuccess("Message successfully generated.");
+        ToastSuccess("Messages are generating.");
+        handleAddUpdatePerson();
         setData(res.data);
         getPersonDetail();
         setPromptId(null);
@@ -171,9 +213,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
     setIsOverwrite(event?.target?.checked);
   };
 
-  console.log({ data });
-
   useEffect(() => {
+    console.log(websocketResponse);
     if (
       websocketResponse &&
       websocketResponse.message &&
@@ -199,6 +240,13 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
           elevation={0}
           className="tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]"
         >
+          {generating && (
+            <Grid className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4">
+              <Typography color="white">
+                Messages are currently generating.
+              </Typography>
+            </Grid>
+          )}
           <Grid container className="tw-p-0">
             <Grid
               item

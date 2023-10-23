@@ -1,15 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
+import { ToastSuccess } from "../../helpers/toast";
+import { updateEmailService } from "../../services/emails.service";
 import {
   getPersonDetailService,
   updatePersonDetailService,
 } from "../../services/persons.service";
-import { useParams } from "react-router-dom";
 import { generateResponsesService } from "../../services/prompts.service";
-import { ToastError, ToastSuccess } from "../../helpers/toast";
-import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
-import { updateProspectSequenceEventDetailService } from "../../services/sequences.service";
-import { updateEmailService } from "../../services/emails.service";
 
 export const usePlaybook = (load: boolean = true) => {
   const { id } = useParams();
@@ -64,7 +63,7 @@ export const usePlaybook = (load: boolean = true) => {
     try {
       let res = await generateResponsesService(Number(sequenceEvent?.id));
       if (res?.data) {
-        ToastSuccess("Email successfully regenerated.");
+        ToastSuccess("Emails are regenerating!");
         let _prompts = data.prompts.map((item: any) => {
           if (item?.id === sequenceEvent?.id) {
             item = res?.data;

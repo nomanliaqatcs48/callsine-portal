@@ -1,5 +1,7 @@
-import { useEffect, createContext, ReactNode, useMemo, useState } from "react";
+import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
+import { useDispatch } from "react-redux"; // Import useDispatch
 import ReconnectingWebSocket from "reconnecting-websocket";
+import { addUpdatePerson } from "../store/personTrackingReducer"; // Adjust the import path to match the file location
 
 interface WebsocketContextType {
   socket: ReconnectingWebSocket;
@@ -14,7 +16,21 @@ interface WebsocketProviderProps {
 }
 
 const useWebsocket = (id: string) => {
-  const socketUrl = `wss://api.callsine.com/ws/users/${id}/`;
+  // const socketUrl = `wss://api.callsine.com/ws/users/${id}/`;
+  const socketUrl = `ws://api.callsine.com/ws/users/${id}/`;
+  const dispatch = useDispatch(); // Initialize useDispatch
+
+  const handleAddUpdatePerson = (
+    personId: number,
+    finalEmailPosition: number,
+    lastEmailPosition: number
+  ) => {
+    // Dispatching the addUpdatePerson action to add/update the person in the Redux store
+    dispatch(
+      addUpdatePerson({ personId, finalEmailPosition, lastEmailPosition })
+    );
+  };
+
   const socket = useMemo(() => {
     return new ReconnectingWebSocket(socketUrl);
   }, [socketUrl]);
@@ -31,6 +47,16 @@ const useWebsocket = (id: string) => {
       const messageData = JSON.parse(event.data);
       // console.log("Received message from server context:", messageData);
       setResponsePayload(messageData); // Update the response payload state with the received data
+      console.log("MESSAGE PAYLOAD", messageData?.notification?.message);
+      if (messageData?.notification?.message.event === "set_playbook") {
+        const message = messageData?.notification?.message;
+        console.log("Prompts LENGTH", message.playbook.prompts.length);
+        handleAddUpdatePerson(
+          message.data.person,
+          message.playbook.prompts.length,
+          message.data.position
+        );
+      }
     });
 
     return () => {
