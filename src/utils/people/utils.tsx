@@ -1,5 +1,3 @@
-import React, { useMemo, useState, useEffect, useRef } from "react";
-import { useTheme } from "@mui/material/styles";
 import {
   Avatar,
   Box,
@@ -10,28 +8,30 @@ import {
   ListItemAvatar,
   Tooltip,
 } from "@mui/material";
-import { IconTrash, IconCircleX, IconCircleCheck } from "@tabler/icons-react";
+import { useTheme } from "@mui/material/styles";
+import { IconCircleCheck, IconCircleX, IconTrash } from "@tabler/icons-react";
+import React, { useEffect, useMemo, useState } from "react";
 // import { IconTrash, IconCircleX, IconCircleCheck } from "@tabler/icons-react";
-import { ReactComponent as UserIcon } from "../../assets/images/svg/user.svg";
-import { ReactComponent as FacebookIcon } from "../../assets/images/svg/facebook.svg";
-import { ReactComponent as LinkedinIcon } from "../../assets/images/svg/linkedin.svg";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
 import AlternateEmailOutlinedIcon from "@mui/icons-material/AlternateEmailOutlined";
 import BusinessOutlinedIcon from "@mui/icons-material/BusinessOutlined";
 import FmdGoodOutlinedIcon from "@mui/icons-material/FmdGoodOutlined";
-import Select from "@mui/material/Select";
+import LocalPhoneOutlinedIcon from "@mui/icons-material/LocalPhoneOutlined";
+import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
 import MenuItem from "@mui/material/MenuItem";
-import DeletePerson from "../../ui-component/buttons/DeletePerson";
+import Select from "@mui/material/Select";
 import moment from "moment-timezone";
+import { ReactComponent as FacebookIcon } from "../../assets/images/svg/facebook.svg";
+import { ReactComponent as LinkedinIcon } from "../../assets/images/svg/linkedin.svg";
+import { ReactComponent as UserIcon } from "../../assets/images/svg/user.svg";
+import DeletePerson from "../../ui-component/buttons/DeletePerson";
 
+import { SelectChangeEvent } from "@mui/material/Select";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+import http from "src/services/axios";
 import { endpoints } from "src/services/endpoints";
 import { personUpdateAssign } from "src/services/persons.service";
-import http from "src/services/axios";
-import { SelectChangeEvent } from "@mui/material/Select";
-import { ToastSuccess } from "../../helpers/toast";
 import { useAuth } from "../../contexts/auth";
-import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { ToastSuccess } from "../../helpers/toast";
 
 type Member = {
   first_name: string;
@@ -42,7 +42,7 @@ type Member = {
 };
 
 export const _columns: any = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);

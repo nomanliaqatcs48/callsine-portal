@@ -26,7 +26,7 @@ const GenerateSelectedPeople = ({
   selectedRows,
   onLoadApi,
 }: GenerateSelectedPeopleProps) => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,

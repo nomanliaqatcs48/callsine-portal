@@ -13,13 +13,27 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
   devLog(() => {
     console.log("in the authenticated");
   });
-  const [profile, setProfile] = useState<any>(null);
+  const [auth, setProfile] = useState<any>(null);
   const [isOnPageLoading, setIsOnPageLoading] = useState<boolean>(true);
 
   useEffect(() => {
     checkAuth();
     getProfile();
   }, []);
+
+  const updateProfile = async () => {
+    try {
+      let res = await profileService();
+      if (res?.data) {
+        await save("profile", res.data);
+        setProfile(res.data);
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e);
+      });
+    }
+  };
 
   const getProfile = async () => {
     try {
@@ -59,7 +73,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
   };
 
   return (
-    <AuthContext.Provider value={profile}>
+    <AuthContext.Provider value={{ auth, updateProfile }}>
       {!isOnPageLoading && children}
     </AuthContext.Provider>
   );

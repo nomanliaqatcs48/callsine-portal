@@ -1,5 +1,5 @@
-import React from "react";
 import { Button } from "@mui/material";
+import React from "react";
 import config from "../../config";
 import { useAuth } from "../../contexts/auth";
 
@@ -26,7 +26,7 @@ const NewGmailAccount = ({
   size = "large",
   color,
 }: NewGmailAccountTypes) => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
 
   const handleClick = () => {
     window.location.href = `${config.service.BASE_URL}/api/gmail/?login_hint=${email}&user_id=${auth?.id}`;

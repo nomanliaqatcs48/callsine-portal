@@ -8,6 +8,7 @@ import {
   DialogTitle,
 } from "@mui/material";
 
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import {
   Alert,
   Button,
@@ -26,7 +27,6 @@ import React, { useEffect, useState } from "react";
 import { useAuth } from "src/contexts/auth";
 import http from "src/services/axios";
 import { endpoints } from "src/services/endpoints";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 type Member = {
@@ -38,7 +38,7 @@ type Member = {
 };
 
 const TeamPage: React.FC = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

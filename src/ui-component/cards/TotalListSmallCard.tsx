@@ -106,7 +106,7 @@ const TotalListSmallCard = ({
                   530
                 </Typography>
                 <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  Total Scheduled
+                  All Scheduled
                 </Typography>
               </Box>
             </Grid>

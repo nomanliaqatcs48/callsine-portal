@@ -1,3 +1,4 @@
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import {
   Button,
   Grid,
@@ -15,9 +16,8 @@ import useGetTeamMe from "src/hooks/settings/useGetTeam";
 import useGetUserMe from "src/hooks/settings/useGetUser";
 import usePatchUsersMe from "src/hooks/settings/usePatchUser";
 import useUpdateTeam from "src/hooks/settings/useUpdateTeam";
-import US_STATES from "src/utils/form-variables";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import US_STATES from "src/utils/form-variables";
 
 interface TeamState {
   domain: string;
@@ -92,7 +92,7 @@ const userFields: Field[] = [
 ];
 
 const SettingsPage: React.FC = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const { loading, data, error } = useGetUserMe();
   const { patchData } = usePatchUsersMe(); // Use the patch hook
   const { data: teamData } = useGetTeamMe(); // Use

@@ -1,32 +1,16 @@
+import { Grid, Typography } from "@mui/material";
 import { useEffect } from "react";
-import {
-  Grid,
-  Typography,
-  FormControl,
-  FormGroup,
-  Input,
-  InputLabel,
-} from "@mui/material";
 
-import { gridSpacing } from "../../store/constant";
-import RemainingClicks from "../../ui-component/cards/RemainingClicks";
-import { useAuth } from "../../contexts/auth";
-import TotalPersonsCard from "../../ui-component/cards/TotalPersons";
-import TotalMailAccounts from "../../ui-component/cards/TotalMailAccounts";
-import { useDashboard } from "../../hooks/dashboard/useDashboard";
-import { _columns } from "../../utils/dashboard/utils";
-import MyTable from "../../ui-component/tables/MyTable";
-import { usePersons } from "../../hooks/persons/usePersons";
-import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
-import TotalScheduledEmailsCard from "../../ui-component/cards/TotalScheduledEmails";
-import { useAuthentication } from "../../hooks/useAuthentication";
-import { Wizard, useWizard } from "react-use-wizard";
 import { useDispatch } from "react-redux";
-import { SET_MENU } from "src/store/actions";
+import { Wizard, useWizard } from "react-use-wizard";
+import { useAuth } from "../../contexts/auth";
+import { useDashboard } from "../../hooks/dashboard/useDashboard";
+import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
+import { useAuthentication } from "../../hooks/useAuthentication";
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   let {
     isLoading,
     getScheduledEmails,

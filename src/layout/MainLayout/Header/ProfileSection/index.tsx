@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 
+import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 
 // material-ui
 import {
@@ -36,15 +36,15 @@ import {
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
 import { useAuth } from "../../../../contexts/auth";
 import { devLog } from "../../../../helpers/logs";
 import { clear } from "../../../../utils/storage";
-import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const theme: any = useTheme();
   const customization = useSelector((state: any) => state.customization);
   const { unreadCount } = useUnreadCount();

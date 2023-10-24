@@ -63,12 +63,26 @@ const ExplainerModal: FC<ExplainerModalProps> = ({ open, onClose }) => (
 );
 
 const PersonsPage = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
+
   const [explainerOpen, setExplainerOpen] = useState<boolean>(false);
 
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
 
   const [showAssign, setShowAssign] = useState(false);
+
+  console.log("AUTH", auth);
+  useEffect(() => {
+    // Assume checkIfTeamExists is a function that checks if a team exists for the user
+    const checkIfTeamExists = async () => {
+      if (!auth?.team) {
+        // Adjust this condition based on your actual data structure
+        await updateProfile();
+      }
+    };
+
+    checkIfTeamExists();
+  }, [auth, updateProfile]);
 
   const {
     personsData,
@@ -92,6 +106,14 @@ const PersonsPage = () => {
     setSearchFilterValue,
     setFilterUserId,
   } = usePersons();
+
+  console.log("PERSON DATA", personsData);
+
+  useEffect(() => {
+    if (!isLoading && personsData && personsData.length === 0) {
+      getPeople();
+    }
+  }, []);
 
   const successfulUploadCsv = () => {
     getPeople();
