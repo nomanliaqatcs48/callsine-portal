@@ -482,7 +482,8 @@ export const _columns: any = () => {
       },
       {
         Header: "Assign",
-        disableSortBy: true,
+        // disableSortBy: true,
+        sorting_id: "assigned_user",
         accessor: "assign",
         width: 130,
         minWidth: 130,
@@ -536,6 +537,7 @@ export const _columns: any = () => {
         Header: "Data Available",
         // disableSortBy: false,
         accessor: "data_availability",
+        sorting_id: "got_data",
         width: 50,
         minWidth: 50,
         Cell: (cell: any) => {
