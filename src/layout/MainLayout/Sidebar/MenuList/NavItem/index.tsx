@@ -23,8 +23,8 @@ import { MENU_OPEN, SET_MENU } from "../../../../../store/actions";
 // assets
 import FiberManualRecordIcon from "@mui/icons-material/FiberManualRecord";
 import moment from "moment-timezone";
-import { useAuth } from "../../../../../contexts/auth";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { useAuth } from "../../../../../contexts/auth";
 
 // ==============================|| SIDEBAR MENU LIST ITEMS ||============================== //
 
@@ -37,7 +37,7 @@ type NavItemTypes = InferProps<typeof NavItemPropTypes>;
 
 const NavItem = ({ item, level }: NavItemTypes) => {
   const theme: any = useTheme();
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const dispatch = useDispatch();
   const customization = useSelector((state: any) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));

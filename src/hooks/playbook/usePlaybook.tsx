@@ -15,7 +15,7 @@ export const usePlaybook = (
     offset: 0,
   }
 ) => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   const dispatch = useDispatch();
   const [playbookDataFromState, setPlaybookDataFromState] = useState<any[]>([]);
   const [promptList, setPromptList] = useState<any[]>([]);
@@ -33,12 +33,25 @@ export const usePlaybook = (
     search: false,
   });
 
+  console.log("AUTH", auth);
+  useEffect(() => {
+    // Assume checkIfTeamExists is a function that checks if a team exists for the user
+    const checkIfTeamExists = async () => {
+      if (!auth?.team) {
+        // Adjust this condition based on your actual data structure
+        await updateProfile();
+      }
+    };
+
+    checkIfTeamExists();
+  }, [auth, updateProfile]);
+
   const getToken = async () => {
     let _token = await loadString("token");
-    devLog(async () => {
-      console.log("_token", _token);
-      console.log("refresh_token", await loadString("refresh"));
-    });
+    // devLog(async () => {
+    //   console.log("_token", _token);
+    //   console.log("refresh_token", await loadString("refresh"));
+    // });
   };
   useEffect(() => {
     if (load) {
@@ -49,7 +62,10 @@ export const usePlaybook = (
 
   const getAllPlaybook = async () => {
     insertBodyLoader();
-
+    if (!auth?.team) {
+      // Adjust this condition based on your actual data structure
+      await updateProfile();
+    }
     try {
       // let res = await dummyData();]
 

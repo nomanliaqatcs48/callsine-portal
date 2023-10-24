@@ -1,13 +1,13 @@
 import { useEffect } from "react";
-import Save from "src/views/mail-accounts/save";
 import { useAuth } from "src/contexts/auth";
+import Save from "src/views/mail-accounts/save";
 
 import config from "src/config";
 import { ToastSuccess } from "src/helpers/toast";
 // import { useMailAccounts } from "./useMailAccounts";
 
 function useHandleCallback(getMailAccounts: any) {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   useEffect(() => {
     const callbackService = async () => {
       const urlParams = new URLSearchParams(window.location.search);

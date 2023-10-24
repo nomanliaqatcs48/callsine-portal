@@ -21,7 +21,7 @@ export default function VerticalLinearStepper() {
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
   const matchDownSM = useMediaQuery(theme.breakpoints.down("md"));
 
-  const { steps, activeStep, handleNext, handleBack, handleReset } =
+  const { steps, activeStep, handleNext, handleBack, handleReset, submitted } =
     useWizard();
 
   // usePlaybook(true);
@@ -115,14 +115,29 @@ export default function VerticalLinearStepper() {
 
                   <Box sx={{ mb: 2 }}>
                     <div>
-                      <Button
-                        variant="outlined"
-                        onClick={handleNext}
-                        sx={{ mt: 1, mr: 1 }}
-                        className="tw-bg-white"
-                      >
-                        {index === steps.length - 1 ? "Finish" : "Continue"}
-                      </Button>
+                      {index < steps.length - 1 ? (
+                        // Show the Continue button if it's not the last step
+                        <Button
+                          variant="outlined"
+                          onClick={handleNext}
+                          sx={{ mt: 1, mr: 1 }}
+                          className="tw-bg-white"
+                        >
+                          Continue
+                        </Button>
+                      ) : (
+                        // If it's the last step, show the Finish button only if submitted is true
+                        submitted && (
+                          <Button
+                            variant="outlined"
+                            onClick={handleNext}
+                            sx={{ mt: 1, mr: 1 }}
+                            className="tw-bg-white"
+                          >
+                            Finish
+                          </Button>
+                        )
+                      )}
                       <Button
                         disabled={index === 0}
                         onClick={handleBack}
@@ -137,7 +152,7 @@ export default function VerticalLinearStepper() {
               </Step>
             ))}
           </Stepper>
-          {activeStep === steps.length && (
+          {activeStep === steps.length && submitted && (
             <Paper
               square
               elevation={0}

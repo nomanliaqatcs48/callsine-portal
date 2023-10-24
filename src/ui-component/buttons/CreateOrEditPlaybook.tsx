@@ -43,7 +43,7 @@ const CreateOrEditPlaybook = ({
   selectedData,
   ...props
 }: CreateOrEditPlaybookTypes) => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
 
   const reloadPlaybooks = useReloadPlaybooks();
   const [nameValue, setNameValue] = useState<any>("");

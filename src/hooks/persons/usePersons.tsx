@@ -1,10 +1,8 @@
 import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
-import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
-import { devLog, devLogError } from "../../helpers/logs";
-import { getPeopleService } from "../../services/persons.service";
 import { cacheTime } from "src/store/constant";
-import { filter } from "lodash";
+import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
+import { getPeopleService } from "../../services/persons.service";
 
 export const usePersons = (
   load: boolean = true,
@@ -30,7 +28,7 @@ export const usePersons = (
     company: "",
     industry: "",
   });
-  const [filterUserId, setFilterUserId] = useState<number | null>()
+  const [filterUserId, setFilterUserId] = useState<number | null>();
 
   // devLog(() => {
   //   console.log("sortedId", sortedId);
@@ -45,7 +43,7 @@ export const usePersons = (
         sortedId,
         isOrderDesc,
         searchFilterValue,
-        filterUserId,
+        filterUserId
       );
       if (res?.data) {
         // Update state variables here
@@ -75,7 +73,7 @@ export const usePersons = (
 
   useEffect(() => {
     if (_personsData) {
-      if (_personsData?.results?.length > 1) {
+      if (_personsData?.results?.length > 0) {
         setPersonsData(_personsData?.results);
         setTotal(_personsData?.count);
       }
@@ -115,6 +113,6 @@ export const usePersons = (
     setIsOrderDesc,
     searchFilterValue,
     setSearchFilterValue,
-    setFilterUserId
+    setFilterUserId,
   };
 };

@@ -16,7 +16,7 @@ import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/dashboard/utils";
 
 const DashboardPage = () => {
-  const auth: any = useAuth();
+  const { auth, updateProfile } = useAuth();
   let navigate = useNavigate();
   let {
     isLoading,

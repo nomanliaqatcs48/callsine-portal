@@ -1,6 +1,7 @@
-import { TextField, TextareaAutosize } from "@mui/material";
+import { Box, TextField, TextareaAutosize } from "@mui/material";
 import { useEffect, useState } from "react";
 import { updateTeamMeService } from "src/services/profile.service";
+import AddUserDataUpload from "src/ui-component/uploads/AddUserDataUpload";
 import useGetTeamMe from "../settings/useGetTeam";
 
 const useWizard = () => {
@@ -18,6 +19,9 @@ const useWizard = () => {
   const [initialContactTitle, setTitle] = useState("");
   const [initialContactCompanyName, setCompanyName] = useState("");
   const [activeStep, setActiveStep] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  console.log("ACTIVE STEP", activeStep);
 
   // Load team data initially, if available
   useEffect(() => {
@@ -27,7 +31,7 @@ const useWizard = () => {
   }, [teamData]);
 
   // Function to send collected data to the backend
-  const sendDataToBackend = async () => {
+  const sendDataToBackend = async (navigate: boolean) => {
     const payload = {
       domain,
       company_value_prop,
@@ -43,7 +47,9 @@ const useWizard = () => {
       // Replace with your actual API endpoint
       const response = await updateTeamMeService(payload);
       console.log(response.data);
-      window.location.href = "/people";
+      if (navigate) {
+        window.location.href = "/people";
+      }
     } catch (error) {
       console.error(
         "An error occurred when sending data to the backend: ",
@@ -54,8 +60,11 @@ const useWizard = () => {
   };
 
   const handleNext = () => {
+    if (activeStep === 2) {
+      sendDataToBackend(false);
+    }
     if (activeStep === steps.length - 1) {
-      sendDataToBackend();
+      sendDataToBackend(true);
     }
     setActiveStep((prevActiveStep) => prevActiveStep + 1);
   };
@@ -67,12 +76,15 @@ const useWizard = () => {
   const handleReset = () => {
     setActiveStep(0);
   };
+  const refresh = async () => {
+    setSubmitted(true);
+  };
 
   // Steps content setup
   const steps = [
     // Step 1
     {
-      label: "Step 1: Company URL",
+      label: "Step 1: Your URL",
       description:
         "Please provide the URL that is most representative of your business and market position. This will start training the AI on your company.",
       content: () => (
@@ -86,71 +98,8 @@ const useWizard = () => {
         />
       ),
     },
-    // Step 2
     {
-      label: "Step 2: Value Proposition",
-      description:
-        "Please provide a 1-2 sentence overview of your value proposition. This helps the AI to refine its understanding.",
-      content: () => (
-        <TextareaAutosize
-          minRows={3}
-          style={{
-            width: "100%",
-            padding: "12px",
-            marginTop: 10,
-            borderRadius: 5,
-          }}
-          placeholder="What is your value proposition?"
-          value={company_value_prop}
-          onChange={(e) => setValueProposition(e.target.value)}
-        />
-      ),
-    },
-    // Step 3
-    {
-      label: "Step 3: Target URL",
-      description:
-        "Please provide a URL from one of your target prospects. This helps the system start gathering relevant data for your outreach.",
-      content: () => (
-        <TextField
-          style={{ marginTop: 10 }}
-          fullWidth
-          variant="outlined"
-          placeholder="Enter target URL"
-          value={initialContactUrl}
-          onChange={(e) => setTargetUrl(e.target.value)}
-        />
-      ),
-    },
-    // Step 4
-    {
-      label: "Step 4: Marketing and Sales Material",
-      description:
-        "Upload your marketing or sales material. This helps the AI understand your company's positioning and offerings better.",
-      content: () => (
-        <>
-          <TextField
-            type="file"
-            margin="normal"
-            variant="outlined"
-            placeholder="Last Name"
-            // value={lastName}
-            // onChange={(e) => setLastName(e.target.value)}
-          />
-          <TextField
-            type="file"
-            margin="normal"
-            variant="outlined"
-            placeholder="Last Name"
-            // value={lastName}
-            // onChange={(e) => setLastName(e.target.value)}
-          />
-        </>
-      ),
-    },
-    // Step 5
-    {
-      label: "Step 5: Target Contacts",
+      label: "Step 2: First Target Contact",
       description:
         "Add a contact at the company you provided in step 3. The system will generate your first emails to this contact.",
       content: () => (
@@ -198,6 +147,54 @@ const useWizard = () => {
         </div>
       ),
     },
+    {
+      label: "Step 3: Target URL",
+      description:
+        "Please provide a URL from the target prospect you added in the last step. This helps the system start gathering relevant data for your outreach.",
+      content: () => (
+        <TextField
+          style={{ marginTop: 10 }}
+          fullWidth
+          variant="outlined"
+          placeholder="Enter target URL"
+          value={initialContactUrl}
+          onChange={(e) => setTargetUrl(e.target.value)}
+        />
+      ),
+    },
+    {
+      label: "Step 4: Value Proposition",
+      description:
+        "Please provide a 1-2 sentence overview of your value proposition. This helps the AI to refine its understanding.",
+      content: () => (
+        <TextareaAutosize
+          minRows={3}
+          style={{
+            width: "100%",
+            padding: "12px",
+            marginTop: 10,
+            borderRadius: 5,
+          }}
+          placeholder="What is your value proposition?"
+          value={company_value_prop}
+          onChange={(e) => setValueProposition(e.target.value)}
+        />
+      ),
+    },
+    {
+      label: "Step 5: Marketing and Sales Material",
+      description:
+        "Upload a word, pdf, powerpoint or other peice of sales collateral that describes what you do. This will train the AI on your company. You can add more later.",
+      content: () => (
+        <>
+          <Box mt={4}>
+            <AddUserDataUpload refresh={refresh} onboarding={true} />
+          </Box>
+        </>
+      ),
+    },
+    // Step 5
+
     // Additional steps, if any...
   ];
 
@@ -207,6 +204,7 @@ const useWizard = () => {
     handleBack,
     handleReset,
     activeStep,
+    submitted,
   };
 };
 

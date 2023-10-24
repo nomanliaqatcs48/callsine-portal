@@ -1,9 +1,9 @@
-import "react-dropzone-uploader/dist/styles.css";
+import { useState } from "react";
 import Dropzone from "react-dropzone-uploader";
-import { devLog } from "../../helpers/logs";
+import "react-dropzone-uploader/dist/styles.css";
 import config from "../../config";
+import { devLog } from "../../helpers/logs";
 import { load, loadString } from "../../utils/storage";
-import React, { useState } from "react";
 import ErrorMessage from "../extended/ErrorMessage";
 
 const AddUserDataUpload = (props: any) => {
@@ -11,9 +11,10 @@ const AddUserDataUpload = (props: any) => {
   const {
     onChange,
     onRemove,
-    instance,
+    instance = null,
     refresh,
     deleteFileAfterRemove = false,
+    onboarding = false,
   } = props;
 
   // specify upload params and url for your files
@@ -133,9 +134,15 @@ const AddUserDataUpload = (props: any) => {
         maxFiles={1}
         SubmitButtonComponent={() => null}
         inputContent={
-          <div className="tw-text-sm tw-text-[#778da9] tw-border-[1px] tw-border-dashed">
-            Drop your file here
-          </div>
+          onboarding ? (
+            <div className="tw-text-sm tw-text-white tw-border-[1px] tw-border-dashed">
+              Drop your file here
+            </div>
+          ) : (
+            <div className="tw-text-sm tw-text-[#778da9] tw-border-[1px] tw-border-dashed">
+              Drop your file here
+            </div>
+          )
         }
         onChangeStatus={handleChangeStatus}
         onSubmit={handleSubmit}
