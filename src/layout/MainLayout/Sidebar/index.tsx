@@ -1,19 +1,25 @@
 import PropTypes, { InferProps } from "prop-types";
 
 // material-ui
+import {
+  Box,
+  Drawer,
+  Grid,
+  Switch,
+  Typography,
+  useMediaQuery,
+} from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Box, Drawer, useMediaQuery } from "@mui/material";
 
 // third-party
-import PerfectScrollbar from "react-perfect-scrollbar";
 import { BrowserView, MobileView } from "react-device-detect";
+import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
-import MenuList from "./MenuList";
-import LogoSection from "../LogoSection";
-import MenuCard from "./MenuCard";
+import { useTour } from "src/providers/tourprovider";
 import { drawerWidth } from "../../../store/constant";
 import LogoSectionSidebar from "../LogoSectionSidebar";
+import MenuList from "./MenuList";
 
 // ==============================|| SIDEBAR DRAWER ||============================== //
 
@@ -28,6 +34,11 @@ type SidebarTypes = InferProps<typeof SidebarPropTypes>;
 const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
+  const { isTourActive, toggleTour } = useTour();
+
+  const toggleTourOn = () => {
+    toggleTour();
+  };
 
   const drawer = (
     <>
@@ -53,6 +64,35 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
         >
           <MenuList />
           {/*<MenuCard />*/}
+          <Grid
+            className="tw-bg-primaryLight"
+            sx={{
+              width: matchUpMd ? drawerWidth : "auto",
+              position: "fixed",
+              bottom: 0,
+              pl: 5,
+              pr: 3,
+            }}
+          >
+            <Box
+              sx={{
+                flexDirection: "row",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography fontWeight={"bold"} color="white">
+                {" "}
+                Turn on Tour
+              </Typography>
+              <Switch
+                color="success"
+                checked={isTourActive}
+                onChange={toggleTourOn}
+              />
+            </Box>
+          </Grid>
         </PerfectScrollbar>
       </BrowserView>
       <MobileView className="tw-bg-primary">

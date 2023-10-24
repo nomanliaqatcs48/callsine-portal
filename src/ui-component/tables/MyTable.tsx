@@ -36,6 +36,8 @@ import NorthIcon from "@mui/icons-material/North";
 import SouthIcon from "@mui/icons-material/South";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { Typography } from "@mui/material";
+import Tooltip from "../tour/Tooltip";
+import TourHighlight from "../tour/TourBoder";
 
 interface MyTableProps {
   columns: any;
@@ -459,157 +461,166 @@ const MyTable = (props: MyTableProps): JSX.Element => {
               </CardContent>
             </Card>
           )}
-          <TableContainer
-            className={
-              isResponsive
-                ? "table-responsive hide-horizontal-scrollbar"
-                : "hide-horizontal-scrollbar"
+          <Tooltip
+            text={
+              "Click on the first person in your contact list to see begin the next step in generating your first email."
             }
-            component={Paper}
           >
-            <Table
-              striped="true"
-              bordered="true"
-              hover="true"
-              {...getTableProps()}
-              className={tableName + " " + tableClassName}
-            >
-              <TableHead>
-                {
-                  // Loop over the header rows
-                  headerGroups.map((headerGroup: any) => {
-                    // Apply the header row props
-                    return (
-                      <TableRow {...headerGroup.getHeaderGroupProps()}>
-                        {
-                          // Loop over the headers in each row
-                          headerGroup.headers.map((column: any) => {
-                            let _headerProps = {
-                              ...column.getSortByToggleProps(),
-                            };
-                            let _headerPropsWithStyle = {
-                              ...column.getSortByToggleProps(),
-                              style: {
-                                minWidth: column.minWidth,
-                                width: column.width,
-                                cursor: "pointer",
-                              },
-                            };
-                            return (
-                              // Apply the header cell props
-                              <TableCell
-                                {...column.getHeaderProps(
-                                  column.minWidth
-                                    ? _headerPropsWithStyle
-                                    : _headerProps
-                                )}
-                                onClick={() =>
-                                  sendSortedId(column, setSortBy, columns)
-                                }
-                                className="tw-group"
-                              >
-                                <Typography variant="h5">
-                                  <span className="tw-font-normal tw-text-[0.75rem] tw-text-black tw-uppercase">
-                                    {
-                                      // Render the header
-                                      column.render("Header")
+            <TourHighlight text={""}>
+              <TableContainer
+                className={
+                  isResponsive
+                    ? "table-responsive hide-horizontal-scrollbar"
+                    : "hide-horizontal-scrollbar"
+                }
+                component={Paper}
+              >
+                <Table
+                  striped="true"
+                  bordered="true"
+                  hover="true"
+                  {...getTableProps()}
+                  className={tableName + " " + tableClassName}
+                >
+                  <TableHead>
+                    {
+                      // Loop over the header rows
+                      headerGroups.map((headerGroup: any) => {
+                        // Apply the header row props
+                        return (
+                          <TableRow {...headerGroup.getHeaderGroupProps()}>
+                            {
+                              // Loop over the headers in each row
+                              headerGroup.headers.map((column: any) => {
+                                let _headerProps = {
+                                  ...column.getSortByToggleProps(),
+                                };
+                                let _headerPropsWithStyle = {
+                                  ...column.getSortByToggleProps(),
+                                  style: {
+                                    minWidth: column.minWidth,
+                                    width: column.width,
+                                    cursor: "pointer",
+                                  },
+                                };
+                                return (
+                                  // Apply the header cell props
+
+                                  <TableCell
+                                    {...column.getHeaderProps(
+                                      column.minWidth
+                                        ? _headerPropsWithStyle
+                                        : _headerProps
+                                    )}
+                                    onClick={() =>
+                                      sendSortedId(column, setSortBy, columns)
                                     }
-                                  </span>
-                                  <span>
-                                    {column.isSorted ? (
-                                      column.isSortedDesc === true ? (
-                                        <SouthIcon sx={{ fontSize: 12 }} />
-                                      ) : column.isSortedDesc === false ? (
-                                        <NorthIcon sx={{ fontSize: 12 }} />
-                                      ) : column.disableSortBy ? (
-                                        ""
-                                      ) : (
-                                        <>
-                                          <SwapVertIcon
-                                            sx={{ fontSize: 14 }}
-                                            className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-200 tw-ease-linear"
-                                          />
-                                          {/*<AscAndDescArrowIcon
+                                    className="tw-group"
+                                  >
+                                    <Typography variant="h5">
+                                      <span className="tw-font-normal tw-text-[0.75rem] tw-text-black tw-uppercase">
+                                        {
+                                          // Render the header
+                                          column.render("Header")
+                                        }
+                                      </span>
+                                      <span>
+                                        {column.isSorted ? (
+                                          column.isSortedDesc === true ? (
+                                            <SouthIcon sx={{ fontSize: 12 }} />
+                                          ) : column.isSortedDesc === false ? (
+                                            <NorthIcon sx={{ fontSize: 12 }} />
+                                          ) : column.disableSortBy ? (
+                                            ""
+                                          ) : (
+                                            <>
+                                              <SwapVertIcon
+                                                sx={{ fontSize: 14 }}
+                                                className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-200 tw-ease-linear"
+                                              />
+                                              {/*<AscAndDescArrowIcon
                                             style={{ opacity: 0.25 }}
                                           />*/}
-                                        </>
-                                      )
-                                    ) : column.canSort ? (
-                                      <>
-                                        <SwapVertIcon
-                                          sx={{ fontSize: 14 }}
-                                          className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-500 tw-ease-linear"
-                                        />
-                                        {/*<AscAndDescArrowIcon
+                                            </>
+                                          )
+                                        ) : column.canSort ? (
+                                          <>
+                                            <SwapVertIcon
+                                              sx={{ fontSize: 14 }}
+                                              className="tw-text-transparent group-hover:tw-text-inherit tw-transition-all tw-duration-500 tw-ease-linear"
+                                            />
+                                            {/*<AscAndDescArrowIcon
                                           style={{ opacity: 0.25 }}
                                         />*/}
-                                      </>
-                                    ) : (
-                                      ""
-                                    )}
-                                  </span>
-                                </Typography>
-                              </TableCell>
-                            );
-                          })
-                        }
-                      </TableRow>
-                    );
-                  })
-                }
-              </TableHead>
-              {/* Apply the table body props */}
-              <TableBody {...getTableBodyProps()}>
-                {
-                  // Loop over the table rows
-                  page.map((row: any, index: number) => {
-                    // Prepare the row for display
-                    prepareRow(row);
-                    return (
-                      // Apply the row props
-                      <Fragment
-                        key={index}
-                        //{...row.getRowProps()}
-                      >
-                        <TableRow>
-                          {
-                            // Loop over the rows cells
-                            row.cells.map((cell: any) => {
-                              // Apply the cell props
-                              return (
-                                <TableCell
-                                  {...cell.getCellProps({
-                                    // style: {
-                                    //   minWidth: cell.column.minWidth,
-                                    //   width: cell.column.width,
-                                    // },
-                                  })}
-                                  // className="text-wrap text-break"
-                                  className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
-                                >
-                                  {
-                                    // Render the cell contents
-                                    cell.render("Cell")
-                                  }
-                                </TableCell>
-                              );
-                            })
-                          }
-                        </TableRow>
-                        {row.isExpanded && renderRowSubComponent ? (
-                          <TableRow>
-                            <TableCell colSpan={visibleColumns.length}>
-                              {renderRowSubComponent({ row })}
-                            </TableCell>
+                                          </>
+                                        ) : (
+                                          ""
+                                        )}
+                                      </span>
+                                    </Typography>
+                                  </TableCell>
+                                );
+                              })
+                            }
                           </TableRow>
-                        ) : null}
-                      </Fragment>
-                    );
-                  })
-                }
-              </TableBody>
-            </Table>
-          </TableContainer>
+                        );
+                      })
+                    }
+                  </TableHead>
+                  {/* Apply the table body props */}
+                  <TableBody {...getTableBodyProps()}>
+                    {
+                      // Loop over the table rows
+                      page.map((row: any, index: number) => {
+                        // Prepare the row for display
+                        prepareRow(row);
+                        return (
+                          // Apply the row props
+                          <Fragment
+                            key={index}
+                            //{...row.getRowProps()}
+                          >
+                            <TableRow>
+                              {
+                                // Loop over the rows cells
+                                row.cells.map((cell: any) => {
+                                  // Apply the cell props
+                                  return (
+                                    <TableCell
+                                      {...cell.getCellProps({
+                                        // style: {
+                                        //   minWidth: cell.column.minWidth,
+                                        //   width: cell.column.width,
+                                        // },
+                                      })}
+                                      // className="text-wrap text-break"
+                                      className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
+                                    >
+                                      {
+                                        // Render the cell contents
+                                        cell.render("Cell")
+                                      }
+                                    </TableCell>
+                                  );
+                                })
+                              }
+                            </TableRow>
+                            {row.isExpanded && renderRowSubComponent ? (
+                              <TableRow>
+                                <TableCell colSpan={visibleColumns.length}>
+                                  {renderRowSubComponent({ row })}
+                                </TableCell>
+                              </TableRow>
+                            ) : null}
+                          </Fragment>
+                        );
+                      })
+                    }
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </TourHighlight>
+          </Tooltip>
 
           {/*{isTableLoading && (
             <div

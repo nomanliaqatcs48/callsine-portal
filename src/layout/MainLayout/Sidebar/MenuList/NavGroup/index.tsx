@@ -1,12 +1,12 @@
 import PropTypes, { InferProps } from "prop-types";
 
 // material-ui
+import { Box, List, Switch, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
-import { Divider, List, Typography } from "@mui/material";
 
 // project imports
-import NavItem from "../NavItem";
 import NavCollapse from "../NavCollapse";
+import NavItem from "../NavItem";
 
 // ==============================|| SIDEBAR MENU LIST GROUP ||============================== //
 

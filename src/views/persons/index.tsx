@@ -330,6 +330,7 @@ const PersonsPage = () => {
           className="tw-rounded tw-border tw-border-[#eff0f1]"
         >
           <div style={{ height: 20 }} />
+
           <Paper elevation={2} className="tw-pt-4">
             <Grid container>
               <Grid item xs={12} lg={2}>
@@ -349,12 +350,12 @@ const PersonsPage = () => {
                 />
                 <MyDivider />
                 <Button
-                  variant="outlined"
+                  variant="text"
                   startIcon={<Visibility />}
                   className="tw-mx-2"
                   onClick={handleToggleAssign}
                 >
-                  {showAssign ? "Show All" : "Show Assign"}
+                  {showAssign ? "Show All" : "Show Assigned"}
                 </Button>
                 <MyDivider />
 
@@ -402,6 +403,7 @@ const PersonsPage = () => {
                 </Button>
               </Grid>
             </Grid>
+
             <MyTable
               columns={_columns(showAssign)}
               data={personsData}

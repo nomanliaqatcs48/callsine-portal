@@ -19,6 +19,8 @@ import {
   addUpdatePerson,
   selectPersonById,
 } from "src/store/personTrackingReducer";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
+import TourHighlight from "src/ui-component/tour/TourBoder";
 import { useAuth } from "../../../../../../contexts/auth";
 import { devLog, devLogError } from "../../../../../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../../../../../helpers/toast";
@@ -268,17 +270,26 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
             >
               <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
                 {/*title*/}
-                <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
-                  Email
-                </Box>
+                <TooltipComponent
+                  text={
+                    "We have already added an example playbook for you to get started with. Click the Generate Emails button, select the playbook, then click Generate!"
+                  }
+                >
+                  <TourHighlight text={""}>
+                    <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
+                      Email
+                    </Box>
+                  </TourHighlight>
+                </TooltipComponent>
                 {/*dropdown*/}
+
                 <Box className="tw-w-full xl:tw-w-[200px]">
                   {!loading?.regeneratePlaybook && (
                     <ReactSelect
                       name="generate-playbook"
                       className="basic-single tw-cursor-pointer"
                       variant="blue"
-                      placeholder="GENERATE PLAYBOOK"
+                      placeholder="GENERATE EMAILS"
                       isClearable={true}
                       isSearchable={true}
                       options={prompts.map((item: any, idx: number) => {

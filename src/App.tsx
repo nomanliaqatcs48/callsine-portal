@@ -17,6 +17,7 @@ import NavigationScroll from "./layout/NavigationScroll";
 
 //Redux actions
 import { useEffect } from "react";
+import { TourProvider } from "./providers/tourprovider";
 import { store } from "./store";
 import { getUnreadReplies } from "./store/emailReplyCount/actions";
 
@@ -44,21 +45,23 @@ const App = () => {
   return (
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes(customization)}>
-        <MendableChatBubble
-          dialogPlaceholder="Anything you want to know about Callsine, at your fingertips."
-          style={style}
-          icon={icon}
-          floatingButtonStyle={floatingButtonStyle}
-          anon_key={"8fb50d66-58ba-40f6-86fb-ab2caeb2911e"}
-          cmdShortcutKey={"k"}
-          welcomeMessage={"Welcome to the future, how can I help you?"}
-          messageSettings={{ hideSources: true }}
-        />
+        <TourProvider>
+          <MendableChatBubble
+            dialogPlaceholder="Anything you want to know about Callsine, at your fingertips."
+            style={style}
+            icon={icon}
+            floatingButtonStyle={floatingButtonStyle}
+            anon_key={"8fb50d66-58ba-40f6-86fb-ab2caeb2911e"}
+            cmdShortcutKey={"k"}
+            welcomeMessage={"Welcome to the future, how can I help you?"}
+            messageSettings={{ hideSources: true }}
+          />
 
-        <CssBaseline />
-        <NavigationScroll>
-          <Routes />
-        </NavigationScroll>
+          <CssBaseline />
+          <NavigationScroll>
+            <Routes />
+          </NavigationScroll>
+        </TourProvider>
       </ThemeProvider>
     </StyledEngineProvider>
   );
