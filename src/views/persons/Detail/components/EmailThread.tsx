@@ -23,6 +23,13 @@ import { devLog, devLogError } from "src/helpers/logs";
 import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 import { ToastError, ToastSuccess } from "src/helpers/toast";
 
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+
+type ReplyCount = {
+  id: number;
+  count: number;
+  is_viewed: boolean;
+};
 interface Thread {
   id: number;
   to: string;
@@ -37,6 +44,7 @@ interface Thread {
   message_id: string;
   provider: string;
   mail_account: string;
+  reply_count: ReplyCount;
 }
 
 type EmailThreadProps = {
@@ -53,6 +61,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
   const [showSendButton, setShowSendButton] = useState(true);
   const [replyMsg, setReplyMsg] = useState("");
   let { showStatus } = useEmailsTab(false);
+  const { decrementUnreadCount } = useUnreadCount();
 
   let { emailThreads: originalEmailThreads } = useEmailThread(true, {
     limit: 99999,
@@ -110,6 +119,10 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
     }
 
     setIsLoading(false);
+
+    if (!item.reply_count?.is_viewed) {
+      decrementUnreadCount();
+    }
   };
 
   const handleMyEditorOnChange = (value: string) => {

@@ -1,6 +1,11 @@
+export const DECREMENT_UNREAD_COUNT = "DECREMENT_UNREAD_COUNT";
 export const GET_UNREAD_REPLIES = "GET_UNREAD_REPLIES";
 export const GET_UNREAD_REPLIES_SUCCESS = "GET_UNREAD_REPLIES_SUCCESS";
 export const GET_UNREAD_REPLIES_FAILURE = "GET_UNREAD_REPLIES_FAILURE";
+
+export interface DecrementUnreadCountAction {
+  type: typeof DECREMENT_UNREAD_COUNT;
+}
 
 export interface EmailReplyCountState {
   loading: boolean;
@@ -25,4 +30,5 @@ export interface GetUnreadRepliesFailureAction {
 export type EmailReplyCountActionTypes =
   | GetUnreadRepliesAction
   | GetUnreadRepliesSuccessAction
-  | GetUnreadRepliesFailureAction;
+  | GetUnreadRepliesFailureAction
+  | DecrementUnreadCountAction;

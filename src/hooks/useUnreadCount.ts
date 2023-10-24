@@ -1,4 +1,5 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import { decrementUnreadCountAction } from "src/store/emailReplyCount/actions";
 
 type UnreadReplyType = {
   count: number;
@@ -6,6 +7,8 @@ type UnreadReplyType = {
 };
 
 export const useUnreadCount = (): any => {
+  const dispatch = useDispatch();
+
   const unreadReplies = useSelector(
     (state: { emailReplyCount: { data: UnreadReplyType } }) =>
       state.emailReplyCount.data
@@ -16,5 +19,10 @@ export const useUnreadCount = (): any => {
 
   const unreadEmails = unreadReplies ? unreadReplies.emails : [];
 
-  return { unreadCount, unreadEmails };
+  const decrementUnreadCount = () => {
+    const newCount = Math.max(unreadCount - 1, 0);
+    dispatch(decrementUnreadCountAction(newCount));
+  };
+
+  return { unreadCount, unreadEmails, decrementUnreadCount };
 };

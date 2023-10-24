@@ -4,6 +4,8 @@ import {
   GET_UNREAD_REPLIES_SUCCESS,
   GET_UNREAD_REPLIES_FAILURE,
   EmailReplyCountActionTypes,
+  DECREMENT_UNREAD_COUNT,
+  DecrementUnreadCountAction,
 } from "./types";
 import { getUnreadRepliesService } from "src/services/emails.service";
 
@@ -32,3 +34,10 @@ export const getUnreadReplies =
       }
     }
   };
+
+export const decrementUnreadCountAction = (newCount: number) => {
+  return {
+    type: "DECREMENT_UNREAD_COUNT",
+    payload: newCount,
+  };
+};
