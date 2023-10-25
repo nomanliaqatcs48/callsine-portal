@@ -259,7 +259,9 @@ const SettingsPage: React.FC = () => {
             <React.Fragment>
               <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
                 This is where you can edit your account information and company
-                information.
+                information. Please note that AI uses these fields when
+                referring to you and your company in messaging, so please
+                complete them with that in mind.
               </Typography>
             </React.Fragment>
           }

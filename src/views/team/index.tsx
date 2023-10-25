@@ -158,8 +158,8 @@ const TeamPage: React.FC = () => {
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Team members are the people you work with. You can add as many
-                  team members as you want.
+                  Add to your team by inviting people you work with to share
+                  your account. You can add as many team members as you want.
                 </Typography>
               </React.Fragment>
             }

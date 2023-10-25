@@ -1,13 +1,13 @@
-import * as React from "react";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Button, Grid, Paper, Tooltip, Typography } from "@mui/material";
 import { IconPlug } from "@tabler/icons-react";
+import * as React from "react";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import { useUserData } from "../../hooks/user-data/useUserData";
 import AddUserData from "../../ui-component/buttons/AddUserData";
 import DeleteSelectedUserData from "../../ui-component/buttons/DeleteSelectedUserData";
 import MyTable from "../../ui-component/tables/MyTable";
 import { _columns } from "../../utils/user-data/utils";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const Data = () => {
   const {
@@ -36,9 +36,10 @@ const Data = () => {
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Data is where you see all the data you’ve uploaded to the
-                  system and can be used to create personalized emails with
-                  attachments.
+                  Data consists of all materials and resources about your
+                  company that you have uploaded into CallSine for AI to
+                  reference when generating outreach. You can add additional
+                  Data at any time.
                 </Typography>
               </React.Fragment>
             }

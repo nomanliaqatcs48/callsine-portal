@@ -1,27 +1,26 @@
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
+import { Box, Paper, Stack, Typography } from "@mui/material";
+import classNames from "classnames";
 import React, { useState } from "react";
 import { ToastError, ToastSuccess } from "src/helpers/toast";
 import { useEmailThread } from "src/hooks/persons/useEmailThread";
 import {
-  outlookThreadService,
   gmailThreadReplyService,
   gmailThreadService,
   outLookThreadReplyService,
+  outlookThreadService,
 } from "src/services/emails.service";
+import { Thread } from "src/types/inbox";
 import MyEditor from "src/ui-component/editor/MyEditor";
-import { formatDate, formatDateWithTime } from "src/utils/date";
-import xss from "xss";
-import ReplyIcon from "./icons/ReplyIcon";
-import Spinner from "./ui/miniLoader";
-import SendIcon from "./icons/SendIcon";
-import { Box, Grid, Paper, Stack, Typography } from "@mui/material";
-import { MailHeader } from "./components/MailHeader";
-import { InboxSidebar } from "./components/InboxSidebar";
-import { EmailThread, Thread } from "src/types/inbox";
-import { devLog } from "src/helpers/logs";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
-import { cleanBody, EmailContainer } from "src/utils/people/emailThread";
-import classNames from "classnames";
+import { formatDateWithTime } from "src/utils/date";
+import { cleanBody } from "src/utils/people/emailThread";
+import xss from "xss";
+import { InboxSidebar } from "./components/InboxSidebar";
+import { MailHeader } from "./components/MailHeader";
+import ReplyIcon from "./icons/ReplyIcon";
+import SendIcon from "./icons/SendIcon";
+import Spinner from "./ui/miniLoader";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -113,8 +112,8 @@ const InboxPage: React.FC = () => {
     setSelectedThread([]);
     setIsLoading(false);
   };
-  
-  console.log(selectedThread)
+
+  console.log(selectedThread);
   // console.log(emailItem.mail_account)
   return (
     <>
@@ -125,8 +124,10 @@ const InboxPage: React.FC = () => {
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Inbox is the default view in your mailbox. It contains all the
-                  emails you’ve received, read, and haven’t deleted.
+                  Inbox is the default view of your mailbox. It contains all the
+                  emails you’ve sent, received, read, and haven’t deleted in
+                  CallSine. You can use this view to track your activity as well
+                  as reply directly to any email.
                 </Typography>
               </React.Fragment>
             }
@@ -160,21 +161,21 @@ const InboxPage: React.FC = () => {
                 </div>
               ) : selectedThread.length > 0 ? (
                 <Stack spacing={2}>
-                  
                   {selectedThread.map((thread, index) => (
                     <div
                       key={index}
                       className={classNames(
                         "tw-mb-4 tw-border tw-rounded tw-border-slate-400 tw- tw-shadow-md tw-px-1 tw-py-2",
                         {
-                          "tw-bg-green-50": emailItem.mail_account === thread.from,
-                          "tw-bg-red-50": emailItem.mail_account !== thread.from,
+                          "tw-bg-green-50":
+                            emailItem.mail_account === thread.from,
+                          "tw-bg-red-50":
+                            emailItem.mail_account !== thread.from,
                         }
                       )}
                     >
-                      
                       <div className="tw-border tw-rounded ">
-                        <div className="tw-flex tw-justify-between">                                           
+                        <div className="tw-flex tw-justify-between">
                           <div className="">{thread.from_email}</div>
                         </div>
                         <div className="tw-text-xs tw-text-gray-500 tw-italic">

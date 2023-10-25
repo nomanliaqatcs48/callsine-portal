@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
 import { Box, Button, Divider, Grid, Paper, Typography } from "@mui/material";
+import React, { useEffect } from "react";
 
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 
@@ -8,10 +8,10 @@ import { _columns } from "../../utils/mail-accounts/utils";
 
 import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 
-import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
+import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
 import { usePermissions } from "src/hooks/usePermissions";
 import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
-import useHandleCallback from "src/hooks/mail-accounts/useHandleCallback";
+import DeleteSelectedMailAccounts from "../../ui-component/buttons/DeleteSelectedMailAccount";
 
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
@@ -62,7 +62,9 @@ const MailAccountsPage = () => {
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
                   Mail Accounts are the email addresses you’ve added to your
-                  mailbox. You can add as many email addresses as you want.
+                  account for use in sending outreach. You can add as many email
+                  addresses as you want (but remember, account sending limits
+                  will still apply).
                 </Typography>
               </React.Fragment>
             }

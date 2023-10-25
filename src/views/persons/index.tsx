@@ -207,10 +207,11 @@ const PersonsPage = () => {
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  This is the list of people you have added to your account. You
-                  can add people manually, import them from a CSV file, or
-                  generate them from a list of companies. You can also view or
-                  edit each item by clicking person's name.
+                  This is a list of all of the people you have added to your
+                  account for outreach. You can add people manually, import them
+                  from a CSV file, or generate them from a list of companies.
+                  You can also view or edit each person by clicking on their
+                  name.
                 </Typography>
               </React.Fragment>
             }

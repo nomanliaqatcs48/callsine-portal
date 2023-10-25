@@ -1,17 +1,17 @@
-import * as React from "react";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { Box, Grid, Paper, Typography } from "@mui/material";
 import _ from "lodash";
+import * as React from "react";
 import { useSelector } from "react-redux";
 import { selectPlaybookData } from "src/store/reducer";
 import TemplateCenter from "src/ui-component/buttons/TemplateCenter";
 import ViewPrompt from "src/ui-component/pages/prompts/ViewPrompt";
+import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import { usePlaybook } from "../../hooks/playbook/usePlaybook";
 import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
 import PlaybookList from "./components/PlaybookList";
-import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 
 const PlaybooksPage = () => {
   let {
@@ -35,10 +35,10 @@ const PlaybooksPage = () => {
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Playbooks are a series of prompts that you can use to
-                  streamline your outreach. You can create a playbook for
-                  different types of outreach, like cold outreach, follow-ups,
-                  etc.
+                  A Playbook is a grouping of prompts that you combine into a
+                  series to streamline your outreach. You can create a playbook
+                  for different types or reasons for outreach, like cold
+                  prospecting, follow-ups, webinars or events etc.
                 </Typography>
               </React.Fragment>
             }
