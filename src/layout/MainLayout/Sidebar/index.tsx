@@ -87,7 +87,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                 Turn on Tour
               </Typography>
               <Switch
-                color="success"
+                color="warning"
                 checked={isTourActive}
                 onChange={toggleTourOn}
               />

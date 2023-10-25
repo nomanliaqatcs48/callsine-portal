@@ -2,14 +2,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { Outlet } from "react-router-dom";
 
 // material-ui
-import { styled, useTheme } from "@mui/material/styles";
 import {
   AppBar,
   Box,
   CssBaseline,
+  Grid,
   Toolbar,
+  Typography,
   useMediaQuery,
 } from "@mui/material";
+import { styled, useTheme } from "@mui/material/styles";
 
 // project imports
 import Breadcrumbs from "../../ui-component/extended/Breadcrumbs";
@@ -17,11 +19,12 @@ import Header from "./Header";
 import Sidebar from "./Sidebar";
 // import Customization from "../Customization";
 import navigation from "../../menu-items";
-import { drawerWidth } from "../../store/constant";
 import { SET_MENU } from "../../store/actions";
+import { drawerWidth } from "../../store/constant";
 
 // assets
 import { IconChevronRight } from "@tabler/icons-react";
+import { useTour } from "src/providers/tourprovider";
 
 // styles
 const Main = styled("main", { shouldForwardProp: (prop) => prop !== "open" })(
@@ -86,6 +89,7 @@ const MainLayout = () => {
   const handleLeftDrawerToggle = () => {
     dispatch({ type: SET_MENU, opened: !leftDrawerOpened });
   };
+  const { isTourActive } = useTour();
 
   const appBarStyleOpen = !leftDrawerOpened
     ? {
@@ -175,6 +179,16 @@ const MainLayout = () => {
           title
           rightAlign
         />
+        {isTourActive && (
+          <Grid className="tw-rounded-lg tw-px-5 tw-bg-[#F28500] tw-mx-5 tw-mb-4 tw-py-4">
+            <Box flexDirection={"row"}>
+              <Typography color="white" fontWeight={"bold"}>
+                Welcome! Scroll over areas with the orange border for a quick
+                explanation of what to do!
+              </Typography>
+            </Box>
+          </Grid>
+        )}
         <Outlet />
       </Main>
       {/*<Customization />*/}
