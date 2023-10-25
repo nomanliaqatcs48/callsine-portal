@@ -26,8 +26,6 @@ export const cleanBody = (html_body: any) => {
     html_body = match[1];
     body = html_body;
   }
-  console.log(body);
-
   body = removeAfterFrom(html_body);
   body = removeTrackingPixel(body);
   body = removeClickTracking(body);

@@ -26,4 +26,5 @@ export const endpoints = {
   PAYMENTS: "/payments/",
   TEAM_MEMBERS_ASSIGN: "/api/team-members/",
   UNREAD_REPLIES: "/api/unread-replies/",
+  REPLY_COUNTS: "/api/reply-counts/",
 };

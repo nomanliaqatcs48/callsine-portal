@@ -87,3 +87,10 @@ export const outLookThreadReplyService = async (data: ThreadReplyTypes) => {
 export const getUnreadRepliesService = async () => {
   return await http.get(`${endpoints.UNREAD_REPLIES}`);
 };
+
+export const viewToTrueService = async (id: number) => {
+  const data = {
+    is_viewed: true,
+  };
+  return await http.patch(`${endpoints.REPLY_COUNTS}${id}/`, data);
+};

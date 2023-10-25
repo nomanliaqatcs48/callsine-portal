@@ -13,7 +13,7 @@ export const useUnreadCount = (): any => {
     (state: { emailReplyCount: { data: UnreadReplyType } }) =>
       state.emailReplyCount.data
   );
-  console.log({ unreadReplies });
+  // console.log({ unreadReplies });
 
   const unreadCount = unreadReplies ? unreadReplies.count : 0;
 

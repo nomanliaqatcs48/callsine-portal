@@ -9,6 +9,7 @@ import {
   gmailThreadService,
   outLookThreadReplyService,
   outlookThreadService,
+  viewToTrueService,
 } from "src/services/emails.service";
 import MyEditor from "src/ui-component/editor/MyEditor";
 
@@ -24,6 +25,9 @@ import { insertBodyLoader, removeBodyLoader } from "src/helpers/loaders";
 import { ToastError, ToastSuccess } from "src/helpers/toast";
 
 import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { getUnreadReplies } from "src/store/emailReplyCount/actions";
+
+import { store } from "src/store";
 
 type ReplyCount = {
   id: number;
@@ -61,7 +65,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
   const [showSendButton, setShowSendButton] = useState(true);
   const [replyMsg, setReplyMsg] = useState("");
   let { showStatus } = useEmailsTab(false);
-  const { decrementUnreadCount } = useUnreadCount();
+  const { decrementUnreadCount, unreadEmails } = useUnreadCount();
 
   let { emailThreads: originalEmailThreads } = useEmailThread(true, {
     limit: 99999,
@@ -98,6 +102,10 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
     };
   }, [showEditor]);
 
+  const handleSubjectBold = (item: any) => {
+    return unreadEmails.some((i: any) => i.id === item.id);
+  };
+
   const handleSelectThread = async (item: Thread) => {
     console.log("Selected", item);
     setEmailitem(item);
@@ -121,7 +129,14 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
     setIsLoading(false);
 
     if (!item.reply_count?.is_viewed) {
-      decrementUnreadCount();
+      let exists = unreadEmails.some((i: any) => i.id === item.id);
+
+      if (exists) {
+        decrementUnreadCount();
+
+        await viewToTrueService(item.reply_count.id);
+        await store.dispatch(getUnreadReplies());
+      }
     }
   };
 
@@ -206,7 +221,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                   "tw-border-blue-500": selectedEmail === email.id,
                   "tw-bg-slate-100":
                     selectedEmail === email.id || !email.reply_count?.is_viewed,
-                  "tw-font-bold": !email.reply_count?.is_viewed,
+                  "tw-font-bold": handleSubjectBold(email),
                   "tw-border-l-8": true,
                   "hover:tw-border-blue-500": true,
                   "tw-my-2": true,
