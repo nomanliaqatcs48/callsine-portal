@@ -29,8 +29,8 @@ export default function themePalette(theme: any) {
       dark: theme.colors?.errorDark,
     },
     orange: {
-      light: theme.colors?.orangeLight,
-      main: theme.colors?.orangeMain,
+      light: "#F28500",
+      main: "#F28500",
       dark: theme.colors?.orangeDark,
     },
     warning: {
