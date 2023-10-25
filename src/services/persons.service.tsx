@@ -10,7 +10,7 @@ export const getPeopleService = async (
   user_id: any
 ) => {
   let _filters = `?limit=25&offset=${filters.offset}`;
-  let _search = `&search=${searchValue}`;
+  let _search = `&first_name=${searchValue}`;
   let _ordering = `&ordering=${
     isOrderDesc === undefined ? "" : isOrderDesc ? "-" + sortedId : sortedId
   }`;
