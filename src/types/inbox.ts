@@ -8,6 +8,7 @@ export interface Thread {
   draft_id: string;
   failed_reason: string | null;
   from_email: number;
+  from: any;
   headers: string | null;
   html_message: string;
   id: number;

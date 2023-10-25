@@ -20,6 +20,8 @@ import { EmailThread, Thread } from "src/types/inbox";
 import { devLog } from "src/helpers/logs";
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import { cleanBody, EmailContainer } from "src/utils/people/emailThread";
+import classNames from "classnames";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -63,19 +65,19 @@ const InboxPage: React.FC = () => {
     setShowEditor(true);
   };
 
-  const cleanBody = (html_body: any) => {
-    try {
-      const body_ = html_body.toString();
-      let regex =
-        /(<html><head>[\s\S]*<body>)([\s\S]*)(<\/body>[\s\S]*<\/html>)/g;
-      let body = body_.replace(regex, "$2");
-      return body;
-    } catch (error) {
-      devLog(() => {
-        console.log("error", error);
-      });
-    }
-  };
+  // const cleanBody = (html_body: any) => {
+  //   try {
+  //     const body_ = html_body.toString();
+  //     let regex =
+  //       /(<html><head>[\s\S]*<body>)([\s\S]*)(<\/body>[\s\S]*<\/html>)/g;
+  //     let body = body_.replace(regex, "$2");
+  //     return body;
+  //   } catch (error) {
+  //     devLog(() => {
+  //       console.log("error", error);
+  //     });
+  //   }
+  // };
 
   const handleSend = async () => {
     setIsLoading(true);
@@ -111,6 +113,9 @@ const InboxPage: React.FC = () => {
     setSelectedThread([]);
     setIsLoading(false);
   };
+  
+  console.log(selectedThread)
+  // console.log(emailItem.mail_account)
   return (
     <>
       <Box className="tw-mb-10">
@@ -155,25 +160,54 @@ const InboxPage: React.FC = () => {
                 </div>
               ) : selectedThread.length > 0 ? (
                 <Stack spacing={2}>
+                  
                   {selectedThread.map((thread, index) => (
                     <div
                       key={index}
-                      className="tw-bg-white tw-border tw-border-[#f0f1f3] tw-p-[10px] tw-rounded"
+                      className={classNames(
+                        "tw-mb-4 tw-border tw-rounded tw-border-slate-400 tw- tw-shadow-md tw-px-1 tw-py-2",
+                        {
+                          "tw-bg-green-50": emailItem.mail_account === thread.from,
+                          "tw-bg-red-50": emailItem.mail_account !== thread.from,
+                        }
+                      )}
                     >
-                      <div className="tw-border tw-mb-2 tw-rounded tw-p-3">
-                        {/* assuming thread has an 'id' field */}
-                        <div className="tw-flex tw-justify-between">
+                      
+                      <div className="tw-border tw-rounded ">
+                        <div className="tw-flex tw-justify-between">                                           
                           <div className="">{thread.from_email}</div>
-
-                          {/* <div className="tw-text-xs tw-text-gray-500 tw-italic">
-                      {formatDateWithTime(thread.date)}
-                    </div> */}
+                        </div>
+                        <div className="tw-text-xs tw-text-gray-500 tw-italic">
+                          {formatDateWithTime(thread.createdDateTime)}
                         </div>
                         <div className="tw-flex tw-justify-between">
-                          <div className="">To: {thread.to}</div>
-
-                          <div className="tw-text-xs tw-text-gray-500 tw-italic">
-                            {formatDateWithTime(thread.createdDateTime)}
+                          <div className="">
+                            From{" "}
+                            {emailItem.mail_account === thread.from ? (
+                              <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+                                you{" "}
+                              </span>
+                            ) : (
+                              <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+                                client
+                              </span>
+                            )}
+                            : {thread.from}
+                          </div>
+                        </div>
+                        <div className="tw-flex tw-justify-between">
+                          <div className="">
+                            To{" "}
+                            {emailItem.mail_account === thread.to ? (
+                              <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+                                you
+                              </span>
+                            ) : (
+                              <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+                                client
+                              </span>
+                            )}
+                            : {thread.to}
                           </div>
                         </div>
 
@@ -185,6 +219,12 @@ const InboxPage: React.FC = () => {
                             ),
                           }}
                         />
+                        {/* <EmailContainer
+                          className="hover:tw-bg-slate-200 tw-py-2"
+                          htmlEmailContent={cleanBody(
+                            thread.html_message || thread.body
+                          )}
+                        /> */}
                       </div>
                       {index === selectedThread.length - 1 && !showEditor && (
                         <div
