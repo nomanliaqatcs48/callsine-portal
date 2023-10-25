@@ -47,7 +47,6 @@ const personsSlice = createSlice({
 });
 
 export const selectPersonById = (state: any, personId: number) => {
-  console.log("Reducer STATE", state);
   return state.persons.persons[personId];
 };
 

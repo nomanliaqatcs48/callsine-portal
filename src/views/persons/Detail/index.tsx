@@ -33,7 +33,7 @@ const PersonDetailPage = () => {
     getPersonDetail();
     setEditMode((p) => !p);
   };
-  console.log("DATA IN INDEX", data);
+
   return (
     <>
       <Grid container>

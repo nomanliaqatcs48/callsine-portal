@@ -1,7 +1,7 @@
-import { Avatar, Button, Tooltip, Typography } from "@mui/material";
 import PersonIcon from "@mui/icons-material/Person";
-import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
+import { Avatar, Button, Tooltip, Typography } from "@mui/material";
 import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
+import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
 import { usePersonStats } from "../../../../hooks/persons/usePersonStats";
 import EditableName from "./EditableName";
 
@@ -12,7 +12,6 @@ type ProfileFirstColTypes = {
 
 const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
   let { personStatData } = usePersonStats();
-  console.log("DATAA", data);
 
   return (
     <>

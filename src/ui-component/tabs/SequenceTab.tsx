@@ -1,15 +1,8 @@
-import { Card, CardContent, Grid, Paper, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 
+import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useFetchProspectSequenceEvent } from "../../hooks/persons/useProspectEvents";
-import React, { useState } from "react";
-import { generateResponsesService } from "../../services/prompts.service";
-import { ToastError, ToastSuccess } from "../../helpers/toast";
-import { LoadingButton } from "@mui/lab";
-import CopyClipboard from "../buttons/CopyClipboard";
-import _ from "lodash";
-import CreateEmail from "../buttons/CreateEmail";
-import { devLogError } from "../../helpers/logs";
 
 interface PromptResponse {
   context: any; // replace 'any' with the actual type of context
@@ -177,11 +170,12 @@ const SequenceTab = () => {
       <Grid container spacing={3}>
         <Grid item xs={12}>
           {data?.results.map((item: ProspectSequenceEvent, index: number) => {
+            console.log(item);
             if (index + 1 === item.position) {
               return (
                 <>
                   {" "}
-                  <Typography> Email: {item.position}</Typography>
+                  <Typography> {item.position}</Typography>
                   {instruction(item)}
                 </>
               );

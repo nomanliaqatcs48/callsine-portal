@@ -57,7 +57,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
   const dispatch = useDispatch(); // Initialize useDispatch
   const person = useSelector((state) => selectPersonById(state, Number(id)));
   const [generating, setGenerating] = useState<boolean>(false);
-  console.log(person);
+
   useEffect(() => {
     if (
       person?.finalEmailPosition !== person?.lastEmailPosition ||
@@ -74,8 +74,6 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
       setGenerating(false);
     }
   }, [person]);
-
-  console.log("GENERATING", generating);
 
   const {
     data: playBookData,
@@ -395,7 +393,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                         name="is_overwrite"
                       />
                     }
-                    label="Is Overwrite?"
+                    label="Overwrite unscheduled drafts?"
                   />
                 </FormGroup>
               </Box>

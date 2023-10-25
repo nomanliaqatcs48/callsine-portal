@@ -10,10 +10,8 @@ axios.interceptors.request.use(
   (config: any) => {
     const token = localStorage.getItem("token");
     if (token) {
-      console.log("HAS BEARER");
       config.headers["Authorization"] = `Bearer ${token}`;
     } else {
-      console.log("NO BEARER");
       config.headers["Authorization"] = "";
     }
     return config;

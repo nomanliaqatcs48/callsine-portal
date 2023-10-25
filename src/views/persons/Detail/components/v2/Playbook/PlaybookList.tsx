@@ -1,3 +1,6 @@
+import ErrorIcon from "@mui/icons-material/ErrorOutline";
+import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
+import WatchLaterIcon from "@mui/icons-material/WatchLater";
 import {
   Box,
   List,
@@ -5,17 +8,14 @@ import {
   ListItemText,
   Tooltip,
 } from "@mui/material";
-import WatchLaterIcon from "@mui/icons-material/WatchLater";
-import MarkEmailReadOutlinedIcon from "@mui/icons-material/MarkEmailReadOutlined";
-import ErrorIcon from "@mui/icons-material/ErrorOutline";
 
 import { useDispatch } from "react-redux";
 import { setShowDraft } from "src/store/playbooks/showDraftSlice";
 
 import { MouseEvent, useState } from "react";
 
-import moment from "moment-timezone";
 import _ from "lodash";
+import moment from "moment-timezone";
 
 type PlaybookListProps = {
   data: any[];
@@ -210,6 +210,7 @@ const PlaybookList = ({
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-medium tw-text-[18px] tw-tracking-[0.36px] tw-truncate tw-mb-1">
+                            {console.log(item)}
                             {item?.scheduledEmail?.subject
                               ? item?.scheduledEmail?.subject?.includes(
                                   "Subject Line: "
@@ -219,7 +220,7 @@ const PlaybookList = ({
                                     ""
                                   )
                                 : item?.scheduledEmail?.subject
-                              : `Email ${_count}`}
+                              : `Email ${item?.position}`}
                           </span>
                           <span className="tw-text-callsineRed tw-font-medium tw-text-[14px] tw-tracking-[0.28px] tw-pl-1">
                             {_.includes(item?.status, "scheduled") &&
