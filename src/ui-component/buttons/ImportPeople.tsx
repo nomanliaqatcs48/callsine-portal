@@ -1,5 +1,5 @@
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
-import { Button, Grid, Tooltip } from "@mui/material";
+import { Button, Grid, Tooltip, Typography } from "@mui/material";
 import { saveAs } from "file-saver";
 import React, { useState } from "react";
 import MyModal from "../modal/MyModal";
@@ -74,15 +74,20 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
             <Grid
               item
               xs={12}
-              className="tw-flex tw-justify-center lg:tw-mb-[20px]"
+              sx={{ flexDirection: "column" }}
+              className=" tw-flex tw-justify-center lg:tw-mb-[20px]"
             >
               <Button
                 onClick={downloadTemplate}
                 variant="outlined"
                 className="tw-text-[14px] lg:tw-text-[16px] tw-font-medium tw-py-[13px] tw-px-[25px]"
               >
-                Download template
+                Download Import template
               </Button>
+              <Typography mt={1} variant="caption">
+                Download this template to ensure your people import is formatted
+                properly.{" "}
+              </Typography>
             </Grid>
           </Grid>
         </MyModal>
