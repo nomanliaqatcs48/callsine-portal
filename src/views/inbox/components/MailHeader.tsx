@@ -20,6 +20,7 @@ interface MailHeaderProps {
   onPressMore?: () => void;
   currentPage?: number;
   totalPages?: number;
+  personId?: number;
 }
 
 export const MailHeader: React.FC<MailHeaderProps> = ({
@@ -32,11 +33,12 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
   onPressMore,
   currentPage = 0,
   totalPages = 0,
+  personId
 }) => {
   return (
     <Stack
       direction="row"
-      justifyContent="flex-end"
+      justifyContent="space-between"
       borderBottom={1}
       borderColor="#f0f1f3"
       paddingX={3}
@@ -71,12 +73,19 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
         </IconButton>
       </Stack> */}
       <Stack spacing={1} direction="row">
-        <IconButton onClick={onPressReply}>
+        <a
+          // href="your-link-here"
+          href={`/people/${personId}`}
+          className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
+        >
+          <span className="tw-text-black">View Profile</span>
+        </a>
+        <IconButton onClick={onPressReply} style={{position: "absolute", right:"1.5em"}}>
           <Reply fontSize="small" />
         </IconButton>
-        <IconButton onClick={onPressMore}>
+        {/* <IconButton onClick={onPressMore}>
           <MoreVert fontSize="small" />
-        </IconButton>
+        </IconButton> */}
       </Stack>
     </Stack>
   );

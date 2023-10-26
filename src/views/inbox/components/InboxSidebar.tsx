@@ -4,6 +4,17 @@ import { Stack, Typography } from "@mui/material";
 import { EmailThread } from "src/types/inbox";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 import { Email } from "./Email";
+import classNames from "classnames";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+import {
+  gmailThreadReplyService,
+  gmailThreadService,
+  outLookThreadReplyService,
+  outlookThreadService,
+  viewToTrueService,
+} from "src/services/emails.service";
+import { getUnreadReplies } from "src/store/emailReplyCount/actions";
+import { store } from "src/store";
 
 interface InboxSidebarProps {
   emailThreads: EmailThread[];
@@ -17,15 +28,34 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   onReset,
 }) => {
   const [selected, setSelected] = React.useState<number>(-1);
+  const { decrementUnreadCount, unreadEmails } = useUnreadCount();
 
   const [selectedEmail, setSelectedEmail] = React.useState<number>(-1);
 
   const [emails, setEmails] = React.useState<any>([]);
 
-  const handleSelectThread = (email: any, n: number) => {
+  const handleSelectThread = async (email: any, n: number) => {
     if (email) {
       onSelectThread(email);
       setSelectedEmail(n);
+      if (!email.reply_count?.is_viewed) {
+        let exists = unreadEmails.some((i: any) => i.id === email.id);
+        // let res: any;
+        // if (email.provider === "google") {
+        //   res = await gmailThreadService(email.thread_id, email.from_email);
+        // } else if (email.provider === "outlook") {
+        //   res = await outlookThreadService(email.thread_id, email.from_email);
+        // } else {
+        //   return console.error("There is no valid provider given.");
+        // }
+
+        if (exists) {
+          decrementUnreadCount();
+
+          await viewToTrueService(email.reply_count.id);
+          await store.dispatch(getUnreadReplies());
+        }
+      }
     }
   };
 
@@ -51,6 +81,10 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
 
   const translateX = () => {
     return selected > -1 ? "-tw-translate-x-full" : "tw-translate-x-0";
+  };
+
+  const handleSubjectBold = (item: any) => {
+    return unreadEmails.some((i: any) => i.id === item.id);
   };
 
   return (
@@ -94,7 +128,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
             >
               <ArrowBackIosIcon />
               <Typography className="tw-text-[18px]">
-                Back to Contacts
+                View all messages
               </Typography>
             </div>
           )}
@@ -111,10 +145,25 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                 }`}
               >
                 <Stack direction="row" justifyContent="space-between">
-                  <Typography className="tw-font-medium tw-text-[16px]">
+                  {/* <Typography className="tw-font-medium tw-text-[16px]"> */}
+                  <Typography
+                    className={`tw-text-[16px] ${
+                      handleSubjectBold(email)
+                        ? "tw-font-medium"
+                        : "tw-font-thin"
+                    }`}
+                  >
                     {email.subject}
                   </Typography>
-                  <Typography>{formatTime(email.created_date)}</Typography>
+                  <Typography
+                    className={`${
+                      handleSubjectBold(email)
+                        ? "tw-font-medium"
+                        : "tw-font-thin"
+                    }`}
+                  >
+                    {formatTime(email.created_date)}
+                  </Typography>
                 </Stack>
                 <br />
                 {/*  */}

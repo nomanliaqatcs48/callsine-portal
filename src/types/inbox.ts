@@ -1,4 +1,4 @@
-export interface Thread {
+export interface Thread {  
   clicks: number;
   context: string | null;
   created_by: number;
@@ -27,6 +27,8 @@ export interface Thread {
   to: string;
   avatar: string;
   body?: string;
+  person_id?: number;
+  
 }
 
 export interface EmailThread {

@@ -12,6 +12,10 @@ interface EmailProps {
 }
 
 const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
+  const hasUnreadEmail = item.emails.some(
+    (email: any) => email.reply_count.is_viewed === false
+  );
+
   return (
     <Stack
       key={item.recipient}
@@ -31,7 +35,11 @@ const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
           justifyContent="space-between"
           alignItems="center"
         >
-          <Typography className="tw-text-[16px]">
+          <Typography
+            className={`tw-text-[16px] ${hasUnreadEmail ? "tw-font-bold" : ""}`}
+          >
+            {/* {console.log(item)} */}
+
             {item.recipient_name || item.recipient}
           </Typography>
         </Stack>

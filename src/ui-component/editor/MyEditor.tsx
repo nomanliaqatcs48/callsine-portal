@@ -72,6 +72,7 @@ const MyEditor = ({
           content_style:
             "body { font-family:Poppins,Helvetica,Arial,sans-serif; font-size:14px } pre {font-family:Poppins,Helvetica,Arial,sans-serif;}",
           branding: false,
+          auto_focus: true, // Add this option to autofocus
         }}
         onEditorChange={(value: string, editor: any) => {
           onEditorChange(value, editor);

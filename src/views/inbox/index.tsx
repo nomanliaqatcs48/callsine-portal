@@ -21,9 +21,12 @@ import { MailHeader } from "./components/MailHeader";
 import ReplyIcon from "./icons/ReplyIcon";
 import SendIcon from "./icons/SendIcon";
 import Spinner from "./ui/miniLoader";
+import { LoadingButton } from "@mui/lab";
+import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
+  // const editorRef: React.RefObject<HTMLDivElement> = React.useRef(null);
   const [showEditor, setShowEditor] = useState(false);
   const [replyMsg, setReplyMsg] = useState("");
   const [selectedEmail, setSelectedEmail] = useState<any | null>(null);
@@ -32,6 +35,7 @@ const InboxPage: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const handleSelectThread = async (item: Thread) => {
+    // console.log(item)
     setEmailitem(item);
     setIsLoading(true);
     setShowEditor(false);
@@ -61,6 +65,7 @@ const InboxPage: React.FC = () => {
   };
 
   const handleReply = () => {
+    // editorRef.current?.scrollIntoView({ behavior: "smooth" });
     setShowEditor(true);
   };
 
@@ -152,6 +157,7 @@ const InboxPage: React.FC = () => {
               <MailHeader
                 totalPages={selectedThread?.length}
                 onPressReply={handleReply}
+                personId={emailItem.person_id}
               />
             )}
             <Box className="tw-p-8 tw-h-[calc(100vh-8vh)] tw-bg-slate-50 tw-overflow-y-scroll">
@@ -220,12 +226,6 @@ const InboxPage: React.FC = () => {
                             ),
                           }}
                         />
-                        {/* <EmailContainer
-                          className="hover:tw-bg-slate-200 tw-py-2"
-                          htmlEmailContent={cleanBody(
-                            thread.html_message || thread.body
-                          )}
-                        /> */}
                       </div>
                       {index === selectedThread.length - 1 && !showEditor && (
                         <div
@@ -245,19 +245,32 @@ const InboxPage: React.FC = () => {
               <Box height="20px" />
               {showEditor && (
                 <>
+                  {/* <div ref={editorRef}> */}
                   <MyEditor
                     initialValue={""}
                     onEditorChange={(value: string, editor: any) => {
                       handleMyEditorOnChange(value);
                     }}
                   />
-                  <div
+                  {/* </div> */}
+                  {/* <div
                     onClick={handleSend}
                     className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
                   >
                     <SendIcon color="tw-text-blue-500" />
                     <span className="tw-text-black">Send</span>
-                  </div>
+                  </div> */}
+                  <LoadingButton
+                    type="button"
+                    variant="outlined"
+                    onClick={handleSend}
+                    className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5 tw-mt-3"
+                  >
+                    <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
+                      Send
+                    </span>{" "}
+                    <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
+                  </LoadingButton>
                 </>
               )}
             </Box>
