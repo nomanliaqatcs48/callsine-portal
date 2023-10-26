@@ -33,6 +33,7 @@ import Transitions from "../../../../ui-component/extended/Transitions";
 import {
   IconCreditCard,
   IconLogout,
+  IconMail,
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
@@ -246,7 +247,7 @@ const ProfileSection = () => {
             <Paper>
               <ClickAwayListener onClickAway={handleClose}>
                 <MainCard
-                  height={400}
+                  height={450}
                   border={false}
                   elevation={16}
                   content={false}
@@ -371,7 +372,7 @@ const ProfileSection = () => {
                         component="nav"
                         sx={{
                           width: "100%",
-                          maxHeight: 150,
+                          maxHeight: 165,
                           maxWidth: 250, //maxWidth: 350,
                           minWidth: 200, //minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
@@ -388,6 +389,26 @@ const ProfileSection = () => {
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,
                           }}
+                          selected={selectedIndex === 5}
+                          onClick={(event) =>
+                            handleListItemClick(event, 5, "/mail-accounts")
+                          }
+                        >
+                          <ListItemIcon>
+                            <IconMail stroke={1.5} size="1.3rem" />
+                          </ListItemIcon>
+                          <ListItemText
+                            primary={
+                              <Typography variant="body2">
+                                Sender Accounts
+                              </Typography>
+                            }
+                          />
+                        </ListItemButton>
+                        <ListItemButton
+                          sx={{
+                            borderRadius: `${customization.borderRadius}px`,
+                          }}
                           selected={selectedIndex === 0}
                           onClick={(event) =>
                             handleListItemClick(event, 0, "/settings")
@@ -398,7 +419,7 @@ const ProfileSection = () => {
                           </ListItemIcon>
                           <ListItemText
                             primary={
-                              <Typography variant="body2">Settings</Typography>
+                              <Typography variant="body2">User Info</Typography>
                             }
                           />
                         </ListItemButton>

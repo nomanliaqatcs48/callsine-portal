@@ -56,15 +56,15 @@ const MailAccountsPage = () => {
     <>
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
-          Mail Accounts
+          Sender Mail Accounts
           <HtmlTooltip
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Mail Accounts are the email addresses you’ve added to your
-                  account for use in sending outreach. You can add as many email
-                  addresses as you want (but remember, account sending limits
-                  will still apply).
+                  Sender Mail Accounts are the email accounts you’ve added to
+                  your account for use in sending outreach. You can add as many
+                  email accounts as you want (but remember, account sending
+                  limits will still apply).
                 </Typography>
               </React.Fragment>
             }
@@ -92,7 +92,7 @@ const MailAccountsPage = () => {
                 sx={{ fontSize: 15 }}
                 className="tw-mr-2"
               />
-              Add Mail Account
+              Add Sender Mail Account
             </CreateMailAccount>
             {/* <CreateOrEditMailAccount
               disableElevation

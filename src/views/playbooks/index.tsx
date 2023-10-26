@@ -1,5 +1,5 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, Grid, Paper, Typography } from "@mui/material";
+import { Box, Button, Grid, Paper, Typography } from "@mui/material";
 import _ from "lodash";
 import * as React from "react";
 import { useSelector } from "react-redux";
@@ -28,7 +28,10 @@ const PlaybooksPage = () => {
 
   return (
     <>
-      <Box className="tw-mb-10">
+      <Box
+        className="tw-flex tw-mb-10"
+        sx={{ flexDirection: "row", justifyContent: "space-between" }}
+      >
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
           Playbooks
           <HtmlTooltip
@@ -46,6 +49,7 @@ const PlaybooksPage = () => {
             <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
           </HtmlTooltip>
         </Typography>
+        <Button sx={{ marginRight: 4 }}> How to Build a Playbook </Button>
       </Box>
       <Paper
         elevation={0}
