@@ -16,7 +16,7 @@ const GoogleLoginBtn = () => {
       console.log("Token ID", response.tokenId);
       let res = await googleAuthService(payload);
 
-      debugger;
+      // debugger;
       devLog(() => {
         console.log("res", res);
       });
