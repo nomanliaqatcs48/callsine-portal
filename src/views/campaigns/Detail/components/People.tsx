@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import MyTable from "../../../../ui-component/tables/MyTable";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
 import { devLogError } from "../../../../helpers/logs";
+import MyTable from "../../../../ui-component/tables/MyTable";
 import { usePeopleTab } from "../hooks/usePeopleTab";
 
 const People = () => {
@@ -61,24 +62,26 @@ const People = () => {
     }
   };
   return (
-    <MyTable
-      columns={_columns}
-      data={peopleData}
-      totalItems={total || 0}
-      tableName="CampaignPeopleTable"
-      tableClassName="table-campaign-people gray-header table-sm"
-      isTableLoading={isLoading?.table}
-      filters={filters}
-      setFilters={setFilters}
-      removePageSizeDropdown={false}
-      isResponsive={true}
-      // topContent={renderSearch}
-      // setSortedId={setSortedId}
-      // setIsOrderDesc={setIsOrderDesc}
-      //
-      // sortedId={sortedId}
-      // isOrderDesc={isOrderDesc}
-    />
+    <TooltipComponent text="shit">
+      <MyTable
+        columns={_columns}
+        data={peopleData}
+        totalItems={total || 0}
+        tableName="CampaignPeopleTable"
+        tableClassName="table-campaign-people gray-header table-sm"
+        isTableLoading={isLoading?.table}
+        filters={filters}
+        setFilters={setFilters}
+        removePageSizeDropdown={false}
+        isResponsive={true}
+        // topContent={renderSearch}
+        // setSortedId={setSortedId}
+        // setIsOrderDesc={setIsOrderDesc}
+        //
+        // sortedId={sortedId}
+        // isOrderDesc={isOrderDesc}
+      />
+    </TooltipComponent>
   );
 };
 

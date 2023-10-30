@@ -273,7 +273,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                     "We have already added an example playbook for you to get started with. Click the Generate Emails button, select the playbook, then click Generate!"
                   }
                 >
-                  <TourHighlight text={""}>
+                  <TourHighlight>
                     <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
                       Email
                     </Box>

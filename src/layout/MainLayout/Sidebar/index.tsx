@@ -34,10 +34,14 @@ type SidebarTypes = InferProps<typeof SidebarPropTypes>;
 const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
   const theme = useTheme();
   const matchUpMd = useMediaQuery(theme.breakpoints.up("md"));
-  const { isTourActive, toggleTour } = useTour();
+  const { isTourActive, stopTour, startTour } = useTour();
 
   const toggleTourOn = () => {
-    toggleTour();
+    if (isTourActive) {
+      stopTour();
+    } else {
+      startTour();
+    }
   };
 
   const drawer = (

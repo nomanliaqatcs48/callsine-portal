@@ -14,7 +14,13 @@ const TooltipComponent: React.FC<React.PropsWithChildren<TooltipProps>> = ({
 
   return (
     <div style={{ position: "relative" }}>
-      <Tooltip title={isTourActive ? text : ""} arrow>
+      <Tooltip
+        sx={{ fontSize: "1.5em", padding: "10px" }}
+        placement="top"
+        open={isTourActive}
+        title={isTourActive ? text : ""}
+        arrow
+      >
         <div>{children}</div>
       </Tooltip>
     </div>

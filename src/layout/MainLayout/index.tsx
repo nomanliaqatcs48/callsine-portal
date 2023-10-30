@@ -6,9 +6,7 @@ import {
   AppBar,
   Box,
   CssBaseline,
-  Grid,
   Toolbar,
-  Typography,
   useMediaQuery,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
@@ -179,7 +177,7 @@ const MainLayout = () => {
           title
           rightAlign
         />
-        {isTourActive && (
+        {/* {isTourActive && (
           <Grid className="tw-rounded-lg tw-px-5 tw-bg-[#F28500] tw-mx-5 tw-mb-4 tw-py-4">
             <Box flexDirection={"row"}>
               <Typography color="white" fontWeight={"bold"}>
@@ -188,7 +186,7 @@ const MainLayout = () => {
               </Typography>
             </Box>
           </Grid>
-        )}
+        )} */}
         <Outlet />
       </Main>
       {/*<Customization />*/}
