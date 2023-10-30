@@ -1,29 +1,20 @@
-import React, { CSSProperties } from "react";
+// src/components/TourHighlight.tsx
+import React, { ReactNode, useRef } from "react";
 import { useTour } from "src/providers/tourprovider";
 
 interface TourHighlightProps {
-  text: string;
+  children: ReactNode;
 }
 
-const TourHighlight: React.FC<React.PropsWithChildren<TourHighlightProps>> = ({
-  text,
-  children,
-}) => {
+interface TourHighlightProps {
+  children: React.ReactNode;
+}
+
+const TourHighlight: React.FC<TourHighlightProps> = ({ children }) => {
+  const elementRef = useRef<HTMLDivElement>(null);
   const { isTourActive } = useTour();
 
-  const highlightStyle: CSSProperties = {
-    animation: isTourActive ? "flashing 1.5s infinite" : undefined,
-    border: isTourActive ? "8px solid #F28500" : undefined,
-    padding: isTourActive ? "10px" : undefined,
-    borderRadius: "15px",
-    position: "relative",
-  };
-
-  return (
-    <div style={highlightStyle} title={isTourActive ? text : undefined}>
-      {children}
-    </div>
-  );
+  return <div ref={elementRef}>{children}</div>;
 };
 
 export default TourHighlight;
