@@ -1,4 +1,4 @@
-export interface Thread {  
+export interface Thread {
   clicks: number;
   context: string | null;
   created_by: number;
@@ -28,8 +28,14 @@ export interface Thread {
   avatar: string;
   body?: string;
   person_id?: number;
-  
+  reply_count: ReplyCount;
 }
+
+type ReplyCount = {
+  id: number;
+  count: number;
+  is_viewed: boolean;
+};
 
 export interface EmailThread {
   count: number;

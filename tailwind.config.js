@@ -18,6 +18,9 @@ module.exports = {
         "3xl": "1800px",
         "4xl": "1920px",
       },
+      boxShadow: {
+        "bottom-only": "0 4px 6px rgba(0, 0, 0, 0.1)",
+      },
       colors: {
         primary: "#1976d2",
         primaryLight: "#3e8fe7",
