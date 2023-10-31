@@ -20,13 +20,11 @@ const stripePromise = loadStripe(
 
 const CheckoutPage = () => {
   const { isAuthenticated } = useAuthentication();
-  console.log("AUTHENTICATED", isAuthenticated);
+
   const { loading, data, error } = useGetUserMe();
   const theme = useTheme();
-  console.log("LOADING", loading);
 
   let profileInfo = localStorage.getItem("profile");
-  console.log(profileInfo);
 
   const [selectedPlan, setSelectedPlan] = useState<IPlan | null>({
     billingCycle: "monthly",

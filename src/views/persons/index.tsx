@@ -71,7 +71,6 @@ const PersonsPage = () => {
 
   const [showAssign, setShowAssign] = useState(false);
 
-  console.log("AUTH", auth);
   useEffect(() => {
     // Assume checkIfTeamExists is a function that checks if a team exists for the user
     const checkIfTeamExists = async () => {
@@ -106,8 +105,6 @@ const PersonsPage = () => {
     setSearchFilterValue,
     setFilterUserId,
   } = usePersons();
-
-  console.log("PERSON DATA", personsData);
 
   useEffect(() => {
     if (!isLoading && personsData && personsData.length === 0) {

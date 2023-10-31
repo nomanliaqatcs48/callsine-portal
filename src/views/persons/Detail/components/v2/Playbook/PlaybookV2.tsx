@@ -57,7 +57,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
   const dispatch = useDispatch(); // Initialize useDispatch
   const person = useSelector((state) => selectPersonById(state, Number(id)));
   const [generating, setGenerating] = useState<boolean>(false);
-
+  console.log("PERSON", personData?.status);
   useEffect(() => {
     if (
       person?.finalEmailPosition !== person?.lastEmailPosition ||
@@ -278,7 +278,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                 {/*dropdown*/}
 
                 <Box className="tw-w-full xl:tw-w-[200px]">
-                  {!loading?.regeneratePlaybook && (
+                  {!loading?.regeneratePlaybook &&
+                  personData?.status === "Open" ? (
                     <TooltipComponent
                       text={
                         "We have already added an example playbook for you to get started with. Click this button, select the Playbook, then click Generate!"
@@ -309,6 +310,8 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                         }}
                       />
                     </TooltipComponent>
+                  ) : (
+                    "Person Unenrolled"
                   )}
                 </Box>
               </Box>

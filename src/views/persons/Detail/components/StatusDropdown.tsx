@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import {
   Button,
   Dialog,
@@ -8,19 +10,39 @@ import {
   MenuItem,
   Select,
 } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { patchPersonDetailService } from "src/services/persons.service";
 
-function StatusDropdown() {
-  const [status, setStatus] = useState("Open");
+function StatusDropdown({ status, id }) {
   const [openDialog, setOpenDialog] = useState(false);
   const [dialogStatus, setDialogStatus] = useState("");
+  const [localStatus, setLocalStatus] = useState("");
 
-  const handleChange = (event: any) => {
+  console.log("STATUS DATA", status, id);
+
+  useEffect(() => {
+    setLocalStatus(status);
+  }, [status]);
+
+  const handleChange = async (event: any) => {
     if (event.target.value !== "Open") {
       setDialogStatus(event.target.value);
       setOpenDialog(true);
     } else {
-      setStatus(event.target.value);
+      setLocalStatus(event.target.value);
+      try {
+        // Prepare the payload to send to the backend
+        const payload = {
+          status: event.target.value, // assuming the backend expects a field named 'status'
+        };
+        // Call patchPersonDetailService to send the updated status to the backend
+        const responseData = await patchPersonDetailService(id, payload);
+        console.log("Update successful:", responseData);
+      } catch (error) {
+        console.error("Failed to update status:", error);
+        // Optionally, you could revert the local status back to the original status
+        // setLocalStatus(status);
+      }
     }
   };
 
@@ -28,15 +50,27 @@ function StatusDropdown() {
     setOpenDialog(false);
   };
 
-  const handleConfirm = () => {
-    setStatus(dialogStatus); // or whatever status was selected
+  const handleConfirm = async () => {
+    setLocalStatus(dialogStatus); // or whatever status was selected
     setOpenDialog(false);
+    try {
+      // Prepare the payload to send to the backend
+      const payload = {
+        status: dialogStatus, // assuming the backend expects a field named 'status'
+      };
+      // Call patchPersonDetailService to send the updated status to the backend
+      const responseData = await patchPersonDetailService(id, payload);
+      console.log("Update successful:", responseData);
+    } catch (error) {
+      console.error("Failed to update status:", error);
+      // Optionally, you could revert the local status back to the original status
+      // setLocalStatus(status);
+    }
   };
-
   return (
     <>
       <Select
-        value={status}
+        value={localStatus}
         onChange={handleChange}
         displayEmpty
         inputProps={{ "aria-label": "Without label" }}

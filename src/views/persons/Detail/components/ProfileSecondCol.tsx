@@ -19,6 +19,8 @@ const ProfileSecondCol = ({
   data,
   editMode = false,
 }: ProfileSecondColTypes) => {
+  console.log("PERSON", data);
+
   const items = [
     {
       key: "job_title",
@@ -36,11 +38,11 @@ const ProfileSecondCol = ({
       key: "address",
       first: "Location",
       second:
-        data?.city && data?.state
-          ? `${data?.city}${data?.state ? ", " + data.state : ""}`
+        data?.person_city && data?.state
+          ? `${data?.person_city}${data?.state ? ", " + data.state : ""}`
           : "n/a",
       value: {
-        city: data?.city,
+        person_city: data?.person_city,
         state: data?.state,
       },
     },
@@ -74,7 +76,7 @@ const ProfileSecondCol = ({
     },
     {
       first: "Status",
-      second: <StatusDropdown />,
+      second: <StatusDropdown status={data?.status} id={data?.id} />,
     },
   ];
 
@@ -88,7 +90,7 @@ const ProfileSecondCol = ({
             {items.map((item, idx) => {
               let itemKey = `${item.first}-${item.second}`;
               let isActive = itemKey === active;
-
+              console.log(idx);
               return (
                 <TableRow
                   key={idx}
@@ -107,13 +109,17 @@ const ProfileSecondCol = ({
                     {item.first}
                   </TableCell>
 
-                  <EditableProperty
-                    personId={data?.id}
-                    editMode={editMode}
-                    item={item}
-                    isActive={isActive}
-                    onClick={() => setActive(itemKey)}
-                  />
+                  {idx != 5 ? (
+                    <EditableProperty
+                      personId={data?.id}
+                      editMode={editMode}
+                      item={item}
+                      isActive={isActive}
+                      onClick={() => setActive(itemKey)}
+                    />
+                  ) : (
+                    item.second
+                  )}
                 </TableRow>
               );
             })}

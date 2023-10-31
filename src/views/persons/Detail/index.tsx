@@ -18,6 +18,8 @@ const PersonDetailPage = () => {
 
   let { data, getPersonDetail } = usePersonDetail(true);
 
+  console.log("PERSON DATA", data);
+
   const handleChange = (event: React.SyntheticEvent, newValue: number) => {
     setValue(newValue);
   };

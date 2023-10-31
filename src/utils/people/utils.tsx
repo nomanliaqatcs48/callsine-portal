@@ -51,7 +51,6 @@ export const _columns: any = () => {
 
   const { unreadEmails } = useUnreadCount();
 
-  console.log({ unreadEmails });
   const countUnreadEmails = (email: string) => {
     const filteredCount = unreadEmails.filter(
       (unReadEmail: any) => unReadEmail.to === email
@@ -474,7 +473,12 @@ export const _columns: any = () => {
         width: 80,
         minWidth: 80,
         Cell: (cell: any) => {
-          return <StatusDropdown />;
+          return (
+            <StatusDropdown
+              status={cell?.cell?.value}
+              id={cell.cell.row.original.id}
+            />
+          );
         },
       },
       // {

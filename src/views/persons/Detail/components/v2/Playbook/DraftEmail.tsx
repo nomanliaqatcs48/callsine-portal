@@ -28,9 +28,10 @@ import {
   selectBlueStyles,
 } from "../../../../../../utils/people/utils";
 
-import { EmailDraftTypes } from "src/utils/types/mail";
 import SendLaterOauth from "src/ui-component/buttons/SendLaterOauth";
 import SendLaterOauthEditTime from "src/ui-component/buttons/SendLaterOauthEditTime";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
+import { EmailDraftTypes } from "src/utils/types/mail";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -482,46 +483,60 @@ const DraftEmail = ({
           {/* {only show when not editing} */}
 
           <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
-            <LoadingButton
-              type="button"
-              variant="outlined"
-              onClick={handleSubmit((data) =>
-                onSubmitSendViaOauth(data as EmailDraftTypes)
-              )}
-              className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
-              loading={isLoading?.form}
-              disabled={isLoading?.form}
-            >
-              <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
-                Send
-              </span>{" "}
-              <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
-            </LoadingButton>
+            {personData?.status === "Open" && (
+              <LoadingButton
+                type="button"
+                variant="outlined"
+                onClick={handleSubmit((data) =>
+                  onSubmitSendViaOauth(data as EmailDraftTypes)
+                )}
+                className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+                loading={isLoading?.form}
+                disabled={isLoading?.form}
+              >
+                <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
+                  Send
+                </span>{" "}
+                <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
+              </LoadingButton>
+            )}
 
-            <Divider
-              orientation="vertical"
-              variant="middle"
-              flexItem
-              className="tw-mx-4"
-            />
+            {personData?.status === "Open" && (
+              <Divider
+                orientation="vertical"
+                variant="middle"
+                flexItem
+                className="tw-mx-4"
+              />
+            )}
 
-            <SendLaterOauth
-              useForm={{
-                register,
-                unregister,
-                setValue,
-                handleSubmit,
-                reset,
-                getValues,
-                trigger,
-                setError,
-                errors,
-              }}
-              onLoadApi={onLoadApi}
-              loading={isLoading?.form}
-              disabled={isLoading?.form}
-              position={position}
-            />
+            {personData.status === "Open" ? (
+              <TooltipComponent
+                text={
+                  "Use this to schedule future emails based on your current drafts."
+                }
+              >
+                <SendLaterOauth
+                  useForm={{
+                    register,
+                    unregister,
+                    setValue,
+                    handleSubmit,
+                    reset,
+                    getValues,
+                    trigger,
+                    setError,
+                    errors,
+                  }}
+                  onLoadApi={onLoadApi}
+                  loading={isLoading?.form}
+                  disabled={isLoading?.form}
+                  position={position}
+                />
+              </TooltipComponent>
+            ) : (
+              "Cannot Send to Unenrolled Person"
+            )}
           </div>
 
           {selectedData?.id && selectedData?.status === 2 && (
@@ -567,7 +582,13 @@ const DraftEmail = ({
       </div>
       <div className={`parent-email-container ${_styles?.containers}`}>
         <div className="tw-flex">
-          <div className={`${_styles?.label}`}>Parent Email</div>
+          <TooltipComponent
+            text={
+              "Use this to select a previous email thread to create an in-line reply."
+            }
+          >
+            <div className={`${_styles?.label}`}>Parent Email</div>
+          </TooltipComponent>
           <div className={`${_styles?.labelValue}`}>
             {!isLoading?.in_reply_to && (
               <ReactSelect

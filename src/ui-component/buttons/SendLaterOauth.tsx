@@ -1,5 +1,6 @@
-import React, { useEffect, useState } from "react";
+import { ErrorMessage } from "@hookform/error-message";
 import ScheduleSendOutlinedIcon from "@mui/icons-material/ScheduleSendOutlined";
+import { LoadingButton } from "@mui/lab";
 import {
   Box,
   Checkbox,
@@ -13,16 +14,15 @@ import {
   Grid,
   TextField,
 } from "@mui/material";
-import { gridSpacing } from "../../store/constant";
-import moment from "moment/moment";
-import { ErrorMessage } from "@hookform/error-message";
 import { DateTimePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterMoment } from "@mui/x-date-pickers/AdapterMoment";
 import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import moment from "moment/moment";
+import React, { useEffect, useState } from "react";
 import { devLog, devLogError } from "../../helpers/logs";
-import { sendMailOauthService } from "../../services/emails.service";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
-import { LoadingButton } from "@mui/lab";
+import { sendMailOauthService } from "../../services/emails.service";
+import { gridSpacing } from "../../store/constant";
 
 type SendLaterTypes = {
   position: any;
@@ -187,7 +187,7 @@ const SendLaterOauth = ({
                             onChange={handleChangeCheckbox}
                           />
                         }
-                        label="Auto schedule other emails"
+                        label="Auto schedule remaining emails."
                       />
                     </FormGroup>
                   </Grid>
@@ -198,7 +198,7 @@ const SendLaterOauth = ({
                       <TextField
                         type="number"
                         inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
-                        label="Enter number of days interval"
+                        label="Days between each send"
                         {...useForm?.register("days_interval", {
                           required: "This is required field.",
                         })}

@@ -1,8 +1,8 @@
+import SaveIcon from "@mui/icons-material/Save";
 import { LoadingButton } from "@mui/lab";
 import { TableCell } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
-import SaveIcon from "@mui/icons-material/Save";
 import { patchPersonDetailService } from "src/services/persons.service";
 
 interface EditablePropertyProps {
@@ -32,7 +32,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     setActiveField(isActive);
   }, [isActive]);
 
-  const [city, setCity] = React.useState("");
+  const [person_city, setCity] = React.useState("");
 
   const [state, setState] = React.useState("");
 
@@ -56,7 +56,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
 
   const handleSave = async (key: string, isAddress: boolean) => {
     if (isAddress) {
-      const payload = { city, state };
+      const payload = { person_city, state };
       mutate({ personId, payload });
     } else if (newValue) {
       let payload = {};
@@ -93,7 +93,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
                 activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
               }`}
               placeholder="City"
-              value={value.city}
+              value={value.person_city}
               onChange={handleChangeCity}
             />
             <br />

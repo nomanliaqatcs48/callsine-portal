@@ -585,7 +585,6 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                   {
                     // Loop over the table rows
                     page.map((row: any, index: number) => {
-                      console.log("ROW", row);
                       // Prepare the row for display
                       prepareRow(row);
                       return (
