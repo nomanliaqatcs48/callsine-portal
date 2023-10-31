@@ -1,6 +1,4 @@
-import { useState } from "react";
 import {
-  Button,
   Paper,
   Table,
   TableBody,
@@ -8,7 +6,9 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import { useState } from "react";
 import { EditableProperty } from "./EditableProperty";
+import StatusDropdown from "./StatusDropdown";
 
 type ProfileSecondColTypes = {
   data: any;
@@ -50,6 +50,7 @@ const ProfileSecondCol = ({
       second: data?.org?.industry || "n/a",
       value: data?.org?.industry,
     },
+
     // {
     //   key: "work_email",
     //   first: "Email",
@@ -70,6 +71,10 @@ const ProfileSecondCol = ({
       first: "Phone",
       second: data?.phone || "n/a",
       value: data?.phone,
+    },
+    {
+      first: "Status",
+      second: <StatusDropdown />,
     },
   ];
 

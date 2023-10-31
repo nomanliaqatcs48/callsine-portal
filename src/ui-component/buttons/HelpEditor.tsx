@@ -16,6 +16,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
 } from "@mui/material";
+import TooltipComponent from "../tour/Tooltip";
 
 type EditorPayloadTypes = {
   personInformation: any;
@@ -98,29 +99,37 @@ const HelpEditor = ({
           !loading && "hover:tw-bg-slate-100"
         } tw-transition-all  tw-border-black tw-border`}
       >
-        <button
-          className="tw-flex tw-space-x-2 tw-p-2 tw-items-center tw-justify-center"
-          onClick={handleOnclick}
-          disabled={loading}
+        <TooltipComponent
+          text={
+            "Use the content assistant to instruct the AI on how to make your message better."
+          }
         >
-          {loading && <SmallSpinner />}
-          <span>Content Assistant</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="tw-w-4 tw-h-4"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
+          <button
+            className="tw-flex tw-space-x-2 tw-p-2 tw-items-center tw-justify-center"
+            onClick={handleOnclick}
+            disabled={loading}
           >
-            <circle cx="12" cy="12" r="10"></circle>
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
-            <line x1="12" y1="17" x2="12" y2="17"></line>
-          </svg>
-        </button>
+            {loading && <SmallSpinner />}
+
+            <span>Content Assistant</span>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="tw-w-4 tw-h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <circle cx="12" cy="12" r="10"></circle>
+              <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+              <line x1="12" y1="17" x2="12" y2="17"></line>
+            </svg>
+          </button>
+        </TooltipComponent>
       </div>
+
       <Dialog
         open={openDialog}
         onClose={() => setOpenDialog(false)}

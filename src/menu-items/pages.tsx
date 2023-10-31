@@ -77,7 +77,7 @@ const pages = {
     },
     {
       id: "data",
-      title: "Data",
+      title: "Materials",
       type: "item",
       url: "/data",
       icon: icons.IconFileDatabase,

@@ -30,6 +30,7 @@ import { useUnreadCount } from "src/hooks/useUnreadCount";
 import http from "src/services/axios";
 import { endpoints } from "src/services/endpoints";
 import { personUpdateAssign } from "src/services/persons.service";
+import StatusDropdown from "src/views/persons/Detail/components/StatusDropdown";
 import { useAuth } from "../../contexts/auth";
 import { ToastSuccess } from "../../helpers/toast";
 
@@ -467,19 +468,29 @@ export const _columns: any = () => {
         },
       },
       {
-        Header: "Tags",
-        accessor: "tags",
+        Header: "Status",
+        accessor: "status",
         disableSortBy: true,
         width: 80,
         minWidth: 80,
         Cell: (cell: any) => {
-          let res = "";
-          if (cell?.value?.length > 0) {
-            res = cell?.value.map((item: any) => item.name).join(", ");
-          }
-          return res;
+          return <StatusDropdown />;
         },
       },
+      // {
+      //   Header: "Tags",
+      //   accessor: "tags",
+      //   disableSortBy: true,
+      //   width: 80,
+      //   minWidth: 80,
+      //   Cell: (cell: any) => {
+      //     let res = "";
+      //     if (cell?.value?.length > 0) {
+      //       res = cell?.value.map((item: any) => item.name).join(", ");
+      //     }
+      //     return res;
+      //   },
+      // },
       {
         Header: "Assign",
         // disableSortBy: true,

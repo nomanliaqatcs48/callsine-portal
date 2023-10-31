@@ -31,15 +31,15 @@ const Data = () => {
     <>
       <Box className="tw-mb-10">
         <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
-          Data
+          Materials
           <HtmlTooltip
             title={
               <React.Fragment>
                 <Typography className="tw-text-[16px] tw-tracking-[0.32px] tw-text-black tw-font-normal">
-                  Data consists of all materials and resources about your
-                  company that you have uploaded into CallSine for AI to
-                  reference when generating outreach. You can add additional
-                  Data at any time.
+                  These are the materials and resources about your company that
+                  you have uploaded into CallSine for AI to reference when
+                  generating outreach. You can add additional Materials at any
+                  time.
                 </Typography>
               </React.Fragment>
             }
@@ -92,7 +92,7 @@ const Data = () => {
               variant="text"
               className="tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-text-callsineLightBlue hover:tw-bg-transparent focus:tw-bg-transparent active:tw-bg-transparent tw-cursor-auto"
             >
-              {total || 0} Data
+              {total || 0} Materials
             </Button>
           </Grid>
         </Grid>

@@ -76,8 +76,27 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               bottom: 0,
               pl: 5,
               pr: 3,
+              pb: 1,
             }}
           >
+            <Box
+              sx={{
+                marginTop: 2,
+                flexDirection: "row",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <Typography color="white" fontWeight="bold">
+                Need Help?
+              </Typography>
+              <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
+                <Typography color="white">
+                  <u>Quick Tutorial </u>
+                </Typography>
+              </a>
+            </Box>
             <Box
               sx={{
                 flexDirection: "row",
@@ -88,12 +107,25 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
             >
               <Typography fontWeight={"bold"} color="white">
                 {" "}
-                Turn on Tour
+                Turn on Guide
               </Typography>
               <Switch
-                color="warning"
                 checked={isTourActive}
                 onChange={toggleTourOn}
+                sx={{
+                  ".MuiSwitch-switchBase": {
+                    color: theme.palette.grey[50], // Off state color
+                    "&.Mui-checked": {
+                      color: theme.palette.grey[100], // On state color
+                    },
+                    "&.Mui-checked + .MuiSwitch-track": {
+                      backgroundColor: theme.palette.grey[100], // On state track color
+                    },
+                  },
+                  ".MuiSwitch-track": {
+                    backgroundColor: theme.palette.grey[50], // Off state track color
+                  },
+                }}
               />
             </Box>
           </Grid>

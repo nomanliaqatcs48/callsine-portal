@@ -4,6 +4,7 @@ import { styled, useTheme } from "@mui/material/styles";
 import SmallWhiteBlue from "../../assets/images/bg/small-white-blue.jpg";
 import MainCard from "../../ui-component/cards/MainCard";
 import SkeletonTotalListSmall from "../../ui-component/cards/Skeleton/TotalListSmallCard";
+import TooltipComponent from "../tour/Tooltip";
 
 const CardWrapper = styled(MainCard)(({ theme }: any) => ({
   // backgroundColor: theme.palette.primary.main,
@@ -60,68 +61,74 @@ const TotalListSmallCard = ({
       {isLoading ? (
         <SkeletonTotalListSmall />
       ) : (
-        <CardWrapper
-          border={false}
-          content={false}
-          sx={{
-            backgroundImage: `url(${SmallWhiteBlue})`,
-            backgroundRepeat: "no-repeat",
-            backgroundSize: "cover",
-            border: "2px solid white", // Add a white border around the card
-          }}
+        <TooltipComponent
+          text={
+            "Click on the numbers to filter the People table to get a quick view of what is happening."
+          }
         >
-          <Grid
-            container
-            style={{
-              height: "100%", // Ensure the container takes up the full height of the card
-              borderLeft: "2px solid white", // Add a vertical white border
-              borderTop: "2px solid white", // Add a horizontal white border
+          <CardWrapper
+            border={false}
+            content={false}
+            sx={{
+              backgroundImage: `url(${SmallWhiteBlue})`,
+              backgroundRepeat: "no-repeat",
+              backgroundSize: "cover",
+              border: "2px solid white", // Add a white border around the card
             }}
           >
-            <Grid item xs={6} sm={6}>
-              {" "}
-              {/* Adjust grid item for top-left quadrant */}
-              <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
-                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                  53
-                </Typography>
-                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  Scheduled Today
-                </Typography>
-              </Box>
+            <Grid
+              container
+              style={{
+                height: "100%", // Ensure the container takes up the full height of the card
+                borderLeft: "2px solid white", // Add a vertical white border
+                borderTop: "2px solid white", // Add a horizontal white border
+              }}
+            >
+              <Grid item xs={6} sm={6}>
+                {" "}
+                {/* Adjust grid item for top-left quadrant */}
+                <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
+                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                    53
+                  </Typography>
+                  <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                    Scheduled Today
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={6} sm={6}>
+                <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
+                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                    22
+                  </Typography>
+                  <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                    Sent Today
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={6} sm={6}>
+                <Box sx={{ p: 1, px: 2, py: 1 }}>
+                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                    530
+                  </Typography>
+                  <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                    All Scheduled
+                  </Typography>
+                </Box>
+              </Grid>
+              <Grid item xs={6} sm={6}>
+                <Box sx={{ p: 1, px: 2, pb: 3 }}>
+                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                    210
+                  </Typography>
+                  <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
+                    Unscheduled
+                  </Typography>
+                </Box>
+              </Grid>
             </Grid>
-            <Grid item xs={6} sm={6}>
-              <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
-                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                  22
-                </Typography>
-                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  Sent Today
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <Box sx={{ p: 1, px: 2, py: 1 }}>
-                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                  530
-                </Typography>
-                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  All Scheduled
-                </Typography>
-              </Box>
-            </Grid>
-            <Grid item xs={6} sm={6}>
-              <Box sx={{ p: 1, px: 2, pb: 3 }}>
-                <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                  210
-                </Typography>
-                <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
-                  Unscheduled
-                </Typography>
-              </Box>
-            </Grid>
-          </Grid>
-        </CardWrapper>
+          </CardWrapper>
+        </TooltipComponent>
       )}
     </>
   );

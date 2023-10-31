@@ -6,6 +6,7 @@ import Authenticated from "../ui-component/authentication/Authenticated";
 
 const WizardPage = Loadable(lazy(() => import("../views/wizard")));
 const Checkout = Loadable(lazy(() => import("../views/checkout")));
+const Tutorial = Loadable(lazy(() => import("../views/tutorial")));
 
 const AuthenticatedPublicRoutes = {
   path: "/wizard/",
@@ -22,6 +23,10 @@ const AuthenticatedPublicRoutes = {
     {
       path: "checkout",
       element: <Checkout />,
+    },
+    {
+      path: "tutorial",
+      element: <Tutorial />,
     },
   ],
 };

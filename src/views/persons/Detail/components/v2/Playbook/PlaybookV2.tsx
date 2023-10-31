@@ -268,45 +268,47 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
             >
               <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
                 {/*title*/}
-                <TooltipComponent
-                  text={
-                    "We have already added an example playbook for you to get started with. Click the Generate Emails button, select the playbook, then click Generate!"
-                  }
-                >
-                  <TourHighlight>
-                    <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
-                      Email
-                    </Box>
-                  </TourHighlight>
-                </TooltipComponent>
+
+                <TourHighlight>
+                  <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2">
+                    Email
+                  </Box>
+                </TourHighlight>
+
                 {/*dropdown*/}
 
                 <Box className="tw-w-full xl:tw-w-[200px]">
                   {!loading?.regeneratePlaybook && (
-                    <ReactSelect
-                      name="generate-playbook"
-                      className="basic-single tw-cursor-pointer"
-                      variant="blue"
-                      placeholder="GENERATE EMAILS"
-                      isClearable={true}
-                      isSearchable={true}
-                      options={prompts.map((item: any, idx: number) => {
-                        item.value = item?.id;
-                        item.label = item?.name || "";
+                    <TooltipComponent
+                      text={
+                        "We have already added an example playbook for you to get started with. Click this button, select the Playbook, then click Generate!"
+                      }
+                    >
+                      <ReactSelect
+                        name="generate-playbook"
+                        className="basic-single tw-cursor-pointer"
+                        variant="blue"
+                        placeholder="GENERATE EMAILS"
+                        isClearable={true}
+                        isSearchable={true}
+                        options={prompts.map((item: any, idx: number) => {
+                          item.value = item?.id;
+                          item.label = item?.name || "";
 
-                        return item;
-                      })}
-                      onChange={(newValue: any, actionMeta: any) => {
-                        devLog(() => {
-                          // console.group("Value Changed");
-                          // console.log(newValue);
-                          // console.log(`action: ${actionMeta.action}`);
-                          // console.groupEnd();
-                        });
-                        handleGenerateOnChange(newValue);
-                        handleOpen();
-                      }}
-                    />
+                          return item;
+                        })}
+                        onChange={(newValue: any, actionMeta: any) => {
+                          devLog(() => {
+                            // console.group("Value Changed");
+                            // console.log(newValue);
+                            // console.log(`action: ${actionMeta.action}`);
+                            // console.groupEnd();
+                          });
+                          handleGenerateOnChange(newValue);
+                          handleOpen();
+                        }}
+                      />
+                    </TooltipComponent>
                   )}
                 </Box>
               </Box>
@@ -393,7 +395,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                         name="is_overwrite"
                       />
                     }
-                    label="Overwrite unscheduled drafts?"
+                    label="Replace previously generated, unscheduled drafts with new content?"
                   />
                 </FormGroup>
               </Box>

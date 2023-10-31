@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Button,
   Paper,
@@ -8,6 +7,7 @@ import {
   TableContainer,
   TableRow,
 } from "@mui/material";
+import StatusDropdown from "./StatusDropdown";
 
 type ProfileSecondColTypes = {
   data: any;
@@ -57,6 +57,10 @@ const CustomFieldsCol = ({ data }: ProfileSecondColTypes) => {
       first: d.custom_field.name,
       second: d.value || <hr className="tw-w-3 tw-border-black" />,
     })),
+    {
+      first: "Status",
+      second: <StatusDropdown />,
+    },
   ];
 
   return (

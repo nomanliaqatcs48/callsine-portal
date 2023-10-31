@@ -1,8 +1,7 @@
-import React, { useState } from "react";
-import { Button, Grid, Tooltip } from "@mui/material";
 import FileUploadOutlinedIcon from "@mui/icons-material/FileUploadOutlined";
+import { Button, Grid, Tooltip } from "@mui/material";
+import React, { useState } from "react";
 import MyModal from "../modal/MyModal";
-import PeopleFileUpload from "../uploads/PeopleFileUpload";
 import AddUserDataUpload from "../uploads/AddUserDataUpload";
 
 type AddUserDataTypes = {
@@ -15,7 +14,6 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
   });
-
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
@@ -26,7 +24,7 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
 
   return (
     <>
-      <Tooltip title="Add Data">
+      <Tooltip title="Add Materials">
         <Button
           onClick={handleOpen}
           disabled={false}
@@ -36,7 +34,7 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
             sx={{ color: "#1a76d2", fontSize: 15 }}
             className="tw-mr-2"
           />
-          Add Data
+          Add Materials
         </Button>
       </Tooltip>
 

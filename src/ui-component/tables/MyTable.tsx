@@ -36,6 +36,7 @@ import NorthIcon from "@mui/icons-material/North";
 import SouthIcon from "@mui/icons-material/South";
 import SwapVertIcon from "@mui/icons-material/SwapVert";
 import { Typography } from "@mui/material";
+import { useLocation } from "react-router-dom";
 import { useTour } from "src/providers/tourprovider";
 import Tooltip from "../tour/Tooltip";
 
@@ -70,7 +71,11 @@ interface MyTableProps {
 }
 
 const MyTable = (props: MyTableProps): JSX.Element => {
+  const location = useLocation();
+  const path = location.pathname; // This will be '/people' if the URL is 'http://localhost:3000/people'
+  const variable = path.substring(1); // This removes the leading '/' from the path, leaving 'people'
   const { isTourActive } = useTour();
+
   const {
     columns = [],
     data = [],
@@ -464,7 +469,9 @@ const MyTable = (props: MyTableProps): JSX.Element => {
           )}
           <Tooltip
             text={
-              "Click on the first person in your contact list to begin the next step in generating your first email."
+              variable === "people"
+                ? "Click on the first person in your contact list to begin the next step in generating your first email."
+                : "Use the Add Materials button to add additional data to train the AI on your company. This can be sales one pagers, marketing overviews, battlecards, etc. The system can use most formats including PDF, Word, Powerpoint and more!"
             }
           >
             <TableContainer
@@ -578,6 +585,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                   {
                     // Loop over the table rows
                     page.map((row: any, index: number) => {
+                      console.log("ROW", row);
                       // Prepare the row for display
                       prepareRow(row);
                       return (
@@ -588,8 +596,8 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                         >
                           <TableRow>
                             {
-                              // Loop over the rows cells
-                              row.cells.map((cell: any) => {
+                              // Loop over the row's cells
+                              row.cells.map((cell: any, index: number) => {
                                 // Apply the cell props
                                 return (
                                   <TableCell
@@ -603,8 +611,16 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
                                   >
                                     {
-                                      // Render the cell contents
-                                      cell.render("Cell")
+                                      // Check if variable is 'data' and cell is at position 1
+                                      variable === "data" && index === 1 ? (
+                                        // Render the updated value
+                                        <span>
+                                          {cell.value.split("/").pop()}
+                                        </span>
+                                      ) : (
+                                        // Render the cell contents
+                                        cell.render("Cell")
+                                      )
                                     }
                                   </TableCell>
                                 );

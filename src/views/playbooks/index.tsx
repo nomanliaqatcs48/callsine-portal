@@ -1,5 +1,5 @@
 import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
-import { Box, Button, Grid, Paper, Typography } from "@mui/material";
+import { Box, Grid, Paper, Typography } from "@mui/material";
 import _ from "lodash";
 import * as React from "react";
 import { useSelector } from "react-redux";
@@ -7,10 +7,12 @@ import { selectPlaybookData } from "src/store/reducer";
 import TemplateCenter from "src/ui-component/buttons/TemplateCenter";
 import ViewPrompt from "src/ui-component/pages/prompts/ViewPrompt";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
 import { usePlaybook } from "../../hooks/playbook/usePlaybook";
 import CreateOrEditPlaybook from "../../ui-component/buttons/CreateOrEditPlaybook";
 import CreateOrEditPrompt from "../../ui-component/buttons/CreateOrEditPrompt";
 import SelectItemNull from "../../ui-component/pages/persons/detail/SelectItemNull";
+import InfoModal from "./components/InfoModal";
 import PlaybookList from "./components/PlaybookList";
 
 const PlaybooksPage = () => {
@@ -49,7 +51,11 @@ const PlaybooksPage = () => {
             <InfoOutlinedIcon className="tw-text-[20px] tw-text-[#778DA9] tw-ml-2" />
           </HtmlTooltip>
         </Typography>
-        <Button sx={{ marginRight: 4 }}> How to Build a Playbook </Button>
+        <TooltipComponent
+          text={"Click here for a quick rundown on how to use Playbooks."}
+        >
+          <InfoModal />
+        </TooltipComponent>
       </Box>
       <Paper
         elevation={0}
@@ -67,16 +73,18 @@ const PlaybooksPage = () => {
               <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2" />
 
               <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
-                <CreateOrEditPlaybook
-                  onClick={() => null}
-                  onLoadApi={() => null}
-                  selectedData={selectedData}
-                  variant="contained"
-                  color="primary"
-                  className="tw-bg-green-600 hover:tw-bg-green-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
-                >
-                  Add Playbook
-                </CreateOrEditPlaybook>
+                <TooltipComponent text="Click here to add a new playbook.">
+                  <CreateOrEditPlaybook
+                    onClick={() => null}
+                    onLoadApi={() => null}
+                    selectedData={selectedData}
+                    variant="contained"
+                    color="primary"
+                    className="tw-bg-green-600 hover:tw-bg-green-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
+                  >
+                    Add Playbook
+                  </CreateOrEditPlaybook>
+                </TooltipComponent>
               </Box>
             </Box>
             <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
@@ -104,18 +112,24 @@ const PlaybooksPage = () => {
           <Grid item xs={12} sm={7} lg={8}>
             <Box className="tw-border-b tw-border-[#f2f3f9] tw-pb-4 tw-mt-6 tw-pr-6 tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
               <TemplateCenter disabled={!selectedData} />
-              <CreateOrEditPrompt
-                onClick={() => null}
-                onLoadApi={() => null}
-                selectedData={selectedData}
-                setPromptList={setPromptList}
-                variant="contained"
-                color="primary"
-                className="tw-bg-gray-600 hover:tw-bg-gray-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
-                disabled={!selectedData}
+              <TooltipComponent
+                text={
+                  "Once a Playbook is selected use this button to add an additional Prompt to your Playbook."
+                }
               >
-                Add Prompt
-              </CreateOrEditPrompt>
+                <CreateOrEditPrompt
+                  onClick={() => null}
+                  onLoadApi={() => null}
+                  selectedData={selectedData}
+                  setPromptList={setPromptList}
+                  variant="contained"
+                  color="primary"
+                  className="tw-bg-gray-600 hover:tw-bg-gray-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
+                  disabled={!selectedData}
+                >
+                  Add Prompt
+                </CreateOrEditPrompt>
+              </TooltipComponent>
             </Box>
             {selectedIndex !== null && (
               <>
