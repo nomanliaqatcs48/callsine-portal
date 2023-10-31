@@ -9,6 +9,7 @@ import {
   gmailThreadService,
   outLookThreadReplyService,
   outlookThreadService,
+  viewToTrueService,
 } from "src/services/emails.service";
 import { Thread } from "src/types/inbox";
 import MyEditor from "src/ui-component/editor/MyEditor";
@@ -24,6 +25,11 @@ import Spinner from "./ui/miniLoader";
 import { LoadingButton } from "@mui/lab";
 import SendOutlinedIcon from "@mui/icons-material/SendOutlined";
 
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { getUnreadReplies } from "src/store/emailReplyCount/actions";
+
+import { store } from "src/store";
+
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
   // const editorRef: React.RefObject<HTMLDivElement> = React.useRef(null);
@@ -34,27 +40,91 @@ const InboxPage: React.FC = () => {
   const [emailItem, setEmailitem] = useState<any>(null);
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
+  const { decrementUnreadCount, unreadEmails } = useUnreadCount();
+
   const handleSelectThread = async (item: Thread) => {
-    // console.log(item)
+    console.log("Selected", item);
     setEmailitem(item);
     setIsLoading(true);
     setShowEditor(false);
     setSelectedEmail(item.id);
-
     let res: any;
     if (item.provider === "google") {
       res = await gmailThreadService(item.thread_id, item.from_email);
     } else if (item.provider === "outlook") {
       res = await outlookThreadService(item.thread_id, item.from_email);
     } else {
-      return console.error("There is no valid provider given..");
+      return console.error("There is no valid provider given.");
     }
 
     if (res?.data) {
       setSelectedThread(res.data);
+      console.log("Response from api", res.data);
     }
+
     setIsLoading(false);
+
+    if (!item.reply_count?.is_viewed) {
+      let exists = unreadEmails.some((i: any) => i.id === item.id);
+
+      if (exists) {
+        decrementUnreadCount();
+
+        await viewToTrueService(item.reply_count.id);
+        await store.dispatch(getUnreadReplies());
+      }
+    }
   };
+
+  // const handleSelectThread = async (email: Thread) => {
+  // if (email) {
+  //   onSelectThread(email);
+  //   setSelectedEmail(n);
+  //   if (!email.reply_count?.is_viewed) {
+  //     let exists = unreadEmails.some((i: any) => i.id === email.id);
+  //     let res: any;
+  //     if (email.provider === "google") {
+  //       res = await gmailThreadService(email.thread_id, email.from_email);
+  //     } else if (email.provider === "outlook") {
+  //       res = await outlookThreadService(email.thread_id, email.from_email);
+  //     } else {
+  //       return console.error("There is no valid provider given.");
+  //     }
+
+  //     console.log({ res });
+  //     // if (res?.data) {
+  //     //   setSelectedThread(res.data);
+  //     //   console.log("Response from api", res.data);
+  //     // }
+
+  //     if (exists) {
+  //       decrementUnreadCount();
+
+  //       await viewToTrueService(email.reply_count.id);
+  //       await store.dispatch(getUnreadReplies());
+  //     }
+  //   }
+  // }
+  // console.log({ item });
+  // setEmailitem(item);
+  // setIsLoading(true);
+  // setShowEditor(false);
+  // setSelectedEmail(item.id);
+
+  // let res: any;
+  // if (item.provider === "google") {
+  //   res = await gmailThreadService(item.thread_id, item.from_email);
+  // } else if (item.provider === "outlook") {
+  //   res = await outlookThreadService(item.thread_id, item.from_email);
+  // } else {
+  //   return console.error("There is no valid provider given..");
+  // }
+
+  // if (res?.data) {
+  //   setSelectedThread(res.data);
+  // }
+  // setIsLoading(false);
+  // };
   let { emailThreads } = useEmailThread(true, {
     limit: 99999,
     offset: 0,
@@ -173,9 +243,8 @@ const InboxPage: React.FC = () => {
                       className={classNames(
                         "tw-mb-4 tw-border tw-rounded tw-border-slate-400 tw- tw-shadow-md tw-px-1 tw-py-2",
                         {
-                          "tw-bg-green-50":
-                            emailItem.mail_account === thread.from,
-                          "tw-bg-red-50":
+                          "tw-bg-white": emailItem.mail_account === thread.from,
+                          "tw-bg-slate-100":
                             emailItem.mail_account !== thread.from,
                         }
                       )}

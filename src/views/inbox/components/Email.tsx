@@ -4,6 +4,7 @@ import { Avatar, Grid, Stack, Typography } from "@mui/material";
 import { stringAvatar } from "src/helpers/strings";
 
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 interface EmailProps {
   item: any;
@@ -12,9 +13,23 @@ interface EmailProps {
 }
 
 const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
-  const hasUnreadEmail = item.emails.some(
-    (email: any) => email.reply_count.is_viewed === false
-  );
+  const { unreadEmails } = useUnreadCount();
+
+  const handleSubjectBold = (item: any) => {
+    console.log("Handle Subject bold", item);
+    console.log("Unread emails", unreadEmails);
+    const anyExist = unreadEmails.some((unreadEmail: any) =>
+      item.emails.find((email: any) => email.id === unreadEmail.id)
+    );
+
+    if (anyExist) {
+      console.log("At least one unread email exists in items.");
+      return true;
+    } else {
+      console.log("No unread emails exist in items.");
+      return false;
+    }
+  };
 
   return (
     <Stack
@@ -36,7 +51,9 @@ const Email: React.FC<EmailProps> = ({ item, index, isSelected = false }) => {
           alignItems="center"
         >
           <Typography
-            className={`tw-text-[16px] ${hasUnreadEmail ? "tw-font-bold" : ""}`}
+            className={`tw-text-[16px] ${
+              handleSubjectBold(item) ? "tw-font-bold" : ""
+            }`}
           >
             {/* {console.log(item)} */}
 

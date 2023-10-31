@@ -299,14 +299,14 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
               <div
                 key={index}
                 className={classNames(
-                  "tw-mb-4 tw-border tw-rounded tw-border-slate-400 tw- tw-shadow-md tw-px-1 tw-py-2",
+                  "tw-mb-4 tw-border tw-rounded tw-border-slate-50 tw-px-1 tw-pt-2 ",
                   {
-                    "tw-bg-green-50": emailItem.mail_account === thread.from,
-                    "tw-bg-red-50": emailItem.mail_account !== thread.from,
+                    "tw-bg-white": emailItem.mail_account === thread.from,
+                    "tw-bg-slate-100": emailItem.mail_account !== thread.from,
                   }
                 )}
               >
-                <div className="tw-border tw-rounded ">
+                <div className="tw-border tw-rounded tw-shadow tw-px-4">
                   <div className="tw-text-xs tw-mb-1 tw-font-medium">
                     {formatDateWithTime(thread.date)}
                   </div>
@@ -345,7 +345,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                     </div>
                   </div>
                 </div>
-                <div className="tw-font-thin hover:tw-bg-slate-200 tw-px-6 tw-py-2 tw-border-t tw-border-slate-200 tw-mb-1">
+                <div className="tw-font-thin hover:tw-bg-slate-200 tw-px-6 tw-py-2 tw-border-slate-200 tw-mb-1">
                   <EmailContainer htmlEmailContent={cleanBody(thread.body)} />
                 </div>
               </div>
