@@ -503,23 +503,21 @@ export const _columns: any = () => {
         width: 130,
         minWidth: 130,
         Cell: (cell: any) => {
-          // const [localSelectedValue, setLocalSelectedValue] = useState(
-          //   cell.row.original.assigned_user == null
-          //     ? auth.id
-          //     : cell.row.original.assigned_user
-          // );
-
           const [localSelectedValue, setLocalSelectedValue] = useState<
             string | null
           >(null);
 
           useEffect(() => {
-            setLocalSelectedValue(
-              cell.row.original.assigned_user == null
-                ? auth.id
-                : cell.row.original.assigned_user
-            );
+            setLocalSelectedValue(cell.row.original.assigned_user);
           }, [cell.row.original.assigned_user, auth.id]);
+
+          // useEffect(() => {
+          //   setLocalSelectedValue(
+          //     cell.row.original.assigned_user == null
+          //       ? auth.id
+          //       : cell.row.original.assigned_user
+          //   );
+          // }, [cell.row.original.assigned_user, auth.id]);
 
           return (
             <>
