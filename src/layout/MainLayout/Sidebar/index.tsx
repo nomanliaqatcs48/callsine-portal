@@ -85,7 +85,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               bottom: 0,
               pl: 5,
               pr: 3,
-              pb: 8,
+              pb: 14,
             }}
           >
             <Box
