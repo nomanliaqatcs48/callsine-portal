@@ -191,7 +191,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
             style={{ position: "relative" }}
           >
             {item.title}
-            {item.title === "People" && unreadCount > 0 && (
+            {item.title === "Inbox" && unreadCount > 0 && (
               <span
                 className="unread-count"
                 style={{

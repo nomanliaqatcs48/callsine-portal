@@ -29,7 +29,7 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
     content: '""',
     position: "absolute",
     width: 210,
-    height: 210,
+    // height: 210,
     // background: theme.palette.primary[800],
     borderRadius: "50%",
     top: -125,
@@ -52,14 +52,38 @@ type TotalListSmallCardTypes = {
     unscheduled: string | number;
   };
   text: string; // Property 'text' with a string type
+  handleFilterByUnscheduled?: any;
+  handleFilterByAllScheduled?: any;
+  handleFilterBySchedToday?: any;
+  handleLastContacted?: any;
 };
 
 const TotalListSmallCard = ({
   isLoading,
   value,
   text,
+  handleFilterByUnscheduled,
+  handleFilterByAllScheduled,
+  handleFilterBySchedToday,
+  handleLastContacted,
 }: TotalListSmallCardTypes) => {
   const theme: any = useTheme();
+
+  const handleOnClickUnSched = () => {
+    handleFilterByUnscheduled();
+  };
+
+  const handleOnClickAllSched = () => {
+    handleFilterByAllScheduled();
+  };
+
+  const handleOnClickSchedToday = () => {
+    handleFilterBySchedToday();
+  };
+
+  const handleOnClickLastContacted = () => {
+    handleLastContacted();
+  };
 
   return (
     <>
@@ -79,8 +103,9 @@ const TotalListSmallCard = ({
               backgroundRepeat: "no-repeat",
               backgroundSize: "cover",
               border: "2px solid white", // Add a white border around the card
+              position: "relative", // Set the position property to relative
             }}
-          >
+          >            
             <Grid
               container
               style={{
@@ -90,10 +115,23 @@ const TotalListSmallCard = ({
               }}
             >
               <Grid item xs={6} sm={6}>
-                {" "}
-                {/* Adjust grid item for top-left quadrant */}
                 <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
-                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  <Typography
+                    className={`tw-font-medium tw-text-[30px] tw-tracking-[0.8px] ${
+                      value.scheduled_today === null ||
+                      value.scheduled_today === 0
+                        ? "tw-cursor-not-allowed"
+                        : "tw-cursor-pointer"
+                    } transition-color duration-300 z-99`}
+                    onClick={() => {
+                      if (
+                        value.scheduled_today !== null &&
+                        value.scheduled_today !== 0
+                      ) {
+                        handleOnClickSchedToday();
+                      }
+                    }}
+                  >
                     {value.scheduled_today ? value.scheduled_today : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
@@ -103,7 +141,18 @@ const TotalListSmallCard = ({
               </Grid>
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
-                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  <Typography
+                    className={`tw-font-medium tw-text-[30px] tw-tracking-[0.8px] ${
+                      value.sent_today === null || value.sent_today === 0
+                        ? "tw-cursor-not-allowed"
+                        : "tw-cursor-pointer"
+                    } transition-color duration-300 z-99`}
+                    onClick={() => {
+                      if (value.sent_today !== null && value.sent_today !== 0) {
+                        handleOnClickLastContacted();
+                      }
+                    }}
+                  >
                     {value.sent_today ? value.sent_today : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
@@ -113,7 +162,21 @@ const TotalListSmallCard = ({
               </Grid>
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, py: 1 }}>
-                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  <Typography
+                    className={`tw-font-medium tw-text-[30px] tw-tracking-[0.8px] ${
+                      value.all_scheduled === null || value.all_scheduled === 0
+                        ? "tw-cursor-not-allowed"
+                        : "tw-cursor-pointer"
+                    } transition-color duration-300 z-99`}
+                    onClick={() => {
+                      if (
+                        value.all_scheduled !== null &&
+                        value.all_scheduled !== 0
+                      ) {
+                        handleOnClickAllSched();
+                      }
+                    }}
+                  >
                     {value.all_scheduled ? value.all_scheduled : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
@@ -123,7 +186,21 @@ const TotalListSmallCard = ({
               </Grid>
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, pb: 3 }}>
-                  <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
+                  <Typography
+                    className={`tw-font-medium tw-text-[30px] tw-tracking-[0.8px] ${
+                      value.unscheduled === null || value.unscheduled === 0
+                        ? "tw-cursor-not-allowed"
+                        : "tw-cursor-pointer"
+                    } transition-color duration-300 z-99`}
+                    onClick={() => {
+                      if (
+                        value.unscheduled !== null &&
+                        value.unscheduled !== 0
+                      ) {
+                        handleOnClickUnSched();
+                      }
+                    }}
+                  >
                     {value.unscheduled ? value.unscheduled : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">

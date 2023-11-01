@@ -105,6 +105,10 @@ const PersonsPage = () => {
     searchFilterValue,
     setSearchFilterValue,
     setFilterUserId,
+    setSchedEmailNull,
+    setSchedEmailNotNull,
+    setSchedEmailToday,
+    setLastContactedToday,
   } = usePersons();
 
   const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
@@ -116,8 +120,6 @@ const PersonsPage = () => {
     // }
     getPersonCounts();
   }, []);
-
-  console.log(personCounts);
 
   const successfulUploadCsv = () => {
     getPeople();
@@ -185,6 +187,10 @@ const PersonsPage = () => {
   useEffect(() => {
     if (showAssign) {
       setFilterUserId(auth.id);
+      setSchedEmailNotNull(false);
+      setSchedEmailNull(false);
+      setSchedEmailToday(false);
+      setLastContactedToday(false);
     } else {
       setFilterUserId(null);
     }
@@ -194,9 +200,37 @@ const PersonsPage = () => {
     setExplainerOpen(false);
   };
 
+  const handleFilterByUnscheduled = () => {
+    setFilterUserId(null);
+    setSchedEmailNotNull(false);
+    setSchedEmailNull(true);
+    setSchedEmailToday(false);
+    setLastContactedToday(false);
+  };
+
   const handleFilterByAllScheduled = () => {
-    
-  }
+    setFilterUserId(null);
+    setSchedEmailNull(false);
+    setSchedEmailNotNull(true);
+    setSchedEmailToday(false);
+    setLastContactedToday(false);
+  };
+
+  const handleFilterBySchedToday = () => {
+    setFilterUserId(null);
+    setSchedEmailNull(false);
+    setSchedEmailNotNull(false);
+    setSchedEmailToday(true);
+    setLastContactedToday(false);
+  };
+
+  const handleLastContacted = () => {
+    setFilterUserId(null);
+    setSchedEmailNull(false);
+    setSchedEmailNotNull(false);
+    setSchedEmailToday(false);
+    setLastContactedToday(true);
+  };
 
   return (
     <>
@@ -320,6 +354,10 @@ const PersonsPage = () => {
                   unscheduled: personCounts?.data?.unscheduled,
                 }}
                 text="Remaining People"
+                handleFilterByUnscheduled={handleFilterByUnscheduled}
+                handleFilterByAllScheduled={handleFilterByAllScheduled}
+                handleFilterBySchedToday={handleFilterBySchedToday}
+                handleLastContacted={handleLastContacted}
               />
             </Grid>
           </Grid>

@@ -18,7 +18,7 @@ function StatusDropdown({ status, id }) {
   const [dialogStatus, setDialogStatus] = useState("");
   const [localStatus, setLocalStatus] = useState("");
 
-  console.log("STATUS DATA", status, id);
+  // console.log("STATUS DATA", status, id);
 
   useEffect(() => {
     setLocalStatus(status);

@@ -4,6 +4,7 @@ import { emailThreadsService } from "../../services/emails.service";
 import { useParams } from "react-router-dom";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { EmailThread } from "src/types/inbox";
+import { useUnreadCount } from "../useUnreadCount";
 
 export const useEmailThread = (
   load: boolean = true,
@@ -22,6 +23,26 @@ export const useEmailThread = (
     cards: false,
   });
 
+  const { unreadEmails } = useUnreadCount();
+
+  const makePeopleWithReplyToTop = (persons: any) => {
+    const _unreadEmails = new Set(unreadEmails.map((item: any) => item.to));
+    persons.sort((a: any, b: any) => {
+      const isAUnread = _unreadEmails.has(a.recipient);
+      const isBUnread = _unreadEmails.has(b.recipient);
+
+      if (isAUnread && !isBUnread) {
+        return -1; // a comes first
+      }
+      if (!isAUnread && isBUnread) {
+        return 1; // b comes first
+      }
+      return 0; // no change in order
+    });
+    console.log({ persons });
+    return persons;
+  };
+
   const getEmailThread = useCallback(async () => {
     let res: any;
     setIsLoading((prev: any) => ({ ...prev, cards: false }));
@@ -38,7 +59,9 @@ export const useEmailThread = (
         devLog(() => {
           console.log(res.data);
         });
-        setEmailThreads(res.data);
+
+        setEmailThreads(makePeopleWithReplyToTop(res.data));
+        console.log("Email thrads", emailThreads);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
         removeBodyLoader();
       }

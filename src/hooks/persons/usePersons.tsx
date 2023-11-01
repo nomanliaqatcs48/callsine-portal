@@ -4,6 +4,8 @@ import { cacheTime } from "src/store/constant";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { getPeopleService } from "../../services/persons.service";
 
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
@@ -29,25 +31,51 @@ export const usePersons = (
     industry: "",
   });
   const [filterUserId, setFilterUserId] = useState<number | null>();
+  const [schedEmailNull, setSchedEmailNull] = useState<boolean>(false);
+  const [schedEmailNotNull, setSchedEmailNotNull] = useState<boolean>(false);
+  const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
+  const [lastContactedToday, setLastContactedToday] = useState<boolean>(false);
 
-  // devLog(() => {
-  //   console.log("sortedId", sortedId);
-  // });
+  const { unreadEmails } = useUnreadCount();
 
+  const makePeopleWithReplyToTop = (persons: any) => {
+    const _unreadEmails = new Set(unreadEmails.map((item: any) => item.to));
+    persons.sort((a: any, b: any) => {
+      const isAUnread = _unreadEmails.has(a.work_email);
+      const isBUnread = _unreadEmails.has(b.work_email);
+
+      if (isAUnread && !isBUnread) {
+        return -1; // a comes first
+      }
+      if (!isAUnread && isBUnread) {
+        return 1; // b comes first
+      }
+      return 0; // no change in order
+    });
+    console.log({ persons });
+    return persons;
+  };
   const getPeople = async () => {
     try {
-      // console.log(filters)
       let res = await getPeopleService(
         filters,
         searchValue,
         sortedId,
         isOrderDesc,
         searchFilterValue,
-        filterUserId
+        filterUserId,
+        schedEmailNull,
+        schedEmailNotNull,
+        schedEmailToday,
+        lastContactedToday,
       );
       if (res?.data) {
-        // Update state variables here
-        setPersonsData(res.data.results);
+        console.log({ unreadEmails });
+        console.log("PERSONS", res.data.results);
+        const sortedResults = makePeopleWithReplyToTop(res.data.results);
+        console.log({ sortedResults });
+        setPersonsData(sortedResults);
+
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
         return res.data;
@@ -90,7 +118,17 @@ export const usePersons = (
 
   useEffect(() => {
     refetchPersons();
-  }, [filters, sortedId, isOrderDesc, filterUserId, refetchPersons]);
+  }, [
+    filters,
+    sortedId,
+    isOrderDesc,
+    filterUserId,
+    refetchPersons,
+    schedEmailNull,
+    schedEmailNotNull,
+    schedEmailToday,
+    lastContactedToday
+  ]);
 
   return {
     isFetchingPersons,
@@ -114,5 +152,9 @@ export const usePersons = (
     searchFilterValue,
     setSearchFilterValue,
     setFilterUserId,
+    setSchedEmailNull,
+    setSchedEmailNotNull,
+    setSchedEmailToday,
+    setLastContactedToday
   };
 };

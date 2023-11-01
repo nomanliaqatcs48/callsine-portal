@@ -267,17 +267,18 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
         ) : selectedThread.length > 0 ? (
           <>
             {/* Stats */}
-            <div className="tw-flex tw-flex-col tw-mb-6 tw-border-b-4 tw-border-gray-700 ">
+            <div className="tw-flex tw-flex-row tw-space-x-4 tw-mb-6 ">
               <div>
                 <strong>ID:&nbsp;{emailItem.id}</strong>
               </div>
               <div>
                 <strong>Status:&nbsp;</strong>
-                {emailItem?.status !== null ? (
-                  showStatus(emailItem?.status)
-                ) : (
-                  <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
-                )}
+                {
+                  emailItem?.status !== null
+                    ? showStatus(emailItem?.status)
+                    : ""
+                  // <hr className="tw-w-3 tw-border-black tw-inline-block tw-ml-3" />
+                }
               </div>
               <div>
                 <strong>Opened:&nbsp;</strong>
