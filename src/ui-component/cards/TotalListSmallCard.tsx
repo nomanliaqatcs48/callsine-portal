@@ -50,7 +50,7 @@ type TotalListSmallCardTypes = {
     sent_today: string | number;
     all_scheduled: string | number;
     unscheduled: string | number;
-  };  
+  };
   text: string; // Property 'text' with a string type
 };
 
@@ -94,7 +94,7 @@ const TotalListSmallCard = ({
                 {/* Adjust grid item for top-left quadrant */}
                 <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
                   <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                    53
+                    {value.scheduled_today ? value.scheduled_today : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
                     Scheduled Today
@@ -104,7 +104,7 @@ const TotalListSmallCard = ({
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, py: 1, pt: 3 }}>
                   <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                    22
+                    {value.sent_today ? value.sent_today : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
                     Sent Today
@@ -114,7 +114,7 @@ const TotalListSmallCard = ({
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, py: 1 }}>
                   <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                    530
+                    {value.all_scheduled ? value.all_scheduled : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
                     All Scheduled
@@ -124,7 +124,7 @@ const TotalListSmallCard = ({
               <Grid item xs={6} sm={6}>
                 <Box sx={{ p: 1, px: 2, pb: 3 }}>
                   <Typography className="tw-font-medium tw-text-[30px] tw-tracking-[0.8px] tw-text-white">
-                    210
+                    {value.unscheduled ? value.unscheduled : 0}
                   </Typography>
                   <Typography className="tw-text-[12px] tw-tracking-[0.36px] tw-font-light tw-text-white">
                     Unscheduled
