@@ -44,9 +44,14 @@ const CardWrapper = styled(MainCard)(({ theme }: any) => ({
 
 // ===========================|| DASHBOARD DEFAULT - EARNING CARD ||=========================== //
 type TotalListSmallCardTypes = {
-  isLoading: boolean;
-  value: string | number;
-  text: string;
+  isLoading: boolean; // Property 'isLoading' with a boolean type
+  value: {
+    scheduled_today: string | number;
+    sent_today: string | number;
+    all_scheduled: string | number;
+    unscheduled: string | number;
+  };  
+  text: string; // Property 'text' with a string type
 };
 
 const TotalListSmallCard = ({

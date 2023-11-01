@@ -20,6 +20,7 @@ import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import { useAuth } from "../../contexts/auth";
 import { ToastSuccess } from "../../helpers/toast";
 import { usePersons } from "../../hooks/persons/usePersons";
+import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
@@ -106,11 +107,17 @@ const PersonsPage = () => {
     setFilterUserId,
   } = usePersons();
 
+  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
+
   useEffect(() => {
-    if (!isLoading && personsData && personsData.length === 0) {
-      getPeople();
-    }
+    // if (!isLoading && personsData && personsData.length === 0) {
+    //   getPeople();
+    //   getPersonCounts();
+    // }
+    getPersonCounts();
   }, []);
+
+  console.log(personCounts);
 
   const successfulUploadCsv = () => {
     getPeople();
@@ -186,6 +193,10 @@ const PersonsPage = () => {
   const handleModalClose = () => {
     setExplainerOpen(false);
   };
+
+  const handleFilterByAllScheduled = () => {
+    
+  }
 
   return (
     <>
@@ -301,9 +312,13 @@ const PersonsPage = () => {
               xl={3}
             >
               <TotalListSmallCard
-                // isLoading={isLoading.onPage}
-                isLoading={false}
-                value={auth?.clicks_remaining || 0}
+                isLoading={isFetching}
+                value={{
+                  scheduled_today: personCounts?.data?.scheduled_today,
+                  sent_today: personCounts?.data?.sent_today,
+                  all_scheduled: personCounts?.data?.all_scheduled,
+                  unscheduled: personCounts?.data?.unscheduled,
+                }}
                 text="Remaining People"
               />
             </Grid>

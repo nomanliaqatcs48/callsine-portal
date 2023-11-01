@@ -7,7 +7,11 @@ export const getPeopleService = async (
   sortedId: any,
   isOrderDesc: any,
   searchFilterValue: any,
-  user_id: any
+  user_id: any,
+  schedEmailNull?: any,
+  schedEmailNotNull?: any,
+  schedEmailToday?: any,
+  lastContactedToday?: any
 ) => {
   let _filters = `?limit=25&offset=${filters.offset}`;
   let _search = `&first_name=${searchValue}`;
@@ -18,6 +22,18 @@ export const getPeopleService = async (
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
   let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
   let _userFilter = user_id ? `&assigned_user=${user_id}` : "";
+  let _has_null_next_scheduled_email = schedEmailNull
+    ? "&has_null_next_scheduled_email=true"
+    : "";
+  let _not_null_next_scheduled_email = schedEmailNotNull
+    ? "&not_null_next_scheduled_email=true"
+    : "";
+  let _next_scheduled_email_today = schedEmailToday
+    ? "&next_scheduled_email_today=true"
+    : "";
+  let _last_contacted_today = lastContactedToday
+    ? "&last_contacted_today=true"
+    : "";
 
   const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`;
 
@@ -75,4 +91,8 @@ export const sendNewPrompt = async (payload: any) => {
 export const personUpdateAssign = async (personId: number, userId: any) => {
   const data = { user_id: userId };
   return await http.patch(`${endpoints.PERSON}${personId}/assign/`, data);
+};
+
+export const personCount = async () => {
+  return await http.get(`${endpoints.COUNT_PERSON}`);
 };

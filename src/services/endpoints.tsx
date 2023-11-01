@@ -4,6 +4,7 @@ export const endpoints = {
   PROFILE: "/api/me/",
   USERS_ME: "/api/users/",
   PERSON: "/api/persons/",
+  COUNT_PERSON: "api/count-persons/",
   MAIL_ACCOUNT: "/api/mail-accounts/",
   PROMPTS: "/api/prompts/",
   PLAYBOOKS: "/api/playbooks/",
