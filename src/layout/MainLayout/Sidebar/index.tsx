@@ -17,6 +17,7 @@ import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
 import { IconBook2, IconMessageChatbot } from "@tabler/icons-react";
+import { useEffect } from "react";
 import { useTour } from "src/providers/tourprovider";
 import { drawerWidth } from "../../../store/constant";
 import LogoSectionSidebar from "../LogoSectionSidebar";
@@ -44,6 +45,12 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
       startTour();
     }
   };
+
+  useEffect(() => {
+    // This will log the global window object after the component mounts
+    console.log("WINDOW GLOBAL", globalThis.window); // or simply console.log(window.self);
+    // Now you can safely call _gs or any other window method
+  }, []);
 
   const drawer = (
     <>
@@ -82,7 +89,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
           >
             <Box
               sx={{
-                marginTop: 2,
+                marginTop: 1,
                 flexDirection: "column",
                 display: "flex",
                 alignItems: "left",
@@ -94,7 +101,6 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               </Typography>
             </Box>
             <Box
-              mb={1}
               sx={{
                 flexDirection: "row",
                 display: "flex",
@@ -128,31 +134,32 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
             <Box
               display={"flex"}
               flexDirection="row"
-              justifyContent={"space-between"}
               pr={2}
               mb={1}
+              alignItems={"center"}
             >
-              {" "}
+              <IconBook2 color="white" />
               <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
-                <Typography mr={2} color="white" fontWeight={"bold"}>
-                  Click for Quick Tutorial
+                <Typography color="white" fontWeight={"bold"}>
+                  Click for Tutorial
                 </Typography>
               </a>
-              <IconBook2 color="white" />
             </Box>
-            <Box
-              onClick={() => window._gs("chat", "show")}
-              display={"flex"}
-              flexDirection="row"
-              justifyContent={"space-between"}
-              pr={2}
-            >
-              <Typography color="white" fontWeight="bold">
-                {" "}
-                Click to Chat With Us{" "}
-              </Typography>
-              <IconMessageChatbot color="white" />
-            </Box>
+            <a>
+              <Box
+                mb={2}
+                onClick={() => globalThis.window._gs("chat", "show")}
+                display={"flex"}
+                flexDirection="row"
+                alignItems={"center"}
+              >
+                <IconMessageChatbot color="white" />
+                <Typography color="white" fontWeight="bold">
+                  {" "}
+                  Click to Chat With Us{" "}
+                </Typography>
+              </Box>
+            </a>
           </Grid>
         </PerfectScrollbar>
       </BrowserView>

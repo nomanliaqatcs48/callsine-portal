@@ -15,12 +15,13 @@ import {
 } from "@mui/material";
 import { useEffect } from "react";
 import { useAsyncDebounce } from "react-table";
+import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
+import useGetUserMe from "src/hooks/settings/useGetUser";
 import MyModal from "src/ui-component/modal/MyModal";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import { useAuth } from "../../contexts/auth";
 import { ToastSuccess } from "../../helpers/toast";
 import { usePersons } from "../../hooks/persons/usePersons";
-import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 import CreateOrEditPerson from "../../ui-component/buttons/CreateOrEditPerson";
 import DeleteSelectedPeople from "../../ui-component/buttons/DeleteSelectedPeople";
 import ExportPeople from "../../ui-component/buttons/ExportPeople";
@@ -35,6 +36,13 @@ import WebsocketProvider, {
   WebsocketContext,
 } from "../../websocket/websocketProvider";
 // import VisibilityOff from "@mui/icons-material/VisibilityOff";
+
+// At the top of your file, or in a global declarations.d.ts file
+declare global {
+  interface Window {
+    _gs: any; // Use 'any' if you don't have a specific type for the _gs function
+  }
+}
 
 interface ExplainerModalProps {
   open: boolean;
@@ -71,6 +79,22 @@ const PersonsPage = () => {
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
 
   const [showAssign, setShowAssign] = useState(false);
+  const { loading, data, error } = useGetUserMe();
+
+  useEffect(() => {
+    // Check if the _gs function exists on the window object
+    if (window?._gs && data) {
+      console.log("in the indentify");
+      // Call the _gs function with the 'identify' command and the user data
+      window?._gs("identify", {
+        email: data?.email,
+        name: data?.first_name,
+        // other special properties...
+      });
+    } else {
+      console.error("The _gs function is not available on the window object.");
+    }
+  }, [data]); // Empty dependency array means this effect runs once on component mount
 
   useEffect(() => {
     // Assume checkIfTeamExists is a function that checks if a team exists for the user

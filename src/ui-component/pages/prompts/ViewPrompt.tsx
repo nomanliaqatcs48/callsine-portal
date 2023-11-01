@@ -63,22 +63,24 @@ const ViewPrompt = ({
                     />
                   </Box>
                 </CreateOrEditPrompt>
-                <DeletePrompt
-                  id={prompt?.id}
-                  className="border tw-min-w-min"
-                  onLoadApi={() => null}
-                  setPromptList={setPromptList}
-                >
-                  <Box className="tw-bg-[#D00000] tw-p-[17.5px] tw-rounded-md">
-                    <IconTrash
-                      strokeWidth={3}
-                      size={20}
-                      style={{
-                        color: "#ffffff",
-                      }}
-                    />
-                  </Box>
-                </DeletePrompt>
+                {idx === prompts.length - 1 && (
+                  <DeletePrompt
+                    id={prompt?.id}
+                    className="border tw-min-w-min"
+                    onLoadApi={() => null}
+                    setPromptList={setPromptList}
+                  >
+                    <Box className="tw-bg-[#D00000] tw-p-[17.5px] tw-rounded-md">
+                      <IconTrash
+                        strokeWidth={3}
+                        size={20}
+                        style={{
+                          color: "#ffffff",
+                        }}
+                      />
+                    </Box>
+                  </DeletePrompt>
+                )}
               </Box>
             </Box>
           </Box>
