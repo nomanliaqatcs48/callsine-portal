@@ -8,6 +8,7 @@ type User = {
   user_city: string;
   user_state: string;
   user_title: string;
+  role: string;
 };
 
 const useGetUserMe = (): {

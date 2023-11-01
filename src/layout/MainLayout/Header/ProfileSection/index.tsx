@@ -37,6 +37,7 @@ import {
   IconSettings,
   IconUsers,
 } from "@tabler/icons-react";
+import useGetUserMe from "src/hooks/settings/useGetUser";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
 import { useAuth } from "../../../../contexts/auth";
 import { devLog } from "../../../../helpers/logs";
@@ -58,6 +59,9 @@ const ProfileSection = () => {
   const [notification, setNotification] = useState(false);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const [open, setOpen] = useState(false);
+  const { loading, data, error } = useGetUserMe();
+
+  console.log("USER", data);
   /**
    * anchorRef is used on different componets and specifying one type leads to other components throwing an error
    * */
@@ -372,7 +376,7 @@ const ProfileSection = () => {
                         component="nav"
                         sx={{
                           width: "100%",
-                          maxHeight: 165,
+                          maxHeight: data?.role === "ADMIN" ? 165 : 100,
                           maxWidth: 250, //maxWidth: 350,
                           minWidth: 200, //minWidth: 300,
                           backgroundColor: theme.palette.background.paper,
@@ -423,42 +427,46 @@ const ProfileSection = () => {
                             }
                           />
                         </ListItemButton>
-                        <ListItemButton
-                          sx={{
-                            borderRadius: `${customization.borderRadius}px`,
-                          }}
-                          selected={selectedIndex === 1}
-                          onClick={(event) =>
-                            handleListItemClick(event, 1, "/team")
-                          }
-                        >
-                          <ListItemIcon>
-                            <IconUsers stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography variant="body2">Team</Typography>
+                        {data?.role == "ADMIN" && (
+                          <ListItemButton
+                            sx={{
+                              borderRadius: `${customization.borderRadius}px`,
+                            }}
+                            selected={selectedIndex === 1}
+                            onClick={(event) =>
+                              handleListItemClick(event, 1, "/team")
                             }
-                          />
-                        </ListItemButton>
-                        <ListItemButton
-                          sx={{
-                            borderRadius: `${customization.borderRadius}px`,
-                          }}
-                          selected={selectedIndex === 2}
-                          onClick={(event) =>
-                            handleListItemClick(event, 2, "/billing")
-                          }
-                        >
-                          <ListItemIcon>
-                            <IconCreditCard stroke={1.5} size="1.3rem" />
-                          </ListItemIcon>
-                          <ListItemText
-                            primary={
-                              <Typography variant="body2">Billing</Typography>
+                          >
+                            <ListItemIcon>
+                              <IconUsers stroke={1.5} size="1.3rem" />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                <Typography variant="body2">Team</Typography>
+                              }
+                            />
+                          </ListItemButton>
+                        )}
+                        {data?.role === "ADMIN" && (
+                          <ListItemButton
+                            sx={{
+                              borderRadius: `${customization.borderRadius}px`,
+                            }}
+                            selected={selectedIndex === 2}
+                            onClick={(event) =>
+                              handleListItemClick(event, 2, "/billing")
                             }
-                          />
-                        </ListItemButton>
+                          >
+                            <ListItemIcon>
+                              <IconCreditCard stroke={1.5} size="1.3rem" />
+                            </ListItemIcon>
+                            <ListItemText
+                              primary={
+                                <Typography variant="body2">Billing</Typography>
+                              }
+                            />
+                          </ListItemButton>
+                        )}
                         {/* <ListItemButton
                           sx={{
                             borderRadius: `${customization.borderRadius}px`,

@@ -47,6 +47,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
   };
 
   const handleChangeCity = (e: any) => {
+    console.log("CITY CHAGING ", e.target.value);
     setCity(e.target.value);
   };
 
@@ -93,7 +94,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
                 activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
               }`}
               placeholder="City"
-              value={value.person_city}
+              value={person_city}
               onChange={handleChangeCity}
             />
             <br />
@@ -104,7 +105,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
                 activeField ? "tw-bg-white" : "tw-bg-[#F5F5F5]"
               }`}
               placeholder="State"
-              value={value.state}
+              value={state}
               onChange={handleChangeState}
             />
           </TableCell>

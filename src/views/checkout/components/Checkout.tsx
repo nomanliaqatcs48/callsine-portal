@@ -3,6 +3,7 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { FC, useEffect, useMemo, useState } from "react";
 
 import styled from "@emotion/styled";
+import { Box, Typography } from "@mui/material";
 import {
   createStripeCustomer,
   createSubscriptionService,
@@ -208,8 +209,24 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
   };
 
   return (
-    <div className="tw-bg-white tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-p-[40px] tw-pt-[100px]">
+    <div className="tw-bg-white tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3] tw-p-[40px] tw-pt-[0px]">
       {/* Order Details */}
+      <Box
+        display={"flex"}
+        justifyContent="center"
+        flexDirection={"column"}
+        alignItems="center"
+      >
+        <Typography fontWeight="bold">
+          {" "}
+          All Plans Come With a 2 Day Free Trial
+        </Typography>
+        <Typography mb={3} textAlign={"center"}>
+          {" "}
+          You can cancel at any time during your trial free-of-charge. First
+          charge will occur automatically after trial ends.
+        </Typography>
+      </Box>
       <div className="tw-bg-gray-100 tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
         <div className="tw-p-4 tw-mb-5 tw-rounded-lg tw-border-[1px] tw-border-[#f0f1f3]">
           <h3 className="tw-text-[18px] tw-text-black tw-font-medium tw-mb-4">

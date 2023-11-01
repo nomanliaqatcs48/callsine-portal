@@ -271,33 +271,35 @@ const SettingsPage: React.FC = () => {
       </Typography>
       <Grid className="tw-my-5" />
       <div className="tw-m-4">
-        <Paper
-          elevation={1}
-          className="tw-p-4 tw-mb-4 tw-rounded-lg tw-bg-white"
-        >
-          <Typography
-            variant="h5"
-            className="tw-mb-4 tw-text-black tw-font-normal"
+        {data?.role === "ADMIN" && (
+          <Paper
+            elevation={1}
+            className="tw-p-4 tw-mb-4 tw-rounded-lg tw-bg-white"
           >
-            Company
-          </Typography>
-          <Grid container spacing={3}>
-            {companyFields.map((field, index) => (
-              <Grid item xs={6} key={index}>
-                {renderField(field, "team")}
+            <Typography
+              variant="h5"
+              className="tw-mb-4 tw-text-black tw-font-normal"
+            >
+              Company
+            </Typography>
+            <Grid container spacing={3}>
+              {companyFields.map((field, index) => (
+                <Grid item xs={6} key={index}>
+                  {renderField(field, "team")}
+                </Grid>
+              ))}
+              <Grid item xs={12} className="tw-flex tw-justify-end">
+                <Button
+                  variant="contained"
+                  className="tw-bg-primary tw-mt-2"
+                  onClick={handleSaveTeamInfo}
+                >
+                  Save Company Info
+                </Button>
               </Grid>
-            ))}
-            <Grid item xs={12} className="tw-flex tw-justify-end">
-              <Button
-                variant="contained"
-                className="tw-bg-primary tw-mt-2"
-                onClick={handleSaveTeamInfo}
-              >
-                Save Company Info
-              </Button>
             </Grid>
-          </Grid>
-        </Paper>
+          </Paper>
+        )}
         <Paper elevation={2} className="tw-p-4 tw-rounded-lg tw-bg-white">
           <Typography
             variant="h5"

@@ -177,7 +177,8 @@ const TeamPage: React.FC = () => {
             <Typography className="tw-text-[16px]">
               You will be charged within 72 hours of when new team members
               accept invite. They will receive invite email once added to your
-              team.
+              team. (This screen is only visible to you as the Team
+              Administrator.)
             </Typography>
           </Grid>
           <Grid item xs={3}>

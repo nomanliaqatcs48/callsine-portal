@@ -48,7 +48,7 @@ const useWizard = () => {
       const response = await updateTeamMeService(payload);
       console.log(response.data);
       if (navigate) {
-        window.location.href = "/people";
+        window.location.href = "/wizard/tutorial";
       }
     } catch (error) {
       console.error(
