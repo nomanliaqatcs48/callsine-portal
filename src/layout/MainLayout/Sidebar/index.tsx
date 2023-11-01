@@ -16,6 +16,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
+import { IconBook2, IconMessageChatbot } from "@tabler/icons-react";
 import { useTour } from "src/providers/tourprovider";
 import { drawerWidth } from "../../../store/constant";
 import LogoSectionSidebar from "../LogoSectionSidebar";
@@ -82,22 +83,18 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
             <Box
               sx={{
                 marginTop: 2,
-                flexDirection: "row",
+                flexDirection: "column",
                 display: "flex",
-                alignItems: "center",
+                alignItems: "left",
                 justifyContent: "space-between",
               }}
             >
-              <Typography color="white" fontWeight="bold">
+              <Typography color="white" mb={1}>
                 Need Help?
               </Typography>
-              <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
-                <Typography color="white">
-                  <u>Quick Tutorial </u>
-                </Typography>
-              </a>
             </Box>
             <Box
+              mb={1}
               sx={{
                 flexDirection: "row",
                 display: "flex",
@@ -127,6 +124,34 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                   },
                 }}
               />
+            </Box>
+            <Box
+              display={"flex"}
+              flexDirection="row"
+              justifyContent={"space-between"}
+              pr={2}
+              mb={1}
+            >
+              {" "}
+              <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
+                <Typography mr={2} color="white" fontWeight={"bold"}>
+                  Click for Quick Tutorial
+                </Typography>
+              </a>
+              <IconBook2 color="white" />
+            </Box>
+            <Box
+              onClick={() => window._gs("chat", "show")}
+              display={"flex"}
+              flexDirection="row"
+              justifyContent={"space-between"}
+              pr={2}
+            >
+              <Typography color="white" fontWeight="bold">
+                {" "}
+                Click to Chat With Us{" "}
+              </Typography>
+              <IconMessageChatbot color="white" />
             </Box>
           </Grid>
         </PerfectScrollbar>
