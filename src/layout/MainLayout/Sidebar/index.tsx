@@ -16,7 +16,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
-import { IconBook2, IconMessageChatbot } from "@tabler/icons-react";
+import { IconBook2 } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { useTour } from "src/providers/tourprovider";
 import { drawerWidth } from "../../../store/constant";
@@ -77,6 +77,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
           <MenuList />
           {/*<MenuCard />*/}
           <Grid
+            pb={10}
             className="tw-bg-primaryLight"
             sx={{
               width: matchUpMd ? drawerWidth : "auto",
@@ -84,7 +85,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               bottom: 0,
               pl: 5,
               pr: 3,
-              pb: 1,
+              pb: 8,
             }}
           >
             <Box
@@ -145,7 +146,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                 </Typography>
               </a>
             </Box>
-            <a>
+            {/* <a>
               <Box
                 mb={2}
                 onClick={() => globalThis.window._gs("chat", "show")}
@@ -159,7 +160,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                   Click to Chat With Us{" "}
                 </Typography>
               </Box>
-            </a>
+            </a> */}
           </Grid>
         </PerfectScrollbar>
       </BrowserView>
