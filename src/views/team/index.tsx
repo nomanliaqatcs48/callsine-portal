@@ -80,7 +80,7 @@ const TeamPage: React.FC = () => {
       email: newMember.email,
       title: newMember.title,
       // Assuming 'title' in frontend maps to 'username' in backend
-      username: newMember.title,
+      username: newMember.first_name + " " + newMember.email,
       // Handle password as required
       password: "DefaultPassword123", // Modify as required
     };

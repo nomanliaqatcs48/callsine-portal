@@ -1,4 +1,14 @@
-import { Box, Button, FormControl, OutlinedInput } from "@mui/material";
+import {
+  Box,
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  FormControl,
+  OutlinedInput,
+} from "@mui/material";
 import React, { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import http from "src/services/axios";
@@ -9,11 +19,14 @@ interface SetPasswordProps {}
 
 const SetPassword: React.FC<SetPasswordProps> = () => {
   const navigate = useNavigate();
+  const [open, setOpen] = useState(false);
   console.log("loading");
   const { token } = useParams<{ token: string }>(); // 2. Invoke useParams to get token
   console.log(token);
   const [password, setPassword] = useState<string>("");
   const [confirmPassword, setConfirmPassword] = useState<string>("");
+  const [error, setError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = (e: any) => {
     console.log(e);
@@ -38,15 +51,29 @@ const SetPassword: React.FC<SetPasswordProps> = () => {
         e.preventDefault(); // prevent the default form submission
         console.log("default prevented");
         // You might also want to authenticate the user here or redirect to the login page.
-        alert(response.data.message); // "Registration successful."
+        // alert(response.data.message); // "Registration successful."
+        setOpen(true);
+
         // Redirect to login or dashboard, e.g.:
-        navigate("/login");
+        // navigate("/login");
       })
       .catch((error) => {
         e.preventDefault(); // prevent the default form submission
-        console.log("default prevented");
-        alert("Error setting password: " + error.message);
+        console.log("default prevented", error);
+        setError(true);
+        setErrorMessage("Error setting password: " + error.message);
+        setOpen(true);
       });
+  };
+  const handleClose = () => {
+    setOpen(false);
+    handleNav();
+  };
+
+  const handleNav = () => {
+    if (!error) {
+      navigate("/login"); // Redirect to the login page}
+    }
   };
 
   return (
@@ -115,6 +142,39 @@ const SetPassword: React.FC<SetPasswordProps> = () => {
           </Button>
         </AnimateButton>
       </Box>
+      <Dialog open={open} onClose={handleClose}>
+        <>
+          {!error ? (
+            <>
+              <DialogTitle>Registration Successful</DialogTitle>
+              <DialogContent>
+                <DialogContentText>You can now login.</DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Go to Login
+                </Button>
+              </DialogActions>
+            </>
+          ) : (
+            <>
+              {" "}
+              <DialogTitle>Registration Unsuccessful</DialogTitle>
+              <DialogContent>
+                <DialogContentText>
+                  {errorMessage} <br /> If you continue to have issues, please
+                  contact your team admin.
+                </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button onClick={handleClose} color="primary">
+                  Try Again
+                </Button>
+              </DialogActions>{" "}
+            </>
+          )}
+        </>
+      </Dialog>
     </Box>
   );
 };
