@@ -78,7 +78,7 @@ const HelpEditor = ({
       let res = await sendNewPrompt(payload);
       if (res?.data) {
         ToastSuccess("Help is here.");
-        alert(res.data?.message);
+        alert("Message has been updated. You need to refresh your page.");
       }
       setLoading(false);
       return;

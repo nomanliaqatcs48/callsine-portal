@@ -1,6 +1,5 @@
 import PersonIcon from "@mui/icons-material/Person";
 import { Avatar, Button, Tooltip, Typography } from "@mui/material";
-import { ReactComponent as FacebookIcon } from "../../../../assets/images/svg/facebook.svg";
 import { ReactComponent as LinkedinIcon } from "../../../../assets/images/svg/linkedin.svg";
 import { usePersonStats } from "../../../../hooks/persons/usePersonStats";
 import EditableName from "./EditableName";
@@ -58,7 +57,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
                 <LinkedinIcon style={{ fill: "white" }} />
               </div>
             </Tooltip>
-            <Tooltip title={data?.facebook ? "Facebook" : "No facebook yet"}>
+            {/* <Tooltip title={data?.facebook ? "Facebook" : "No facebook yet"}>
               <div
                 onClick={() => {
                   data?.facebook && window.open(data.facebook, "_blank");
@@ -72,7 +71,7 @@ const ProfileFirstCol = ({ data, editMode }: ProfileFirstColTypes) => {
                   style={{ fill: "white" }}
                 />
               </div>
-            </Tooltip>
+            </Tooltip> */}
           </div>
         </div>
       </div>

@@ -47,10 +47,10 @@ const ProfileSecondCol = ({
       },
     },
     {
-      key: "org.industry",
+      key: "industry",
       first: "Industry",
-      second: data?.org?.industry || "n/a",
-      value: data?.org?.industry,
+      second: data?.industry || "n/a",
+      value: data?.industry,
     },
 
     // {

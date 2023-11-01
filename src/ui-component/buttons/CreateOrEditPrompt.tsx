@@ -9,11 +9,17 @@ import {
   DialogTitle,
   FormHelperText,
   Grid,
+  List,
+  ListItem,
+  ListItemText,
   MenuItem,
   Stack,
   TextField,
+  Tooltip,
+  Typography,
+  styled,
 } from "@mui/material";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { devLog, devLogError } from "../../helpers/logs";
 import { ToastError, ToastSuccess } from "../../helpers/toast";
@@ -27,6 +33,25 @@ import {
 } from "src/services/prompts.service";
 import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
 
+const ScrollableTooltipContent = styled("div")(({ theme }) => ({
+  maxHeight: "700px", // set a maximum height
+  overflowY: "auto", // add scrollbar when content overflows
+  "&::-webkit-scrollbar": {
+    width: "0.4em",
+  },
+  "&::-webkit-scrollbar-thumb": {
+    backgroundColor: "rgba(0,0,0,.1)",
+    borderRadius: "4px",
+  },
+  "& ul": {
+    padding: 0,
+    margin: theme.spacing(1),
+  },
+  "& li": {
+    listStyle: "none",
+  },
+}));
+
 type CreateOrEditPlaybookTypes = {
   children: any;
   onLoadApi: any;
@@ -39,20 +64,93 @@ type CreateOrEditPlaybookTypes = {
 };
 
 const MERGE_FIELDS = [
-  { label: "Prospect First Name", value: "first_name" },
-  { label: "Prospect Last Name", value: "last_name" },
-  { label: "Prospect Company Name", value: "company_name" },
-  { label: "Prospect Company Website", value: "company_domain" },
-  { label: "Prospect City", value: "person_city" },
-  { label: "Prospect State", value: "person_state" },
-  { label: "Prospect Job Title", value: "job_title" },
-  { label: "Prospect Cares About", value: "cares_about" },
-  { label: "Company Mission", value: "company_mission" },
-  { label: "Company Specialty", value: "company_specialty" },
-  { label: "Company Region", value: "company_region" },
-  { label: "Company Value Proposition", value: "company_value_proposition" },
-  { label: "Company Why Someone Cares", value: "company_why_someone_cares" },
-  { label: "Company Special to Mention", value: "company_special_to_mention" },
+  {
+    label: "Your Org Name",
+    value: "org_name",
+    description: "Your company's name.",
+  },
+  {
+    label: "Your Org Domain",
+    value: "org_domain",
+    description: "Your company web domain.",
+  },
+  {
+    label: "Prospect First Name",
+    value: "first_name",
+    description: "Email reciever first name.",
+  },
+  {
+    label: "Prospect Last Name",
+    value: "last_name",
+    description: "Email reciever last name.",
+  },
+  {
+    label: "Prospect Company Name",
+    value: "company_name",
+    description: "Email reciever company name.",
+  },
+  {
+    label: "Prospect Company Website",
+    value: "company_domain",
+    description: "Email reciever company website.",
+  },
+  {
+    label: "Prospect City",
+    value: "person_city",
+    description: "Email reciever city.",
+  },
+  {
+    label: "Prospect State",
+    value: "person_state",
+    description: "Email reciever state.",
+  },
+  {
+    label: "Prospect Job Title",
+    value: "job_title",
+    description: "Email reciever job title.",
+  },
+  {
+    label: "Prospect Cares About",
+    value: "cares_about",
+    description:
+      "AI prediction on what email reciever cares about related to their job.",
+  },
+  {
+    label: "Prospect Company Mission",
+    value: "company_mission",
+    description:
+      "AI prediction on the mission of the company of email reciever.",
+  },
+  {
+    label: "Prospect Company Specialty",
+    value: "company_specialty",
+    description:
+      "AI prediction on the specialty of the company of email reciever.",
+  },
+  {
+    label: "Prospect Company Region",
+    value: "company_region",
+    description:
+      "AI prediction on the specialty of the company of email reciever.",
+  },
+  {
+    label: "Prospect Company Value Proposition",
+    value: "company_value_proposition",
+    description:
+      "AI prediction on the value proposition of the company of email reciever.",
+  },
+  {
+    label: "Prospect Company Why Someone Cares",
+    value: "company_why_someone_cares",
+    description:
+      "AI prediction on the reason the company of email reciever exists.",
+  },
+  {
+    label: "Prospect Company Special to Mention",
+    value: "company_special_to_mention",
+    description:
+      "AI prediction on a special, high value detail to note of the company of email reciever.",
+  },
 ];
 
 const CreateOrEditPlaybook = ({
@@ -185,6 +283,53 @@ const CreateOrEditPlaybook = ({
     });
   };
 
+  const MergeFieldsTooltip = () => {
+    const tooltipContent = (
+      <ScrollableTooltipContent>
+        <Typography px={2} mt={2}>
+          Context tags empower you to instruct the AI to add data into each
+          prompt to drive greater personalization.{" "}
+        </Typography>
+
+        <Typography px={2} mt={2}>
+          These tags are similar to email merge fields, but instead of using
+          them personalize a template that is already written, they personalize
+          the instructions for writing each email.
+        </Typography>
+
+        <List dense>
+          {MERGE_FIELDS.map((field) => (
+            <ListItem key={field.value}>
+              <ListItemText
+                primary={
+                  <React.Fragment>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      color="white"
+                      style={{ fontWeight: "bold" }}
+                    >
+                      {field.label}
+                    </Typography>
+                    <Typography component="span" variant="body2" color="white">
+                      {` - ${field.description}`}
+                    </Typography>
+                  </React.Fragment>
+                }
+              />
+            </ListItem>
+          ))}
+        </List>
+      </ScrollableTooltipContent>
+    );
+
+    return (
+      <Tooltip title={tooltipContent} placement="left">
+        <Typography>Hover over me to see context tag definitions</Typography>
+      </Tooltip>
+    );
+  };
+
   return (
     <>
       <Button
@@ -213,7 +358,7 @@ const CreateOrEditPlaybook = ({
             className="tw-text-black tw-bg-[#EAEAEA] tw-tracking-[0.36px] tw-font-normal tw-py-6"
           >
             <Box className="tw-flex tw-justify-between">
-              <Stack direction="row" spacing={4}>
+              <Stack direction="row" spacing={4} alignItems={"center"}>
                 <Box className="tw-text-[18px] tw-flex tw-flex-col tw-justify-center tw-align-middle">
                   {id ? "Edit" : "Add New"} Prompt
                 </Box>
@@ -234,12 +379,13 @@ const CreateOrEditPlaybook = ({
                         ? "Choose Tag"
                         : "Click in the text field where do you want to insert tags"
                     }
-                    fullWidth
                     disabled={cursorPos > -1 ? false : true}
+                    fullWidth
                   >
                     {menuItemLoop()}
                   </TextField>
                 </Box>
+                <MergeFieldsTooltip />
               </Stack>
               <Box>
                 <Button className="tw-min-w-min" onClick={handleClose}>

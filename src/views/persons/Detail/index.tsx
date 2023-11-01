@@ -61,7 +61,7 @@ const PersonDetailPage = () => {
               }}
               className="tw-text-callsineRed"
             >
-              Cancel Edit Profile
+              Close Profile Edit
             </Button>
           )}
         </Grid>

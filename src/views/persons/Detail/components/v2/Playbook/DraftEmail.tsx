@@ -28,6 +28,7 @@ import {
   selectBlueStyles,
 } from "../../../../../../utils/people/utils";
 
+import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 import SendLaterOauth from "src/ui-component/buttons/SendLaterOauth";
 import SendLaterOauthEditTime from "src/ui-component/buttons/SendLaterOauthEditTime";
 import TooltipComponent from "src/ui-component/tour/Tooltip";
@@ -60,6 +61,18 @@ const DraftEmail = ({
     from_email: false,
     subject: false,
   });
+  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
+
+  useEffect(() => {
+    // if (!isLoading && personsData && personsData.length === 0) {
+    //   getPeople();
+    //   getPersonCounts();
+    // }
+    getPersonCounts();
+  }, []);
+
+  console.log("PERSON COUNTS", personCounts);
+
   const {
     register,
     unregister,
@@ -472,7 +485,6 @@ const DraftEmail = ({
       }
     }
   };
-  console.log({ selectedData });
 
   return (
     <>
@@ -483,34 +495,37 @@ const DraftEmail = ({
           {/* {only show when not editing} */}
 
           <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
-            {personData?.status === "Open" && (
-              <LoadingButton
-                type="button"
-                variant="outlined"
-                onClick={handleSubmit((data) =>
-                  onSubmitSendViaOauth(data as EmailDraftTypes)
-                )}
-                className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
-                loading={isLoading?.form}
-                disabled={isLoading?.form}
-              >
-                <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
-                  Send
-                </span>{" "}
-                <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
-              </LoadingButton>
-            )}
+            {personData?.status === "Open" &&
+              Number(personCounts?.data?.scheduled_today) < 50 && (
+                <LoadingButton
+                  type="button"
+                  variant="outlined"
+                  onClick={handleSubmit((data) =>
+                    onSubmitSendViaOauth(data as EmailDraftTypes)
+                  )}
+                  className="tw-border tw-border-[#1976d2] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-5"
+                  loading={isLoading?.form}
+                  disabled={isLoading?.form}
+                >
+                  <span className="tw-px-1.5 tw-text-primary tw-text-xs tw-uppercase tw-font-medium">
+                    Send
+                  </span>{" "}
+                  <SendOutlinedIcon sx={{ fontSize: 20, color: "#3586d7" }} />
+                </LoadingButton>
+              )}
 
-            {personData?.status === "Open" && (
-              <Divider
-                orientation="vertical"
-                variant="middle"
-                flexItem
-                className="tw-mx-4"
-              />
-            )}
+            {personData?.status === "Open" &&
+              Number(personCounts?.data?.scheduled_today) < 50 && (
+                <Divider
+                  orientation="vertical"
+                  variant="middle"
+                  flexItem
+                  className="tw-mx-4"
+                />
+              )}
 
-            {personData.status === "Open" ? (
+            {personData.status === "Open" &&
+            Number(personCounts?.data?.scheduled_today) < 50 ? (
               <TooltipComponent
                 text={
                   "Use this to schedule future emails based on your current drafts."
@@ -534,50 +549,73 @@ const DraftEmail = ({
                   position={position}
                 />
               </TooltipComponent>
-            ) : (
+            ) : personData?.status !== "Open" ? (
               "Cannot Send to Unenrolled Person"
+            ) : (
+              "You have scheduled your limit for the day."
             )}
           </div>
 
-          {selectedData?.id && selectedData?.status === 2 && (
-            <div className="tw-flex tw-justify-center tw-items-center">
-              <SendLaterOauthEditTime
-                useForm={{
-                  register,
-                  unregister,
-                  setValue,
-                  handleSubmit,
-                  reset,
-                  getValues,
-                  trigger,
-                  setError,
-                  errors,
-                }}
-                onLoadApi={onLoadApi}
-                loading={isLoading?.form}
-                disabled={isLoading?.form}
-                position={position}
-              />
-            </div>
-          )}
+          {selectedData?.id &&
+            selectedData?.status === 2 &&
+            Number(personCounts?.data?.scheduled_today) < 50 && (
+              <div className="tw-flex tw-justify-center tw-items-center">
+                <SendLaterOauthEditTime
+                  useForm={{
+                    register,
+                    unregister,
+                    setValue,
+                    handleSubmit,
+                    reset,
+                    getValues,
+                    trigger,
+                    setError,
+                    errors,
+                  }}
+                  onLoadApi={onLoadApi}
+                  loading={isLoading?.form}
+                  disabled={isLoading?.form}
+                  position={position}
+                />
+              </div>
+            )}
 
           {/*right*/}
-          <div className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-1">
-            {selectedData?.id && (
+          <Box display={"flex"} flexDirection={"row"} alignItems={"center"}>
+            {selectedSequenceEvent?.scheduledEmail !== null && (
               <LoadingButton
                 type="button"
                 variant="outlined"
-                onClick={handleSaveDraft}
-                className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+                onClick={() =>
+                  regeneratePlaybook(selectedSequenceEvent, onLoadApi)
+                }
+                className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1 tw-mr-2"
                 loading={false}
                 disabled={false}
               >
                 <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
-                  Save Draft
+                  Regenerate
                 </span>
               </LoadingButton>
             )}
-          </div>
+            <div className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-1">
+              {selectedData?.id &&
+                Number(personCounts?.data?.scheduled_today) < 50 && (
+                  <LoadingButton
+                    type="button"
+                    variant="outlined"
+                    onClick={handleSaveDraft}
+                    className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+                    loading={false}
+                    disabled={false}
+                  >
+                    <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
+                      Save Draft
+                    </span>
+                  </LoadingButton>
+                )}
+            </div>
+          </Box>
         </div>
       </div>
       <div className={`parent-email-container ${_styles?.containers}`}>
