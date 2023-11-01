@@ -4,6 +4,8 @@ import { cacheTime } from "src/store/constant";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { getPeopleService } from "../../services/persons.service";
 
+import { useUnreadCount } from "src/hooks/useUnreadCount";
+
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
@@ -30,13 +32,27 @@ export const usePersons = (
   });
   const [filterUserId, setFilterUserId] = useState<number | null>();
 
-  // devLog(() => {
-  //   console.log("sortedId", sortedId);
-  // });
+  const { unreadEmails } = useUnreadCount();
 
+  const makePeopleWithReplyToTop = (persons: any) => {
+    const _unreadEmails = new Set(unreadEmails.map((item: any) => item.to));
+    persons.sort((a: any, b: any) => {
+      const isAUnread = _unreadEmails.has(a.work_email);
+      const isBUnread = _unreadEmails.has(b.work_email);
+
+      if (isAUnread && !isBUnread) {
+        return -1; // a comes first
+      }
+      if (!isAUnread && isBUnread) {
+        return 1; // b comes first
+      }
+      return 0; // no change in order
+    });
+    console.log({ persons });
+    return persons;
+  };
   const getPeople = async () => {
     try {
-      // console.log(filters)
       let res = await getPeopleService(
         filters,
         searchValue,
@@ -46,8 +62,12 @@ export const usePersons = (
         filterUserId
       );
       if (res?.data) {
-        // Update state variables here
-        setPersonsData(res.data.results);
+        console.log({ unreadEmails });
+        console.log("PERSONS", res.data.results);
+        const sortedResults = makePeopleWithReplyToTop(res.data.results);
+        console.log({ sortedResults });
+        setPersonsData(sortedResults);
+
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
         return res.data;
