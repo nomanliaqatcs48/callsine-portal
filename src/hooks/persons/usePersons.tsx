@@ -31,6 +31,10 @@ export const usePersons = (
     industry: "",
   });
   const [filterUserId, setFilterUserId] = useState<number | null>();
+  const [schedEmailNull, setSchedEmailNull] = useState<boolean>(false);
+  const [schedEmailNotNull, setSchedEmailNotNull] = useState<boolean>(false);
+  const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
+  const [lastContactedToday, setLastContactedToday] = useState<boolean>(false);
 
   const { unreadEmails } = useUnreadCount();
 
@@ -59,7 +63,11 @@ export const usePersons = (
         sortedId,
         isOrderDesc,
         searchFilterValue,
-        filterUserId
+        filterUserId,
+        schedEmailNull,
+        schedEmailNotNull,
+        schedEmailToday,
+        lastContactedToday,
       );
       if (res?.data) {
         console.log({ unreadEmails });
@@ -110,7 +118,17 @@ export const usePersons = (
 
   useEffect(() => {
     refetchPersons();
-  }, [filters, sortedId, isOrderDesc, filterUserId, refetchPersons]);
+  }, [
+    filters,
+    sortedId,
+    isOrderDesc,
+    filterUserId,
+    refetchPersons,
+    schedEmailNull,
+    schedEmailNotNull,
+    schedEmailToday,
+    lastContactedToday
+  ]);
 
   return {
     isFetchingPersons,
@@ -134,5 +152,9 @@ export const usePersons = (
     searchFilterValue,
     setSearchFilterValue,
     setFilterUserId,
+    setSchedEmailNull,
+    setSchedEmailNotNull,
+    setSchedEmailToday,
+    setLastContactedToday
   };
 };

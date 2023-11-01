@@ -34,10 +34,8 @@ export const getPeopleService = async (
   let _last_contacted_today = lastContactedToday
     ? "&last_contacted_today=true"
     : "";
+  const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}${_has_null_next_scheduled_email}${_not_null_next_scheduled_email}${_next_scheduled_email_today}${_last_contacted_today}`;
 
-  const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}`;
-
-  // const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}&assigned_user=38`;
 
   const finalUrl = url.endsWith("&") ? url.slice(0, -1) : url;
 
