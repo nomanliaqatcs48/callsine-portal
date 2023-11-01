@@ -61,6 +61,7 @@ export const useEmailThread = (
         });
 
         setEmailThreads(makePeopleWithReplyToTop(res.data));
+        console.log("Email thrads", emailThreads);
         setIsLoading((prev: any) => ({ ...prev, onPage: false, cards: false }));
         removeBodyLoader();
       }

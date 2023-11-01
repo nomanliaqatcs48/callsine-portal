@@ -1,5 +1,5 @@
 import React from "react";
-import { formatTime } from "src/utils/date";
+import { formatDate, formatDateWithTime, formatTime } from "src/utils/date";
 import { Stack, Typography } from "@mui/material";
 import { EmailThread } from "src/types/inbox";
 import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
@@ -65,6 +65,15 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     }
   };
 
+  const removeEmptyEmails = (data: any) => {
+    const filteredData = data.filter((item: any) => item.emails.length > 0);
+    return filteredData;
+  };
+
+  console.log("Email thradssss", emailThreads);
+
+  const _emailThreads = removeEmptyEmails(emailThreads);
+
   const handleOnClickEmail = (emails: any, emailIndex: number) => {
     setSelected(selected === emailIndex ? -1 : emailIndex);
     if (emailIndex === selected) {
@@ -109,7 +118,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         <div
           className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
-          {emailThreads.map((item, index) => (
+          {_emailThreads.map((item: any, index: any) => (
             <div
               key={`${item.recipient}-${index}`}
               className="tw-w-full"
@@ -168,7 +177,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                         : "tw-font-thin"
                     }`}
                   >
-                    {formatTime(email.created_date)}
+                    {formatDate(email.created_date)}
                   </Typography>
                 </Stack>
                 <br />
