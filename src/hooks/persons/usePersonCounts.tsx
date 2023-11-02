@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { personCount } from "../../services/persons.service";
+import { personCount, personForceEnable } from "../../services/persons.service";
 
 export const usePersonCounts = () => {
   const [personCounts, setPersonCounts] = useState<Record<string, any>>({
@@ -11,8 +11,7 @@ export const usePersonCounts = () => {
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const getPersonCounts = async () => {
-    setIsFetching(true);
+  const getPersonCounts = async () => {    
     try {
       let res = await personCount();
       if (res.status === 200) {
