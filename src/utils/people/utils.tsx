@@ -561,6 +561,7 @@ export const _columns: any = () => {
 
           const handleUpdate = async (person_id: number) => {
             updateForceEnable(person_id);
+            ToastSuccess("Person successfully enabled.");
           };
           return (
             <>
@@ -579,15 +580,14 @@ export const _columns: any = () => {
                     strokeWidth={3}
                     className=""
                   />
-                  {!cell.row.original.force_enable && (
-                    <Button
-                      variant="text"
-                      className="tw-mx-2"
-                      onClick={(e) => handleUpdate(cell.row.original.id)}
-                    >
-                      Enable
-                    </Button>
-                  )}
+                  <Button
+                    variant="text"
+                    className="tw-mx-2"
+                    onClick={(e) => handleUpdate(cell.row.original.id)}
+                    disabled={cell.row.original.force_enable}
+                  >
+                    {cell.row.original.force_enable ? "Enabled" : "Enable"}
+                  </Button>
                 </div>
               )}
             </>
