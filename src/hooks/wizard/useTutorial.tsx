@@ -6,7 +6,6 @@ import importing from "src/assets/images/tutorial/import.png"; // Import the ima
 import materials from "src/assets/images/tutorial/materials.png"; // Import the image
 import people from "src/assets/images/tutorial/people.png"; // Import the image
 import playbook from "src/assets/images/tutorial/playbook.png"; // Import the image
-import { updateTeamMeService } from "src/services/profile.service";
 import useGetTeamMe from "../settings/useGetTeam";
 
 const useTutorial = () => {
@@ -50,8 +49,7 @@ const useTutorial = () => {
 
     try {
       // Replace with your actual API endpoint
-      const response = await updateTeamMeService(payload);
-      console.log(response.data);
+
       if (navigate) {
         window.location.href = "/people";
       }
