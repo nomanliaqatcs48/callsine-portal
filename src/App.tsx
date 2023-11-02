@@ -11,7 +11,6 @@ import Routes from "./routes";
 import themes from "./themes";
 
 // project imports
-import { MendableChatBubble } from "@mendable/search";
 import logo from "./assets/images/logos/callsine-logo-white-only.png";
 import NavigationScroll from "./layout/NavigationScroll";
 
@@ -46,7 +45,7 @@ const App = () => {
     <StyledEngineProvider injectFirst>
       <ThemeProvider theme={themes(customization)}>
         <TourProvider>
-          <MendableChatBubble
+          {/* <MendableChatBubble
             dialogPlaceholder="Anything you want to know about Callsine, at your fingertips."
             style={style}
             icon={icon}
@@ -55,7 +54,7 @@ const App = () => {
             cmdShortcutKey={"k"}
             welcomeMessage={"Welcome to the future, how can I help you?"}
             messageSettings={{ hideSources: true }}
-          />
+          /> */}
 
           <CssBaseline />
           <NavigationScroll>

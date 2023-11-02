@@ -16,6 +16,7 @@ import { BrowserView, MobileView } from "react-device-detect";
 import PerfectScrollbar from "react-perfect-scrollbar";
 
 // project imports
+import { MendableSearchBar } from "@mendable/search";
 import { IconBook2 } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { useTour } from "src/providers/tourprovider";
@@ -85,7 +86,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               bottom: 0,
               pl: 5,
               pr: 3,
-              pb: 14,
+              pb: 2,
             }}
           >
             <Box
@@ -146,6 +147,11 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                 </Typography>
               </a>
             </Box>
+            <MendableSearchBar
+              style={{ darkMode: false, accentColor: "#123456" }}
+              anon_key={"8fb50d66-58ba-40f6-86fb-ab2caeb2911e"}
+            />
+
             {/* <a>
               <Box
                 mb={2}
