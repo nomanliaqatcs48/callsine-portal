@@ -94,3 +94,7 @@ export const personUpdateAssign = async (personId: number, userId: any) => {
 export const personCount = async () => {
   return await http.get(`${endpoints.COUNT_PERSON}`);
 };
+
+export const personForceEnable = async (person_id: number) => {
+  return await http.patch(`${endpoints.COUNT_PERSON}enable-person/${person_id}/`);
+};

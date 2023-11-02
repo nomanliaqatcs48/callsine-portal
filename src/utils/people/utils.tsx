@@ -33,6 +33,7 @@ import { personUpdateAssign } from "src/services/persons.service";
 import StatusDropdown from "src/views/persons/Detail/components/StatusDropdown";
 import { useAuth } from "../../contexts/auth";
 import { ToastSuccess } from "../../helpers/toast";
+import { usePersons } from "../../hooks/persons/usePersons";
 
 type Member = {
   first_name: string;
@@ -50,6 +51,8 @@ export const _columns: any = () => {
   const [isMembersDataLoaded, setIsMembersDataLoaded] = useState(false);
 
   const { unreadEmails } = useUnreadCount();
+
+  const { updateForceEnable } = usePersons();
 
   const countUnreadEmails = (email: string) => {
     const filteredCount = unreadEmails.filter(
@@ -554,6 +557,12 @@ export const _columns: any = () => {
         width: 50,
         minWidth: 50,
         Cell: (cell: any) => {
+          // console.log(cell.row.original.force_enable)
+
+          const handleUpdate = async (person_id: number) => {
+            updateForceEnable(person_id);
+            ToastSuccess("Person successfully enabled.");
+          };
           return (
             <>
               {cell?.row?.original?.got_data ? (
@@ -564,12 +573,22 @@ export const _columns: any = () => {
                   className=""
                 />
               ) : (
-                <IconCircleX
-                  style={{ color: theme.palette.error.main }}
-                  size="20"
-                  strokeWidth={3}
-                  className=""
-                />
+                <div style={{ display: "flex", alignItems: "center" }}>
+                  <IconCircleX
+                    style={{ color: theme.palette.error.main }}
+                    size="20"
+                    strokeWidth={3}
+                    className=""
+                  />
+                  <Button
+                    variant="text"
+                    className="tw-mx-2"
+                    onClick={(e) => handleUpdate(cell.row.original.id)}
+                    disabled={cell.row.original.force_enable}
+                  >
+                    {cell.row.original.force_enable ? "Enabled" : "Enable"}
+                  </Button>
+                </div>
               )}
             </>
           );

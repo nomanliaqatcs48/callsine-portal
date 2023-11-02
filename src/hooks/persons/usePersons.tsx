@@ -2,8 +2,10 @@ import { useQuery } from "@tanstack/react-query";
 import React, { useEffect, useState } from "react";
 import { cacheTime } from "src/store/constant";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
-import { getPeopleService } from "../../services/persons.service";
-
+import {
+  getPeopleService,
+  personForceEnable,
+} from "../../services/persons.service";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 export const usePersons = (
@@ -67,7 +69,7 @@ export const usePersons = (
         schedEmailNull,
         schedEmailNotNull,
         schedEmailToday,
-        lastContactedToday,
+        lastContactedToday
       );
       if (res?.data) {
         console.log({ unreadEmails });
@@ -82,6 +84,21 @@ export const usePersons = (
       }
     } catch (e) {
       // Handle errors gracefully and provide feedback to the user
+      setIsLoading((prev) => ({ ...prev, onPage: false }));
+      // You can set an error state here if needed
+      // setError(e);
+      return null;
+    }
+  };
+
+  const updateForceEnable = async (person_id: number) => {
+    try {
+      let res = await personForceEnable(person_id);
+      if(res.status === 200) {
+        // console.log(res)
+        refetchPersons();
+      }      
+    } catch (e) {
       setIsLoading((prev) => ({ ...prev, onPage: false }));
       // You can set an error state here if needed
       // setError(e);
@@ -127,7 +144,7 @@ export const usePersons = (
     schedEmailNull,
     schedEmailNotNull,
     schedEmailToday,
-    lastContactedToday
+    lastContactedToday,
   ]);
 
   return {
@@ -155,6 +172,7 @@ export const usePersons = (
     setSchedEmailNull,
     setSchedEmailNotNull,
     setSchedEmailToday,
-    setLastContactedToday
+    setLastContactedToday,
+    updateForceEnable
   };
 };

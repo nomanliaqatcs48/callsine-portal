@@ -205,6 +205,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                 // @ts-ignore
                 {...row.getToggleRowSelectedProps()}
                 // disabled={row.original.got_data ? undefined : true}
+                disabled={row.original.got_data || row.original.force_enable ? undefined : true}
               />
             </>
           ),
