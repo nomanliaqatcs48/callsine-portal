@@ -47,9 +47,8 @@ const useWizard = () => {
       // Replace with your actual API endpoint
       const response = await updateTeamMeService(payload);
       console.log(response.data);
-      if (navigate) {
-        window.location.href = "/wizard/tutorial";
-      }
+
+      window.location.href = "/wizard/tutorial";
     } catch (error) {
       console.error(
         "An error occurred when sending data to the backend: ",
