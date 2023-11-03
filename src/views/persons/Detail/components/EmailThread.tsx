@@ -255,7 +255,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                     {email.subject}
                   </div>
                   <div className="tw-block tw-text-xs">
-                    {formatDate(email.created_date)}
+                    {formatDate(email.modified_date)}
                   </div>
                 </div>
               </div>
@@ -322,7 +322,6 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                   }
                 )}
               >
-                {emailItem.mail_account}
                 <div className="tw-border tw-rounded tw-shadow tw-px-4">
                   <div className="tw-text-xs tw-mb-1 tw-font-medium">
                     {formatDateWithTime(thread.date)}

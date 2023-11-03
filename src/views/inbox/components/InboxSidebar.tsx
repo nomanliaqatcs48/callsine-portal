@@ -162,7 +162,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                 <Stack direction="row" justifyContent="space-between">
                   {/* <Typography className="tw-font-medium tw-text-[16px]"> */}
                   <Typography
-                    className={`tw-text-[16px] ${
+                    className={`tw-text-xs ${
                       handleSubjectBold(email)
                         ? "tw-font-medium"
                         : "tw-font-thin"
@@ -171,13 +171,13 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                     {email.subject}
                   </Typography>
                   <Typography
-                    className={`${
+                    className={`tw-text-xs tw-w-[80px] ${
                       handleSubjectBold(email)
                         ? "tw-font-medium"
                         : "tw-font-thin"
                     }`}
                   >
-                    {formatDate(email.created_date)}
+                    {formatDate(email.modified_date)}
                   </Typography>
                 </Stack>
                 <br />
