@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { formatDate, formatDateWithTime, formatTime } from "src/utils/date";
 import { Stack, Typography } from "@mui/material";
 import { EmailThread } from "src/types/inbox";
@@ -33,6 +33,13 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   const [selectedEmail, setSelectedEmail] = React.useState<number>(-1);
 
   const [emails, setEmails] = React.useState<any>([]);
+  const [cleanEmailThreads, setCleanEmailThreads] = React.useState<any[]>([]);
+
+  useEffect(() => {
+    if (emailThreads) {
+      setCleanEmailThreads(removeEmptyEmails(emailThreads));
+    }
+  }, [emailThreads]);
 
   const handleSelectThread = async (email: any, n: number) => {
     if (email) {
@@ -72,8 +79,6 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
 
   console.log("Email thradssss", emailThreads);
 
-  const _emailThreads = removeEmptyEmails(emailThreads);
-
   const handleOnClickEmail = (emails: any, emailIndex: number) => {
     setSelected(selected === emailIndex ? -1 : emailIndex);
     if (emailIndex === selected) {
@@ -102,15 +107,34 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     return unreadEmails.some((i: any) => i.id === item.id);
   };
 
+  const handleOnchangeSearchBar = (
+    event: React.ChangeEvent<HTMLInputElement>
+  ) => {
+    const searchValue = event.target.value.toLowerCase();
+
+    // Filter the recipients list based on the search value
+    const filteredRecipients = emailThreads.filter((obj) =>
+      obj.recipient.toLowerCase().includes(searchValue)
+    );
+
+    // Do something with the filtered recipients, e.g., update the UI
+    console.log(filteredRecipients);
+
+    setCleanEmailThreads(filteredRecipients);
+  };
+
   return (
     <div className="tw-w-[450px] tw-max-w-[450px]">
-      <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative tw-h-[100px]">
-        <input
-          placeholder="Search"
-          type="text"
-          className="tw-bg-[#f8fafc] tw-w-full tw-rounded-full tw-py-2 tw-px-6 tw-my-4 focus-visible:tw-border-0 focus-visible:tw-outline-none"
-        />
-      </div>
+      {emails <= 0 && (
+        <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative">
+          <input
+            placeholder="Search"
+            type="text"
+            className="tw-bg-[#f8fafc] tw-w-full tw-rounded-full tw-py-2 tw-px-6 tw-my-4 focus-visible:tw-border-0 focus-visible:tw-outline-none"
+            onChange={handleOnchangeSearchBar}
+          />
+        </div>
+      )}
       <Stack
         direction="row"
         className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(100vh-120px)] tw-overflow-x-hidden"
@@ -118,7 +142,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         <div
           className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
-          {_emailThreads.map((item: any, index: any) => (
+          {cleanEmailThreads?.map((item: any, index: any) => (
             <div
               key={`${item.recipient}-${index}`}
               className="tw-w-full"
