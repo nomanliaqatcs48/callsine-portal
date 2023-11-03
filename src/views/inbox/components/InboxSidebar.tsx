@@ -113,8 +113,8 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     const searchValue = event.target.value.toLowerCase();
 
     // Filter the recipients list based on the search value
-    const filteredRecipients = emailThreads.filter((obj) =>
-      obj.recipient.toLowerCase().includes(searchValue)
+    const filteredRecipients = removeEmptyEmails(emailThreads).filter(
+      (obj: any) => obj.recipient.toLowerCase().includes(searchValue)
     );
 
     // Do something with the filtered recipients, e.g., update the UI
