@@ -188,6 +188,21 @@ const InboxPage: React.FC = () => {
     setIsLoading(false);
   };
 
+  const handleOriginIndicator = (email: any) => {
+    let str = emailItem.mail_account;
+    let substring = email.toLowerCase();
+
+    return substring.toLowerCase().includes(str) ? (
+      <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+        you{" "}
+      </span>
+    ) : (
+      <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+        client
+      </span>
+    );
+  };
+
   console.log(selectedThread);
   // console.log(emailItem.mail_account)
   return (
@@ -258,32 +273,16 @@ const InboxPage: React.FC = () => {
                         </div>
                         <div className="tw-flex tw-justify-between">
                           <div className="">
-                            From{" "}
-                            {emailItem.mail_account === thread.from ? (
-                              <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                                you{" "}
-                              </span>
-                            ) : (
-                              <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                                client
-                              </span>
-                            )}
-                            : {thread.from}
+                            <div className="">
+                              {handleOriginIndicator(thread.from)}{" "}
+                              {`From : ${thread.from}`}
+                            </div>
                           </div>
                         </div>
                         <div className="tw-flex tw-justify-between">
                           <div className="">
-                            To{" "}
-                            {emailItem.mail_account === thread.to ? (
-                              <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                                you
-                              </span>
-                            ) : (
-                              <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                                client
-                              </span>
-                            )}
-                            : {thread.to}
+                            {handleOriginIndicator(thread.to)}{" "}
+                            {`To: ${thread.to}`}
                           </div>
                         </div>
 
