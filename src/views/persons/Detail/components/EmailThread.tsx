@@ -144,6 +144,21 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
     setReplyMsg(value);
   };
 
+  const handleOriginIndicator = (email: any) => {
+    let str = emailItem.mail_account;
+    let substring = email.toLowerCase();
+
+    return substring.toLowerCase().includes(str) ? (
+      <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+        you{" "}
+      </span>
+    ) : (
+      <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
+        client
+      </span>
+    );
+  };
+
   const handleReply = () => {
     setShowEditor(true);
     const timer = setTimeout(() => {
@@ -307,23 +322,15 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                   }
                 )}
               >
+                {emailItem.mail_account}
                 <div className="tw-border tw-rounded tw-shadow tw-px-4">
                   <div className="tw-text-xs tw-mb-1 tw-font-medium">
                     {formatDateWithTime(thread.date)}
                   </div>
                   <div className="tw-flex tw-justify-between">
                     <div className="">
-                      From{" "}
-                      {emailItem.mail_account === thread.from ? (
-                        <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                          you{" "}
-                        </span>
-                      ) : (
-                        <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                          client
-                        </span>
-                      )}
-                      : {thread.from}
+                      {handleOriginIndicator(thread.from)}{" "}
+                      {`From : ${thread.from}`}
                     </div>
 
                     {/* <div className="tw-text-xs tw-text-gray-500 tw-italic">
@@ -332,17 +339,7 @@ const EmailThread: React.FC<EmailThreadProps> = ({ getPersonDetail }) => {
                   </div>
                   <div className="tw-flex tw-justify-between">
                     <div className="">
-                      To{" "}
-                      {emailItem.mail_account === thread.to ? (
-                        <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                          you
-                        </span>
-                      ) : (
-                        <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[10px] tw-text-white">
-                          client
-                        </span>
-                      )}
-                      : {thread.to}
+                      {handleOriginIndicator(thread.to)} {`To: ${thread.to}`}
                     </div>
                   </div>
                 </div>
