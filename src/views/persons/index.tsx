@@ -147,11 +147,13 @@ const PersonsPage = () => {
 
   const successfulUploadCsv = () => {
     getPeople();
+    getPersonCounts();
     ToastSuccess("File successfully uploaded.");
   };
 
   const executeRefreshTable = () => {
     getPeople();
+    getPersonCounts();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {
