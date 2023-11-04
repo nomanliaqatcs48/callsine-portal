@@ -20,11 +20,13 @@ import ReactSelect from "../dropdowns/ReactSelect";
 type GenerateSelectedPeopleProps = {
   selectedRows: any[];
   onLoadApi: any;
+  // onLoadCount: any;
 };
 
 const GenerateSelectedPeople = ({
   selectedRows,
   onLoadApi,
+  // onLoadCount,
 }: GenerateSelectedPeopleProps) => {
   const { auth, updateProfile } = useAuth();
   const [open, setOpen] = React.useState(false);
@@ -116,6 +118,7 @@ const GenerateSelectedPeople = ({
           handleClose();
           ToastSuccess("Email generation successfully started.");
           onLoadApi();
+          // onLoadCount();
         }
         if (res?.status === 500) {
           ToastError("Something went wrong");
