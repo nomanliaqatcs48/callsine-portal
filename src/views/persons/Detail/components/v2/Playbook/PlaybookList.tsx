@@ -41,7 +41,7 @@ const PlaybookList = ({
   const dispatch = useDispatch();
 
   const subtext = (item: any) => {
-    if (item.status === "generated_email" && item?.promptResponse) {
+    if (item?.status === "generated_email" && item?.promptResponse) {
       let strippedString = item?.promptResponse?.text?.replace(
         /<[^>]*>?/gm,
         " "
@@ -73,7 +73,7 @@ const PlaybookList = ({
           </span>
         </>
       );
-    } else if (item.status === "scheduled" && item?.scheduledEmail) {
+    } else if (item?.status === "scheduled" && item?.scheduledEmail) {
       let strippedString = item?.scheduledEmail?.html_message?.replace(
         /<[^>]*>?/gm,
         " "

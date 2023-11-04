@@ -268,7 +268,7 @@ const DraftEmail = ({
       devLog(() => {
         console.log({ res });
       });
-      if (res.status === 200) {
+      if (res?.status === 200) {
         devLog(() => {
           console.log("res?.data", res?.data);
         });
@@ -524,7 +524,7 @@ const DraftEmail = ({
                 />
               )}
 
-            {personData.status === "Open" &&
+            {personData?.status === "Open" &&
             Number(personCounts?.data?.scheduled_today) < 50 ? (
               <TooltipComponent
                 text={

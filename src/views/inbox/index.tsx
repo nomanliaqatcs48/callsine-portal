@@ -76,55 +76,6 @@ const InboxPage: React.FC = () => {
     }
   };
 
-  // const handleSelectThread = async (email: Thread) => {
-  // if (email) {
-  //   onSelectThread(email);
-  //   setSelectedEmail(n);
-  //   if (!email.reply_count?.is_viewed) {
-  //     let exists = unreadEmails.some((i: any) => i.id === email.id);
-  //     let res: any;
-  //     if (email.provider === "google") {
-  //       res = await gmailThreadService(email.thread_id, email.from_email);
-  //     } else if (email.provider === "outlook") {
-  //       res = await outlookThreadService(email.thread_id, email.from_email);
-  //     } else {
-  //       return console.error("There is no valid provider given.");
-  //     }
-
-  //     console.log({ res });
-  //     // if (res?.data) {
-  //     //   setSelectedThread(res.data);
-  //     //   console.log("Response from api", res.data);
-  //     // }
-
-  //     if (exists) {
-  //       decrementUnreadCount();
-
-  //       await viewToTrueService(email.reply_count.id);
-  //       await store.dispatch(getUnreadReplies());
-  //     }
-  //   }
-  // }
-  // console.log({ item });
-  // setEmailitem(item);
-  // setIsLoading(true);
-  // setShowEditor(false);
-  // setSelectedEmail(item.id);
-
-  // let res: any;
-  // if (item.provider === "google") {
-  //   res = await gmailThreadService(item.thread_id, item.from_email);
-  // } else if (item.provider === "outlook") {
-  //   res = await outlookThreadService(item.thread_id, item.from_email);
-  // } else {
-  //   return console.error("There is no valid provider given..");
-  // }
-
-  // if (res?.data) {
-  //   setSelectedThread(res.data);
-  // }
-  // setIsLoading(false);
-  // };
   let { emailThreads } = useEmailThread(true, {
     limit: 99999,
     offset: 0,
@@ -138,20 +89,6 @@ const InboxPage: React.FC = () => {
     // editorRef.current?.scrollIntoView({ behavior: "smooth" });
     setShowEditor(true);
   };
-
-  // const cleanBody = (html_body: any) => {
-  //   try {
-  //     const body_ = html_body.toString();
-  //     let regex =
-  //       /(<html><head>[\s\S]*<body>)([\s\S]*)(<\/body>[\s\S]*<\/html>)/g;
-  //     let body = body_.replace(regex, "$2");
-  //     return body;
-  //   } catch (error) {
-  //     devLog(() => {
-  //       console.log("error", error);
-  //     });
-  //   }
-  // };
 
   const handleSend = async () => {
     setIsLoading(true);
