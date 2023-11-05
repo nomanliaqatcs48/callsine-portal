@@ -202,9 +202,12 @@ const PersonsPage = () => {
 
   useEffect(() => {
     if (
-      websocketResponse &&
-      websocketResponse.message &&
-      websocketResponse.message.event === "bulk_import"
+      (websocketResponse &&
+        websocketResponse.message &&
+        websocketResponse.message.event === "bulk_import") ||
+      (websocketResponse &&
+        websocketResponse.message &&
+        websocketResponse.message.event === "bulk_import_refresh")
     ) {
       executeRefreshTable();
     }
