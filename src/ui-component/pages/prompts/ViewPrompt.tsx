@@ -51,7 +51,7 @@ const ViewPrompt = ({
                   onClick={() => null}
                   className="border tw-min-w-min"
                   id={prompt?.id}
-                  defaultValue={prompt?.text}
+                  defaultValue={prompt?.text || ''}
                   onLoadApi={() => null}
                   setPromptList={setPromptList}
                 >
