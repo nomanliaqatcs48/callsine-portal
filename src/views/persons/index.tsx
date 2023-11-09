@@ -487,7 +487,7 @@ const PersonsPage = () => {
             </Grid>
 
             <MyTable
-              columns={_columns(showAssign)}
+              columns={_columns()}
               data={personsData}
               totalItems={total || 0}
               tableName="PersonsTable"
