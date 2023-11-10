@@ -402,7 +402,7 @@ export const _columns: any = () => {
       {
         Header: "Industry",
         accessor: "industry",
-        sorting_id: "org__industry",
+        sorting_id: "industry",
       },
       {
         Header: "Email",

@@ -20,7 +20,7 @@ export const getPeopleService = async (
   }`;
   let _titleFilter = `&job_title=${searchFilterValue?.title}`;
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
-  let _industryFilter = `&org_industry=${searchFilterValue?.industry}`;
+  let _industryFilter = `&industry=${searchFilterValue?.industry}`;
   let _userFilter = user_id ? `&assigned_user=${user_id}` : "";
   let _has_null_next_scheduled_email = schedEmailNull
     ? "&has_null_next_scheduled_email=true"
