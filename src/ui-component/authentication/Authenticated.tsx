@@ -25,6 +25,7 @@ const Authenticated = ({ children }: AuthenticatedTypes) => {
     try {
       let res = await profileService();
       if (res?.data) {
+        
         await save("profile", res.data);
         setProfile(res.data);
       }

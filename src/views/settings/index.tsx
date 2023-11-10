@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
-import { useAuth } from "src/contexts/auth";
 import useGetTeamMe from "src/hooks/settings/useGetTeam";
 import useGetUserMe from "src/hooks/settings/useGetUser";
 import usePatchUsersMe from "src/hooks/settings/usePatchUser";
@@ -92,7 +91,6 @@ const userFields: Field[] = [
 ];
 
 const SettingsPage: React.FC = () => {
-  const { auth, updateProfile } = useAuth();
   const { loading, data, error } = useGetUserMe();
   const { patchData } = usePatchUsersMe(); // Use the patch hook
   const { data: teamData } = useGetTeamMe(); // Use
