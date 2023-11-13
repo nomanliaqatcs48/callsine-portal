@@ -80,10 +80,6 @@ export const _columns: any = () => {
     personUpdateAssign(cellRowId, selectedValue)
       .then((response) => {
         if (response.data) {
-          // setSelectedValue(selectedValue)
-          // Handle the response as needed
-          // setSelectedValue(selectedValue);
-          // setUpdateSelected(true);
           ToastSuccess("Successfully assigned.");
         }
       })
@@ -518,14 +514,6 @@ export const _columns: any = () => {
           useEffect(() => {
             setLocalSelectedValue(cell.row.original.assigned_user);
           }, [cell.row.original.assigned_user, auth.id]);
-
-          // useEffect(() => {
-          //   setLocalSelectedValue(
-          //     cell.row.original.assigned_user == null
-          //       ? auth.id
-          //       : cell.row.original.assigned_user
-          //   );
-          // }, [cell.row.original.assigned_user, auth.id]);
 
           return (
             <>
