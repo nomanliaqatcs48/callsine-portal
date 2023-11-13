@@ -72,12 +72,8 @@ export const usePersons = (
         lastContactedToday
       );
       if (res?.data) {
-        console.log({ unreadEmails });
-        console.log("PERSONS", res.data.results);
         const sortedResults = makePeopleWithReplyToTop(res.data.results);
-        console.log({ sortedResults });
         setPersonsData(sortedResults);
-
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
         return res.data;
@@ -94,10 +90,10 @@ export const usePersons = (
   const updateForceEnable = async (person_id: number) => {
     try {
       let res = await personForceEnable(person_id);
-      if(res.status === 200) {
+      if (res.status === 200) {
         // console.log(res)
         refetchPersons();
-      }      
+      }
     } catch (e) {
       setIsLoading((prev) => ({ ...prev, onPage: false }));
       // You can set an error state here if needed
@@ -173,6 +169,6 @@ export const usePersons = (
     setSchedEmailNotNull,
     setSchedEmailToday,
     setLastContactedToday,
-    updateForceEnable
+    updateForceEnable,
   };
 };

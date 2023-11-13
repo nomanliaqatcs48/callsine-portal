@@ -427,8 +427,9 @@ const PersonsPage = () => {
               >
                 <GenerateSelectedPeople
                   selectedRows={selectedPersonRows}
-                  onLoadApi={getPeople}
+                  // onLoadApi={getPeople}
                   // onLoadCount={getPersonCounts}
+                  executeRefreshTable={executeRefreshTable}
                 />
                 <MyDivider />
                 <Button
