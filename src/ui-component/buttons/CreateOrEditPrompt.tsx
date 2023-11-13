@@ -184,11 +184,11 @@ const CreateOrEditPlaybook = ({
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
-    setPromptValue(defaultValue);
+    setPromptValue(defaultValue || '');
     reset();
   };
   useEffect(() => {
-    setPromptValue(defaultValue);
+    setPromptValue(defaultValue || '');
   }, [defaultValue]);
 
   // const handleChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -202,12 +202,14 @@ const CreateOrEditPlaybook = ({
     setTagValue(selectedTag);
 
     const formatTag = "{{" + selectedTag + "}}";
+    // if(promptValue) {
     let newFieldValue =
       promptValue.slice(0, cursorPos) +
       formatTag +
       promptValue.slice(cursorPos);
 
     setPromptValue(newFieldValue);
+    // }
 
     setTagValue("");
     setCursorPos(-1);
