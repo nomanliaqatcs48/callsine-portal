@@ -3,14 +3,12 @@ import { useEffect } from "react";
 
 import { useDispatch } from "react-redux";
 import { Wizard, useWizard } from "react-use-wizard";
-import { useAuth } from "../../contexts/auth";
 import { useDashboard } from "../../hooks/dashboard/useDashboard";
 import { useMailAccounts } from "../../hooks/mail-accounts/useMailAccounts";
 import { useAuthentication } from "../../hooks/useAuthentication";
 
 const DashboardPage = () => {
   const dispatch = useDispatch();
-  const { auth, updateProfile } = useAuth();
   let {
     isLoading,
     getScheduledEmails,

@@ -44,7 +44,7 @@ type Member = {
 };
 
 export const _columns: any = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
@@ -394,6 +394,11 @@ export const _columns: any = () => {
         Header: "Company",
         accessor: "company_name",
         sorting_id: "org__name",
+      },
+      {
+        Header: "Industry",
+        accessor: "industry",
+        sorting_id: "industry",
       },
       {
         Header: "Email",

@@ -26,7 +26,7 @@ const NewOutlookAccount = ({
   size,
   color,
 }: NewOutlookAccountTypes) => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
 
   const handleClick = () => {
     window.location.href = `${config.service.BASE_URL}/api/outlook/?login_hint=${email}&user_id=${auth?.id}`;

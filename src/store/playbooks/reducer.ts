@@ -5,7 +5,7 @@ interface PlaybookDataState {
 }
 
 const initialState: PlaybookDataState = {
-  data: "initial data",
+  data: [],
 };
 
 export const playbookDataReducer = (

@@ -72,7 +72,7 @@ const PlaybooksPage = () => {
             <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2" />
 
-              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end ">
+              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end tw-mt-6">
                 <TooltipComponent text="Click here to add a new playbook.">
                   <CreateOrEditPlaybook
                     onClick={() => null}
@@ -95,7 +95,8 @@ const PlaybooksPage = () => {
                 className="tw-bg-[#F8FBFF] tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
               />
             </Box>
-            <Box className="list-container">
+            <Box className="list-container" >
+              {playbookData.length > 0 ? (
               <PlaybookList
                 selectedIndex={selectedIndex}
                 setSelectedIndex={setSelectedIndex}
@@ -107,6 +108,14 @@ const PlaybooksPage = () => {
                 setSelectedData={setSelectedData}
                 setPromptList={setPromptList}
               />
+              ): (
+                  <div className="tw-flex tw-flex-col tw-justify-center tw-items-center tw-h-full">
+                    <div className="tw-text-xl tw-py-10 tw-text-[#99a9be] tw-font-semibold tw-mt-4">
+                    Empty Playbook
+                    </div>
+                  </div>
+                )
+              }
             </Box>
           </Grid>
           <Grid item xs={12} sm={7} lg={8}>

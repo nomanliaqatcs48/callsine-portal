@@ -142,7 +142,9 @@ const AuthRegister = ({ ...others }) => {
     } catch (err: any) {
       devLogError(() => {
         console.error(err?.response);
+        console.log("Erro", err?.response?.data?.non_field_errors);
       });
+
       if (scriptedRef.current) {
         setStatus({ success: false });
         if (err?.response?.data?.email?.length > 0) {
@@ -153,6 +155,8 @@ const AuthRegister = ({ ...others }) => {
           setErrors({ submit: err?.response?.data?.password2[0] });
         } else if (err?.response?.data?.username?.length > 0) {
           setErrors({ submit: err?.response?.data?.username[0] });
+        } else if (err?.response?.data?.non_field_errors?.length > 0) {
+          setErrors({ submit: err?.response?.data?.non_field_errors[0] });
         } else {
           setErrors({ submit: "There's something wrong." });
         }

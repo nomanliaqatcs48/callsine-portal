@@ -37,7 +37,7 @@ const ViewPrompt = ({
   } = useForm({ mode: "onChange" });
   return (
     <>
-      {prompts.map((prompt: PromptTypes, idx: number) => (
+      {prompts?.length>0 && prompts.map((prompt: PromptTypes, idx: number) => (
         <Box key={idx} className="tw-border-b tw-border-[#f2f3f9] tw-mb-6">
           <Box
             className={`edit-and-delete-container ${_styles?.containers} tw-border-none xl:tw-py-1.5`}
@@ -51,7 +51,7 @@ const ViewPrompt = ({
                   onClick={() => null}
                   className="border tw-min-w-min"
                   id={prompt?.id}
-                  defaultValue={prompt?.text}
+                  defaultValue={prompt?.text || ''}
                   onLoadApi={() => null}
                   setPromptList={setPromptList}
                 >

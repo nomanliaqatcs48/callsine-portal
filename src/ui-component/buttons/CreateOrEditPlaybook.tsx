@@ -43,7 +43,7 @@ const CreateOrEditPlaybook = ({
   selectedData,
   ...props
 }: CreateOrEditPlaybookTypes) => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
 
   const reloadPlaybooks = useReloadPlaybooks();
   const [nameValue, setNameValue] = useState<any>("");
@@ -72,7 +72,7 @@ const CreateOrEditPlaybook = ({
 
   const onThisAddSubmit = async () => {
     insertBodyLoader();
-    ToastSuccess("Adding playbook is in progress.");
+    // ToastSuccess("Adding playbook is in progress.");
     handleClose();
 
     const data = { name: nameValue, team: auth["team"] };

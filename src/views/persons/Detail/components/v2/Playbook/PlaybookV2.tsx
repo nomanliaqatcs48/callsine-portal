@@ -44,7 +44,7 @@ type PersonProps = {
   personData: any;
 };
 const PlaybookV2 = ({ personData }: PersonProps) => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
   const { id } = useParams();
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
