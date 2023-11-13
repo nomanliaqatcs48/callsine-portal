@@ -400,6 +400,11 @@ export const _columns: any = () => {
         sorting_id: "org__name",
       },
       {
+        Header: "Industry",
+        accessor: "industry",
+        sorting_id: "industry",
+      },
+      {
         Header: "Email",
         accessor: "work_email",
         width: 250,
