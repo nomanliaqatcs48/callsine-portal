@@ -38,7 +38,7 @@ type Member = {
 };
 
 const TeamPage: React.FC = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");

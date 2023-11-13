@@ -33,17 +33,17 @@ export const usePlaybook = (
     search: false,
   });
 
-  useEffect(() => {
-    // Assume checkIfTeamExists is a function that checks if a team exists for the user
-    const checkIfTeamExists = async () => {
-      if (!auth?.team) {
-        // Adjust this condition based on your actual data structure
-        await updateProfile();
-      }
-    };
+  // useEffect(() => {
+  //   // Assume checkIfTeamExists is a function that checks if a team exists for the user
+  //   const checkIfTeamExists = async () => {
+  //     if (!auth?.team) {
+  //       // Adjust this condition based on your actual data structure
+  //       await updateProfile();
+  //     }
+  //   };
 
-    checkIfTeamExists();
-  }, [auth, updateProfile]);
+  //   checkIfTeamExists();
+  // }, [auth]);
 
   const getToken = async () => {
     let _token = await loadString("token");
@@ -61,10 +61,10 @@ export const usePlaybook = (
 
   const getAllPlaybook = async () => {
     insertBodyLoader();
-    if (!auth?.team) {
-      // Adjust this condition based on your actual data structure
-      await updateProfile();
-    }
+    // if (!auth?.team) {
+    //   // Adjust this condition based on your actual data structure
+    //   await updateProfile();
+    // }
     try {
       // let res = await dummyData();]
 

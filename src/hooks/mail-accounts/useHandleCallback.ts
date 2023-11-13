@@ -7,7 +7,7 @@ import { ToastSuccess, ToastError } from "src/helpers/toast";
 // import { useMailAccounts } from "./useMailAccounts";
 
 function useHandleCallback(getMailAccounts: any) {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   useEffect(() => {
     const callbackService = async () => {
       const urlParams = new URLSearchParams(window.location.search);

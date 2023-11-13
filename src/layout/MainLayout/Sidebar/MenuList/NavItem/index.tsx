@@ -37,7 +37,7 @@ type NavItemTypes = InferProps<typeof NavItemPropTypes>;
 
 const NavItem = ({ item, level }: NavItemTypes) => {
   const theme: any = useTheme();
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const dispatch = useDispatch();
   const customization = useSelector((state: any) => state.customization);
   const matchesSM = useMediaQuery(theme.breakpoints.down("lg"));

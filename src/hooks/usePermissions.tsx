@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/auth";
 
 export const usePermissions = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const navigate = useNavigate();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
 

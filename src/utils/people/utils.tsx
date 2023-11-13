@@ -44,7 +44,7 @@ type Member = {
 };
 
 export const _columns: any = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
