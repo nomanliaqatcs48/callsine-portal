@@ -806,7 +806,7 @@ const DraftEmail = ({
               handleSignatureOnChange(value, editor);
             }}
             onFocus={(e: any) => null}
-            disabled
+            disabled={!getValues("from_email")}
             init={{
               height: 150,
               menubar: false,
@@ -834,7 +834,7 @@ const DraftEmail = ({
             }}
             onFocus={(e: any) => null}
             editorHeight={400}
-            disabled
+            disabled={!getValues("from_email")}
             init={{
               height: 400,
               menubar: false,
