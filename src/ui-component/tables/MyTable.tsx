@@ -430,6 +430,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
     if (!column.canSort) return;
 
     if (setSortedId) {
+      console.log(column.id)
       if (column?.sorting_id) {
         setSortedId(column?.sorting_id);
       } else {

@@ -25,6 +25,10 @@ const Data = () => {
     MyDivider,
     selectedFlatRows,
     setSelectedFlatRows,
+    isOrderDesc,
+    setIsOrderDesc,
+    setSortedId,
+    sortedId,
   } = useUserData();
 
   return (
@@ -110,11 +114,10 @@ const Data = () => {
           isResponsive={true}
           removeSelection={false}
           hiddenColumns={["last_name"]}
-          // setSortedId={setSortedId}
-          // setIsOrderDesc={setIsOrderDesc}
-          //
-          // sortedId={sortedId}
-          // isOrderDesc={isOrderDesc}
+          setSortedId={setSortedId}
+          setIsOrderDesc={setIsOrderDesc}
+          sortedId={sortedId}
+          isOrderDesc={isOrderDesc}
         />
       </Paper>
     </>

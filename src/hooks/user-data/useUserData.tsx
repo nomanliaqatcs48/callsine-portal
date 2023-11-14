@@ -7,6 +7,9 @@ export const useUserData = (load: boolean = true) => {
   const [data, setData] = useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = React.useState<string>("");
+  const [sortedId, setSortedId] = useState<string>("");
+  const [isOrderDesc, setIsOrderDesc] = useState<any>("");
+
   const [filters, setFilters] = React.useState<any>({
     limit: 10,
     offset: 0,
@@ -27,7 +30,12 @@ export const useUserData = (load: boolean = true) => {
   const getUsers = async () => {
     setIsLoading((prev: any) => ({ ...prev, table: true }));
     try {
-      let response = await getUserDataService(filters, searchValue);
+      let response = await getUserDataService(
+        filters,
+        searchValue,
+        sortedId,
+        isOrderDesc
+      );
       if (response) {
         devLog(() => {
           console.log("getUsers", response);
@@ -43,6 +51,10 @@ export const useUserData = (load: boolean = true) => {
       setIsLoading((prev: any) => ({ ...prev, table: false, onPage: false }));
     }
   };
+
+  useEffect(() => {
+    getUsers();
+  }, [sortedId, isOrderDesc]);
 
   const MyDivider = () => {
     return (
@@ -65,6 +77,10 @@ export const useUserData = (load: boolean = true) => {
     setSearchValue,
     filters,
     setFilters,
+    sortedId,
+    setSortedId,
+    isOrderDesc,
+    setIsOrderDesc,
     isLoading,
     setIsLoading,
     getUsers,
