@@ -44,7 +44,7 @@ type Member = {
 };
 
 export const _columns: any = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const theme: any = useTheme();
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const [members, setMembers] = useState<Member[]>([]);
@@ -80,10 +80,6 @@ export const _columns: any = () => {
     personUpdateAssign(cellRowId, selectedValue)
       .then((response) => {
         if (response.data) {
-          // setSelectedValue(selectedValue)
-          // Handle the response as needed
-          // setSelectedValue(selectedValue);
-          // setUpdateSelected(true);
           ToastSuccess("Successfully assigned.");
         }
       })
@@ -400,6 +396,11 @@ export const _columns: any = () => {
         sorting_id: "org__name",
       },
       {
+        Header: "Industry",
+        accessor: "industry",
+        sorting_id: "industry",
+      },
+      {
         Header: "Email",
         accessor: "work_email",
         width: 250,
@@ -513,14 +514,6 @@ export const _columns: any = () => {
           useEffect(() => {
             setLocalSelectedValue(cell.row.original.assigned_user);
           }, [cell.row.original.assigned_user, auth.id]);
-
-          // useEffect(() => {
-          //   setLocalSelectedValue(
-          //     cell.row.original.assigned_user == null
-          //       ? auth.id
-          //       : cell.row.original.assigned_user
-          //   );
-          // }, [cell.row.original.assigned_user, auth.id]);
 
           return (
             <>

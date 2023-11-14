@@ -46,7 +46,7 @@ import { clear } from "../../../../utils/storage";
 // ==============================|| PROFILE MENU ||============================== //
 
 const ProfileSection = () => {
-  const { auth, updateProfile } = useAuth();
+  const { auth } = useAuth();
   const theme: any = useTheme();
   const customization = useSelector((state: any) => state.customization);
   const { unreadCount } = useUnreadCount();

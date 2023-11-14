@@ -2,16 +2,11 @@ import React, { useEffect, useState } from "react";
 import { personCount, personForceEnable } from "../../services/persons.service";
 
 export const usePersonCounts = () => {
-  const [personCounts, setPersonCounts] = useState<Record<string, any>>({
-    // scheduled_today: "0",
-    // sent_today: "0",
-    // all_scheduled: "0",
-    // unscheduled: "0",
-  });
+  const [personCounts, setPersonCounts] = useState<Record<string, any>>({});
 
   const [isFetching, setIsFetching] = useState(false);
 
-  const getPersonCounts = async () => {    
+  const getPersonCounts = async () => {
     try {
       let res = await personCount();
       if (res.status === 200) {
@@ -24,9 +19,13 @@ export const usePersonCounts = () => {
     }
   };
 
+  useEffect(() => {
+    getPersonCounts();
+  }, [personCounts]);
+
   return {
     getPersonCounts,
     personCounts,
-    isFetching
+    isFetching,
   };
 };

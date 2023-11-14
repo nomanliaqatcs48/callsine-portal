@@ -96,17 +96,17 @@ const PersonsPage = () => {
     }
   }, [data]); // Empty dependency array means this effect runs once on component mount
 
-  useEffect(() => {
-    // Assume checkIfTeamExists is a function that checks if a team exists for the user
-    const checkIfTeamExists = async () => {
-      if (!auth?.team) {
-        // Adjust this condition based on your actual data structure
-        await updateProfile();
-      }
-    };
+  // useEffect(() => {
+  //   // Assume checkIfTeamExists is a function that checks if a team exists for the user
+  //   const checkIfTeamExists = async () => {
+  //     if (!auth?.team) {
+  //       // Adjust this condition based on your actual data structure
+  //       await updateProfile();
+  //     }
+  //   };
 
-    checkIfTeamExists();
-  }, [auth, updateProfile]);
+  //   checkIfTeamExists();
+  // }, [auth, updateProfile]);
 
   const {
     personsData,
@@ -426,8 +426,9 @@ const PersonsPage = () => {
               >
                 <GenerateSelectedPeople
                   selectedRows={selectedPersonRows}
-                  onLoadApi={getPeople}
+                  // onLoadApi={getPeople}
                   // onLoadCount={getPersonCounts}
+                  executeRefreshTable={executeRefreshTable}
                 />
                 <MyDivider />
                 <Button
@@ -486,7 +487,7 @@ const PersonsPage = () => {
             </Grid>
 
             <MyTable
-              columns={_columns(showAssign)}
+              columns={_columns()}
               data={personsData}
               totalItems={total || 0}
               tableName="PersonsTable"

@@ -54,6 +54,7 @@ const PlaybookList = ({
       </>
     );
   };
+  console.log("Furqan Data", data);
 
   return (
     <>
@@ -71,6 +72,7 @@ const PlaybookList = ({
           aria-label="secondary mailbox folder"
           className="tw-py-0 tw-border-t tw-border-[#e8ecf5]"
         >
+
           {data?.length > 0 &&
             data.map((playbook: PlaybookTypes, idx: any) => {
               return (

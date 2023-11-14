@@ -588,49 +588,38 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                 </TableHead>
                 {/* Apply the table body props */}
                 <TableBody {...getTableBodyProps()}>
-                  {
+                  {data && data.length !== 0 ? (
                     // Loop over the table rows
                     page.map((row: any, index: number) => {
                       // Prepare the row for display
                       prepareRow(row);
                       return (
                         // Apply the row props
-                        <Fragment
-                          key={index}
-                          //{...row.getRowProps()}
-                        >
+                        <Fragment key={index}>
                           <TableRow>
-                            {
-                              // Loop over the row's cells
-                              row.cells.map((cell: any, index: number) => {
-                                // Apply the cell props
-                                return (
-                                  <TableCell
-                                    {...cell.getCellProps({
-                                      // style: {
-                                      //   minWidth: cell.column.minWidth,
-                                      //   width: cell.column.width,
-                                      // },
-                                    })}
-                                    // className="text-wrap text-break"
-                                    className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
-                                  >
-                                    {
-                                      // Check if variable is 'data' and cell is at position 1
-                                      variable === "data" && index === 1 ? (
-                                        // Render the updated value
-                                        <span>
-                                          {cell.value.split("/").pop()}
-                                        </span>
-                                      ) : (
-                                        // Render the cell contents
-                                        cell.render("Cell")
-                                      )
-                                    }
-                                  </TableCell>
-                                );
-                              })
-                            }
+                            {/* Loop over the row's cells */}
+                            {row.cells.map((cell: any, index: number) => (
+                              // Apply the cell props
+                              <TableCell
+                                {...cell.getCellProps({
+                                  // style: {
+                                  //   minWidth: cell.column.minWidth,
+                                  //   width: cell.column.width,
+                                  // },
+                                })}
+                                // className="text-wrap text-break"
+                                className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
+                              >
+                                {/* Check if variable is 'data' and cell is at position 1 */}
+                                {variable === "data" && index === 1 ? (
+                                  // Render the updated value
+                                  <span>{cell.value.split("/").pop()}</span>
+                                ) : (
+                                  // Render the cell contents
+                                  cell.render("Cell")
+                                )}
+                              </TableCell>
+                            ))}
                           </TableRow>
                           {row.isExpanded && renderRowSubComponent ? (
                             <TableRow>
@@ -642,7 +631,18 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                         </Fragment>
                       );
                     })
-                  }
+                  ) : (
+                    <TableCell
+                      // className="text-wrap text-break"
+                      className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal`}
+                      colSpan={13}
+                      style={{ textAlign: "center" }}
+                    >
+                      <Typography variant="h4" className="mt-4 text-center">
+                        No Data Found
+                      </Typography>
+                    </TableCell>
+                  )}
                 </TableBody>
               </Table>
             </TableContainer>
