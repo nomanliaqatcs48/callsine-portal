@@ -42,6 +42,10 @@ const TeamPage: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [alertMessage, setAlertMessage] = useState({
+    error: false,
+    message: "",
+  });
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [memberToRemove, setMemberToRemove] = useState<Member | null>(null);
 
@@ -72,6 +76,20 @@ const TeamPage: React.FC = () => {
   };
 
   const addMember = () => {
+    if (
+      !newMember.first_name ||
+      !newMember.last_name ||
+      !newMember.title ||
+      !newMember.email
+    ) {
+      setAlertMessage({
+        error: true,
+        message: "Please fill up the required fields.",
+      });
+      setOpen(true);
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     const memberData = {
       team: teamId,
@@ -93,10 +111,21 @@ const TeamPage: React.FC = () => {
         http
           .get(`${endpoints.TEAM_MEMBERS}`)
           .then((response) => {
+            // console.log(response);
             setMembers(response.data);
+            setAlertMessage({
+              error: false,
+              message: "Successfully sent request.",
+            });
+            setOpen(true);
+            setLoading(false);
           })
           .catch((error) => {
-            console.error("Error fetching team members:", error);
+            // console.error("Error fetching team members:", error);
+            setAlertMessage({
+              error: true,
+              message: `"Error fetching team members:", ${error}`,
+            });
           });
         setLoading(false);
         setNewMember({
@@ -107,10 +136,22 @@ const TeamPage: React.FC = () => {
         });
       })
       .catch((error: any) => {
-        console.error("Error adding team member:", error);
-        setErrorMessage(
-          "Error adding team member. Please ensure all fields are filled out"
-        );
+        // console.error("Error adding team member:", error);
+        setAlertMessage({
+          error: true,
+          message: `Error adding team member: ${
+            error?.request?.response
+              ? error.request.response.replace(/[\[\]"\{\}]/g, "").trim()
+              : "Unknown error"
+          }`,
+        });
+        // setErrorMessage(
+        //   `Error adding team member: ${
+        //     error?.request?.response
+        //       ? error.request.response.replace(/[\[\]"\{\}]/g, "").trim()
+        //       : "Unknown error"
+        //   }`
+        // );
         setOpen(true);
         setLoading(false);
       });
@@ -121,10 +162,20 @@ const TeamPage: React.FC = () => {
       .delete(`${endpoints.TEAM_MEMBERS}${memberId}/`)
       .then((response) => {
         setMembers((prev) => prev.filter((member) => member.id !== memberId));
+        setAlertMessage({
+          error: false,
+          message: "Deleted successfully.",
+        });
+        setOpen(true);
+        setLoading(false);
       })
       .catch((error) => {
-        console.error("Error deleting team member:", error);
-        setErrorMessage("Error deleting team member. Please try again.");
+        // console.error("Error deleting team member:", error);
+        setAlertMessage({
+          error: true,
+          message: "Error deleting team member. Please try again.",
+        });
+        // setErrorMessage("Error deleting team member. Please try again.");
         setOpen(true);
       });
   };
@@ -146,8 +197,12 @@ const TeamPage: React.FC = () => {
         autoHideDuration={6000}
         onClose={() => setOpen(false)}
       >
-        <Alert onClose={() => setOpen(false)} severity="error">
-          {errorMessage}
+        <Alert
+          onClose={() => setOpen(false)}
+          severity={alertMessage && alertMessage.error ? "error" : "success"}
+        >
+          {/* {errorMessage} */}
+          {alertMessage.message}
         </Alert>
       </Snackbar>
 
@@ -184,6 +239,7 @@ const TeamPage: React.FC = () => {
           <Grid item xs={3}>
             <TextField
               fullWidth
+              required
               label="First Name"
               variant="outlined"
               name="first_name"
@@ -193,6 +249,7 @@ const TeamPage: React.FC = () => {
           </Grid>
           <Grid item xs={3}>
             <TextField
+              required
               fullWidth
               label="Last Name"
               variant="outlined"
@@ -203,6 +260,7 @@ const TeamPage: React.FC = () => {
           </Grid>
           <Grid item xs={3}>
             <TextField
+              required
               fullWidth
               label="Title"
               variant="outlined"
@@ -213,6 +271,7 @@ const TeamPage: React.FC = () => {
           </Grid>
           <Grid item xs={3}>
             <TextField
+              required
               fullWidth
               label="Email"
               variant="outlined"
