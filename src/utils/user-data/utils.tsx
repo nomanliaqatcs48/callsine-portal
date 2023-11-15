@@ -23,6 +23,7 @@ export const _columns = (onLoadApi: any) => {
       {
         Header: "File",
         accessor: "file",
+        sorting_id: "file",
         Cell: (cell: any) => {
           return (
             <a
