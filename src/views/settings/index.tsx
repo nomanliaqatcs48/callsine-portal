@@ -225,6 +225,7 @@ const SettingsPage: React.FC = () => {
               multiline={field.type === "textarea"}
               rows={field.type === "textarea" ? 4 : undefined}
               className="tw-my-2"
+              inputProps={{ maxLength: 50 }}
               error={isSubmitUser && field.isRequired && !handleValue(field.name, type) ? true: false}
               helperText={isSubmitUser && field.isRequired && !handleValue(field.name, type) && "Please enter the value"}
             />
