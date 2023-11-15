@@ -7,6 +7,7 @@ import {
   personForceEnable,
 } from "../../services/persons.service";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 
 export const usePersons = (
   load: boolean = true,
@@ -37,6 +38,8 @@ export const usePersons = (
   const [schedEmailNotNull, setSchedEmailNotNull] = useState<boolean>(false);
   const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
   const [lastContactedToday, setLastContactedToday] = useState<boolean>(false);
+
+  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
 
   const { unreadEmails } = useUnreadCount();
 
@@ -76,6 +79,7 @@ export const usePersons = (
         setPersonsData(sortedResults);
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
+        getPersonCounts();
         return res.data;
       }
     } catch (e) {

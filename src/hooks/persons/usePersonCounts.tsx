@@ -21,7 +21,7 @@ export const usePersonCounts = () => {
 
   useEffect(() => {
     getPersonCounts();
-  }, []);
+  }, [personCounts]);
 
   return {
     getPersonCounts,

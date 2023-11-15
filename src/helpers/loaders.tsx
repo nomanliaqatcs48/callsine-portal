@@ -2,7 +2,7 @@ export const insertBodyLoader = () => {
   let _body: any = document.querySelector("body");
   let _root: any = document.querySelector("#root");
   if (_body) {
-    _body.classList.toggle("tw-overflow-hidden");
+    // _body.classList.toggle("tw-overflow-hidden");
     if (_root) {
       _root.insertAdjacentHTML(
         "afterbegin",
@@ -20,7 +20,7 @@ export const removeBodyLoader = () => {
   let _body: any = document.querySelector("body");
   let _body_loader: any = document.querySelector("#body-loader");
   if (_body) {
-    _body.classList.toggle("tw-overflow-hidden");
+    // _body.classList.toggle("tw-overflow-hidden");
     if (_body_loader) {
       _body_loader.remove();
     }

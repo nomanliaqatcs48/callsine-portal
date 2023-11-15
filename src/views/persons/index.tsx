@@ -135,25 +135,15 @@ const PersonsPage = () => {
     setLastContactedToday,
   } = usePersons();
 
-  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
-
-  useEffect(() => {
-    // if (!isLoading && personsData && personsData.length === 0) {
-    //   getPeople();
-    //   getPersonCounts();
-    // }
-    getPersonCounts();
-  }, []);
+  const { personCounts, isFetching } = usePersonCounts();
 
   const successfulUploadCsv = () => {
     getPeople();
-    getPersonCounts();
     ToastSuccess("File successfully uploaded.");
   };
 
   const executeRefreshTable = () => {
     getPeople();
-    getPersonCounts();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {
@@ -209,7 +199,7 @@ const PersonsPage = () => {
         websocketResponse.message &&
         websocketResponse.message.event === "bulk_import_refresh")
     ) {
-      console.log("execute websocket refresh table")
+      console.log("execute websocket refresh table");
       executeRefreshTable();
     }
   }, [websocketResponse]);
