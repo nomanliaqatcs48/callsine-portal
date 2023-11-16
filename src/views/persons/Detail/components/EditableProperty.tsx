@@ -4,6 +4,7 @@ import { TableCell } from "@mui/material";
 import { useMutation } from "@tanstack/react-query";
 import React from "react";
 import { patchPersonDetailService } from "src/services/persons.service";
+import { Alert, Snackbar } from "@mui/material";
 
 interface EditablePropertyProps {
   personId: number;
@@ -30,13 +31,25 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
 
   React.useEffect(() => {
     setActiveField(isActive);
-  }, [isActive]);
+
+    // Populate address fields if in edit mode
+    if (editMode && item.key === "address") {
+      setCity(item.value.person_city || "");
+      setState(item.value.state || "");
+    }
+  }, [isActive, editMode, item]);
 
   const [person_city, setCity] = React.useState("");
 
   const [state, setState] = React.useState("");
 
   const [newValue, setNewValue] = React.useState(null);
+
+  const [alertMessage, setAlertMessage] = React.useState({
+    open: false,
+    error: false,
+    message: "",
+  });
 
   const value = React.useMemo(() => {
     return newValue !== null ? newValue : item.value || "";
@@ -55,10 +68,73 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     setState(e.target.value);
   };
 
+  const closeHandleAlert = () => {
+    setAlertMessage((prevAlertMessage) => ({
+      ...prevAlertMessage,
+      open: false,
+    }));
+  };
+
+  const validateInput = (value: any, key: any) => {
+    const regexValidation = /^[a-zA-Z0-9\s]{1,40}$/;
+    const phoneRegex = /^[\d()+\-.\s]{8,20}$/;
+
+    if (value != null) {
+      if (key === "phone" && !phoneRegex.test(value)) {
+        setAlertMessage({
+          open: true,
+          error: true,
+          message: "Invalid phone number. Please enter a valid phone number.",
+        });
+        return false;
+      }
+
+      if (key === "job_title" && value.length > 30) {
+        setAlertMessage({
+          open: true,
+          error: true,
+          message: "Invalid job title. It should be up to 30 characters long.",
+        });
+        return false;
+      }
+
+      if (
+        key !== "phone" &&
+        key !== "job_title" &&
+        !regexValidation.test(value)
+      ) {
+        setAlertMessage({
+          open: true,
+          error: true,
+          message: `Invalid ${key}. It should contain only letters and be up to 20 characters long.`,
+        });
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   const handleSave = async (key: string, isAddress: boolean) => {
+    if (!validateInput(newValue, key)) {
+      return;
+    }
+    if (
+      isAddress &&
+      !validateInput(person_city, "person_city") &&
+      !validateInput(state, "state")
+    ) {
+      return;
+    }
+
     if (isAddress) {
       const payload = { person_city, state };
       mutate({ personId, payload });
+      setAlertMessage({
+        open: true,
+        error: false,
+        message: "Successfully saved!",
+      });
     } else if (newValue) {
       let payload = {};
 
@@ -73,8 +149,16 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
           [key]: newValue,
         };
       }
+      if (validateInput(newValue, key)) {
+        mutate({ personId, payload });
 
-      mutate({ personId, payload });
+        setAlertMessage({
+          open: true,
+          error: false,
+          message: "Successfully saved!",
+        });
+      }
+      // mutate({ personId, payload });
     }
   };
 
@@ -82,6 +166,20 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     if (item.key === "address") {
       return (
         <>
+          <Snackbar
+            open={alertMessage.open}
+            autoHideDuration={6000}
+            onClose={() => closeHandleAlert()}
+          >
+            <Alert
+              onClose={() => closeHandleAlert()}
+              severity={
+                alertMessage && alertMessage.error ? "error" : "success"
+              }
+            >
+              {alertMessage.message}
+            </Alert>
+          </Snackbar>
           <TableCell
             align="right"
             className="tw-text-left tw-text-black tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-border-b-0 tw-p-0 tw-py-[10px]"
@@ -115,7 +213,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
                 loading={isLoading}
                 onClick={(e) => {
                   e.preventDefault();
-                  handleSave(item.key, true);
+                  handleSave(item.key, item.key === "address");
                 }}
                 startIcon={<SaveIcon />}
               >
@@ -128,6 +226,18 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     }
     return (
       <>
+        <Snackbar
+          open={alertMessage.open}
+          autoHideDuration={6000}
+          onClose={() => closeHandleAlert()}
+        >
+          <Alert
+            onClose={() => closeHandleAlert()}
+            severity={alertMessage && alertMessage.error ? "error" : "success"}
+          >
+            {alertMessage.message}
+          </Alert>
+        </Snackbar>
         <TableCell
           align="right"
           className="tw-text-left tw-text-black tw-font-normal tw-text-[16px] tw-tracking-[0.32px] tw-border-b-0 tw-p-0"
