@@ -98,6 +98,10 @@ export const usePersons = (
     }
   };
 
+  useEffect(() => {
+    getPeople();
+  },[filters])
+
   const updateForceEnable = async (person_id: number) => {
     try {
       let res = await personForceEnable(person_id);
