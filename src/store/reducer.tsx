@@ -4,6 +4,7 @@ import { emailReplyCountReducer } from "./emailReplyCount/reducer";
 import personTrackingReducer from "./personTrackingReducer";
 import { playbookDataReducer } from "./playbooks/reducer";
 import showDraftReducer from "./playbooks/showDraftSlice";
+import personsListReducer from "./persons/actions";
 
 // ==============================|| COMBINE REDUCER ||============================== //
 
@@ -13,6 +14,7 @@ const reducer = combineReducers({
   showDraft: showDraftReducer,
   emailReplyCount: emailReplyCountReducer,
   persons: personTrackingReducer,
+  personsLists: personsListReducer,
 });
 
 export type AppState = ReturnType<typeof reducer>;

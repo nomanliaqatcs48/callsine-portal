@@ -3,6 +3,9 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Visibility from "@mui/icons-material/Visibility";
 import React, { FC, useState } from "react";
 
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
+
 import {
   Box,
   Button,
@@ -135,10 +138,14 @@ const PersonsPage = () => {
     setLastContactedToday,
   } = usePersons();
 
+  const personsList = useSelector(
+    (state: RootState) => state.personsLists.personsList
+  );
+
   const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
 
   useEffect(() => {
-    // if (!isLoading && personsData && personsData.length === 0) {
+    // if (!isLoading && personsList && personsList.length === 0) {
     //   getPeople();
     //   getPersonCounts();
     // }
@@ -209,7 +216,7 @@ const PersonsPage = () => {
         websocketResponse.message &&
         websocketResponse.message.event === "bulk_import_refresh")
     ) {
-      console.log("execute websocket refresh table")
+      console.log("execute websocket refresh table");
       executeRefreshTable();
     }
   }, [websocketResponse]);
@@ -392,7 +399,7 @@ const PersonsPage = () => {
             </Grid>
           </Grid>
         </Paper>
-        {personsData && personsData.length > 0 && (
+        {personsList && personsList.length > 0 && (
           <Grid
             className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4"
             onClick={() => setExplainerOpen(true)}
@@ -489,7 +496,7 @@ const PersonsPage = () => {
 
             <MyTable
               columns={_columns()}
-              data={personsData}
+              data={personsList}
               totalItems={total || 0}
               tableName="PersonsTable"
               tableClassName="table-persons gray-header table-sm"
