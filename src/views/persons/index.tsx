@@ -138,29 +138,19 @@ const PersonsPage = () => {
     setLastContactedToday,
   } = usePersons();
 
+  const { personCounts, isFetching } = usePersonCounts();
+
   const personsList = useSelector(
     (state: RootState) => state.personsLists.personsList
   );
 
-  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
-
-  useEffect(() => {
-    // if (!isLoading && personsList && personsList.length === 0) {
-    //   getPeople();
-    //   getPersonCounts();
-    // }
-    getPersonCounts();
-  }, []);
-
   const successfulUploadCsv = () => {
     getPeople();
-    getPersonCounts();
     ToastSuccess("File successfully uploaded.");
   };
 
   const executeRefreshTable = () => {
     getPeople();
-    getPersonCounts();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {

@@ -7,6 +7,7 @@ import {
   personForceEnable,
 } from "../../services/persons.service";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
+import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 
 import { useDispatch } from "react-redux";
 import { setPersonList } from "src/store/persons/actions";
@@ -42,6 +43,8 @@ export const usePersons = (
   const [schedEmailNotNull, setSchedEmailNotNull] = useState<boolean>(false);
   const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
   const [lastContactedToday, setLastContactedToday] = useState<boolean>(false);
+
+  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
 
   const { unreadEmails } = useUnreadCount();
 
@@ -83,6 +86,7 @@ export const usePersons = (
         setPersonsData(sortedResults);
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
+        getPersonCounts();
         return res.data;
       }
     } catch (e) {
