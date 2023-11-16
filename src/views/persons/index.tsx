@@ -3,6 +3,9 @@ import PersonAddAlt1Icon from "@mui/icons-material/PersonAddAlt1";
 import Visibility from "@mui/icons-material/Visibility";
 import React, { FC, useState } from "react";
 
+import { useSelector } from "react-redux";
+import { RootState } from "src/store";
+
 import {
   Box,
   Button,
@@ -136,6 +139,10 @@ const PersonsPage = () => {
   } = usePersons();
 
   const { personCounts, isFetching } = usePersonCounts();
+
+  const personsList = useSelector(
+    (state: RootState) => state.personsLists.personsList
+  );
 
   const successfulUploadCsv = () => {
     getPeople();
@@ -382,7 +389,7 @@ const PersonsPage = () => {
             </Grid>
           </Grid>
         </Paper>
-        {personsData && personsData.length > 0 && (
+        {personsList && personsList.length > 0 && (
           <Grid
             className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4"
             onClick={() => setExplainerOpen(true)}
@@ -479,7 +486,7 @@ const PersonsPage = () => {
 
             <MyTable
               columns={_columns()}
-              data={personsData}
+              data={personsList}
               totalItems={total || 0}
               tableName="PersonsTable"
               tableClassName="table-persons gray-header table-sm"

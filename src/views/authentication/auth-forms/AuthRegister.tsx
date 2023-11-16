@@ -12,8 +12,14 @@ import {
   TextField,
   Typography,
   useMediaQuery,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
 } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
+import Visibility from "@mui/icons-material/Visibility";
+import VisibilityOff from "@mui/icons-material/VisibilityOff";
 
 // third party
 import { Formik } from "formik";
@@ -499,18 +505,32 @@ const AuthRegister = ({ ...others }) => {
                 <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                   Password
                 </div>
-                <TextField
+                <OutlinedInput
                   required
                   fullWidth
                   type={showPassword1 ? "text" : "password"}
                   value={values.password1}
                   name="password1"
                   onBlur={handleBlur}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword1}
+                        onMouseDown={handleMouseDownPassword1}
+                        edge="end"
+                        size="large"
+                      >
+                        {showPassword1 ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
                   onChange={(e) => {
                     handleChange(e);
                     changePassword(e.target.value);
                   }}
                   inputProps={{}}
+                  autoComplete="off"
                   sx={{
                     "& input.MuiOutlinedInput-input": {
                       backgroundColor: "#FFF",
@@ -544,13 +564,27 @@ const AuthRegister = ({ ...others }) => {
                 <div className="tw-text-[15px] tw-py-1 tw-font-normal tw-tracking-[0.3px] tw-leading-[23px] tw-text-black">
                   Confirm Password
                 </div>
-                <TextField
+                <OutlinedInput
                   required
                   fullWidth
                   type={showPassword2 ? "text" : "password"}
                   value={values.password2}
                   name="password2"
                   onBlur={handleBlur}
+                  endAdornment={
+                    <InputAdornment position="end">
+                      <IconButton
+                        aria-label="toggle password visibility"
+                        onClick={handleClickShowPassword2}
+                        onMouseDown={handleMouseDownPassword2}
+                        edge="end"
+                        size="large"
+                      >
+                        {showPassword2 ? <Visibility /> : <VisibilityOff />}
+                      </IconButton>
+                    </InputAdornment>
+                  }
+                  autoComplete="off"
                   onChange={(e) => {
                     handleChange(e);
                   }}
