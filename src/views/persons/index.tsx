@@ -206,7 +206,6 @@ const PersonsPage = () => {
         websocketResponse.message &&
         websocketResponse.message.event === "bulk_import_refresh")
     ) {
-      console.log("execute websocket refresh table");
       executeRefreshTable();
     }
   }, [websocketResponse]);
