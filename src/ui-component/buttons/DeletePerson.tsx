@@ -7,6 +7,9 @@ import { ToastError, ToastSuccess } from "../../helpers/toast";
 import { deletePersonDetailService } from "../../services/persons.service";
 import { IconTrash } from "@tabler/icons-react";
 
+import { useDispatch } from "react-redux";
+import { deletePerson } from "src/store/persons/actions";
+
 type DeletePersonTypes = {
   id: number;
   children: any;
@@ -20,6 +23,8 @@ const DeletePerson = ({
   onLoadApi,
   ...props
 }: DeletePersonTypes) => {
+  const dispatch = useDispatch();
+
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
     submit: false,
@@ -32,10 +37,11 @@ const DeletePerson = ({
     setIsLoading((prev: any) => ({ ...prev, submit: true }));
     try {
       let res = await deletePersonDetailService(id);
-      console.log({ res });
+
       if (res?.status === 200) {
         handleClose();
         setIsLoading((prev: any) => ({ ...prev, submit: false }));
+        dispatch(deletePerson(id));
         ToastSuccess("Person successfully deleted.");
         // onLoadApi();
       }
