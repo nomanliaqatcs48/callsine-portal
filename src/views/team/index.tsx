@@ -76,6 +76,10 @@ const TeamPage: React.FC = () => {
   };
 
   const addMember = () => {
+    const isValidName = (name: string) => /^[a-zA-Z\s]{1,20}$/.test(name);
+    const isValidTitle = (title: string) =>
+      /^[a-zA-Z0-9\s]*$/.test(title) && title.length <= 25;
+
     if (
       !newMember.first_name ||
       !newMember.last_name ||
@@ -90,6 +94,41 @@ const TeamPage: React.FC = () => {
       setLoading(false);
       return;
     }
+    if (!newMember.first_name || !isValidName(newMember.first_name)) {
+      setAlertMessage({
+        error: true,
+        message:
+          "Please enter a valid first name with alphabetic characters and spaces (max 20 characters).",
+      });
+      setOpen(true);
+      setLoading(false);
+      return;
+    }
+
+    // Validate last_name
+    if (!newMember.last_name || !isValidName(newMember.last_name)) {
+      setAlertMessage({
+        error: true,
+        message:
+          "Please enter a valid last name with alphabetic characters and spaces (max 20 characters).",
+      });
+      setOpen(true);
+      setLoading(false);
+      return;
+    }
+
+    // Validate title
+    if (!newMember.title || !isValidTitle(newMember.title)) {
+      setAlertMessage({
+        error: true,
+        message:
+          "Please enter a valid title with alphanumeric characters and spaces (max 25 characters).",
+      });
+      setOpen(true);
+      setLoading(false);
+      return;
+    }
+
     setLoading(true);
     const memberData = {
       team: teamId,
@@ -102,8 +141,6 @@ const TeamPage: React.FC = () => {
       // Handle password as required
       password: "DefaultPassword123", // Modify as required
     };
-
-    console.log(memberData);
 
     http
       .post(`${endpoints.TEAM_MEMBERS}`, memberData)
