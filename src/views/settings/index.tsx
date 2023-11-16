@@ -40,6 +40,7 @@ interface TextFieldProps {
   label: string;
   name: string;
   type: "text" | "textarea";
+  isRequired: boolean;
 }
 
 interface SelectField {
@@ -47,19 +48,21 @@ interface SelectField {
   name: string;
   type: "select";
   options: any;
+  isRequired: boolean,
 }
 
 type Field = TextFieldProps | SelectField;
 
 const companyFields: Field[] = [
-  { label: "Company URL", name: "domain", type: "text" },
-  { label: "Company Name", name: "name", type: "text" },
-  { label: "Company City", name: "company_city", type: "text" },
+  { label: "Company URL", name: "domain", type: "text", isRequired: false },
+  { label: "Company Name", name: "name", type: "text", isRequired: false },
+  { label: "Company City", name: "company_city", type: "text", isRequired: false },
   {
     label: "Company State",
     name: "company_state",
     type: "select",
     options: US_STATES, // Replace with your states
+    isRequired: false,
   },
   //   { label: "Company Value Proposition", name: "valueProp", type: "textarea" },
   //   {
@@ -77,17 +80,18 @@ const companyFields: Field[] = [
 ];
 
 const userFields: Field[] = [
-  { label: "First Name", name: "first_name", type: "text" },
-  { label: "Last Name", name: "last_name", type: "text" },
-  { label: "Account Email Address", name: "email", type: "text" },
-  { label: "User City", name: "user_city", type: "text" },
+  { label: "First Name", name: "first_name", type: "text", isRequired: true},
+  { label: "Last Name", name: "last_name", type: "text", isRequired: true },
+  { label: "Account Email Address", name: "email", type: "text", isRequired: true },
+  { label: "User City", name: "user_city", type: "text", isRequired: true },
   {
     label: "User State",
     name: "user_state",
     type: "select",
     options: US_STATES, // Replace with your states
+    isRequired: false,
   },
-  { label: "User Title", name: "user_title", type: "text" },
+  { label: "User Title", name: "user_title", type: "text", isRequired: true },
 ];
 
 const SettingsPage: React.FC = () => {
@@ -103,6 +107,8 @@ const SettingsPage: React.FC = () => {
     company_state: "",
     company_value_prop: "",
   });
+
+  const [isSubmitUser, setIsSubmitUser] = useState<boolean>(false);
 
   const [userData, setUserData] = useState<UserState>({
     first_name: "",
@@ -140,14 +146,19 @@ const SettingsPage: React.FC = () => {
   }, [teamData]);
 
   const handleSaveUserInfo = async () => {
-    await patchData({
-      first_name: userData.first_name,
-      last_name: userData.last_name,
-      email: userData.email,
-      user_city: userData.user_city,
-      user_state: userData.user_state,
-      user_title: userData.user_title,
-    });
+    setIsSubmitUser(true);
+    const {first_name, last_name, email, user_city, user_state, user_title} = userData;
+    if(first_name && last_name && email && user_city && user_title) {
+      await patchData({
+        first_name,
+        last_name,
+        email,
+        user_city,
+        user_state,
+        user_title,
+      });
+      setIsSubmitUser(false);
+    } 
   };
 
   const handleSaveTeamInfo = async () => {
@@ -214,6 +225,9 @@ const SettingsPage: React.FC = () => {
               multiline={field.type === "textarea"}
               rows={field.type === "textarea" ? 4 : undefined}
               className="tw-my-2"
+              inputProps={{ maxLength: 50 }}
+              error={isSubmitUser && field.isRequired && !handleValue(field.name, type) ? true: false}
+              helperText={isSubmitUser && field.isRequired && !handleValue(field.name, type) && "Please enter the value"}
             />
           </div>
         );

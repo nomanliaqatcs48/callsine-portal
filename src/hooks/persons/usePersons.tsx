@@ -8,6 +8,9 @@ import {
 } from "../../services/persons.service";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
 
+import { useDispatch } from "react-redux";
+import { setPersonList } from "src/store/persons/actions";
+
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
@@ -15,6 +18,8 @@ export const usePersons = (
     offset: 0,
   }
 ) => {
+  const dispatch = useDispatch();
+
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
   const [searchValue, setSearchValue] = useState<string>("");
@@ -73,6 +78,8 @@ export const usePersons = (
       );
       if (res?.data) {
         const sortedResults = makePeopleWithReplyToTop(res.data.results);
+
+        dispatch(setPersonList(sortedResults));
         setPersonsData(sortedResults);
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
