@@ -236,7 +236,14 @@ export const _columns: any = () => {
                   title={
                     <>
                       {/*icon and name*/}
-                      <div className="tw-flex tw-justify-center tw-items-center tw-gap-x-5">
+                      <div
+                        className="tw-flex tw-justify-center tw-items-center tw-gap-x-5 "
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
                         <div className="tw-relative tw-w-8 tw-h-8 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
                           <UserIcon className="tw-absolute tw-w-8 tw-h-8 tw-text-gray-400" />
                         </div>
@@ -311,6 +318,11 @@ export const _columns: any = () => {
                           maxWidth: 350,
                           bgcolor: "background.paper",
                         }}
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "clip",
+                          textOverflow: "ellipsis",
+                        }}
                       >
                         {listItems.map((item, idx) => {
                           return (
@@ -352,11 +364,21 @@ export const _columns: any = () => {
                     className="tw-relative tw-flex tw-items-center tw-justify-start tw-gap-2 tw-text-inherit tw-text-[0.75rem] tw-leading-4 tw-no-underline hover:tw-bg-transparent tw-font-normal"
                     href={`/people/${cell?.row?.original?.id}`}
                   >
-                    <div className="tw-flex tw-items-center tw-justify-center tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
-                      <UserIcon className="tw-absolute tw-w-7 tw-h-7 tw-text-gray-400" />
+                    <div className="tw-flex tw-items-center tw-justify-center tw-min-w-[40px] tw-w-9 tw-h-9 tw-overflow-hidden tw-bg-gray-100 tw-rounded-full">
+                      <UserIcon className="tw-absolute tw-min-w-9 tw-w-7 tw-h-7 tw-text-gray-400" />
                     </div>
-                    <span className="">
-                      {cell?.value || ""} {cell?.row?.original?.last_name || ""}
+                    <span>
+                      <span
+                        style={{
+                          whiteSpace: "nowrap",
+                          overflow: "hidden",
+                          textOverflow: "ellipsis",
+                        }}
+                      >
+                        {cell?.value || ""}{" "}
+                        {cell?.row?.original?.last_name || ""}
+                      </span>
+
                       {countUnreadEmails(cell?.row?.original?.work_email) !==
                         0 && (
                         <span
