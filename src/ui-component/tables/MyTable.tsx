@@ -430,7 +430,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
     if (!column.canSort) return;
 
     if (setSortedId) {
-      console.log(column.id)
+      console.log(column.id);
       if (column?.sorting_id) {
         setSortedId(column?.sorting_id);
       } else {
@@ -518,6 +518,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                   fontWeight: "bold",
                                   minWidth: column.minWidth,
                                   width: column.width,
+                                  maxWidth: 30,
                                   cursor: "pointer",
                                 },
                               };
@@ -602,10 +603,15 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                               // Apply the cell props
                               <TableCell
                                 {...cell.getCellProps({
-                                  // style: {
-                                  //   minWidth: cell.column.minWidth,
-                                  //   width: cell.column.width,
-                                  // },
+                                  style: {
+                                    // minWidth: cell.column.minWidth,
+                                    // width: cell.column.width,
+                                    whiteSpace: "nowrap",
+                                    overflow: "hidden",
+                                    textOverflow: "ellipsis",
+
+                                    maxWidth: 300,
+                                  },
                                 })}
                                 // className="text-wrap text-break"
                                 className={`tw-text-[0.75rem] tw-text-black tw-leading-[25px] tw-font-normal ${cell?.column?.tdClassName}`}
@@ -638,7 +644,9 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                       colSpan={13}
                       style={{ textAlign: "center" }}
                     >
-                      <Typography variant="h4" className="text-center mt-4">No Data Found</Typography>
+                      <Typography variant="h4" className="mt-4 text-center">
+                        No Data Found
+                      </Typography>
                     </TableCell>
                   )}
                 </TableBody>
