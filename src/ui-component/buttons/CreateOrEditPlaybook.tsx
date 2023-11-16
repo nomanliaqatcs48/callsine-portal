@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useEffect, useRef, useState } from "react";
+import React, { ChangeEvent, useEffect, useState } from "react";
 
 import { createPlaybooks } from "src/services/playbooks.service";
 import { useReloadPlaybooks } from "../../hooks/playbook/useReloadPlaybooks";
@@ -44,7 +44,6 @@ const CreateOrEditPlaybook = ({
   ...props
 }: CreateOrEditPlaybookTypes) => {
   const { auth } = useAuth();
-  const inputRef = useRef<HTMLInputElement | null>(null);
 
   const reloadPlaybooks = useReloadPlaybooks();
   const [nameValue, setNameValue] = useState<any>("");
@@ -58,9 +57,7 @@ const CreateOrEditPlaybook = ({
   useEffect(() => {
     setTimeout(() => {
       // Autofocus when modal is opened
-      if (inputRef.current) {
-        inputRef.current.focus();
-      }
+      document.getElementById("playbookName")?.focus();
     }, 100); // a short delay of 100ms
   }, [open]);
 
@@ -163,7 +160,7 @@ const CreateOrEditPlaybook = ({
                           onChange: handleChange,
                         })}
                         defaultValue=""
-                        ref={inputRef}
+                        id="playbookName"
                       />
                       <ErrorMessage
                         errors={errors}
