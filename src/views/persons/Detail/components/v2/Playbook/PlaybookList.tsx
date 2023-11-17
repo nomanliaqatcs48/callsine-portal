@@ -34,7 +34,7 @@ const PlaybookList = ({
   setSelectedSequenceEvent,
 }: PlaybookListProps) => {
   let navigate = useNavigate();
-  // console.log(data);
+
   let countIndexForEmailSubject: number = 0;
   const addQueryParam = (playbookNum: number) => {
     navigate({
@@ -238,7 +238,6 @@ const PlaybookList = ({
                         </div>
                         <span className="tw-flex tw-justify-start">
                           <span className="tw-text-black tw-font-medium tw-text-[18px] tw-tracking-[0.36px] tw-truncate tw-mb-1">
-                            {console.log(item)}
                             {item?.scheduledEmail?.subject
                               ? item?.scheduledEmail?.subject?.includes(
                                   "Subject Line: "
