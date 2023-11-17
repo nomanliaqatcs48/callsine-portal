@@ -137,7 +137,7 @@ const CurrentCards: React.FC<CurrentCardsProps> = ({ onUpdateCard }) => {
       {/* Component to Add a new card (you might integrate this with Stripe Elements or similar) */}
       <Button
         variant="contained"
-        className="tw-bg-teal-500 hover:tw-bg-teal-600"
+        className="tw-bg-teal-500 hover:tw-bg-teal-600"        
       >
         Add New Card
       </Button>

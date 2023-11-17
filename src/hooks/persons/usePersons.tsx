@@ -44,8 +44,6 @@ export const usePersons = (
   const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
   const [lastContactedToday, setLastContactedToday] = useState<boolean>(false);
 
-  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
-
   const { unreadEmails } = useUnreadCount();
 
   const makePeopleWithReplyToTop = (persons: any) => {
@@ -61,8 +59,7 @@ export const usePersons = (
         return 1; // b comes first
       }
       return 0; // no change in order
-    });
-    console.log({ persons });
+    });    
     return persons;
   };
   const getPeople = async () => {
@@ -86,7 +83,6 @@ export const usePersons = (
         setPersonsData(sortedResults);
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
-        getPersonCounts();
         return res.data;
       }
     } catch (e) {
@@ -100,7 +96,7 @@ export const usePersons = (
 
   useEffect(() => {
     getPeople();
-  },[filters])
+  }, [filters]);
 
   const updateForceEnable = async (person_id: number) => {
     try {
