@@ -12,10 +12,11 @@ import {
 import { useDispatch } from "react-redux";
 import { setShowDraft } from "src/store/playbooks/showDraftSlice";
 
-import { MouseEvent, useState } from "react";
+import { MouseEvent, useEffect, useState } from "react";
 
 import _ from "lodash";
 import moment from "moment-timezone";
+import { useNavigate } from "react-router-dom";
 
 type PlaybookListProps = {
   data: any[];
@@ -32,10 +33,37 @@ const PlaybookList = ({
   setSelectedData,
   setSelectedSequenceEvent,
 }: PlaybookListProps) => {
+  let navigate = useNavigate();
   // console.log(data);
   let countIndexForEmailSubject: number = 0;
+  const addQueryParam = (playbookNum: number) => {
+    navigate({
+      pathname: window.location.pathname,
+      search: `?playbook=${playbookNum + 1}`,
+    });
+  };
+  useEffect(() => {
+    const getQueryParam = (param: string) => {
+      const queryParams = new URLSearchParams(window.location.search);
+      return queryParams.get(param);
+    };
+
+    const playbookValue = getQueryParam("playbook");
+
+    if (data) {
+      if (playbookValue) {
+        setSelectedIndex(+playbookValue - 1);
+        setSelectedData(data[+playbookValue - 1]?.scheduledEmail);
+      } else {
+        setSelectedIndex(0);
+        setSelectedData(data[0]?.scheduledEmail);
+      }
+    }
+  });
+
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
+    addQueryParam(index);
   };
   const [timezone, setTimezone] = useState<any>(moment.tz.guess());
   const dispatch = useDispatch();
