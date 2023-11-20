@@ -257,33 +257,35 @@ const AuthRegister = ({ ...others }) => {
         }}
         validationSchema={Yup.object().shape({
           first_name: Yup.string()
-            .max(255)
+            .max(50)
             .label("First name")
+            .matches(/^[A-Za-z ]*$/, 'Please enter only alphabat')
             .required("First Name is required"),
           last_name: Yup.string()
-            .max(255)
+            .max(50)
             .label("Last name")
+            .matches(/^[A-Za-z ]*$/, 'Please enter only alphabat')
             .required("Last Name is required"),
           email: Yup.string()
             .email("Must be a valid email")
-            .max(255)
+            .max(50)
             .label("Email")
             .required("Email is required"),
           username: Yup.string()
-            .max(255)
+            .max(50)
             .label("Username")
             .required("Username is required"),
 
           password1: Yup.string()
             .min(8)
             .label("Password 1")
-            .max(255)
+            .max(30)
             .required("This field is required."),
 
           password2: Yup.string()
             .oneOf([Yup.ref("password1"), null as any], "Passwords must match")
             .label("Password 2")
-            .max(255)
+            .max(30)
             .required("This field is required."),
         })}
         onSubmit={onSubmit}
