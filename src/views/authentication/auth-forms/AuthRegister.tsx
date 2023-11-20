@@ -273,10 +273,18 @@ const AuthRegister = ({ ...others }) => {
             .max(255)
             .label("Username")
             .required("Username is required"),
-          password1: Yup.string().max(255).required("Password is required"),
-          password2: Yup.string()
+
+          password1: Yup.string()
+            .min(8)
+            .label("Password 1")
             .max(255)
-            .required("Confirm password is required"),
+            .required("This field is required."),
+
+          password2: Yup.string()
+            .oneOf([Yup.ref("password1"), null as any], "Passwords must match")
+            .label("Password 2")
+            .max(255)
+            .required("This field is required."),
         })}
         onSubmit={onSubmit}
       >
