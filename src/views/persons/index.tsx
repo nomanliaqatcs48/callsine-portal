@@ -83,6 +83,10 @@ const PersonsPage = () => {
 
   const [showAssign, setShowAssign] = useState(false);
   const { loading, data, error } = useGetUserMe();
+  const [refreshTableExecuted, setRefreshTableExecuted] =
+    useState<boolean>(false);
+
+  const [explainer, setExplainer] = useState<boolean>(false);
 
   useEffect(() => {
     // Check if the _gs function exists on the window object
@@ -138,19 +142,21 @@ const PersonsPage = () => {
     setLastContactedToday,
   } = usePersons();
 
-  const { personCounts, isFetching } = usePersonCounts();
+  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
 
   const personsList = useSelector(
     (state: RootState) => state.personsLists.personsList
   );
 
   const successfulUploadCsv = () => {
-    getPeople();
+    // getPeople();
+    setRefreshTableExecuted(true);
     ToastSuccess("File successfully uploaded.");
   };
 
   const executeRefreshTable = () => {
     getPeople();
+    getPersonCounts();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {
@@ -258,6 +264,20 @@ const PersonsPage = () => {
     setLastContactedToday(true);
   };
 
+  useEffect(() => {
+    if (refreshTableExecuted) {
+      setExplainer(true);
+
+      // Set a timer to hide the component after 4 seconds
+      const timer = setTimeout(() => {
+        setExplainer(false);
+        setRefreshTableExecuted(false);
+      }, 10000);
+
+      // Cleanup the timer to avoid memory leaks
+      return () => clearTimeout(timer);
+    }
+  }, [refreshTableExecuted]);
   return (
     <>
       <WebsocketProvider userId={auth.id}>
@@ -388,7 +408,7 @@ const PersonsPage = () => {
             </Grid>
           </Grid>
         </Paper>
-        {personsList && personsList.length > 0 && (
+        {explainer && personsList && personsList.length > 0 && (
           <Grid
             className="tw-rounded-lg tw-px-5 tw-bg-green-600 tw-mx-5 tw-py-4"
             onClick={() => setExplainerOpen(true)}
