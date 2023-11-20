@@ -256,17 +256,35 @@ const AuthRegister = ({ ...others }) => {
           submit: null,
         }}
         validationSchema={Yup.object().shape({
-          first_name: Yup.string().max(255).required("First Name is required"),
-          last_name: Yup.string().max(255).required("Last Name is required"),
+          first_name: Yup.string()
+            .max(255)
+            .label("First name")
+            .required("First Name is required"),
+          last_name: Yup.string()
+            .max(255)
+            .label("Last name")
+            .required("Last Name is required"),
           email: Yup.string()
             .email("Must be a valid email")
             .max(255)
+            .label("Email")
             .required("Email is required"),
-          username: Yup.string().max(255).required("Username is required"),
-          password1: Yup.string().max(255).required("Password is required"),
-          password2: Yup.string()
+          username: Yup.string()
             .max(255)
-            .required("Confirm password is required"),
+            .label("Username")
+            .required("Username is required"),
+
+          password1: Yup.string()
+            .min(8)
+            .label("Password 1")
+            .max(255)
+            .required("This field is required."),
+
+          password2: Yup.string()
+            .oneOf([Yup.ref("password1"), null as any], "Passwords must match")
+            .label("Password 2")
+            .max(255)
+            .required("This field is required."),
         })}
         onSubmit={onSubmit}
       >
