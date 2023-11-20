@@ -3,7 +3,12 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { FC, useEffect, useMemo, useState } from "react";
 
 import styled from "@emotion/styled";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, FormHelperText } from "@mui/material";
+import { ToastError, ToastSuccess } from "src/helpers/toast";
+
+import { Formik } from "formik";
+import * as Yup from "yup";
+
 import {
   createStripeCustomer,
   createSubscriptionService,
@@ -71,53 +76,19 @@ const getPriceDetails = (planData: IPlan): PriceDetails => {
 };
 
 const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
+
+  const urlRegx = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
+
   const [checkingOut, setCheckingOut] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [isSuccess, setIsSuccess] = useState(true);
   // collect data from the user
-  const [name, setName] = useState(
-    profileData?.first_name
-      ? profileData?.first_name + " " + profileData?.last_name
-      : ""
-  );
-  const [companyName, setCompanyName] = useState("");
-  const [email, setEmail] = useState(
-    profileData?.email ? profileData?.email : ""
-  );
+
   const priceDetails = useMemo(() => getPriceDetails(planData), [planData]);
   const [priceId, setPriceId] = useState(priceDetails.priceId);
   const [teamMembers, setTeamMembers] = useState(planData?.teamMembers);
   const [selectedPlan, setSelectedPlan] = useState(planData?.selectedPlan);
-  const [userAddress, setAddress] = useState({
-    street: "",
-    city: "",
-    state: "",
-    zip: "",
-  });
-
-  const [contactNumber, setContactNumber] = useState("");
-  const [wantsNewsletter, setWantsNewsletter] = useState(false);
-  const [companyWebsite, setCompanyWebsite] = useState("");
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    setEmail(profileData?.email);
-  }, [profileData]);
-
-  console.log("PROFILE DATA", profileData);
-
-  const handleInputChange = (e: any) => {
-    const website = e.target.value;
-    if (isValidURL(website) || website === "") {
-      setError(""); // Clear any previous error if the input is now valid
-    } else {
-      setError(
-        "Please enter a valid URL starting with https:// and a proper domain."
-      );
-    }
-    setCompanyWebsite(website); // Keep this line to ensure the state updates with every keystroke
-  };
 
   // stripe items
   const stripe = useStripe();
@@ -130,14 +101,15 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
   }, [priceDetails, planData]);
 
   // main function
-  const createSubscription = async () => {
+  const createSubscription = async (values: any) => {
+    const { companyName, companyWebsite, name, email, street, city, state, zip, contactNumber, wantsNewsletter} = values;
     setCheckingOut(true);
     try {
       const address: any = {
-        street: userAddress.street, // Replace this with your actual state hook or variable
-        city: userAddress.city, // Replace this with your actual state hook or variable
-        state: userAddress.state, // Replace this with your actual state hook or variable
-        zip: userAddress.zip, // Replace this with your actual state hook or variable
+        street, // Replace this with your actual state hook or variable
+        city, // Replace this with your actual state hook or variable
+        state, // Replace this with your actual state hook or variable
+        zip, // Replace this with your actual state hook or variable
       };
 
       const customerResponse = await createStripeCustomer({
@@ -165,6 +137,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
       });
 
       // Call the backend to create subscription using the service you provided
+      if(paymentMethod?.paymentMethod?.id) {
       const response = await createSubscriptionService({
         customerId,
         paymentMethod: paymentMethod?.paymentMethod?.id,
@@ -190,10 +163,15 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
       }
       setCheckingOut(false);
       setModalOpen(true);
+    } else {
+      setCheckingOut(false);
+      ToastError("Please enter the card number");
+    }
     } catch (error) {
       console.log(error);
       alert((error as Error).message || "An error occurred!");
     }
+    
   };
 
   if (planData.selectedPlan === null) {
@@ -274,125 +252,282 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
           </p>
         </div>
       </div>
-
       <div className="tw-grid tw-gap-4">
-        <label>
+      <Formik
+        initialValues={{    
+          companyName: '',
+          companyWebsite: "",
+          name: profileData?.first_name
+          ? profileData?.first_name + " " + profileData?.last_name
+          : "",
+          email: profileData?.email ? profileData?.email : "",    
+          wantsNewsletter: false, 
+          street: "",
+          city: "",
+          state: "",
+          zip: "",
+          contactNumber: "",
+          submit: null,
+        }}
+        validationSchema={Yup.object().shape({
+          companyName: Yup.string()
+            .max(50)
+            .required("Company name is required"),
+          companyWebsite: Yup.string()
+          .matches(urlRegx, "Website should be a valid URL")
+          .required("This field is required"),
+          name: Yup.string()
+            .max(50)
+            .matches(/^[A-Za-z ]*$/, 'Please enter only alphabat')
+            .required("This field is required"),
+          email: Yup.string()
+            .email("Must be a valid email")
+            .max(50)
+            .label("Email")
+            .required("This field is required"),
+          street: Yup.string()
+            .max(100)
+            .required("This field is required"),
+          city: Yup.string()
+            .max(50)
+            .required("This field is required"),
+          state: Yup.string()
+            .max(50)
+            .required("This field is required"),
+          zip: Yup.string()
+            .max(50)
+            .matches(/^\d+$/, 'The field should have digits only')
+            .required("This field is required"),
+          contactNumber: Yup.string()
+            .max(50)
+            .matches(/^\d+$/, 'The field should have digits only')
+            .required("This field is required"),
+        })}
+        onSubmit={(values) => {
+          const { companyName, companyWebsite, name, email, street, city, state, zip, contactNumber} = values;
+          if(companyName && companyWebsite && name && email && street && city && state && zip && contactNumber) {
+          createSubscription(values)
+          }
+        }}
+      >
+        {({
+          errors,
+          handleBlur,
+          handleChange,
+          handleSubmit,
+          isSubmitting,
+          touched,
+          values,
+          setFieldValue
+        }: any) => (
+          <form noValidate onSubmit={handleSubmit}>
+      
+        <label className="tw-mt-4">
           Company Name
           <input
             type="text"
-            value={companyName}
-            onChange={(e) => setCompanyName(e.target.value)}
+            value={values.companyName}
+            name="companyName"
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-        <label>
+        {touched.companyName && errors.companyName && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.companyName}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           Company Website
           <input
             type="text"
-            value={companyWebsite}
-            onChange={handleInputChange}
+            name="companyWebsite"
+            value={values.companyWebsite}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-        {error && <p className="error-message">{error}</p>}
+        {touched.companyWebsite && errors.companyWebsite && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.companyWebsite}
+          </FormHelperText>
+        )}
 
-        <label>
+        <label className="tw-mt-4">
           Name
           <input
             type="text"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            name="name"
+            value={values.name}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-        <label>
+        {touched.name && errors.name && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.name}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           E-mail
           <input
             disabled={true}
             type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            name="email"
+            value={values.email}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-        <label>
+        {touched.email && errors.email && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.email}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           Street
           <input
             type="text"
-            value={userAddress.street}
-            onChange={(e) =>
-              setAddress((prev) => ({ ...prev, street: e.target.value }))
-            }
+            name="street"
+            value={values.street}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-
-        <label>
+        {touched.street && errors.street && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.street}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           City
           <input
             type="text"
-            value={userAddress.city}
-            onChange={(e) =>
-              setAddress((prev) => ({ ...prev, city: e.target.value }))
-            }
+            name="city"
+            value={values.city}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-
-        <label>
+        {touched.city && errors.city && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.city}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           State
           <input
             type="text"
-            value={userAddress.state}
-            onChange={(e) =>
-              setAddress((prev) => ({ ...prev, state: e.target.value }))
-            }
+            name="state"
+            value={values.state}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-
-        <label>
+        {touched.state && errors.state && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.state}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           Zip
           <input
             type="text"
-            value={userAddress.zip}
-            onChange={(e) =>
-              setAddress((prev) => ({ ...prev, zip: e.target.value }))
-            }
+            name="zip"
+            value={values.zip}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-
-        <label>
+        {touched.zip && errors.zip && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.zip}
+          </FormHelperText>
+        )}
+        <label className="tw-mt-4">
           Contact Number (Telephone)
           <input
             type="tel"
-            value={contactNumber}
-            onChange={(e) => setContactNumber(e.target.value)}
+            name="contactNumber"
+            value={values.contactNumber}
+            onBlur={handleBlur}
+            onChange={handleChange}
             className="tw-bg-gray-100 tw-text-[16px] tw-font-light tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
           />
         </label>
-
-        <div className="tw-flex tw-justify-between tw-items-center">
+        {touched.contactNumber && errors.contactNumber && (
+          <FormHelperText
+            error
+            className="tw-mb-3"
+            id="standard-weight-helper-text-first_name-register"
+          >
+            {errors.contactNumber}
+          </FormHelperText>
+        )}
+        <div className="tw-flex tw-justify-between tw-items-center tw-mt-4 tw-mb-4">
           <label>Get Updates via Text Message:</label>
           <input
             type="checkbox"
-            checked={wantsNewsletter}
-            onChange={() => setWantsNewsletter((prev) => !prev)}
+            checked={values.wantsNewsletter}
+            onChange={() => setFieldValue("wantsNewsletter", !values.wantsNewsletter)}
           />
         </div>
 
-        <div className="tw-border tw-border-[#f2f3f9] tw-p-3 tw-rounded">
+        <div className="tw-border tw-border-[#f2f3f9] tw-p-3 tw-rounded tw-mt-4 tw-mb-3">
           <CardElement />
         </div>
 
         <button
-          onClick={createSubscription}
+          // onClick={createSubscription}
+          type="submit"
           disabled={!stripe}
-          className="tw-bg-blue-600 hover:tw-bg-blue-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase tw-w-full"
+          className="tw-bg-blue-600 hover:tw-bg-blue-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase tw-w-full tw-mt-4"
         >
           {checkingOut ? "Processing..." : "Checkout"}
         </button>
+        </form>
+        )}
+      </Formik>
         <SuccessModal
           isSuccess={isSuccess}
           isOpen={isModalOpen}
