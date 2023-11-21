@@ -151,6 +151,7 @@ const CreateOrEditPerson = ({
         ...data,
         company_name: data.company_name,
         company_website: data.company_domain,
+        industry: data.industry,
         org: { name: data.company_name, domain: data.company_domain },
         assigned_user_id: userId,
       };
@@ -358,6 +359,31 @@ const CreateOrEditPerson = ({
 
                     <Grid item xs={12} lg={12}>
                       <TextField
+                        error={!!errors.company_name}
+                        disabled={personLoading?.form}
+                        required
+                        margin="dense"
+                        id="company_name"
+                        label="Company Name"
+                        type="text"
+                        defaultValue={id ? defaultValue?.company_name : ""}
+                        fullWidth
+                        {...register("company_name", {
+                          required: "This is required field.",
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="company_name"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </Grid>
+                    <Grid item xs={12} lg={12}>
+                      <TextField
                         error={!!errors.company_domain}
                         disabled={personLoading?.form}
                         required
@@ -383,22 +409,22 @@ const CreateOrEditPerson = ({
                     </Grid>
                     <Grid item xs={12} lg={12}>
                       <TextField
-                        error={!!errors.company_name}
+                        error={!!errors.industry}
                         disabled={personLoading?.form}
                         required
                         margin="dense"
-                        id="company_name"
-                        label="Company Name"
+                        id="industry"
+                        label="Company Industry"
                         type="text"
-                        defaultValue={id ? defaultValue?.company_name : ""}
+                        defaultValue={id ? defaultValue?.industry : ""}
                         fullWidth
-                        {...register("company_name", {
+                        {...register("industry", {
                           required: "This is required field.",
                         })}
                       />
                       <ErrorMessage
                         errors={errors}
-                        name="company_name"
+                        name="industry"
                         render={({ message }) => (
                           <FormHelperText sx={{ color: "error.main" }}>
                             {message}
