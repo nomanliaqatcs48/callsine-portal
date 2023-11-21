@@ -241,6 +241,10 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("first_name", {
                           required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message: "First name cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
@@ -267,6 +271,10 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("last_name", {
                           required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message: "Last name cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
@@ -293,6 +301,10 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("job_title", {
                           required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message: "Job title cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
@@ -320,6 +332,11 @@ const CreateOrEditPerson = ({
                         {...register("work_email", {
                           required: "This is required field.",
                           pattern: emailAddressPattern,
+                          maxLength: {
+                            value: 255,
+                            message:
+                              "Email address cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
@@ -343,7 +360,14 @@ const CreateOrEditPerson = ({
                         type="text"
                         defaultValue={id ? defaultValue?.linkedin : ""}
                         fullWidth
-                        {...register("linkedin")}
+                        {...register("linkedin", {
+                          required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message:
+                              "LinkedIn URL cannot exceed 255 characters",
+                          },
+                        })}
                       />
                       <ErrorMessage
                         errors={errors}
@@ -369,6 +393,11 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("company_domain", {
                           required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message:
+                              "Company website cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
@@ -394,6 +423,11 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("company_name", {
                           required: "This is required field.",
+                          maxLength: {
+                            value: 255,
+                            message:
+                              "Company name cannot exceed 255 characters",
+                          },
                         })}
                       />
                       <ErrorMessage
