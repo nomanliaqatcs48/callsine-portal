@@ -131,6 +131,9 @@ const CreateOrEditPerson = ({
           ...beforeVal,
           form: false,
         }));
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (e: any) {
       ToastError("Something went wrong!");
@@ -162,6 +165,10 @@ const CreateOrEditPerson = ({
         handleClose();
         reset();
         setPersonLoading((prev: any) => ({ ...prev, form: false }));
+
+        setTimeout(() => {
+          window.location.reload();
+        }, 1000);
       }
     } catch (e: any) {
       devLogError(() => {
