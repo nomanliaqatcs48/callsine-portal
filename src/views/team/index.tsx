@@ -80,6 +80,9 @@ const TeamPage: React.FC = () => {
     const isValidTitle = (title: string) =>
       /^[a-zA-Z0-9\s]*$/.test(title) && title.length <= 25;
 
+    const isValidEmail = (email: string) =>
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
+
     if (
       !newMember.first_name ||
       !newMember.last_name ||
@@ -123,6 +126,17 @@ const TeamPage: React.FC = () => {
         error: true,
         message:
           "Please enter a valid title with alphanumeric characters and spaces (max 25 characters).",
+      });
+      setOpen(true);
+      setLoading(false);
+      return;
+    }
+
+    // Validate email
+    if (!newMember.email || !isValidEmail(newMember.email)) {
+      setAlertMessage({
+        error: true,
+        message: "Please enter a valid email address.",
       });
       setOpen(true);
       setLoading(false);
@@ -182,13 +196,7 @@ const TeamPage: React.FC = () => {
               : "Unknown error"
           }`,
         });
-        // setErrorMessage(
-        //   `Error adding team member: ${
-        //     error?.request?.response
-        //       ? error.request.response.replace(/[\[\]"\{\}]/g, "").trim()
-        //       : "Unknown error"
-        //   }`
-        // );
+
         setOpen(true);
         setLoading(false);
       });
