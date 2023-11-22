@@ -32,11 +32,11 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
   React.useEffect(() => {
     setActiveField(isActive);
 
-    // Populate address fields if in edit mode
-    if (editMode && item.key === "address") {
-      setCity(item.value.person_city || "");
-      setState(item.value.state || "");
-    }
+    // // Populate address fields if in edit mode
+    // if (editMode && item.key === "address") {
+    //   setCity(item.value.person_city || "");
+    //   setState(item.value.state || "");
+    // }
   }, [isActive, editMode, item]);
 
   const [person_city, setCity] = React.useState("");
@@ -59,8 +59,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
     setNewValue(e.target.value);
   };
 
-  const handleChangeCity = (e: any) => {
-    console.log("CITY CHAGING ", e.target.value);
+  const handleChangeCity = (e: any) => {    
     setCity(e.target.value);
   };
 
@@ -76,7 +75,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
   };
 
   const validateInput = (value: any, key: any) => {
-    const regexValidation = /^[a-zA-Z0-9\s]{1,40}$/;
+    const regexValidation = /^[a-zA-Z0-9\s]{1,35}$/;
     const phoneRegex = /^[\d()+\-.\s]{8,20}$/;
 
     if (value != null) {
@@ -89,11 +88,31 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
         return false;
       }
 
-      if (key === "job_title" && value.length > 30) {
+      if (key === "industry" && value.length > 25) {
         setAlertMessage({
           open: true,
           error: true,
-          message: "Invalid job title. It should be up to 30 characters long.",
+          message:
+            "Invalid industry name. It should be up to 25 characters long.",
+        });
+        return false;
+      }
+
+      if (key === "org.name" && value.length > 25) {
+        setAlertMessage({
+          open: true,
+          error: true,
+          message:
+            "Invalid company name. It should be up to 25 characters long.",
+        });
+        return false;
+      }
+
+      if (key === "job_title" && value.length > 25) {
+        setAlertMessage({
+          open: true,
+          error: true,
+          message: "Invalid job title. It should be up to 25 characters long.",
         });
         return false;
       }
@@ -106,7 +125,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
         setAlertMessage({
           open: true,
           error: true,
-          message: `Invalid ${key}. It should contain only letters and be up to 20 characters long.`,
+          message: `Invalid ${key}. It should contain only letters and be up to 35 characters long.`,
         });
         return false;
       }
@@ -157,8 +176,7 @@ export const EditableProperty: React.FC<EditablePropertyProps> = ({
           error: false,
           message: "Successfully saved!",
         });
-      }
-      // mutate({ personId, payload });
+      }      
     }
   };
 
