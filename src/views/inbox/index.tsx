@@ -29,6 +29,7 @@ import { useUnreadCount } from "src/hooks/useUnreadCount";
 import { getUnreadReplies } from "src/store/emailReplyCount/actions";
 
 import { store } from "src/store";
+import { ReactComponent as EmptyIcon } from "../../assets/images/svg/empty_inbox.svg";
 
 const InboxPage: React.FC = () => {
   const [selectedThread, setSelectedThread] = useState<Thread[]>([]);
@@ -245,7 +246,15 @@ const InboxPage: React.FC = () => {
                   ))}
                 </Stack>
               ) : (
-                <p className="tw-pt-4">...</p>
+                <div className="tw-pt-4 tw-flex tw-items-center tw-border tw-justify-center tw-direction-row" style={{height: '55vh', flexDirection: 'column'}}>
+                  <EmptyIcon />
+                  <div className="message-text">
+                    {emailThreads.length === 0 ? "YOU HAVE NO MESSAGES" : "Welcome to your inbox!"}
+                  </div>
+                  <div className="message-sub-text">
+                    {emailThreads.length === 0 ? "Your Inbox is empty. Send a message to get started." : "Click on any message to start reading and responding"}
+                  </div>
+                </div>
               )}
               <Box height="20px" />
               {showEditor && (
