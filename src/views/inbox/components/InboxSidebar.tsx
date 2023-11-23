@@ -35,6 +35,7 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   const [cleanEmailThreads, setCleanEmailThreads] = React.useState<any[]>([]);
 
   useEffect(() => {
+    
     if (emailThreads) {
       setCleanEmailThreads(removeEmptyEmails(emailThreads));
     }
@@ -54,12 +55,6 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
         } else {
           return console.error("There is no valid provider given.");
         }
-
-        console.log({ res });
-        // if (res?.data) {
-        //   setSelectedThread(res.data);
-        //   console.log("Response from api", res.data);
-        // }
 
         if (exists) {
           decrementUnreadCount();
@@ -135,59 +130,6 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
             </div>
           ))}
         </div>
-
-        {/* <div
-          className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
-        >
-          {emails && emails.length > 0 && (
-            <div
-              className="tw-bg-[#3dabd9] tw-flex tw-flex-row tw-py-5 tw-px-5 tw-items-center tw-border-b tw-border-[#f0f1f3] tw-text-white hover:tw-bg-[#3dabd9af] tw-transition-colors tw-duration-300 tw-cursor-pointer"
-              onClick={handleOnPressBack}
-            >
-              <ArrowBackIosIcon />
-              <Typography className="tw-text-[18px]">
-                View all messages
-              </Typography>
-            </div>
-          )}
-          {emails &&
-            emails
-              .filter((email: any) => email.status === 0) //only show status = 0 "sent"
-              .map((email: any, index: number) => (
-                <Stack
-                  py={2}
-                  px={3}
-                  key={`${email.subject}-${index}`}
-                  onClick={() => handleSelectThread(email, index)}
-                  className={`tw-w-full tw-border-b tw-border-[#f0f1f3] tw-cursor-pointer hover:tw-bg-gray-100 tw-transition-colors tw-duration-300 ${
-                    selectedEmail === index &&
-                    `tw-border-l-[10px] tw-border-l-primary`
-                  }`}
-                >
-                  <Stack direction="row" justifyContent="space-between">
-                    <Typography
-                      className={`tw-text-xs ${
-                        handleSubjectBold(email)
-                          ? "tw-font-medium"
-                          : "tw-font-thin"
-                      }`}
-                    >
-                      {email.subject}
-                    </Typography>
-                    <Typography
-                      className={`tw-text-xs tw-w-[80px] ${
-                        handleSubjectBold(email)
-                          ? "tw-font-medium"
-                          : "tw-font-thin"
-                      }`}
-                    >
-                      {formatDate(email.modified_date)}
-                    </Typography>
-                  </Stack>
-                  <br />
-                </Stack>
-              ))}
-        </div> */}
       </Stack>
     </div>
   );

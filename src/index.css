@@ -31,3 +31,21 @@ code {
 .h-50vh-minus-100 {
   height: calc(50vh - 100px);
 }
+
+.message-text {
+  text-align: center;
+  letter-spacing: 0.44px;
+  color: #778DA9;
+  opacity: 1;
+  font: normal normal normal 22px/33px Poppins;
+  margin-top: 1.8rem;
+}
+
+.message-sub-text {
+  text-align: center;
+  font: normal normal medium 22px/33px Poppins;
+  letter-spacing: 0.44px;
+  color: #778DA9;
+  opacity: 1;
+  margin-top: 0.5rem;
+}
