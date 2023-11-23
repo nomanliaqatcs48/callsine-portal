@@ -78,7 +78,7 @@ const getPriceDetails = (planData: IPlan): PriceDetails => {
 const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
 
   const urlRegx = /^((ftp|http|https):\/\/)?(www.)?(?!.*(ftp|http|https|www.))[a-zA-Z0-9_-]+(\.[a-zA-Z]+)+((\/)[\w#]+)*(\/\w+\?[a-zA-Z0-9_]+=\w+(&[a-zA-Z0-9_]+=\w+)*)?$/gm;
-
+  const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
   const [checkingOut, setCheckingOut] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
@@ -300,7 +300,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             .required("This field is required"),
           contactNumber: Yup.string()
             .max(50)
-            .matches(/^\d+$/, 'The field should have digits only')
+            .matches(phoneRegExp, 'Contact number is not valid')
             .required("This field is required"),
         })}
         onSubmit={(values) => {
@@ -322,7 +322,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
         }: any) => (
           <form noValidate onSubmit={handleSubmit}>
       
-        <label className="tw-mt-4">
+        <label className="tw-mt-2 tw-block">
           Company Name
           <input
             type="text"
@@ -342,7 +342,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.companyName}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           Company Website
           <input
             type="text"
@@ -363,7 +363,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
           </FormHelperText>
         )}
 
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           Name
           <input
             type="text"
@@ -383,7 +383,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.name}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           E-mail
           <input
             disabled={true}
@@ -404,7 +404,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.email}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           Street
           <input
             type="text"
@@ -424,7 +424,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.street}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           City
           <input
             type="text"
@@ -444,7 +444,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.city}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           State
           <input
             type="text"
@@ -464,7 +464,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.state}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           Zip
           <input
             type="text"
@@ -484,7 +484,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
             {errors.zip}
           </FormHelperText>
         )}
-        <label className="tw-mt-4">
+        <label className="tw-mt-4 tw-block">
           Contact Number (Telephone)
           <input
             type="tel"
@@ -513,7 +513,7 @@ const CheckoutForm: FC<CheckoutFormProps> = ({ planData, profileData }) => {
           />
         </div>
 
-        <div className="tw-border tw-border-[#f2f3f9] tw-p-3 tw-rounded tw-mt-4 tw-mb-3">
+        <div className="tw-border tw-border-[#f2f3f9] tw-p-3 tw-rounded tw-mt-4 tw-mb-3 tw-block">
           <CardElement />
         </div>
 

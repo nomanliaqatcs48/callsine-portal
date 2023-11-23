@@ -16,7 +16,9 @@ const Unauthenticated = ({ children }: UnauthenticatedTypes) => {
   const checkAuth = async () => {
     try {
       let check = await checkIfAuthenticated();
-      if (check) {
+      let profile: any = localStorage.getItem("profile");
+      profile = JSON.parse(profile)
+      if (check && profile?.subscription?.id) {
         window.location.href = "/people";
       }
       setTimeout(() => setIsOnPageLoading(false), 500);
