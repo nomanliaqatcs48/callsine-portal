@@ -280,7 +280,7 @@ const PersonsPage = () => {
   }, [refreshTableExecuted]);
   return (
     <>
-      <WebsocketProvider userId={auth.id}>
+      <WebsocketProvider userId={auth?.id}>
         <WebsocketContext.Consumer>
           {(value: any) => {
             if (value.responsePayload) {

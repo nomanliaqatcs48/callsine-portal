@@ -27,12 +27,11 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
   onSelectThread,
   onReset,
 }) => {
-  const [selected, setSelected] = React.useState<number>(-1);
+  const [selected, setSelected] = React.useState<string>('');
   const { decrementUnreadCount, unreadEmails } = useUnreadCount();
 
   const [selectedEmail, setSelectedEmail] = React.useState<number>(-1);
 
-  const [emails, setEmails] = React.useState<any>([]);
   const [cleanEmailThreads, setCleanEmailThreads] = React.useState<any[]>([]);
 
   useEffect(() => {
@@ -77,30 +76,8 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
     return filteredData;
   };
 
-  console.log("Email thradssss", emailThreads);
-
-  const handleOnClickEmail = (emails: any, emailIndex: number) => {
-    setSelected(selected === emailIndex ? -1 : emailIndex);
-    if (emailIndex === selected) {
-      setEmails([]);
-    } else {
-      setEmails(emails);
-    }
-  };
-
-  const reset = () => {
-    setEmails([]);
-    setSelected(-1);
-    setSelectedEmail(-1);
-    onReset();
-  };
-
-  const handleOnPressBack = () => {
-    reset();
-  };
-
-  const translateX = () => {
-    return selected > -1 ? "-tw-translate-x-full" : "tw-translate-x-0";
+  const handleOnClickEmail = (email: string) => {
+    setSelected(selected === email ? '' : email);
   };
 
   const handleSubjectBold = (item: any) => {
@@ -125,7 +102,6 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
 
   return (
     <div className="tw-w-[450px] tw-max-w-[450px]">
-      {emails <= 0 && (
         <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative">
           <input
             placeholder="Search"
@@ -134,30 +110,33 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
             onChange={handleOnchangeSearchBar}
           />
         </div>
-      )}
       <Stack
         direction="row"
         className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(100vh-120px)] tw-overflow-x-hidden"
       >
         <div
-          className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
+          className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] tw-transition-transform tw-duration-300`}
         >
           {cleanEmailThreads?.map((item: any, index: any) => (
             <div
               key={`${item.recipient}-${index}`}
               className="tw-w-full"
-              onClick={() => handleOnClickEmail(item.emails, index)}
             >
               <Email
                 item={item}
                 index={index}
-                isSelected={index === selected}
+                handleOnClickEmail={() => handleOnClickEmail(item.recipient)}
+                isSelected={item.recipient === selected}
+                handleSelectThread={(email: string, index: number) => handleSelectThread(email, index)}
+                selectedEmail={selectedEmail}
+                handleSubjectBoldFont = {(email: string) => handleSubjectBold(email)}
+                
               />
             </div>
           ))}
         </div>
 
-        <div
+        {/* <div
           className={`tw-flex-row tw-min-w-[450px] tw-max-w-[450px] ${translateX()} tw-transition-transform tw-duration-300`}
         >
           {emails && emails.length > 0 && (
@@ -186,7 +165,6 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                   }`}
                 >
                   <Stack direction="row" justifyContent="space-between">
-                    {/* <Typography className="tw-font-medium tw-text-[16px]"> */}
                     <Typography
                       className={`tw-text-xs ${
                         handleSubjectBold(email)
@@ -207,10 +185,9 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
                     </Typography>
                   </Stack>
                   <br />
-                  {/*  */}
                 </Stack>
               ))}
-        </div>
+        </div> */}
       </Stack>
     </div>
   );
