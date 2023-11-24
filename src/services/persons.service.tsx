@@ -13,7 +13,7 @@ export const getPeopleService = async (
   schedEmailToday?: any,
   lastContactedToday?: any
 ) => {
-  let _filters = `?limit=25&offset=${filters.offset}`;
+  let _filters = `?limit=10&offset=${filters.offset}`;
   let _search = `&first_name=${searchValue}`;
   let _ordering = `&ordering=${
     isOrderDesc === undefined ? "" : isOrderDesc ? "-" + sortedId : sortedId

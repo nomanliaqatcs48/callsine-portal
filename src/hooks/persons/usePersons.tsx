@@ -7,7 +7,6 @@ import {
   personForceEnable,
 } from "../../services/persons.service";
 import { useUnreadCount } from "src/hooks/useUnreadCount";
-import { usePersonCounts } from "src/hooks/persons/usePersonCounts";
 
 import { useDispatch } from "react-redux";
 import { setPersonList } from "src/store/persons/actions";
@@ -15,7 +14,7 @@ import { setPersonList } from "src/store/persons/actions";
 export const usePersons = (
   load: boolean = true,
   filtersParam: any = {
-    limit: 25,
+    limit: 10,
     offset: 0,
   }
 ) => {
