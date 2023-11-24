@@ -56,10 +56,11 @@ const PlaybookList = ({
         setSelectedData(data[+playbookValue - 1]?.scheduledEmail);
       } else {
         setSelectedIndex(0);
+        setSelectedSequenceEvent(data[0]);
         setSelectedData(data[0]?.scheduledEmail);
       }
     }
-  });
+  }, [data, setSelectedData, setSelectedIndex, setSelectedSequenceEvent]);
 
   const handleListItemClick = (event: MouseEvent, index: number) => {
     setSelectedIndex(index);
