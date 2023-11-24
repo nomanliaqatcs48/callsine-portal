@@ -166,7 +166,7 @@ const TeamPage: React.FC = () => {
             setMembers(response.data);
             setAlertMessage({
               error: false,
-              message: "Successfully sent request.",
+              message: "Team member added successfully!",
             });
             setOpen(true);
             setLoading(false);
@@ -239,11 +239,13 @@ const TeamPage: React.FC = () => {
     <>
       <Snackbar
         open={open}
-        autoHideDuration={6000}
+        autoHideDuration={10000}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
         onClose={() => setOpen(false)}
       >
         <Alert
           onClose={() => setOpen(false)}
+          variant="filled"
           severity={alertMessage && alertMessage.error ? "error" : "success"}
         >
           {/* {errorMessage} */}
