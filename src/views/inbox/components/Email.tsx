@@ -3,7 +3,7 @@ import * as React from "react";
 import { Avatar, Grid, Stack, Typography } from "@mui/material";
 import { stringAvatar } from "src/helpers/strings";
 import { formatDate } from "src/utils/date";
-import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import moment from "moment";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useUnreadCount } from "src/hooks/useUnreadCount";
@@ -20,7 +20,7 @@ interface EmailProps {
 
 const Email: React.FC<EmailProps> = ({ item, index, handleOnClickEmail, isSelected = false, handleSelectThread, selectedEmail, handleSubjectBoldFont}) => {
   const { unreadEmails } = useUnreadCount();
-
+  
   const handleSubjectBold = (item: any) => {
     console.log("Handle Subject bold", item);
     console.log("Unread emails", unreadEmails);
@@ -54,19 +54,24 @@ const Email: React.FC<EmailProps> = ({ item, index, handleOnClickEmail, isSelect
       <Stack direction="row" spacing={1}>
         <Avatar {...stringAvatar(item?.recipient_name || item.recipient)} />
         <Stack
-          direction="row"
+          direction="column"
           justifyContent="space-between"
-          alignItems="center"
+          // alignItems="center"
         >
           <Typography
             className={`tw-text-[16px] ${
               handleSubjectBold(item) ? "tw-font-bold" : ""
             }`}
           >
-            {/* {console.log(item)} */}
 
             {item.recipient_name || item.recipient}
           </Typography>
+          {item?.emails?.length > 0 &&
+            <Typography
+              className={"tw-text-xs tw-font-thin tw-text-gray-500"}
+            >
+              {item?.emails && moment(new Date(Math.max(...item?.emails.map((e: any) => new Date(e?.modified_date || e?.created_date))))).format('MM/DD/YYYY HH:mm')}
+            </Typography>}
         </Stack>
       </Stack>
       <span className="tw-px-2 tw-text-left tw-flex tw-justify-between tw-text-sm">
