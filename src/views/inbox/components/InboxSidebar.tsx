@@ -13,6 +13,7 @@ import {
   outlookThreadService,
   viewToTrueService,
 } from "src/services/emails.service";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
 import { getUnreadReplies } from "src/store/emailReplyCount/actions";
 import { store } from "src/store";
 
@@ -97,18 +98,21 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
 
   return (
     <div className="tw-w-[450px] tw-max-w-[450px]">
+     
         <div className="tw-px-5 tw-border-b tw-border-r tw-border-[#f0f1f3] tw-relative">
-          <input
-            placeholder="Search"
-            type="text"
-            className="tw-bg-[#f8fafc] tw-w-full tw-rounded-full tw-py-2 tw-px-6 tw-my-4 focus-visible:tw-border-0 focus-visible:tw-outline-none"
-            onChange={handleOnchangeSearchBar}
-          />
+            <input
+              placeholder="Search"
+              type="text"
+              className="tw-bg-[#f8fafc] tw-w-full tw-rounded-full tw-py-2 tw-px-6 tw-my-4 focus-visible:tw-border-0 focus-visible:tw-outline-none"
+              onChange={handleOnchangeSearchBar}
+            />
         </div>
+        <TooltipComponent text="Explore the full conversation history by clicking on the email address">
       <Stack
         direction="row"
         className="tw-border-r tw-border-[#f0f1f3] tw-overflow-y-scroll tw-h-[calc(100vh-120px)] tw-overflow-x-hidden"
       >
+        
         <div
           className={`tw-flex-row tw-w-[450px] tw-max-w-[450px] tw-transition-transform tw-duration-300`}
         >
@@ -129,8 +133,9 @@ export const InboxSidebar: React.FC<InboxSidebarProps> = ({
               />
             </div>
           ))}
-        </div>
+        </div>   
       </Stack>
+      </TooltipComponent>
     </div>
   );
 };
