@@ -162,6 +162,7 @@ const SendLaterOauthEditTime = ({
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                       <DemoContainer components={["DateTimePicker"]}>
                         <DateTimePicker
+                          minDateTime={moment()}
                           label="Scheduled Time"
                           onChange={(newValue) =>
                             handleChangeScheduledTime(newValue)
