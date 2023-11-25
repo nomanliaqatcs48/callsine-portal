@@ -218,7 +218,7 @@ const PersonsPage = () => {
 
   useEffect(() => {
     if (showAssign) {
-      setFilterUserId(auth.id);
+      setFilterUserId(auth?.id);
       setSchedEmailNotNull(false);
       setSchedEmailNull(false);
       setSchedEmailToday(false);
@@ -471,7 +471,7 @@ const PersonsPage = () => {
                   }
                   onSubmit={getPeople}
                   onClick={() => null}
-                  userId={auth.id}
+                  userId={auth?.id}
                 />
 
                 <MyDivider />

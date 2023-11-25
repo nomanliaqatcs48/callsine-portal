@@ -535,7 +535,7 @@ export const _columns: any = () => {
 
           useEffect(() => {
             setLocalSelectedValue(cell.row.original.assigned_user);
-          }, [cell.row.original.assigned_user, auth.id]);
+          }, [cell.row.original.assigned_user, auth?.id]);
 
           return (
             <>
