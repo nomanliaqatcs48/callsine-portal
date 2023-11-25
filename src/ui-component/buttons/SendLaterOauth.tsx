@@ -159,10 +159,12 @@ const SendLaterOauth = ({
                     <LocalizationProvider dateAdapter={AdapterMoment}>
                       <DemoContainer components={["DateTimePicker"]}>
                         <DateTimePicker
+                          minDateTime={moment()}
                           label="Scheduled Time"
                           onChange={(newValue) =>
                             handleChangeScheduledTime(newValue)
                           }
+                          //
                           // disabled={isLoading?.form}
                         />
                       </DemoContainer>
