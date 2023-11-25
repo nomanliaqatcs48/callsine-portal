@@ -485,6 +485,12 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                 border: isTourActive ? 2 : 0,
                 boxShadow: isTourActive ? 20 : 0,
                 marginBottom: 15,
+                "& thead th:nth-child(-n+6)": {
+                  textAlign: "left",
+                },
+                "& thead th:nth-child(n+8)": {
+                  textAlign: "center",
+                }
               }}
               className={
                 isResponsive
@@ -533,6 +539,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                       ? _headerPropsWithStyle
                                       : _headerProps
                                   )}
+                                  // style={{ textAlign: "center" }}
                                   onClick={() =>
                                     sendSortedId(column, setSortBy, columns)
                                   }
