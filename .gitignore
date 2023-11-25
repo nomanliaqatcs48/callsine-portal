@@ -16,7 +16,7 @@
 .env.development.local
 .env.test.local
 .env.production.local
-.env.marc.local
+.env.marc-local
 .env
 
 npm-debug.log*
