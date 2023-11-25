@@ -767,22 +767,23 @@ const DraftEmail = ({
         </div>
       </div>
       <div className={`message-container tw-p-0 xl:tw-p-0`}>
-        <div className="tw-relative">
-          <MyEditor
-            initialValue={getValues("html_message")}
-            onEditorChange={(value: string, editor: any) => {
-              handleMyEditorOnChange(value, editor);
-            }}
-            // isPreformatted={true}
-            onFocus={(e: any) => null}
-          />
-          <HelpEditor
-            sequenceEvent={selectedSequenceEvent}
-            draftText={getValues("html_message")}
-            // emailInformation="Sample"
-            personInformation={personData}
-          />
+        <div className="tw-relative tw-flex">
+          <div className="tw-w-full">
+            <MyEditor
+              initialValue={getValues("html_message")}
+              onEditorChange={(value: string, editor: any) => {
+                handleMyEditorOnChange(value, editor);
+              }}
+              onFocus={(e: any) => null}
+            />
+            <HelpEditor
+              sequenceEvent={selectedSequenceEvent}
+              draftText={getValues("html_message")}
+              personInformation={personData}
+            />
+          </div>          
         </div>
+
         <ErrorMessage
           errors={errors}
           name="html_message"
@@ -795,7 +796,7 @@ const DraftEmail = ({
       </div>
       <div className={`signature-container tw-px-3 tw-py-4`}>
         <Box
-          className={`tw-text-black tw-font-semibold tw-mb-1 ${_styles?.label} tw-w-auto xl:tw-w-auto 2xl:tw-w-auto`}
+          className={`tw-text-black tw-font-semibold tw-mb-1 tw-mt-6 ${_styles?.label} tw-w-auto xl:tw-w-auto 2xl:tw-w-auto`}
         >
           Signature
         </Box>

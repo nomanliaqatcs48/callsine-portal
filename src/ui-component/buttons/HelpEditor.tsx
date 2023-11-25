@@ -98,9 +98,10 @@ const HelpEditor = ({
   return (
     <>
       <div
-        className={`tw-left-5 tw-bottom-[50px] tw-absolute tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
+        className={`tw-left-5 tw-bottom-[50px] tw-z-50  tw-rounded-lg tw-text-black tw-bg-slate-200 ${
           !loading && "hover:tw-bg-slate-100"
         } tw-transition-all  tw-border-black tw-border`}
+        style={{ width: '17%', marginLeft:"0.5rem" }}
       >
         <TooltipComponent
           text={
@@ -108,7 +109,7 @@ const HelpEditor = ({
           }
         >
           <button
-            className="tw-flex tw-space-x-2 tw-p-2 tw-items-center tw-justify-center"
+            className="tw-flex tw-space-x-2 tw-p-2 tw-items-center tw-justify-center"            
             onClick={handleOnclick}
             disabled={loading}
           >
