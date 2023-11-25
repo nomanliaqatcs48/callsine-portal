@@ -231,7 +231,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
 
   return (
     <>
-      <WebsocketProvider userId={auth.id}>
+      <WebsocketProvider userId={auth?.id}>
         <WebsocketContext.Consumer>
           {(value: any) => {
             if (value.responsePayload) {

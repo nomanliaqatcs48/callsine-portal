@@ -43,7 +43,7 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
       borderColor="#f0f1f3"
       paddingX={3}
       paddingY={2}
-      className="tw-h-[calc(6vh)]"
+      className="tw-h-[calc(9.6vh)]"
     >
       {/* <Stack spacing={1} direction="row" justifyItems="center">
         <IconButton onClick={onPressBack}>
