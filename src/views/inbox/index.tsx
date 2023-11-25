@@ -131,11 +131,11 @@ const InboxPage: React.FC = () => {
     let substring = email.toLowerCase();
 
     return substring.toLowerCase().includes(str) ? (
-      <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[16px] tw-text-white tw-mr-2">
+      <span className="tw-bg-green-500 tw-px-1 tw-rounded tw-text-[12px] tw-text-white tw-mr-2">
         You{" "}
       </span>
     ) : (
-      <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[16px] tw-text-white tw-mr-2">
+      <span className="tw-bg-red-500 tw-px-1 tw-rounded tw-text-[12px] tw-text-white tw-mr-2">
         Client
       </span>
     );
@@ -211,7 +211,7 @@ const InboxPage: React.FC = () => {
                         </div>
                         <div className="tw-flex tw-justify-between">
                           <div className="">
-                            <div className="">
+                            <div className="tw-mb-2 tw-mt-2">
                               {handleOriginIndicator(thread.from)}{" "}
                               {`From : ${thread.from}`}
                             </div>

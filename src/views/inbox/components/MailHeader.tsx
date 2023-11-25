@@ -9,6 +9,7 @@ import {
   MoreVert,
 } from "@mui/icons-material";
 import { Box, IconButton, Stack, Typography } from "@mui/material";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
 
 interface MailHeaderProps {
   onPressBack?: () => void;
@@ -73,16 +74,22 @@ export const MailHeader: React.FC<MailHeaderProps> = ({
         </IconButton>
       </Stack> */}
       <Stack spacing={1} direction="row">
-        <a
-          // href="your-link-here"
-          href={`/people/${personId}`}
-          className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
-        >
-          <span className="tw-text-black">View Profile</span>
-        </a>
+        <TooltipComponent text="Click here to see the profile">
+          <a
+            // href="your-link-here"
+            href={`/people/${personId}`}
+            className="tw-text-white tw-p-1 tw-mt-2 tw-text-sm tw-rounded tw-flex tw-space-x-2 tw-items-center tw-border tw-w-28 tw-justify-center tw-bg-slate-100 hover:tw-bg-slate-200 hover:tw-cursor-pointer"
+          >
+            <span className="tw-text-black">View Profile</span>
+          </a>
+        </TooltipComponent>
+        
         <IconButton onClick={onPressReply} style={{position: "absolute", right:"1.5em"}}>
+        <TooltipComponent text="Click here to reply the email">
           <Reply fontSize="small" />
+          </TooltipComponent>
         </IconButton>
+        
         {/* <IconButton onClick={onPressMore}>
           <MoreVert fontSize="small" />
         </IconButton> */}

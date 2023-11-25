@@ -7,6 +7,7 @@ import moment from "moment";
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ExpandLessIcon from '@mui/icons-material/ExpandLess';
 import { useUnreadCount } from "src/hooks/useUnreadCount";
+import TooltipComponent from "src/ui-component/tour/Tooltip";
 
 interface EmailProps {
   item: any;
@@ -83,7 +84,9 @@ const Email: React.FC<EmailProps> = ({ item, index, handleOnClickEmail, isSelect
       </span>
       
     </Stack>
-    {isSelected && item?.emails?.length > 0 && item.emails.filter((email: any) => email.status === 0) //only show status = 0 "sent"
+    {isSelected && 
+    <TooltipComponent text="Select any item to view its detailed message">
+    {item?.emails?.length > 0 && item.emails.filter((email: any) => email.status === 0) //only show status = 0 "sent"
     .map((email: any, index: number) => (
       <Stack
         py={2}
@@ -120,6 +123,8 @@ const Email: React.FC<EmailProps> = ({ item, index, handleOnClickEmail, isSelect
         {/*  */}
       </Stack>
     ))}
+    </TooltipComponent>
+    }
     </>
   );
 };
