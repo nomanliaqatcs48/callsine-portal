@@ -96,10 +96,11 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
                 display: "flex",
                 alignItems: "left",
                 justifyContent: "space-between",
+                marginLeft: -3
               }}
             >
-              <Typography color="white" mb={1}>
-                Need Help?
+              <Typography variant="h3" color="white" mb={1}>
+                <b>Need Help?</b>
               </Typography>
             </Box>
             <Box
@@ -140,14 +141,16 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               mb={1}
               alignItems={"center"}
             >
-              <IconBook2 color="white" />
-              <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
+              
+              <a href="/wizard/tutorial" style={{ textDecoration: "none", marginRight: 5 }}>
                 <Typography color="white" fontWeight={"bold"}>
                   Click for Tutorial
                 </Typography>
               </a>
+              <IconBook2 color="white" />
             </Box>
             <MendableSearchBar
+              placeholder="Help"
               style={{ darkMode: false, accentColor: "#123456" }}
               anon_key={"8fb50d66-58ba-40f6-86fb-ab2caeb2911e"}
             />

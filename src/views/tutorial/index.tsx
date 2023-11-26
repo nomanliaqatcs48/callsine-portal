@@ -12,10 +12,12 @@ import { useTutorial } from "src/hooks/wizard/useTutorial";
 import icon from "../../assets/images/icons/logo-color-2x.png";
 import imageBgcTop from "../../assets/images/users/Group3.png";
 import imageBgc from "../../assets/images/users/Rectangle1.png";
+import { useNavigate } from "react-router-dom";
 
 export default function VerticalLinearStepper() {
   const { loading, data, error } = useGetUserMe();
 
+  const navigate = useNavigate()
   const theme = useTheme();
 
   const downMd = useMediaQuery(theme.breakpoints.down("md"));
@@ -125,8 +127,13 @@ export default function VerticalLinearStepper() {
                         </Button>
                       )}
                       <Button
-                        disabled={index === 0}
-                        onClick={handleBack}
+                        // disabled={index === 0}
+                        onClick={() => {
+                          if(index === 0) {
+                            navigate(-1)
+                          }
+                          handleBack()
+                        }}
                         sx={{ mt: 1, mr: 1 }}
                         className="tw-text-white"
                       >
