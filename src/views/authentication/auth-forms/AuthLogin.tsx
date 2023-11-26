@@ -37,7 +37,8 @@ import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { loginService } from "../../../services/auth.service";
 import { saveString } from "../../../utils/storage";
 import { devLog, devLogError } from "../../../helpers/logs";
-import { Link } from "react-router-dom";
+import { save } from "../../../utils/storage";
+import { profileService } from "../../../services/profile.service";
 
 // ============================|| FIREBASE - LOGIN ||============================ //
 
@@ -84,7 +85,17 @@ const AuthLogin = ({ ...others }) => {
         await saveString("isAuthenticated", "yes");
         await saveString("token", res.data.access);
         await saveString("refresh", res.data.refresh);
-        window.location.href = "/people";
+
+        let response = await profileService();
+        if (response?.data) {  
+          await save("profile", response.data);
+          if(response.data?.subscription?.id) {
+            window.location.href = "/people";
+          } else {
+            window.location.href = "/wizard/checkout";
+          }
+        }
+       
         if (scriptedRef.current) {
           setStatus({ success: true });
           setSubmitting(false);
