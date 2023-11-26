@@ -369,7 +369,6 @@ const CreateOrEditPerson = ({
                         defaultValue={id ? defaultValue?.linkedin : ""}
                         fullWidth
                         {...register("linkedin", {
-                          required: "This is required field.",
                           maxLength: {
                             value: 255,
                             message:
