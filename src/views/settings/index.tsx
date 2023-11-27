@@ -15,6 +15,7 @@ import useGetTeamMe from "src/hooks/settings/useGetTeam";
 import useGetUserMe from "src/hooks/settings/useGetUser";
 import usePatchUsersMe from "src/hooks/settings/usePatchUser";
 import useUpdateTeam from "src/hooks/settings/useUpdateTeam";
+import { Alert, Snackbar } from "@mui/material";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import US_STATES from "src/utils/form-variables";
 
@@ -48,7 +49,7 @@ interface SelectField {
   name: string;
   type: "select";
   options: any;
-  isRequired: boolean,
+  isRequired: boolean;
 }
 
 type Field = TextFieldProps | SelectField;
@@ -56,7 +57,12 @@ type Field = TextFieldProps | SelectField;
 const companyFields: Field[] = [
   { label: "Company URL", name: "domain", type: "text", isRequired: false },
   { label: "Company Name", name: "name", type: "text", isRequired: false },
-  { label: "Company City", name: "company_city", type: "text", isRequired: false },
+  {
+    label: "Company City",
+    name: "company_city",
+    type: "text",
+    isRequired: false,
+  },
   {
     label: "Company State",
     name: "company_state",
@@ -80,9 +86,14 @@ const companyFields: Field[] = [
 ];
 
 const userFields: Field[] = [
-  { label: "First Name", name: "first_name", type: "text", isRequired: true},
+  { label: "First Name", name: "first_name", type: "text", isRequired: true },
   { label: "Last Name", name: "last_name", type: "text", isRequired: true },
-  { label: "Account Email Address", name: "email", type: "text", isRequired: true },
+  {
+    label: "Account Email Address",
+    name: "email",
+    type: "text",
+    isRequired: true,
+  },
   { label: "User City", name: "user_city", type: "text", isRequired: true },
   {
     label: "User State",
@@ -107,6 +118,21 @@ const SettingsPage: React.FC = () => {
     company_state: "",
     company_value_prop: "",
   });
+
+  const [alertMessage, setAlertMessage] = React.useState({
+    onRequestCompanyInfo: false,
+    onRequestMeInfo: false,
+    open: false,
+    error: false,
+    message: "",
+  });
+
+  const closeHandleAlert = () => {
+    setAlertMessage((prevAlertMessage) => ({
+      ...prevAlertMessage,
+      open: false,
+    }));
+  };
 
   const [isSubmitUser, setIsSubmitUser] = useState<boolean>(false);
 
@@ -147,28 +173,71 @@ const SettingsPage: React.FC = () => {
 
   const handleSaveUserInfo = async () => {
     setIsSubmitUser(true);
-    const {first_name, last_name, email, user_city, user_state, user_title} = userData;
-    if(first_name && last_name && email && user_city && user_title) {
-      await patchData({
-        first_name,
-        last_name,
-        email,
-        user_city,
-        user_state,
-        user_title,
-      });
-      setIsSubmitUser(false);
-    } 
+    setAlertMessage((prevAlertMessage) => ({
+      ...prevAlertMessage,
+      onRequestMeInfo: true,
+    }));
+    const { first_name, last_name, email, user_city, user_state, user_title } =
+      userData;
+    if (first_name && last_name && email && user_city && user_title) {
+      try {
+        await patchData({
+          first_name,
+          last_name,
+          email,
+          user_city,
+          user_state,
+          user_title,
+        });
+        setIsSubmitUser(false);
+        setAlertMessage((prevAlertMessage) => ({
+          ...prevAlertMessage,
+          onRequestMeInfo: false,
+          open: true,
+          error: false,
+          message: "Successfully updated!",
+        }));
+      } catch (e) {
+        setAlertMessage((prevAlertMessage) => ({
+          ...prevAlertMessage,
+          onRequestMeInfo: false,
+          open: true,
+          error: true,
+          message: "Successfully updated!",
+        }));
+      }
+    }
   };
 
   const handleSaveTeamInfo = async () => {
-    await updateTeam({
-      domain: teamDataState.domain,
-      name: teamDataState.name,
-      company_city: teamDataState.company_city,
-      company_state: teamDataState.company_state,
-      company_value_prop: teamDataState.company_value_prop,
-    });
+    setAlertMessage((prevAlertMessage) => ({
+      ...prevAlertMessage,
+      onRequestCompanyInfo: true,
+    }));
+    try {
+      await updateTeam({
+        domain: teamDataState.domain,
+        name: teamDataState.name,
+        company_city: teamDataState.company_city,
+        company_state: teamDataState.company_state,
+        company_value_prop: teamDataState.company_value_prop,
+      });
+      setAlertMessage((prevAlertMessage) => ({
+        ...prevAlertMessage,
+        onRequestCompanyInfo: false,
+        open: true,
+        error: false,
+        message: "Successfully updated!",
+      }));
+    } catch (e) {
+      setAlertMessage((prevAlertMessage) => ({
+        ...prevAlertMessage,
+        onRequestCompanyInfo: false,
+        open: true,
+        error: true,
+        message: "An error occured, please try again later.",
+      }));
+    }
   };
 
   const handleValue = (name: string, type: "user" | "team") => {
@@ -226,8 +295,19 @@ const SettingsPage: React.FC = () => {
               rows={field.type === "textarea" ? 4 : undefined}
               className="tw-my-2"
               inputProps={{ maxLength: 50 }}
-              error={isSubmitUser && field.isRequired && !handleValue(field.name, type) ? true: false}
-              helperText={isSubmitUser && field.isRequired && !handleValue(field.name, type) && "Please enter the value"}
+              error={
+                isSubmitUser &&
+                field.isRequired &&
+                !handleValue(field.name, type)
+                  ? true
+                  : false
+              }
+              helperText={
+                isSubmitUser &&
+                field.isRequired &&
+                !handleValue(field.name, type) &&
+                "Please enter the value"
+              }
             />
           </div>
         );
@@ -264,6 +344,18 @@ const SettingsPage: React.FC = () => {
 
   return (
     <>
+      <Snackbar
+        open={alertMessage.open}
+        autoHideDuration={6000}
+        onClose={() => closeHandleAlert()}
+      >
+        <Alert
+          onClose={() => closeHandleAlert()}
+          severity={alertMessage && alertMessage.error ? "error" : "success"}
+        >
+          {alertMessage.message}
+        </Alert>
+      </Snackbar>
       <Typography className="tw-text-[40px] tw-tracking-[0.8px] tw-text-black tw-font-comfortaa tw-font-bold">
         Settings
         <HtmlTooltip
@@ -305,6 +397,7 @@ const SettingsPage: React.FC = () => {
                   variant="contained"
                   className="tw-bg-primary tw-mt-2"
                   onClick={handleSaveTeamInfo}
+                  disabled={alertMessage.onRequestCompanyInfo}
                 >
                   Save Company Info
                 </Button>
@@ -338,6 +431,7 @@ const SettingsPage: React.FC = () => {
                 color="primary"
                 className="tw-mr-2 tw-bg-primary"
                 onClick={handleSaveUserInfo}
+                disabled={alertMessage.onRequestMeInfo}
               >
                 Save Your Info
               </Button>
