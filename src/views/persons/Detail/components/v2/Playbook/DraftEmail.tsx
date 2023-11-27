@@ -85,8 +85,11 @@ const DraftEmail = ({
     formState: { errors },
   } = useForm({ mode: "onChange" });
   const { mailAccountsData } = useMailAccounts(open);
-  const { regeneratePlaybook, updateProspectSequenceEvent } =
-    usePlaybook(false);
+  const {
+    regeneratePlaybook,
+    updateProspectSequenceEvent,
+    createEmailObjectPartially,
+  } = usePlaybook(false);
   const { emails } = useEmailsTab(open, {
     limit: 99999,
     offset: 0,
@@ -448,20 +451,35 @@ const DraftEmail = ({
     }
   };
 
-  const handleSaveDraft = () => {
-    let _data = {
+  const getData = (): {
+    in_reply_to: string | null;
+    from_email: string | null;
+    to: string;
+    subject: string;
+    html_message: string;
+  } => {
+    return {
       in_reply_to: getValues("in_reply_to")?.id || null,
       from_email: getValues("from_email")?.id || null,
       to: getValues("to") || "",
       subject: getValues("subject") || "",
-      html_message: getValues("html_message")?.replace(/\n/g, ""),
+      html_message: getValues("html_message")?.replace(/\n/g, "") || "",
     };
+  };
+
+  const handleUpdateDraft = () => {
+    let _data = getData();
     void updateProspectSequenceEvent(
       selectedSequenceEvent?.person,
       selectedData?.id,
       _data,
       onLoadApi
     );
+  };
+
+  const handleSaveDraft = () => {
+    let _data = getData();
+    void createEmailObjectPartially(selectedSequenceEvent, _data, onLoadApi);
   };
 
   const setValueHtmlMsg = () => {
@@ -600,20 +618,35 @@ const DraftEmail = ({
             )}
             <div className="tw-py-2 tw-flex tw-space-x-2 lg:tw-space-x-1">
               {selectedData?.id &&
-                Number(personCounts?.data?.scheduled_today) < 50 && (
+                Number(personCounts?.data?.scheduled_today) < 50 &&
+                selectedData?.status && (
                   <LoadingButton
                     type="button"
                     variant="outlined"
-                    onClick={handleSaveDraft}
+                    onClick={handleUpdateDraft}
                     className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
                     loading={false}
                     disabled={false}
                   >
                     <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
-                      Save Draft
+                      Update Draft
                     </span>
                   </LoadingButton>
                 )}
+              {!selectedData?.status && (
+                <LoadingButton
+                  type="button"
+                  variant="outlined"
+                  onClick={handleSaveDraft}
+                  className="tw-border tw-border-[#569ade] tw-flex tw-justify-around tw-items-center tw-py-2 sm:tw-py-3 lg:tw-px-1"
+                  loading={false}
+                  disabled={false}
+                >
+                  <span className="tw-px-1.5 tw-text-xs tw-font-medium lg:tw-text-[16px] lg:tw-tracking-[0.32px]">
+                    Save Draft
+                  </span>
+                </LoadingButton>
+              )}
             </div>
           </Box>
         </div>
@@ -781,7 +814,7 @@ const DraftEmail = ({
               draftText={getValues("html_message")}
               personInformation={personData}
             />
-          </div>          
+          </div>
         </div>
 
         <ErrorMessage

@@ -10,6 +10,7 @@ export const endpoints = {
   PLAYBOOKS: "/api/playbooks/",
   PROMPT_RESPONSES: "/api/prompt-responses/",
   EMAILS: "/api/emails/",
+  DRAFTEMAILS: "/api/draft-email/",
   ORGS: "/api/orgs/",
   IMPORT_PEOPLE: "/api/bulk-import/",
   SEQUENCE_EVENTS: "/api/sequence-events/",

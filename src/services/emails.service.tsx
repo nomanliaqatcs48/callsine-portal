@@ -16,6 +16,18 @@ export const getEmailDetailService = async (id: number, personId: number) => {
   return await http.get(`${endpoints.EMAILS}${id}/?person=${personId}`);
 };
 
+export const createDraftEmailService = async (
+  selectedSequenceEvent: any,
+  data: any
+) => {
+  console.log("selectedSequenceEvent", selectedSequenceEvent);
+
+  return await http.post(`${endpoints.DRAFTEMAILS}`, {
+    ...data,
+    selectedSequenceEvent,
+  });
+};
+
 export const createEmailService = async (personId: number, data: any) => {
   return await http.post(`${endpoints.EMAILS}?person=${personId}`, data);
 };

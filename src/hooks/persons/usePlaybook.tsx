@@ -2,8 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { insertBodyLoader, removeBodyLoader } from "../../helpers/loaders";
 import { devLog, devLogError } from "../../helpers/logs";
-import { ToastSuccess } from "../../helpers/toast";
-import { updateEmailService } from "../../services/emails.service";
+import { ToastError, ToastSuccess } from "../../helpers/toast";
+import {
+  createDraftEmailService,
+  updateEmailService,
+} from "../../services/emails.service";
 import {
   getPersonDetailService,
   updatePersonDetailService,
@@ -97,8 +100,39 @@ export const usePlaybook = (load: boolean = true) => {
     onLoadApi: any
   ) => {
     insertBodyLoader();
+    console.log("HEREEE");
     try {
       let response = await updateEmailService(personId, id, data);
+      if (response?.data) {
+        devLog(() => {
+          console.log("response", response?.data);
+        });
+        setTimeout(() => {
+          onLoadApi();
+          removeBodyLoader();
+          ToastSuccess("Prospect sequence event successfully updated.");
+        });
+      }
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e?.response);
+      });
+      setTimeout(() => {
+        removeBodyLoader();
+        ToastError("Something went wrong.");
+      });
+    }
+  };
+
+  const createEmailObjectPartially = async (
+    selectedSequenceEvent: any,
+    data: any,
+    onLoadApi: any
+  ) => {
+    insertBodyLoader();
+    try {
+      let response = await createDraftEmailService(selectedSequenceEvent, data);
+
       if (response?.data) {
         devLog(() => {
           console.log("response", response?.data);
@@ -134,5 +168,6 @@ export const usePlaybook = (load: boolean = true) => {
     showDraft,
     setShowDraft,
     updateProspectSequenceEvent,
+    createEmailObjectPartially,
   };
 };
