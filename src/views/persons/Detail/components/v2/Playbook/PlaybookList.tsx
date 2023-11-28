@@ -53,6 +53,7 @@ const PlaybookList = ({
     if (data) {
       if (playbookValue) {
         setSelectedIndex(+playbookValue - 1);
+        setSelectedSequenceEvent(data[+playbookValue - 1]);
         setSelectedData(data[+playbookValue - 1]?.scheduledEmail);
       } else {
         setSelectedIndex(0);
