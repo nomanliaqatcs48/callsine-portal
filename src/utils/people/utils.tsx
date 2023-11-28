@@ -201,7 +201,7 @@ export const _columns: any = () => {
               ),
               text: (
                 <span className="tw-opacity-90 tw-text-sm tw-font-medium">
-                  {`${cell?.row?.original?.city || ""}${
+                  {`${cell?.row?.original?.person_city || ""}${
                     cell?.row?.original?.state
                       ? ", " + cell?.row?.original?.state
                       : ""
