@@ -579,22 +579,22 @@ export const _columns: any = () => {
             ToastSuccess("Person successfully enabled.");
           };
           return (
-            <>
-              {cell?.row?.original?.got_data ? (
-                <IconCircleCheck
+                <div style={{ display: "flex", alignItems: "center" }}>
+                   {cell.row.original.force_enable ? (
+                  <IconCircleCheck
                   style={{ color: theme.palette.success.main }}
                   size="20"
                   strokeWidth={3}
                   className=""
                 />
-              ) : (
-                <div style={{ display: "flex", alignItems: "center" }}>
+                ):(
                   <IconCircleX
                     style={{ color: theme.palette.error.main }}
                     size="20"
                     strokeWidth={3}
                     className=""
                   />
+                )}
                   <Button
                     variant="text"
                     className="tw-mx-2"
@@ -604,8 +604,6 @@ export const _columns: any = () => {
                     {cell.row.original.force_enable ? "Enabled" : "Enable"}
                   </Button>
                 </div>
-              )}
-            </>
           );
         },
       },
