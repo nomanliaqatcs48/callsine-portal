@@ -46,9 +46,9 @@ const LoginMain = () => {
                   Unleash the power of AI for sales
                 </div>
                 <p className="tw-font-normal tw-text-[30px] tw-leading-[46px]">
-                  CallSine™ is for salespeople and teams looking for an at scale
-                  email outreach platform sending individualized emails to each
-                  prospect.
+                  CallSine™ is an email outreach platform designed for
+                  salespeople and teams seeking to send individualized emails at
+                  scale to each prospect.
                 </p>
               </Box>
             </Box>
