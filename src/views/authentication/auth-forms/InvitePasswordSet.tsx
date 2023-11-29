@@ -67,7 +67,6 @@ const SetPassword: React.FC<SetPasswordProps> = () => {
   };
   const handleClose = () => {
     setOpen(false);
-    handleNav();
   };
 
   const handleNav = () => {
@@ -151,7 +150,7 @@ const SetPassword: React.FC<SetPasswordProps> = () => {
                 <DialogContentText>You can now login.</DialogContentText>
               </DialogContent>
               <DialogActions>
-                <Button onClick={handleClose} color="primary">
+                <Button onClick={handleNav} color="primary">
                   Go to Login
                 </Button>
               </DialogActions>
