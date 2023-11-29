@@ -70,7 +70,7 @@ const CopyClipboard = ({ copyContent, onClick }: CopyClipboardTypes) => {
   };
 
   return (
-    <Tooltip open={open} onClose={handleClose} title="Copied">
+    <Tooltip open={open} onClose={handleClose} title="Copied" PopperProps={{style:{ zIndex:999 }}}>
       <ButtonBase sx={{ borderRadius: "12px", overflow: "hidden" }}>
         <div
           onClick={handleClick}
