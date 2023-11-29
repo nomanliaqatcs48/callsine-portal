@@ -97,6 +97,12 @@ const DraftEmail = ({
   let countIndexForEmailSubject: number = 0;
 
   useEffect(() => {
+    if (!selectedData) {
+      setValue("html_message", "");
+    }
+  });
+
+  useEffect(() => {
     setIsLoading((prev: any) => ({
       ...prev,
       from_email: true,
