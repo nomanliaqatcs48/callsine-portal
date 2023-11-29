@@ -49,3 +49,7 @@ code {
   opacity: 1;
   margin-top: 0.5rem;
 }
+
+.css-q00n6v-MuiPopper-root-MuiTooltip-popper {
+  z-index: 999 !important;
+}

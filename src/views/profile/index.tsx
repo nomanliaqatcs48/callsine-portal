@@ -251,7 +251,7 @@ const Profile = () => {
                       {...register("password1", {
                         required: "This is required field.",
                         maxLength: {
-                          value: 255,
+                          value: 50,
                           message: "Too many characters",
                         },
                       })}
@@ -304,7 +304,7 @@ const Profile = () => {
                       {...register("password2", {
                         required: "This is required field.",
                         maxLength: {
-                          value: 255,
+                          value: 50,
                           message: "Too many characters",
                         },
                       })}

@@ -250,8 +250,8 @@ const CreateOrEditPerson = ({
                         {...register("first_name", {
                           required: "This is required field.",
                           maxLength: {
-                            value: 255,
-                            message: "First name cannot exceed 255 characters",
+                            value: 50,
+                            message: "First name cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -280,8 +280,8 @@ const CreateOrEditPerson = ({
                         {...register("last_name", {
                           required: "This is required field.",
                           maxLength: {
-                            value: 255,
-                            message: "Last name cannot exceed 255 characters",
+                            value: 50,
+                            message: "Last name cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -310,8 +310,8 @@ const CreateOrEditPerson = ({
                         {...register("job_title", {
                           required: "This is required field.",
                           maxLength: {
-                            value: 255,
-                            message: "Job title cannot exceed 255 characters",
+                            value: 50,
+                            message: "Job title cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -341,9 +341,9 @@ const CreateOrEditPerson = ({
                           required: "This is required field.",
                           pattern: emailAddressPattern,
                           maxLength: {
-                            value: 255,
+                            value: 50,
                             message:
-                              "Email address cannot exceed 255 characters",
+                              "Email address cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -370,9 +370,9 @@ const CreateOrEditPerson = ({
                         fullWidth
                         {...register("linkedin", {
                           maxLength: {
-                            value: 255,
+                            value: 50,
                             message:
-                              "LinkedIn URL cannot exceed 255 characters",
+                              "LinkedIn URL cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -426,9 +426,9 @@ const CreateOrEditPerson = ({
                         {...register("company_domain", {
                           required: "This is required field.",
                           maxLength: {
-                            value: 255,
+                            value: 50,
                             message:
-                              "Company website cannot exceed 255 characters",
+                              "Company website cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -456,9 +456,9 @@ const CreateOrEditPerson = ({
                         {...register("industry", {
                           required: "This is required field.",
                           maxLength: {
-                            value: 255,
+                            value: 50,
                             message:
-                              "Company name cannot exceed 255 characters",
+                              "Company name cannot exceed 50 characters",
                           },
                         })}
                       />

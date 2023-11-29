@@ -72,7 +72,15 @@ const PlaybooksPage = () => {
             <Box className="playbook-dropdown-container tw-flex tw-flex-col tw-items-center tw-px-2 xl:tw-flex-row xl:tw-justify-between xl:tw-px-4">
               <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2" />
 
-              <Box className="tw-w-full tw-flex tw-justify-center xl:tw-justify-end tw-mt-6">
+              <Box className="tw-w-full tw-flex tw-justify-between tw-mt-5 tw-mb-5">
+                <div style={{width: "65%"}}>
+                  <input
+                    type="search"
+                    placeholder="Search"
+                    onChange={handleSearchOnBeforeChange}
+                    className="tw-bg-[#F8FBFF] tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-px-[16px] tw-py-[11px] tw-outline-none placeholder:tw-text-callsineGray"
+                  />
+                </div>
                 <TooltipComponent text="Click here to add a new playbook.">
                   <CreateOrEditPlaybook
                     onClick={() => null}
@@ -80,21 +88,17 @@ const PlaybooksPage = () => {
                     selectedData={selectedData}
                     variant="contained"
                     color="primary"
-                    className="tw-bg-green-600 hover:tw-bg-green-500 tw-text-[16px] tw-font-medium tw-text-white tw-px-[27px] tw-py-[13px] tw-rounded-[8px] tw-uppercase"
+                    className="tw-bg-green-600 hover:tw-bg-green-500 tw-text-[14px] tw-font-medium tw-text-white tw-px-[16px] tw-py-[8px] tw-rounded-[8px] tw-uppercase"
                   >
                     Add Playbook
                   </CreateOrEditPlaybook>
                 </TooltipComponent>
+                
               </Box>
             </Box>
-            <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
-              <input
-                type="search"
-                placeholder="Search"
-                onChange={handleSearchOnBeforeChange}
-                className="tw-bg-[#F8FBFF] tw-text-[16px] tw-font-light tw-rounded-full tw-border tw-border-[#eeeff0] tw-w-full tw-py-[1.10rem] tw-px-[1.2rem] tw-outline-none placeholder:tw-text-callsineGray"
-              />
-            </Box>
+            {/* <Box className="search-container tw-py-3 tw-px-2 xl:tw-pt-6 xl:tw-pb-4 xl:tw-px-5">
+              
+            </Box> */}
             <Box className="list-container" >
               {playbookData.length > 0 ? (
               <PlaybookList
