@@ -17,6 +17,7 @@ const TooltipComponent: React.FC<React.PropsWithChildren<TooltipProps>> = ({
       <Tooltip
         sx={{ fontSize: "1.5em", padding: "10px" }}
         placement="top"
+        PopperProps={{style:{zIndex:999}}}
         open={isTourActive}
         title={isTourActive ? text : ""}
         arrow
