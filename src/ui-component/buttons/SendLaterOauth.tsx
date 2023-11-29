@@ -38,6 +38,7 @@ const SendLaterOauth = ({
   ...props
 }: SendLaterTypes) => {
   const [open, setOpen] = useState<boolean>(false);
+  const [dateError, setDateError] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
     form: false,
@@ -46,18 +47,20 @@ const SendLaterOauth = ({
 
   useEffect(() => {
     if (open) {
+      setDateError(false)
       useForm?.register("scheduled_time", {
         required: "This is required field.",
       });
       useForm?.setValue("scheduled_time", null);
 
       setChecked(false);
-    } else {
-      useForm?.setValue(
-        "scheduled_time",
-        moment.utc().format("YYYY-MM-DD HH:mm:ss")
-      );
-    }
+    } 
+    // else {
+    //   useForm?.setValue(
+    //     "scheduled_time",
+    //     moment.utc().format("YYYY-MM-DD HH:mm:ss")
+    //   );
+    // }
   }, [open]);
 
   const handleOpen = () => setOpen(true);
@@ -90,6 +93,11 @@ const SendLaterOauth = ({
       "scheduled_time",
       moment.utc(value).format("YYYY-MM-DD HH:mm:ss")
     );
+    if(new Date() >= new Date(value)){
+      setDateError(true)
+    } else{
+      setDateError(false)
+    }
     useForm?.trigger("scheduled_time");
   };
 
@@ -169,6 +177,7 @@ const SendLaterOauth = ({
                         />
                       </DemoContainer>
                     </LocalizationProvider>
+                    {dateError && <p className="css-1t5tr1i-MuiFormHelperText-root"> Please select a future date and time</p>}
                     <ErrorMessage
                       errors={useForm?.errors}
                       name="scheduled_time"
@@ -227,7 +236,7 @@ const SendLaterOauth = ({
               onClick={useForm?.handleSubmit((data: any, event: any) =>
                 onSubmit(data, event)
               )}
-              disabled={isLoading?.form}
+              disabled={isLoading?.form || dateError}
               loading={isLoading?.form}
               variant="contained"
               color="primary"
