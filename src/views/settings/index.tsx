@@ -18,6 +18,11 @@ import useUpdateTeam from "src/hooks/settings/useUpdateTeam";
 import { Alert, Snackbar } from "@mui/material";
 import { HtmlTooltip } from "src/ui-component/tooltip/HtmlTooltip";
 import US_STATES from "src/utils/form-variables";
+import { save, load } from "src/utils/storage";
+
+import { removeBodyLoader } from "../../helpers/loaders";
+import { devLog, devLogError } from "../../helpers/logs";
+import { profileService } from "../../services/profile.service";
 
 interface TeamState {
   domain: string;
@@ -171,6 +176,25 @@ const SettingsPage: React.FC = () => {
     }
   }, [teamData]);
 
+  const getProfile = async () => {
+    try {   
+        let res = await profileService();
+        if (res?.data) {
+          await save("profile", res.data);
+          window.location.reload();
+        }
+        devLog(() => {
+          console.log("res", res);
+        });
+    } catch (e: any) {
+      devLogError(() => {
+        console.error(e);
+      });
+
+      removeBodyLoader();
+    }
+  };
+
   const handleSaveUserInfo = async () => {
     setIsSubmitUser(true);
     setAlertMessage((prevAlertMessage) => ({
@@ -197,6 +221,7 @@ const SettingsPage: React.FC = () => {
           error: false,
           message: "Successfully updated!",
         }));
+        getProfile()
       } catch (e) {
         setAlertMessage((prevAlertMessage) => ({
           ...prevAlertMessage,
@@ -294,7 +319,7 @@ const SettingsPage: React.FC = () => {
               multiline={field.type === "textarea"}
               rows={field.type === "textarea" ? 4 : undefined}
               className="tw-my-2"
-              inputProps={{ maxLength: 50 }}
+              inputProps={{ maxLength: 40 }}
               error={
                 isSubmitUser &&
                 field.isRequired &&

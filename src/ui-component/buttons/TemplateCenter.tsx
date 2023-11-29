@@ -140,7 +140,7 @@ const TemplateCenter: React.FC<TemplateCenterProps> = ({ disabled }) => {
         <DialogTitle className="tw-text-lg">Template Center</DialogTitle>
         <DialogContent style={{ height: "500px", overflowY: "auto" }}>
           <DialogContentText>
-            Find a template to use in your next awesome playbook!
+          Find a Template from the below and use it in your next awesome playbook simply by copying and pasting into your prompt!
           </DialogContentText>
           <input
             type="search"

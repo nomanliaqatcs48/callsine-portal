@@ -150,8 +150,9 @@ const useWizard = () => {
     {
       label: "Step 3: Target URL",
       description:
-        "Please provide a URL from the target prospect you added in the last step. This helps the system start gathering relevant data for your outreach.",
-      content: () => (
+        // "Please provide a URL from the target prospect you added in the last step. This helps the system start gathering relevant data for your outreach.",
+        "Please provide the company URL associated with the target prospect you added in the last step",
+        content: () => (
         <TextField
           style={{ marginTop: 10 }}
           fullWidth

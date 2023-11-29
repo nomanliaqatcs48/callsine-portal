@@ -142,7 +142,7 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               alignItems={"center"}
             >
               
-              <a href="/wizard/tutorial" style={{ textDecoration: "none", marginRight: 5 }}>
+              <a href="/wizard/tutorial" style={{ textDecoration: "none", marginRight: "1.7rem" }}>
                 <Typography color="white" fontWeight={"bold"}>
                   Click for Tutorial
                 </Typography>
