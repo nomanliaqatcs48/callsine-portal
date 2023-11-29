@@ -51,7 +51,7 @@ const DeleteProspectSequence = ({
 
   return (
     <>
-      <Tooltip title="Delete Prospect Sequence">
+      <Tooltip title="Delete Prospect Sequence" PopperProps={{style:{zIndex:999}}}>
         <Button
           disableElevation
           type="button"

@@ -96,7 +96,7 @@ const NavItem = ({ item, level }: NavItemTypes) => {
       if (item?.isDisabled) {
         return (
           <>
-            <Tooltip title="Check back soon!">
+            <Tooltip title="Check back soon!" PopperProps={{style:{zIndex:999}}}>
               <Box
                 ref={ref}
                 {...props}

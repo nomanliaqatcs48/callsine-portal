@@ -61,7 +61,7 @@ const DeleteSelectedUserData = ({
 
   return (
     <>
-      <Tooltip title="Delete selected user data">
+      <Tooltip title="Delete selected user data" PopperProps={{style:{zIndex:999}}}>
         <Button
           onClick={handleOpen}
           disabled={false}
