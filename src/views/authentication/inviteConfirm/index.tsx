@@ -39,7 +39,7 @@ const LoginMain = () => {
               />
               <Box
                 className="tw-px-9 tw-space-y-5 tw-text-white 2xl:tw-px-20 3xl:tw-px-40 4xl:tw-px-52"
-                style={{ position: "relative", zIndex: "999999" }}
+                style={{ position: "relative" }}
               >
                 <div className="tw-font-normal tw-text-[80px] tw-leading-[100px]">
                   Unleash the power of AI for sales
