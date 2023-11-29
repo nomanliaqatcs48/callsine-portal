@@ -112,8 +112,8 @@ const Banner = () => {
                   },
                 }}
               >
-                CallSine™ is for salespeople and teams looking for an at scale
-                email outreach platform sending individualized emails to each
+                CallSine™ is an email outreach platform designed for salespeople
+                and teams seeking to send individualized emails at scale to each
                 prospect.
                 {/*CallSine™ was developed for salespeople and teams that are
                 looking for a platform that does email outreach, at scale, and
