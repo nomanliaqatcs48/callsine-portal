@@ -1,3 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.css-q00n6v-MuiPopper-root-MuiTooltip-popper .css-a8ahwp{
+    z-index: 999 !important;
+}
