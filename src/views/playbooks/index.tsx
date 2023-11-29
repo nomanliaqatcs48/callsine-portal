@@ -73,7 +73,7 @@ const PlaybooksPage = () => {
               <Box className="tw-text-[20px] tw-tracking-[0.4px] tw-text-black tw-font-medium tw-py-2" />
 
               <Box className="tw-w-full tw-flex tw-justify-between tw-mt-5 tw-mb-5">
-                <div style={{width: "65%"}}>
+                <div>
                   <input
                     type="search"
                     placeholder="Search"

@@ -24,7 +24,7 @@ const AddUserData = ({ onLoadApi }: AddUserDataTypes) => {
 
   return (
     <>
-      <Tooltip title="Add Materials" PopperProps={{style:{zIndex:999}}}>
+      <Tooltip title="Add Materials">
         <Button
           onClick={handleOpen}
           disabled={false}

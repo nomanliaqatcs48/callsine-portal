@@ -326,7 +326,7 @@ const CreateOrEditPlaybook = ({
     );
 
     return (
-      <Tooltip title={tooltipContent} placement="left" PopperProps={{style:{zIndex:999}}}>
+      <Tooltip title={tooltipContent} placement="left">
         <Typography>Hover over me to see context tag definitions</Typography>
       </Tooltip>
     );

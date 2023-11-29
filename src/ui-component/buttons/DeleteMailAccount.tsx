@@ -51,7 +51,7 @@ const DeleteMailAccount = ({
 
   return (
     <>
-      <Tooltip title="Delete" PopperProps={{style:{zIndex:999}}}>
+      <Tooltip title="Delete">
         <Button
           onClick={handleOpen}
           className="tw-rounded-full tw-p-2 tw-min-w-fit tw-flex tw-flex-row tw-justify-center tw-mx-auto"

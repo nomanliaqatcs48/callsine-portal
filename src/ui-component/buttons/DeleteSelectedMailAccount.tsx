@@ -61,7 +61,7 @@ const DeleteSelectedMailAccounts = ({
 
   return (
     <>
-      <Tooltip title="Delete selected mail accounts" PopperProps={{style:{zIndex:999}}}>
+      <Tooltip title="Delete selected mail accounts">
         <Button
           onClick={handleOpen}
           disabled={false}

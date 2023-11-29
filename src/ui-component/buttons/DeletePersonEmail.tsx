@@ -49,7 +49,7 @@ const DeletePersonEmail = ({
 
   return (
     <>
-      <Tooltip title="Delete Email" PopperProps={{style:{zIndex:999}}}>
+      <Tooltip title="Delete Email">
         <Button
           disableElevation
           type="button"

@@ -197,13 +197,14 @@ const SettingsPage: React.FC = () => {
 
   const handleSaveUserInfo = async () => {
     setIsSubmitUser(true);
-    setAlertMessage((prevAlertMessage) => ({
-      ...prevAlertMessage,
-      onRequestMeInfo: true,
-    }));
+ 
     const { first_name, last_name, email, user_city, user_state, user_title } =
       userData;
     if (first_name && last_name && email && user_city && user_title) {
+      setAlertMessage((prevAlertMessage) => ({
+        ...prevAlertMessage,
+        onRequestMeInfo: true,
+      }));
       try {
         await patchData({
           first_name,
