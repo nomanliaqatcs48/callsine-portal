@@ -1,6 +1,8 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 
+import { Link } from "react-router-dom";
+
 // material-ui
 import { useTheme } from "@mui/material/styles";
 import {
@@ -87,15 +89,15 @@ const AuthLogin = ({ ...others }) => {
         await saveString("refresh", res.data.refresh);
 
         let response = await profileService();
-        if (response?.data) {  
+        if (response?.data) {
           await save("profile", response.data);
           // if(response.data?.subscription?.id) {
-            window.location.href = "/people";
+          window.location.href = "/people";
           // } else {
           //   window.location.href = "/wizard/checkout";
           // }
         }
-       
+
         if (scriptedRef.current) {
           setStatus({ success: true });
           setSubmitting(false);
@@ -334,7 +336,7 @@ const AuthLogin = ({ ...others }) => {
               justifyContent="end"
               spacing={1}
             >
-              {/*<FormControlLabel
+              {/* <FormControlLabel
                 control={
                   <Checkbox
                     checked={checked}
@@ -344,23 +346,25 @@ const AuthLogin = ({ ...others }) => {
                   />
                 }
                 label="Remember me"
-              />*/}
-              {/*<Typography
+              /> */}
+              <Typography
+                component={Link}
+                to="/password-reset"
                 variant="subtitle1"
                 color="secondary"
                 sx={{ textDecoration: "none", cursor: "pointer" }}
               >
                 Forgot Password?
-              </Typography>*/}
+              </Typography>
 
-              {/*<Typography
+              {/* <Typography
                 component={Link}
                 to="/signup"
                 variant="subtitle1"
                 className="tw-text-xs tw-no-underline tw-cursor-pointer tw-text-primaryLight tw-font-medium hover:tw-text-primary"
               >
                 Don&apos;t have an account?
-              </Typography>*/}
+              </Typography> */}
             </Stack>
             {errors.submit && (
               <Box sx={{ mt: 3 }}>

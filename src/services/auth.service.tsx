@@ -16,3 +16,14 @@ export const microsoftAuthService = async (payload: any): Promise<any> => {
 export const googleAuthService = async (payload: any): Promise<any> => {
   return await http.post(`${endpoints.GOOGLEAUTH}`, payload);
 };
+
+export const passwordResetService = async (payload: any): Promise<any> => {
+  return await http.post(`${endpoints.PASSWORD_RESET}`, payload);
+};
+
+export const passwordConfirmService = async (
+  token: string,
+  payload: any
+): Promise<any> => {
+  return await http.post(`${endpoints.PASSWORD_CONFIRM}${token}/`, payload);
+};
