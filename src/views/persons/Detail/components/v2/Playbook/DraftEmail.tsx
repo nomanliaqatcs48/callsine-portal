@@ -100,7 +100,7 @@ const DraftEmail = ({
     if (!selectedData) {
       setValue("html_message", "");
     }
-  });
+  }, [selectedData, selectedSequenceEvent, setValue]);
 
   useEffect(() => {
     setIsLoading((prev: any) => ({
