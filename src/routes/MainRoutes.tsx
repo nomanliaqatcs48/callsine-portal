@@ -4,7 +4,7 @@ import { lazy } from "react";
 import SettingsPage from "src/views/settings";
 import MainLayout from "../layout/MainLayout";
 import Loadable from "../ui-component/Loadable";
-import Authenticated from "../ui-component/authentication/Authenticated";
+import Authenticated from "../ui-component/authentication/AuthenicatedSubscription";
 
 // utilities routing
 const DashboardDefault = Loadable(lazy(() => import("../views/dashboard")));

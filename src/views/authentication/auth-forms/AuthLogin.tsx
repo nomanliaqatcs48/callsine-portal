@@ -89,11 +89,11 @@ const AuthLogin = ({ ...others }) => {
         let response = await profileService();
         if (response?.data) {  
           await save("profile", response.data);
-          // if(response.data?.subscription?.id) {
+          if(response.data?.subscription?.id) {
             window.location.href = "/people";
-          // } else {
-          //   window.location.href = "/wizard/checkout";
-          // }
+          } else {
+            window.location.href = "/wizard/checkout";
+          }
         }
        
         if (scriptedRef.current) {
