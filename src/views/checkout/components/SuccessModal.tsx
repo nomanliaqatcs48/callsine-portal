@@ -1,4 +1,5 @@
 import { Button, Dialog, DialogContent } from "@mui/material";
+import { useEffect, useState } from "react";
 
 interface SuccessModalProps {
   isOpen: boolean;
@@ -13,8 +14,16 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
   message,
   isSuccess,
 }) => {
+  
+  const [teamId, setTeamId] = useState(null)
+  useEffect(() => {
+    let profile: any = localStorage.getItem("profile");
+    profile = JSON.parse(profile);
+    setTeamId(profile?.team || null)
+  },[])
+  
   if (!isOpen) return null;
-
+  
   return (
     <Dialog
       open={isOpen}
@@ -39,7 +48,7 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
             <div className="mb-4 tw-mt-5">
               <p className="text-gray-700">{message}</p>
             </div>
-            {isSuccess && (
+            {isSuccess && !teamId &&(
               <div className="mb-4 tw-mt-5">
                 <p className="text-gray-700">
                   Time to onboard using our magic wizard!
@@ -50,14 +59,18 @@ const SuccessModal: React.FC<SuccessModalProps> = ({
               <Button
                 onClick={() => {
                   if (isSuccess) {
+                    if(teamId){
+                      window.location.href = "/people";
+                    } else {
                     window.location.href = "/wizard/campaign";
+                    }
                   } else {
                     onClose();
                   }
                 }}
-                className="px-4 py-2 tw-bg-blue-600 tw-text-white rounded-md hover:bg-blue-700"
+                className="px-4 py-2 tw-bg-blue-600 tw-text-white rounded-md"
               >
-                {isSuccess ? "Take Me There" : "Go Back"}
+                {isSuccess ? teamId ? "Go to people" : "Take Me There" : "Go Back"}
               </Button>
             </div>
           </div>
