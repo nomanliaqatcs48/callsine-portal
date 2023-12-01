@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import {
   useTheme,
   useMediaQuery,
@@ -14,7 +13,6 @@ import {
 // project imports
 import AuthWrapper from "../AuthWrapper";
 import Logo from "../../../ui-component/Logo";
-import AuthFooter from "../../../ui-component/cards/AuthFooter";
 import { ToastError, ToastSuccess } from "src/helpers/toast";
 import { passwordResetService } from "src/services/auth.service";
 
@@ -26,15 +24,34 @@ const Reset: React.FC = () => {
 
   const [email, setEmail] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
+  const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+
+  const validateEmail = (email: string): boolean => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    setIsEmailValid(validateEmail(emailValue));
+  };
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
+    if (!isEmailValid) {
+      ToastError("Invalid email address");
+      return;
+    }
 
     try {
       const response = await passwordResetService({ email });
       if (response.status === 200) {
         ToastSuccess(response.data.message);
-        setSuccessMessage("A password reset email has been sent.");
+        setSuccessMessage(
+          `Check ${email} inbox or spam folder for password reset link.`
+        );
         setEmail("");
       } else {
         ToastError(response.data.message);
@@ -93,7 +110,7 @@ const Reset: React.FC = () => {
                     margin="normal"
                     type="email"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={handleEmailChange}
                     required
                   />
                   <Box sx={{ mt: 2 }}>
@@ -104,19 +121,10 @@ const Reset: React.FC = () => {
                       variant="contained"
                       color="primary"
                       className="tw-bg-primary"
+                      disabled={!isEmailValid || email.length === 0}
                     >
                       Reset Password
                     </Button>
-                  </Box>
-                  <Box sx={{ mt: 2, textAlign: "center" }}>
-                    <Typography
-                      variant="subtitle1"
-                      component={Link}
-                      to="/login"
-                      sx={{ textDecoration: "none" }}
-                    >
-                      Back to Login
-                    </Typography>
                   </Box>
                 </form>
                 {successMessage && (
