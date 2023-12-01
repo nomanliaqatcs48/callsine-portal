@@ -506,6 +506,7 @@ const DraftEmail = ({
     if (selectedOption.value === "add-account") {
       setIsCreateMailAccountOpen(true);
     } else {
+      console.log({ selectedData });
       setValue("from_email", selectedOption);
       trigger("from_email");
       // setCurrentSignature(event?.signature || "");
@@ -518,10 +519,11 @@ const DraftEmail = ({
     setIsCreateMailAccountOpen(false);
   };
 
-  const mailAccountsOptions = mailAccountsData.map((item) => ({
-    label: item.email,
-    value: item.id,
-  }));
+  const mailAccountsOptions = mailAccountsData.map((item: any, idx: number) => {
+    item.label = item.email;
+    item.value = item.id;
+    return item;
+  });
 
   mailAccountsOptions.push({
     label: " + ADD NEW SENDER ACCOUNT",
