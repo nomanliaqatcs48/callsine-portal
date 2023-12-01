@@ -42,7 +42,6 @@ const ConfirmPassword: React.FC = () => {
 
     try {
       const response = await passwordConfirmService(token, { newPassword });
-      console.log({ response });
       if (response.status === 200) {
         ToastSuccess(response.data.message);
       } else {
