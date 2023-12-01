@@ -418,6 +418,11 @@ export const _columns: any = () => {
         sorting_id: "org__name",
       },
       {
+        Header: "Company Website",
+        accessor: "company_website",
+        sorting_id: "company_website",
+      },
+      {
         Header: "Industry",
         accessor: "industry",
         sorting_id: "industry",
