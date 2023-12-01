@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Alert from "@mui/material/Alert";
@@ -16,6 +18,8 @@ const ConfirmPassword: React.FC = () => {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const token = queryParams.get("token");
+
+  const navigate = useNavigate();
 
   const passwordsMatch = newPassword === confirmPassword;
   const isPasswordLongEnough = newPassword.length >= 8;
@@ -44,6 +48,9 @@ const ConfirmPassword: React.FC = () => {
       const response = await passwordConfirmService(token, { newPassword });
       if (response.status === 200) {
         ToastSuccess(response.data.message);
+        setTimeout(() => {
+          navigate("/login");
+        }, 500);
       } else {
         ToastError(response.data.message);
       }
