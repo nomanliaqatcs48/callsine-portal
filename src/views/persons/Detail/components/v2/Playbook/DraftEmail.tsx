@@ -504,9 +504,7 @@ const DraftEmail = ({
 
   const handleChangeFromEmail = (selectedOption: any) => {
     if (selectedOption.value === "add-account") {
-      console.log("CLIECKED ADDACCOUNT");
       setIsCreateMailAccountOpen(true);
-      console.log({ isCreateMailAccountOpen });
     } else {
       setValue("from_email", selectedOption);
       trigger("from_email");
