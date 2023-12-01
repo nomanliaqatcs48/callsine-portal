@@ -32,7 +32,7 @@ const Reset: React.FC = () => {
 
     try {
       const response = await passwordResetService({ email });
-      if (response.data.message === "Email sent successfully") {
+      if (response.status === 200) {
         ToastSuccess(response.data.message);
         setSuccessMessage("A password reset email has been sent.");
         setEmail("");
