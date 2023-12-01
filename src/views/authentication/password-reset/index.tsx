@@ -12,7 +12,7 @@ const index = () => {
   return (
     <>
       <Helmet>
-        <title>Signup | CallSine</title>
+        <title>Reset Password | CallSine</title>
       </Helmet>
       <Box className="signup-page">
         <Box className="">
