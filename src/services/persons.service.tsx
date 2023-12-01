@@ -8,6 +8,7 @@ export const getPeopleService = async (
   isOrderDesc: any,
   searchFilterValue: any,
   user_id: any,
+  sites_enabled: any,
   schedEmailNull?: any,
   schedEmailNotNull?: any,
   schedEmailToday?: any,
@@ -22,6 +23,7 @@ export const getPeopleService = async (
   let _companyFilter = `&org_name=${searchFilterValue?.company}`;
   let _industryFilter = `&industry=${searchFilterValue?.industry}`;
   let _userFilter = user_id ? `&assigned_user=${user_id}` : "";
+  let _sitesEnabled = sites_enabled ? `&force_enable_or_got_data=True` : "";
   let _has_null_next_scheduled_email = schedEmailNull
     ? "&has_null_next_scheduled_email=true"
     : "";
@@ -34,7 +36,7 @@ export const getPeopleService = async (
   let _last_contacted_today = lastContactedToday
     ? "&last_contacted_today=true"
     : "";
-  const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}${_has_null_next_scheduled_email}${_not_null_next_scheduled_email}${_next_scheduled_email_today}${_last_contacted_today}`;
+  const url = `${endpoints.PERSON}${_filters}${_search}${_ordering}${_titleFilter}${_companyFilter}${_industryFilter}${_userFilter}${_sitesEnabled}${_has_null_next_scheduled_email}${_not_null_next_scheduled_email}${_next_scheduled_email_today}${_last_contacted_today}`;
 
 
   const finalUrl = url.endsWith("&") ? url.slice(0, -1) : url;

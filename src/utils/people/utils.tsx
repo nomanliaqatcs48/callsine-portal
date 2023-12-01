@@ -440,6 +440,11 @@ export const _columns: any = () => {
           );
         },
       },
+      // {
+      //   Header: "Industry",
+      //   accessor: "industry",
+      //   sorting_id: "industry",
+      // },
       {
         Header: "Sent Emails",
         accessor: "total_email_sent",
