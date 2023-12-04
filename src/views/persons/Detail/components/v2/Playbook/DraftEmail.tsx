@@ -33,6 +33,7 @@ import SendLaterOauth from "src/ui-component/buttons/SendLaterOauth";
 import SendLaterOauthEditTime from "src/ui-component/buttons/SendLaterOauthEditTime";
 import TooltipComponent from "src/ui-component/tour/Tooltip";
 import { EmailDraftTypes } from "src/utils/types/mail";
+import CreateMailAccount from "src/ui-component/buttons/CreateMailAccount";
 
 type DraftEmailTypes = {
   onLoadApi: any;
@@ -53,6 +54,7 @@ const DraftEmail = ({
 }: DraftEmailTypes) => {
   const { id: personId } = useParams();
   const [open, setOpen] = useState<boolean>(true);
+  const [isCreateMailAccountOpen, setIsCreateMailAccountOpen] = useState(false);
   const [isSubjectDisabled, setIsSubjectDisabled] = useState<boolean>(false);
   const [isLoading, setIsLoading] = useState<any>({
     onPage: true,
@@ -70,8 +72,6 @@ const DraftEmail = ({
     // }
     getPersonCounts();
   }, []);
-
-  console.log("PERSON COUNTS", personCounts);
 
   const {
     register,
@@ -255,14 +255,6 @@ const DraftEmail = ({
       }
     }
   });
-
-  const handleChangeFromEmail = (event: any) => {
-    setValue("from_email", event);
-    trigger("from_email");
-    // setCurrentSignature(event?.signature || "");
-    // setValueHtmlMsg(event?.signature || "", true);
-    setValue("signature", event?.signature || "");
-  };
 
   const onSubmitSendViaOauth = async (data: EmailDraftTypes) => {
     data["position"] = position;
@@ -510,8 +502,42 @@ const DraftEmail = ({
     }
   };
 
+  const handleChangeFromEmail = (selectedOption: any) => {
+    if (selectedOption.value === "add-account") {
+      setIsCreateMailAccountOpen(true);
+    } else {
+      console.log({ selectedData });
+      setValue("from_email", selectedOption);
+      trigger("from_email");
+      // setCurrentSignature(event?.signature || "");
+      // setValueHtmlMsg(event?.signature || "", true);
+      setValue("signature", selectedOption?.signature || "");
+    }
+  };
+
+  const handleCloseCreateMailAccount = () => {
+    setIsCreateMailAccountOpen(false);
+  };
+
+  const mailAccountsOptions = mailAccountsData.map((item: any, idx: number) => {
+    item.label = item.email;
+    item.value = item.id;
+    return item;
+  });
+
+  mailAccountsOptions.push({
+    label: " + ADD NEW SENDER ACCOUNT",
+    value: "add-account",
+  });
+
   return (
     <>
+      {isCreateMailAccountOpen && (
+        <CreateMailAccount
+          onClick={handleCloseCreateMailAccount}
+          initialOpen={isCreateMailAccountOpen}
+        />
+      )}
       <div className={`send-container ${_styles?.containers} xl:tw-py-5`}>
         <div className="tw-flex tw-flex-col tw-items-center lg:tw-flex-row lg:tw-justify-between">
           {/*left*/}
@@ -720,22 +746,20 @@ const DraftEmail = ({
           <div className={`${_styles?.label}`}>From</div>
           <div className={`${_styles?.labelValue}`}>
             {!isLoading?.from_email && (
-              <ReactSelect
-                name="from"
-                className="basic-single tw-cursor-pointer"
-                variant="blue"
-                placeholder="Please select"
-                isClearable={false}
-                isSearchable={true}
-                options={mailAccountsData.map((item: any, idx: number) => {
-                  item.label = item.email;
-                  item.value = item.id;
-                  return item;
-                })}
-                styles={selectBlueStyles}
-                defaultValue={getValues("from_email")}
-                onChange={handleChangeFromEmail}
-              />
+              <div>
+                <ReactSelect
+                  name="from"
+                  className="basic-single tw-cursor-pointer"
+                  variant="blue"
+                  placeholder="Please select"
+                  isClearable={false}
+                  isSearchable={true}
+                  options={mailAccountsOptions}
+                  styles={selectBlueStyles}
+                  defaultValue={getValues("from_email")}
+                  onChange={handleChangeFromEmail}
+                />
+              </div>
             )}
             <ErrorMessage
               errors={errors}

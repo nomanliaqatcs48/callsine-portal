@@ -38,6 +38,7 @@ export const usePersons = (
     industry: "",
   });
   const [filterUserId, setFilterUserId] = useState<number | null>();
+  const [filterSitesEnabled, setFilterSitesEnabled] = useState<boolean>(false);
   const [schedEmailNull, setSchedEmailNull] = useState<boolean>(false);
   const [schedEmailNotNull, setSchedEmailNotNull] = useState<boolean>(false);
   const [schedEmailToday, setSchedEmailToday] = useState<boolean>(false);
@@ -70,6 +71,7 @@ export const usePersons = (
         isOrderDesc,
         searchFilterValue,
         filterUserId,
+        filterSitesEnabled,
         schedEmailNull,
         schedEmailNotNull,
         schedEmailToday,
@@ -146,6 +148,7 @@ export const usePersons = (
     sortedId,
     isOrderDesc,
     filterUserId,
+    filterSitesEnabled,
     refetchPersons,
     schedEmailNull,
     schedEmailNotNull,
@@ -175,6 +178,7 @@ export const usePersons = (
     searchFilterValue,
     setSearchFilterValue,
     setFilterUserId,
+    setFilterSitesEnabled,
     setSchedEmailNull,
     setSchedEmailNotNull,
     setSchedEmailToday,

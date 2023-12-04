@@ -37,7 +37,7 @@ const MicrosoftDialogWalkthrough = ({
           </Typography>
           <Box textAlign="center" marginTop={2} marginBottom={2}>
             <img
-              src="./microsoft_consent_approval.png"
+              src="/microsoft_consent_approval.png"
               alt="Consent approval process"
               style={{ maxWidth: "100%", height: "auto" }}
               className="tw-mx-auto"

@@ -29,4 +29,6 @@ export const endpoints = {
   TEAM_MEMBERS_ASSIGN: "/api/team-members/",
   UNREAD_REPLIES: "/api/unread-replies/",
   REPLY_COUNTS: "/api/reply-counts/",
+  PASSWORD_RESET: "send-reset-email/",
+  PASSWORD_CONFIRM: "reset-password/",
 };

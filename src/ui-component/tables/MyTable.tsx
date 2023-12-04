@@ -489,8 +489,8 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                   textAlign: "left",
                 },
                 "& thead th:nth-child(n+8)": {
-                  textAlign: "center",
-                }
+                  textAlign: "left",
+                },
               }}
               className={
                 isResponsive
@@ -617,7 +617,7 @@ const MyTable = (props: MyTableProps): JSX.Element => {
                                     whiteSpace: "nowrap",
                                     overflow: "hidden",
                                     textOverflow: "ellipsis",
-
+                                    textAlign: "left",
                                     maxWidth: 300,
                                   },
                                 })}

@@ -418,6 +418,11 @@ export const _columns: any = () => {
         sorting_id: "org__name",
       },
       {
+        Header: "Company Website",
+        accessor: "company_website",
+        sorting_id: "company_website",
+      },
+      {
         Header: "Industry",
         accessor: "industry",
         sorting_id: "industry",
@@ -440,6 +445,11 @@ export const _columns: any = () => {
           );
         },
       },
+      // {
+      //   Header: "Industry",
+      //   accessor: "industry",
+      //   sorting_id: "industry",
+      // },
       {
         Header: "Sent Emails",
         accessor: "total_email_sent",
@@ -523,8 +533,8 @@ export const _columns: any = () => {
       // },
       {
         Header: "Assign",
-        // disableSortBy: true,
-        sorting_id: "assigned_user",
+        disableSortBy: true,
+        // sorting_id: "assigned_user",
         accessor: "assign",
         width: 130,
         minWidth: 130,
@@ -568,7 +578,8 @@ export const _columns: any = () => {
         Header: "Data Available",
         // disableSortBy: false,
         accessor: "data_availability",
-        sorting_id: "got_data",
+        // sorting_id: "got_data",
+        disableSortBy: true,
         width: 50,
         minWidth: 50,
         Cell: (cell: any) => {
@@ -579,31 +590,33 @@ export const _columns: any = () => {
             ToastSuccess("Person successfully enabled.");
           };
           return (
-                <div style={{ display: "flex", alignItems: "center" }}>
-                   {cell.row.original.force_enable ? (
-                  <IconCircleCheck
+            <div style={{ display: "flex", alignItems: "center" }}>
+              {cell.row.original.got_data || cell.row.original.force_enable ? (
+                <IconCircleCheck
                   style={{ color: theme.palette.success.main }}
                   size="20"
                   strokeWidth={3}
                   className=""
                 />
-                ):(
-                  <IconCircleX
-                    style={{ color: theme.palette.error.main }}
-                    size="20"
-                    strokeWidth={3}
-                    className=""
-                  />
-                )}
-                  <Button
-                    variant="text"
-                    className="tw-mx-2"
-                    onClick={(e) => handleUpdate(cell.row.original.id)}
-                    disabled={cell.row.original.force_enable}
-                  >
-                    {cell.row.original.force_enable ? "Enabled" : "Enable"}
-                  </Button>
-                </div>
+              ) : (
+                <IconCircleX
+                  style={{ color: theme.palette.error.main }}
+                  size="20"
+                  strokeWidth={3}
+                  className=""
+                />
+              )}
+              <Button
+                variant="text"
+                className="tw-mx-2"
+                onClick={(e) => handleUpdate(cell.row.original.id)}
+                disabled={cell.row.original.force_enable}
+              >
+                {cell.row.original.got_data || cell.row.original.force_enable
+                  ? "Enabled"
+                  : "Enable"}
+              </Button>
+            </div>
           );
         },
       },

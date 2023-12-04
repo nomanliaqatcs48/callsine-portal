@@ -7,6 +7,7 @@ type CreateOrEditMailAccountTypes = {
   children?: any;
   onLoadApi?: any;
   defaultValue?: any;
+  initialOpen?: boolean;
   onClick: any;
   [x: string]: any;
 };
@@ -15,14 +16,16 @@ const CreateMailAccount = ({
   children,
   onLoadApi,
   defaultValue,
+  initialOpen = false,
   onClick,
   ...props
 }: CreateOrEditMailAccountTypes) => {
-  const [open, setOpen] = useState(false);
+  const [open, setOpen] = useState(initialOpen);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => {
     setOpen(false);
+    onClick();
   };
 
   return (

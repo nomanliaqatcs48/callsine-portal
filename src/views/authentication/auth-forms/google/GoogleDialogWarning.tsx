@@ -35,7 +35,7 @@ const GoogleDialogWarning = ({ open, handleClose, GOOGLE_AUTH_URL }: any) => {
 
           <Box textAlign="center" marginTop={2} marginBottom={2}>
             <img
-              src="./google_warning_consent.png"
+              src="/google_warning_consent.png"
               alt="Consent approval process"
               style={{ maxWidth: "100%", height: "auto" }}
               className="tw-mx-auto"

@@ -136,10 +136,10 @@ const CreateOrEditPerson = ({
         }, 1000);
       }
     } catch (e: any) {
-      ToastError("Something went wrong!");
-      devLogError(() => {
-        console.error(e?.response);
-      });
+      ToastError(`${e?.response?.detail}`);
+      // devLogError(() => {
+      //   console.error(e?.response);
+      // });
       setPersonLoading((beforeVal: any) => ({
         ...beforeVal,
         form: false,
@@ -181,7 +181,8 @@ const CreateOrEditPerson = ({
             typeof e?.response?.data[Object.keys(e.response.data)?.[0]] ===
             "string"
           ) {
-            ToastError("Something went wrong!");
+            // ToastError("Something went wrong!");
+            ToastError(`${e?.response?.data?.detail}`);
           } else {
             ToastError(
               e?.response?.data[Object.keys(e.response.data)?.[0]]?.[0]
@@ -371,8 +372,7 @@ const CreateOrEditPerson = ({
                         {...register("linkedin", {
                           maxLength: {
                             value: 50,
-                            message:
-                              "LinkedIn URL cannot exceed 50 characters",
+                            message: "LinkedIn URL cannot exceed 50 characters",
                           },
                         })}
                       />
@@ -457,8 +457,7 @@ const CreateOrEditPerson = ({
                           required: "This is required field.",
                           maxLength: {
                             value: 50,
-                            message:
-                              "Company name cannot exceed 50 characters",
+                            message: "Company name cannot exceed 50 characters",
                           },
                         })}
                       />
