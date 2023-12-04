@@ -13,10 +13,10 @@ export const ToastSuccess = (str: string) => {
   });
 };
 
-export const ToastError = (str: string) => {
+export const ToastError = (str: string, autoClose: number = 1000) => {
   return toast.error(str, {
     position: "top-right",
-    autoClose: 1000,
+    autoClose,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
