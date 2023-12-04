@@ -82,6 +82,7 @@ const PersonsPage = () => {
   const [websocketResponse, setWebsocketResponse] = useState<any>({});
 
   const [showAssign, setShowAssign] = useState(false);
+  const [showEnabledSites, setShowEnabledSites] = useState(false);
   const { loading, data, error } = useGetUserMe();
   const [refreshTableExecuted, setRefreshTableExecuted] =
     useState<boolean>(false);
@@ -136,6 +137,7 @@ const PersonsPage = () => {
     searchFilterValue,
     setSearchFilterValue,
     setFilterUserId,
+    setFilterSitesEnabled,
     setSchedEmailNull,
     setSchedEmailNotNull,
     setSchedEmailToday,
@@ -203,6 +205,10 @@ const PersonsPage = () => {
     setShowAssign(!showAssign); // Toggle the state from true to false and vice versa
   };
 
+  const handleToggleEnabledSites = () => {
+    setShowEnabledSites(!showEnabledSites); // Toggle the state from true to false and vice versa
+  };
+
   useEffect(() => {
     if (
       (websocketResponse &&
@@ -227,6 +233,18 @@ const PersonsPage = () => {
       setFilterUserId(null);
     }
   }, [showAssign]);
+
+  useEffect(() => {
+    if(showEnabledSites) {
+      setFilterSitesEnabled(true)
+      setSchedEmailNotNull(false);
+      setSchedEmailNull(false);
+      setSchedEmailToday(false);
+      setLastContactedToday(false);
+    }else {
+      setFilterSitesEnabled(false)
+    }
+  },[showEnabledSites])
 
   const handleModalClose = () => {
     setExplainerOpen(false);
@@ -455,6 +473,15 @@ const PersonsPage = () => {
                   onClick={handleToggleAssign}
                 >
                   {showAssign ? "Show All" : "Show Assigned"}
+                </Button>
+                <MyDivider />                
+                <Button
+                  variant="text"
+                  startIcon={<Visibility />}
+                  className="tw-mx-2"
+                  onClick={handleToggleEnabledSites}
+                >
+                  {showEnabledSites ? "Show All" : "Show Enabled Sites"}
                 </Button>
                 <MyDivider />
 
