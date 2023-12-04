@@ -89,7 +89,7 @@ const useTutorial = () => {
     {
       label: "What does CallSine do?",
       description:
-        "CallSine is an generative AI app that uses your sales & marketing material to learn about your company to generate high quality outreach content tailored to your company. Then, it researches the prospects you provide to the system to further customize the content down to each individual.",
+        "CallSine is an generative AI app that learns about your company through  your own sales and marketing materials, using them to generate high  quality outreach that is tailored to your business. Then, it researches the  prospects you provide to the system to further customize the content  down to each individual.",
       content: () => (
         <Typography color="white" mt={2} mb={2}>
           {" "}
@@ -134,8 +134,8 @@ const useTutorial = () => {
           </Typography>
           <Typography color="white" mt={2} mb={2}>
             Final word on Playbooks: you have complete control over the content
-            that is actually sent. Over time will learn how to write the best
-            the prompts, but we already created a starter Playbook for you!
+            that is actually sent. Over time you will learn how to write the
+            best the prompts, but we already created a starter Playbook for you!
           </Typography>
         </>
       ),
