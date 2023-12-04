@@ -62,8 +62,10 @@ export const usePlaybook = (
   const getAllPlaybook = async () => {
     insertBodyLoader();
     if (!auth?.team) {
-      // Adjust this condition based on your actual data structure
-      await updateProfile();
+      updateProfile();
+      setTimeout(() => {
+        window.location.reload();
+      }, 100);
     }
     try {
       // let res = await dummyData();]
