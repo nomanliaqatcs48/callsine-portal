@@ -135,8 +135,7 @@ export const _columns: any = () => {
                 </span>
               ),
             },
-            {
-              //phone
+            {              
               icon: (
                 <LocalPhoneOutlinedIcon
                   className="tw-opacity-80"
@@ -428,6 +427,11 @@ export const _columns: any = () => {
         sorting_id: "industry",
       },
       {
+        Header: "Phone Number",
+        accessor: "phone",
+        sorting_id: "phone",
+      },
+      {
         Header: "Email",
         accessor: "work_email",
         width: 250,
@@ -445,6 +449,7 @@ export const _columns: any = () => {
           );
         },
       },
+      
       // {
       //   Header: "Industry",
       //   accessor: "industry",

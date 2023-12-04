@@ -66,6 +66,9 @@ const CreateOrEditPerson = ({
     formState: { errors },
   } = useForm();
 
+  const phoneNumberPattern =
+    /^(\+\d{12}|\d{12}|(\+\d{1,3}\s?)?(\(\d{1,4}\)\s?|\d{1,4}[-\s]?)\d{6,10})?$/;
+
   useEffect(() => {
     register("created_by", {
       required: "This is required field.",
@@ -150,14 +153,26 @@ const CreateOrEditPerson = ({
   const onThisAddSubmit = async (data: any) => {
     setPersonLoading((prev: any) => ({ ...prev, form: true }));
     try {
-      data = {
-        ...data,
-        company_name: data.company_name,
-        company_website: data.company_domain,
-        industry: data.industry,
-        org: { name: data.company_name, domain: data.company_domain },
-        assigned_user_id: userId,
-      };
+      if (data.phone !== "") {
+        data = {
+          ...data,
+          company_name: data.company_name,
+          company_website: data.company_domain,
+          industry: data.industry,
+          org: { name: data.company_name, domain: data.company_domain },
+          assigned_user_id: userId,
+        };
+      } else {
+        data = {
+          ...data,
+          company_name: data.company_name,
+          company_website: data.company_domain,
+          industry: data.industry,
+          org: { name: data.company_name, domain: data.company_domain },
+          assigned_user_id: userId,
+        };
+        delete data.phone;
+      }
       let res = await createPeopleService(data);
       if (res?.data) {
         ToastSuccess("New person successfully created.");
@@ -167,9 +182,9 @@ const CreateOrEditPerson = ({
         reset();
         setPersonLoading((prev: any) => ({ ...prev, form: false }));
 
-        setTimeout(() => {
-          window.location.reload();
-        }, 1000);
+        // setTimeout(() => {
+        //   window.location.reload();
+        // }, 1000);
       }
     } catch (e: any) {
       devLogError(() => {
@@ -181,7 +196,6 @@ const CreateOrEditPerson = ({
             typeof e?.response?.data[Object.keys(e.response.data)?.[0]] ===
             "string"
           ) {
-            // ToastError("Something went wrong!");
             ToastError(`${e?.response?.data?.detail}`);
           } else {
             ToastError(
@@ -319,6 +333,35 @@ const CreateOrEditPerson = ({
                       <ErrorMessage
                         errors={errors}
                         name="job_title"
+                        render={({ message }) => (
+                          <FormHelperText sx={{ color: "error.main" }}>
+                            {message}
+                          </FormHelperText>
+                        )}
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} lg={12}>
+                      <TextField
+                        error={!!errors.phone}
+                        disabled={personLoading?.form}
+                        margin="dense"
+                        id="phone"
+                        label="Phone Number"
+                        type="text"
+                        defaultValue={id ? defaultValue?.phone : ""}
+                        fullWidth
+                        {...register("phone", {
+                          required: false,
+                          pattern: {
+                            value: phoneNumberPattern,
+                            message: "Please enter a valid phone number.",
+                          },
+                        })}
+                      />
+                      <ErrorMessage
+                        errors={errors}
+                        name="phone"
                         render={({ message }) => (
                           <FormHelperText sx={{ color: "error.main" }}>
                             {message}
@@ -479,9 +522,12 @@ const CreateOrEditPerson = ({
 
           <DialogActions className="tw-pt-0 tw-pb-[30px] lg:tw-px-[24px]">
             <Button
-              onClick={handleSubmit((data) =>
-                id ? onThisEditSubmit(data) : onThisAddSubmit(data)
-              )}
+              onClick={(e) => {
+                e.preventDefault();
+                handleSubmit((data) =>
+                  id ? onThisEditSubmit(data) : onThisAddSubmit(data)
+                )();
+              }}
               disabled={personLoading?.form}
               variant="contained"
               color="primary"
