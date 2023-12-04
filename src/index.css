@@ -35,7 +35,7 @@ code {
 .message-text {
   text-align: center;
   letter-spacing: 0.44px;
-  color: #778DA9;
+  color: #778da9;
   opacity: 1;
   font: normal normal normal 22px/33px Poppins;
   margin-top: 1.8rem;
@@ -45,7 +45,19 @@ code {
   text-align: center;
   font: normal normal medium 22px/33px Poppins;
   letter-spacing: 0.44px;
-  color: #778DA9;
+  color: #778da9;
   opacity: 1;
   margin-top: 0.5rem;
+}
+
+.text-error {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.66;
+  text-align: left;
+  margin-top: 3px;
+  margin-right: 0;
+  margin-bottom: 0;
+  margin-left: 0;
+  color: #f44336;
 }

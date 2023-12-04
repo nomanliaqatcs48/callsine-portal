@@ -412,7 +412,7 @@ const PlaybookV2 = ({ personData }: PersonProps) => {
                 disabled={loading?.regeneratePlaybook || loading?.submit}
                 className="tw-bg-primary hover:tw-bg-primaryDark tw-normal-case"
               >
-                Yes, please!
+                Generate
               </LoadingButton>
               <LoadingButton
                 variant="outlined"

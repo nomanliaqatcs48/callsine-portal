@@ -177,7 +177,7 @@ const SendLaterOauth = ({
                         />
                       </DemoContainer>
                     </LocalizationProvider>
-                    {dateError && <p className="css-1t5tr1i-MuiFormHelperText-root"> Please select a future date and time</p>}
+                    {dateError && <p className="text-error"> Please select a future date and time</p>}
                     <ErrorMessage
                       errors={useForm?.errors}
                       name="scheduled_time"

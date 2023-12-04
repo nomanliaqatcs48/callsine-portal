@@ -142,12 +142,14 @@ const Sidebar = ({ drawerOpen, drawerToggle, window }: SidebarTypes) => {
               alignItems={"center"}
             >
               
-              <a href="/wizard/tutorial" style={{ textDecoration: "none", marginRight: "1.7rem" }}>
+              <a href="/wizard/tutorial" style={{ textDecoration: "none" }}>
                 <Typography color="white" fontWeight={"bold"}>
                   Click for Tutorial
                 </Typography>
               </a>
-              <IconBook2 color="white" />
+              <div className="tw-ml-auto" style={{paddingRight: 3}}>
+                <IconBook2 color="white" />
+              </div>
             </Box>
             <MendableSearchBar
               placeholder="Help"
