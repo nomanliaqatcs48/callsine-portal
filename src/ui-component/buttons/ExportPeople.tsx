@@ -17,6 +17,7 @@ const ExportPeople = () => {
     { label: "Company Name", key: "org.name" },
     { label: "Company URL", key: "org.domain" },
     { label: "Industry", key: "industry" },
+    { label: "Phone Number", key: "phone" },
     { label: "Email Address", key: "work_email" },
     { label: "Linkedin", key: "linkedin" },
     { label: "City", key: "person_city" },
