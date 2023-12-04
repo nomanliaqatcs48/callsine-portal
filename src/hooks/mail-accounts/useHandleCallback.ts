@@ -6,6 +6,28 @@ import config from "src/config";
 import { ToastSuccess, ToastError } from "src/helpers/toast";
 // import { useMailAccounts } from "./useMailAccounts";
 
+function handleMissingScopes(missingScopes: string[]) {
+  const scopeMessages: { [key: string]: string } = {
+    "https://www.googleapis.com/auth/gmail.send":
+      "You did not authorize Callsine to send email on your behalf.",
+    "https://www.googleapis.com/auth/gmail.readonly":
+      "You did not authorize Callsine to view your email messages.",
+  };
+
+  let messages: string[] = [];
+
+  missingScopes.forEach((scope) => {
+    if (scopeMessages[scope]) {
+      const message =
+        scopeMessages[scope] +
+        " Please try again and click the box that corresponds to this authorization.";
+      ToastError(message, 5000);
+      messages.push(message);
+    }
+  });
+  return messages;
+}
+
 function useHandleCallback(getMailAccounts: any) {
   const { auth } = useAuth();
   useEffect(() => {
@@ -36,11 +58,21 @@ function useHandleCallback(getMailAccounts: any) {
             body: JSON.stringify({ code: code, redirect_uri: redirect_uri }),
           });
 
+          const data = await response.json();
+
+          if (state === "google") {
+            const missingScopes = data?.missing_scopes;
+            if (missingScopes && missingScopes.length > 0) {
+              const messages = handleMissingScopes(missingScopes);
+              const errorMessage = messages.join("\n");
+              throw new Error(errorMessage);
+            }
+          }
+
           if (!response.ok) {
             throw new Error("Network response was not ok");
           }
 
-          const data = await response.json();
           console.log({ data });
 
           const _res = await Save(data, auth?.email, code, state);
@@ -66,7 +98,6 @@ function useHandleCallback(getMailAccounts: any) {
           getMailAccounts();
         } catch (error) {
           console.error("There was an error with the fetch operation:", error);
-          ToastSuccess(`There was an error with the fetch operation: ${error}`);
         }
       }
     };

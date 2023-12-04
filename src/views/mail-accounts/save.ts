@@ -29,8 +29,10 @@ const Save = async (
 
     let res: any;
     if (state === "google") {
+      console.log("WEWEWEWEWEWEWE");
       res = await googleAuthService(payload);
     } else {
+      console.log("sASDASDASDSADSADASD");
       res = await microsoftAuthService(payload);
     }
 
