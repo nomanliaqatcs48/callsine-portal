@@ -31,7 +31,7 @@ export const pricingItems = () => [
       </>
     ),
     description:
-      "Opt for our multi-seat subscription and save. if you have a need for 5 to 20 seats, you will get a $20 per month discount for all seats. That's a $240 savings per peat per year.  And it’s still month to month, no contract.",
+      "Opt for our multi-seat subscription and save. if you have a need for 5 to 20 seats, you will get a $20 per month discount for all seats. That's a $240 savings per seat per year.  And it’s still month to month, no contract.",
     onClick: () => {
       window.location.href = "/signup";
     },
