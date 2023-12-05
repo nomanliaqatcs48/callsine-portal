@@ -144,7 +144,7 @@ const PersonsPage = () => {
     setLastContactedToday,
   } = usePersons();
 
-  const { getPersonCounts, personCounts, isFetching } = usePersonCounts();
+  const { personCounts, isFetching, forceRerender } = usePersonCounts();
 
   const personsList = useSelector(
     (state: RootState) => state.personsLists.personsList
@@ -157,8 +157,8 @@ const PersonsPage = () => {
   };
 
   const executeRefreshTable = () => {
-    getPeople();
-    getPersonCounts();
+    getPeople();    
+    forceRerender();
   };
 
   const handleSearchOnBeforeChange = (e: any) => {
@@ -514,6 +514,7 @@ const PersonsPage = () => {
                 <DeleteSelectedPeople
                   selectedRows={selectedPersonRows}
                   onLoadApi={getPeople}
+                  renderGradient={forceRerender}
                 />
 
                 <MyDivider />

@@ -10,11 +10,13 @@ import { LoadingButton } from "@mui/lab";
 type DeleteSelectedPeopleTypes = {
   selectedRows: any[];
   onLoadApi: any;
+  renderGradient?: any;
 };
 
 const DeleteSelectedPeople = ({
   selectedRows,
   onLoadApi,
+  renderGradient,
 }: DeleteSelectedPeopleTypes) => {
   const [open, setOpen] = React.useState(false);
   const [isLoading, setIsLoading] = useState<any>({
@@ -48,6 +50,7 @@ const DeleteSelectedPeople = ({
           setIsLoading((prev: any) => ({ ...prev, submit: false }));
           handleClose();
           onLoadApi();
+          renderGradient();
         }
       } catch (e: any) {
         ToastError("Something went wrong!");
