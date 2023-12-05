@@ -10,6 +10,7 @@ import { useUnreadCount } from "src/hooks/useUnreadCount";
 
 import { useDispatch } from "react-redux";
 import { setPersonList } from "src/store/persons/actions";
+// import { usePersonCounts } from "./usePersonCounts";
 
 export const usePersons = (
   load: boolean = true,
@@ -19,6 +20,8 @@ export const usePersons = (
   }
 ) => {
   const dispatch = useDispatch();
+
+  // const { forceRerender } = usePersonCounts();
 
   const [personsData, setPersonsData] = React.useState<any[]>([]);
   const [total, setTotal] = React.useState<number>(0);
@@ -59,7 +62,7 @@ export const usePersons = (
         return 1; // b comes first
       }
       return 0; // no change in order
-    });    
+    });
     return persons;
   };
   const getPeople = async () => {
@@ -78,12 +81,12 @@ export const usePersons = (
         lastContactedToday
       );
       if (res?.data) {
-        const sortedResults = makePeopleWithReplyToTop(res.data.results);
-
+        const sortedResults = makePeopleWithReplyToTop(res.data.results);        
         dispatch(setPersonList(sortedResults));
         setPersonsData(sortedResults);
         setTotal(res.data.count);
         setIsLoading((prev) => ({ ...prev, onPage: false }));
+        // forceRerender();
         return res.data;
       }
     } catch (e) {
