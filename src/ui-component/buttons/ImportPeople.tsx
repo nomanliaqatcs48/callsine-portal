@@ -18,7 +18,7 @@ const ImportPeople = ({ onLoadApi }: ImportPeopleProps) => {
 
   // Define the CSV template
   const csvData =
-    "First Name,Last Name,Job Title,Company Name,Industry,Email Address,LinkedIn,Person City,State,Profile URL,Website\n"; // Customize this line to match the template
+    "First Name,Last Name,Phone Number,Job Title,Company Name,Email Address,Website,LinkedIn Contact Profile URL,Industry,City,State\n"; // Customize this line to match the template
 
   // Function to handle the download
   const downloadTemplate = () => {
