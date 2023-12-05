@@ -26,6 +26,7 @@ const Reset: React.FC = () => {
   const [successMessage, setSuccessMessage] = useState<string>("");
   const [errorMessage, setErrorMessage] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
+  const [sending, setSending] = useState<boolean>(false);
 
   const validateEmail = (email: string): boolean => {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -40,6 +41,7 @@ const Reset: React.FC = () => {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    setSending(true);
 
     if (!isEmailValid) {
       ToastError("Invalid email address");
@@ -50,6 +52,7 @@ const Reset: React.FC = () => {
       const response = await passwordResetService({ email });
       if (response.status === 200) {
         ToastSuccess(response.data.message);
+        setErrorMessage("");
         setSuccessMessage(
           `Check ${email} inbox or spam folder for password reset link.`
         );
@@ -66,6 +69,8 @@ const Reset: React.FC = () => {
         setSuccessMessage("");
         setEmail("");
       }
+    } finally {
+      setSending(false);
     }
   };
 
@@ -130,7 +135,7 @@ const Reset: React.FC = () => {
                       variant="contained"
                       color="primary"
                       className="tw-bg-primary"
-                      disabled={!isEmailValid || email.length === 0}
+                      disabled={!isEmailValid || email.length === 0 || sending}
                     >
                       Reset Password
                     </Button>
