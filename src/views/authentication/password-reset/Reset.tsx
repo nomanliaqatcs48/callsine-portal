@@ -24,6 +24,7 @@ const Reset: React.FC = () => {
 
   const [email, setEmail] = useState<string>("");
   const [successMessage, setSuccessMessage] = useState<string>("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [isEmailValid, setIsEmailValid] = useState<boolean>(false);
 
   const validateEmail = (email: string): boolean => {
@@ -53,11 +54,19 @@ const Reset: React.FC = () => {
           `Check ${email} inbox or spam folder for password reset link.`
         );
         setEmail("");
-      } else {
-        ToastError(response.data.message);
-        setSuccessMessage("");
       }
-    } catch (error) {}
+    } catch (error: any) {
+      if (error.response.status === 404) {
+        let msg = error.response.data.message;
+        setErrorMessage(`${msg} : ${email}`);
+        setSuccessMessage("");
+        setEmail("");
+      } else {
+        setErrorMessage(error.response.data.message);
+        setSuccessMessage("");
+        setEmail("");
+      }
+    }
   };
 
   return (
@@ -131,6 +140,13 @@ const Reset: React.FC = () => {
                   <Box sx={{ mt: 2, textAlign: "center" }}>
                     <Typography variant="subtitle1" color="green">
                       {successMessage}
+                    </Typography>
+                  </Box>
+                )}
+                {errorMessage && (
+                  <Box sx={{ mt: 2, textAlign: "center" }}>
+                    <Typography variant="subtitle1" color="red">
+                      {errorMessage}
                     </Typography>
                   </Box>
                 )}
