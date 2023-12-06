@@ -33,7 +33,6 @@ const MicrosoftLoginBtn = () => {
         } else {
           window.location.href = "/wizard/checkout";
         }
-        window.location.href = "/wizard/checkout";
       }
     } catch (err: any) {
       devLogError(() => {
