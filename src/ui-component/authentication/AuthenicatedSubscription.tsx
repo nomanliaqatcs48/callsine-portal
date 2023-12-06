@@ -63,7 +63,7 @@ const AuthenicatedSubscription = ({ children }: AuthenticatedTypes) => {
       let _check = await checkIfAuthenticated();
       let profile: any = localStorage.getItem("profile");
       profile = JSON.parse(profile)
-      if (_check && !profile?.subscription?.id) {
+      if (_check && !profile?.team) {
         window.location.href = "/login";
       } else {
         if (!_check) {
