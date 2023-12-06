@@ -28,6 +28,11 @@ const MicrosoftLoginBtn = () => {
         await saveString("token", res.data.access_token);
         await saveString("refresh", res.data.refresh_token);
         await save("profile", res.data.user);
+        if(res.data?.user?.team) {
+          window.location.href = "/people";
+        } else {
+          window.location.href = "/wizard/checkout";
+        }
         window.location.href = "/wizard/checkout";
       }
     } catch (err: any) {
